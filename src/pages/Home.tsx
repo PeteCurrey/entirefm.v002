@@ -8,28 +8,29 @@ import CaseStudyCard from "@/components/shared/CaseStudyCard";
 import heroImage from "@/assets/hero-london.jpg";
 import industrialImage from "@/assets/industrial-facility.jpg";
 import officeImage from "@/assets/office-interior.jpg";
-
 const Home = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+        backgroundImage: `url(${heroImage})`
+      }}>
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-light text-white mb-6 leading-tight animate-fade-in-up">
-              Facilities management that actually gets it done.
+            <h1 className="text-5xl text-white mb-6 leading-tight animate-fade-in-up font-extralight md:text-4xl">
+              Facilities Management &amp; FM Support Services
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-8 font-light leading-relaxed max-w-2xl animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-              Owner-led, tech-driven FM for teams that can't afford downtime. Hard & soft services, compliance and projects – all under one accountable partner.
+            <p style={{
+            animationDelay: "0.2s"
+          }} className="text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl animate-fade-in-up font-extralight md:text-xl text-left">
+              Your Dedicated Facilities Management Company
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{
+            animationDelay: "0.4s"
+          }}>
               <Button size="lg" asChild>
                 <Link to="/contact">Request a Proposal</Link>
               </Button>
@@ -40,7 +41,9 @@ const Home = () => {
           </div>
 
           {/* Metrics Dashboard */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl animate-fade-in-up" style={{
+          animationDelay: "0.6s"
+        }}>
             <MetricCard value="41" label="Avg response time (mins)" />
             <MetricCard value="87" label="First-time fix rate" suffix="%" />
             <MetricCard value="120" label="Sites under management" suffix="+" />
@@ -63,11 +66,9 @@ const Home = () => {
             Trusted by operations teams across the UK
           </p>
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-50">
-            {["Logistics Group", "Retail Chain", "Aviation Hub", "Property Fund", "Industrial Estate"].map((client) => (
-              <div key={client} className="text-lg font-light text-muted-foreground">
+            {["Logistics Group", "Retail Chain", "Aviation Hub", "Property Fund", "Industrial Estate"].map(client => <div key={client} className="text-lg font-light text-muted-foreground">
                 {client}
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -85,29 +86,23 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: CheckCircle2,
-                title: "No more chasing contractors",
-                description: "Dedicated helpdesk and single point of contact. We own the problem until it's solved."
-              },
-              {
-                icon: Shield,
-                title: "Compliance without the chaos",
-                description: "PPM schedules, digital asset registers, and clear audit trails. Everything documented."
-              },
-              {
-                icon: Smartphone,
-                title: "Tech-enabled, not tech-distracted",
-                description: "CAFM platform, live portals, and real-time job tracking without the complexity."
-              },
-              {
-                icon: Clock,
-                title: "Owner-led, no corporate scripts",
-                description: "Direct access to decision makers. Quick responses. Real accountability."
-              },
-            ].map((feature, index) => (
-              <div key={index} className="text-center">
+            {[{
+            icon: CheckCircle2,
+            title: "No more chasing contractors",
+            description: "Dedicated helpdesk and single point of contact. We own the problem until it's solved."
+          }, {
+            icon: Shield,
+            title: "Compliance without the chaos",
+            description: "PPM schedules, digital asset registers, and clear audit trails. Everything documented."
+          }, {
+            icon: Smartphone,
+            title: "Tech-enabled, not tech-distracted",
+            description: "CAFM platform, live portals, and real-time job tracking without the complexity."
+          }, {
+            icon: Clock,
+            title: "Owner-led, no corporate scripts",
+            description: "Direct access to decision makers. Quick responses. Real accountability."
+          }].map((feature, index) => <div key={index} className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                   <feature.icon className="w-8 h-8 text-primary" />
                 </div>
@@ -115,8 +110,7 @@ const Home = () => {
                 <p className="text-sm text-muted-foreground font-light leading-relaxed">
                   {feature.description}
                 </p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -134,46 +128,10 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <ServiceCard
-              title="Hard Services & M&E"
-              description="Mechanical, electrical, and building fabric maintenance"
-              items={[
-                "HVAC, electrical, mechanical systems",
-                "Plumbing, gas, and drainage",
-                "Emergency systems and lighting",
-                "Energy optimisation and BMS"
-              ]}
-            />
-            <ServiceCard
-              title="Compliance & Life Safety"
-              description="Statutory compliance and risk management"
-              items={[
-                "Fire alarms, emergency lighting, extinguishers",
-                "FRA actions and remediation",
-                "Gas safety, water hygiene, LOLER",
-                "Complete audit trails"
-              ]}
-            />
-            <ServiceCard
-              title="Soft Services & Workplace"
-              description="Day-to-day operations and environment management"
-              items={[
-                "Commercial cleaning and washrooms",
-                "Grounds maintenance and waste",
-                "Reception and concierge services",
-                "Security coordination"
-              ]}
-            />
-            <ServiceCard
-              title="Projects & Small Works"
-              description="From minor works to complete fit-outs"
-              items={[
-                "Office and retail fit-outs",
-                "Building refurbishments",
-                "Service station upgrades",
-                "Landlord make-good works"
-              ]}
-            />
+            <ServiceCard title="Hard Services & M&E" description="Mechanical, electrical, and building fabric maintenance" items={["HVAC, electrical, mechanical systems", "Plumbing, gas, and drainage", "Emergency systems and lighting", "Energy optimisation and BMS"]} />
+            <ServiceCard title="Compliance & Life Safety" description="Statutory compliance and risk management" items={["Fire alarms, emergency lighting, extinguishers", "FRA actions and remediation", "Gas safety, water hygiene, LOLER", "Complete audit trails"]} />
+            <ServiceCard title="Soft Services & Workplace" description="Day-to-day operations and environment management" items={["Commercial cleaning and washrooms", "Grounds maintenance and waste", "Reception and concierge services", "Security coordination"]} />
+            <ServiceCard title="Projects & Small Works" description="From minor works to complete fit-outs" items={["Office and retail fit-outs", "Building refurbishments", "Service station upgrades", "Landlord make-good works"]} />
           </div>
 
           <div className="text-center mt-12">
@@ -200,36 +158,12 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <SectorCard
-              title="Offices & Corporate"
-              description="Grade A to multi-let schemes. Workplace services that support productivity."
-              image={officeImage}
-            />
-            <SectorCard
-              title="Industrial & Logistics"
-              description="24/7 operations. Critical infrastructure. Minimal disruption to workflow."
-              image={industrialImage}
-            />
-            <SectorCard
-              title="Retail & Service Stations"
-              description="Customer-facing environments. Out-of-hours works. Brand standards maintained."
-              image={officeImage}
-            />
-            <SectorCard
-              title="Aviation & Transport"
-              description="Regulated environments. Security clearances. Complex operational interfaces."
-              image={industrialImage}
-            />
-            <SectorCard
-              title="Residential & PBSA"
-              description="Resident satisfaction. Common areas. Estate management."
-              image={officeImage}
-            />
-            <SectorCard
-              title="Construction & Developments"
-              description="Site progression support. Handover coordination. Defects management."
-              image={industrialImage}
-            />
+            <SectorCard title="Offices & Corporate" description="Grade A to multi-let schemes. Workplace services that support productivity." image={officeImage} />
+            <SectorCard title="Industrial & Logistics" description="24/7 operations. Critical infrastructure. Minimal disruption to workflow." image={industrialImage} />
+            <SectorCard title="Retail & Service Stations" description="Customer-facing environments. Out-of-hours works. Brand standards maintained." image={officeImage} />
+            <SectorCard title="Aviation & Transport" description="Regulated environments. Security clearances. Complex operational interfaces." image={industrialImage} />
+            <SectorCard title="Residential & PBSA" description="Resident satisfaction. Common areas. Estate management." image={officeImage} />
+            <SectorCard title="Construction & Developments" description="Site progression support. Handover coordination. Defects management." image={industrialImage} />
           </div>
 
           <div className="text-center mt-12">
@@ -256,33 +190,9 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <CaseStudyCard
-              sector="Logistics"
-              title="Reducing reactive call-outs by 32% for regional logistics hub"
-              metrics={[
-                "Response time cut from 2hrs to 41 mins",
-                "£47k annual cost savings",
-                "98% SLA compliance achieved"
-              ]}
-            />
-            <CaseStudyCard
-              sector="Aviation"
-              title="Delivering compliant FM across 3 UK airports"
-              metrics={[
-                "Zero compliance breaches in 18 months",
-                "24/7 helpdesk response maintained",
-                "Security-cleared engineer network"
-              ]}
-            />
-            <CaseStudyCard
-              sector="Mixed-Use"
-              title="Integrated FM for 12-building commercial estate"
-              metrics={[
-                "Single point of contact for all trades",
-                "Tenant satisfaction up 34%",
-                "Digital asset register deployed"
-              ]}
-            />
+            <CaseStudyCard sector="Logistics" title="Reducing reactive call-outs by 32% for regional logistics hub" metrics={["Response time cut from 2hrs to 41 mins", "£47k annual cost savings", "98% SLA compliance achieved"]} />
+            <CaseStudyCard sector="Aviation" title="Delivering compliant FM across 3 UK airports" metrics={["Zero compliance breaches in 18 months", "24/7 helpdesk response maintained", "Security-cleared engineer network"]} />
+            <CaseStudyCard sector="Mixed-Use" title="Integrated FM for 12-building commercial estate" metrics={["Single point of contact for all trades", "Tenant satisfaction up 34%", "Digital asset register deployed"]} />
           </div>
 
           <div className="text-center mt-12">
@@ -315,8 +225,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
