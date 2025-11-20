@@ -77,10 +77,10 @@ const Home = () => {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block">
+            <h2 className="text-4xl md:text-5xl mb-6 underline-accent inline-block font-extralight">
               Your Space, Our Expertise.     
             </h2>
-            <p className="text-lg text-muted-foreground font-light leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed text-xl font-extralight">
               Complete Facilities Management &amp; FM Support Services
             </p>
           </div>
@@ -123,7 +123,7 @@ const Home = () => {
               What We Deliver
             </h2>
             <p className="text-lg text-muted-foreground font-light max-w-2xl leading-relaxed">
-              Integrated FM combining hard, soft, and project services under one contract. Or standalone services tailored to your needs.
+              Integrated FM combining hard, soft and project services under one contract. Or standalone services tailored to your needs.
             </p>
           </div>
 
