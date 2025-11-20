@@ -5,35 +5,43 @@ import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle2, AlertTriangle } from "lucide-react";
+import { CheckCircle2, Shield } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const Sprinklers = () => {
   const faqs = [
     {
-      question: "How often should sprinkler systems be tested?",
-      answer: "Weekly visual checks, quarterly flow tests, and annual full commissioning tests are required under BS EN 12845. Dry risers require 6-monthly pressure testing."
+      question: "How often should sprinklers be serviced in the UK?",
+      answer: "Weekly visual checks + quarterly and annual maintenance per BS EN 12845."
     },
     {
-      question: "What is a sprinkler flow test?",
-      answer: "A quarterly flow test verifies water pressure, flow rates, and alarm activation to ensure the system will operate correctly during a fire event."
+      question: "What is required for dry riser testing?",
+      answer: "A 6-month visual inspection and an annual full wet-pressure test as per BS 9990."
     },
     {
-      question: "Do you service both wet and dry sprinkler systems?",
-      answer: "Yes. We maintain wet pipe, dry pipe, pre-action, and deluge sprinkler systems, plus dry riser and wet riser installations."
+      question: "Can you support buildings while in full occupancy?",
+      answer: "Yes — we plan around business continuity, including night shifts."
     },
     {
-      question: "Can you handle emergency sprinkler repairs?",
-      answer: "Absolutely. 24/7 emergency response for sprinkler leaks, valve failures, and pressure loss to minimise water damage and restore fire protection."
+      question: "Do you provide remedial works after testing?",
+      answer: "Yes — immediate fixes prevent prolonged risk exposure."
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Sprinkler & Dry Riser Maintenance UK | BS EN 12845 Compliance | EntireFM</title>
+        <title>Sprinkler Maintenance UK | Dry Riser Testing | BS EN 12845 Contractor | EntireFM</title>
         <meta 
           name="description" 
-          content="Sprinkler system testing, dry riser maintenance, and fire suppression compliance for UK commercial properties. Weekly checks, flow tests, and emergency response."
+          content="Fire suppression systems that don't fail. Certified sprinkler maintenance, dry riser testing & BS EN 12845 compliance for high-risk UK commercial properties."
         />
       </Helmet>
 
@@ -56,148 +64,198 @@ const Sprinklers = () => {
             <div className="lg:col-span-2 space-y-12">
               <header>
                 <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Fire Suppression Systems Engineered to Activate.
+                  Fire Suppression Systems That Don't Fail When Lives Depend on Them.
                 </h1>
                 <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  Sprinklers, dry risers, and wet risers maintained to BS EN 12845 — no shortcuts.
+                  Certified inspection, testing and maintenance — built around high-risk environments.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <Link to="/contact">Request Sprinkler Service</Link>
+                    <Link to="/contact">Request Sprinkler & Riser Proposal</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link to="/contact">Book Flow Test</Link>
+                    <Link to="/contact">Book a Compliance Survey</Link>
                   </Button>
                 </div>
               </header>
 
-              {/* Risk Impact */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  Why Sprinkler Reliability Matters
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  The Last Line of Defence in Fire Safety
                 </h2>
-                <p className="text-lg font-light mb-6">When sprinkler systems fail or aren't tested:</p>
+                <p className="text-lg font-light leading-relaxed mb-4">
+                  If a fire grows beyond detection, your suppression systems are the only thing standing between danger and disaster.
+                </p>
+                <p className="text-lg font-medium">
+                  We ensure they perform instantly — every time.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  What We Maintain — Fully Compliant
+                </h2>
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>System</TableHead>
+                        <TableHead>Standard</TableHead>
+                        <TableHead>Frequency</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="font-light">Sprinklers</TableCell>
+                        <TableCell className="font-light">BS EN 12845</TableCell>
+                        <TableCell className="font-light">Weekly / Quarterly / Annual</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-light">Dry Risers</TableCell>
+                        <TableCell className="font-light">BS 9990</TableCell>
+                        <TableCell className="font-light">Annual test + 6-month inspection</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-light">Wet Risers</TableCell>
+                        <TableCell className="font-light">BS 9990</TableCell>
+                        <TableCell className="font-light">Pressure tests + flow validation</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-light">Pumps & Tanks</TableCell>
+                        <TableCell className="font-light">BS EN 12845</TableCell>
+                        <TableCell className="font-light">Weekly runs + monthly checks</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-light">Valves & Controls</TableCell>
+                        <TableCell className="font-light">Manufacturer + SFG20</TableCell>
+                        <TableCell className="font-light">Functional testing</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+                <p className="text-sm text-muted-foreground font-light mt-4">
+                  Digital certificates issued after every visit — audit-ready.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Beyond "Testing" — We Strengthen Your Fire Strategy
+                </h2>
+                <p className="text-lg font-light leading-relaxed mb-6">
+                  We assess and upgrade:
+                </p>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
-                    "Fire spreads unchecked",
-                    "Life safety risk becomes critical",
-                    "Insurance premiums spike or coverage denied",
-                    "Building closure until compliance restored"
+                    "Pump performance & reliability",
+                    "Tank condition and water supply integrity",
+                    "Valve accessibility for fire brigade use",
+                    "Obstruction & loading risks",
+                    "Zone performance for rapid suppression"
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <Shield className="w-5 h-5 text-accent shrink-0 mt-1" />
                       <span className="font-light">{item}</span>
                     </div>
                   ))}
                 </div>
                 <p className="text-lg font-medium mt-6">
-                  We make sure your suppression systems activate when seconds count.
+                  We engineer resilience — not checklists.
+                </p>
+              </section>
+
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Common Risks We Eliminate
+                </h2>
+                <div className="space-y-3">
+                  {[
+                    "Inoperable landing valves",
+                    "Seized isolation valves",
+                    "Insufficient pressure / water volume",
+                    "Corrosion on pipework and outlets",
+                    "Incomplete zone protection",
+                    "Unknown asset condition = unknown risk"
+                  ].map((risk, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{risk}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  We bring control back to the Responsible Person.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Fire Suppression Services
+                  High-Risk Sites Welcome
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <p className="text-lg font-light leading-relaxed mb-6">
+                  We specialise in:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
                   {[
-                    "Weekly sprinkler system visual checks",
-                    "Quarterly flow & pressure tests",
-                    "Annual full commissioning tests",
-                    "Dry riser 6-monthly pressure testing",
-                    "Wet riser maintenance & certification",
-                    "Sprinkler head replacement & obstruction surveys",
-                    "Valve maintenance & seal verification",
-                    "Pump performance testing",
-                    "Alarm & monitoring integration",
-                    "Water tank inspection & cleaning",
-                    "Fire brigade inlet checks",
-                    "Emergency leak repair & system shutdown"
-                  ].map((service, index) => (
+                    "Logistics & warehouses",
+                    "Industrial / plant environments",
+                    "Retail and public-facing space",
+                    "High-rise commercial",
+                    "Student/residential blocks"
+                  ].map((site, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{service}</span>
+                      <span className="font-light">{site}</span>
                     </div>
                   ))}
                 </div>
+                <p className="text-lg font-medium mt-6">
+                  Complex assets → Our everyday workload.
+                </p>
               </section>
 
-              {/* Compliance Framework */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  BS EN 12845 & Testing Requirements
-                </h2>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-charcoal text-white">
-                        <th className="p-4 text-left font-medium">System Type</th>
-                        <th className="p-4 text-left font-medium">Test Frequency</th>
-                        <th className="p-4 text-left font-medium">What's Checked</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Sprinkler Systems</td>
-                        <td className="p-4 font-light text-sm">Weekly visual + quarterly flow test</td>
-                        <td className="p-4 font-light text-sm">Pressure, flow rates, alarm activation, valve seals</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Dry Risers</td>
-                        <td className="p-4 font-light text-sm">6-monthly pressure test</td>
-                        <td className="p-4 font-light text-sm">Inlet/outlet couplings, pressure loss, valve operation</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Wet Risers</td>
-                        <td className="p-4 font-light text-sm">6-monthly pressure test</td>
-                        <td className="p-4 font-light text-sm">Water pressure at all outlets, pump performance</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Sprinkler Pumps</td>
-                        <td className="p-4 font-light text-sm">Weekly run test</td>
-                        <td className="p-4 font-light text-sm">Start-up, pressure delivery, auto-changeover (duty/standby)</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="mt-8">
-                  <Button variant="outline" asChild>
-                    <Link to="/resources">Download Sprinkler Compliance Guide</Link>
-                  </Button>
-                </div>
-              </section>
-
-              {/* What You Get */}
               <section className="bg-muted/30 p-8 rounded-lg">
                 <h2 className="text-3xl font-light mb-6">
-                  What You Get as Standard
+                  Full Asset Tagging & Compliance Visibility
                 </h2>
+                <p className="text-lg font-light leading-relaxed mb-6">
+                  Your fire suppression compliance displayed clearly:
+                </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Certificate Management</h3>
+                    <h3 className="font-medium mb-2">QR-coded equipment tagging</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      All flow tests and pressure tests certified and logged digitally with expiry tracking.
+                      Every asset tracked and accessible instantly.
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Emergency Leak Response</h3>
+                    <h3 className="font-medium mb-2">Traffic-light risk scoring</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      24/7 call-out for sprinkler leaks, valve failures, and pump breakdowns.
+                      Clear visibility on system health and priorities.
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Multi-Site Coordination</h3>
+                    <h3 className="font-medium mb-2">Remedial recommendations</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Grouped PPM schedules and centralised compliance reporting for portfolios.
+                      Actionable insights with costed proposals.
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Impairment Management</h3>
+                    <h3 className="font-medium mb-2">CAPEX planning (asset lifecycle)</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Clear risk mitigation plans when systems are offline for maintenance or repair.
+                      Long-term budgeting for system replacements.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">All reports & service logs securely stored</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Cloud-based access for instant audit readiness.
                     </p>
                   </div>
                 </div>
+                <p className="text-lg font-medium mt-6">
+                  Portfolio owners love this.
+                </p>
               </section>
 
               <FAQSection faqs={faqs} />
@@ -206,13 +264,13 @@ const Sprinklers = () => {
               <section className="border-t border-border pt-12">
                 <div className="text-center bg-charcoal text-white p-12 rounded-lg">
                   <h2 className="text-3xl font-light mb-4">
-                    Your sprinkler system is your last line of defence.
+                    Don't discover system failure in an emergency.
                   </h2>
                   <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
-                    Make sure it works. Request a sprinkler compliance audit today.
+                    Book a full suppression system compliance review today.
                   </p>
                   <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
-                    <Link to="/contact">Get Your Suppression Plan</Link>
+                    <Link to="/contact">Request a Full Fire Alarm Compliance Review</Link>
                   </Button>
                 </div>
               </section>
