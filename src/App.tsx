@@ -15,7 +15,13 @@ import About from "./pages/About";
 import Resources from "./pages/Resources";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
+import Locations from "./pages/Locations";
 import NotFound from "./pages/NotFound";
+import HardServices from "./pages/services/HardServices";
+import HVAC from "./pages/services/HVAC";
+import PPM from "./pages/services/PPM";
+import London from "./pages/locations/London";
+import Manchester from "./pages/locations/Manchester";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +37,13 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/services/hard-services" element={<HardServices />} />
+              <Route path="/services/hvac" element={<HVAC />} />
+              <Route path="/services/ppm" element={<PPM />} />
               <Route path="/sectors" element={<Sectors />} />
+              <Route path="/locations" element={<Locations />} />
+              <Route path="/locations/london" element={<London />} />
+              <Route path="/locations/manchester" element={<Manchester />} />
               <Route path="/technology" element={<Technology />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/about" element={<About />} />
