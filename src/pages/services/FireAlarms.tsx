@@ -10,30 +10,30 @@ import { CheckCircle2, AlertTriangle } from "lucide-react";
 const FireAlarms = () => {
   const faqs = [
     {
-      question: "How often should fire alarm systems be tested?",
-      answer: "Weekly call point testing, quarterly inspection visits, and annual full system commissioning tests are required under BS 5839-1 for most commercial premises."
+      question: "How often do fire alarms need testing?",
+      answer: "Weekly user tests + quarterly specialist maintenance, per BS 5839."
     },
     {
-      question: "What happens if a fire alarm fails testing?",
-      answer: "We provide immediate fault rectification where possible, or a clear remedial plan with risk mitigation steps until full repair. All failures are logged and reported to responsible persons."
+      question: "Do you service multi-site portfolios?",
+      answer: "Yes — our CAFM platform simplifies cross-site scheduling and reporting."
     },
     {
-      question: "Do you maintain all fire alarm brands?",
-      answer: "Yes. We service and maintain all major brands including Advanced, Gent, Kentec, Apollo, Hochiki, and legacy analogue systems."
+      question: "Can you respond to fire panel faults 24/7?",
+      answer: "Absolutely. Critical response is instant."
     },
     {
-      question: "Can you integrate fire alarms with BMS?",
-      answer: "Absolutely. We handle integration between fire panels, BMS systems, and building automation for coordinated emergency response."
+      question: "Do you handle Cause & Effect?",
+      answer: "Yes — we validate logic and update programming where required."
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Commercial Fire Alarm Service & Maintenance UK | BS 5839 Compliance | EntireFM</title>
+        <title>Fire Alarm Maintenance UK | BS 5839 Testing | Fire Alarm Servicing Contractor | EntireFM</title>
         <meta 
           name="description" 
-          content="Fire alarm testing, maintenance, and BS 5839 compliance for UK commercial buildings. Weekly testing, servicing, and 24/7 emergency response."
+          content="Certified fire alarm testing and maintenance that protects people, property, and your legal liability. BS 5839 compliance, 24/7 response, multi-site coverage."
         />
       </Helmet>
 
@@ -56,33 +56,136 @@ const FireAlarms = () => {
             <div className="lg:col-span-2 space-y-12">
               <header>
                 <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Fire Alarm Systems That Work When It Matters.
+                  Fire Safety with No Room for Error.
                 </h1>
                 <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  BS 5839 compliance, reliable servicing, and zero tolerance for false alarms.
+                  Certified fire alarm testing and maintenance that protects people, property, and your legal liability.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <Link to="/contact">Request Fire Alarm Service</Link>
+                    <Link to="/contact">Request Fire Alarm Proposal</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link to="/contact">Book Compliance Audit</Link>
+                    <Link to="/contact">Book a Fire System Survey</Link>
                   </Button>
                 </div>
               </header>
 
-              {/* Risk Impact */}
+              {/* Risk: Fires Don't Give Second Chances */}
               <section className="bg-muted/30 p-8 rounded-lg">
                 <h2 className="text-3xl font-light mb-6">
-                  The Cost of Fire Alarm Failure
+                  Risk: Fires Don't Give Second Chances
                 </h2>
-                <p className="text-lg font-light mb-6">When fire detection systems aren't maintained:</p>
+                <p className="text-lg font-light mb-6">
+                  When fire protection fails, everything fails. We keep your systems compliant, responsive, and ready.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  What We Maintain
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  All critical detection and control components:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    "Fire alarm panels (addressable & conventional)",
+                    "Smoke & heat detectors",
+                    "Manual call points",
+                    "Sounders, strobes & visual alarms",
+                    "Dampers & fire doors interfacing",
+                    "Aspirating & VESDA systems",
+                    "Cause & Effect programming",
+                    "Integration to sprinklers & extinguishing systems"
+                  ].map((service, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{service}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  If it protects life — we maintain it.
+                </p>
+              </section>
+
+              {/* BS 5839: Full Compliance, No Grey Areas */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  BS 5839: Full Compliance, No Grey Areas
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  We inspect, test and maintain to BS 5839-1 for commercial buildings, including:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                  {[
+                    "Weekly user tests (supported & scheduled reminders)",
+                    "Quarterly & biannual inspections",
+                    "Annual full-system test",
+                    "Zone testing with recorded traceability"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium">
+                  All visits logged. All records stored. Easily retrievable for audits or HSE.
+                </p>
+              </section>
+
+              {/* Reporting Fire Risk Clearly */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Reporting Fire Risk Clearly
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  Every inspection includes:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Device-by-device test records</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Complete traceability for every component tested.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Photographic evidence of failures</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Visual proof of issues for audit and remedial action.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Risk-prioritised remedial actions</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Clear priorities to address critical issues first.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Costed compliance proposals</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Data-driven decision support for Responsible Persons.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Industry Problem */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Industry Problem: Vendors Who Just Tick Boxes
+                </h2>
+                <p className="text-lg font-light mb-6">
+                  We fix the industry's biggest fire safety issues:
+                </p>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
-                    "Life safety risk becomes unmanageable",
-                    "Insurance cover is invalidated",
-                    "HSE prosecution exposure increases",
-                    "False alarms disrupt operations daily"
+                    "Missed tests",
+                    "Non-existent asset registers",
+                    "Lost certificates",
+                    "Zero context for risk exposure"
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
@@ -91,108 +194,83 @@ const FireAlarms = () => {
                   ))}
                 </div>
                 <p className="text-lg font-medium mt-6">
-                  We engineer reliability into your fire strategy.
+                  We build a full compliance storyline — not a checkbox exercise.
                 </p>
               </section>
 
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Fire Alarm Services We Deliver
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "Weekly call point testing (BS 5839)",
-                    "Quarterly inspection & maintenance",
-                    "Annual full system commissioning",
-                    "Fault finding & diagnostics",
-                    "Panel replacement & upgrades",
-                    "Detector cleaning & replacement",
-                    "Sounder & beacon testing",
-                    "Integration with evacuation & BMS",
-                    "False alarm investigation & reduction",
-                    "L1 / L2 / L3 system design & compliance",
-                    "Fire alarm log book management",
-                    "Emergency call-out & repair"
-                  ].map((service, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{service}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* BS 5839 Compliance */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  BS 5839 Compliance Framework
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  We align all fire alarm maintenance to BS 5839-1 standards:
-                </p>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-charcoal text-white">
-                        <th className="p-4 text-left font-medium">Test Type</th>
-                        <th className="p-4 text-left font-medium">Frequency</th>
-                        <th className="p-4 text-left font-medium">What's Checked</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Weekly Test</td>
-                        <td className="p-4 font-light text-sm">Every 7 days</td>
-                        <td className="p-4 font-light text-sm">Call point activation, sounder operation, panel response</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Quarterly Service</td>
-                        <td className="p-4 font-light text-sm">Every 3 months</td>
-                        <td className="p-4 font-light text-sm">Full inspection, detector sensitivity, battery tests, log review</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Annual Commissioning</td>
-                        <td className="p-4 font-light text-sm">12 months</td>
-                        <td className="p-4 font-light text-sm">Full system test, zone verification, integration checks</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Battery Replacement</td>
-                        <td className="p-4 font-light text-sm">As required (typically 4-5 years)</td>
-                        <td className="p-4 font-light text-sm">Standby power capacity verification</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              {/* What You Get */}
+              {/* Technology Advantage */}
               <section className="bg-muted/30 p-8 rounded-lg">
                 <h2 className="text-3xl font-light mb-6">
-                  What You Get as Standard
+                  Our Technology Advantage
                 </h2>
+                <p className="text-lg font-light mb-6">
+                  Your fire system compliance is visible in real-time:
+                </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Digital Log Book</h3>
+                    <h3 className="font-medium mb-2">QR-coded asset tagging</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      All tests logged digitally with timestamps, engineer notes, and compliance tracking.
+                      Instant access to equipment history and records.
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">False Alarm Reduction Plans</h3>
+                    <h3 className="font-medium mb-2">Digital certificates</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Root cause analysis and practical solutions to reduce unwanted activations.
+                      Immediate access to compliance documentation.
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Multi-Site Coordination</h3>
+                    <h3 className="font-medium mb-2">Automatic expiry reminders</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Grouped PPM schedules and centralised compliance reporting for portfolios.
+                      Never miss a test deadline or inspection window.
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Emergency Response</h3>
+                    <h3 className="font-medium mb-2">Mobile engineer updates</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      24/7 call-out for panel failures, detector faults, and urgent compliance issues.
+                      Real-time job status and completion notifications.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Cloud storage of all records</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Complete audit trail accessible anytime, anywhere.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">SLA tracking for downtime & rectifications</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Performance metrics that prove reliability.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  No more "paper folder in the FM office".
+                </p>
+              </section>
+
+              {/* Proof & Performance */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Proof & Performance
+                </h2>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="border-l-4 border-accent pl-6">
+                    <div className="text-3xl font-light mb-2">98%</div>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Of critical remedial actions completed within SLA
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <div className="text-3xl font-light mb-2">100%</div>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Compliance retention across portfolio clients
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <div className="text-3xl font-light mb-2">Zero</div>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Enforcement notices in 24 months across high-risk sites
                     </p>
                   </div>
                 </div>
@@ -204,13 +282,13 @@ const FireAlarms = () => {
               <section className="border-t border-border pt-12">
                 <div className="text-center bg-charcoal text-white p-12 rounded-lg">
                   <h2 className="text-3xl font-light mb-4">
-                    Fire alarm failures don't announce themselves until it's too late.
+                    Fire safety negligence isn't a risk — it's a guarantee of failure.
                   </h2>
                   <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
-                    Request a fire alarm compliance audit and maintenance plan today.
+                    Switch to a provider who won't miss the basics.
                   </p>
                   <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
-                    <Link to="/contact">Get Your Fire Safety Plan</Link>
+                    <Link to="/contact">Request a Full Fire Alarm Compliance Review</Link>
                   </Button>
                 </div>
               </section>
