@@ -20,6 +20,13 @@ import NotFound from "./pages/NotFound";
 import HardServices from "./pages/services/HardServices";
 import HVAC from "./pages/services/HVAC";
 import PPM from "./pages/services/PPM";
+import Electrical from "./pages/services/Electrical";
+import FireAlarms from "./pages/services/FireAlarms";
+import EmergencyLighting from "./pages/services/EmergencyLighting";
+import Sprinklers from "./pages/services/Sprinklers";
+import Plumbing from "./pages/services/Plumbing";
+import WaterHygiene from "./pages/services/WaterHygiene";
+import BuildingFabric from "./pages/services/BuildingFabric";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
 
@@ -37,9 +44,16 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/services/hard-services" element={<HardServices />} />
-              <Route path="/services/hvac" element={<HVAC />} />
-              <Route path="/services/ppm" element={<PPM />} />
+          <Route path="/services/hard-services" element={<HardServices />} />
+          <Route path="/services/hvac" element={<HVAC />} />
+          <Route path="/services/ppm" element={<PPM />} />
+          <Route path="/services/electrical" element={<Electrical />} />
+          <Route path="/services/fire-alarms" element={<FireAlarms />} />
+          <Route path="/services/emergency-lighting" element={<EmergencyLighting />} />
+          <Route path="/services/sprinklers" element={<Sprinklers />} />
+          <Route path="/services/plumbing" element={<Plumbing />} />
+          <Route path="/services/water-hygiene" element={<WaterHygiene />} />
+          <Route path="/services/building-fabric" element={<BuildingFabric />} />
               <Route path="/sectors" element={<Sectors />} />
               <Route path="/locations" element={<Locations />} />
               <Route path="/locations/london" element={<London />} />
