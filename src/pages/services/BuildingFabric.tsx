@@ -10,30 +10,30 @@ import { CheckCircle2, AlertTriangle } from "lucide-react";
 const BuildingFabric = () => {
   const faqs = [
     {
-      question: "What is included in building fabric maintenance?",
-      answer: "Roofing, walls, windows, doors, flooring, ceilings, fire doors, joinery, decoration, and all structural elements that keep the building weatherproof and operationally fit."
+      question: "What does building fabric maintenance include?",
+      answer: "Everything that forms the physical structure — walls, floors, doors, roofs, fixtures, passive fire elements and finishing works."
     },
     {
-      question: "How often should fire doors be inspected?",
-      answer: "Fire doors require 6-monthly inspections under UK fire safety regulations, checking seals, closers, latches, and gap tolerances."
+      question: "Can you work inside operational hours?",
+      answer: "Yes — clean, controlled, low-disturbance repairs are standard procedure."
     },
     {
-      question: "Do you provide reactive fabric repairs?",
-      answer: "Yes. 24/7 emergency response for urgent fabric issues including roof leaks, broken glazing, security breaches, and structural damage."
+      question: "Do you handle fire door compliance?",
+      answer: "Absolutely — certification, remedials, seals, and compartmentation integrity."
     },
     {
-      question: "Can you manage building refurbishment projects?",
-      answer: "Absolutely. We handle fabric upgrades, refurbishments, and fit-outs from design through to handover with minimal operational disruption."
+      question: "Do you provide preventative maintenance plans?",
+      answer: "Yes — targeted plans that reduce reactive requests by 30–50% on average."
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Building Fabric Maintenance UK | Commercial Property Repairs | EntireFM</title>
+        <title>Building Fabric Maintenance UK | Commercial Building Repairs | Reactive Fabric FM</title>
         <meta 
           name="description" 
-          content="Building fabric maintenance for UK commercial properties. Roofing, fire doors, glazing, decoration, and reactive repairs. Keep buildings weatherproof and compliant."
+          content="Fast-response building fabric repairs and planned maintenance for UK commercial properties. Fire doors, roofing, joinery, and reactive repairs that protect safety and brand image."
         />
       </Helmet>
 
@@ -56,17 +56,17 @@ const BuildingFabric = () => {
             <div className="lg:col-span-2 space-y-12">
               <header>
                 <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Building Fabric That Doesn't Fall Apart.
+                  If the Building Looks Broken, Trust is Broken.
                 </h1>
                 <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  Weatherproof, compliant, and maintained — because neglected fabric becomes expensive very quickly.
+                  Fast-response fabric repairs and planned upkeep that protect safety, brand image and operational continuity.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" asChild>
-                    <Link to="/contact">Request Fabric Service</Link>
+                    <Link to="/contact">Request Fabric Maintenance Proposal</Link>
                   </Button>
                   <Button size="lg" variant="outline" asChild>
-                    <Link to="/contact">Book Condition Survey</Link>
+                    <Link to="/contact">Log a Reactive Repair (24/7)</Link>
                   </Button>
                 </div>
               </header>
@@ -74,15 +74,16 @@ const BuildingFabric = () => {
               {/* Risk Impact */}
               <section className="bg-muted/30 p-8 rounded-lg">
                 <h2 className="text-3xl font-light mb-6">
-                  The Cost of Fabric Neglect
+                  Reactive Fabric Issues Aren't Cosmetic — They're Risk
                 </h2>
-                <p className="text-lg font-light mb-6">When building fabric isn't maintained:</p>
+                <p className="text-lg font-light mb-6">When fabric fails, you don't just lose aesthetics. You lose:</p>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
-                    "Water ingress causes structural damage",
-                    "Energy costs spiral from poor insulation",
-                    "Fire door failures create compliance breaches",
-                    "Tenant complaints & lease disputes escalate"
+                    "Safety compliance",
+                    "Tenant satisfaction",
+                    "Insurer confidence",
+                    "Operational integrity",
+                    "Revenue"
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
@@ -91,122 +92,153 @@ const BuildingFabric = () => {
                   ))}
                 </div>
                 <p className="text-lg font-medium mt-6">
-                  We keep fabric maintained — before small issues become capital expenditure.
+                  We make sure none of those pains land on your desk ever again.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Building Fabric Services
+                  Full Building Fabric Service Coverage
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "Roof repairs & maintenance",
-                    "Gutter cleaning & rainwater drainage",
-                    "Fire door inspections & repairs",
-                    "Glazing repairs & replacement",
-                    "Door & window maintenance",
-                    "Joinery & carpentry",
-                    "Internal & external decoration",
-                    "Floor repairs & levelling",
-                    "Ceiling tile replacement & suspended ceiling works",
-                    "Locksmithing & security hardware",
-                    "Brickwork repointing & render repairs",
-                    "Weatherproofing & damp-proofing"
-                  ].map((service, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{service}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* Fire Door Compliance */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Fire Door Compliance (UK Regulations)
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  Fire doors are life-safety critical and require systematic inspection:
-                </p>
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-charcoal text-white">
-                        <th className="p-4 text-left font-medium">Component</th>
-                        <th className="p-4 text-left font-medium">Inspection Frequency</th>
-                        <th className="p-4 text-left font-medium">What's Checked</th>
+                        <th className="p-4 text-left font-medium">Category</th>
+                        <th className="p-4 text-left font-medium">Typical Works</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr className="border-b border-border">
-                        <td className="p-4 font-light">Door Leaf & Frame</td>
-                        <td className="p-4 font-light text-sm">6 months</td>
-                        <td className="p-4 font-light text-sm">Gaps (max 4mm), warping, damage, certification label</td>
+                        <td className="p-4 font-light">Internal Repairs</td>
+                        <td className="p-4 font-light text-sm">Door sets, locks, glazing, floor repairs, ceilings, walls</td>
                       </tr>
                       <tr className="border-b border-border">
-                        <td className="p-4 font-light">Intumescent Seals</td>
-                        <td className="p-4 font-light text-sm">6 months</td>
-                        <td className="p-4 font-light text-sm">Seal integrity, correct type, full perimeter coverage</td>
+                        <td className="p-4 font-light">External Structure</td>
+                        <td className="p-4 font-light text-sm">Roofing, cladding, guttering, brickwork & blockwork</td>
                       </tr>
                       <tr className="border-b border-border">
-                        <td className="p-4 font-light">Self-Closers</td>
-                        <td className="p-4 font-light text-sm">6 months</td>
-                        <td className="p-4 font-light text-sm">Closing force, full closure, no holdopen devices</td>
+                        <td className="p-4 font-light">Fire Doors & Passive Fire Protection</td>
+                        <td className="p-4 font-light text-sm">Inspections, seals, intumescent upgrades</td>
                       </tr>
                       <tr className="border-b border-border">
-                        <td className="p-4 font-light">Latches & Locks</td>
-                        <td className="p-4 font-light text-sm">6 months</td>
-                        <td className="p-4 font-light text-sm">Operation, engagement, fire-rated compliance</td>
+                        <td className="p-4 font-light">Joinery & Carpentry</td>
+                        <td className="p-4 font-light text-sm">Fixings, fixtures, cabinetry & reception features</td>
                       </tr>
                       <tr className="border-b border-border">
-                        <td className="p-4 font-light">Glazing (if fitted)</td>
-                        <td className="p-4 font-light text-sm">6 months</td>
-                        <td className="p-4 font-light text-sm">Fire-rated glass intact, beading secure</td>
+                        <td className="p-4 font-light">Paint & Decor / Dilapidations</td>
+                        <td className="p-4 font-light text-sm">Refresh & make-good for leases</td>
+                      </tr>
+                      <tr className="border-b border-border">
+                        <td className="p-4 font-light">Accessibility Adjustments</td>
+                        <td className="p-4 font-light text-sm">DDA compliance, ramps, ironmongery upgrades</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div className="mt-8">
-                  <Button variant="outline" asChild>
-                    <Link to="/resources">Download Fire Door Inspection Guide</Link>
-                  </Button>
-                </div>
+                <p className="text-lg font-medium mt-6">
+                  If it touches the built environment — we fix it.
+                </p>
               </section>
 
-              {/* What You Get */}
+              {/* Planned Works */}
               <section className="bg-muted/30 p-8 rounded-lg">
                 <h2 className="text-3xl font-light mb-6">
-                  What You Get as Standard
+                  Planned Works That Reduce Your Reactive Spend
                 </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  We monitor performance and intervene before failure results in cost or complaint:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    "Condition surveys",
+                    "Lifecycle planning",
+                    "High-risk asset watchlists",
+                    "Seasonal resilience checks",
+                    "Minor works to eliminate repeat faults"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  We strategically crush future costs.
+                </p>
+              </section>
+
+              {/* Compliance */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Compliance Matters Here Too
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  Fabric failures can trigger:
+                </p>
+                <div className="space-y-4">
+                  {[
+                    "FRA breaches (fire door damage, compromised compartmentation)",
+                    "Slips / trips from flooring issues",
+                    "Security risks from defective access",
+                    "Leaks, damp & mould impacting health + insurance coverage"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  We convert weak points into strength multipliers.
+                </p>
+              </section>
+
+              {/* Technology */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Technology Driving Accountability
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  Our live compliance and job-tracking platform gives:
+                </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Planned PPM Schedules</h3>
+                    <h3 className="font-medium mb-2">Real-time status on every repair</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Fabric maintenance integrated into annual PPM cycles to prevent reactive escalations.
+                      Track progress from initial report to completion
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Condition Surveys</h3>
+                    <h3 className="font-medium mb-2">Photo & video evidence</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Full building fabric audits with lifecycle forecasting and budget planning.
+                      Visual documentation for every task completed
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">24/7 Emergency Response</h3>
+                    <h3 className="font-medium mb-2">Root-cause insights</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Immediate call-out for urgent fabric failures: roof leaks, broken glass, security breaches.
+                      Identify and eliminate repeat issues
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Refurbishment & Small Works</h3>
+                    <h3 className="font-medium mb-2">Client approvals and signatures</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Managed projects from decoration through to structural alterations with minimal downtime.
+                      Digital sign-off and acceptance
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Risk priority scoring</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Intelligent prioritization of critical issues
                     </p>
                   </div>
                 </div>
+                <p className="text-lg font-medium mt-6">
+                  No more guesswork. No more chasing.
+                </p>
               </section>
+
 
               <FAQSection faqs={faqs} />
 
@@ -214,13 +246,13 @@ const BuildingFabric = () => {
               <section className="border-t border-border pt-12">
                 <div className="text-center bg-charcoal text-white p-12 rounded-lg">
                   <h2 className="text-3xl font-light mb-4">
-                    Fabric failures compound fast. Fix them before they become capital projects.
+                    Stop letting minor defects turn into major costs.
                   </h2>
                   <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
-                    Request a building fabric condition survey and maintenance plan today.
+                    Get a building fabric partner who keeps you ahead of risk — not reacting to it.
                   </p>
                   <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
-                    <Link to="/contact">Get Your Fabric Plan</Link>
+                    <Link to="/contact">Request Fabric Maintenance Support</Link>
                   </Button>
                 </div>
               </section>
