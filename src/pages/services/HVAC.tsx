@@ -56,12 +56,44 @@ const HVAC = () => {
             <div className="lg:col-span-2 space-y-12">
               <header>
                 <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Commercial HVAC Maintenance That Prevents Costly Breakdowns
+                  HVAC That Doesn't Let You Down.
                 </h1>
-                <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                  Maintain optimal comfort, reduce energy waste, and avoid emergency failures with preventative HVAC servicing across your UK sites.
+                <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
+                  Comfort, safety, and operational continuity — engineered into your air handling.
                 </p>
+                <div className="flex flex-wrap gap-4">
+                  <Button size="lg" asChild>
+                    <Link to="/contact">Request HVAC Proposal</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild>
+                    <Link to="/contact">Book Site Survey</Link>
+                  </Button>
+                </div>
               </header>
+
+              {/* Operational Impact */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Operational Impact
+                </h2>
+                <p className="text-lg font-light mb-6">When HVAC fails:</p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    "Occupants complain",
+                    "Productivity crashes",
+                    "Energy waste skyrockets",
+                    "Compliance failures stack up"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  We prevent every single one of those.
+                </p>
+              </section>
 
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
@@ -90,60 +122,141 @@ const HVAC = () => {
                 </div>
               </section>
 
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <div className="flex items-start gap-4 mb-6">
-                  <AlertTriangle className="w-8 h-8 text-accent shrink-0" />
-                  <h2 className="text-2xl font-light">
-                    HVAC Problems That Impact Your Business
-                  </h2>
-                </div>
-                <ul className="space-y-3 font-light text-muted-foreground">
-                  <li><strong>Summer breakdowns:</strong> AC failures during peak demand cause productivity losses and staff complaints</li>
-                  <li><strong>Poor indoor air quality:</strong> Dirty filters and coils circulate dust, allergens, and bacteria</li>
-                  <li><strong>High energy bills:</strong> Inefficient systems waste 20-30% more energy than well-maintained units</li>
-                  <li><strong>Refrigerant leaks:</strong> F-Gas non-compliance risks fines up to £200,000 and environmental damage</li>
-                  <li><strong>Short equipment life:</strong> Neglected HVAC systems fail years before expected lifecycle</li>
-                </ul>
-              </section>
-
+              {/* Energy & Performance */}
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Our HVAC PPM Schedule
+                  Energy & Performance Optimisation
                 </h2>
-                <div className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-6">
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Quarterly Visits (Standard)</h3>
+                    <h3 className="font-medium mb-2">Smart Seasonal Commissioning</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Filter inspection & replacement, coil visual inspection, refrigerant pressure check, control functionality test, condensate drain clearance, electrical connections check, operational performance verification.
+                      Pre-season system optimisation ensures readiness before peak demand periods.
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Bi-Annual Deep Service</h3>
+                    <h3 className="font-medium mb-2">Filter Management for Air Quality</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      Full coil chemical clean, refrigerant leak test, thermographic survey, fan motor lubrication, belt tension adjustment, control calibration, BMS integration check.
+                      Proactive filter replacement schedules maintain indoor air quality compliance.
                     </p>
                   </div>
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Annual Compliance</h3>
+                    <h3 className="font-medium mb-2">Thermographic & Vibration Analysis</h3>
                     <p className="text-sm font-light text-muted-foreground">
-                      F-Gas leak testing (systems over 3kg charge), energy efficiency assessment, asset condition report, lifecycle recommendations.
+                      Advanced diagnostics on critical assets identify failures before they occur.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Energy-Saving Technology Upgrades</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      ROI projections included for LED retrofits, VSD installations, and BMS upgrades.
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-8 p-6 bg-charcoal text-white rounded-lg">
+                  <p className="text-lg font-light">
+                    <strong>Result:</strong> Lower OpEx, improved wellness, stronger ESG results.
+                  </p>
+                </div>
+              </section>
+
+              {/* Statutory Requirements */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Statutory Requirements Covered
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  We manage legal obligations end-to-end:
+                </p>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {[
+                    "F-Gas regulation compliance, leak logs & certifications",
+                    "TM44 inspections & energy efficiency audits",
+                    "Indoor Air Quality monitoring & reporting (business-critical in 2025)"
+                  ].map((item, index) => (
+                    <div key={index} className="p-4 border border-border rounded-lg">
+                      <CheckCircle2 className="w-5 h-5 text-accent mb-2" />
+                      <p className="text-sm font-light">{item}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8">
+                  <Button variant="outline" asChild>
+                    <Link to="/resources">Download HVAC Compliance Guide</Link>
+                  </Button>
+                </div>
+              </section>
+
+              {/* Asset-Centric Maintenance */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Asset-Centric Maintenance Strategy
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  We create customised PPM schedules informed by:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    "Asset age & utilisation",
+                    "Manufacturer guidance",
+                    "Building use & occupancy",
+                    "Business continuity risk level"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  Zero copy-paste maintenance plans. We engineer outcomes.
+                </p>
+              </section>
+
+              {/* FAQs Optimised to Rank */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  FAQs (Optimised to Rank)
+                </h2>
+                <div className="space-y-6">
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">How often should commercial HVAC be serviced?</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Typically quarterly, though heavy-use or critical assets may require monthly inspections. SFG20 schedules define specific frequencies.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Do you support legacy HVAC systems?</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Yes — and we specialise in optimising "end of lifecycle" assets to buy time before replacement CAPEX is required.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Do you provide emergency HVAC call-outs?</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      24/7. If your air stops, we start. 2-hour emergency response as standard.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Do you hold F-Gas certification?</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Yes. All our HVAC engineers hold valid F-Gas Category 1 certification for refrigerant handling, leak detection, and system commissioning.
                     </p>
                   </div>
                 </div>
               </section>
 
-              <FAQSection faqs={faqs} />
-
+              {/* Final CTA */}
               <section className="border-t border-border pt-12">
-                <div className="text-center">
+                <div className="text-center bg-charcoal text-white p-12 rounded-lg">
                   <h2 className="text-3xl font-light mb-4">
-                    Get a Fixed-Price HVAC Maintenance Plan
+                    Stop losing hours of productivity to poor air and warm rooms.
                   </h2>
-                  <p className="text-lg text-muted-foreground font-light mb-8 max-w-2xl mx-auto">
-                    Tell us about your HVAC systems and current servicing gaps. We'll provide a costed PPM plan with SLAs and energy savings projections.
+                  <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
+                    Speak to our HVAC engineers today — and feel the difference this week.
                   </p>
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request HVAC Proposal</Link>
+                  <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
+                    <Link to="/contact">Get Your HVAC Plan</Link>
                   </Button>
                 </div>
               </section>

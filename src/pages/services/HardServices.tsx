@@ -59,218 +59,193 @@ const HardServices = () => {
               {/* Hero Section */}
               <header>
                 <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Hard Services & M&E Maintenance That Keeps Your Operations Running
+                  Hard Services & M&E — Guaranteed Uptime. Full Compliance. Zero Excuses.
                 </h1>
-                <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                  Reduce downtime, control costs, and maintain compliance with integrated mechanical, electrical, and building fabric maintenance across your UK sites.
+                <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
+                  Mission-critical maintenance for buildings that cannot afford downtime.
                 </p>
+                <div className="flex flex-wrap gap-4">
+                  <Button size="lg" asChild>
+                    <Link to="/contact">Request a Proposal</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild>
+                    <a href="tel:+448001234567">24/7 Reactive Support</a>
+                  </Button>
+                </div>
               </header>
 
-              {/* What's Included */}
+              {/* Why It Matters */}
+              <section className="bg-charcoal text-white p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Why Hard FM Matters
+                </h2>
+                <p className="text-lg font-light mb-6">
+                  If your assets fail, productivity stops. Customers leave. Revenue leaks.
+                  We keep your environment operational — always.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                    <span className="font-light">Planned Preventative Maintenance (PPM) aligned to SFG20</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                    <span className="font-light">Fast-response Reactive Maintenance</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                    <span className="font-light">M&E Asset Lifecycle Planning</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                    <span className="font-light">Real-time job tracking + engineer ETA visibility</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                    <span className="font-light">Compliance reporting senior leadership can trust</span>
+                  </div>
+                </div>
+              </section>
+
+              {/* What We Cover - Table Format */}
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  What's Included
+                  What We Cover
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <p className="text-muted-foreground font-light mb-6">
+                  Hard FM service delivery through qualified UK specialists:
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr className="bg-muted/50">
+                        <th className="text-left p-4 font-medium border border-border">Service Category</th>
+                        <th className="text-left p-4 font-medium border border-border">Includes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="p-4 border border-border font-medium">Electrical Services</td>
+                        <td className="p-4 border border-border font-light text-muted-foreground">Testing (EICR), maintenance, fault-finding, distribution boards</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 border border-border font-medium">Mechanical Services</td>
+                        <td className="p-4 border border-border font-light text-muted-foreground">Pumps, motors, conveyors, HVAC machinery, pressurisation</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 border border-border font-medium">Plumbing & Drainage</td>
+                        <td className="p-4 border border-border font-light text-muted-foreground">Pipework, leaks, booster sets, hot & cold water</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 border border-border font-medium">Gas & Heating</td>
+                        <td className="p-4 border border-border font-light text-muted-foreground">Commercial gas safety, boiler PPM, plant room optimisation</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 border border-border font-medium">Building Fabric</td>
+                        <td className="p-4 border border-border font-light text-muted-foreground">Joinery, locks, roof repairs, glazing, fire doors</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 border border-border font-medium">Lighting</td>
+                        <td className="p-4 border border-border font-light text-muted-foreground">LED upgrades, emergency lighting, control gear</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              {/* What You Get */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  What You Get as Standard
+                </h2>
+                <div className="grid md:grid-cols-2 gap-4">
                   {[
-                    "HVAC systems maintenance & repair",
-                    "Electrical installations & testing",
-                    "Mechanical systems & pumps",
-                    "Plumbing, gas & drainage",
-                    "Building fabric & structure",
-                    "BMS & controls systems",
-                    "Lighting & emergency systems",
-                    "Energy optimisation & monitoring",
-                    "Lift & escalator maintenance",
-                    "Chillers & boilers",
-                    "Ventilation & extraction",
-                    "Water treatment & hygiene"
-                  ].map((service, index) => (
+                    "SLA-driven response times proven in KPIs",
+                    "Before & after photographic & video reports",
+                    "Full statutory compliance dashboard",
+                    "Director-level communication — no corporate scripts",
+                    "Lifecycle risk forecasting for asset investment planning",
+                    "Transparent fixed pricing or T&M — your call"
+                  ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{service}</span>
+                      <span className="font-light">{item}</span>
                     </div>
                   ))}
                 </div>
               </section>
 
-              {/* Pain Points */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <div className="flex items-start gap-4 mb-6">
-                  <AlertTriangle className="w-8 h-8 text-accent shrink-0" />
-                  <div>
-                    <h2 className="text-2xl font-light mb-4">
-                      Common M&E Failures That Cost You Money
-                    </h2>
-                  </div>
-                </div>
-                <ul className="space-y-3 font-light text-muted-foreground">
-                  <li><strong>Reactive-only approach:</strong> Equipment failures cause expensive emergency call-outs and operational downtime</li>
-                  <li><strong>Poor contractor coordination:</strong> Multiple M&E trades create conflicting schedules and accountability gaps</li>
-                  <li><strong>Compliance blind spots:</strong> Missed statutory tests expose you to HSE enforcement and insurance issues</li>
-                  <li><strong>No asset visibility:</strong> Unknown equipment age, service history, or lifecycle costs prevent budget planning</li>
-                  <li><strong>Slow emergency response:</strong> Delays in critical failures impact business continuity and staff safety</li>
-                </ul>
-              </section>
-
-              {/* Compliance Frameworks */}
+              {/* Compliance Framework */}
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Statutory Compliance Built-In
+                  Compliance & Statutory Considerations
                 </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border border-border rounded-lg p-6">
-                    <Shield className="w-8 h-8 text-accent mb-4" />
-                    <h3 className="text-lg font-medium mb-3">Electrical Safety</h3>
-                    <ul className="space-y-2 text-sm font-light text-muted-foreground">
-                      <li>• BS 7671 (IET Wiring Regulations)</li>
-                      <li>• EICR testing every 5 years</li>
-                      <li>• PAT testing schedules</li>
-                      <li>• Emergency lighting BS 5266</li>
-                    </ul>
-                  </div>
-                  <div className="border border-border rounded-lg p-6">
-                    <Shield className="w-8 h-8 text-accent mb-4" />
-                    <h3 className="text-lg font-medium mb-3">Mechanical Systems</h3>
-                    <ul className="space-y-2 text-sm font-light text-muted-foreground">
-                      <li>• SFG20 maintenance schedules</li>
-                      <li>• F-Gas regulations (HVAC)</li>
-                      <li>• Pressure systems PSSR compliance</li>
-                      <li>• LOLER (lifting equipment)</li>
-                    </ul>
-                  </div>
-                  <div className="border border-border rounded-lg p-6">
-                    <Shield className="w-8 h-8 text-accent mb-4" />
-                    <h3 className="text-lg font-medium mb-3">Water & Gas</h3>
-                    <ul className="space-y-2 text-sm font-light text-muted-foreground">
-                      <li>• Legionella control (L8)</li>
-                      <li>• Gas Safe installations</li>
-                      <li>• Water hygiene testing</li>
-                      <li>• Backflow prevention</li>
-                    </ul>
-                  </div>
-                  <div className="border border-border rounded-lg p-6">
-                    <Shield className="w-8 h-8 text-accent mb-4" />
-                    <h3 className="text-lg font-medium mb-3">Building Fabric</h3>
-                    <ul className="space-y-2 text-sm font-light text-muted-foreground">
-                      <li>• CDM regulations compliance</li>
-                      <li>• Structural inspections</li>
-                      <li>• Asbestos management</li>
-                      <li>• Glazing & facade safety</li>
-                    </ul>
-                  </div>
+                <p className="text-muted-foreground font-light mb-6">
+                  We help you hit every regulatory requirement with zero admin burden:
+                </p>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    "SFG20 maintenance guidance",
+                    "Electricity at Work Regulations",
+                    "Gas Safety (Installation & Use) Regulations",
+                    "Building Regulations Part L",
+                    "FRA / PAS 79 support for fire strategy",
+                    "F-Gas compliance for refrigerants"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3 p-4 border border-border rounded-lg">
+                      <Shield className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8">
+                  <Button variant="outline" asChild>
+                    <Link to="/contact">Book a Compliance Audit</Link>
+                  </Button>
                 </div>
               </section>
 
-              {/* Service Delivery Model */}
+              {/* FAQs */}
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  How We Deliver Hard Services
+                  Frequently Asked Questions
                 </h2>
                 <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <span className="text-accent font-medium">1</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium mb-2">Asset Audit & PPM Schedule Design</h3>
-                      <p className="text-muted-foreground font-light">
-                        We audit your M&E assets, map service histories, identify compliance gaps, and build a tailored PPM schedule aligned to SFG20 and manufacturer requirements.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <span className="text-accent font-medium">2</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium mb-2">Scheduled PPM Delivery</h3>
-                      <p className="text-muted-foreground font-light">
-                        Our mobile engineers execute PPM visits on schedule with digital job sheets, photographic records, and immediate escalation of any defects found.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <span className="text-accent font-medium">3</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium mb-2">Reactive Response & Emergency Call-Outs</h3>
-                      <p className="text-muted-foreground font-light">
-                        24/7 helpdesk triage, 2-hour emergency response, and first-time fix focus. Critical spares held for common failures.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                      <span className="text-accent font-medium">4</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium mb-2">Lifecycle Planning & Capital Investment</h3>
-                      <p className="text-muted-foreground font-light">
-                        We track asset condition, flag end-of-life equipment, and provide costed replacement recommendations to avoid unplanned failures.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Benefits */}
-              <section className="bg-charcoal text-white p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  What You Get
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h3 className="font-medium mb-2">Reduced Downtime</h3>
-                    <p className="text-sm text-gray-300 font-light">
-                      Preventative approach catches failures before they impact operations
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">How often should M&E systems be serviced?</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Typically quarterly or biannual for most commercial assets, aligned to SFG20. Critical systems may require monthly inspection.
                     </p>
                   </div>
-                  <div>
-                    <h3 className="font-medium mb-2">Predictable Budgets</h3>
-                    <p className="text-sm text-gray-300 font-light">
-                      Fixed monthly costs replace unpredictable reactive spend
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Do you manage multi-site portfolios?</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Yes — our CAFM platform manages grouped PPM plans and reporting across your entire UK estate.
                     </p>
                   </div>
-                  <div>
-                    <h3 className="font-medium mb-2">Extended Asset Life</h3>
-                    <p className="text-sm text-gray-300 font-light">
-                      Regular servicing maximises equipment lifespan and performance
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">Do you provide 24/7 emergency call-outs?</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      Absolutely. If critical systems fail, we roll immediately. 2-hour response time as standard.
                     </p>
                   </div>
-                  <div>
-                    <h3 className="font-medium mb-2">Compliance Confidence</h3>
-                    <p className="text-sm text-gray-300 font-light">
-                      All statutory tests scheduled, tracked, and certified
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-medium mb-2">Energy Efficiency</h3>
-                    <p className="text-sm text-gray-300 font-light">
-                      Optimised systems reduce utility costs and carbon footprint
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="font-medium mb-2">Single Point of Contact</h3>
-                    <p className="text-sm text-gray-300 font-light">
-                      One helpdesk, one account manager, no trade coordination headaches
+                  <div className="border-l-4 border-accent pl-6">
+                    <h3 className="font-medium mb-2">What is included in hard services FM?</h3>
+                    <p className="text-sm font-light text-muted-foreground">
+                      All mechanical, electrical, and building fabric maintenance including HVAC, electrical installations, plumbing, gas systems, BMS controls, emergency systems, and structural repairs with PPM and reactive support.
                     </p>
                   </div>
                 </div>
               </section>
-
-              {/* FAQ Section */}
-              <FAQSection faqs={faqs} />
 
               {/* Final CTA */}
               <section className="border-t border-border pt-12">
-                <div className="text-center">
+                <div className="text-center bg-muted/30 p-12 rounded-lg">
                   <h2 className="text-3xl font-light mb-4">
-                    Ready to Fix Your M&E Maintenance?
+                    Don't wait for a system failure to expose the cracks.
                   </h2>
                   <p className="text-lg text-muted-foreground font-light mb-8 max-w-2xl mx-auto">
-                    Send us your site details and current maintenance pain points. We'll provide a clear, costed hard services plan with SLAs and mobilisation timeline.
+                    Request a proposal tailored to your assets and operational risk profile.
                   </p>
                   <Button size="lg" asChild>
                     <Link to="/contact">Request Hard Services Proposal</Link>
