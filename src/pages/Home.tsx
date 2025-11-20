@@ -78,10 +78,10 @@ const Home = () => {
         <div className="container mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block">
-              The FM Partner That Thinks Like a Director
+              Your Space, Our Expertise.     
             </h2>
             <p className="text-lg text-muted-foreground font-light leading-relaxed">
-              No corporate scripts. No chasing contractors. Just accountable, tech-enabled FM that actually works.
+              Complete Facilities Management &amp; FM Support Services
             </p>
           </div>
 
