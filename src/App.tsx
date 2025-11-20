@@ -27,6 +27,7 @@ import Sprinklers from "./pages/services/Sprinklers";
 import Plumbing from "./pages/services/Plumbing";
 import WaterHygiene from "./pages/services/WaterHygiene";
 import BuildingFabric from "./pages/services/BuildingFabric";
+import GasSafety from "./pages/services/GasSafety";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
 
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/services/plumbing" element={<Plumbing />} />
           <Route path="/services/water-hygiene" element={<WaterHygiene />} />
           <Route path="/services/building-fabric" element={<BuildingFabric />} />
+          <Route path="/services/gas-safety" element={<GasSafety />} />
               <Route path="/sectors" element={<Sectors />} />
               <Route path="/locations" element={<Locations />} />
               <Route path="/locations/london" element={<London />} />
