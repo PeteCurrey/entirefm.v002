@@ -189,6 +189,44 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Deep-Dive Service Pages */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-light mb-6 text-center underline-accent inline-block">
+            Explore Services in Detail
+          </h2>
+          <p className="text-lg text-muted-foreground font-light text-center max-w-3xl mx-auto mb-12">
+            Get comprehensive information about each service including compliance requirements, delivery models, and pricing structures.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: "Hard Services & M&E", link: "/services/hard-services" },
+              { title: "HVAC Maintenance", link: "/services/hvac" },
+              { title: "Electrical Compliance", link: "/services/electrical" },
+              { title: "Fire Alarm Systems", link: "/services/fire-alarms" },
+              { title: "Emergency Lighting", link: "/services/emergency-lighting" },
+              { title: "PPM Programs", link: "/services/ppm" },
+              { title: "Water Hygiene & L8", link: "/services/water-hygiene" },
+              { title: "Gas Safety", link: "/services/gas-safety" },
+              { title: "Building Fabric", link: "/services/building-fabric" }
+            ].map((service, index) => (
+              <Link 
+                key={index}
+                to={service.link}
+                className="p-6 border border-border rounded-lg hover:border-accent transition-colors group"
+              >
+                <h3 className="text-lg font-medium mb-2 group-hover:text-accent transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-muted-foreground font-light">
+                  View detailed service information →
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-6 text-center">

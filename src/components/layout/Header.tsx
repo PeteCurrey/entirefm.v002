@@ -20,6 +20,7 @@ const Header = () => {
   const navItems = [
     { label: "Services", to: "/services" },
     { label: "Sectors", to: "/sectors" },
+    { label: "Locations", to: "/locations" },
     { label: "Technology", to: "/technology" },
     { label: "Case Studies", to: "/case-studies" },
     { label: "About", to: "/about" },
