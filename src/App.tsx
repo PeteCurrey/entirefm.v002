@@ -33,6 +33,7 @@ import Manchester from "./pages/locations/Manchester";
 import IndustrialLogistics from "./pages/sectors/IndustrialLogistics";
 import RetailServiceStations from "./pages/sectors/RetailServiceStations";
 import OfficesCorporate from "./pages/sectors/OfficesCorporate";
+import AviationTravelHub from "./pages/sectors/AviationTravelHub";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +64,7 @@ const App = () => (
               <Route path="/sectors/industrial-logistics" element={<IndustrialLogistics />} />
               <Route path="/sectors/retail-service-stations" element={<RetailServiceStations />} />
               <Route path="/sectors/offices-corporate" element={<OfficesCorporate />} />
+              <Route path="/sectors/aviation-travel-hub" element={<AviationTravelHub />} />
               <Route path="/locations" element={<Locations />} />
               <Route path="/locations/london" element={<London />} />
               <Route path="/locations/manchester" element={<Manchester />} />
