@@ -30,6 +30,7 @@ import BuildingFabric from "./pages/services/BuildingFabric";
 import GasSafety from "./pages/services/GasSafety";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
+import IndustrialLogistics from "./pages/sectors/IndustrialLogistics";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
           <Route path="/services/building-fabric" element={<BuildingFabric />} />
           <Route path="/services/gas-safety" element={<GasSafety />} />
               <Route path="/sectors" element={<Sectors />} />
+              <Route path="/sectors/industrial-logistics" element={<IndustrialLogistics />} />
               <Route path="/locations" element={<Locations />} />
               <Route path="/locations/london" element={<London />} />
               <Route path="/locations/manchester" element={<Manchester />} />
