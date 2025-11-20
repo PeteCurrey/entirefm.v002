@@ -25,7 +25,7 @@ const Home = () => {
             </h1>
             <p style={{
             animationDelay: "0.2s"
-          }} className="text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl animate-fade-in-up font-extralight md:text-xl text-left">
+          }} className="text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl animate-fade-in-up font-extralight md:text-xl text-left tracking-wider">
               Your Dedicated Facilities Management Company
             </p>
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{
