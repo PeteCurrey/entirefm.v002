@@ -14,6 +14,9 @@ import CaseStudies from "./pages/CaseStudies";
 import LogisticsDistributionHub from "./pages/case-studies/LogisticsDistributionHub";
 import RetailServiceStationsCaseStudy from "./pages/case-studies/RetailServiceStations";
 import CorporateHQ from "./pages/case-studies/CorporateHQ";
+import Aviation from "./pages/case-studies/Aviation";
+import ResidentialPBSACaseStudy from "./pages/case-studies/ResidentialPBSA";
+import Hospitality from "./pages/case-studies/Hospitality";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
 import Careers from "./pages/Careers";
@@ -90,6 +93,9 @@ const App = () => (
           <Route path="/case-studies/logistics-distribution-hub" element={<LogisticsDistributionHub />} />
           <Route path="/case-studies/retail-service-stations" element={<RetailServiceStationsCaseStudy />} />
           <Route path="/case-studies/corporate-hq" element={<CorporateHQ />} />
+          <Route path="/case-studies/aviation" element={<Aviation />} />
+          <Route path="/case-studies/residential-pbsa" element={<ResidentialPBSACaseStudy />} />
+          <Route path="/case-studies/hospitality" element={<Hospitality />} />
               <Route path="/about" element={<About />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/careers" element={<Careers />} />

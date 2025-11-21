@@ -27,7 +27,8 @@ const CaseStudies = () => {
         "24/7 helpdesk response maintained",
         "Security-cleared engineer network established",
         "100% airside access protocols met"
-      ]
+      ],
+      slug: "/case-studies/aviation"
     },
     {
       sector: "Mixed-Use",
@@ -69,7 +70,8 @@ const CaseStudies = () => {
         "Transparent reporting introduced",
         "Response times halved",
         "Section 20 consultation support provided"
-      ]
+      ],
+      slug: "/case-studies/residential-pbsa"
     },
     {
       sector: "Industrial",
@@ -89,7 +91,8 @@ const CaseStudies = () => {
         "Discreet service delivery protocols",
         "Preventative approach preventing 90% of disruptions",
         "Seasonal peak support maintained"
-      ]
+      ],
+      slug: "/case-studies/hospitality"
     },
     {
       sector: "Education",
