@@ -95,3 +95,17 @@ export const LocalBusinessSchema = ({ name, address }: LocalBusinessSchemaProps)
     </Helmet>
   );
 };
+
+interface SchemaMarkupProps {
+  schema: Record<string, any>;
+}
+
+export const SchemaMarkup = ({ schema }: SchemaMarkupProps) => {
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
+    </Helmet>
+  );
+};
