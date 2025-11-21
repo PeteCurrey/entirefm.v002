@@ -16,7 +16,8 @@ const CaseStudies = () => {
         "£47k annual cost savings identified",
         "98% SLA compliance achieved",
         "First-time fix rate increased to 87%"
-      ]
+      ],
+      slug: "/case-studies/logistics-distribution-hub"
     },
     {
       sector: "Aviation",
@@ -46,7 +47,8 @@ const CaseStudies = () => {
         "Out-of-hours works as standard",
         "Brand compliance maintained",
         "Customer complaints reduced 71%"
-      ]
+      ],
+      slug: "/case-studies/retail-service-stations"
     },
     {
       sector: "Corporate",
@@ -56,7 +58,8 @@ const CaseStudies = () => {
         "Tenant retention improved",
         "Energy consumption reduced 18%",
         "Professional appearance standards exceeded"
-      ]
+      ],
+      slug: "/case-studies/corporate-hq"
     },
     {
       sector: "Residential",

@@ -11,6 +11,9 @@ import Services from "./pages/Services";
 import Sectors from "./pages/Sectors";
 import Technology from "./pages/Technology";
 import CaseStudies from "./pages/CaseStudies";
+import LogisticsDistributionHub from "./pages/case-studies/LogisticsDistributionHub";
+import RetailServiceStationsCaseStudy from "./pages/case-studies/RetailServiceStations";
+import CorporateHQ from "./pages/case-studies/CorporateHQ";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
 import Careers from "./pages/Careers";
@@ -83,7 +86,10 @@ const App = () => (
             <Route path="/locations/liverpool" element={<Liverpool />} />
             <Route path="/locations/leicester" element={<Leicester />} />
               <Route path="/technology" element={<Technology />} />
-              <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/case-studies/logistics-distribution-hub" element={<LogisticsDistributionHub />} />
+          <Route path="/case-studies/retail-service-stations" element={<RetailServiceStationsCaseStudy />} />
+          <Route path="/case-studies/corporate-hq" element={<CorporateHQ />} />
               <Route path="/about" element={<About />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/careers" element={<Careers />} />
