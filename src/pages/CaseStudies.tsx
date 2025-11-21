@@ -103,6 +103,39 @@ const CaseStudies = () => {
         "Safeguarding protocols maintained",
         "Term-time disruption eliminated"
       ]
+    },
+    {
+      sector: "Retail",
+      title: "Instant Response FM for a High-Footfall Service Station Estate",
+      metrics: [
+        "Fire & life safety compliance back to 100%",
+        "Reactive response time cut by 42%",
+        "Store manager satisfaction score +30%",
+        "SLA performance consistent at 98%+"
+      ],
+      slug: "/case-studies/service-stations"
+    },
+    {
+      sector: "Industrial",
+      title: "Operational Uptime & Safety Retention for a Critical Production Site",
+      metrics: [
+        "Production-impacting downtime cut by 53%",
+        "0 H&S enforcement actions",
+        "Electrical performance stability sharply improved",
+        "FM freed internal team from daily crisis management"
+      ],
+      slug: "/case-studies/industrial-plant"
+    },
+    {
+      sector: "Healthcare",
+      title: "Life-Critical Compliance & Environment Improvement in a Healthcare Facility",
+      metrics: [
+        "100% statutory compliance restored and verified",
+        "IAQ performance up 41%",
+        "Infection-risk observations: nil returned",
+        "No operational shutdowns during remediation"
+      ],
+      slug: "/case-studies/healthcare"
     }
   ];
 
