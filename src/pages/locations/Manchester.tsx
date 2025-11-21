@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { FAQSection } from "@/components/shared/FAQSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
+import { LocalBusinessSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { CheckCircle2 } from "lucide-react";
 
 const Manchester = () => {
@@ -28,6 +29,25 @@ const Manchester = () => {
         }}
       />
 
+      <FAQSchema faqs={[
+        {
+          question: "Do you provide FM services across Greater Manchester?",
+          answer: "Yes — full regional coverage including Manchester, Salford, Stockport, Bolton."
+        },
+        {
+          question: "Can you manage multi-site portfolios in Manchester?",
+          answer: "Yes — we integrate multiple sites under one portal for real-time visibility."
+        },
+        {
+          question: "Do you offer same-day reactive services?",
+          answer: "Yes — local engineers and spares mean faster response time and less downtime."
+        },
+        {
+          question: "Do you handle full life-safety compliance?",
+          answer: "Yes — fire systems, water hygiene, electrical compliance included under our integrated FM model."
+        }
+      ]} />
+
       <div className="min-h-screen pt-20">
         <div className="container mx-auto px-6 py-8">
           <Breadcrumb items={[
@@ -39,31 +59,65 @@ const Manchester = () => {
             <div className="lg:col-span-2 space-y-12">
               <header>
                 <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Facilities Management Services in Manchester & North West
+                  Manchester Moves. Your FM Should Run at the Same Speed.
                 </h1>
                 <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                  Comprehensive FM, M&E, and compliance services across Manchester, Salford, Trafford Park, and the wider North West region.
+                  Comprehensive facilities management across Greater Manchester — fast response, full compliance, local presence.
                 </p>
+                <div className="flex flex-wrap gap-4 mt-6">
+                  <Button size="lg" asChild>
+                    <Link to="/contact">Request Proposal</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" asChild>
+                    <a href="tel:+448001234567">24/7 Helpdesk – Speak Now</a>
+                  </Button>
+                </div>
               </header>
 
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Manchester FM Coverage
+                  Why Manchester Demands a Specialist FM Partner
+                </h2>
+                <div className="space-y-4 text-muted-foreground font-light leading-relaxed">
+                  <p>
+                    Greater Manchester is a major commercial hub with rapid growth in property, infrastructure and business services.
+                  </p>
+                  <p>
+                    This means FM providers must be highly responsive, multi-sector capable and regionally embedded. Count on no slowdowns, no excuses.
+                  </p>
+                </div>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Our Manchester Coverage & Capability
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
-                    "Hard services & M&E maintenance",
-                    "HVAC & air conditioning",
-                    "Electrical installations & testing",
-                    "Fire safety systems",
-                    "Emergency lighting",
-                    "PPM schedules",
-                    "Water hygiene & L8 compliance",
-                    "Soft services & workplace",
-                    "24/7 emergency support",
-                    "Compliance management",
-                    "Building fabric",
-                    "Industrial maintenance"
+                    "Full Greater Manchester footprint: city centre, Trafford Park, Salford, Stockport, Bolton",
+                    "Local engineer bases, spares stock, rapid mobilisation",
+                    "Scalable for single site or multi-estate portfolios",
+                    "Services built for Manchester's mix of offices, industrial, logistics, retail and residential estates"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Integrated FM Services for Manchester-Based Estates
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    "M&E hard services (electrical, mechanical, HVAC)",
+                    "Compliance management (fire systems, water hygiene, life-safety)",
+                    "Building fabric & external maintenance",
+                    "24/7 reactive support, national escalation model",
+                    "Unified portal: asset registers, job tracking, KPI dashboards"
                   ].map((service, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
@@ -75,17 +129,44 @@ const Manchester = () => {
 
               <section className="bg-charcoal text-white p-8 rounded-lg">
                 <h2 className="text-2xl font-light mb-6">
-                  North West Sectors We Serve
+                  Sectors We Cover Locally
                 </h2>
-                <div className="grid grid-cols-2 gap-4 text-sm font-light">
-                  <div>• Offices & corporate</div>
-                  <div>• Industrial & logistics</div>
-                  <div>• Retail & leisure</div>
-                  <div>• Residential blocks</div>
-                  <div>• Hospitality</div>
-                  <div>• Healthcare & education</div>
-                  <div>• Mixed-use developments</div>
-                  <div>• Service stations</div>
+                <div className="grid md:grid-cols-2 gap-4 font-light">
+                  {[
+                    "Industrial & logistics estates around Manchester",
+                    "Retail parks & service stations in the region",
+                    "Office campuses & multi-tenant blocks",
+                    "High-rise residential blocks & PBSA",
+                    "Hospitality venues and leisure complexes"
+                  ].map((sector, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span>{sector}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-6 text-sm text-gray-300">
+                  Whatever your estate type, we scale to you.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Why Our Manchester Clients Stick With Us
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    "Region-based resource plus national capability",
+                    "Clear SLAs, transparent pricing, measurable results",
+                    "No \"one size fits all\" scripts — direct accountability",
+                    "Tech-enabled asset visibility and reporting",
+                    "Local presence means faster fixes, less downtime"
+                  ].map((benefit, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{benefit}</span>
+                    </div>
+                  ))}
                 </div>
               </section>
 
@@ -114,17 +195,41 @@ const Manchester = () => {
                 </Card>
               </section>
 
+              <FAQSection faqs={[
+                {
+                  question: "Do you provide FM services across Greater Manchester?",
+                  answer: "Yes — full regional coverage including Manchester, Salford, Stockport, Bolton."
+                },
+                {
+                  question: "Can you manage multi-site portfolios in Manchester?",
+                  answer: "Yes — we integrate multiple sites under one portal for real-time visibility."
+                },
+                {
+                  question: "Do you offer same-day reactive services?",
+                  answer: "Yes — local engineers and spares mean faster response time and less downtime."
+                },
+                {
+                  question: "Do you handle full life-safety compliance?",
+                  answer: "Yes — fire systems, water hygiene, electrical compliance included under our integrated FM model."
+                }
+              ]} />
+
               <section className="border-t border-border pt-12">
                 <div className="text-center">
                   <h2 className="text-3xl font-light mb-4">
-                    Get Manchester FM Support
+                    Stop settling for generic FM. Get a partner built for Manchester.
                   </h2>
                   <p className="text-lg text-muted-foreground font-light mb-8 max-w-2xl mx-auto">
-                    Contact our North West team for a site-specific FM proposal covering your Manchester properties.
+                    Protect your operation, minimise downtime, and scale with confidence.
                   </p>
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request Manchester Proposal</Link>
-                  </Button>
+                  <div className="flex flex-wrap gap-4 justify-center">
+                    <Button size="lg" asChild>
+                      <Link to="/contact">Request FM Support in Manchester</Link>
+                    </Button>
+                    <Button size="lg" variant="outline" asChild>
+                      <a href="tel:+448001234567">Speak to a Specialist - 24/7</a>
+                    </Button>
+                  </div>
                 </div>
               </section>
             </div>
