@@ -1,23 +1,75 @@
-import { Helmet } from "react-helmet";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
+import { ArrowRight, Phone, MapPin, Clock, Shield, Zap } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { FAQSection } from "@/components/shared/FAQSection";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
-import { Building2, CheckCircle2 } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const London = () => {
+  const faqs = [
+    {
+      question: "Do you serve all London boroughs?",
+      answer: "Yes — we provide full Greater London coverage with strategically positioned engineers for rapid response across all boroughs and business districts."
+    },
+    {
+      question: "Do you support multi-site portfolios?",
+      answer: "Regularly — we specialise in managing multi-site portfolios, especially for retail and commercial HQ operators across London and the surrounding areas."
+    },
+    {
+      question: "Can you work during trading hours?",
+      answer: "Yes — low-disruption execution is our standard practice. We plan works around your operational requirements and peak trading times."
+    },
+    {
+      question: "Do you provide emergency call-outs?",
+      answer: "24/7 — our helpdesk provides immediate response for critical assets with rapid engineer dispatch across all London zones."
+    }
+  ];
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Facilities Management London",
+    "provider": {
+      "@type": "Organization",
+      "name": "EntireFM"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "London"
+    },
+    "description": "Hard and soft FM services across London with rapid response, full compliance, and comprehensive M&E maintenance for commercial properties."
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <>
       <Helmet>
-        <title>Facilities Management London | Commercial FM & M&E Contractors | EntireFM</title>
+        <title>Facilities Management London | M&E Contractors | London FM Services</title>
         <meta 
           name="description" 
-          content="Professional facilities management services across London. Hard & soft FM, M&E maintenance, compliance, and 24/7 support for commercial properties in Greater London."
+          content="Fast, reliable facilities management across London. Hard & soft FM, M&E contractors, compliance, and 24/7 emergency response for commercial properties." 
         />
+        <meta name="keywords" content="Facilities Management London, London FM Services, M&E Contractors London, Commercial FM London, Building Maintenance London" />
       </Helmet>
 
+      <SchemaMarkup schema={serviceSchema} />
+      <SchemaMarkup schema={faqSchema} />
       <LocalBusinessSchema 
         name="EntireFM London"
         address={{
@@ -28,121 +80,283 @@ const London = () => {
         }}
       />
 
-      <div className="min-h-screen pt-20">
-        <div className="container mx-auto px-6 py-8">
-          <Breadcrumb items={[
-            { label: "Locations" },
-            { label: "London" }
-          ]} />
+      <div className="min-h-screen">
+        {/* Hero Section */}
+        <section className="relative bg-charcoal text-white py-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <Breadcrumb 
+              items={[
+                { label: "Locations", href: "/locations" },
+                { label: "London" }
+              ]}
+            />
+            <div className="max-w-4xl mt-8">
+              <h1 className="text-4xl md:text-5xl font-light mb-6 leading-tight">
+                London Moves Fast. Your FM Partner Should Move Faster.
+              </h1>
+              <p className="text-xl text-gray-300 mb-8 font-light leading-relaxed">
+                Hard & soft FM services across the capital — with rapid response, full compliance, and zero excuses.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="group">
+                  <Link to="/contact">
+                    Request Proposal
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
+                  <a href="tel:+448001234567">
+                    <Phone className="w-4 h-4 mr-2" />
+                    24/7 Helpdesk — Speak Now
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <div className="grid lg:grid-cols-3 gap-12 mt-8">
-            <div className="lg:col-span-2 space-y-12">
-              <header>
-                <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Facilities Management Services Across London
-                </h1>
-                <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                  Integrated FM, M&E maintenance, compliance, and 24/7 support for commercial properties across Greater London and the M25 corridor.
-                </p>
-              </header>
-
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  London FM Services
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "Hard services & M&E maintenance",
-                    "HVAC servicing & air conditioning",
-                    "Electrical compliance & testing",
-                    "Fire alarm systems & life safety",
-                    "Emergency lighting testing",
-                    "Plumbing & gas safety",
-                    "Water hygiene (Legionella L8)",
-                    "Soft services & cleaning",
-                    "24/7 emergency response",
-                    "PPM programs",
-                    "Building fabric maintenance",
-                    "Project works & fit-outs"
-                  ].map((service, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{service}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-2xl font-light mb-6">
-                  London Property Types We Support
-                </h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {[
-                    "Office buildings & corporate HQs",
-                    "Industrial estates & logistics hubs",
-                    "Retail units & shopping centers",
-                    "Residential blocks & PBSA",
-                    "Hotels & hospitality venues",
-                    "Aviation facilities (Heathrow, Gatwick, City)",
-                    "Healthcare & education",
-                    "Mixed-use developments"
-                  ].map((type, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <Building2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{type}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  London Case Study
-                </h2>
-                <Card className="p-6">
-                  <div className="mb-4">
-                    <span className="text-sm font-medium text-accent">Mixed-Use Estate – Central London</span>
+        {/* Main Content */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Main Content Column */}
+              <div className="lg:col-span-2 space-y-12">
+                {/* Operational Excellence Section */}
+                <div>
+                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                    Operational Excellence for the City That Never Slows Down
+                  </h2>
+                  <p className="text-muted-foreground mb-6 font-light leading-relaxed">
+                    London sites are high-pressure environments:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    {[
+                      "Mixed-use complexity",
+                      "Multi-tenant compliance",
+                      "Zero downtime tolerance",
+                      "Peak trading & extended hours",
+                      "Brand-critical environments"
+                    ].map((challenge, index) => (
+                      <Card key={index} className="p-4 bg-muted/30">
+                        <p className="text-sm font-light flex items-start">
+                          <span className="text-primary mr-2 font-medium">•</span>
+                          {challenge}
+                        </p>
+                      </Card>
+                    ))}
                   </div>
-                  <h3 className="text-xl font-medium mb-4">
-                    12-Building Portfolio: Single FM Partner Delivers 34% Tenant Satisfaction Increase
-                  </h3>
-                  <div className="space-y-4 text-sm font-light text-muted-foreground">
-                    <p>
-                      <strong>Challenge:</strong> Multi-let office estate with fragmented contractor base, slow response times, and inconsistent service quality across buildings.
+                  <p className="text-foreground font-medium text-lg">
+                    We keep your sites running like the capital demands.
+                  </p>
+                </div>
+
+                {/* London Coverage */}
+                <div>
+                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                    London Coverage — Fully Resourced
+                  </h2>
+                  <p className="text-muted-foreground mb-6 font-light leading-relaxed">
+                    Fast engineer dispatch across:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    {[
+                      { area: "Central London", icon: MapPin },
+                      { area: "City & Canary Wharf", icon: MapPin },
+                      { area: "West End & South Bank", icon: MapPin },
+                      { area: "East London logistics belt", icon: MapPin },
+                      { area: "North Circular industrial estates", icon: MapPin },
+                      { area: "Heathrow & Gatwick support zones", icon: MapPin }
+                    ].map((location, index) => (
+                      <Card key={index} className="p-4 hover-lift">
+                        <div className="flex items-start gap-3">
+                          <location.icon className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                          <p className="text-sm font-light">{location.area}</p>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                  <div className="bg-primary/5 border-l-4 border-primary p-4">
+                    <p className="font-medium">
+                      Strategic engineer placement = faster fixes + lower cost.
                     </p>
-                    <p>
-                      <strong>Solution:</strong> Integrated FM contract covering hard services, soft services, compliance, and projects. Single helpdesk, digital portal, and dedicated account management.
+                  </div>
+                </div>
+
+                {/* Integrated FM Services */}
+                <div>
+                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                    Integrated FM — One Provider, One Standard
+                  </h2>
+                  <p className="text-muted-foreground mb-6 font-light leading-relaxed">
+                    We deliver complete FM support:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                    {[
+                      "Hard Services & M&E",
+                      "Fire & Life Safety Systems",
+                      "Water Hygiene & ACOP L8",
+                      "Gas & Heating Compliance",
+                      "Building Fabric Maintenance",
+                      "Reactive Emergency Response"
+                    ].map((service, index) => (
+                      <div key={index} className="flex items-start text-foreground font-light">
+                        <span className="text-primary mr-3 font-medium">✓</span>
+                        {service}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground font-light italic">
+                    With tech that proves performance in real time.
+                  </p>
+                </div>
+
+                {/* Sectors Supported */}
+                <div>
+                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                    Sectors We Support in London
+                  </h2>
+                  <p className="text-muted-foreground mb-6 font-light leading-relaxed">
+                    We protect operations and compliance for:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      { sector: "City offices & HQ buildings", link: "/sectors/offices-corporate" },
+                      { sector: "Retail stores & shopping districts", link: "/sectors/retail-service-stations" },
+                      { sector: "Service stations & roadside retail", link: "/sectors/retail-service-stations" },
+                      { sector: "Industrial & logistics hubs", link: "/sectors/industrial-logistics" },
+                      { sector: "Hospitality & leisure venues", link: "/sectors/hospitality-leisure" },
+                      { sector: "Residential blocks & PBSA assets", link: "/sectors/residential-pbsa" }
+                    ].map((item, index) => (
+                      <Link key={index} to={item.link}>
+                        <Card className="p-4 hover-lift group cursor-pointer">
+                          <p className="text-sm font-light group-hover:text-primary transition-colors">
+                            {item.sector}
+                          </p>
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                  <p className="mt-6 text-foreground font-medium">
+                    Different challenges — same reliability.
+                  </p>
+                </div>
+
+                {/* Case Studies */}
+                <div>
+                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                    London Projects Delivered
+                  </h2>
+                  <div className="space-y-6">
+                    <Card className="p-6 hover-lift">
+                      <h3 className="font-medium mb-2 text-lg">West End Retail Estate</h3>
+                      <ul className="space-y-2 text-sm text-muted-foreground font-light">
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">✓</span>
+                          HVAC optimisation = 19% energy saving
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">✓</span>
+                          Fire system compliance recovery inside 45 days
+                        </li>
+                      </ul>
+                    </Card>
+                    <Card className="p-6 hover-lift">
+                      <h3 className="font-medium mb-2 text-lg">Docklands Logistics Hub</h3>
+                      <ul className="space-y-2 text-sm text-muted-foreground font-light">
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">✓</span>
+                          Zero-downtime lighting upgrade
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">✓</span>
+                          Dock and bay compliance maintained under peak season
+                        </li>
+                      </ul>
+                    </Card>
+                    <Card className="p-6 hover-lift">
+                      <h3 className="font-medium mb-2 text-lg">Central HQ Tower</h3>
+                      <ul className="space-y-2 text-sm text-muted-foreground font-light">
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">✓</span>
+                          Reception-level aesthetic refresh
+                        </li>
+                        <li className="flex items-start">
+                          <span className="text-primary mr-2">✓</span>
+                          Asset uptime improved from 86% → 97%
+                        </li>
+                      </ul>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Why London Chooses */}
+                <div>
+                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                    Why London Chooses EntireFM
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    {[
+                      { icon: Clock, text: "Night works & out-of-hours access" },
+                      { icon: Zap, text: "Rapid response SLAs enforced" },
+                      { icon: Shield, text: "Proven multi-site and high-rise capability" },
+                      { icon: Shield, text: "Clean, uniformed engineers for public-facing environments" }
+                    ].map((item, index) => (
+                      <Card key={index} className="p-4">
+                        <div className="flex items-start gap-3">
+                          <item.icon className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                          <p className="text-sm font-light">{item.text}</p>
+                        </div>
+                      </Card>
+                    ))}
+                  </div>
+                  <div className="bg-charcoal text-white p-6 rounded-lg">
+                    <p className="font-medium text-lg mb-2">
+                      Owner-led accountability — no corporate maze
                     </p>
-                    <p>
-                      <strong>Results:</strong> Response time reduced to 41 minutes average, tenant satisfaction up 34%, reactive spend down 28%, zero compliance breaches in 18 months.
+                    <p className="font-light text-gray-300">
+                      You call. We act. No layers. No delays.
                     </p>
+                  </div>
+                </div>
+
+                {/* FAQ Section */}
+                <FAQSection faqs={faqs} />
+
+                {/* Final CTA */}
+                <Card className="p-8 bg-charcoal text-white text-center">
+                  <h2 className="text-3xl font-light mb-4">
+                    Get FM that keeps pace with London.
+                  </h2>
+                  <p className="text-gray-300 mb-6 font-light text-lg">
+                    Stop firefighting. Start performing.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button asChild size="lg" variant="secondary">
+                      <Link to="/contact">
+                        Request FM Support in London
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Link>
+                    </Button>
+                    <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal">
+                      <a href="tel:+448001234567">
+                        <Phone className="w-4 h-4 mr-2" />
+                        Speak to a Specialist — Right Now
+                      </a>
+                    </Button>
                   </div>
                 </Card>
-              </section>
-
-              <section className="border-t border-border pt-12">
-                <div className="text-center">
-                  <h2 className="text-3xl font-light mb-4">
-                    Speak to a Local FM Specialist
-                  </h2>
-                  <p className="text-lg text-muted-foreground font-light mb-8 max-w-2xl mx-auto">
-                    Tell us about your London property and current FM challenges. We'll provide a tailored proposal with SLAs, pricing, and mobilisation plan.
-                  </p>
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request London FM Proposal</Link>
-                  </Button>
-                </div>
-              </section>
-            </div>
-
-            <aside className="lg:col-span-1">
-              <div className="sticky top-24">
-                <SidebarCTA />
               </div>
-            </aside>
+
+              {/* Sidebar */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-24">
+                  <SidebarCTA />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </>
   );
