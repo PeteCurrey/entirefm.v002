@@ -30,6 +30,7 @@ import BuildingFabric from "./pages/services/BuildingFabric";
 import GasSafety from "./pages/services/GasSafety";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
+import Birmingham from "./pages/locations/Birmingham";
 import IndustrialLogistics from "./pages/sectors/IndustrialLogistics";
 import RetailServiceStations from "./pages/sectors/RetailServiceStations";
 import OfficesCorporate from "./pages/sectors/OfficesCorporate";
@@ -69,9 +70,10 @@ const App = () => (
               <Route path="/sectors/aviation-travel-hub" element={<AviationTravelHub />} />
               <Route path="/sectors/hospitality-leisure" element={<HospitalityLeisure />} />
               <Route path="/sectors/residential-pbsa" element={<ResidentialPBSA />} />
-              <Route path="/locations" element={<Locations />} />
-              <Route path="/locations/london" element={<London />} />
-              <Route path="/locations/manchester" element={<Manchester />} />
+            <Route path="/locations" element={<Locations />} />
+            <Route path="/locations/london" element={<London />} />
+            <Route path="/locations/manchester" element={<Manchester />} />
+            <Route path="/locations/birmingham" element={<Birmingham />} />
               <Route path="/technology" element={<Technology />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/about" element={<About />} />
