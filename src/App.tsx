@@ -33,6 +33,7 @@ import Manchester from "./pages/locations/Manchester";
 import Birmingham from "./pages/locations/Birmingham";
 import Leeds from "./pages/locations/Leeds";
 import Sheffield from "./pages/locations/Sheffield";
+import Liverpool from "./pages/locations/Liverpool";
 import IndustrialLogistics from "./pages/sectors/IndustrialLogistics";
 import RetailServiceStations from "./pages/sectors/RetailServiceStations";
 import OfficesCorporate from "./pages/sectors/OfficesCorporate";
@@ -78,6 +79,7 @@ const App = () => (
             <Route path="/locations/birmingham" element={<Birmingham />} />
             <Route path="/locations/leeds" element={<Leeds />} />
             <Route path="/locations/sheffield" element={<Sheffield />} />
+            <Route path="/locations/liverpool" element={<Liverpool />} />
               <Route path="/technology" element={<Technology />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/about" element={<About />} />
