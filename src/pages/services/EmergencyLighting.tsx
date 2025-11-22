@@ -30,11 +30,12 @@ const EmergencyLighting = () => {
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Testing UK | BS 5266 Maintenance | Commercial Emergency Lights | EntireFM</title>
+        <title>Emergency Lighting Compliance (BS 5266)</title>
         <meta 
           name="description" 
-          content="Compliance, visibility, and safe evacuation with zero disruption to operations. Monthly functional checks, annual 3-hour duration tests, BS 5266 compliance."
+          content="Testing, repairs & certificates to keep exits safe & legal."
         />
+        <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
       <ServiceSchema 

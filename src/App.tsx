@@ -81,13 +81,13 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
-          <Route path="/services/hard-services" element={<HardServices />} />
+          <Route path="/services/hard-fm" element={<HardServices />} />
           <Route path="/services/hvac" element={<HVAC />} />
-          <Route path="/services/ppm" element={<PPM />} />
+          <Route path="/services/ppm-compliance" element={<PPM />} />
           <Route path="/services/electrical" element={<Electrical />} />
           <Route path="/services/fire-alarms" element={<FireAlarms />} />
           <Route path="/services/emergency-lighting" element={<EmergencyLighting />} />
-          <Route path="/services/sprinklers" element={<Sprinklers />} />
+          <Route path="/services/sprinklers-risers" element={<Sprinklers />} />
           <Route path="/services/plumbing" element={<Plumbing />} />
           <Route path="/services/water-hygiene" element={<WaterHygiene />} />
           <Route path="/services/building-fabric" element={<BuildingFabric />} />

@@ -30,11 +30,12 @@ const FireAlarms = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Alarm Maintenance UK | BS 5839 Testing | Fire Alarm Servicing Contractor | EntireFM</title>
+        <title>Fire Alarm Maintenance & Compliance (BS 5839)</title>
         <meta 
           name="description" 
-          content="Certified fire alarm testing and maintenance that protects people, property, and your legal liability. BS 5839 compliance, 24/7 response, multi-site coverage."
+          content="Inspections, testing & rapid remediation. Protect people & operations."
         />
+        <link rel="canonical" href="https://entirefm.com/services/fire-alarms" />
       </Helmet>
 
       <ServiceSchema 

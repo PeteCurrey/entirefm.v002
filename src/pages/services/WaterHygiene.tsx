@@ -30,11 +30,12 @@ const WaterHygiene = () => {
   return (
     <>
       <Helmet>
-        <title>Water Hygiene & Legionella Control UK | L8 Compliance | EntireFM</title>
+        <title>Legionella Compliance (ACOP L8 / HSG274)</title>
         <meta 
           name="description" 
-          content="Water hygiene management, Legionella risk assessments, and L8 compliance for UK commercial properties. Temperature monitoring, TMV servicing, and testing."
+          content="Water testing, monitoring & remedials. Zero hygiene compromise."
         />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

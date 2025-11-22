@@ -30,11 +30,12 @@ const HVAC = () => {
   return (
     <>
       <Helmet>
-        <title>Commercial HVAC Maintenance & Servicing UK | Air Conditioning Repairs | EntireFM</title>
+        <title>Commercial HVAC Maintenance & Air Quality UK</title>
         <meta 
           name="description" 
-          content="Expert commercial HVAC maintenance across the UK. Air conditioning servicing, repairs, and compliance with F-Gas certification. Reduce breakdowns and energy costs."
+          content="Heating & cooling optimised for comfort, cost & compliance. Rapid response."
         />
+        <link rel="canonical" href="https://entirefm.com/services/hvac" />
       </Helmet>
 
       <ServiceSchema 
