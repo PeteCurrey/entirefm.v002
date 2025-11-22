@@ -39,6 +39,15 @@ import FireAlarms from "./pages/services/FireAlarms";
 import FireLondon from "./pages/services/fire/London";
 import FireBirmingham from "./pages/services/fire/Birmingham";
 import FireManchester from "./pages/services/fire/Manchester";
+import EmergencyLightingLondon from "./pages/services/emergency-lighting/London";
+import EmergencyLightingBirmingham from "./pages/services/emergency-lighting/Birmingham";
+import EmergencyLightingManchester from "./pages/services/emergency-lighting/Manchester";
+import EmergencyLightingLeeds from "./pages/services/emergency-lighting/Leeds";
+import EmergencyLightingSheffield from "./pages/services/emergency-lighting/Sheffield";
+import EmergencyLightingNottingham from "./pages/services/emergency-lighting/Nottingham";
+import EmergencyLightingDerby from "./pages/services/emergency-lighting/Derby";
+import EmergencyLightingChesterfield from "./pages/services/emergency-lighting/Chesterfield";
+import EmergencyLightingLincoln from "./pages/services/emergency-lighting/Lincoln";
 import FireLeeds from "./pages/services/fire/Leeds";
 import FireSheffield from "./pages/services/fire/Sheffield";
 import FireNottingham from "./pages/services/fire/Nottingham";
@@ -116,6 +125,17 @@ const App = () => (
           <Route path="/fire/derby" element={<FireDerby />} />
           <Route path="/fire/chesterfield" element={<FireChesterfield />} />
           <Route path="/fire/lincoln" element={<FireLincoln />} />
+          
+          {/* Emergency Lighting Location Routes */}
+          <Route path="/emergency-lighting/london" element={<EmergencyLightingLondon />} />
+          <Route path="/emergency-lighting/birmingham" element={<EmergencyLightingBirmingham />} />
+          <Route path="/emergency-lighting/manchester" element={<EmergencyLightingManchester />} />
+          <Route path="/emergency-lighting/leeds" element={<EmergencyLightingLeeds />} />
+          <Route path="/emergency-lighting/sheffield" element={<EmergencyLightingSheffield />} />
+          <Route path="/emergency-lighting/nottingham" element={<EmergencyLightingNottingham />} />
+          <Route path="/emergency-lighting/derby" element={<EmergencyLightingDerby />} />
+          <Route path="/emergency-lighting/chesterfield" element={<EmergencyLightingChesterfield />} />
+          <Route path="/emergency-lighting/lincoln" element={<EmergencyLightingLincoln />} />
           <Route path="/electrical/london" element={<ElectricalLondon />} />
           <Route path="/electrical/birmingham" element={<ElectricalBirmingham />} />
           <Route path="/electrical/manchester" element={<ElectricalManchester />} />
