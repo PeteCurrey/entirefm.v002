@@ -61,12 +61,12 @@ const London = () => {
   return (
     <>
       <Helmet>
-        <title>Facilities Management London | M&E Contractors | London FM Services</title>
+        <title>Facilities Management London</title>
         <meta 
           name="description" 
-          content="Fast, reliable facilities management across London. Hard & soft FM, M&E contractors, compliance, and 24/7 emergency response for commercial properties." 
+          content="Responsive FM & compliance support across London. 24/7 uptime & safety." 
         />
-        <meta name="keywords" content="Facilities Management London, London FM Services, M&E Contractors London, Commercial FM London, Building Maintenance London" />
+        <link rel="canonical" href="https://entirefm.com/locations/london" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

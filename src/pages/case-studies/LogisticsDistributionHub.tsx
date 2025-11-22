@@ -9,11 +9,12 @@ const LogisticsDistributionHub = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>Logistics Distribution Hub Case Study - 32% Reduction in Reactive Incidents | EntireFM</title>
+        <title>Logistics FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM improved uptime and energy efficiency at a 24/7 logistics centre, reducing reactive incidents by 32% and achieving 87% first-time fix rate." 
+          content="Reduced downtime & energy costs with proactive PPM strategy." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/logistics" />
       </Helmet>
 
       <Breadcrumb 

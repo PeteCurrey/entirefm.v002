@@ -9,11 +9,12 @@ const IndustrialPlant = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>Industrial Plant FM Case Study - 53% Downtime Reduction & Zero H&S Actions | EntireFM</title>
+        <title>Engineering Plant FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM achieved operational uptime and safety retention for a critical production site, cutting downtime by 53% with zero H&S enforcement actions." 
+          content="Downtime cut by 53% & H&S standards reinforced." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/engineering" />
       </Helmet>
 
       <Breadcrumb 

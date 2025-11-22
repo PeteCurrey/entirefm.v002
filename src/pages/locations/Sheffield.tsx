@@ -67,11 +67,12 @@ const Sheffield = () => {
   return (
     <>
       <Helmet>
-        <title>Facilities Management Sheffield | FM Services South Yorkshire | EntireFM</title>
+        <title>Facilities Management Sheffield</title>
         <meta 
           name="description" 
-          content="FM built for industrial strength and commercial pace across Sheffield. M&E contractors, compliance management, 24/7 support. Local engineers, rapid response."
+          content="Industrial-focused FM. Compliance & uptime for every asset." 
         />
+        <link rel="canonical" href="https://entirefm.com/locations/sheffield" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

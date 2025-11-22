@@ -30,11 +30,12 @@ const IndustrialLogistics = () => {
   return (
     <>
       <Helmet>
-        <title>Logistics FM UK | Warehouse Maintenance Contractor | Industrial Facilities Services</title>
+        <title>FM for Logistics & Industrial Sites UK</title>
         <meta 
           name="description" 
-          content="FM for logistics environments where downtime costs thousands per minute. 24/7 industrial facilities management for warehouses and distribution centers."
+          content="Uptime-critical FM for warehouses & logistics. SLA excellence." 
         />
+        <link rel="canonical" href="https://entirefm.com/sectors/logistics-industrial" />
       </Helmet>
 
       <ServiceSchema 

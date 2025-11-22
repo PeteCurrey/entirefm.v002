@@ -9,11 +9,12 @@ const ResidentialPBSA = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>PBSA Residential Fire Safety Case Study - FRA Recovery in 8 Weeks | EntireFM</title>
+        <title>Residential Block FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM cleared 70+ overdue FRA actions for a high-rise PBSA block in 8 weeks, achieving full compliance and 22% resident satisfaction improvement." 
+          content="FRA backlog cleared + reduced complaints fast." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/pbsa" />
       </Helmet>
 
       <Breadcrumb 

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { Download, Calendar, CheckCircle2 } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const ComplianceCalendar = () => {
   const checklist = [
@@ -24,6 +25,14 @@ const ComplianceCalendar = () => {
 
   return (
     <div className="min-h-screen pt-20">
+      <Helmet>
+        <title>FM Compliance Calendar 2025</title>
+        <meta 
+          name="description" 
+          content="Statutory maintenance deadlines — stay audit-ready all year." 
+        />
+        <link rel="canonical" href="https://entirefm.com/resources/compliance-calendar" />
+      </Helmet>
       {/* Breadcrumb */}
       <div className="container mx-auto px-6 py-4">
         <Breadcrumb

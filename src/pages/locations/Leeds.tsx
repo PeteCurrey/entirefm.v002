@@ -71,11 +71,12 @@ const Leeds = () => {
   return (
     <>
       <Helmet>
-        <title>Facilities Management Leeds | FM Services West Yorkshire | EntireFM</title>
+        <title>Facilities Management Leeds</title>
         <meta 
           name="description" 
-          content="Comprehensive facilities management across Leeds and West Yorkshire. M&E contractors, compliance management, 24/7 support. Local engineers, rapid response."
+          content="End-to-end FM for commercial & residential estates in West Yorkshire." 
         />
+        <link rel="canonical" href="https://entirefm.com/locations/leeds" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

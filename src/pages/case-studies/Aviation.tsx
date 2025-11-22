@@ -9,11 +9,12 @@ const Aviation = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>Aviation Terminal Life Safety Case Study - Zero Disruption Fire Compliance | EntireFM</title>
+        <title>Aviation FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM delivered critical fire and life-safety upgrades at a live aviation terminal, achieving full BS 5839 compliance with zero passenger disruption." 
+          content="Critical fire compliance delivered with zero operational gaps." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/aviation" />
       </Helmet>
 
       <Breadcrumb 

@@ -63,11 +63,12 @@ const Leicester = () => {
   return (
     <>
       <Helmet>
-        <title>Facilities Management Leicester | FM Services East Midlands | EntireFM</title>
+        <title>Facilities Management Leicester</title>
         <meta 
           name="description" 
-          content="FM built for Leicester's industrial heart and fast-moving commercial scene. M&E contractors, compliance management, 24/7 support across the East Midlands."
+          content="Uptime-focused FM for industrial & commercial sites in the Midlands." 
         />
+        <link rel="canonical" href="https://entirefm.com/locations/leicester" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

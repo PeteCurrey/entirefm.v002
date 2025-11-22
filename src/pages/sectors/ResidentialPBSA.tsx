@@ -56,12 +56,12 @@ const ResidentialPBSA = () => {
   return (
     <>
       <Helmet>
-        <title>Residential & PBSA FM UK | Block Management Services | EntireFM</title>
+        <title>Residential Block FM UK / PBSA</title>
         <meta 
           name="description" 
-          content="Specialist residential facilities management for blocks, towers, and PBSA. Full compliance, life safety, and resident satisfaction. 24/7 support across the UK." 
+          content="Life-safety compliance & resident satisfaction delivered." 
         />
-        <meta name="keywords" content="Residential FM UK, PBSA Building Maintenance, Block Management Services, Student Accommodation FM, Tower Block Maintenance" />
+        <link rel="canonical" href="https://entirefm.com/sectors/residential-pbsa" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

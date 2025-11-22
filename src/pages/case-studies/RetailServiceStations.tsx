@@ -9,11 +9,12 @@ const RetailServiceStations = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>Retail & Service Stations Case Study - 100% Fire Compliance Regained | EntireFM</title>
+        <title>Retail FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM achieved zero-disruption compliance turnaround across a live trading estate, regaining 100% fire compliance in 90 days." 
+          content="Zero disruption compliance uplift for national retail estate." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/retail" />
       </Helmet>
 
       <Breadcrumb 

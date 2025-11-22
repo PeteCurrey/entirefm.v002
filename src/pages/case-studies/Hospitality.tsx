@@ -9,11 +9,12 @@ const Hospitality = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>Hotel FM Case Study - 28 Rooms Restored to Revenue in 2 Weeks | EntireFM</title>
+        <title>Hotel FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM restored 28 hotel rooms to revenue status in 2 weeks, achieving 94% first-time fix rate and 25% reduction in comfort complaints." 
+          content="Rapid room turnarounds & guest comfort KPIs improved." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/hospitality" />
       </Helmet>
 
       <Breadcrumb 

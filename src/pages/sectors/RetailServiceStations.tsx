@@ -30,11 +30,12 @@ const RetailServiceStations = () => {
   return (
     <>
       <Helmet>
-        <title>Retail FM UK | Service Station Maintenance | Forecourt Compliance Contractors</title>
+        <title>Retail & Forecourt FM UK</title>
         <meta 
           name="description" 
-          content="FM that keeps retail and service stations fully operational, clean, compliant, and customer-ready — every minute of the day. 24/7 retail facilities management."
+          content="Brand protection, safety & rapid responsive support for retail." 
         />
+        <link rel="canonical" href="https://entirefm.com/sectors/retail-service-stations" />
       </Helmet>
 
       <ServiceSchema 

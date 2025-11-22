@@ -12,11 +12,12 @@ const Manchester = () => {
   return (
     <>
       <Helmet>
-        <title>Facilities Management Manchester | M&E Contractors & Commercial FM | EntireFM</title>
+        <title>Facilities Management Manchester</title>
         <meta 
           name="description" 
-          content="Professional FM services across Manchester and the North West. M&E maintenance, compliance, and 24/7 support for commercial and industrial properties."
+          content="Local engineer network & full FM compliance. Protect uptime & operations." 
         />
+        <link rel="canonical" href="https://entirefm.com/locations/manchester" />
       </Helmet>
 
       <LocalBusinessSchema 

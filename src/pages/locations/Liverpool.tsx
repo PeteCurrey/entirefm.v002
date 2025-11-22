@@ -67,11 +67,12 @@ const Liverpool = () => {
   return (
     <>
       <Helmet>
-        <title>Facilities Management Liverpool | FM Services Merseyside | EntireFM</title>
+        <title>Facilities Management Liverpool</title>
         <meta 
           name="description" 
-          content="Port-city performance FM services across Liverpool and Merseyside. M&E contractors, compliance management, 24/7 support. Commercial, logistics, and waterfront estates."
+          content="FM delivering performance & safety across Merseyside. 24/7 operations." 
         />
+        <link rel="canonical" href="https://entirefm.com/locations/liverpool" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />
