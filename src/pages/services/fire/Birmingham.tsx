@@ -79,8 +79,9 @@ const FireBirmingham = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=2070&auto=format&fit=crop')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=2070&auto=format&fit=crop')`,
           }}
+          aria-label="Fire safety detection system in Birmingham industrial facility"
         />
         
         <div className="relative z-20 container mx-auto px-4 text-center">
