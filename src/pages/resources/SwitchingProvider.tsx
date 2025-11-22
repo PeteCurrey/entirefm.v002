@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { Download, RefreshCw, CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const SwitchingProvider = () => {
   const playbookCovers = [
@@ -21,6 +23,14 @@ const SwitchingProvider = () => {
   ];
 
   return (
+    <>
+      <Helmet>
+        <title>FM Provider Switching Playbook | Pain-Free FM Mobilisation Guide | EntireFM</title>
+        <meta 
+          name="description" 
+          content="Step-by-step playbook for switching FM providers without chaos. Avoid downtime, maintain compliance, and ensure smooth transition."
+        />
+      </Helmet>
     <div className="min-h-screen pt-20">
       {/* Breadcrumb */}
       <div className="container mx-auto px-6 py-4">
@@ -50,12 +60,14 @@ const SwitchingProvider = () => {
               A step-by-step playbook for friction-free transition — without letting compliance slide.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="gap-2">
-                <Download className="w-5 h-5" />
-                Download the Playbook
+              <Button size="lg" className="gap-2" asChild>
+                <a href="#">
+                  <Download className="w-5 h-5" />
+                  Download the Playbook
+                </a>
               </Button>
-              <Button size="lg" variant="outline">
-                Get a Mobilisation Proposal
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/contact">Get a Mobilisation Proposal</Link>
               </Button>
             </div>
           </div>
@@ -104,6 +116,35 @@ const SwitchingProvider = () => {
         </div>
       </section>
 
+      {/* Related Links */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl">
+            <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+              You Might Also Find Useful
+            </h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link to="/compliance-diagnostic" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                <p className="font-medium mb-1">Compliance Risk Diagnostic</p>
+                <p className="text-sm text-muted-foreground font-light">Score your current provider's performance</p>
+              </Link>
+              <Link to="/why-switch" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                <p className="font-medium mb-1">Why Switch to EntireFM</p>
+                <p className="text-sm text-muted-foreground font-light">See what makes us different</p>
+              </Link>
+              <Link to="/sectors" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                <p className="font-medium mb-1">Sectors We Serve</p>
+                <p className="text-sm text-muted-foreground font-light">Industry-specific FM solutions</p>
+              </Link>
+              <Link to="/contact" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                <p className="font-medium mb-1">Request a Proposal</p>
+                <p className="text-sm text-muted-foreground font-light">Get a tailored switching plan</p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-16 bg-charcoal text-white">
         <div className="container mx-auto px-6 text-center">
@@ -118,13 +159,14 @@ const SwitchingProvider = () => {
               <Download className="w-5 h-5" />
               Download Playbook
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              Get Mobilisation Proposal
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+              <Link to="/contact">Get Mobilisation Proposal</Link>
             </Button>
           </div>
         </div>
       </section>
     </div>
+    </>
   );
 };
 

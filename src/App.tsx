@@ -54,6 +54,7 @@ import AviationTravelHub from "./pages/sectors/AviationTravelHub";
 import HospitalityLeisure from "./pages/sectors/HospitalityLeisure";
 import ResidentialPBSA from "./pages/sectors/ResidentialPBSA";
 import WhySwitch from "./pages/WhySwitch";
+import ComplianceDiagnostic from "./pages/ComplianceDiagnostic";
 
 const queryClient = new QueryClient();
 
@@ -108,6 +109,7 @@ const App = () => (
           <Route path="/case-studies/healthcare" element={<Healthcare />} />
               <Route path="/about" element={<About />} />
               <Route path="/why-switch" element={<WhySwitch />} />
+              <Route path="/compliance-diagnostic" element={<ComplianceDiagnostic />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/resources/compliance-calendar" element={<ComplianceCalendar />} />
               <Route path="/resources/audit-framework" element={<AuditFramework />} />

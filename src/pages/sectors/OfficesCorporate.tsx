@@ -295,6 +295,38 @@ const OfficesCorporate = () => {
 
               <FAQSection faqs={faqs} />
 
+              {/* Related Services & Locations */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Related Services & Locations
+                </h2>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div>
+                    <h3 className="font-medium mb-3">Core Services</h3>
+                    <div className="space-y-2">
+                      <Link to="/services/hvac" className="block text-sm font-light hover:text-primary">HVAC Maintenance</Link>
+                      <Link to="/services/electrical" className="block text-sm font-light hover:text-primary">Electrical Services</Link>
+                      <Link to="/services/fire-alarms" className="block text-sm font-light hover:text-primary">Fire Systems</Link>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-3">Major Cities</h3>
+                    <div className="space-y-2">
+                      <Link to="/locations/london" className="block text-sm font-light hover:text-primary">London</Link>
+                      <Link to="/locations/manchester" className="block text-sm font-light hover:text-primary">Manchester</Link>
+                      <Link to="/locations/birmingham" className="block text-sm font-light hover:text-primary">Birmingham</Link>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-3">Case Studies</h3>
+                    <div className="space-y-2">
+                      <Link to="/case-studies/corporate-hq" className="block text-sm font-light hover:text-primary">Corporate HQ Success</Link>
+                      <Link to="/case-studies" className="block text-sm font-light hover:text-primary">View All Case Studies</Link>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
               {/* Final CTA */}
               <section className="border-t border-border pt-12">
                 <div className="text-center bg-charcoal text-white p-12 rounded-lg">

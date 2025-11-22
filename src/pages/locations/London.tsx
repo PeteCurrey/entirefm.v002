@@ -7,6 +7,7 @@ import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { Helmet } from "react-helmet";
 
 const London = () => {
@@ -70,6 +71,11 @@ const London = () => {
 
       <SchemaMarkup schema={serviceSchema} />
       <SchemaMarkup schema={faqSchema} />
+      <BreadcrumbSchema items={[
+        { label: "Home", href: "/" },
+        { label: "Locations", href: "/locations" },
+        { label: "London" }
+      ]} />
       <LocalBusinessSchema 
         name="EntireFM London"
         address={{
@@ -322,6 +328,31 @@ const London = () => {
 
                 {/* FAQ Section */}
                 <FAQSection faqs={faqs} />
+
+                {/* Quick Links */}
+                <div className="bg-muted/30 p-8 rounded-lg">
+                  <h2 className="text-2xl font-light mb-6">
+                    Explore More
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <Link to="/compliance-diagnostic" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                      <p className="font-medium mb-1">Compliance Risk Check</p>
+                      <p className="text-sm text-muted-foreground font-light">Score your FM provider in 90 seconds</p>
+                    </Link>
+                    <Link to="/why-switch" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                      <p className="font-medium mb-1">Why Switch to Us</p>
+                      <p className="text-sm text-muted-foreground font-light">See how we're different</p>
+                    </Link>
+                    <Link to="/about" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                      <p className="font-medium mb-1">Trust & Accreditations</p>
+                      <p className="text-sm text-muted-foreground font-light">Our safety & compliance credentials</p>
+                    </Link>
+                    <Link to="/resources" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                      <p className="font-medium mb-1">Free Resources</p>
+                      <p className="text-sm text-muted-foreground font-light">Guides, checklists & templates</p>
+                    </Link>
+                  </div>
+                </div>
 
                 {/* Final CTA */}
                 <Card className="p-8 bg-charcoal text-white text-center">
