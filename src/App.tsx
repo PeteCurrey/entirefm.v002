@@ -58,6 +58,8 @@ import ComplianceDiagnostic from "./pages/ComplianceDiagnostic";
 import CostSavingsCalculator from "./pages/tools/CostSavingsCalculator";
 import SLABenchmark from "./pages/tools/SLABenchmark";
 import EnergyESG from "./pages/resources/EnergyESG";
+import EngineerStandards from "./pages/resources/EngineerStandards";
+import FrontOfHouse from "./pages/services/FrontOfHouse";
 
 const queryClient = new QueryClient();
 
@@ -118,6 +120,8 @@ const App = () => (
               <Route path="/resources/audit-framework" element={<AuditFramework />} />
               <Route path="/resources/switching-provider" element={<SwitchingProvider />} />
               <Route path="/resources/energy-esg" element={<EnergyESG />} />
+              <Route path="/resources/engineer-standards" element={<EngineerStandards />} />
+              <Route path="/services/front-of-house" element={<FrontOfHouse />} />
               <Route path="/tools/cost-savings-calculator" element={<CostSavingsCalculator />} />
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/careers" element={<Careers />} />
