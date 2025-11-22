@@ -10,9 +10,11 @@ import { Calculator, TrendingDown, Clock, Shield, DollarSign } from "lucide-reac
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { WebApplicationSchema } from "@/components/shared/SchemaMarkup";
+import { useConversionTracking } from "@/hooks/useConversionTracking";
 
 const CostSavingsCalculator = () => {
+  const { trackToolCompletion } = useConversionTracking();
   const [reactiveSpend, setReactiveSpend] = useState(50000);
   const [estateType, setEstateType] = useState("");
   const [assetAge, setAssetAge] = useState("medium");
@@ -21,6 +23,7 @@ const CostSavingsCalculator = () => {
 
   const calculateSavings = () => {
     setShowResults(true);
+    trackToolCompletion('Cost Savings Calculator');
   };
 
   // Calculate savings based on inputs
@@ -34,19 +37,6 @@ const CostSavingsCalculator = () => {
     { label: "Cost Savings Calculator" }
   ];
 
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Reactive vs PPM Cost Savings Calculator",
-    description: "Calculate potential savings by switching from reactive to planned preventive maintenance",
-    applicationCategory: "UtilityApplication",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "GBP"
-    }
-  };
-
   return (
     <>
       <Helmet>
@@ -55,7 +45,11 @@ const CostSavingsCalculator = () => {
         <link rel="canonical" href="https://entirefm.com/tools/cost-savings" />
       </Helmet>
 
-      <SchemaMarkup schema={schemaData} />
+      <WebApplicationSchema 
+        name="Reactive vs PPM Cost Savings Calculator"
+        description="Calculate potential savings by switching from reactive to planned preventive maintenance"
+        applicationCategory="UtilityApplication"
+      />
       <BreadcrumbSchema items={breadcrumbItems} />
 
       <main>

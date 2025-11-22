@@ -9,9 +9,11 @@ import { Activity, Clock, CheckCircle, AlertTriangle, TrendingUp } from "lucide-
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { WebApplicationSchema } from "@/components/shared/SchemaMarkup";
+import { useConversionTracking } from "@/hooks/useConversionTracking";
 
 const SLABenchmark = () => {
+  const { trackToolCompletion } = useConversionTracking();
   const [responseTime, setResponseTime] = useState("");
   const [resolutionTime, setResolutionTime] = useState("");
   const [firstTimeFix, setFirstTimeFix] = useState("");
@@ -21,6 +23,7 @@ const SLABenchmark = () => {
   const handleBenchmark = () => {
     if (responseTime && resolutionTime && firstTimeFix) {
       setShowResults(true);
+      trackToolCompletion('SLA Benchmark Tool');
     }
   };
 
@@ -29,19 +32,6 @@ const SLABenchmark = () => {
     { label: "Tools", href: "/tools/sla-benchmark" },
     { label: "SLA Benchmark" }
   ];
-
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "FM SLA Performance Benchmark Tool",
-    description: "Compare your facilities management provider's SLA performance against industry standards and EntireFM excellence",
-    applicationCategory: "UtilityApplication",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "GBP"
-    }
-  };
 
   const getPerformanceStatus = (metric: string, value: string) => {
     const numValue = parseFloat(value);
@@ -72,7 +62,11 @@ const SLABenchmark = () => {
         <link rel="canonical" href="https://entirefm.com/tools/sla-benchmark" />
       </Helmet>
 
-      <SchemaMarkup schema={schemaData} />
+      <WebApplicationSchema 
+        name="FM SLA Performance Benchmark Tool"
+        description="Compare your facilities management provider's SLA performance against industry standards and EntireFM excellence"
+        applicationCategory="UtilityApplication"
+      />
       <BreadcrumbSchema items={breadcrumbItems} />
 
       <main>

@@ -4,24 +4,17 @@ import { Phone, Mail, MapPin, Users, Headphones, AlertCircle, Globe } from "luci
 import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { ContactPointSchema, OrganizationSchema } from "@/components/shared/SchemaMarkup";
+import { useConversionTracking } from "@/hooks/useConversionTracking";
 
 const Contact = () => {
+  const { trackPhoneClick } = useConversionTracking();
   const breadcrumbItems = [
     { label: "Contact" }
   ];
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact EntireFM - FM Support & Offices",
-    "description": "Contact EntireFM for facilities management support. 24/7 helpdesk, direct access to leadership, and UK-wide engineer coverage.",
-    "provider": {
-      "@type": "Organization",
-      "name": "EntireFM",
-      "telephone": "+44-800-123-4567",
-      "email": "hello@entirefm.co.uk"
-    }
+  const handlePhoneClick = () => {
+    trackPhoneClick();
   };
 
   const contactMethods = [
@@ -31,7 +24,8 @@ const Contact = () => {
       subtitle: "Always Answered by a Person",
       description: "No voicemail nonsense. No excuses. Real people, real-time response.",
       action: "Call 0800 123 4567",
-      href: "tel:08001234567"
+      href: "tel:08001234567",
+      onClick: handlePhoneClick
     },
     {
       icon: Mail,
@@ -78,7 +72,8 @@ const Contact = () => {
       </Helmet>
 
       <BreadcrumbSchema items={breadcrumbItems} />
-      <SchemaMarkup schema={schema} />
+      <ContactPointSchema />
+      <OrganizationSchema />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
         {/* Hero Section */}
@@ -126,7 +121,11 @@ const Contact = () => {
                   <h3 className="text-2xl font-bold mb-1">{method.title}</h3>
                   <p className="text-primary font-semibold mb-3">{method.subtitle}</p>
                   <p className="text-muted-foreground mb-4">{method.description}</p>
-                  <Button variant="outline" asChild>
+                  <Button 
+                    variant="outline" 
+                    asChild
+                    onClick={method.onClick}
+                  >
                     <a href={method.href}>{method.action}</a>
                   </Button>
                 </Card>
