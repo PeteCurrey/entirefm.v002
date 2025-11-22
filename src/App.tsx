@@ -21,6 +21,8 @@ import ServiceStations from "./pages/case-studies/ServiceStations";
 import IndustrialPlant from "./pages/case-studies/IndustrialPlant";
 import Healthcare from "./pages/case-studies/Healthcare";
 import About from "./pages/About";
+import ESG from "./pages/ESG";
+import HealthSafety from "./pages/HealthSafety";
 import Resources from "./pages/Resources";
 import ComplianceCalendar from "./pages/resources/ComplianceCalendar";
 import AuditFramework from "./pages/resources/AuditFramework";
@@ -113,6 +115,8 @@ const App = () => (
           <Route path="/case-studies/industrial-plant" element={<IndustrialPlant />} />
           <Route path="/case-studies/healthcare" element={<Healthcare />} />
               <Route path="/about" element={<About />} />
+              <Route path="/esg" element={<ESG />} />
+              <Route path="/health-safety" element={<HealthSafety />} />
               <Route path="/why-switch" element={<WhySwitch />} />
               <Route path="/compliance-diagnostic" element={<ComplianceDiagnostic />} />
               <Route path="/resources" element={<Resources />} />

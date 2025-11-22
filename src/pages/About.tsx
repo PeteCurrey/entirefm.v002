@@ -1,221 +1,205 @@
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Shield, Users, TrendingUp, FileCheck, Lock, Award, UserCheck } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Shield, Zap, Target, Users } from "lucide-react";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 
 const About = () => {
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Our Story" }
+  ];
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Our Story - Built by Operators, Not Bureaucrats",
+    "description": "EntireFM was built by operators who saw the FM industry's failures and created an alternative. Accountable, agile, and relentless facilities management.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "EntireFM",
+      "description": "Facilities management built around accountability, compliance, and delivery",
+      "url": "https://entirefm.com"
+    }
+  };
+
+  const problems = [
+    "Blame suppliers",
+    "Hide behind process",
+    "Move slow",
+    "Deliver excuses instead of execution"
+  ];
+
+  const principles = [
+    "Accountability that doesn't disappear through layers",
+    "Compliance that lives in the open",
+    "Engineers that actually fix things",
+    "Directors who answer the phone",
+    "Tech that shows truth, not vanity metrics"
+  ];
+
+  const cultureCode = [
+    {
+      icon: <Shield className="h-6 w-6" />,
+      title: "Own it",
+      description: "No passing the buck"
+    },
+    {
+      icon: <Zap className="h-6 w-6" />,
+      title: "Move fast",
+      description: "Delays are expensive"
+    },
+    {
+      icon: <Target className="h-6 w-6" />,
+      title: "Be world-class",
+      description: "Every visit matters"
+    },
+    {
+      icon: <Users className="h-6 w-6" />,
+      title: "Stay humble",
+      description: "Listen, fix, improve"
+    }
+  ];
+
   return (
     <>
       <Helmet>
-        <title>Trust & Accreditations | EntireFM</title>
-        <meta name="description" content="Built on safety, powered by accountability. EntireFM delivers full compliance governance with UK standards including BS 5839, ISO certifications, and comprehensive insurance coverage." />
+        <title>Our Story — Built by Operators, Not Bureaucrats | EntireFM</title>
+        <meta name="description" content="EntireFM was built by operators who saw the FM industry's failures and created an alternative. Accountable, agile, and relentless facilities management." />
+        <link rel="canonical" href="https://entirefm.com/about" />
       </Helmet>
-      
-      <div className="min-h-screen pt-20">
-        {/* Hero */}
-        <section className="py-24 bg-gradient-to-b from-muted/50 to-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
-              <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
-                Built on Safety. Powered by Accountability.
-              </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                You can't outsource responsibility. But you can outsource the risk.
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <SchemaMarkup schema={schema} />
+
+      <div className="min-h-screen bg-background">
+        {/* Hero Section */}
+        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-8">
+              <Breadcrumb items={breadcrumbItems} />
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+              We didn't come from FM.<br />We came from fixing FM.
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
+              A business born from frustration — and driven by delivery.
+            </p>
+          </div>
+        </section>
+
+        {/* The Problem We Saw */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">The Problem We Saw</h2>
+            <div className="max-w-3xl mx-auto">
+              <p className="text-xl text-center mb-8 font-semibold">
+                Big FM providers:
               </p>
-              <p className="text-lg text-muted-foreground font-light leading-relaxed">
-                EntireFM delivers full compliance governance, safety assurance and accountability — with proof behind every promise.
+              <div className="grid sm:grid-cols-2 gap-4 mb-8">
+                {problems.map((problem, index) => (
+                  <div key={index} className="p-6 bg-card rounded-lg border border-destructive/20">
+                    <p className="text-lg font-medium text-destructive">{problem}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="text-center space-y-4">
+                <p className="text-xl font-semibold">
+                  Meanwhile, the client suffers —
+                </p>
+                <p className="text-lg text-muted-foreground">
+                  operations wobble, compliance drifts, people complain.
+                </p>
+                <p className="text-xl font-bold text-foreground">
+                  We couldn't watch that mess anymore.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* So We Built the Alternative */}
+        <section className="py-16 px-4 bg-muted/30">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+              So We Built the Alternative
+            </h2>
+            <div className="max-w-3xl mx-auto">
+              <p className="text-xl text-center mb-8 font-semibold">
+                We built EntireFM around what FM should be:
               </p>
-              <Button size="lg" className="mt-8" asChild>
-                <Link to="/contact">Request Insurance & Compliance Pack</Link>
+              <div className="space-y-4 mb-8">
+                {principles.map((principle, index) => (
+                  <div key={index} className="flex items-start gap-4 p-6 bg-background rounded-lg border">
+                    <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <span className="text-primary font-bold">✓</span>
+                    </div>
+                    <p className="text-lg">{principle}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="text-center p-6 bg-primary/10 rounded-lg border border-primary/20">
+                <p className="text-xl font-bold">
+                  There's no "that's not our department."<br />
+                  There's only the result.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Culture Code */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+              Culture Code
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {cultureCode.map((item, index) => (
+                <div key={index} className="p-6 bg-card rounded-lg border text-center hover:border-primary transition-colors">
+                  <div className="flex justify-center text-primary mb-4">{item.icon}</div>
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-2xl text-center font-bold">
+              Accountable. Agile. Relentless.
+            </p>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Meet the leadership that actually leads
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              Book a call with a Director and experience the difference accountability makes.
+            </p>
+            <Button asChild size="lg">
+              <Link to="/contact">Book a Call with a Director</Link>
+            </Button>
+          </div>
+        </section>
+
+        {/* Internal Links Section */}
+        <section className="py-16 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl font-bold mb-6">Learn More About Us</h2>
+            <div className="grid sm:grid-cols-3 gap-4">
+              <Button asChild variant="outline" className="h-auto py-4">
+                <Link to="/services">Our Services</Link>
+              </Button>
+              <Button asChild variant="outline" className="h-auto py-4">
+                <Link to="/technology">Our Technology</Link>
+              </Button>
+              <Button asChild variant="outline" className="h-auto py-4">
+                <Link to="/contact">Get in Touch</Link>
               </Button>
             </div>
-          </div>
-        </section>
-
-        {/* Regulatory & Safety Alignment */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Regulatory & Safety Alignment
-              </h2>
-              <p className="text-lg text-muted-foreground font-light leading-relaxed mb-8">
-                We operate to the highest UK standards:
-              </p>
-              
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                {[
-                  "Health & Safety at Work Act",
-                  "BS 5839 / BS 5266 / BS EN 12845 / BS 9990",
-                  "ACOP L8 + HSG274",
-                  "Electricity at Work Regulations",
-                  "Gas Safety (Installation & Use) Regulations",
-                  "ESG and sustainability pathways"
-                ].map((standard, index) => (
-                  <div key={index} className="flex items-start">
-                    <CheckCircle2 className="w-5 h-5 text-primary mr-3 mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground font-light">{standard}</span>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="bg-muted/30 p-6 rounded-lg">
-                <p className="text-lg font-light text-center">
-                  Every action is recorded. Every certificate traceable.<br />
-                  <span className="text-primary font-medium">You stay audit-ready 24/7.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Accreditations */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Accreditations
-              </h2>
-              <p className="text-lg text-muted-foreground font-light leading-relaxed mb-12">
-                We don't flash logos — we live what they stand for.
-              </p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
-                {[
-                  { name: "CHAS", icon: Shield },
-                  { name: "SafeContractor", icon: Award },
-                  { name: "Gas Safe", icon: FileCheck },
-                  { name: "ISO 9001", icon: CheckCircle2 },
-                  { name: "ISO 14001", icon: CheckCircle2 },
-                  { name: "ISO 45001", icon: CheckCircle2 },
-                  { name: "NICEIC", icon: Award },
-                  { name: "Cyber Essentials", icon: Lock }
-                ].map((accreditation) => (
-                  <div key={accreditation.name} className="bg-white p-6 rounded-lg shadow-sm flex flex-col items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-                      <accreditation.icon className="w-8 h-8 text-primary" />
-                    </div>
-                    <p className="text-xs font-medium text-center">{accreditation.name}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Insurance Cover */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Insurance Cover
-              </h2>
-              <p className="text-lg text-muted-foreground font-light leading-relaxed mb-8">
-                We remove commercial risk through:
-              </p>
-              
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    icon: Shield,
-                    title: "Public & Employer Liability",
-                    description: "Multi-million coverage protecting your operations"
-                  },
-                  {
-                    icon: Lock,
-                    title: "Contract Works Protection",
-                    description: "Full project and installation coverage"
-                  },
-                  {
-                    icon: FileCheck,
-                    title: "Professional Indemnity",
-                    description: "Expert advice and service protection"
-                  }
-                ].map((item, index) => (
-                  <div key={index} className="bg-muted/30 p-6 rounded-lg text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-                      <item.icon className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-light mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="mt-8 text-center">
-                <p className="text-lg font-light text-primary">
-                  Risk transferred. Accountability yours to trust.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Engineer Vetting */}
-        <section className="py-16 bg-charcoal text-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Engineer Vetting & Competence
-              </h2>
-              <p className="text-lg text-gray-300 font-light leading-relaxed mb-8">
-                The right people. The right qualifications. Every time.
-              </p>
-              
-              <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  {
-                    icon: UserCheck,
-                    title: "DBS Checks",
-                    description: "Enhanced screening where required for sensitive sites"
-                  },
-                  {
-                    icon: Award,
-                    title: "CSCS / Skillcard",
-                    description: "All engineers verified to industry standards"
-                  },
-                  {
-                    icon: TrendingUp,
-                    title: "Technical Upskilling",
-                    description: "Regular training to maintain cutting-edge competence"
-                  },
-                  {
-                    icon: Shield,
-                    title: "Security Clearance",
-                    description: "Aviation & high-security environment capabilities"
-                  }
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start">
-                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mr-4 flex-shrink-0">
-                      <item.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-light mb-1">{item.title}</h3>
-                      <p className="text-sm text-gray-300 font-light leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-light mb-6">
-              Send us your insurer's requirements. We'll exceed them.
-            </h2>
-            <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto mb-8">
-              Our commitment to safety and compliance isn't just about ticking boxes – it's about protecting your people, your assets, and your reputation.
-            </p>
-            <Button size="lg" asChild>
-              <Link to="/contact">Request Insurance & H&S Pack</Link>
-            </Button>
           </div>
         </section>
       </div>
