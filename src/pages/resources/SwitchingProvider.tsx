@@ -25,11 +25,12 @@ const SwitchingProvider = () => {
   return (
     <>
       <Helmet>
-        <title>FM Provider Switching Playbook | Pain-Free FM Mobilisation Guide | EntireFM</title>
+        <title>Switch FM Provider Pain-Free</title>
         <meta 
           name="description" 
-          content="Step-by-step playbook for switching FM providers without chaos. Avoid downtime, maintain compliance, and ensure smooth transition."
+          content="Frictionless mobilisation guidance & templates."
         />
+        <link rel="canonical" href="https://entirefm.com/resources/switch-playbook" />
       </Helmet>
     <div className="min-h-screen pt-20">
       {/* Breadcrumb */}

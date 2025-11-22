@@ -96,7 +96,7 @@ const App = () => (
               <Route path="/sectors/industrial-logistics" element={<IndustrialLogistics />} />
               <Route path="/sectors/retail-service-stations" element={<RetailServiceStations />} />
               <Route path="/sectors/offices-corporate" element={<OfficesCorporate />} />
-              <Route path="/sectors/aviation-travel-hub" element={<AviationTravelHub />} />
+              <Route path="/sectors/aviation" element={<AviationTravelHub />} />
               <Route path="/sectors/hospitality-leisure" element={<HospitalityLeisure />} />
               <Route path="/sectors/residential-pbsa" element={<ResidentialPBSA />} />
             <Route path="/locations" element={<Locations />} />
@@ -109,24 +109,25 @@ const App = () => (
             <Route path="/locations/leicester" element={<Leicester />} />
               <Route path="/technology" element={<Technology />} />
           <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/case-studies/logistics-distribution-hub" element={<LogisticsDistributionHub />} />
-          <Route path="/case-studies/retail-service-stations" element={<RetailServiceStationsCaseStudy />} />
-          <Route path="/case-studies/corporate-hq" element={<CorporateHQ />} />
-          <Route path="/case-studies/aviation" element={<Aviation />} />
-          <Route path="/case-studies/residential-pbsa" element={<ResidentialPBSACaseStudy />} />
-          <Route path="/case-studies/hospitality" element={<Hospitality />} />
-          <Route path="/case-studies/service-stations" element={<ServiceStations />} />
-          <Route path="/case-studies/industrial-plant" element={<IndustrialPlant />} />
-          <Route path="/case-studies/healthcare" element={<Healthcare />} />
+              <Route path="/case-studies/logistics" element={<LogisticsDistributionHub />} />
+              <Route path="/case-studies/retail" element={<RetailServiceStationsCaseStudy />} />
+              <Route path="/case-studies/corporate" element={<CorporateHQ />} />
+              <Route path="/case-studies/aviation" element={<Aviation />} />
+              <Route path="/case-studies/pbsa" element={<ResidentialPBSACaseStudy />} />
+              <Route path="/case-studies/hospitality" element={<Hospitality />} />
+              <Route path="/case-studies/service-stations" element={<ServiceStations />} />
+              <Route path="/case-studies/engineering" element={<IndustrialPlant />} />
+              <Route path="/case-studies/healthcare" element={<Healthcare />} />
               <Route path="/about" element={<About />} />
               <Route path="/esg" element={<ESG />} />
               <Route path="/health-safety" element={<HealthSafety />} />
-              <Route path="/why-switch" element={<WhySwitch />} />
-              <Route path="/compliance-diagnostic" element={<ComplianceDiagnostic />} />
+              <Route path="/tools/cost-savings" element={<CostSavingsCalculator />} />
+              <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
+              <Route path="/tools/risk-diagnostic" element={<ComplianceDiagnostic />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/resources/compliance-calendar" element={<ComplianceCalendar />} />
               <Route path="/resources/audit-framework" element={<AuditFramework />} />
-              <Route path="/resources/switching-provider" element={<SwitchingProvider />} />
+              <Route path="/resources/switch-playbook" element={<SwitchingProvider />} />
               <Route path="/resources/energy-esg" element={<EnergyESG />} />
               <Route path="/resources/engineer-standards" element={<EngineerStandards />} />
               <Route path="/resources/tender-support" element={<TenderSupport />} />

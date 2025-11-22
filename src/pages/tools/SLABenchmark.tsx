@@ -67,9 +67,9 @@ const SLABenchmark = () => {
   return (
     <>
       <Helmet>
-        <title>FM SLA Benchmark Tool | Compare Provider Performance | EntireFM</title>
-        <meta name="description" content="Benchmark your FM provider's response times and fix rates against industry standards. See where you're being let down." />
-        <link rel="canonical" href="https://entirefm.co.uk/tools/sla-benchmark" />
+        <title>SLA Benchmark Tool | Compare FM Performance | EntireFM</title>
+        <meta name="description" content="Compare response times, first-time fix rates & compliance standards." />
+        <link rel="canonical" href="https://entirefm.com/tools/sla-benchmark" />
       </Helmet>
 
       <SchemaMarkup schema={schemaData} />

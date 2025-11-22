@@ -50,9 +50,9 @@ const CostSavingsCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Reactive vs PPM Calculator | FM Cost Savings Tool | EntireFM</title>
-        <meta name="description" content="Calculate how much you're overpaying with reactive maintenance. See potential savings with planned preventive maintenance (PPM) strategies." />
-        <link rel="canonical" href="https://entirefm.co.uk/tools/cost-savings-calculator" />
+        <title>FM Cost Savings Calculator | EntireFM</title>
+        <meta name="description" content="Estimate potential FM savings based on your estate size and spend." />
+        <link rel="canonical" href="https://entirefm.com/tools/cost-savings" />
       </Helmet>
 
       <SchemaMarkup schema={schemaData} />

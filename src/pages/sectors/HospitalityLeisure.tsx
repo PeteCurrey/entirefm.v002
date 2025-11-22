@@ -29,13 +29,12 @@ const HospitalityLeisure = () => {
   return (
     <>
       <Helmet>
-        <title>Hospitality & Leisure FM UK | Hotel Maintenance Contractor | Leisure Facilities Management</title>
+        <title>Hospitality Facilities Management UK</title>
         <meta 
           name="description" 
-          content="Protect guest satisfaction with seamless hospitality FM. Hotel maintenance, leisure facilities management, hygiene compliance, and 24/7 reactive support across UK." 
+          content="Protect guest satisfaction & brand reviews with flawless FM." 
         />
-        <meta name="keywords" content="hospitality FM UK, hotel maintenance contractor, leisure facilities management UK, guest experience maintenance, hotel compliance services" />
-        <link rel="canonical" href="https://entirefm.co.uk/sectors/hospitality-leisure" />
+        <link rel="canonical" href="https://entirefm.com/sectors/hospitality-leisure" />
       </Helmet>
 
       <ServiceSchema

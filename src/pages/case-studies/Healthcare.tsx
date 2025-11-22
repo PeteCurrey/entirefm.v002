@@ -9,11 +9,12 @@ const Healthcare = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>Healthcare FM Case Study - 100% Compliance & 41% IAQ Improvement | EntireFM</title>
+        <title>Healthcare FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM restored life-critical compliance and improved environment quality for a healthcare facility, achieving 100% statutory compliance with zero shutdowns." 
+          content="Zero shutdown remediation & IAQ uplift for care site." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/healthcare" />
       </Helmet>
 
       <Breadcrumb 

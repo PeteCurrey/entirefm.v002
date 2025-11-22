@@ -9,11 +9,12 @@ const CorporateHQ = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>Corporate HQ Case Study - 40% Reduction in Comfort Complaints | EntireFM</title>
+        <title>Workplace FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM transformed workplace experience at a major corporate HQ, reducing comfort complaints by 40% and improving indoor air quality by 37%." 
+          content="Comfort & IAQ upgrades improve productivity & tenant trust." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/corporate" />
       </Helmet>
 
       <Breadcrumb 

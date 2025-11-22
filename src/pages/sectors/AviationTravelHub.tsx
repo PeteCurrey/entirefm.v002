@@ -30,15 +30,12 @@ const AviationTravelHub = () => {
   return (
     <>
       <Helmet>
-        <title>Aviation & Travel Hub FM | Airport Facilities Maintenance | EntireFM</title>
+        <title>Aviation Facilities Management UK</title>
         <meta 
           name="description" 
-          content="Mission-critical facilities management for airports and travel hubs. Airside reliability and landside experience with aviation-grade compliance and security clearance." 
+          content="Airside compliance & landside experience — no downtime." 
         />
-        <meta 
-          name="keywords" 
-          content="Aviation FM UK, Airport Facilities Maintenance, Airside FM Contractor, Travel Hub Maintenance, Airport Terminal Services" 
-        />
+        <link rel="canonical" href="https://entirefm.com/sectors/aviation" />
       </Helmet>
 
       <ServiceSchema 

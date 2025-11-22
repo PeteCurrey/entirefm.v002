@@ -30,11 +30,12 @@ const OfficesCorporate = () => {
   return (
     <>
       <Helmet>
-        <title>Office FM UK | Workplace Maintenance Contractor | Corporate Facilities Services</title>
+        <title>Office Facilities Management UK</title>
         <meta 
           name="description" 
-          content="Smart, compliant, and reliable office environments that protect productivity, wellbeing, and brand reputation. Corporate facilities management that performs."
+          content="Workplace performance through comfort, compliance & uptime." 
         />
+        <link rel="canonical" href="https://entirefm.com/sectors/offices-corporate" />
       </Helmet>
 
       <ServiceSchema 

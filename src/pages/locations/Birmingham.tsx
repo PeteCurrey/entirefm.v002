@@ -71,11 +71,12 @@ const Birmingham = () => {
   return (
     <>
       <Helmet>
-        <title>Facilities Management Birmingham | FM Services West Midlands | EntireFM</title>
+        <title>Facilities Management Birmingham</title>
         <meta 
           name="description" 
-          content="Hard & soft facilities management across Birmingham and West Midlands. M&E contractors, compliance management, 24/7 support. Local engineers, rapid response."
+          content="Hard & soft FM across the West Midlands. Rapid response & full compliance." 
         />
+        <link rel="canonical" href="https://entirefm.com/locations/birmingham" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

@@ -74,11 +74,12 @@ const ComplianceDiagnostic = () => {
   return (
     <>
       <Helmet>
-        <title>FM Compliance Risk Diagnostic | Is Your Provider Putting You at Risk? | EntireFM</title>
+        <title>Compliance Risk Diagnostic | EntireFM</title>
         <meta 
           name="description" 
-          content="Score your FM compliance risk in 90 seconds. If compliance fails, the Responsible Person is liable. Free instant diagnostic with actionable recommendations."
+          content="Identify hidden compliance risks in fire, water, gas & electrical safety."
         />
+        <link rel="canonical" href="https://entirefm.com/tools/risk-diagnostic" />
       </Helmet>
 
       <div className="min-h-screen pt-20">

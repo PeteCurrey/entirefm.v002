@@ -9,11 +9,12 @@ const ServiceStations = () => {
   return (
     <div className="min-h-screen pt-20">
       <Helmet>
-        <title>Service Station FM Case Study - Instant Response FM Achieving 98% SLA | EntireFM</title>
+        <title>Forecourt FM Case Study</title>
         <meta 
           name="description" 
-          content="How EntireFM delivered instant response FM for a high-footfall service station estate, achieving 100% compliance and 42% faster reactive response times." 
+          content="Improved safety & trading continuity for roadside retail." 
         />
+        <link rel="canonical" href="https://entirefm.com/case-studies/service-stations" />
       </Helmet>
 
       <Breadcrumb 
