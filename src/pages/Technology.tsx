@@ -1,222 +1,308 @@
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Smartphone, Database, BarChart3, Shield, Clock } from "lucide-react";
-import techDashboard from "@/assets/tech-dashboard.jpg";
+import { Activity, Database, Smartphone, FileText, Users, Network, Clock, CheckCircle2, TrendingUp, BarChart3 } from "lucide-react";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 
 const Technology = () => {
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Technology" }
+  ];
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "EntireFM Portal - CAFM System",
+    "applicationCategory": "BusinessApplication",
+    "description": "Complete CAFM platform providing real-time visibility of assets, compliance, and FM operations with zero complexity.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  };
+
+  const portalFeatures = [
+    {
+      icon: <Clock className="h-6 w-6" />,
+      feature: "Live job status & ETAs",
+      outcome: "No chasing contractors"
+    },
+    {
+      icon: <CheckCircle2 className="h-6 w-6" />,
+      feature: "Full compliance dashboard",
+      outcome: "Always audit-ready"
+    },
+    {
+      icon: <TrendingUp className="h-6 w-6" />,
+      feature: "Root-cause fault history",
+      outcome: "Lower future spend"
+    },
+    {
+      icon: <FileText className="h-6 w-6" />,
+      feature: "On-site photos & videos",
+      outcome: "Instant proof of work"
+    },
+    {
+      icon: <Database className="h-6 w-6" />,
+      feature: "Asset registers & lifecycle",
+      outcome: "Predictable budgets"
+    },
+    {
+      icon: <BarChart3 className="h-6 w-6" />,
+      feature: "Automated reporting",
+      outcome: "No admin drain"
+    }
+  ];
+
+  const features = [
+    {
+      icon: <Activity className="h-6 w-6" />,
+      title: "Job Management",
+      description: "Track every job from logging to completion with live updates and SLA monitoring."
+    },
+    {
+      icon: <Database className="h-6 w-6" />,
+      title: "Asset Registers",
+      description: "Complete digital asset records with service history and lifecycle tracking."
+    },
+    {
+      icon: <Smartphone className="h-6 w-6" />,
+      title: "Mobile App for Engineers",
+      description: "Real-time updates with photos, signatures, and notes from the field."
+    },
+    {
+      icon: <FileText className="h-6 w-6" />,
+      title: "Compliance Documentation",
+      description: "Digital RAMS, method statements, and instant certificate access."
+    },
+    {
+      icon: <Users className="h-6 w-6" />,
+      title: "Client Portal",
+      description: "Web portal for live job status, asset histories, and custom reports."
+    },
+    {
+      icon: <Network className="h-6 w-6" />,
+      title: "Integration Capabilities",
+      description: "Connect to BMS systems, energy platforms, and finance systems via API."
+    }
+  ];
+
+  const views = [
+    {
+      title: "Director's Dashboard",
+      features: [
+        "KPI summary and trends",
+        "Budget vs actual spend",
+        "SLA performance metrics",
+        "Risk and compliance status",
+        "Site-by-site comparison"
+      ]
+    },
+    {
+      title: "Helpdesk Screen",
+      features: [
+        "Live job queue and priorities",
+        "Engineer locations and availability",
+        "SLA countdown timers",
+        "Quick job logging",
+        "Escalation management"
+      ]
+    },
+    {
+      title: "Engineer Mobile View",
+      features: [
+        "Job details and history",
+        "Site access information",
+        "Photo capture and upload",
+        "Digital signatures",
+        "Parts ordering"
+      ]
+    }
+  ];
+
+  const engineerApp = [
+    "Geo-stamped attendance",
+    "Smart sign-offs",
+    "Escalations automatically triggered"
+  ];
+
+  const reporting = [
+    "KPI scorecards",
+    "SLA heat maps",
+    "Spend transparency",
+    "Benchmark comparisons"
+  ];
+
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-muted/50 to-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
-              Real-time visibility without the noise.
+    <>
+      <Helmet>
+        <title>CAFM System UK | FM Job Tracking Technology | EntireFM Portal</title>
+        <meta name="description" content="Every asset. Every status. Every certificate. Always visible. Always accountable. Complete CAFM platform with live tracking, compliance dashboard, and automated reporting." />
+        <link rel="canonical" href="https://entirefm.com/technology" />
+      </Helmet>
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <SchemaMarkup schema={schema} />
+
+      <div className="min-h-screen bg-background">
+        {/* Hero Section */}
+        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-8">
+              <Breadcrumb items={breadcrumbItems} />
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+              Every asset. Every status.<br />Every certificate.
             </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed">
-              Our CAFM platform gives you complete control and transparency – without burying you in logins and dashboards you'll never use.
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
+              Always visible. Always accountable.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg">
+                <Link to="/contact">Request Portal Demo</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/contact">Portal Feature Sheet Download</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* What the Portal Delivers */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">What the Portal Delivers</h2>
+              <p className="text-xl text-muted-foreground italic">
+                If you can't see it, you can't control it. Now you can.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {portalFeatures.map((item, index) => (
+                <div key={index} className="p-6 bg-card rounded-lg border hover:border-primary transition-colors">
+                  <div className="text-primary mb-4">{item.icon}</div>
+                  <h3 className="text-lg font-semibold mb-2">{item.feature}</h3>
+                  <p className="text-muted-foreground">{item.outcome}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Key Platform Features */}
+        <section className="py-16 px-4 bg-muted/30">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Key Platform Features</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {features.map((feature, index) => (
+                <div key={index} className="p-6 bg-background rounded-lg border hover:border-primary transition-colors">
+                  <div className="text-primary mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Platform Views */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+              Different views for different needs
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {views.map((view, index) => (
+                <div key={index} className="p-6 bg-card rounded-lg border">
+                  <h3 className="text-xl font-semibold mb-4">{view.title}</h3>
+                  <ul className="space-y-3">
+                    {view.features.map((feature, idx) => (
+                      <li key={idx} className="text-muted-foreground flex items-start">
+                        <span className="text-primary mr-2">•</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Engineer App Integration */}
+        <section className="py-16 px-4 bg-muted/30">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+              Engineer App Integration
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {engineerApp.map((feature, index) => (
+                <div key={index} className="p-6 bg-background rounded-lg border text-center">
+                  <Smartphone className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <p className="text-lg font-semibold">{feature}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Procurement-Level Reporting */}
+        <section className="py-16 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+              Procurement-Level Reporting
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              {reporting.map((item, index) => (
+                <div key={index} className="p-6 bg-card rounded-lg border text-center">
+                  <BarChart3 className="h-10 w-10 text-primary mx-auto mb-3" />
+                  <p className="font-semibold">{item}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-xl text-center font-semibold">
+              We give Directors control they've never had before.
             </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Overview */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Technology that actually helps
-              </h2>
-              <p className="text-lg text-muted-foreground font-light leading-relaxed mb-6">
-                EntireFM uses a purpose-built CAFM platform that's designed for operations teams, not just FM administrators.
-              </p>
-              <p className="text-lg text-muted-foreground font-light leading-relaxed mb-6">
-                Every job, asset, and compliance record is tracked digitally. But we don't force you to learn complex software – our helpdesk and account managers handle the system, so you just get the visibility.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Job tracking with live engineer ETAs",
-                  "Complete asset registers and histories",
-                  "PPM schedules and compliance calendars",
-                  "Photographic before/after records",
-                  "Digital RAMS and method statements",
-                  "Instant certificate access"
-                ].map((feature, index) => (
-                  <li key={index} className="flex items-start text-foreground font-light">
-                    <CheckCircle2 className="w-5 h-5 text-primary mr-3 flex-shrink-0 mt-0.5" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative">
-              <div className="bg-muted rounded-lg overflow-hidden shadow-lg">
-                <img
-                  src={techDashboard}
-                  alt="CAFM Dashboard"
-                  className="w-full"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-light mb-12 text-center underline-accent inline-block">
-            Key Platform Features
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Smartphone,
-                title: "Job Management & SLAs",
-                description: "Track every job from logging to completion. Live status updates. Automated SLA monitoring and escalations."
-              },
-              {
-                icon: Database,
-                title: "Asset Registers & PPM",
-                description: "Complete digital asset records. Automated PPM scheduling. Service history and lifecycle tracking."
-              },
-              {
-                icon: CheckCircle2,
-                title: "Engineer Mobile App",
-                description: "Engineers update jobs in real-time with photos, signatures, and notes. No paper. No delays."
-              },
-              {
-                icon: Shield,
-                title: "Compliance Documentation",
-                description: "Digital RAMS, method statements, and risk assessments. Instant certificate access. Audit-ready records."
-              },
-              {
-                icon: BarChart3,
-                title: "Client Portal & Reports",
-                description: "Web portal for live job status, asset histories, and reports. Dashboards showing key metrics and trends."
-              },
-              {
-                icon: Clock,
-                title: "Integration Capabilities",
-                description: "Connect to BMS systems, energy data platforms, and finance systems. API access available."
-              }
-            ].map((feature, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
-                <feature.icon className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-lg font-light mb-3">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Platform Views */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-light mb-12 text-center underline-accent inline-block">
-            Different views for different needs
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Director's Dashboard",
-                features: [
-                  "KPI summary and trends",
-                  "Budget vs actual spend",
-                  "SLA performance metrics",
-                  "Risk and compliance status",
-                  "Site-by-site comparison"
-                ]
-              },
-              {
-                title: "Helpdesk Screen",
-                features: [
-                  "Live job queue and priorities",
-                  "Engineer locations and availability",
-                  "SLA countdown timers",
-                  "Quick job logging",
-                  "Escalation management"
-                ]
-              },
-              {
-                title: "Engineer Mobile View",
-                features: [
-                  "Job details and history",
-                  "Site access information",
-                  "Photo capture and upload",
-                  "Digital signatures",
-                  "Parts ordering"
-                ]
-              }
-            ].map((view, index) => (
-              <div key={index} className="bg-muted/50 p-6 rounded-lg">
-                <h3 className="text-xl font-light mb-4 underline-accent inline-block">
-                  {view.title}
-                </h3>
-                <ul className="space-y-3">
-                  {view.features.map((feature, idx) => (
-                    <li key={idx} className="text-sm text-muted-foreground font-light flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section className="py-16 bg-charcoal text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-light mb-8 underline-accent inline-block">
-              What this actually means for you
+        {/* Call to Action */}
+        <section className="py-16 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Book Your Portal Demonstration
             </h2>
-            <div className="grid md:grid-cols-3 gap-8 text-left">
-              <div>
-                <h3 className="text-lg font-medium mb-3">No more spreadsheet chaos</h3>
-                <p className="text-sm text-gray-400 font-light leading-relaxed">
-                  Everything in one place. No more chasing emails or lost paperwork.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium mb-3">Clear audit trail</h3>
-                <p className="text-sm text-gray-400 font-light leading-relaxed">
-                  Every visit documented with photos, times, and engineer notes.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium mb-3">Instant access to certificates</h3>
-                <p className="text-sm text-gray-400 font-light leading-relaxed">
-                  All compliance certificates available online, anytime.
-                </p>
-              </div>
+            <p className="text-xl text-muted-foreground mb-8">
+              Trust built in 10 minutes or less.
+            </p>
+            <Button asChild size="lg">
+              <Link to="/contact">Request Demo Now</Link>
+            </Button>
+          </div>
+        </section>
+
+        {/* Internal Links Section */}
+        <section className="py-16 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl font-bold mb-6">Explore More</h2>
+            <div className="grid sm:grid-cols-3 gap-4">
+              <Button asChild variant="outline" className="h-auto py-4">
+                <Link to="/services">Our Services</Link>
+              </Button>
+              <Button asChild variant="outline" className="h-auto py-4">
+                <Link to="/sectors">Sectors We Serve</Link>
+              </Button>
+              <Button asChild variant="outline" className="h-auto py-4">
+                <Link to="/contact">Request a Proposal</Link>
+              </Button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Want to see it in action?
-          </h2>
-          <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto mb-8">
-            Book a 15-minute walkthrough of the client portal and see how it works for your sites.
-          </p>
-          <Button size="lg" asChild>
-            <Link to="/contact">Book a Portal Demo</Link>
-          </Button>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 
