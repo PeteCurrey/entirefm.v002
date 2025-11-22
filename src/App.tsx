@@ -45,6 +45,15 @@ import FireNottingham from "./pages/services/fire/Nottingham";
 import FireDerby from "./pages/services/fire/Derby";
 import FireChesterfield from "./pages/services/fire/Chesterfield";
 import FireLincoln from "./pages/services/fire/Lincoln";
+import ElectricalLondon from "./pages/services/electrical/London";
+import ElectricalBirmingham from "./pages/services/electrical/Birmingham";
+import ElectricalManchester from "./pages/services/electrical/Manchester";
+import ElectricalLeeds from "./pages/services/electrical/Leeds";
+import ElectricalSheffield from "./pages/services/electrical/Sheffield";
+import ElectricalNottingham from "./pages/services/electrical/Nottingham";
+import ElectricalDerby from "./pages/services/electrical/Derby";
+import ElectricalChesterfield from "./pages/services/electrical/Chesterfield";
+import ElectricalLincoln from "./pages/services/electrical/Lincoln";
 import EmergencyLighting from "./pages/services/EmergencyLighting";
 import Sprinklers from "./pages/services/Sprinklers";
 import Plumbing from "./pages/services/Plumbing";
@@ -107,6 +116,15 @@ const App = () => (
           <Route path="/fire/derby" element={<FireDerby />} />
           <Route path="/fire/chesterfield" element={<FireChesterfield />} />
           <Route path="/fire/lincoln" element={<FireLincoln />} />
+          <Route path="/electrical/london" element={<ElectricalLondon />} />
+          <Route path="/electrical/birmingham" element={<ElectricalBirmingham />} />
+          <Route path="/electrical/manchester" element={<ElectricalManchester />} />
+          <Route path="/electrical/leeds" element={<ElectricalLeeds />} />
+          <Route path="/electrical/sheffield" element={<ElectricalSheffield />} />
+          <Route path="/electrical/nottingham" element={<ElectricalNottingham />} />
+          <Route path="/electrical/derby" element={<ElectricalDerby />} />
+          <Route path="/electrical/chesterfield" element={<ElectricalChesterfield />} />
+          <Route path="/electrical/lincoln" element={<ElectricalLincoln />} />
           <Route path="/services/emergency-lighting" element={<EmergencyLighting />} />
           <Route path="/services/sprinklers-risers" element={<Sprinklers />} />
           <Route path="/services/plumbing" element={<Plumbing />} />
