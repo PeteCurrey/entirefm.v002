@@ -58,6 +58,9 @@ import ResidentialPBSA from "./pages/sectors/ResidentialPBSA";
 import WhySwitch from "./pages/WhySwitch";
 import ComplianceDiagnostic from "./pages/ComplianceDiagnostic";
 import CostSavingsCalculator from "./pages/tools/CostSavingsCalculator";
+import TopFMProviders from "./pages/resources/TopFMProviders";
+import FireAlarmTesting from "./pages/resources/FireAlarmTesting";
+import EntireFMvsMitie from "./pages/compare/EntireFMvsMitie";
 import SLABenchmark from "./pages/tools/SLABenchmark";
 import EnergyESG from "./pages/resources/EnergyESG";
 import EngineerStandards from "./pages/resources/EngineerStandards";
@@ -131,6 +134,8 @@ const App = () => (
               <Route path="/resources/energy-esg" element={<EnergyESG />} />
               <Route path="/resources/engineer-standards" element={<EngineerStandards />} />
               <Route path="/resources/tender-support" element={<TenderSupport />} />
+              <Route path="/resources/top-fm-providers-uk" element={<TopFMProviders />} />
+              <Route path="/resources/fire-alarm-testing-frequency" element={<FireAlarmTesting />} />
               <Route path="/services/front-of-house" element={<FrontOfHouse />} />
               <Route path="/leadership" element={<Leadership />} />
               <Route path="/social-value" element={<SocialValue />} />
@@ -139,6 +144,8 @@ const App = () => (
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
+              {/* Comparison Pages */}
+              <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
