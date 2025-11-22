@@ -62,6 +62,8 @@ import SLABenchmark from "./pages/tools/SLABenchmark";
 import EnergyESG from "./pages/resources/EnergyESG";
 import EngineerStandards from "./pages/resources/EngineerStandards";
 import FrontOfHouse from "./pages/services/FrontOfHouse";
+import TenderSupport from "./pages/resources/TenderSupport";
+import Leadership from "./pages/Leadership";
 
 const queryClient = new QueryClient();
 
@@ -125,7 +127,9 @@ const App = () => (
               <Route path="/resources/switching-provider" element={<SwitchingProvider />} />
               <Route path="/resources/energy-esg" element={<EnergyESG />} />
               <Route path="/resources/engineer-standards" element={<EngineerStandards />} />
+              <Route path="/resources/tender-support" element={<TenderSupport />} />
               <Route path="/services/front-of-house" element={<FrontOfHouse />} />
+              <Route path="/leadership" element={<Leadership />} />
               <Route path="/tools/cost-savings-calculator" element={<CostSavingsCalculator />} />
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/careers" element={<Careers />} />
