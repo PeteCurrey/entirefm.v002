@@ -55,6 +55,9 @@ import HospitalityLeisure from "./pages/sectors/HospitalityLeisure";
 import ResidentialPBSA from "./pages/sectors/ResidentialPBSA";
 import WhySwitch from "./pages/WhySwitch";
 import ComplianceDiagnostic from "./pages/ComplianceDiagnostic";
+import CostSavingsCalculator from "./pages/tools/CostSavingsCalculator";
+import SLABenchmark from "./pages/tools/SLABenchmark";
+import EnergyESG from "./pages/resources/EnergyESG";
 
 const queryClient = new QueryClient();
 
@@ -114,6 +117,9 @@ const App = () => (
               <Route path="/resources/compliance-calendar" element={<ComplianceCalendar />} />
               <Route path="/resources/audit-framework" element={<AuditFramework />} />
               <Route path="/resources/switching-provider" element={<SwitchingProvider />} />
+              <Route path="/resources/energy-esg" element={<EnergyESG />} />
+              <Route path="/tools/cost-savings-calculator" element={<CostSavingsCalculator />} />
+              <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
