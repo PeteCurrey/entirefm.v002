@@ -53,6 +53,7 @@ import OfficesCorporate from "./pages/sectors/OfficesCorporate";
 import AviationTravelHub from "./pages/sectors/AviationTravelHub";
 import HospitalityLeisure from "./pages/sectors/HospitalityLeisure";
 import ResidentialPBSA from "./pages/sectors/ResidentialPBSA";
+import WhySwitch from "./pages/WhySwitch";
 
 const queryClient = new QueryClient();
 
@@ -106,6 +107,7 @@ const App = () => (
           <Route path="/case-studies/industrial-plant" element={<IndustrialPlant />} />
           <Route path="/case-studies/healthcare" element={<Healthcare />} />
               <Route path="/about" element={<About />} />
+              <Route path="/why-switch" element={<WhySwitch />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/resources/compliance-calendar" element={<ComplianceCalendar />} />
               <Route path="/resources/audit-framework" element={<AuditFramework />} />
