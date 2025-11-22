@@ -246,6 +246,30 @@ const HVAC = () => {
                 </div>
               </section>
 
+              {/* Related Sectors */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Sectors We Serve
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  HVAC excellence across:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <Link to="/sectors/offices-corporate" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                    <p className="font-light hover:text-primary">Offices & Corporate HQs</p>
+                  </Link>
+                  <Link to="/sectors/industrial-logistics" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                    <p className="font-light hover:text-primary">Industrial & Logistics</p>
+                  </Link>
+                  <Link to="/sectors/retail-service-stations" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                    <p className="font-light hover:text-primary">Retail & Service Stations</p>
+                  </Link>
+                  <Link to="/sectors/hospitality-leisure" className="p-4 border border-border rounded-lg hover:border-primary transition-colors">
+                    <p className="font-light hover:text-primary">Hospitality & Leisure</p>
+                  </Link>
+                </div>
+              </section>
+
               {/* Final CTA */}
               <section className="border-t border-border pt-12">
                 <div className="text-center bg-charcoal text-white p-12 rounded-lg">
@@ -255,9 +279,14 @@ const HVAC = () => {
                   <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
                     Speak to our HVAC engineers today — and feel the difference this week.
                   </p>
-                  <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
-                    <Link to="/contact">Get Your HVAC Plan</Link>
-                  </Button>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
+                      <Link to="/contact">Get Your HVAC Plan</Link>
+                    </Button>
+                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal" asChild>
+                      <Link to="/about">View Our Accreditations</Link>
+                    </Button>
+                  </div>
                 </div>
               </section>
             </div>
