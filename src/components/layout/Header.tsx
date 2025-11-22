@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,15 +25,60 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { label: "Services", to: "/services" },
-    { label: "Sectors", to: "/sectors" },
-    { label: "Locations", to: "/locations" },
-    { label: "Technology", to: "/technology" },
+  const servicesItems = [
+    { label: "Hard FM", to: "/services/hard-fm" },
+    { label: "HVAC", to: "/services/hvac" },
+    { label: "Electrical", to: "/services/electrical" },
+    { label: "Fire Alarms", to: "/services/fire-alarms" },
+    { label: "Emergency Lighting", to: "/services/emergency-lighting" },
+    { label: "Water Hygiene", to: "/services/water-hygiene" },
+    { label: "Gas Safety", to: "/services/gas-safety" },
+    { label: "Sprinklers & Risers", to: "/services/sprinklers-risers" },
+    { label: "Building Fabric", to: "/services/building-fabric" },
+    { label: "PPM & Compliance", to: "/services/ppm-compliance" },
+  ];
+
+  const sectorsItems = [
+    { label: "Logistics & Industrial", to: "/sectors/logistics-industrial" },
+    { label: "Retail & Forecourt", to: "/sectors/retail-service-stations" },
+    { label: "Offices & Corporate", to: "/sectors/offices-corporate" },
+    { label: "Aviation", to: "/sectors/aviation" },
+    { label: "Hospitality & Leisure", to: "/sectors/hospitality-leisure" },
+    { label: "Residential & PBSA", to: "/sectors/residential-pbsa" },
+  ];
+
+  const locationsItems = [
+    { label: "London", to: "/locations/london" },
+    { label: "Birmingham", to: "/locations/birmingham" },
+    { label: "Manchester", to: "/locations/manchester" },
+    { label: "Leeds", to: "/locations/leeds" },
+    { label: "Sheffield", to: "/locations/sheffield" },
+    { label: "Liverpool", to: "/locations/liverpool" },
+    { label: "Leicester", to: "/locations/leicester" },
+  ];
+
+  const aboutItems = [
+    { label: "Our Story", to: "/about" },
+    { label: "Leadership", to: "/leadership" },
+    { label: "Social Value", to: "/social-value" },
+    { label: "ESG & Sustainability", to: "/esg" },
+    { label: "Health & Safety", to: "/health-safety" },
+  ];
+
+  const resourcesItems = [
+    { label: "All Resources", to: "/resources" },
+    { label: "Audit Framework", to: "/resources/audit-framework" },
+    { label: "Compliance Calendar", to: "/resources/compliance-calendar" },
+    { label: "Switching Playbook", to: "/resources/switch-playbook" },
+  ];
+
+  const mobileNavItems = [
+    ...servicesItems,
+    ...sectorsItems,
+    ...locationsItems,
     { label: "Case Studies", to: "/case-studies" },
-    { label: "About", to: "/about" },
-    { label: "Resources", to: "/resources" },
-    { label: "Careers", to: "/careers" },
+    ...resourcesItems,
+    ...aboutItems,
     { label: "Contact", to: "/contact" },
   ];
 
@@ -48,25 +101,120 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="text-sm font-light text-foreground hover:text-primary transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <NavigationMenu className="hidden lg:flex">
+            <NavigationMenuList className="space-x-2">
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-light">Services</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[400px] gap-3 p-4">
+                    {servicesItems.map((item) => (
+                      <NavigationMenuLink key={item.to} asChild>
+                        <Link
+                          to={item.to}
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none">{item.label}</div>
+                        </Link>
+                      </NavigationMenuLink>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-light">Sectors</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[300px] gap-3 p-4">
+                    {sectorsItems.map((item) => (
+                      <NavigationMenuLink key={item.to} asChild>
+                        <Link
+                          to={item.to}
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none">{item.label}</div>
+                        </Link>
+                      </NavigationMenuLink>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-light">Locations</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[250px] gap-3 p-4">
+                    {locationsItems.map((item) => (
+                      <NavigationMenuLink key={item.to} asChild>
+                        <Link
+                          to={item.to}
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none">{item.label}</div>
+                        </Link>
+                      </NavigationMenuLink>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/case-studies" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2">
+                    Case Studies
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-light">Resources</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[280px] gap-3 p-4">
+                    {resourcesItems.map((item) => (
+                      <NavigationMenuLink key={item.to} asChild>
+                        <Link
+                          to={item.to}
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none">{item.label}</div>
+                        </Link>
+                      </NavigationMenuLink>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-light">About</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[280px] gap-3 p-4">
+                    {aboutItems.map((item) => (
+                      <NavigationMenuLink key={item.to} asChild>
+                        <Link
+                          to={item.to}
+                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                        >
+                          <div className="text-sm font-medium leading-none">{item.label}</div>
+                        </Link>
+                      </NavigationMenuLink>
+                    ))}
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link to="/contact" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2">
+                    Contact
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
 
           {/* Desktop CTAs */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/contact">24/7 Helpdesk</Link>
-            </Button>
+          <div className="hidden lg:flex items-center space-x-3">
             <Button size="sm" asChild>
-              <Link to="/contact">Request a Proposal</Link>
+              <Link to="/contact">Request Proposal</Link>
             </Button>
           </div>
 
@@ -81,21 +229,21 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
-            <nav className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+          <div className="lg:hidden py-4 border-t border-border max-h-[80vh] overflow-y-auto">
+            <nav className="flex flex-col space-y-2">
+              {mobileNavItems.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
-                  className="text-sm font-light text-foreground hover:text-primary transition-colors"
+                  className="text-sm font-light text-foreground hover:text-primary transition-colors py-2 px-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Button className="w-full" asChild>
+              <Button className="w-full mt-4" asChild>
                 <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Request a Proposal
+                  Request Proposal
                 </Link>
               </Button>
             </nav>
