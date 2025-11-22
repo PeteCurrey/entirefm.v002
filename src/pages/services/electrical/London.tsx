@@ -24,16 +24,16 @@ const ElectricalLondon = () => {
 
   const faqs = [
     {
-      question: "How often should EICRs be done in London commercial properties?",
-      answer: "London commercial properties require EICR (Electrical Installation Condition Report) testing every 5 years as a minimum under BS 7671. However, high-risk environments including retail, hospitality, and industrial sites often need more frequent inspections. Landlords of rented commercial premises must provide valid EICRs to tenants, and insurers typically require current certification."
+      question: "How often do commercial properties in London need an EICR?",
+      answer: "Typically every 3–5 years depending on use, occupancy and insurer requirements."
     },
     {
-      question: "What is the difference between C1, C2 and C3 electrical codes?",
-      answer: "C1 codes indicate 'Danger Present' requiring immediate remedial action before continued use. C2 codes are 'Potentially Dangerous' requiring urgent attention to prevent danger. C3 codes are 'Improvement Recommended' for enhanced safety but not immediately dangerous. EntireFM prioritizes C1/C2 remedials with same-day response across London to maintain continuous compliance."
+      question: "What's the difference between C1, C2 and C3 codes?",
+      answer: "C1 = immediate danger; C2 = urgent remedial need; C3 = recommended enhancement. We resolve all non-compliant categories."
     },
     {
-      question: "What electrical systems does BS 7671 testing cover in London?",
-      answer: "BS 7671 inspections cover all fixed electrical installations including distribution boards, wiring systems, earthing arrangements, RCD/RCBO protection, emergency lighting circuits, fire alarm power supplies, and electrical equipment connections. Testing includes visual inspection, continuity checks, insulation resistance, polarity verification, and earth fault loop impedance measurements."
+      question: "Who is responsible for electrical safety in workplaces?",
+      answer: "The Responsible Person or duty holder. We support full legal compliance on their behalf."
     }
   ];
 
@@ -41,7 +41,7 @@ const ElectricalLondon = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Commercial Electrical Compliance Services - London",
-    "description": "Professional EICR testing, fault resolution and safety certification for business-critical estates across London. BS 7671 compliant electrical inspections with immediate remedial response.",
+    "description": "EICR testing, fault remediation and certification that protects operations, assets and legal responsibility across London.",
     "provider": {
       "@type": "Organization",
       "name": "EntireFM"
@@ -54,7 +54,7 @@ const ElectricalLondon = () => {
     <>
       <Helmet>
         <title>Commercial Electrical Compliance London | EICR Testing & BS 7671 Certification</title>
-        <meta name="description" content="EICR testing, fault resolution & safety certification for business-critical estates across London. BS 7671 compliant electrical inspections with immediate remedial response." />
+        <meta name="description" content="EICR testing, fault remediation and certification that protects operations, assets and legal responsibility across London. BS 7671 compliant electrical inspections." />
         <link rel="canonical" href="https://entirefm.com/electrical/london" />
       </Helmet>
 
@@ -89,7 +89,7 @@ const ElectricalLondon = () => {
             Commercial Electrical Compliance – London
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">
-            EICR testing, fault resolution & safety certification for business-critical estates across London.
+            EICR testing, fault remediation and certification that protects operations, assets and legal responsibility across London.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -97,18 +97,18 @@ const ElectricalLondon = () => {
               size="lg" 
               variant="secondary" 
               className="text-lg"
-              onClick={() => trackProposalRequest('electrical-london-hero')}
+              asChild
             >
-              Request an Electrical Compliance Survey
+              <Link to="/contact">Request an Electrical Compliance Survey</Link>
             </Button>
             <Button 
               size="lg" 
               variant="outline" 
               className="text-lg border-white text-white hover:bg-white hover:text-primary"
-              onClick={() => trackDownload('eicr-requirements-checklist')}
+              onClick={() => trackDownload('bs-7671-compliance-checklist')}
             >
               <Download className="mr-2 h-5 w-5" />
-              Download EICR Requirements Checklist
+              Download BS 7671 Compliance Checklist
             </Button>
           </div>
         </div>
@@ -124,143 +124,236 @@ const ElectricalLondon = () => {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-16">
             
-            {/* Statutory Testing Section */}
+            {/* Why Electrical Compliance Matters */}
             <section>
               <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Statutory Electrical Testing & Safety (BS 7671)
+                Protect People, Operations & Insurance Cover
               </h2>
               <div className="prose prose-lg max-w-none">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  London's business-critical estates demand absolute electrical safety compliance. From the financial 
-                  district of Canary Wharf to high-density retail corridors and data centre infrastructure, EntireFM 
-                  delivers BS 7671-compliant EICR testing that protects operations, people, and insurance coverage.
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                  In a city where high-rise density, ageing infrastructure and 24/7 operations create elevated electrical risk, compliance isn't optional — it's business-critical.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Our London-based engineers conduct comprehensive electrical inspections including distribution board 
-                  assessment, circuit testing, earth fault loop impedance measurement, RCD verification, and thermal 
-                  imaging surveys. Every inspection generates C1/C2/C3 coded reports with clear remedial priorities 
-                  and compliance certification accepted by insurers and regulatory authorities.
+                <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                  Electrical failures lead directly to:
                 </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6 mt-8">
-                <Card className="p-6">
-                  <Shield className="h-10 w-10 text-primary mb-4" />
-                  <h3 className="text-xl font-medium mb-2">BS 7671 Certified Inspections</h3>
-                  <p className="text-muted-foreground">
-                    All London engineers hold current 18th Edition qualifications with ARC fault protection expertise.
-                  </p>
-                </Card>
-                <Card className="p-6">
-                  <FileCheck className="h-10 w-10 text-primary mb-4" />
-                  <h3 className="text-xl font-medium mb-2">Shutdown Minimisation</h3>
-                  <p className="text-muted-foreground">
-                    Out-of-hours testing schedules protect operational uptime for business-critical London sites.
-                  </p>
-                </Card>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start gap-3">
+                    <AlertTriangle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Fire and safety breaches</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <AlertTriangle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Operational shutdown</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <AlertTriangle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Insurance refusal</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <AlertTriangle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Criminal liability for Responsible Persons</span>
+                  </li>
+                </ul>
+                <p className="text-lg text-muted-foreground leading-relaxed font-medium">
+                  We ensure none of that ever lands on your desk.
+                </p>
               </div>
             </section>
 
-            {/* Audit-Ready Documentation */}
+            {/* Statutory Testing Section */}
             <section>
               <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Audit-Ready Documentation
+                BS 7671 Inspection & EICR Testing
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                London portfolios require unified electrical compliance visibility. EntireFM's digital certification 
-                platform provides instant access to EICR reports, thermal imaging results, and remedial tracking. 
-                Export compliance packages formatted for insurer audits, HSE inspections, and tenant obligations.
-              </p>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                <Card className="p-6 text-center">
-                  <Clock className="h-8 w-8 text-primary mx-auto mb-3" />
-                  <h3 className="font-medium mb-2">Digital Certificates</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Instant EICR downloads with QR verification codes
-                  </p>
-                </Card>
-                <Card className="p-6 text-center">
-                  <FileCheck className="h-8 w-8 text-primary mx-auto mb-3" />
-                  <h3 className="font-medium mb-2">Evidence Trail</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Photo documentation of all defects and remedials
-                  </p>
-                </Card>
-                <Card className="p-6 text-center">
-                  <CheckCircle className="h-8 w-8 text-primary mx-auto mb-3" />
-                  <h3 className="font-medium mb-2">Client Portal</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Real-time compliance status across entire estate
-                  </p>
-                </Card>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  Our electrical engineers complete:
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Fixed-wire testing (EICR)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Thermal imaging & load assessment</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Distribution board inspections</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Earth bonding verification</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Remedial actions & certification</span>
+                  </li>
+                </ul>
+                <p className="text-muted-foreground mb-6">
+                  Frequency guided by BS 7671, building use and asset risk profile.
+                </p>
+                <p className="text-lg font-medium text-foreground">
+                  We don't just test — we resolve compliance risk.
+                </p>
               </div>
             </section>
 
             {/* Remedials Section */}
             <section>
               <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Remedials Without Delay
+                Zero Delays. Zero Excuses.
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                C1 and C2 defects identified during London EICR inspections receive immediate attention. Our engineers 
-                carry diagnostic equipment and replacement components to resolve dangerous conditions on first visit. 
-                Where specialist parts are required, we implement temporary safety mitigations and fast-track permanent 
-                repairs with priority London delivery.
-              </p>
-              
-              <div className="bg-muted/50 border-l-4 border-primary p-6 rounded-r-lg">
-                <div className="flex items-start gap-4">
-                  <AlertTriangle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-medium mb-2">Clear Scoring: C1/C2 Urgent Repairs + Improvement Actions</h3>
-                    <p className="text-muted-foreground">
-                      Every defect is categorized with clear risk classification. C1 dangers are isolated immediately, 
-                      C2 faults are scheduled within 48 hours, and C3 improvements are planned during next maintenance 
-                      window. No ambiguity, no compliance gaps.
-                    </p>
-                  </div>
-                </div>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  Every observation receives:
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Clear categorisation (C1/C2/C3/FI)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Transparent pricing</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Immediate resolution where non-compliances pose risk</span>
+                  </li>
+                </ul>
+                <p className="text-muted-foreground mb-4">
+                  No chasing. No downtime. No uncertainty.
+                </p>
+                <p className="text-lg font-medium text-foreground">
+                  Operational uptime protected — always.
+                </p>
               </div>
             </section>
 
-            {/* 24/7 Response Box */}
-            <Card className="bg-primary text-white p-8 border-none">
-              <div className="flex items-center gap-4 mb-4">
-                <Phone className="h-10 w-10" />
-                <h3 className="text-2xl font-medium">24/7 Electrical Emergency Response</h3>
+            {/* Digital Evidence */}
+            <section>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                Compliance Documentation Without Paperwork Pain
+              </h2>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  Through our secure client platform:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <Card className="p-6">
+                    <FileCheck className="h-10 w-10 text-primary mb-4" />
+                    <h3 className="text-xl font-medium mb-2">Digital Archive</h3>
+                    <p className="text-muted-foreground">
+                      Every certificate is digitally archived
+                    </p>
+                  </Card>
+                  <Card className="p-6">
+                    <FileCheck className="h-10 w-10 text-primary mb-4" />
+                    <h3 className="text-xl font-medium mb-2">Photo Evidence</h3>
+                    <p className="text-muted-foreground">
+                      Photos and notes support every test
+                    </p>
+                  </Card>
+                  <Card className="p-6">
+                    <Clock className="h-10 w-10 text-primary mb-4" />
+                    <h3 className="text-xl font-medium mb-2">Live Scoring</h3>
+                    <p className="text-muted-foreground">
+                      Live compliance scoring and renewal alerts
+                    </p>
+                  </Card>
+                  <Card className="p-6">
+                    <Download className="h-10 w-10 text-primary mb-4" />
+                    <h3 className="text-xl font-medium mb-2">Instant Exports</h3>
+                    <p className="text-muted-foreground">
+                      Instant audit exports for insurers and HSE
+                    </p>
+                  </Card>
+                </div>
+                <p className="text-lg font-medium text-foreground mt-6">
+                  Governance with total visibility.
+                </p>
               </div>
-              <p className="text-lg mb-4 text-white/90">
-                Local London electrical engineers available around the clock for critical faults, power failures, 
-                and emergency isolations. 2-hour response across Greater London for business-critical sites.
-              </p>
-              <Button 
-                variant="secondary" 
-                size="lg"
-                onClick={() => trackPhoneClick()}
-              >
-                Call Emergency Helpdesk
-              </Button>
-            </Card>
+            </section>
 
-            {/* Local Response Network */}
-            <section className="bg-muted/30 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-6">Local Response Network</h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                EntireFM provides electrical compliance services across all Greater London boroughs with specialist 
-                focus on high-density commercial zones requiring minimal operational disruption:
-              </p>
-              <div className="grid md:grid-cols-3 gap-4 text-sm">
-                {['City of London', 'Canary Wharf', 'Westminster', 'Croydon', 'Wembley', 'Heathrow Corridor', 'Stratford', 'Kings Cross', 'Shoreditch'].map(area => (
-                  <div key={area} className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>{area}</span>
-                  </div>
-                ))}
+            {/* Sectors */}
+            <section>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                Expertise in Complex Environments
+              </h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                <Card className="p-6">
+                  <Building2 className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="text-lg font-medium mb-2">Corporate Offices</h3>
+                  <p className="text-sm text-muted-foreground">
+                    High-rise compliance across London's financial district
+                  </p>
+                </Card>
+                <Card className="p-6">
+                  <Building2 className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="text-lg font-medium mb-2">Retail & Public Venues</h3>
+                  <p className="text-sm text-muted-foreground">
+                    High-footfall electrical safety certification
+                  </p>
+                </Card>
+                <Card className="p-6">
+                  <Building2 className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="text-lg font-medium mb-2">PBSA & Universities</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Student accommodation electrical compliance
+                  </p>
+                </Card>
+                <Card className="p-6">
+                  <Building2 className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="text-lg font-medium mb-2">Logistics & Industrial</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Distribution centre electrical systems
+                  </p>
+                </Card>
+                <Card className="p-6">
+                  <Building2 className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="text-lg font-medium mb-2">Hospitality & Event Venues</h3>
+                  <p className="text-sm text-muted-foreground">
+                    24/7 operational electrical safety
+                  </p>
+                </Card>
               </div>
+            </section>
+
+            {/* Local Coverage */}
+            <section className="bg-muted/30 p-8 rounded-lg">
+              <h2 className="text-3xl font-light mb-6">Fast Response Across Greater London</h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                Serving: City of London, Westminster, Canary Wharf, Croydon, Wembley, Stratford, Heathrow corridor.
+              </p>
+              <p className="text-muted-foreground mb-6">
+                Local compliance support with national backing.
+              </p>
+              <Card className="p-6 bg-background">
+                <p className="text-lg mb-4">
+                  <strong>Email:</strong> <a href="mailto:london@entirefm.com" className="text-primary hover:underline">london@entirefm.com</a>
+                </p>
+                <Button size="lg" asChild>
+                  <Link to="/contact">Request an EICR Survey</Link>
+                </Button>
+              </Card>
             </section>
 
             <FAQSection faqs={faqs} />
+
+            {/* Footer CTA */}
+            <section className="bg-primary text-white p-12 rounded-lg text-center">
+              <h2 className="text-3xl font-light mb-4">Protect Your Business. Request an EICR Today.</h2>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                <Button size="lg" variant="secondary" asChild>
+                  <Link to="/contact">Book Electrical Compliance Survey</Link>
+                </Button>
+              </div>
+              <p className="mt-6 text-white/90">
+                Email: <a href="mailto:london@entirefm.com" className="underline">london@entirefm.com</a>
+              </p>
+            </section>
           </div>
 
           <div className="lg:col-span-1">

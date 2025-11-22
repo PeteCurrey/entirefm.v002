@@ -61,8 +61,6 @@ const WaterLondon = () => {
           postalCode: "EC1A 1BB",
           country: "GB"
         }}
-        telephone="+448001234567"
-        email="london@entirefm.com"
       />
 
       <FAQSchema faqs={faqs} />
