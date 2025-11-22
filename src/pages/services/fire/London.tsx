@@ -79,8 +79,9 @@ const FireLondon = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=2070&auto=format&fit=crop')`,
           }}
+          aria-label="Modern fire alarm control panel installation in London commercial building"
         />
         
         <div className="relative z-20 container mx-auto px-4 text-center">

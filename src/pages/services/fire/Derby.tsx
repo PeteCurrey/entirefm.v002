@@ -23,7 +23,7 @@ const FireDerby = () => {
 
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-destructive/90 to-background/90 z-10" />
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070&auto=format&fit=crop')` }} />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=2070&auto=format&fit=crop')` }} aria-label="High-sensitivity fire alarm technology in Derby aerospace manufacturing site" />
         
         <div className="relative z-20 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-light text-white mb-6">Fire Compliance – Derby</h1>

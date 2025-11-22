@@ -79,8 +79,9 @@ const FireManchester = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?q=80&w=2070&auto=format&fit=crop')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2070&auto=format&fit=crop')`,
           }}
+          aria-label="Advanced fire alarm panel maintenance in Manchester commercial property"
         />
         
         <div className="relative z-20 container mx-auto px-4 text-center">
