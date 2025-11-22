@@ -64,6 +64,8 @@ import EngineerStandards from "./pages/resources/EngineerStandards";
 import FrontOfHouse from "./pages/services/FrontOfHouse";
 import TenderSupport from "./pages/resources/TenderSupport";
 import Leadership from "./pages/Leadership";
+import SocialValue from "./pages/SocialValue";
+import VisualStandards from "./pages/VisualStandards";
 
 const queryClient = new QueryClient();
 
@@ -130,6 +132,8 @@ const App = () => (
               <Route path="/resources/tender-support" element={<TenderSupport />} />
               <Route path="/services/front-of-house" element={<FrontOfHouse />} />
               <Route path="/leadership" element={<Leadership />} />
+              <Route path="/social-value" element={<SocialValue />} />
+              <Route path="/visual-standards" element={<VisualStandards />} />
               <Route path="/tools/cost-savings-calculator" element={<CostSavingsCalculator />} />
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/careers" element={<Careers />} />
