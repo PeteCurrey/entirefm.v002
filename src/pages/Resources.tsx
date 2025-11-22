@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Download, FileText, BookOpen, Calendar } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Resources = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -12,18 +13,28 @@ const Resources = () => {
 
   const resources = [
     {
-      title: "FM Director's Checklist: Switching Providers Without Chaos",
-      category: "Guides & Checklists",
-      type: "PDF Guide",
-      description: "Step-by-step guide to changing FM providers with minimal disruption. TUPE, data transfer, mobilisation planning.",
-      icon: FileText
-    },
-    {
-      title: "Compliance Calendar: Key Statutory Checks for UK Commercial Sites",
+      title: "FM Director's Compliance Calendar 2025",
       category: "Compliance Updates",
       type: "Reference Document",
       description: "Complete calendar of mandatory inspections, testing frequencies, and certification requirements.",
-      icon: Calendar
+      icon: Calendar,
+      link: "/resources/compliance-calendar"
+    },
+    {
+      title: "What Good Looks Like: FM Audit Framework",
+      category: "Guides & Checklists",
+      type: "PDF Guide",
+      description: "Structured audit checklist that exposes weak delivery and highlights operational excellence.",
+      icon: FileText,
+      link: "/resources/audit-framework"
+    },
+    {
+      title: "Switching FM Provider — Pain-Free Playbook",
+      category: "Guides & Checklists",
+      type: "PDF Guide",
+      description: "Step-by-step guide to changing FM providers with minimal disruption. TUPE, data transfer, mobilisation planning.",
+      icon: FileText,
+      link: "/resources/switching-provider"
     },
     {
       title: "PPM vs Reactive: Where the Real Money Is Won or Lost",
@@ -118,28 +129,38 @@ const Resources = () => {
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredResources.map((resource, index) => (
-              <Card key={index} className="p-6 hover-lift flex flex-col h-full">
-                <div className="flex items-start justify-between mb-4">
-                  <resource.icon className="w-10 h-10 text-primary" />
-                  <Badge variant="secondary" className="font-light text-xs">
-                    {resource.type}
-                  </Badge>
-                </div>
-                <h3 className="text-lg font-light mb-3 leading-snug flex-grow">
-                  {resource.title}
-                </h3>
-                <p className="text-sm text-muted-foreground font-light leading-relaxed mb-4">
-                  {resource.description}
-                </p>
-                <div className="pt-4 border-t border-border">
-                  <Button variant="outline" size="sm" className="w-full group">
-                    <Download className="w-4 h-4 mr-2 group-hover:translate-y-0.5 transition-transform" />
-                    Download Resource
-                  </Button>
-                </div>
-              </Card>
-            ))}
+            {filteredResources.map((resource, index) => {
+              const CardContent = (
+                <Card key={index} className="p-6 hover-lift flex flex-col h-full">
+                  <div className="flex items-start justify-between mb-4">
+                    <resource.icon className="w-10 h-10 text-primary" />
+                    <Badge variant="secondary" className="font-light text-xs">
+                      {resource.type}
+                    </Badge>
+                  </div>
+                  <h3 className="text-lg font-light mb-3 leading-snug flex-grow">
+                    {resource.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-light leading-relaxed mb-4">
+                    {resource.description}
+                  </p>
+                  <div className="pt-4 border-t border-border">
+                    <Button variant="outline" size="sm" className="w-full group">
+                      <Download className="w-4 h-4 mr-2 group-hover:translate-y-0.5 transition-transform" />
+                      {resource.link ? "View Resource" : "Download Resource"}
+                    </Button>
+                  </div>
+                </Card>
+              );
+
+              return resource.link ? (
+                <Link key={index} to={resource.link} className="block">
+                  {CardContent}
+                </Link>
+              ) : (
+                CardContent
+              );
+            })}
           </div>
         </div>
       </section>

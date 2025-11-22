@@ -22,6 +22,9 @@ import IndustrialPlant from "./pages/case-studies/IndustrialPlant";
 import Healthcare from "./pages/case-studies/Healthcare";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
+import ComplianceCalendar from "./pages/resources/ComplianceCalendar";
+import AuditFramework from "./pages/resources/AuditFramework";
+import SwitchingProvider from "./pages/resources/SwitchingProvider";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import Locations from "./pages/Locations";
@@ -104,6 +107,9 @@ const App = () => (
           <Route path="/case-studies/healthcare" element={<Healthcare />} />
               <Route path="/about" element={<About />} />
               <Route path="/resources" element={<Resources />} />
+              <Route path="/resources/compliance-calendar" element={<ComplianceCalendar />} />
+              <Route path="/resources/audit-framework" element={<AuditFramework />} />
+              <Route path="/resources/switching-provider" element={<SwitchingProvider />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
