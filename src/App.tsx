@@ -36,6 +36,15 @@ import HVAC from "./pages/services/HVAC";
 import PPM from "./pages/services/PPM";
 import Electrical from "./pages/services/Electrical";
 import FireAlarms from "./pages/services/FireAlarms";
+import FireLondon from "./pages/services/fire/London";
+import FireBirmingham from "./pages/services/fire/Birmingham";
+import FireManchester from "./pages/services/fire/Manchester";
+import FireLeeds from "./pages/services/fire/Leeds";
+import FireSheffield from "./pages/services/fire/Sheffield";
+import FireNottingham from "./pages/services/fire/Nottingham";
+import FireDerby from "./pages/services/fire/Derby";
+import FireChesterfield from "./pages/services/fire/Chesterfield";
+import FireLincoln from "./pages/services/fire/Lincoln";
 import EmergencyLighting from "./pages/services/EmergencyLighting";
 import Sprinklers from "./pages/services/Sprinklers";
 import Plumbing from "./pages/services/Plumbing";
@@ -89,6 +98,15 @@ const App = () => (
           <Route path="/services/ppm-compliance" element={<PPM />} />
           <Route path="/services/electrical" element={<Electrical />} />
           <Route path="/services/fire-alarms" element={<FireAlarms />} />
+          <Route path="/fire/london" element={<FireLondon />} />
+          <Route path="/fire/birmingham" element={<FireBirmingham />} />
+          <Route path="/fire/manchester" element={<FireManchester />} />
+          <Route path="/fire/leeds" element={<FireLeeds />} />
+          <Route path="/fire/sheffield" element={<FireSheffield />} />
+          <Route path="/fire/nottingham" element={<FireNottingham />} />
+          <Route path="/fire/derby" element={<FireDerby />} />
+          <Route path="/fire/chesterfield" element={<FireChesterfield />} />
+          <Route path="/fire/lincoln" element={<FireLincoln />} />
           <Route path="/services/emergency-lighting" element={<EmergencyLighting />} />
           <Route path="/services/sprinklers-risers" element={<Sprinklers />} />
           <Route path="/services/plumbing" element={<Plumbing />} />
