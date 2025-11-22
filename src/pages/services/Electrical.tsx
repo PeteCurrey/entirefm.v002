@@ -26,11 +26,12 @@ const Electrical = () => {
   return (
     <>
       <Helmet>
-        <title>Commercial Electrical Compliance & Testing UK | EICR Testing | EntireFM</title>
+        <title>Electrical Compliance & Maintenance</title>
         <meta 
           name="description" 
-          content="Commercial electrical testing, EICR certification, and ongoing compliance across UK portfolios. Keep your sites safe, legal, and operational."
+          content="EICR, testing & repairs for legal uptime. Fast & certified."
         />
+        <link rel="canonical" href="https://entirefm.com/services/electrical" />
       </Helmet>
 
       <ServiceSchema 

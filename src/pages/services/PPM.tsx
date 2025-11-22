@@ -30,11 +30,12 @@ const PPM = () => {
   return (
     <>
       <Helmet>
-        <title>PPM Maintenance UK | Facilities Compliance Management | Statutory Building Maintenance</title>
+        <title>Planned Preventative Maintenance & Compliance Governance</title>
         <meta 
           name="description" 
-          content="PPM that eliminates surprises, downtime and excuses. Proactive maintenance strategy that stops failures before they cost you time, money and reputation."
+          content="Reduce downtime & risk with proactive, strategic PPM."
         />
+        <link rel="canonical" href="https://entirefm.com/services/ppm-compliance" />
       </Helmet>
 
       <ServiceSchema 

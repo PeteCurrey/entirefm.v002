@@ -30,11 +30,12 @@ const GasSafety = () => {
   return (
     <>
       <Helmet>
-        <title>Commercial Gas Safety UK | Gas Safe FM Contractor | EntireFM</title>
+        <title>Commercial Gas Maintenance & Safety Checks</title>
         <meta 
           name="description" 
-          content="Gas Safe registered commercial heating and boiler maintenance. Plant room servicing, gas safety certificates, and 24/7 emergency response across the UK."
+          content="Full compliance for boilers & heating assets. Certified engineers."
         />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <ServiceSchema 

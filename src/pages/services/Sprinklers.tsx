@@ -38,11 +38,12 @@ const Sprinklers = () => {
   return (
     <>
       <Helmet>
-        <title>Sprinkler Maintenance UK | Dry Riser Testing | BS EN 12845 Contractor | EntireFM</title>
+        <title>Sprinkler & Dry Riser Testing UK (BS EN 12845)</title>
         <meta 
           name="description" 
-          content="Fire suppression systems that don't fail. Certified sprinkler maintenance, dry riser testing & BS EN 12845 compliance for high-risk UK commercial properties."
+          content="Full fire suppression maintenance for safety-critical sites."
         />
+        <link rel="canonical" href="https://entirefm.com/services/sprinklers-risers" />
       </Helmet>
 
       <ServiceSchema 

@@ -30,11 +30,12 @@ const BuildingFabric = () => {
   return (
     <>
       <Helmet>
-        <title>Building Fabric Maintenance UK | Commercial Building Repairs | Reactive Fabric FM</title>
+        <title>Building Fabric Repairs & PPM UK</title>
         <meta 
           name="description" 
-          content="Fast-response building fabric repairs and planned maintenance for UK commercial properties. Fire doors, roofing, joinery, and reactive repairs that protect safety and brand image."
+          content="Prevent breakdowns & protect brand image with proactive fabric care."
         />
+        <link rel="canonical" href="https://entirefm.com/services/building-fabric" />
       </Helmet>
 
       <ServiceSchema 

@@ -30,12 +30,12 @@ const HardServices = () => {
   return (
     <>
       <Helmet>
-        <title>Hard Services & M&E Maintenance | Mechanical & Electrical FM | EntireFM</title>
+        <title>Facilities Management & M&E Services UK</title>
         <meta 
           name="description" 
-          content="Expert hard services and M&E maintenance across the UK. HVAC, electrical, mechanical, plumbing, BMS, and building fabric maintenance with guaranteed SLAs and 24/7 support."
+          content="Full hard FM solutions: HVAC, electrical, safety systems. Reliability & compliance, 24/7."
         />
-        <meta name="keywords" content="hard services, M&E maintenance, HVAC servicing, electrical maintenance, mechanical services, building fabric, facilities management UK" />
+        <link rel="canonical" href="https://entirefm.com/services/hard-fm" />
       </Helmet>
 
       <ServiceSchema 
