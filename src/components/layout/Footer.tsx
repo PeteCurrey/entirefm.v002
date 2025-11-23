@@ -66,18 +66,23 @@ const Footer = () => {
             <h3 className="text-sm font-medium mb-4 underline-accent">Tools & Insight</h3>
             <ul className="space-y-3">
               <li>
+                <Link to="/fm-insights" className="text-sm text-gray-400 hover:text-primary transition-colors font-light">
+                  FM Insights
+                </Link>
+              </li>
+              <li>
                 <Link to="/tools/cost-savings" className="text-sm text-gray-400 hover:text-primary transition-colors font-light">
                   Calculators
                 </Link>
               </li>
               <li>
-                <Link to="/compliance-diagnostic" className="text-sm text-gray-400 hover:text-primary transition-colors font-light">
-                  Risk Diagnostic
+                <Link to="/case-studies" className="text-sm text-gray-400 hover:text-primary transition-colors font-light">
+                  Case Studies
                 </Link>
               </li>
               <li>
-                <Link to="/case-studies" className="text-sm text-gray-400 hover:text-primary transition-colors font-light">
-                  Case Studies
+                <Link to="/sitemap" className="text-sm text-gray-400 hover:text-primary transition-colors font-light">
+                  Site Map
                 </Link>
               </li>
             </ul>

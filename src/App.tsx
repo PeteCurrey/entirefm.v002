@@ -156,6 +156,9 @@ import RequestProposal from "./pages/RequestProposal";
 import PPMCalculator from "./pages/tools/PPMCalculator";
 import TM44Checker from "./pages/tools/TM44Checker";
 import WaterRiskGrader from "./pages/tools/WaterRiskGrader";
+import FMInsights from "./pages/FMInsights";
+import Suppliers from "./pages/Suppliers";
+import Integrations from "./pages/Integrations";
 
 const queryClient = new QueryClient();
 
@@ -309,6 +312,9 @@ const App = () => (
               <Route path="/tools/cost-savings" element={<CostSavingsCalculator />} />
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/tools/risk-diagnostic" element={<ComplianceDiagnostic />} />
+              <Route path="/fm-insights" element={<FMInsights />} />
+              <Route path="/suppliers" element={<Suppliers />} />
+              <Route path="/integrations" element={<Integrations />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/resources/compliance-calendar" element={<ComplianceCalendar />} />
               <Route path="/resources/audit-framework" element={<AuditFramework />} />
