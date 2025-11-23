@@ -159,6 +159,7 @@ import WaterRiskGrader from "./pages/tools/WaterRiskGrader";
 import FMInsights from "./pages/FMInsights";
 import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
+import Search from "./pages/Search";
 
 const queryClient = new QueryClient();
 
@@ -312,6 +313,7 @@ const App = () => (
               <Route path="/tools/cost-savings" element={<CostSavingsCalculator />} />
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/tools/risk-diagnostic" element={<ComplianceDiagnostic />} />
+              <Route path="/search" element={<Search />} />
               <Route path="/fm-insights" element={<FMInsights />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/integrations" element={<Integrations />} />
