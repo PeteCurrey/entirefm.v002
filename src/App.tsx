@@ -162,6 +162,10 @@ import Integrations from "./pages/Integrations";
 import Search from "./pages/Search";
 import SearchAnalyticsDashboard from "./pages/SearchAnalyticsDashboard";
 import ProposalsDashboard from "./pages/admin/ProposalsDashboard";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminLayout from "./components/admin/AdminLayout";
+
 const queryClient = new QueryClient();
 const App = () => <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -342,7 +346,14 @@ const App = () => <QueryClientProvider client={queryClient}>
               {/* Comparison Pages */}
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
               <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
-              <Route path="/admin/proposals" element={<ProposalsDashboard />} />
+              
+              {/* Admin Routes */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path="proposals" element={<ProposalsDashboard />} />
+              </Route>
+              
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
