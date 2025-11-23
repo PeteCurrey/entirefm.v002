@@ -89,6 +89,20 @@ export const useSearchAnalytics = () => {
     if (process.env.NODE_ENV === 'development') {
       console.log('🎯 Search Click Tracked:', clickData);
     }
+
+    // Update search history with click info
+    try {
+      const searches = JSON.parse(localStorage.getItem('search_history') || '[]');
+      const updatedSearches = searches.map((search: any) => {
+        if (search.query === query) {
+          return { ...search, clicked: true };
+        }
+        return search;
+      });
+      localStorage.setItem('search_history', JSON.stringify(updatedSearches));
+    } catch (error) {
+      // Silent fail
+    }
   }, []);
 
   const getPopularSearches = useCallback(() => {
