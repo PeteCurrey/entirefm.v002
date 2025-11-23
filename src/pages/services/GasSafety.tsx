@@ -1,50 +1,69 @@
 import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
+import { ServiceSchema, FAQSchema, SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle2, AlertTriangle, Flame } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Flame, Shield, Database, Zap } from "lucide-react";
+import { useConversionTracking } from "@/hooks/useConversionTracking";
 
 const GasSafety = () => {
+  const { trackDownload, trackProposalRequest } = useConversionTracking();
+
   const faqs = [
     {
-      question: "Do I need a commercial Gas Safety certificate every year?",
-      answer: "Yes — annual certification is mandatory under Gas Safety Regulations."
+      question: "How often do commercial boilers require servicing?",
+      answer: "Annually at minimum — more if high-load or critical use."
     },
     {
-      question: "Can you work out of hours to avoid disruption?",
-      answer: "Regularly — retail, logistics and hospitality demand it."
+      question: "Do kitchens legally require CP42 certification?",
+      answer: "Yes — every year."
     },
     {
-      question: "Do you handle both gas and heating assets together?",
-      answer: "Exactly — the whole system must work as one to stay safe & compliant."
+      question: "Do you offer 24/7 emergency response?",
+      answer: "Yes — urgent hazards are resolved immediately."
     },
     {
-      question: "Do you create digital gas compliance records?",
-      answer: "Yes — no more lost certificates or audit panic."
+      question: "What causes carbon monoxide risk?",
+      answer: "Poor combustion, inadequate ventilation, blocked flues, and faulty equipment. We test and eliminate these risks during every inspection."
     }
   ];
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "EntireFM Gas Safety Services",
+    "description": "Commercial gas safety, CP1/CP15/CP42 certification, and boiler compliance services",
+    "areaServed": "United Kingdom",
+    "serviceType": "Gas Safety & Commercial Boiler Compliance",
+    "email": "hello@entirefm.com"
+  };
 
   return (
     <>
       <Helmet>
-        <title>Commercial Gas Maintenance & Safety Checks</title>
+        <title>Commercial Gas Safety & Boiler Compliance Services | Gas Safe Inspections</title>
         <meta 
           name="description" 
-          content="Full compliance for boilers & heating assets. Certified engineers."
+          content="Gas Safe inspections, CP1/CP15 certification, catering CP42 compliance and carbon monoxide risk elimination across commercial estates."
         />
         <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <ServiceSchema 
-        name="Gas Safety & Commercial Heating Maintenance"
-        description="Gas Safe registered commercial heating maintenance, boiler servicing, and plant room management"
+        name="Commercial Gas Safety & Boiler Compliance Services"
+        description="Gas Safe inspections, CP1/CP15 certification, catering CP42 compliance and carbon monoxide risk elimination across commercial estates"
         provider="EntireFM"
         areaServed="United Kingdom"
       />
+      <SchemaMarkup schema={localBusinessSchema} />
       <FAQSchema faqs={faqs} />
+      <BreadcrumbSchema items={[
+        { label: "Services", href: "/services" },
+        { label: "Gas Safety & Boiler Compliance" }
+      ]} />
 
       <div className="min-h-screen pt-20">
         <div className="container mx-auto px-6 py-8">
@@ -57,33 +76,45 @@ const GasSafety = () => {
             <div className="lg:col-span-2 space-y-12">
               <header>
                 <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Heat On. Risk Off.
+                  Commercial Gas Safety & Boiler Compliance Services
                 </h1>
                 <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  Commercial gas safety that protects lives, uptime, and your legal obligations — with zero corner-cutting.
+                  Gas Safe inspections, CP1/CP15 certification, catering CP42 compliance and carbon monoxide risk elimination across commercial estates.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request Gas Safety Proposal</Link>
+                  <Button 
+                    size="lg" 
+                    onClick={() => trackProposalRequest('gas_safety_hero')}
+                    asChild
+                  >
+                    <Link to="/contact">Request Gas Compliance Audit</Link>
                   </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <Link to="/contact">Book a Boiler & Plant Survey</Link>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    onClick={() => trackDownload('gas_compliance_checklist')}
+                    asChild
+                  >
+                    <Link to="/contact">Download Gas Compliance Checklist</Link>
                   </Button>
                 </div>
               </header>
 
-              {/* Risk Impact */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  When It Comes to Gas, There Are No Small Mistakes
+              {/* Gas Safety Failures */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Gas Safety Failures Are Public — and Prosecuted
                 </h2>
-                <p className="text-lg font-light mb-6">Gas faults escalate instantly:</p>
-                <div className="grid md:grid-cols-2 gap-4">
+                <p className="text-lg text-muted-foreground font-light mb-6">
+                  Gas is high hazard. When systems fail:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4 mb-6">
                   {[
-                    "Explosions",
-                    "Carbon monoxide poisoning",
-                    "Forced shutdowns",
-                    "HSE prosecutions for duty holders"
+                    "Carbon monoxide exposure kills silently",
+                    "HSE prosecutes under Gas Safety (Installation & Use) Regulations 1998",
+                    "Insurance claims are voided",
+                    "Buildings are evacuated and closed",
+                    "Operators make headlines for all the wrong reasons"
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
@@ -91,155 +122,168 @@ const GasSafety = () => {
                     </div>
                   ))}
                 </div>
-                <p className="text-lg font-medium mt-6">
-                  We eliminate that risk — permanently.
+                <p className="text-lg font-medium">
+                  We remove the risk entirely — and prove it's controlled.
                 </p>
               </section>
 
-              {/* Gas Safe Engineers */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Gas Safe Registered Engineers
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  Every engineer attending your site is:
-                </p>
-                <div className="space-y-4">
-                  {[
-                    "Gas Safe registered for commercial systems",
-                    "Competent in plant rooms, multi-boiler cascades & industrial appliances",
-                    "Experienced with complex access and high-traffic environments"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  No domestic-only cowboys. Ever.
-                </p>
-              </section>
-
-              {/* What We Maintain */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  What We Maintain & Support
-                </h2>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-charcoal text-white">
-                        <th className="p-4 text-left font-medium">System / Asset</th>
-                        <th className="p-4 text-left font-medium">Includes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Commercial Boilers</td>
-                        <td className="p-4 font-light text-sm">Burner checks, seals, combustion, condensate, flues</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Plant Rooms</td>
-                        <td className="p-4 font-light text-sm">Full system test, controls, safety devices, ventilation</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Gas Leak Detection</td>
-                        <td className="p-4 font-light text-sm">Pressure tests, purge and relight, alarms</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Kitchen Gas Equipment</td>
-                        <td className="p-4 font-light text-sm">Interlock systems, canopy gas safety</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Heaters & Radiant Systems</td>
-                        <td className="p-4 font-light text-sm">High-level and industrial applications</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">BMS & Control</td>
-                        <td className="p-4 font-light text-sm">Seasonal optimisation & efficiency checks</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              {/* Compliance */}
+              {/* Full Gas Compliance */}
               <section className="bg-muted/30 p-8 rounded-lg">
                 <h2 className="text-3xl font-light mb-6">
-                  Compliance Delivered — Not Left to Chance
+                  Full Gas Compliance Delivery
                 </h2>
                 <p className="text-muted-foreground font-light mb-6">
-                  We ensure full alignment with:
+                  All statutory requirements delivered:
                 </p>
                 <div className="space-y-4">
                   {[
-                    "Gas Safety (Installation & Use) Regulations",
-                    "IGEM/UP standards where applicable",
-                    "Annual commercial gas safety certifications",
-                    "Carbon monoxide monitoring strategy"
+                    { icon: Flame, text: "CP1 / CP15 Commercial Gas Certificates" },
+                    { icon: Flame, text: "CP42 Catering Gas Safety (restaurants, takeaways, hotel kitchens, dark kitchens)" },
+                    { icon: CheckCircle2, text: "Commercial boiler servicing & combustion checks" },
+                    { icon: Shield, text: "Pressure system safety & PRV testing" },
+                    { icon: CheckCircle2, text: "Ventilation & flue integrity validation" },
+                    { icon: AlertTriangle, text: "Emergency shut-off systems proven and labelled" }
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{item}</span>
+                      <item.icon className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item.text}</span>
                     </div>
                   ))}
                 </div>
                 <p className="text-lg font-medium mt-6">
-                  Every certificate: stored digitally, retrievable instantly.
+                  Certified Gas Safe engineers only. No subcontracting gambles.
                 </p>
               </section>
 
-              {/* Energy Optimisation */}
+              {/* Carbon Monoxide Risk */}
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Energy Optimisation That Pays for Itself
+                  Carbon Monoxide Risk — Zero Tolerance
                 </h2>
                 <p className="text-muted-foreground font-light mb-6">
-                  We don't just maintain — we improve performance:
+                  We test and enforce safety on:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Flue & combustion tuning for efficiency</h3>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Heat recovery opportunities</h3>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Demand-based control optimisation</h3>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">CAPEX forecasting to reduce lifecycle cost</h3>
-                  </div>
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  Lower energy bills = immediate budget wins.
-                </p>
-              </section>
-
-              {/* Reactive Response */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  Reactive Response That Doesn't Leave You in the Cold
-                </h2>
-                <p className="text-lg font-light mb-6">
-                  If your heating stops — operations fail.<br />
-                  Our 24/7 emergency on-call means:
-                </p>
-                <div className="space-y-4">
                   {[
-                    "Rapid engineer dispatch",
-                    "Real-time ETA tracking",
-                    "Transparent communication with site & FM teams"
+                    "Combustion performance",
+                    "Fresh air supply",
+                    "Extraction airflow",
+                    "CO detector operation",
+                    "Flue gas leakage"
                   ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <Flame className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{item}</span>
+                    <div key={index} className="border-l-4 border-accent pl-6">
+                      <h3 className="font-medium">{item}</h3>
                     </div>
                   ))}
                 </div>
                 <p className="text-lg font-medium mt-6">
-                  We heat. You relax.
+                  If CO risk exists → Stop. Fix. Sign off. No negotiation with hazard.
+                </p>
+              </section>
+
+              {/* Energy & Efficiency */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Energy & Efficiency Performance Gains
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  We turn plantrooms into productivity assets:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    { icon: Zap, text: "High-efficiency boiler upgrades" },
+                    { icon: Flame, text: "Burner optimisation" },
+                    { icon: Database, text: "Smart BMS control improvements" },
+                    { icon: Shield, text: "R32 & low-GWP migration planning" },
+                    { icon: Zap, text: "Heat recovery integration" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <item.icon className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  Save fuel. Save downtime. Save CO₂.
+                </p>
+              </section>
+
+              {/* Governance & Certification */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Governance & Certification Digitalised
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  Our platform stores:
+                </p>
+                <div className="space-y-4">
+                  {[
+                    { icon: Database, text: "Full certificate history" },
+                    { icon: CheckCircle2, text: "Remedial lifecycle tracking" },
+                    { icon: Shield, text: "Asset condition scores" },
+                    { icon: AlertTriangle, text: "Renewal notifications" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <item.icon className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  Auditors love it. Insurers expect it. Procurement trusts it.
+                </p>
+              </section>
+
+              {/* Sector Expertise */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Sector Expertise
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  We support:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    { name: "Hospitality / food service", link: "/sectors/hospitality-leisure" },
+                    { name: "PBSA & residential operators", link: "/sectors/residential-pbsa" },
+                    { name: "Retail environments", link: "/sectors/retail-service-stations" },
+                    { name: "Industrial estates", link: "/sectors/industrial-logistics" },
+                    { name: "Healthcare & public buildings", link: "/sectors" },
+                    { name: "Corporate workplaces", link: "/sectors/offices-corporate" }
+                  ].map((sector, index) => (
+                    <Link 
+                      key={index}
+                      to={sector.link}
+                      className="flex items-start gap-3 p-4 rounded-lg border border-border hover:border-accent transition-colors group"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                      <span className="font-light group-hover:text-accent transition-colors">{sector.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+
+              {/* Case Studies Placeholder */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Case Studies
+                </h2>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="border-l-4 border-accent pl-6 p-4 bg-muted/30 rounded-r-lg">
+                    <h3 className="font-medium mb-2">City Hotel</h3>
+                    <p className="text-sm text-muted-foreground font-light">
+                      Full CP42 compliance delivered with zero guest disruption.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-accent pl-6 p-4 bg-muted/30 rounded-r-lg">
+                    <h3 className="font-medium mb-2">Industrial Park</h3>
+                    <p className="text-sm text-muted-foreground font-light">
+                      Emergency flue remedials completed same day.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground font-light mt-4 italic">
+                  * Real performance stories coming soon
                 </p>
               </section>
 
@@ -249,14 +293,25 @@ const GasSafety = () => {
               <section className="border-t border-border pt-12">
                 <div className="text-center bg-charcoal text-white p-12 rounded-lg">
                   <h2 className="text-3xl font-light mb-4">
-                    A cold building is an operational failure. A gas incident is a catastrophe.
+                    Gas compliance isn't optional — it's operational survival.
                   </h2>
                   <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
-                    Choose a partner who protects both.
+                    Protect health. Protect compliance. Protect your business.
                   </p>
-                  <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
-                    <Link to="/contact">Request Gas & Heating Compliance Plan</Link>
-                  </Button>
+                  <div className="flex flex-wrap gap-4 justify-center">
+                    <Button 
+                      size="lg" 
+                      variant="secondary" 
+                      className="bg-white text-charcoal hover:bg-gray-100"
+                      onClick={() => trackProposalRequest('gas_safety_footer')}
+                      asChild
+                    >
+                      <Link to="/contact">Request Gas Compliance Audit</Link>
+                    </Button>
+                  </div>
+                  <p className="text-sm text-gray-400 mt-6">
+                    📩 hello@entirefm.com
+                  </p>
                 </div>
               </section>
             </div>
