@@ -159,6 +159,13 @@ import WaterRiskGrader from "./pages/tools/WaterRiskGrader";
 import FMInsights from "./pages/FMInsights";
 import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
+import ELogbooks from "./pages/integrations/ELogbooks";
+import Dwellant from "./pages/integrations/Dwellant";
+import Verisae from "./pages/integrations/Verisae";
+import MriQube from "./pages/integrations/MriQube";
+import Planon from "./pages/integrations/Planon";
+import ConceptEvolution from "./pages/integrations/ConceptEvolution";
+import MyCompliance from "./pages/integrations/MyCompliance";
 import Search from "./pages/Search";
 import SearchAnalyticsDashboard from "./pages/SearchAnalyticsDashboard";
 import ProposalsDashboard from "./pages/admin/ProposalsDashboard";
@@ -321,6 +328,13 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/fm-insights" element={<FMInsights />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/integrations" element={<Integrations />} />
+              <Route path="/integrations/elogbooks" element={<ELogbooks />} />
+              <Route path="/integrations/dwellant" element={<Dwellant />} />
+              <Route path="/integrations/verisae" element={<Verisae />} />
+              <Route path="/integrations/mri-qube" element={<MriQube />} />
+              <Route path="/integrations/planon" element={<Planon />} />
+              <Route path="/integrations/concept-evolution" element={<ConceptEvolution />} />
+              <Route path="/integrations/mycompliance" element={<MyCompliance />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/resources/compliance-calendar" element={<ComplianceCalendar />} />
               <Route path="/resources/audit-framework" element={<AuditFramework />} />
