@@ -20,12 +20,12 @@ const Home = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
-            <h1 className="text-5xl text-white mb-6 leading-tight animate-fade-in-up font-extralight md:text-4xl">
+            <h1 className="text-white mb-6 leading-tight animate-fade-in-up font-extralight md:text-4xl text-3xl">
               Facilities Management &amp; FM Support Services
             </h1>
             <p style={{
             animationDelay: "0.2s"
-          }} className="text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl animate-fade-in-up font-extralight md:text-xl text-left tracking-wider">
+          }} className="text-gray-200 mb-8 leading-relaxed max-w-2xl animate-fade-in-up font-extralight md:text-xl text-left tracking-wider text-xs">
               Your Dedicated Facilities Management Company
             </p>
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{
