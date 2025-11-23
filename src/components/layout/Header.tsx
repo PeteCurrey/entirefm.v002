@@ -127,6 +127,9 @@ const Header = ({
     label: "Locations",
     to: "/locations"
   }, {
+    label: "Request Proposal",
+    to: "/request-proposal"
+  }, {
     label: "PPM Calculator",
     to: "/tools/ppm-calculator"
   }, {
@@ -316,18 +319,6 @@ const Header = ({
                       </NavigationMenuLink>)}
                   </motion.div>
                 </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <motion.div whileHover={{
-                scale: 1.05
-              }} whileTap={{
-                scale: 0.95
-              }}>
-                  <Button asChild size="sm" variant="default" className="h-10">
-                    <Link to="/request-proposal" className="text-sm">Request Proposal</Link>
-                  </Button>
-                </motion.div>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
