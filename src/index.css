@@ -45,7 +45,6 @@ All colors MUST be HSL.
     --shadow-elegant: 0 10px 40px -10px hsl(210 18% 16% / 0.15);
     --shadow-card: 0 4px 20px -4px hsl(210 18% 16% / 0.08);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-button: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   }
 
