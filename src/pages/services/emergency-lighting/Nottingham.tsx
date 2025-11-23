@@ -61,8 +61,44 @@ const EmergencyLightingNottingham = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-12">
             <section>
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">PBSA & Heritage Risk Oversight</h2>
-              <p className="text-lg text-muted-foreground">Student accommodations and heritage properties in Nottingham require proactive emergency lighting compliance.</p>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Why Nottingham Requires Absolute Compliance</h2>
+              <p className="text-lg text-muted-foreground mb-4">PBSA and heritage infrastructure demand proactive emergency lighting governance to protect vulnerable populations and irreplaceable assets.</p>
+              <p className="text-lg text-muted-foreground mb-4">Failures lead to:</p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Legal liability for the Responsible Person</li>
+                <li>Insurance rejection and claim disputes</li>
+                <li>Enforcement action and operational shutdown</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Core Compliance Services (BS 5266)</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Monthly functional tests with comprehensive documentation</li>
+                <li>Annual 3-hour duration discharge verification</li>
+                <li>Sensitive testing for heritage building constraints</li>
+                <li>Digital logbooks and audit-ready certificates</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Remedials Resolved Fast</h2>
+              <p className="text-lg text-muted-foreground">Priority deployment for any risk-rated defects with full categorization and transparent pricing for remedial works.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Audit-Ready Documentation</h2>
+              <p className="text-lg text-muted-foreground">Complete traceability for university governance, insurers, and fire officers—digital evidence supporting continuous compliance.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Sectors Protected</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Universities and student accommodation</li>
+                <li>Retail and leisure facilities</li>
+                <li>Heritage buildings and public spaces</li>
+                <li>Large residential operators</li>
+              </ul>
             </section>
 
             <section>
@@ -73,7 +109,7 @@ const EmergencyLightingNottingham = () => {
             <FAQSection faqs={faqs} />
 
             <section className="bg-muted/50 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-4">Request Compliance Audit</h2>
+              <h2 className="text-3xl font-light mb-4">Protect Your Business. Request a Compliance Audit Today.</h2>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-nottingham-footer')}>Request Compliance Audit</Button>
                 <div className="text-muted-foreground">

@@ -61,34 +61,55 @@ const EmergencyLightingBirmingham = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-12">
             <section>
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">High Volumes in Retail + Logistics</h2>
-              <p className="text-lg text-muted-foreground mb-4">Rapid evacuation scenarios in Birmingham's retail and logistics hubs demand reliable emergency lighting compliance.</p>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Why Birmingham Requires Absolute Compliance</h2>
+              <p className="text-lg text-muted-foreground mb-4">High volumes in retail + logistics → rapid evacuation scenarios demand enforced standards.</p>
+              <p className="text-lg text-muted-foreground mb-4">Failures lead to:</p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Legal liability for the Responsible Person</li>
+                <li>Insurance rejection for fire-related claims</li>
+                <li>Operational shutdown and enforcement penalties</li>
+              </ul>
             </section>
 
             <section>
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Compliance Delivery</h2>
-              <p className="text-lg text-muted-foreground">Functional & duration testing with precise remedials ensure continuous life safety protection.</p>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Core Compliance Services (BS 5266)</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Monthly functional tests of all emergency lighting units</li>
+                <li>Annual 3-hour duration discharge verification</li>
+                <li>Immediate remedials and battery replacements</li>
+                <li>Digital logbooks and audit-ready certificates</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Remedials Resolved Fast</h2>
+              <p className="text-lg text-muted-foreground">We proactively identify and fix safety concerns to eliminate shutdown risk and maintain continuous compliance.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Audit-Ready Documentation</h2>
+              <p className="text-lg text-muted-foreground">Complete evidence and traceability for insurers, fire officers, and internal auditors—always accessible, always current.</p>
             </section>
 
             <section>
               <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Sectors Protected</h2>
               <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li>NEC venues</li>
-                <li>Logistics & distribution</li>
-                <li>Corporate facilities</li>
-                <li>Hospitality</li>
+                <li>NEC venues and exhibition spaces</li>
+                <li>Logistics and distribution centres</li>
+                <li>Corporate facilities and business parks</li>
+                <li>Retail and hospitality venues</li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Local Coverage</h2>
-              <p className="text-lg text-muted-foreground">City Centre, Solihull, Sutton Coldfield, Digbeth, NEC</p>
+              <p className="text-lg text-muted-foreground">City Centre, Solihull, Sutton Coldfield, Digbeth, NEC, Tyseley</p>
             </section>
 
             <FAQSection faqs={faqs} />
 
             <section className="bg-muted/50 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-4">Request Safety Audit</h2>
+              <h2 className="text-3xl font-light mb-4">Protect Your Business. Request a Safety Audit Today.</h2>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-birmingham-footer')}>Request Safety Audit</Button>
                 <div className="text-muted-foreground">

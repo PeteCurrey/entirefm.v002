@@ -61,8 +61,44 @@ const EmergencyLightingDerby = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-12">
             <section>
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Transport & Manufacturing Safety</h2>
-              <p className="text-lg text-muted-foreground">Compliance is core to operational continuity in Derby's rail and aerospace facilities.</p>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Why Derby Requires Absolute Compliance</h2>
+              <p className="text-lg text-muted-foreground mb-4">Industrial and transport operations operate with zero downtime tolerance—compliance is core to business continuity.</p>
+              <p className="text-lg text-muted-foreground mb-4">Failures lead to:</p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Legal liability for the Responsible Person</li>
+                <li>Insurance rejection and operational shutdown</li>
+                <li>Supply chain disruption and enforcement penalties</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Core Compliance Services (BS 5266)</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Monthly functional tests with minimal disruption</li>
+                <li>Annual 3-hour duration discharge verification</li>
+                <li>Industrial control system compatibility checks</li>
+                <li>Digital logbooks and audit-ready certificates</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Remedials Resolved Fast</h2>
+              <p className="text-lg text-muted-foreground">Priority deployment to maintain operational uptime. Immediate response for safety-critical defects with transparent pricing.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Audit-Ready Documentation</h2>
+              <p className="text-lg text-muted-foreground">Full BS 5266 certificates with thermal imaging evidence where applicable—complete traceability for insurers and regulators.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Sectors Protected</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Rail and aerospace facilities</li>
+                <li>Industrial and manufacturing sites</li>
+                <li>Transport hubs and logistics centres</li>
+                <li>Corporate estates and business parks</li>
+              </ul>
             </section>
 
             <section>
@@ -73,7 +109,7 @@ const EmergencyLightingDerby = () => {
             <FAQSection faqs={faqs} />
 
             <section className="bg-muted/50 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-4">Secure Testing Schedule</h2>
+              <h2 className="text-3xl font-light mb-4">Protect Your Business. Secure Your Testing Schedule Today.</h2>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-derby-footer')}>Secure Testing Schedule</Button>
                 <div className="text-muted-foreground">

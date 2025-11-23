@@ -61,8 +61,44 @@ const EmergencyLightingLeeds = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-12">
             <section>
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Critical Compliance for Hospitality & Corporate</h2>
-              <p className="text-lg text-muted-foreground">No tolerance for outage risk in Leeds's high-footfall venues and corporate environments.</p>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Why Leeds Requires Absolute Compliance</h2>
+              <p className="text-lg text-muted-foreground mb-4">Hospitality and corporate hubs with high customer footfall demand zero tolerance for evacuation lighting failures.</p>
+              <p className="text-lg text-muted-foreground mb-4">Failures lead to:</p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Legal liability for the Responsible Person</li>
+                <li>Insurance rejection and claim disputes</li>
+                <li>Enforcement action and reputational damage</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Core Compliance Services (BS 5266)</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Monthly functional tests with photographic evidence</li>
+                <li>Annual 3-hour duration discharge verification</li>
+                <li>Out-of-hours testing to minimize disruption</li>
+                <li>Digital logbooks and audit-ready certificates</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Remedials Resolved Fast</h2>
+              <p className="text-lg text-muted-foreground">Immediate categorization and transparent pricing for all defects. Priority deployment to maintain continuous compliance.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Audit-Ready Documentation</h2>
+              <p className="text-lg text-muted-foreground">Full BS 5266 certificates, digital logbooks, and remedial action plans—always accessible for insurers and fire officers.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Sectors Protected</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Hospitality and entertainment venues</li>
+                <li>Corporate offices and business parks</li>
+                <li>Universities and educational facilities</li>
+                <li>Retail and public spaces</li>
+              </ul>
             </section>
 
             <section>
@@ -73,7 +109,7 @@ const EmergencyLightingLeeds = () => {
             <FAQSection faqs={faqs} />
 
             <section className="bg-muted/50 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-4">Request 3-Hour Test</h2>
+              <h2 className="text-3xl font-light mb-4">Protect Your Business. Request a 3-Hour Test Today.</h2>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-leeds-footer')}>Request 3-Hour Test</Button>
                 <div className="text-muted-foreground">
