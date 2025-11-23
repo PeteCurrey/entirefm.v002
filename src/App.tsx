@@ -161,17 +161,14 @@ import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
 import Search from "./pages/Search";
 import SearchAnalyticsDashboard from "./pages/SearchAnalyticsDashboard";
-
 const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+const App = () => <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
         <div className="flex flex-col min-h-screen">
-          <Header />
+          <Header className="opacity-95" />
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -354,7 +351,5 @@ const App = () => (
         </div>
       </BrowserRouter>
     </TooltipProvider>
-  </QueryClientProvider>
-);
-
+  </QueryClientProvider>;
 export default App;
