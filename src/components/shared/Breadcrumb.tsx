@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 import { ChevronRight, Home } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface BreadcrumbItem {
   label: string;
   href?: string;
 }
 
-interface BreadcrumbProps {
+export interface BreadcrumbProps {
   items: BreadcrumbItem[];
+  className?: string;
 }
 
-export const Breadcrumb = ({ items }: BreadcrumbProps) => {
+export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
   return (
-    <nav aria-label="Breadcrumb" className="py-4">
+    <nav aria-label="Breadcrumb" className={cn("py-4", className)}>
       <ol className="flex items-center gap-2 text-sm">
         <li>
           <Link 

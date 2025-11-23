@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-interface MetricCardProps {
+export interface MetricCardProps {
   value: string;
   label: string;
   prefix?: string;
@@ -9,7 +9,7 @@ interface MetricCardProps {
   className?: string;
 }
 
-const MetricCard = ({ value, label, prefix = "", suffix = "", className }: MetricCardProps) => {
+const MetricCard: React.FC<MetricCardProps> = ({ value, label, prefix = "", suffix = "", className }) => {
   const [count, setCount] = useState(0);
   const numericValue = parseInt(value.replace(/\D/g, ""));
 
