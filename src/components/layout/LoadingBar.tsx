@@ -1,28 +1,33 @@
 import { useEffect, useState } from "react";
-import { useNavigation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const LoadingBar = () => {
-  const navigation = useNavigation();
+  const location = useLocation();
   const [progress, setProgress] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (navigation.state === "loading") {
-      setProgress(30);
-      const timer1 = setTimeout(() => setProgress(60), 100);
-      const timer2 = setTimeout(() => setProgress(90), 300);
-      
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      };
-    } else {
+    setIsLoading(true);
+    setProgress(30);
+    
+    const timer1 = setTimeout(() => setProgress(60), 100);
+    const timer2 = setTimeout(() => setProgress(90), 200);
+    const timer3 = setTimeout(() => {
       setProgress(100);
-      const timer = setTimeout(() => setProgress(0), 300);
-      return () => clearTimeout(timer);
-    }
-  }, [navigation.state]);
+      setTimeout(() => {
+        setIsLoading(false);
+        setProgress(0);
+      }, 300);
+    }, 400);
+    
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, [location.pathname]);
 
-  if (progress === 0) return null;
+  if (!isLoading) return null;
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[9999] h-1">
