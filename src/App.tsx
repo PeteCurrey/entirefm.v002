@@ -133,6 +133,20 @@ import PPMNottingham from "./pages/services/ppm/Nottingham";
 import PPMDerby from "./pages/services/ppm/Derby";
 import PPMChesterfield from "./pages/services/ppm/Chesterfield";
 import PPMLincoln from "./pages/services/ppm/Lincoln";
+import WaterLondon from "./pages/services/water/London";
+import WaterBirmingham from "./pages/services/water/Birmingham";
+import WaterManchester from "./pages/services/water/Manchester";
+import WaterLeeds from "./pages/services/water/Leeds";
+import WaterSheffield from "./pages/services/water/Sheffield";
+import WaterNottingham from "./pages/services/water/Nottingham";
+import WaterDerby from "./pages/services/water/Derby";
+import WaterChesterfield from "./pages/services/water/Chesterfield";
+import WaterLincoln from "./pages/services/water/Lincoln";
+import CorporateOfficeLondon from "./pages/case-studies/CorporateOfficeLondon";
+import RetailComplexBirmingham from "./pages/case-studies/RetailComplexBirmingham";
+import IndustrialWarehouseSheffield from "./pages/case-studies/IndustrialWarehouseSheffield";
+import PBSAEstateManchester from "./pages/case-studies/PBSAEstateManchester";
+import SiteMap from "./pages/SiteMap";
 
 const queryClient = new QueryClient();
 
@@ -156,68 +170,84 @@ const App = () => (
           <Route path="/services/fire-alarms" element={<FireAlarms />} />
           <Route path="/services/fire-safety" element={<FireSafety />} />
           <Route path="/services/electrical-compliance" element={<ElectricalCompliance />} />
-          <Route path="/fire/london" element={<FireLondon />} />
-          <Route path="/fire/birmingham" element={<FireBirmingham />} />
-          <Route path="/fire/manchester" element={<FireManchester />} />
-          <Route path="/fire/leeds" element={<FireLeeds />} />
-          <Route path="/fire/sheffield" element={<FireSheffield />} />
-          <Route path="/fire/nottingham" element={<FireNottingham />} />
-          <Route path="/fire/derby" element={<FireDerby />} />
-          <Route path="/fire/chesterfield" element={<FireChesterfield />} />
-          <Route path="/fire/lincoln" element={<FireLincoln />} />
+          
+          {/* Fire Safety Location Routes */}
+          <Route path="/services/fire/London" element={<FireLondon />} />
+          <Route path="/services/fire/Birmingham" element={<FireBirmingham />} />
+          <Route path="/services/fire/Manchester" element={<FireManchester />} />
+          <Route path="/services/fire/Leeds" element={<FireLeeds />} />
+          <Route path="/services/fire/Sheffield" element={<FireSheffield />} />
+          <Route path="/services/fire/Nottingham" element={<FireNottingham />} />
+          <Route path="/services/fire/Derby" element={<FireDerby />} />
+          <Route path="/services/fire/Chesterfield" element={<FireChesterfield />} />
+          <Route path="/services/fire/Lincoln" element={<FireLincoln />} />
           
           {/* Gas Safety Location Routes */}
-          <Route path="/gas/london" element={<GasLondon />} />
-          <Route path="/gas/birmingham" element={<GasBirmingham />} />
-          <Route path="/gas/manchester" element={<GasManchester />} />
-          <Route path="/gas/leeds" element={<GasLeeds />} />
-          <Route path="/gas/sheffield" element={<GasSheffield />} />
-          <Route path="/gas/nottingham" element={<GasNottingham />} />
-          <Route path="/gas/derby" element={<GasDerby />} />
-          <Route path="/gas/chesterfield" element={<GasChesterfield />} />
-          <Route path="/gas/lincoln" element={<GasLincoln />} />
+          <Route path="/services/gas/London" element={<GasLondon />} />
+          <Route path="/services/gas/Birmingham" element={<GasBirmingham />} />
+          <Route path="/services/gas/Manchester" element={<GasManchester />} />
+          <Route path="/services/gas/Leeds" element={<GasLeeds />} />
+          <Route path="/services/gas/Sheffield" element={<GasSheffield />} />
+          <Route path="/services/gas/Nottingham" element={<GasNottingham />} />
+          <Route path="/services/gas/Derby" element={<GasDerby />} />
+          <Route path="/services/gas/Chesterfield" element={<GasChesterfield />} />
+          <Route path="/services/gas/Lincoln" element={<GasLincoln />} />
           
           {/* HVAC Location Routes */}
-          <Route path="/hvac/london" element={<HVACLondon />} />
-          <Route path="/hvac/birmingham" element={<HVACBirmingham />} />
-          <Route path="/hvac/manchester" element={<HVACManchester />} />
-          <Route path="/hvac/leeds" element={<HVACLeeds />} />
-          <Route path="/hvac/sheffield" element={<HVACSheffield />} />
-          <Route path="/hvac/nottingham" element={<HVACNottingham />} />
-          <Route path="/hvac/derby" element={<HVACDerby />} />
-          <Route path="/hvac/chesterfield" element={<HVACChesterfield />} />
-          <Route path="/hvac/lincoln" element={<HVACLincoln />} />
+          <Route path="/services/hvac/London" element={<HVACLondon />} />
+          <Route path="/services/hvac/Birmingham" element={<HVACBirmingham />} />
+          <Route path="/services/hvac/Manchester" element={<HVACManchester />} />
+          <Route path="/services/hvac/Leeds" element={<HVACLeeds />} />
+          <Route path="/services/hvac/Sheffield" element={<HVACSheffield />} />
+          <Route path="/services/hvac/Nottingham" element={<HVACNottingham />} />
+          <Route path="/services/hvac/Derby" element={<HVACDerby />} />
+          <Route path="/services/hvac/Chesterfield" element={<HVACChesterfield />} />
+          <Route path="/services/hvac/Lincoln" element={<HVACLincoln />} />
           
           {/* PPM Location Routes */}
-          <Route path="/ppm/london" element={<PPMLondon />} />
-          <Route path="/ppm/birmingham" element={<PPMBirmingham />} />
-          <Route path="/ppm/manchester" element={<PPMManchester />} />
-          <Route path="/ppm/leeds" element={<PPMLeeds />} />
-          <Route path="/ppm/sheffield" element={<PPMSheffield />} />
-          <Route path="/ppm/nottingham" element={<PPMNottingham />} />
-          <Route path="/ppm/derby" element={<PPMDerby />} />
-          <Route path="/ppm/chesterfield" element={<PPMChesterfield />} />
-          <Route path="/ppm/lincoln" element={<PPMLincoln />} />
+          <Route path="/services/ppm/London" element={<PPMLondon />} />
+          <Route path="/services/ppm/Birmingham" element={<PPMBirmingham />} />
+          <Route path="/services/ppm/Manchester" element={<PPMManchester />} />
+          <Route path="/services/ppm/Leeds" element={<PPMLeeds />} />
+          <Route path="/services/ppm/Sheffield" element={<PPMSheffield />} />
+          <Route path="/services/ppm/Nottingham" element={<PPMNottingham />} />
+          <Route path="/services/ppm/Derby" element={<PPMDerby />} />
+          <Route path="/services/ppm/Chesterfield" element={<PPMChesterfield />} />
+          <Route path="/services/ppm/Lincoln" element={<PPMLincoln />} />
+          
+          {/* Water Hygiene Location Routes */}
+          <Route path="/services/water/London" element={<WaterLondon />} />
+          <Route path="/services/water/Birmingham" element={<WaterBirmingham />} />
+          <Route path="/services/water/Manchester" element={<WaterManchester />} />
+          <Route path="/services/water/Leeds" element={<WaterLeeds />} />
+          <Route path="/services/water/Sheffield" element={<WaterSheffield />} />
+          <Route path="/services/water/Nottingham" element={<WaterNottingham />} />
+          <Route path="/services/water/Derby" element={<WaterDerby />} />
+          <Route path="/services/water/Chesterfield" element={<WaterChesterfield />} />
+          <Route path="/services/water/Lincoln" element={<WaterLincoln />} />
           
           {/* Emergency Lighting Location Routes */}
-          <Route path="/emergency-lighting/london" element={<EmergencyLightingLondon />} />
-          <Route path="/emergency-lighting/birmingham" element={<EmergencyLightingBirmingham />} />
-          <Route path="/emergency-lighting/manchester" element={<EmergencyLightingManchester />} />
-          <Route path="/emergency-lighting/leeds" element={<EmergencyLightingLeeds />} />
-          <Route path="/emergency-lighting/sheffield" element={<EmergencyLightingSheffield />} />
-          <Route path="/emergency-lighting/nottingham" element={<EmergencyLightingNottingham />} />
-          <Route path="/emergency-lighting/derby" element={<EmergencyLightingDerby />} />
-          <Route path="/emergency-lighting/chesterfield" element={<EmergencyLightingChesterfield />} />
-          <Route path="/emergency-lighting/lincoln" element={<EmergencyLightingLincoln />} />
-          <Route path="/electrical/london" element={<ElectricalLondon />} />
-          <Route path="/electrical/birmingham" element={<ElectricalBirmingham />} />
-          <Route path="/electrical/manchester" element={<ElectricalManchester />} />
-          <Route path="/electrical/leeds" element={<ElectricalLeeds />} />
-          <Route path="/electrical/sheffield" element={<ElectricalSheffield />} />
-          <Route path="/electrical/nottingham" element={<ElectricalNottingham />} />
-          <Route path="/electrical/derby" element={<ElectricalDerby />} />
-          <Route path="/electrical/chesterfield" element={<ElectricalChesterfield />} />
-          <Route path="/electrical/lincoln" element={<ElectricalLincoln />} />
+          <Route path="/services/emergency-lighting/London" element={<EmergencyLightingLondon />} />
+          <Route path="/services/emergency-lighting/Birmingham" element={<EmergencyLightingBirmingham />} />
+          <Route path="/services/emergency-lighting/Manchester" element={<EmergencyLightingManchester />} />
+          <Route path="/services/emergency-lighting/Leeds" element={<EmergencyLightingLeeds />} />
+          <Route path="/services/emergency-lighting/Sheffield" element={<EmergencyLightingSheffield />} />
+          <Route path="/services/emergency-lighting/Nottingham" element={<EmergencyLightingNottingham />} />
+          <Route path="/services/emergency-lighting/Derby" element={<EmergencyLightingDerby />} />
+          <Route path="/services/emergency-lighting/Chesterfield" element={<EmergencyLightingChesterfield />} />
+          <Route path="/services/emergency-lighting/Lincoln" element={<EmergencyLightingLincoln />} />
+          
+          {/* Electrical Compliance Location Routes */}
+          <Route path="/services/electrical/London" element={<ElectricalLondon />} />
+          <Route path="/services/electrical/Birmingham" element={<ElectricalBirmingham />} />
+          <Route path="/services/electrical/Manchester" element={<ElectricalManchester />} />
+          <Route path="/services/electrical/Leeds" element={<ElectricalLeeds />} />
+          <Route path="/services/electrical/Sheffield" element={<ElectricalSheffield />} />
+          <Route path="/services/electrical/Nottingham" element={<ElectricalNottingham />} />
+          <Route path="/services/electrical/Derby" element={<ElectricalDerby />} />
+          <Route path="/services/electrical/Chesterfield" element={<ElectricalChesterfield />} />
+          <Route path="/services/electrical/Lincoln" element={<ElectricalLincoln />} />
+          
           <Route path="/services/emergency-lighting" element={<EmergencyLighting />} />
           <Route path="/services/sprinklers-risers" element={<Sprinklers />} />
           <Route path="/services/plumbing" element={<Plumbing />} />
@@ -256,6 +286,10 @@ const App = () => (
               <Route path="/case-studies/service-stations" element={<ServiceStations />} />
               <Route path="/case-studies/engineering" element={<IndustrialPlant />} />
               <Route path="/case-studies/healthcare" element={<Healthcare />} />
+              <Route path="/case-studies/corporate-office-london" element={<CorporateOfficeLondon />} />
+              <Route path="/case-studies/retail-complex-birmingham" element={<RetailComplexBirmingham />} />
+              <Route path="/case-studies/industrial-warehouse-sheffield" element={<IndustrialWarehouseSheffield />} />
+              <Route path="/case-studies/pbsa-estate-manchester" element={<PBSAEstateManchester />} />
               <Route path="/about" element={<About />} />
               <Route path="/esg" element={<ESG />} />
               <Route path="/health-safety" element={<HealthSafety />} />
@@ -281,6 +315,8 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               {/* Comparison Pages */}
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
+              {/* Site Map - Internal Tool */}
+              <Route path="/site-map" element={<SiteMap />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
