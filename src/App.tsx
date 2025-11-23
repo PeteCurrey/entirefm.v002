@@ -79,6 +79,10 @@ import Plumbing from "./pages/services/Plumbing";
 import WaterHygiene from "./pages/services/WaterHygiene";
 import BuildingFabric from "./pages/services/BuildingFabric";
 import GasSafety from "./pages/services/GasSafety";
+import DryRiserTesting from "./pages/services/DryRiserTesting";
+import LiftingEquipment from "./pages/services/LiftingEquipment";
+import HeightSafety from "./pages/services/HeightSafety";
+import SmokeVentSystems from "./pages/services/SmokeVentSystems";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
 import Birmingham from "./pages/locations/Birmingham";
@@ -298,10 +302,15 @@ const App = () => <QueryClientProvider client={queryClient}>
           
           <Route path="/services/emergency-lighting" element={<EmergencyLighting />} />
           <Route path="/services/sprinklers-risers" element={<Sprinklers />} />
+          <Route path="/services/sprinklers" element={<Sprinklers />} />
           <Route path="/services/plumbing" element={<Plumbing />} />
           <Route path="/services/water-hygiene" element={<WaterHygiene />} />
           <Route path="/services/building-fabric" element={<BuildingFabric />} />
           <Route path="/services/gas-safety" element={<GasSafety />} />
+          <Route path="/services/dry-riser-testing" element={<DryRiserTesting />} />
+          <Route path="/services/lifting-equipment" element={<LiftingEquipment />} />
+          <Route path="/services/height-safety" element={<HeightSafety />} />
+          <Route path="/services/smoke-vent-systems" element={<SmokeVentSystems />} />
               <Route path="/sectors" element={<Sectors />} />
               <Route path="/sectors/industrial-logistics" element={<IndustrialLogistics />} />
               <Route path="/sectors/retail-service-stations" element={<RetailServiceStations />} />
