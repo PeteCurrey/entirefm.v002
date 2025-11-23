@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface MetricCardProps {
   value: string;
   label: string;
   prefix?: string;
   suffix?: string;
+  className?: string;
 }
 
-const MetricCard = ({ value, label, prefix = "", suffix = "" }: MetricCardProps) => {
+const MetricCard = ({ value, label, prefix = "", suffix = "", className }: MetricCardProps) => {
   const [count, setCount] = useState(0);
   const numericValue = parseInt(value.replace(/\D/g, ""));
 
@@ -33,7 +35,7 @@ const MetricCard = ({ value, label, prefix = "", suffix = "" }: MetricCardProps)
   }, [numericValue]);
 
   return (
-    <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
+    <div className={cn("bg-card border border-border rounded-lg p-6 shadow-sm", className)}>
       <div className="text-3xl font-light text-primary mb-2">
         {prefix}{isNaN(numericValue) ? value : count}{suffix}
       </div>

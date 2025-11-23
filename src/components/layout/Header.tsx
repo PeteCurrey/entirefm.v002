@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { GlobalSearch } from "@/components/shared/GlobalSearch";
 import { Badge } from "@/components/ui/badge";
-const Header = () => {
+const Header = ({ className }: { className?: string }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -115,7 +115,7 @@ const Header = () => {
     label: "Contact",
     to: "/contact"
   }];
-  return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent")}>
+  return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent", className)}>
       <div className="container mx-auto px-6 pr-[10px] pl-[10px]">
         <div className="h-20 items-center justify-between gap-0 flex flex-row mx-0">
           <Link to="/" className="flex items-center space-x-2">
