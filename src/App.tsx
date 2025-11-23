@@ -27,6 +27,11 @@ import Resources from "./pages/Resources";
 import ComplianceCalendar from "./pages/resources/ComplianceCalendar";
 import AuditFramework from "./pages/resources/AuditFramework";
 import SwitchingProvider from "./pages/resources/SwitchingProvider";
+import FireRiskGuide from "./pages/resources/FireRiskGuide";
+import EICRManual from "./pages/resources/EICRManual";
+import EmergencyLightingChecklist from "./pages/resources/EmergencyLightingChecklist";
+import LegionellaGuide from "./pages/resources/LegionellaGuide";
+import FGasTracker from "./pages/resources/FGasTracker";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import Locations from "./pages/Locations";
@@ -308,6 +313,11 @@ const App = () => (
               <Route path="/resources/compliance-calendar" element={<ComplianceCalendar />} />
               <Route path="/resources/audit-framework" element={<AuditFramework />} />
               <Route path="/resources/switch-playbook" element={<SwitchingProvider />} />
+              <Route path="/resources/fire-risk-guide" element={<FireRiskGuide />} />
+              <Route path="/resources/eicr-manual" element={<EICRManual />} />
+              <Route path="/resources/emergency-lighting-checklist" element={<EmergencyLightingChecklist />} />
+              <Route path="/resources/legionella-guide" element={<LegionellaGuide />} />
+              <Route path="/resources/fgas-tracker" element={<FGasTracker />} />
               <Route path="/resources/energy-esg" element={<EnergyESG />} />
               <Route path="/resources/engineer-standards" element={<EngineerStandards />} />
               <Route path="/resources/tender-support" element={<TenderSupport />} />

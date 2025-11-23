@@ -13,7 +13,47 @@ const Resources = () => {
 
   const resources = [
     {
-      title: "FM Director's Compliance Calendar 2025",
+      title: "Fire Risk Assessment Guide",
+      category: "Guides & Checklists",
+      type: "PDF Guide",
+      description: "Comprehensive guide to conducting and maintaining fire risk assessments for UK commercial properties.",
+      icon: FileText,
+      link: "/resources/fire-risk-guide"
+    },
+    {
+      title: "Electrical EICR Survival Manual",
+      category: "Guides & Checklists",
+      type: "PDF Manual",
+      description: "Essential guide to Electrical Installation Condition Reports and BS 7671 compliance requirements.",
+      icon: FileText,
+      link: "/resources/eicr-manual"
+    },
+    {
+      title: "3-Hour Emergency Lighting Test Checklist",
+      category: "Guides & Checklists",
+      type: "Checklist",
+      description: "Complete checklist for conducting annual 3-hour emergency lighting tests to BS 5266 standards.",
+      icon: FileText,
+      link: "/resources/emergency-lighting-checklist"
+    },
+    {
+      title: "Legionella Governance Guide",
+      category: "Guides & Checklists",
+      type: "Compliance Guide",
+      description: "Complete guide to legionella control, ACOP L8 compliance, and water hygiene management.",
+      icon: FileText,
+      link: "/resources/legionella-guide"
+    },
+    {
+      title: "F-Gas Leak Compliance Tracker",
+      category: "Guides & Checklists",
+      type: "Excel Tool",
+      description: "Spreadsheet tool for tracking refrigerant leak detection inspections and F-Gas compliance.",
+      icon: FileText,
+      link: "/resources/fgas-tracker"
+    },
+    {
+      title: "PPM Compliance Calendar 2025",
       category: "Compliance Updates",
       type: "Reference Document",
       description: "Complete calendar of mandatory inspections, testing frequencies, and certification requirements.",

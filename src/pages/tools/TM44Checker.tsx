@@ -352,17 +352,17 @@ const TM44Checker = () => {
                       <h3 className="font-medium mb-3">
                         {results.urgency === "overdue" || results.urgency === "high" 
                           ? "Urgent Action Required" 
-                          : "Book Your Inspection"}
+                          : "Complete Compliance Review"}
                       </h3>
                       <p className="text-sm text-muted-foreground mb-4">
                         {results.urgency === "overdue"
-                          ? "You're currently non-compliant. Book an emergency TM44 inspection to avoid escalating penalties."
+                          ? "You're currently non-compliant. Get a full compliance audit to identify all risks across your estate."
                           : results.urgency === "high"
-                          ? "Your inspection is due soon. Book now to ensure compliance and avoid last-minute stress."
-                          : "Plan ahead and secure a convenient inspection slot."}
+                          ? "Your inspection is due soon. Get a comprehensive audit of all compliance requirements."
+                          : "Ensure complete compliance across all building systems with a full audit."}
                       </p>
                       <Button asChild className="w-full">
-                        <a href="/services/hvac-compliance">Book TM44 Inspection</a>
+                        <a href="/request-proposal">Request Full Audit</a>
                       </Button>
                     </Card>
                   </>

@@ -541,14 +541,14 @@ const WaterRiskGrader = () => {
                     </Card>
 
                     <Card className="p-6">
-                      <h3 className="font-medium mb-3">Book Water Hygiene Services</h3>
+                      <h3 className="font-medium mb-3">Complete Compliance Audit</h3>
                       <p className="text-sm text-muted-foreground mb-4">
                         {results.riskLevel === "critical" || results.riskLevel === "high"
-                          ? "Urgent legionella control measures required to ensure compliance and safety."
-                          : "Maintain compliance with our comprehensive water hygiene management services."}
+                          ? "Urgent action required. Get a full compliance audit covering all water systems and building services."
+                          : "Maintain compliance across all building systems with a comprehensive audit."}
                       </p>
                       <Button asChild className="w-full">
-                        <a href="/services/water-hygiene">Book Water Testing</a>
+                        <a href="/request-proposal">Request Full Audit</a>
                       </Button>
                     </Card>
                   </>
