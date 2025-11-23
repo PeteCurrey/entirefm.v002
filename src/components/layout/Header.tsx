@@ -7,6 +7,7 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { GlobalSearch } from "@/components/shared/GlobalSearch";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/logo.png";
 const Header = ({
   className
 }: {
@@ -153,10 +154,7 @@ const Header = ({
       <div className="container mx-auto px-6 pr-[10px] pl-[10px]">
         <div className="h-20 gap-0 flex-row mx-0 my-[5px] flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-light tracking-tight">
-              <span className="text-3xl font-extralight text-gray-600 px-px">Entire</span>
-              <span className="text-4xl font-extralight text-primary">FM</span>
-            </div>
+            <img src={logo} alt="EntireFM Logo" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Search */}
