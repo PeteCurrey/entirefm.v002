@@ -151,7 +151,7 @@ const Header = ({
   }];
   return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent", className)}>
       <div className="container mx-auto px-6 pr-[10px] pl-[10px]">
-        <div className="h-20 items-center justify-between gap-0 flex flex-row mx-0">
+        <div className="h-20 items-center justify-between gap-0 flex flex-row mx-0 my-[5px]">
           <Link to="/" className="flex items-center space-x-2">
             <div className="text-2xl font-light tracking-tight">
               <span className="text-3xl font-extralight text-gray-600 px-px">Entire</span>
