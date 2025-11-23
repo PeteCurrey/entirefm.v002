@@ -4,17 +4,33 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { SchemaMarkup, LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import { FAQSection } from "@/components/shared/FAQSection";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { Download } from "lucide-react";
 
 const EmergencyLightingDerby = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
 
+  const faqs = [
+    {
+      question: "Why is emergency lighting critical in transport and manufacturing?",
+      answer: "Complex evacuation routes, operational continuity, and public safety in transport hubs require reliable BS 5266-compliant emergency lighting systems."
+    },
+    {
+      question: "How often do industrial sites need testing?",
+      answer: "Monthly functional tests and annual 3-hour duration tests, with enhanced coverage for hazardous areas and critical infrastructure."
+    },
+    {
+      question: "What remedial support is provided?",
+      answer: "Priority callouts for safety-critical defects, transparent pricing, and same-day battery replacements where supply allows."
+    }
+  ];
+
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Testing Derby | Transport Hub & Manufacturing BS 5266</title>
-        <meta name="description" content="Emergency lighting compliance for Derby's transport hubs and manufacturing sites. BS 5266 testing protecting evacuation safety in rail and aerospace facilities." />
+        <title>Emergency Lighting Compliance Derby | BS 5266 Industrial & Transport Testing</title>
+        <meta name="description" content="Industrial & transport operations compliance core to continuity. BS 5266 testing for Derby's rail and aerospace facilities." />
         <link rel="canonical" href="https://entirefm.com/emergency-lighting/derby" />
       </Helmet>
 
@@ -28,10 +44,10 @@ const EmergencyLightingDerby = () => {
         
         <div className="relative z-20 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-light text-white mb-6">Emergency Lighting Compliance – Derby</h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">Transport hubs & manufacturing evacuation. BS 5266 compliance protecting critical infrastructure.</p>
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">Industrial & transport operations — compliance core to continuity.</p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-derby')}>Request 3-Hour Compliance Test</Button>
+            <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-derby')}>Secure Testing Schedule</Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary" onClick={() => trackDownload('bs5266-checklist')}>
               <Download className="mr-2 h-5 w-5" />Download BS 5266 Checklist
             </Button>
@@ -43,9 +59,28 @@ const EmergencyLightingDerby = () => {
 
       <div className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Transport & Manufacturing Safety</h2>
-            <p className="text-lg text-muted-foreground">Derby's rail engineering and aerospace manufacturing facilities demand emergency lighting systems protecting complex evacuation routes in transport hubs and high-bay production environments. EntireFM delivers BS 5266 compliance with 3-hour testing, enhanced coverage for critical infrastructure, and immediate remedial response across the East Midlands transport and manufacturing corridor.</p>
+          <div className="lg:col-span-2 space-y-12">
+            <section>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Transport & Manufacturing Safety</h2>
+              <p className="text-lg text-muted-foreground">Compliance is core to operational continuity in Derby's rail and aerospace facilities.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Local Coverage</h2>
+              <p className="text-lg text-muted-foreground">City Centre, Pride Park, Sinfin, Allestree</p>
+            </section>
+
+            <FAQSection faqs={faqs} />
+
+            <section className="bg-muted/50 p-8 rounded-lg">
+              <h2 className="text-3xl font-light mb-4">Secure Testing Schedule</h2>
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-derby-footer')}>Secure Testing Schedule</Button>
+                <div className="text-muted-foreground">
+                  <p className="font-medium">📩 derby@entirefm.com</p>
+                </div>
+              </div>
+            </section>
           </div>
           <div className="lg:col-span-1"><div className="sticky top-4"><SidebarCTA /></div></div>
         </div>

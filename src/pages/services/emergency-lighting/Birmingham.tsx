@@ -4,17 +4,33 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { SchemaMarkup, LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import { FAQSection } from "@/components/shared/FAQSection";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { Download } from "lucide-react";
 
 const EmergencyLightingBirmingham = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
 
+  const faqs = [
+    {
+      question: "How often are emergency lighting tests required in Birmingham?",
+      answer: "Monthly functional tests and annual 3-hour duration tests as per BS 5266. High-footfall venues often require more frequent verification."
+    },
+    {
+      question: "What happens if emergency lights fail during testing?",
+      answer: "We immediately categorize the risk, provide transparent remedial quotes, and schedule fast-track battery replacement or unit upgrades."
+    },
+    {
+      question: "Do you cover large venues like NEC Birmingham?",
+      answer: "Yes. We specialize in complex multi-zone sites with extensive emergency lighting systems requiring coordinated testing and rapid remediation."
+    }
+  ];
+
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Testing Birmingham | BS 5266 Compliance & Public Venue Safety</title>
-        <meta name="description" content="Emergency lighting compliance for Birmingham's high-footfall venues. BS 5266 testing protecting Bullring, NEC and major commercial sites across the West Midlands." />
+        <title>Emergency Lighting Compliance Birmingham | BS 5266 Testing & Rapid Remedials</title>
+        <meta name="description" content="EICR testing & remedials across logistics, manufacturing & corporate estates in the West Midlands. BS 5266 testing for high-footfall retail and logistics venues." />
         <link rel="canonical" href="https://entirefm.com/emergency-lighting/birmingham" />
       </Helmet>
 
@@ -28,10 +44,10 @@ const EmergencyLightingBirmingham = () => {
         
         <div className="relative z-20 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-light text-white mb-6">Emergency Lighting Compliance – Birmingham</h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">High-footfall venue protection. BS 5266 compliance safeguarding public evacuation across the West Midlands.</p>
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">EICR testing & remedials across logistics, manufacturing & corporate estates in the West Midlands.</p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-birmingham')}>Request 3-Hour Compliance Test</Button>
+            <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-birmingham')}>Request Safety Audit</Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary" onClick={() => trackDownload('bs5266-checklist')}>
               <Download className="mr-2 h-5 w-5" />Download BS 5266 Checklist
             </Button>
@@ -43,9 +59,43 @@ const EmergencyLightingBirmingham = () => {
 
       <div className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Public Venue Evacuation Safety</h2>
-            <p className="text-lg text-muted-foreground">Birmingham's Bullring, NEC venue complex, and major commercial sites face heightened fire safety enforcement in the West Midlands. EntireFM delivers BS 5266-certified testing with 3-hour duration verification protecting high-occupancy environments where evacuation performance determines legal and reputational outcomes.</p>
+          <div className="lg:col-span-2 space-y-12">
+            <section>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">High Volumes in Retail + Logistics</h2>
+              <p className="text-lg text-muted-foreground mb-4">Rapid evacuation scenarios in Birmingham's retail and logistics hubs demand reliable emergency lighting compliance.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Compliance Delivery</h2>
+              <p className="text-lg text-muted-foreground">Functional & duration testing with precise remedials ensure continuous life safety protection.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Sectors Protected</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>NEC venues</li>
+                <li>Logistics & distribution</li>
+                <li>Corporate facilities</li>
+                <li>Hospitality</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Local Coverage</h2>
+              <p className="text-lg text-muted-foreground">City Centre, Solihull, Sutton Coldfield, Digbeth, NEC</p>
+            </section>
+
+            <FAQSection faqs={faqs} />
+
+            <section className="bg-muted/50 p-8 rounded-lg">
+              <h2 className="text-3xl font-light mb-4">Request Safety Audit</h2>
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-birmingham-footer')}>Request Safety Audit</Button>
+                <div className="text-muted-foreground">
+                  <p className="font-medium">📩 birmingham@entirefm.com</p>
+                </div>
+              </div>
+            </section>
           </div>
           <div className="lg:col-span-1"><div className="sticky top-4"><SidebarCTA /></div></div>
         </div>

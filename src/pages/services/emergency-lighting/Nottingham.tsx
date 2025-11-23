@@ -4,17 +4,33 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { SchemaMarkup, LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import { FAQSection } from "@/components/shared/FAQSection";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { Download } from "lucide-react";
 
 const EmergencyLightingNottingham = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
 
+  const faqs = [
+    {
+      question: "Why is PBSA emergency lighting compliance critical?",
+      answer: "Student accommodations are high-risk due to occupancy density and vulnerable populations. BS 5266 ensures evacuation routes remain lit during emergencies."
+    },
+    {
+      question: "How quickly can failed units be replaced?",
+      answer: "Same-day battery replacements where supply allows, with priority callouts for C1/C2 defects to maintain uninterrupted compliance."
+    },
+    {
+      question: "Do you provide digital compliance records?",
+      answer: "Yes. All certificates, logbooks, and remedial records are digitally archived with instant audit export for insurers and regulators."
+    }
+  ];
+
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Testing Nottingham | PBSA & Retail BS 5266 Compliance</title>
-        <meta name="description" content="Emergency lighting compliance for Nottingham's student accommodation and retail estates. BS 5266 testing protecting PBSA legal oversight and resident safety." />
+        <title>Emergency Lighting Compliance Nottingham | BS 5266 PBSA & Heritage Testing</title>
+        <meta name="description" content="PBSA & heritage buildings requiring risk oversight. BS 5266 testing for Nottingham's student accommodation and retail estate." />
         <link rel="canonical" href="https://entirefm.com/emergency-lighting/nottingham" />
       </Helmet>
 
@@ -24,14 +40,14 @@ const EmergencyLightingNottingham = () => {
 
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-background/90 z-10" />
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1542744095-291d1f67b221?q=80&w=2070&auto=format&fit=crop')` }} aria-label="Emergency lighting in Nottingham PBSA accommodation building showing safety compliance" />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=2070&auto=format&fit=crop')` }} aria-label="Emergency exit signage in Nottingham student accommodation and retail property" />
         
         <div className="relative z-20 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-light text-white mb-6">Emergency Lighting Compliance – Nottingham</h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">PBSA estates & retail centres. Legal oversight and resident safety protection through BS 5266 compliance.</p>
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">PBSA & heritage buildings require risk oversight.</p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-nottingham')}>Request 3-Hour Compliance Test</Button>
+            <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-nottingham')}>Request Compliance Audit</Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary" onClick={() => trackDownload('bs5266-checklist')}>
               <Download className="mr-2 h-5 w-5" />Download BS 5266 Checklist
             </Button>
@@ -43,9 +59,28 @@ const EmergencyLightingNottingham = () => {
 
       <div className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <h2 className="text-4xl font-light mb-6 underline-accent inline-block">PBSA & Retail Compliance Protection</h2>
-            <p className="text-lg text-muted-foreground">Nottingham's dense student accommodation market and retail centre obligations create heightened emergency lighting compliance requirements. EntireFM protects PBSA landlords and retail operators with BS 5266-certified testing, monthly inspections, and 3-hour battery verification preventing regulatory enforcement and resident safety failures across commercial and residential estates.</p>
+          <div className="lg:col-span-2 space-y-12">
+            <section>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">PBSA & Heritage Risk Oversight</h2>
+              <p className="text-lg text-muted-foreground">Student accommodations and heritage properties in Nottingham require proactive emergency lighting compliance.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Local Coverage</h2>
+              <p className="text-lg text-muted-foreground">City Centre, West Bridgford, Beeston, Colwick</p>
+            </section>
+
+            <FAQSection faqs={faqs} />
+
+            <section className="bg-muted/50 p-8 rounded-lg">
+              <h2 className="text-3xl font-light mb-4">Request Compliance Audit</h2>
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-nottingham-footer')}>Request Compliance Audit</Button>
+                <div className="text-muted-foreground">
+                  <p className="font-medium">📩 nottingham@entirefm.com</p>
+                </div>
+              </div>
+            </section>
           </div>
           <div className="lg:col-span-1"><div className="sticky top-4"><SidebarCTA /></div></div>
         </div>
