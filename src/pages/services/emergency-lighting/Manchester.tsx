@@ -61,8 +61,44 @@ const EmergencyLightingManchester = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-12">
             <section>
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Student & Nightlife Economy Safety</h2>
-              <p className="text-lg text-muted-foreground">High safety oversight required for vulnerable populations and late-night operations.</p>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Why Manchester Requires Absolute Compliance</h2>
+              <p className="text-lg text-muted-foreground mb-4">Student accommodations, major commercial estates, and nightlife economy create complex evacuation scenarios with elevated risk.</p>
+              <p className="text-lg text-muted-foreground mb-4">Failures lead to:</p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Legal liability for the Responsible Person</li>
+                <li>Insurance rejection for safety-related claims</li>
+                <li>Enforcement action and operational shutdown</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Core Compliance Services (BS 5266)</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Monthly functional tests of all emergency lighting units</li>
+                <li>Annual 3-hour duration discharge verification</li>
+                <li>Priority remedials for PBSA and high-occupancy venues</li>
+                <li>Digital logbooks and audit-ready certificates</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Remedials Resolved Fast</h2>
+              <p className="text-lg text-muted-foreground">Same-day urgent repairs where risk is present. Priority callouts for C1/C2 defects to protect vulnerable populations.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Digital Audit-Ready Data</h2>
+              <p className="text-lg text-muted-foreground">Every asset logged. Every fault resolved. Zero paper chase. Complete traceability for insurers and regulators.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Sectors Protected</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>PBSA and student accommodation</li>
+                <li>Trafford Park industrial estates</li>
+                <li>Salford Quays commercial developments</li>
+                <li>Hospitality and nightlife venues</li>
+              </ul>
             </section>
 
             <section>
@@ -73,7 +109,7 @@ const EmergencyLightingManchester = () => {
             <FAQSection faqs={faqs} />
 
             <section className="bg-muted/50 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-4">Book Emergency Lighting Testing</h2>
+              <h2 className="text-3xl font-light mb-4">Protect Your Business. Book Testing Today.</h2>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-manchester-footer')}>Book Testing</Button>
                 <div className="text-muted-foreground">

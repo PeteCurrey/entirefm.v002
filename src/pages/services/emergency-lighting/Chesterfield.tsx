@@ -61,8 +61,44 @@ const EmergencyLightingChesterfield = () => {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-12">
             <section>
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Logistics & Distribution Safety</h2>
-              <p className="text-lg text-muted-foreground">M1 corridor logistics demand reliable emergency lighting for employee safety and operational continuity.</p>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Why Chesterfield Requires Absolute Compliance</h2>
+              <p className="text-lg text-muted-foreground mb-4">M1 corridor logistics and distribution centres create massive operational risk from electrical downtime or safety failures.</p>
+              <p className="text-lg text-muted-foreground mb-4">Failures lead to:</p>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
+                <li>Legal liability for the Responsible Person</li>
+                <li>Insurance rejection and operational shutdown</li>
+                <li>Supply chain disruption penalties</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Core Compliance Services (BS 5266)</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Monthly functional tests with rapid site access</li>
+                <li>Annual 3-hour duration discharge verification</li>
+                <li>Enhanced coverage for large-scale logistics environments</li>
+                <li>Digital logbooks and audit-ready certificates</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Remedials Resolved Fast</h2>
+              <p className="text-lg text-muted-foreground">Priority callouts for safety-critical defects with same-day battery replacements where supply allows, minimizing operational disruption.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Audit-Ready Documentation</h2>
+              <p className="text-lg text-muted-foreground">Complete evidence and traceability for insurers, fire officers, and internal auditors—always accessible, always current.</p>
+            </section>
+
+            <section>
+              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Sectors Protected</h2>
+              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <li>Industrial and manufacturing facilities</li>
+                <li>Distribution centres and logistics hubs</li>
+                <li>Retail and commercial spaces</li>
+                <li>Office stock and business parks</li>
+              </ul>
             </section>
 
             <section>
@@ -73,7 +109,7 @@ const EmergencyLightingChesterfield = () => {
             <FAQSection faqs={faqs} />
 
             <section className="bg-muted/50 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-4">Book Duration Test</h2>
+              <h2 className="text-3xl font-light mb-4">Protect Your Business. Book Duration Test Today.</h2>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
                 <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-chesterfield-footer')}>Book Duration Test</Button>
                 <div className="text-muted-foreground">
