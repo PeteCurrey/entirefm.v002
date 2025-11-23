@@ -151,8 +151,8 @@ const Header = ({
         <div className="h-20 items-center justify-between gap-0 flex flex-row mx-0">
           <Link to="/" className="flex items-center space-x-2">
             <div className="text-2xl font-light tracking-tight">
-              <span className="text-foreground">Entire</span>
-              <span className="text-primary">FM</span>
+              <span className="text-3xl font-extralight text-gray-600 px-px">Entire</span>
+              <span className="text-4xl font-extralight text-primary">FM</span>
             </div>
           </Link>
 
