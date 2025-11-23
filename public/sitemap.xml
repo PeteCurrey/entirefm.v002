@@ -666,6 +666,26 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://entirefm.com/fm-insights</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/suppliers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/integrations</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/sitemap</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://entirefm.com/resources/audit-framework</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
