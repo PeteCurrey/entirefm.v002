@@ -1,370 +1,324 @@
 import { Helmet } from "react-helmet";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { FAQSection } from "@/components/shared/FAQSection";
-import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle2, AlertTriangle } from "lucide-react";
+import { FAQSection } from "@/components/shared/FAQSection";
+import { ServiceSchema } from "@/components/shared/SchemaMarkup";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import { useConversionTracking } from "@/hooks/useConversionTracking";
+import heroImage from "@/assets/industrial-facility.jpg";
 
 const WaterHygiene = () => {
+  useConversionTracking();
+
   const faqs = [
     {
-      question: "How often should water hygiene checks be carried out?",
-      answer: "Depends on risk — typically monthly monitoring for outlets, annual risk assessments or earlier if system changes."
+      question: "What causes Legionella risk?",
+      answer: "Stagnation, temperature abuse, biofilm formation and poor governance are the main causes of Legionella risk in water systems. Regular monitoring and maintenance prevent these conditions."
     },
     {
-      question: "Do you include laboratory analysis?",
-      answer: "Yes — accredited labs with rapid reporting."
+      question: "Who is legally responsible for control?",
+      answer: "The building's Responsible Person — usually the owner, employer, or managing agent — is legally responsible. We support full execution of their compliance duties under ACOP L8."
     },
     {
-      question: "Can you take over existing compliance regimes?",
-      answer: "Seamlessly — including gap analysis and corrective actions."
-    },
-    {
-      question: "What happens if we fail compliance?",
-      answer: "We produce costed remedial actions and fix the risk before it becomes a crisis."
+      question: "How often should reviews happen?",
+      answer: "Depends on system risk — typically annual monitoring with a 2-year risk assessment refresh. More frequent reviews may be required for high-risk environments or after system changes."
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Legionella Compliance (ACOP L8 / HSG274)</title>
-        <meta 
-          name="description" 
-          content="Water testing, monitoring & remedials. Zero hygiene compromise."
-        />
+        <title>Water Hygiene & Legionella Compliance Services | ACOP L8 & HSG274 | Entire FM</title>
+        <meta name="description" content="ACOP L8 and HSG274 risk control across commercial estates — sampling, monitoring, flushing and remedial actions that protect health, uptime, and legal accountability." />
         <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
+        <meta property="og:title" content="Water Hygiene & Legionella Compliance | Entire FM" />
+        <meta property="og:description" content="ACOP L8 and HSG274 compliant water safety management across UK commercial estates." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
-      <ServiceSchema 
-        name="Water Hygiene & Legionella Control"
-        description="Water hygiene management, Legionella risk assessments, and L8 ACoP compliance"
-        provider="EntireFM"
+      <BreadcrumbSchema 
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: "Water Hygiene & Legionella Compliance" }
+        ]}
+      />
+
+      <ServiceSchema
+        name="Water Hygiene & Legionella Compliance Services"
+        description="ACOP L8 and HSG274 risk control across commercial estates — sampling, monitoring, flushing and remedial actions that protect health, uptime, and legal accountability."
+        provider="Entire FM"
         areaServed="United Kingdom"
       />
-      <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen pt-20">
-        <div className="container mx-auto px-6 py-8">
-          <Breadcrumb items={[
-            { label: "Services", href: "/services" },
-            { label: "Water Hygiene & Legionella" }
-          ]} />
+      <Header />
 
-          <div className="grid lg:grid-cols-3 gap-12 mt-8">
-            <div className="lg:col-span-2 space-y-12">
-              <header>
-                <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Don't Let Water Become a Silent Legal Threat.
-                </h1>
-                <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  Legionella compliance engineered to protect your people — and your liability.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request L8 Compliance Plan</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <Link to="/contact">Book Legionella Risk Assessment</Link>
-                  </Button>
-                </div>
-              </header>
-
-              {/* Risk Impact */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  When Water Systems Go Wrong, Directors Take the Fall
-                </h2>
-                <p className="text-lg font-light mb-6">Legionella outbreaks cause:</p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {[
-                    "Severe illness & fatalities",
-                    "Huge compensation claims",
-                    "Criminal prosecution for duty holders",
-                    "Irrecoverable brand damage"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  We make compliance non-negotiable.
-                </p>
-              </section>
-
-              {/* Compliance Standards */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Fully Compliant With:
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "ACOP L8",
-                    "HSG274 Parts 1–3",
-                    "COSHH Regulations",
-                    "Drinking Water Safety Standards"
-                  ].map((standard, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{standard}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  We don't misunderstand risk. We control it.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Water Hygiene Services
-                </h2>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-charcoal text-white">
-                        <th className="p-4 text-left font-medium">Service</th>
-                        <th className="p-4 text-left font-medium">Benefit</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Legionella Risk Assessments</td>
-                        <td className="p-4 font-light text-sm">Identifies contamination risks before exposure</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Water System Monitoring</td>
-                        <td className="p-4 font-light text-sm">Routine checks & temperature logging</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Sampling & Lab Testing</td>
-                        <td className="p-4 font-light text-sm">Rapid detection and corrective actions</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Tank Cleaning & Disinfection</td>
-                        <td className="p-4 font-light text-sm">Eliminates biofilm, sediment, stagnation</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">TMV Servicing (Thermostatic Mixing Valves)</td>
-                        <td className="p-4 font-light text-sm">Protects from scalding + bacteria growth</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Closed System Water Treatment</td>
-                        <td className="p-4 font-light text-sm">Corrosion control for heating/chilled water</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Flushing Unused Outlets</td>
-                        <td className="p-4 font-light text-sm">Avoids stagnation & bacterial growth</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  Everything is recorded. Every action traceable.
-                </p>
-              </section>
-
-              {/* Asset Condition Intelligence */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Asset Condition Intelligence
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  We build a complete asset register including:
-                </p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "Sentinel outlets",
-                    "Calorifiers & cylinders",
-                    "Cold water storage tanks",
-                    "TMVs",
-                    "Dead legs",
-                    "Pipework vulnerabilities"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  Action plan: red → amber → green remediation.
-                </p>
-              </section>
-
-              {/* Digital Water Safety Management */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  Digital Water Safety Management
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  Your compliance, always proveable:
-                </p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Cloud-stored logbooks & sampling results</h3>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Automated monitoring reminders</h3>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Photographic validation</h3>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Portfolio-level compliance dashboards</h3>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Easy access for audits, insurers & EHO</h3>
-                  </div>
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  Bye-bye lever-arch binders.
-                </p>
-              </section>
-
-              {/* High-Risk Environments */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  High-Risk Environments — Zero Tolerance
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  We give extra priority to:
-                </p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "Healthcare & care homes",
-                    "Hotels & leisure facilities (showers/spas)",
-                    "Education",
-                    "Residential blocks",
-                    "Logistics sites with low-occupancy wings"
-                  ].map((env, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{env}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  If water stagnates, risk accelerates.
-                </p>
-              </section>
-
-              {/* L8 Compliance Framework */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  L8 ACoP Statutory Requirements
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  We manage full compliance with HSE L8 Approved Code of Practice:
-                </p>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-charcoal text-white">
-                        <th className="p-4 text-left font-medium">Task</th>
-                        <th className="p-4 text-left font-medium">Frequency</th>
-                        <th className="p-4 text-left font-medium">What's Checked</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Temperature Monitoring</td>
-                        <td className="p-4 font-light text-sm">Monthly</td>
-                        <td className="p-4 font-light text-sm">Hot water ≥50°C at outlets, cold water ≤20°C</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Legionella Sampling</td>
-                        <td className="p-4 font-light text-sm">Quarterly (risk-based)</td>
-                        <td className="p-4 font-light text-sm">UKAS lab testing for Legionella bacteria presence</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">TMV Servicing</td>
-                        <td className="p-4 font-light text-sm">Annual</td>
-                        <td className="p-4 font-light text-sm">Temperature accuracy, fail-safe operation (HTM 04-01)</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Tank Cleaning</td>
-                        <td className="p-4 font-light text-sm">Annual or as required</td>
-                        <td className="p-4 font-light text-sm">Sediment removal, disinfection, inspection</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Risk Assessment Review</td>
-                        <td className="p-4 font-light text-sm">Every 2 years</td>
-                        <td className="p-4 font-light text-sm">System changes, control effectiveness, new risks</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="mt-8">
-                  <Button variant="outline" asChild>
-                    <Link to="/resources">Download L8 Compliance Guide</Link>
-                  </Button>
-                </div>
-              </section>
-
-              {/* What You Get */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  What You Get as Standard
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Written Scheme of Control</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Bespoke water management plan aligned to your building's risk profile and L8 requirements.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Digital Log Books</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      All temperature checks, tests, and remedial actions logged with timestamps and evidence.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">UKAS-Accredited Testing</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Legionella sampling analysed by accredited laboratories with rapid result turnaround.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Outbreak Response Planning</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Immediate remedial action and incident management if positive results detected.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <FAQSection faqs={faqs} />
-
-              {/* Final CTA */}
-              <section className="border-t border-border pt-12">
-                <div className="text-center bg-charcoal text-white p-12 rounded-lg">
-                  <h2 className="text-3xl font-light mb-4">
-                    If there's Legionella risk — there's personal liability.
-                  </h2>
-                  <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
-                    Protect your people. Protect your reputation. Protect yourself.
-                  </p>
-                  <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
-                    <Link to="/contact">Request Legionella Compliance Review</Link>
-                  </Button>
-                </div>
-              </section>
-            </div>
-
-            <aside className="lg:col-span-1">
-              <div className="sticky top-24">
-                <SidebarCTA />
-              </div>
-            </aside>
+      <main className="min-h-screen">
+        {/* Hero Section */}
+        <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${heroImage})` }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/70" />
           </div>
-        </div>
-      </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-3xl">
+              <h1 className="text-5xl md:text-6xl font-light mb-6 leading-tight">
+                Water Hygiene & Legionella Compliance Services
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 text-muted-foreground font-light leading-relaxed">
+                ACOP L8 and HSG274 risk control across commercial estates — sampling, monitoring, flushing and remedial actions that protect health, uptime, and legal accountability.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button size="lg" asChild className="text-lg px-8">
+                  <Link to="/contact">Request Legionella Risk Assessment</Link>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="text-lg px-8">
+                  <a href="mailto:hello@entirefm.com">Download Water Hygiene Compliance Guide</a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Risk Exposure Section */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                Legionella Risk = Legal, Financial & Reputational Exposure
+              </h2>
+              <p className="text-xl text-muted-foreground font-light mb-8 leading-relaxed">
+                A single outbreak can:
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-card p-6 rounded-lg border border-destructive/30">
+                  <p className="font-light flex items-start gap-3">
+                    <span className="text-destructive text-xl">→</span>
+                    <span>Trigger criminal prosecution</span>
+                  </p>
+                </div>
+                <div className="bg-card p-6 rounded-lg border border-destructive/30">
+                  <p className="font-light flex items-start gap-3">
+                    <span className="text-destructive text-xl">→</span>
+                    <span>Shut down businesses instantly</span>
+                  </p>
+                </div>
+                <div className="bg-card p-6 rounded-lg border border-destructive/30">
+                  <p className="font-light flex items-start gap-3">
+                    <span className="text-destructive text-xl">→</span>
+                    <span>Make headlines for all the wrong reasons</span>
+                  </p>
+                </div>
+                <div className="bg-card p-6 rounded-lg border border-destructive/30">
+                  <p className="font-light flex items-start gap-3">
+                    <span className="text-destructive text-xl">→</span>
+                    <span>Cause long-term brand damage</span>
+                  </p>
+                </div>
+              </div>
+              <div className="bg-primary/5 p-8 rounded-lg border border-primary/20 mt-8 text-center">
+                <p className="text-2xl font-light">
+                  We don't take chances with public health —<br />
+                  <span className="text-primary text-3xl">we remove Legionella risk at the source.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ACOP L8 / HSG274 Compliance Services */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                ACOP L8 / HSG274 Compliance Services
+              </h2>
+              <p className="text-xl text-muted-foreground font-light mb-12 leading-relaxed">
+                We design and deliver:
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  "Legionella Risk Assessments (LRAs)",
+                  "Temperature monitoring & flushing",
+                  "Sampling + UKAS laboratory testing",
+                  "TMV servicing & calibration",
+                  "Tank inspections, cleaning & chlorination",
+                  "Asset remedials to eliminate stagnation risk"
+                ].map((service, index) => (
+                  <div key={index} className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-colors">
+                    <div className="flex items-start gap-3">
+                      <span className="text-primary text-2xl">💧</span>
+                      <span className="text-lg font-light">{service}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xl text-center mt-12 text-muted-foreground font-light">
+                Regulations met. Evidence proven.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Remedials */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                Remedials — Risk Closed, Same Visit Where Possible
+              </h2>
+              <p className="text-xl text-muted-foreground font-light mb-8 leading-relaxed">
+                When risk appears, it gets:
+              </p>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="bg-card p-8 rounded-lg border border-border text-center">
+                  <div className="text-3xl mb-4">✔</div>
+                  <h3 className="text-xl font-light mb-2">A risk-rated action</h3>
+                  <p className="text-muted-foreground font-light text-sm">Severity classified</p>
+                </div>
+                <div className="bg-card p-8 rounded-lg border border-border text-center">
+                  <div className="text-3xl mb-4">✔</div>
+                  <h3 className="text-xl font-light mb-2">A costed fix</h3>
+                  <p className="text-muted-foreground font-light text-sm">Clear pricing</p>
+                </div>
+                <div className="bg-card p-8 rounded-lg border border-border text-center">
+                  <div className="text-3xl mb-4">✔</div>
+                  <h3 className="text-xl font-light mb-2">A scheduled remedial date</h3>
+                  <p className="text-muted-foreground font-light text-sm">Rapid deployment</p>
+                </div>
+              </div>
+              <p className="text-xl text-center mt-8 text-muted-foreground font-light">
+                No waiting while bacteria multiply.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Digital Audit Trail */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                Digital Audit Trail & Compliance Dashboard
+              </h2>
+              <p className="text-xl text-muted-foreground font-light mb-8 leading-relaxed">
+                All evidence stored securely:
+              </p>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                {[
+                  "Inspector-ready audit packs",
+                  "Renewals and re-test alerts",
+                  "Complete asset condition records",
+                  "Photo logging of issues and fixes"
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-center gap-3 bg-card p-6 rounded-lg border border-border">
+                    <span className="text-primary text-xl">•</span>
+                    <span className="text-lg font-light">{feature}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="bg-primary/5 p-8 rounded-lg border border-primary/20 text-center">
+                <p className="text-xl font-light">
+                  Insurers love it.<br />
+                  <span className="text-primary">CQC/HSE demand it.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* High-Scrutiny Sector Expertise */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                High-Scrutiny Sector Expertise
+              </h2>
+              <p className="text-xl text-muted-foreground font-light mb-8">We protect:</p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { name: "PBSA & universities", link: "/sectors/residential-pbsa" },
+                  { name: "Hospitality & leisure", link: "/sectors/hospitality-leisure" },
+                  { name: "Healthcare environments", link: "/sectors" },
+                  { name: "Retail", link: "/sectors/retail-service-stations" },
+                  { name: "Corporate workplaces", link: "/sectors/offices-corporate" },
+                  { name: "Industrial estates", link: "/sectors/industrial-logistics" }
+                ].map((sector, index) => (
+                  <Link 
+                    key={index}
+                    to={sector.link}
+                    className="bg-card p-6 rounded-lg border border-border hover:border-primary transition-colors text-center"
+                  >
+                    <span className="text-lg font-light">{sector.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Case Study Highlights */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                Case Study Highlights
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8 mt-8">
+                <div className="bg-card p-8 rounded-lg border border-border">
+                  <h3 className="text-xl font-light mb-4">PBSA Outbreak Prevention</h3>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Complete risk control and remedials delivered in &lt;48 hours.
+                  </p>
+                </div>
+                <div className="bg-card p-8 rounded-lg border border-border">
+                  <h3 className="text-xl font-light mb-4">Healthcare Compliance Delivery</h3>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Full digital audit traceability — zero findings at inspection.
+                  </p>
+                </div>
+              </div>
+              <p className="text-sm text-muted-foreground text-center mt-8">
+                Detailed case studies coming soon
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQs */}
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <FAQSection faqs={faqs} />
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl font-light mb-6">
+                Protect health. Protect compliance. Protect your business.
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+                <p className="text-lg">📩 hello@entirefm.com</p>
+                <Button size="lg" asChild>
+                  <Link to="/contact">Request Legionella Risk Assessment</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
     </>
   );
 };
