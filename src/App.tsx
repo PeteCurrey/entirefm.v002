@@ -147,6 +147,7 @@ import RetailComplexBirmingham from "./pages/case-studies/RetailComplexBirmingha
 import IndustrialWarehouseSheffield from "./pages/case-studies/IndustrialWarehouseSheffield";
 import PBSAEstateManchester from "./pages/case-studies/PBSAEstateManchester";
 import SiteMap from "./pages/SiteMap";
+import RequestProposal from "./pages/RequestProposal";
 
 const queryClient = new QueryClient();
 
@@ -161,6 +162,7 @@ const App = () => (
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/request-proposal" element={<RequestProposal />} />
               <Route path="/services" element={<Services />} />
           <Route path="/services/hard-fm" element={<HardServices />} />
           <Route path="/services/hvac" element={<HVAC />} />
