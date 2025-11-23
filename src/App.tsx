@@ -97,6 +97,33 @@ import TenderSupport from "./pages/resources/TenderSupport";
 import Leadership from "./pages/Leadership";
 import SocialValue from "./pages/SocialValue";
 import VisualStandards from "./pages/VisualStandards";
+import GasLondon from "./pages/services/gas/London";
+import GasBirmingham from "./pages/services/gas/Birmingham";
+import GasManchester from "./pages/services/gas/Manchester";
+import GasLeeds from "./pages/services/gas/Leeds";
+import GasSheffield from "./pages/services/gas/Sheffield";
+import GasNottingham from "./pages/services/gas/Nottingham";
+import GasDerby from "./pages/services/gas/Derby";
+import GasChesterfield from "./pages/services/gas/Chesterfield";
+import GasLincoln from "./pages/services/gas/Lincoln";
+import HVACLondon from "./pages/services/hvac/London";
+import HVACBirmingham from "./pages/services/hvac/Birmingham";
+import HVACManchester from "./pages/services/hvac/Manchester";
+import HVACLeeds from "./pages/services/hvac/Leeds";
+import HVACSheffield from "./pages/services/hvac/Sheffield";
+import HVACNottingham from "./pages/services/hvac/Nottingham";
+import HVACDerby from "./pages/services/hvac/Derby";
+import HVACChesterfield from "./pages/services/hvac/Chesterfield";
+import HVACLincoln from "./pages/services/hvac/Lincoln";
+import PPMLondon from "./pages/services/ppm/London";
+import PPMBirmingham from "./pages/services/ppm/Birmingham";
+import PPMManchester from "./pages/services/ppm/Manchester";
+import PPMLeeds from "./pages/services/ppm/Leeds";
+import PPMSheffield from "./pages/services/ppm/Sheffield";
+import PPMNottingham from "./pages/services/ppm/Nottingham";
+import PPMDerby from "./pages/services/ppm/Derby";
+import PPMChesterfield from "./pages/services/ppm/Chesterfield";
+import PPMLincoln from "./pages/services/ppm/Lincoln";
 
 const queryClient = new QueryClient();
 
@@ -127,6 +154,39 @@ const App = () => (
           <Route path="/fire/derby" element={<FireDerby />} />
           <Route path="/fire/chesterfield" element={<FireChesterfield />} />
           <Route path="/fire/lincoln" element={<FireLincoln />} />
+          
+          {/* Gas Safety Location Routes */}
+          <Route path="/gas/london" element={<GasLondon />} />
+          <Route path="/gas/birmingham" element={<GasBirmingham />} />
+          <Route path="/gas/manchester" element={<GasManchester />} />
+          <Route path="/gas/leeds" element={<GasLeeds />} />
+          <Route path="/gas/sheffield" element={<GasSheffield />} />
+          <Route path="/gas/nottingham" element={<GasNottingham />} />
+          <Route path="/gas/derby" element={<GasDerby />} />
+          <Route path="/gas/chesterfield" element={<GasChesterfield />} />
+          <Route path="/gas/lincoln" element={<GasLincoln />} />
+          
+          {/* HVAC Location Routes */}
+          <Route path="/hvac/london" element={<HVACLondon />} />
+          <Route path="/hvac/birmingham" element={<HVACBirmingham />} />
+          <Route path="/hvac/manchester" element={<HVACManchester />} />
+          <Route path="/hvac/leeds" element={<HVACLeeds />} />
+          <Route path="/hvac/sheffield" element={<HVACSheffield />} />
+          <Route path="/hvac/nottingham" element={<HVACNottingham />} />
+          <Route path="/hvac/derby" element={<HVACDerby />} />
+          <Route path="/hvac/chesterfield" element={<HVACChesterfield />} />
+          <Route path="/hvac/lincoln" element={<HVACLincoln />} />
+          
+          {/* PPM Location Routes */}
+          <Route path="/ppm/london" element={<PPMLondon />} />
+          <Route path="/ppm/birmingham" element={<PPMBirmingham />} />
+          <Route path="/ppm/manchester" element={<PPMManchester />} />
+          <Route path="/ppm/leeds" element={<PPMLeeds />} />
+          <Route path="/ppm/sheffield" element={<PPMSheffield />} />
+          <Route path="/ppm/nottingham" element={<PPMNottingham />} />
+          <Route path="/ppm/derby" element={<PPMDerby />} />
+          <Route path="/ppm/chesterfield" element={<PPMChesterfield />} />
+          <Route path="/ppm/lincoln" element={<PPMLincoln />} />
           
           {/* Emergency Lighting Location Routes */}
           <Route path="/emergency-lighting/london" element={<EmergencyLightingLondon />} />
