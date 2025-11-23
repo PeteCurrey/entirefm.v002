@@ -1,194 +1,134 @@
 import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
+import { ServiceSchema, FAQSchema, SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle2, AlertTriangle, Phone } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Flame, Zap, Droplet, Snowflake, Activity, Database, TrendingDown, Shield } from "lucide-react";
+import { useConversionTracking } from "@/hooks/useConversionTracking";
 
 const PPM = () => {
+  const { trackDownload, trackProposalRequest } = useConversionTracking();
+
   const faqs = [
     {
-      question: "What is PPM in facilities management?",
-      answer: "A scheduled maintenance approach that prevents asset failures and ensures legal compliance."
+      question: "Can you implement PPM mid-contract?",
+      answer: "Yes — with zero disruption to operations. We can seamlessly integrate PPM programmes into existing contracts."
     },
     {
-      question: "How often should PPM be carried out?",
-      answer: "Based on SFG20, manufacturer guidance, and operational risk — anywhere from monthly to annually per asset."
+      question: "How do you reduce CAPEX spend?",
+      answer: "By forecasting asset life and optimising maintenance before failure. Predictive maintenance extends asset lifecycles significantly."
     },
     {
-      question: "Can PPM really save money?",
-      answer: "Yes — reducing major breakdowns massively cuts spend over time."
+      question: "Can we unify all compliance under one provider?",
+      answer: "That is our standard delivery model. One contract, one dashboard, complete visibility."
     },
     {
-      question: "Do you combine PPM with compliance reporting?",
-      answer: "Always — compliance is baked into the maintenance plan."
+      question: "What is the difference between reactive and preventive maintenance?",
+      answer: "Reactive fixes things after they break. Preventive maintenance stops failures before they happen, reducing costs by up to 40%."
     }
   ];
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "EntireFM PPM & Asset Lifecycle Governance",
+    "description": "Proactive maintenance programmes integrating fire, electrical, HVAC, water and gas compliance",
+    "areaServed": "United Kingdom",
+    "serviceType": "PPM & Asset Lifecycle Governance",
+    "email": "hello@entirefm.com"
+  };
 
   return (
     <>
       <Helmet>
-        <title>Planned Preventative Maintenance & Compliance Governance</title>
+        <title>PPM & Asset Lifecycle Governance | Planned Preventive Maintenance Services</title>
         <meta 
           name="description" 
-          content="Reduce downtime & risk with proactive, strategic PPM."
+          content="Proactive maintenance programmes integrating fire, electrical, HVAC, water and gas compliance — eliminating downtime, reducing cost, and safeguarding operational continuity."
         />
         <link rel="canonical" href="https://entirefm.com/services/ppm-compliance" />
       </Helmet>
 
       <ServiceSchema 
-        name="Planned Preventative Maintenance (PPM)"
-        description="Structured PPM schedules for building systems and M&E equipment"
+        name="PPM & Asset Lifecycle Governance"
+        description="Proactive maintenance programmes integrating fire, electrical, HVAC, water and gas compliance — eliminating downtime, reducing cost, and safeguarding operational continuity"
         provider="EntireFM"
         areaServed="United Kingdom"
       />
+      <SchemaMarkup schema={localBusinessSchema} />
       <FAQSchema faqs={faqs} />
+      <BreadcrumbSchema items={[
+        { label: "Services", href: "/services" },
+        { label: "PPM & Asset Lifecycle Governance" }
+      ]} />
 
       <div className="min-h-screen pt-20">
         <div className="container mx-auto px-6 py-8">
           <Breadcrumb items={[
             { label: "Services", href: "/services" },
-            { label: "PPM" }
+            { label: "PPM & Asset Lifecycle Governance" }
           ]} />
 
           <div className="grid lg:grid-cols-3 gap-12 mt-8">
             <div className="lg:col-span-2 space-y-12">
               <header>
                 <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  PPM That Eliminates Surprises, Downtime and Excuses.
+                  PPM & Asset Lifecycle Governance
                 </h1>
                 <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  A proactive maintenance strategy that stops failures before they cost you time, money and reputation.
+                  Proactive maintenance programmes integrating fire, electrical, HVAC, water and gas compliance — eliminating downtime, reducing cost, and safeguarding operational continuity.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request PPM Strategy Proposal</Link>
+                  <Button 
+                    size="lg" 
+                    onClick={() => trackProposalRequest('ppm_hero')}
+                    asChild
+                  >
+                    <Link to="/contact">Build My PPM Programme</Link>
                   </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <Link to="/contact">Book a Compliance & Asset Audit</Link>
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    onClick={() => trackDownload('ppm_compliance_calendar')}
+                    asChild
+                  >
+                    <Link to="/contact">Download PPM Compliance Calendar</Link>
                   </Button>
                 </div>
               </header>
 
-              {/* Why PPM Isn't Optional */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  Why PPM Isn't Optional
-                </h2>
-                <p className="text-lg font-light mb-6">
-                  <strong>Reactive only = chaos.</strong><br />
-                  <strong>PPM = predictable uptime, predictable budgets, predictable compliance.</strong>
-                </p>
-                <p className="text-lg font-light mb-4">We deliver maintenance that protects:</p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {[
-                    "People (safety + wellbeing)",
-                    "Operations (zero interruptions)",
-                    "Budgets (no last-minute CAPEX shocks)",
-                    "Directors (no enforcement notices or sleepless nights)"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  PPM is not a cost. It's your insurance against operational failure.
-                </p>
-              </section>
-
-              {/* Full-Scope PPM Portfolio */}
+              {/* PPM = Predictability */}
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Full-Scope PPM Portfolio
+                  PPM = Predictability, Compliance & Cost Control
                 </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  We maintain everything that keeps your building legal, functional, and profitable:
-                </p>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-charcoal text-white">
-                        <th className="p-4 text-left font-medium">Category</th>
-                        <th className="p-4 text-left font-medium">Includes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Mechanical & Electrical</td>
-                        <td className="p-4 font-light text-sm">HVAC, controls, pumps, motors, electrical systems</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Life Safety Systems</td>
-                        <td className="p-4 font-light text-sm">Fire alarms, emergency lighting, sprinklers, risers</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Water Hygiene</td>
-                        <td className="p-4 font-light text-sm">Legionella, sampling, tank cleaning, TMVs</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Gas & Boilers</td>
-                        <td className="p-4 font-light text-sm">Annual certs, plant optimisation</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Fabric & Civils</td>
-                        <td className="p-4 font-light text-sm">Fire doors, roofs, external repairs</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Specialist Equipment</td>
-                        <td className="p-4 font-light text-sm">Lifts, shutters, access systems</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  One provider. One plan. One accountable helpdesk.
-                </p>
-              </section>
-
-              {/* Compliance Standards */}
-              <section className="bg-charcoal text-white p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  Aligned to UK Building Compliance Standards
-                </h2>
-                <p className="text-lg font-light mb-6">You get full governance across:</p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {[
-                    "SFG20 maintenance schedules",
-                    "BS 5839 / BS 5266 / BS EN 12845 / BS 9990 compliance",
-                    "ACOP L8 & HSG274 requirements",
-                    "Gas Safety Regulations",
-                    "Insurance-required testing & documentation"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light text-gray-300">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  Compliance delivered proactively — not chased reactively.
-                </p>
-              </section>
-
-              {/* Perfect-Fit Strategy */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Your Perfect-Fit Maintenance Strategy
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  No copy-paste schedules. We engineer your plan based on:
+                <p className="text-lg text-muted-foreground font-light mb-6">
+                  When buildings are maintained reactively:
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   {[
-                    "Asset condition & age",
-                    "Occupancy & business risk",
-                    "Manufacturer guidance",
-                    "Energy consumption",
-                    "Site-specific compliance profile"
+                    { icon: AlertTriangle, text: "Compliance deadlines are missed" },
+                    { icon: AlertTriangle, text: "Failures disrupt operations and revenue" },
+                    { icon: AlertTriangle, text: "Insurance claims collapse" },
+                    { icon: AlertTriangle, text: "Directors face enforcement risk" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <item.icon className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mb-4">
+                  Planned Preventive Maintenance delivers:
+                </p>
+                <div className="space-y-4">
+                  {[
+                    "Zero missed compliance",
+                    "Zero business interruption surprises",
+                    "Lower lifetime asset costs"
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
@@ -196,128 +136,170 @@ const PPM = () => {
                     </div>
                   ))}
                 </div>
-                <div className="bg-muted/30 p-6 rounded-lg">
-                  <h3 className="font-medium mb-4">The output:</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Costed 12–60 month maintenance plan</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">SLA matrix for every asset class</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Critical asset firefighting eliminated</span>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-lg font-medium mt-6">
+                  Every stakeholder sleeps better.
+                </p>
               </section>
 
-              {/* Data-Driven Visibility */}
+              {/* Full Hard Services Integration */}
               <section className="bg-muted/30 p-8 rounded-lg">
                 <h2 className="text-3xl font-light mb-6">
-                  Data-Driven Visibility for Directors
+                  Full Hard Services Integration
                 </h2>
-                <p className="text-lg font-light mb-6">
-                  Every visit. Every test. Every risk.<br />
-                  <strong>Tracked. Logged. Validated.</strong>
-                </p>
                 <p className="text-muted-foreground font-light mb-6">
-                  Our PPM visibility includes:
+                  Compliance-led PPM covering every critical system:
                 </p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Real-time dashboards</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Live status tracking for all maintenance activities
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Traffic-light risk scoring</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Clear visual indicators of asset health
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Digital certificates + asset histories</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Complete documentation at your fingertips
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Compliance expiry alerts</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Never miss a critical deadline
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Failure root-cause reports</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Learn from issues to prevent recurrence
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Energy performance benchmarking</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Optimize efficiency and reduce costs
-                    </p>
-                  </div>
+                <div className="space-y-4">
+                  {[
+                    { icon: Flame, text: "Fire Safety — alarms, extinguishers, risers", link: "/services/fire-safety" },
+                    { icon: Zap, text: "Electrical — EICR, load checks, remedials", link: "/services/electrical-compliance" },
+                    { icon: Activity, text: "Emergency Lighting — BS 5266", link: "/services/emergency-lighting" },
+                    { icon: Droplet, text: "Water Hygiene — ACOP L8 & HSG274", link: "/services/water-hygiene" },
+                    { icon: Flame, text: "Gas — CP1/CP15 + CP42 catering compliance", link: "/services/gas-safety" },
+                    { icon: Snowflake, text: "HVAC — TM44, F-Gas, IAQ performance", link: "/services/hvac-compliance" }
+                  ].map((item, index) => (
+                    <Link 
+                      key={index}
+                      to={item.link}
+                      className="flex items-start gap-3 p-4 rounded-lg border border-border hover:border-accent transition-colors group"
+                    >
+                      <item.icon className="w-5 h-5 text-accent shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                      <span className="font-light group-hover:text-accent transition-colors">{item.text}</span>
+                    </Link>
+                  ))}
                 </div>
                 <p className="text-lg font-medium mt-6">
-                  You can prove compliance at any moment.
+                  One contract. One dashboard. Zero blindspots.
                 </p>
               </section>
 
-              {/* Commercial Win */}
-              <section className="bg-charcoal text-white p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  The Commercial Win: Save £££ Through Prevention
+              {/* Preventive + Predictive */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Preventive + Predictive Maintenance
                 </h2>
-                <p className="text-lg font-light mb-6">PPM reduces:</p>
-                <div className="space-y-3 mb-6">
+                <p className="text-muted-foreground font-light mb-6">
+                  We go beyond "calendar-based" servicing:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
                   {[
-                    "Emergency call-outs",
-                    "Asset downtime",
-                    "Disruption to operations",
-                    "High-cost failures & insurance exposure"
+                    "Asset condition scoring",
+                    "Failure forecasting",
+                    "Critical spares strategy",
+                    "Lifecycle cost modelling",
+                    "CAPEX investment planning"
                   ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light text-gray-300">{item}</span>
+                    <div key={index} className="border-l-4 border-accent pl-6">
+                      <h3 className="font-medium">{item}</h3>
                     </div>
                   ))}
                 </div>
-                <div className="bg-white/10 p-6 rounded-lg">
-                  <p className="text-2xl font-light">
-                    Typical savings: <span className="text-accent font-medium">20–35%</span> reduction in reactive spend within 12 months.
-                  </p>
+                <p className="text-lg font-medium mt-6">
+                  From compliance… to operational excellence.
+                </p>
+              </section>
+
+              {/* Digital Compliance */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Digital Compliance & CAFM Integration
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  Full governance through our platform:
+                </p>
+                <div className="space-y-4">
+                  {[
+                    { icon: Database, text: "Certificates & asset histories" },
+                    { icon: Activity, text: "SLA tracking" },
+                    { icon: CheckCircle2, text: "Workflows with automated reminders" },
+                    { icon: Shield, text: "Portfolio-wide compliance visibility" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <item.icon className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  Procurement teams finally get the control they&apos;ve wanted for years.
+                </p>
+              </section>
+
+              {/* Energy & ESG */}
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Energy & ESG Performance Wins
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  PPM delivers:
+                </p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    { icon: TrendingDown, text: "Lower breakdown-related energy spikes" },
+                    { icon: Activity, text: "Extended asset life" },
+                    { icon: CheckCircle2, text: "Higher EPC/BREEAM scores" },
+                    { icon: TrendingDown, text: "Reduced carbon footprint" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <item.icon className="w-5 h-5 text-accent shrink-0 mt-1" />
+                      <span className="font-light">{item.text}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-lg font-medium mt-6">
+                  Compliance that pays for itself.
+                </p>
+              </section>
+
+              {/* Sector Expertise */}
+              <section className="bg-muted/30 p-8 rounded-lg">
+                <h2 className="text-3xl font-light mb-6">
+                  Sector Expertise
+                </h2>
+                <p className="text-muted-foreground font-light mb-6">
+                  Scaling PPM intelligently for:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    { name: "Corporate estates", link: "/sectors/offices-corporate" },
+                    { name: "Retail & hospitality", link: "/sectors/retail-service-stations" },
+                    { name: "PBSA / residential", link: "/sectors/residential-pbsa" },
+                    { name: "Logistics & industrial", link: "/sectors/industrial-logistics" },
+                    { name: "Healthcare & public buildings", link: "/sectors" }
+                  ].map((sector, index) => (
+                    <Link 
+                      key={index}
+                      to={sector.link}
+                      className="flex items-start gap-3 p-4 rounded-lg border border-border hover:border-accent transition-colors group"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+                      <span className="font-light group-hover:text-accent transition-colors">{sector.name}</span>
+                    </Link>
+                  ))}
                 </div>
               </section>
 
-              {/* PPM + Reactive */}
+              {/* Case Studies Placeholder */}
               <section>
                 <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  PPM + Reactive = Total FM Assurance
+                  Case Studies
                 </h2>
-                <p className="text-muted-foreground font-light mb-6">We integrate:</p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Reactive response for unplanned faults</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      24/7 emergency support when things go wrong
+                <div className="space-y-6">
+                  <div className="border-l-4 border-accent pl-6 p-4 bg-muted/30 rounded-r-lg">
+                    <h3 className="font-medium mb-2">Corporate Workplace</h3>
+                    <p className="text-sm text-muted-foreground font-light">
+                      PPM uplift → unplanned callouts down 33%.
                     </p>
                   </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Planned interventions</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Prevent repeat failures through systematic maintenance
+                  <div className="border-l-4 border-accent pl-6 p-4 bg-muted/30 rounded-r-lg">
+                    <h3 className="font-medium mb-2">Industrial Facility</h3>
+                    <p className="text-sm text-muted-foreground font-light">
+                      Lifecycle extension → major CAPEX deferred by 2 years.
                     </p>
                   </div>
                 </div>
-                <p className="text-lg font-medium mt-6">
-                  Proactive + reactive = operational resilience
+                <p className="text-sm text-muted-foreground font-light mt-6 italic">
+                  * Real performance stories coming soon
                 </p>
               </section>
 
@@ -327,21 +309,25 @@ const PPM = () => {
               <section className="border-t border-border pt-12">
                 <div className="text-center bg-charcoal text-white p-12 rounded-lg">
                   <h2 className="text-3xl font-light mb-4">
-                    Take downtime off your worry list. Forever.
+                    Compliance without chaos. Uptime without uncertainty.
                   </h2>
                   <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
-                    We'll build you a full PPM plan with clear-cut risk priorities and budget certainty.
+                    Transform reactive maintenance into strategic asset management.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center">
-                    <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
-                      <Link to="/contact">Request a Full PPM Strategy Proposal</Link>
-                    </Button>
-                    <Button size="lg" variant="outline" asChild>
-                      <a href="tel:+448001234567" className="text-white border-white hover:bg-white hover:text-charcoal">
-                        Speak to a Compliance Specialist (24/7)
-                      </a>
+                    <Button 
+                      size="lg" 
+                      variant="secondary" 
+                      className="bg-white text-charcoal hover:bg-gray-100"
+                      onClick={() => trackProposalRequest('ppm_footer')}
+                      asChild
+                    >
+                      <Link to="/contact">Build My PPM Programme</Link>
                     </Button>
                   </div>
+                  <p className="text-sm text-gray-400 mt-6">
+                    📩 hello@entirefm.com
+                  </p>
                 </div>
               </section>
             </div>
