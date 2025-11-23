@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { GlobalSearch } from "@/components/shared/GlobalSearch";
@@ -132,9 +132,9 @@ const Header = ({ className }: { className?: string }) => {
 
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList className="space-x-1">
+            <NavigationMenuList className="space-x-2">
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-light">Services</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="text-sm font-light h-10">Services</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="w-[500px] p-4">
                     <div className="grid gap-2 mb-3">
@@ -142,12 +142,15 @@ const Header = ({ className }: { className?: string }) => {
                         <NavigationMenuLink key={item.to} asChild>
                           <Link 
                             to={item.to} 
-                            className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
+                            className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
                           >
-                            <div className="text-sm font-medium leading-none mb-1">{item.label}</div>
-                            {item.description && (
-                              <div className="text-xs text-muted-foreground">{item.description}</div>
-                            )}
+                            <div className="flex-1">
+                              <div className="text-sm font-medium leading-none mb-1">{item.label}</div>
+                              {item.description && (
+                                <div className="text-xs text-muted-foreground">{item.description}</div>
+                              )}
+                            </div>
+                            <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                           </Link>
                         </NavigationMenuLink>
                       ))}
@@ -156,9 +159,10 @@ const Header = ({ className }: { className?: string }) => {
                       <NavigationMenuLink asChild>
                         <Link 
                           to="/services" 
-                          className="block rounded-md p-3 text-sm font-medium hover:bg-accent transition-colors"
+                          className="flex items-center justify-between group rounded-md p-3 text-sm font-medium hover:bg-accent transition-colors"
                         >
-                          View All Services →
+                          View All Services
+                          <ArrowRight className="w-4 h-4" />
                         </Link>
                       </NavigationMenuLink>
                     </div>
@@ -167,12 +171,13 @@ const Header = ({ className }: { className?: string }) => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-light">Sectors</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="text-sm font-light h-10">Sectors</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[300px] gap-3 p-4">
+                  <div className="grid w-[300px] gap-2 p-4">
                     {sectorsItems.map(item => <NavigationMenuLink key={item.to} asChild>
-                        <Link to={item.to} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">{item.label}</div>
+                        <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+                          <div className="text-sm font-medium">{item.label}</div>
+                          <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </Link>
                       </NavigationMenuLink>)}
                   </div>
@@ -181,7 +186,7 @@ const Header = ({ className }: { className?: string }) => {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/fm-insights" className="text-sm font-light text-foreground hover:text-primary transition-colors px-3 py-2">
+                  <Link to="/fm-insights" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2 h-10 inline-flex items-center">
                     FM Insights
                   </Link>
                 </NavigationMenuLink>
@@ -189,20 +194,20 @@ const Header = ({ className }: { className?: string }) => {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/case-studies" className="text-sm font-light text-foreground hover:text-primary transition-colors px-3 py-2">
+                  <Link to="/case-studies" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2 h-10 inline-flex items-center">
                     Case Studies
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Button asChild size="sm" variant="default">
+                <Button asChild size="sm" variant="default" className="h-10">
                   <Link to="/request-proposal">Request Proposal</Link>
                 </Button>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Button asChild size="sm" variant="outline">
+                <Button asChild size="sm" variant="outline" className="h-10">
                   <a href="mailto:hello@entirefm.com" className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
                     <span className="hidden xl:inline">Emergency</span>
