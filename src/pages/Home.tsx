@@ -197,7 +197,7 @@ const Home = () => {
 
           <div className="text-center mt-12">
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-charcoal" asChild>
-              <Link to="/case-studies">
+              <Link to="/case-studies" className="bg-primary">
                 View All Case Studies
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
@@ -220,7 +220,7 @@ const Home = () => {
               <Link to="/contact">Request a Proposal</Link>
             </Button>
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-secondary" asChild>
-              <a href="tel:08001234567">Call 24/7 Helpdesk</a>
+              <a href="tel:08001234567" className="bg-primary">Call 24/7 Helpdesk</a>
             </Button>
           </div>
         </div>
