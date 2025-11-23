@@ -308,10 +308,10 @@ const PPMCalculator = () => {
                     <Card className="p-6">
                       <h3 className="font-medium mb-3">What's Next?</h3>
                       <p className="text-sm text-muted-foreground mb-4">
-                        We've sent a detailed breakdown to your email. Want to see how these savings apply to your specific estate?
+                        We've sent a detailed breakdown to your email. Get a comprehensive audit of your maintenance program.
                       </p>
                       <Button asChild className="w-full">
-                        <a href="/request-proposal">Request PPM Proposal</a>
+                        <a href="/request-proposal">Request Full Audit</a>
                       </Button>
                     </Card>
                   </>
