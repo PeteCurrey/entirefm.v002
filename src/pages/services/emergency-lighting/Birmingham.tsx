@@ -1,121 +1,172 @@
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
+import { Download, CheckCircle, AlertTriangle } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { FAQSection } from "@/components/shared/FAQSection";
 import { SchemaMarkup, LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { FAQSection } from "@/components/shared/FAQSection";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
-import { Download } from "lucide-react";
 
 const EmergencyLightingBirmingham = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
 
   const faqs = [
     {
-      question: "How often are emergency lighting tests required in Birmingham?",
-      answer: "Monthly functional tests and annual 3-hour duration tests as per BS 5266. High-footfall venues often require more frequent verification."
+      question: "How fast can faults be repaired?",
+      answer: "Failed batteries and defective luminaires are replaced immediately using emergency stock carried by engineers. Critical failures are resolved on-site during the initial test to prevent any compliance gaps."
     },
     {
-      question: "What happens if emergency lights fail during testing?",
-      answer: "We immediately categorize the risk, provide transparent remedial quotes, and schedule fast-track battery replacement or unit upgrades."
-    },
-    {
-      question: "Do you cover large venues like NEC Birmingham?",
-      answer: "Yes. We specialize in complex multi-zone sites with extensive emergency lighting systems requiring coordinated testing and rapid remediation."
+      question: "Are out-of-hours tests available?",
+      answer: "Yes - we schedule testing outside operational hours to minimize disruption. Weekend and night-time slots are available for 24/7 operations including logistics and manufacturing facilities."
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Compliance Birmingham | BS 5266 Testing & Rapid Remedials</title>
-        <meta name="description" content="EICR testing & remedials across logistics, manufacturing & corporate estates in the West Midlands. BS 5266 testing for high-footfall retail and logistics venues." />
+        <title>Emergency Lighting Compliance Birmingham | BS 5266 Testing Logistics & Retail</title>
+        <meta name="description" content="Life-safety illumination testing across Birmingham's logistics, retail and corporate spaces. BS 5266 compliance with rapid remedials." />
         <link rel="canonical" href="https://entirefm.com/emergency-lighting/birmingham" />
       </Helmet>
 
       <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Emergency Lighting Compliance - Birmingham", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Birmingham, UK" }} />
-      <BreadcrumbSchema items={[{ label: "Emergency Lighting", href: "/services/emergency-lighting" }, { label: "Birmingham" }]} />
-      <LocalBusinessSchema name="EntireFM Birmingham" address={{ street: "Birmingham Office", city: "Birmingham", postalCode: "B1 1AA", country: "UK" }} />
+      <BreadcrumbSchema items={[{ label: "Emergency Lighting Services", href: "/services/emergency-lighting" }, { label: "Birmingham" }]} />
+      <LocalBusinessSchema name="EntireFM Birmingham - Emergency Lighting" address={{ street: "Birmingham Office", city: "Birmingham", postalCode: "B1 1AA", country: "UK" }} />
 
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-background/90 z-10" />
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074&auto=format&fit=crop')` }} aria-label="Emergency lighting system in Birmingham public venue showing evacuation route signage" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-background/90 z-10" />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop')` }} aria-label="Emergency lighting compliance testing in Birmingham logistics facility" />
         
         <div className="relative z-20 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-light text-white mb-6">Emergency Lighting Compliance – Birmingham</h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">EICR testing & remedials across logistics, manufacturing & corporate estates in the West Midlands.</p>
-          
+          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">Life-safety illumination testing across Birmingham's logistics, retail and corporate spaces.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-birmingham')}>Request Safety Audit</Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary" onClick={() => trackDownload('bs5266-checklist')}>
-              <Download className="mr-2 h-5 w-5" />Download BS 5266 Checklist
-            </Button>
+            <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-birmingham')}>Request Audit</Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary" onClick={() => trackDownload('bs5266-checklist')}><Download className="mr-2 h-5 w-5" />BS 5266 Checklist</Button>
           </div>
         </div>
       </section>
 
-      <Breadcrumb items={[{ label: "Emergency Lighting", href: "/services/emergency-lighting" }, { label: "Birmingham" }]} />
+      <Breadcrumb items={[{ label: "Emergency Lighting Services", href: "/services/emergency-lighting" }, { label: "Birmingham" }]} />
 
       <div className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 space-y-16">
             <section>
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Why Birmingham Requires Absolute Compliance</h2>
-              <p className="text-lg text-muted-foreground mb-4">High volumes in retail + logistics → rapid evacuation scenarios demand enforced standards.</p>
-              <p className="text-lg text-muted-foreground mb-4">Failures lead to:</p>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-6">
-                <li>Legal liability for the Responsible Person</li>
-                <li>Insurance rejection for fire-related claims</li>
-                <li>Operational shutdown and enforcement penalties</li>
-              </ul>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Evacuation Safety in Birmingham</h2>
+              <p className="text-lg text-muted-foreground mb-4">Failure = shutdown + liability + reputational harm.</p>
+              <p className="text-lg text-muted-foreground mb-4">We protect exits, escape routes & safety-critical visibility.</p>
             </section>
 
             <section>
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Core Compliance Services (BS 5266)</h2>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li>Monthly functional tests of all emergency lighting units</li>
-                <li>Annual 3-hour duration discharge verification</li>
-                <li>Immediate remedials and battery replacements</li>
-                <li>Digital logbooks and audit-ready certificates</li>
-              </ul>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">BS 5266 Compliance</h2>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="bg-muted/30 p-6 rounded-lg">
+                  <h3 className="font-medium mb-3">Function tests monthly</h3>
+                  <p className="text-sm text-muted-foreground">Brief activation checks to verify all units operate</p>
+                </div>
+                <div className="bg-muted/30 p-6 rounded-lg">
+                  <h3 className="font-medium mb-3">Duration tests annually</h3>
+                  <p className="text-sm text-muted-foreground">Full 3-hour discharge verification</p>
+                </div>
+                <div className="bg-muted/30 p-6 rounded-lg">
+                  <h3 className="font-medium mb-3">Full documentation</h3>
+                  <p className="text-sm text-muted-foreground">Complete audit trail for inspections</p>
+                </div>
+              </div>
             </section>
 
             <section>
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Remedials Resolved Fast</h2>
-              <p className="text-lg text-muted-foreground">We proactively identify and fix safety concerns to eliminate shutdown risk and maintain continuous compliance.</p>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Rapid Remedials</h2>
+              <div className="bg-muted/50 border-l-4 border-primary p-6 rounded-r-lg">
+                <p className="text-lg text-muted-foreground">We restore compliance before safety is compromised. Failed batteries and defective luminaires are replaced immediately with emergency stock.</p>
+              </div>
             </section>
 
             <section>
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Audit-Ready Documentation</h2>
-              <p className="text-lg text-muted-foreground">Complete evidence and traceability for insurers, fire officers, and internal auditors—always accessible, always current.</p>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Governance Platform</h2>
+              <p className="text-lg text-muted-foreground mb-4">Evidence stored, accessible & audit-ready:</p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-1">Digital test records</h3>
+                    <p className="text-sm text-muted-foreground">Instant access to compliance history</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-1">Photographic evidence</h3>
+                    <p className="text-sm text-muted-foreground">Visual proof of every test</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-1">Compliance dashboard</h3>
+                    <p className="text-sm text-muted-foreground">Real-time portfolio status</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-medium mb-1">Renewal alerts</h3>
+                    <p className="text-sm text-muted-foreground">Automated test reminders</p>
+                  </div>
+                </div>
+              </div>
             </section>
 
             <section>
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Sectors Protected</h2>
-              <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                <li>NEC venues and exhibition spaces</li>
-                <li>Logistics and distribution centres</li>
-                <li>Corporate facilities and business parks</li>
-                <li>Retail and hospitality venues</li>
-              </ul>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">Sectors</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-card border p-6 rounded-lg">
+                  <h3 className="text-xl font-medium mb-2">Industrial</h3>
+                  <p className="text-muted-foreground">Manufacturing and warehouse evacuation safety</p>
+                </div>
+                <div className="bg-card border p-6 rounded-lg">
+                  <h3 className="text-xl font-medium mb-2">Retail</h3>
+                  <p className="text-muted-foreground">High-footfall shopping centre compliance</p>
+                </div>
+                <div className="bg-card border p-6 rounded-lg">
+                  <h3 className="text-xl font-medium mb-2">Hospitality</h3>
+                  <p className="text-muted-foreground">Hotel and leisure facility life safety</p>
+                </div>
+                <div className="bg-card border p-6 rounded-lg">
+                  <h3 className="text-xl font-medium mb-2">Business parks</h3>
+                  <p className="text-muted-foreground">Corporate estate evacuation protection</p>
+                </div>
+              </div>
             </section>
 
-            <section>
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">Local Coverage</h2>
-              <p className="text-lg text-muted-foreground">City Centre, Solihull, Sutton Coldfield, Digbeth, NEC, Tyseley</p>
+            <section className="bg-muted/20 p-8 rounded-lg">
+              <h2 className="text-3xl font-light mb-4">Case Study</h2>
+              <p className="text-muted-foreground italic">Lighting reliability restored for NEC-linked logistics firm.</p>
+            </section>
+
+            <section className="bg-muted/30 p-8 rounded-lg">
+              <h2 className="text-3xl font-light mb-6">Coverage</h2>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                {['City Centre', 'Digbeth', 'Solihull', 'NEC corridor'].map(area => (
+                  <div key={area} className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-primary" /><span>{area}</span></div>
+                ))}
+              </div>
+              <div className="mt-6 p-4 bg-background rounded-lg">
+                <p className="text-sm text-muted-foreground mb-2">📩 <a href="mailto:birmingham@entirefm.com" className="text-primary hover:underline">birmingham@entirefm.com</a></p>
+              </div>
             </section>
 
             <FAQSection faqs={faqs} />
 
-            <section className="bg-muted/50 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-4">Protect Your Business. Request a Safety Audit Today.</h2>
-              <div className="flex flex-col sm:flex-row gap-4 items-start">
-                <Button size="lg" variant="secondary" onClick={() => trackProposalRequest('emergency-lighting-birmingham-footer')}>Request Safety Audit</Button>
-                <div className="text-muted-foreground">
-                  <p className="font-medium">📩 birmingham@entirefm.com</p>
-                </div>
+            <section className="bg-gradient-to-br from-primary/10 to-primary/5 p-12 rounded-lg text-center">
+              <h2 className="text-3xl md:text-4xl font-light mb-6">Request 3-Hour Test</h2>
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">Protect your Birmingham logistics and commercial estates with comprehensive emergency lighting compliance.</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" variant="default" onClick={() => trackProposalRequest('emergency-lighting-birmingham-footer')}>Request 3-Hour Test</Button>
               </div>
+              <p className="text-sm text-muted-foreground mt-4">📩 birmingham@entirefm.com</p>
             </section>
           </div>
           <div className="lg:col-span-1"><div className="sticky top-4"><SidebarCTA /></div></div>
