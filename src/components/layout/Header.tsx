@@ -348,50 +348,140 @@ const Header = ({
 
         {/* Mobile Menu */}
         <AnimatePresence>
-          {isMobileMenuOpen && <motion.div className="lg:hidden py-4 border-t border-border max-h-[80vh] overflow-y-auto" initial={{
+          {isMobileMenuOpen && <motion.div className="lg:hidden absolute left-0 right-0 top-full bg-background/98 backdrop-blur-md shadow-lg border-t border-border" initial={{
           opacity: 0,
-          height: 0
+          y: -20
         }} animate={{
           opacity: 1,
-          height: "auto"
+          y: 0
         }} exit={{
           opacity: 0,
-          height: 0
+          y: -20
         }} transition={{
           duration: 0.3,
           ease: "easeInOut"
         }}>
-              <nav className="flex flex-col space-y-2">
-                {mobileNavItems.map((item, index) => <motion.div key={item.to} initial={{
-              opacity: 0,
-              x: -20
-            }} animate={{
-              opacity: 1,
-              x: 0
-            }} transition={{
-              delay: index * 0.03,
-              duration: 0.2
-            }}>
-                    <Link to={item.to} className="text-sm font-light text-foreground hover:text-primary transition-colors py-2 px-2 block" onClick={() => setIsMobileMenuOpen(false)}>
-                      {item.label}
-                    </Link>
-                  </motion.div>)}
-                <motion.div initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              delay: 0.2,
-              duration: 0.3
-            }}>
-                  <Button className="w-full mt-4" asChild>
-                    <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+              <nav className="flex flex-col max-h-[calc(100vh-5rem)] overflow-y-auto">
+                {/* Services Section */}
+                <div className="border-b border-border">
+                  <button 
+                    className="w-full text-left px-6 py-3 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors"
+                    onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}
+                  >
+                    Services
+                    <ArrowRight className={cn("w-4 h-4 transition-transform", openDropdown === 'services' && "rotate-90")} />
+                  </button>
+                  <AnimatePresence>
+                    {openDropdown === 'services' && (
+                      <motion.div 
+                        className="bg-muted/50"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {servicesItems.map((item) => (
+                          <Link 
+                            key={item.to}
+                            to={item.to} 
+                            className="block px-8 py-2 text-sm font-light hover:bg-accent transition-colors" 
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Sectors Section */}
+                <div className="border-b border-border">
+                  <button 
+                    className="w-full text-left px-6 py-3 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors"
+                    onClick={() => setOpenDropdown(openDropdown === 'sectors' ? null : 'sectors')}
+                  >
+                    Sectors
+                    <ArrowRight className={cn("w-4 h-4 transition-transform", openDropdown === 'sectors' && "rotate-90")} />
+                  </button>
+                  <AnimatePresence>
+                    {openDropdown === 'sectors' && (
+                      <motion.div 
+                        className="bg-muted/50"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {sectorsItems.map((item) => (
+                          <Link 
+                            key={item.to}
+                            to={item.to} 
+                            className="block px-8 py-2 text-sm font-light hover:bg-accent transition-colors" 
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Resources Section */}
+                <div className="border-b border-border">
+                  <button 
+                    className="w-full text-left px-6 py-3 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors"
+                    onClick={() => setOpenDropdown(openDropdown === 'resources' ? null : 'resources')}
+                  >
+                    Resources
+                    <ArrowRight className={cn("w-4 h-4 transition-transform", openDropdown === 'resources' && "rotate-90")} />
+                  </button>
+                  <AnimatePresence>
+                    {openDropdown === 'resources' && (
+                      <motion.div 
+                        className="bg-muted/50"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {resourcesItems.map((item) => (
+                          <Link 
+                            key={item.to}
+                            to={item.to} 
+                            className="block px-8 py-2 text-sm font-light hover:bg-accent transition-colors" 
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Quick Links */}
+                <div className="px-6 py-4 space-y-2">
+                  <Link to="/case-studies" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    Case Studies
+                  </Link>
+                  <Link to="/about" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    About
+                  </Link>
+                  <Link to="/contact" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                    Contact
+                  </Link>
+                </div>
+
+                {/* CTA */}
+                <div className="p-6 bg-muted/30">
+                  <Button className="w-full" asChild>
+                    <Link to="/request-proposal" onClick={() => setIsMobileMenuOpen(false)}>
                       Request Proposal
                     </Link>
                   </Button>
-                </motion.div>
+                </div>
               </nav>
             </motion.div>}
         </AnimatePresence>
