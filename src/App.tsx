@@ -161,6 +161,7 @@ import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
 import Search from "./pages/Search";
 import SearchAnalyticsDashboard from "./pages/SearchAnalyticsDashboard";
+import ProposalsDashboard from "./pages/admin/ProposalsDashboard";
 const queryClient = new QueryClient();
 const App = () => <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -340,8 +341,8 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/contact" element={<Contact />} />
               {/* Comparison Pages */}
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
-              {/* Site Map - Internal Tool */}
-              <Route path="/site-map" element={<SiteMap />} />
+              <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
+              <Route path="/admin/proposals" element={<ProposalsDashboard />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

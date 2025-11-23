@@ -12,6 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { CheckCircle2, Building2, MapPin, Wrench, FileText, Upload, X, Plus, Download, Phone } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
@@ -146,24 +147,72 @@ const RequestProposal = () => {
     }
   };
   const onSubmit = async (data: ProposalFormData) => {
-    console.log("Form submitted:", data);
-    console.log("Uploaded files:", uploadedFiles);
+    try {
+      // Transform services object to array of selected services
+      const selectedServices = Object.entries(data.services)
+        .filter(([_, value]) => value)
+        .map(([key]) => {
+          const serviceNames: Record<string, string> = {
+            fireSafety: 'Fire Safety & Life Protection',
+            electricalCompliance: 'Electrical Compliance',
+            emergencyLighting: 'Emergency Lighting',
+            waterHygiene: 'Water Hygiene & Legionella',
+            gasSafety: 'Gas Safety',
+            hvacFGas: 'HVAC & F-Gas',
+            ppmAsset: 'PPM & Asset Lifecycle',
+            other: data.servicesOther || 'Other'
+          };
+          return serviceNames[key] || key;
+        });
 
-    // Track conversion
-    trackProposalRequest("proposal_request_form");
+      // Transform sites data
+      const sitesData = data.sites.map(site => ({
+        city: site.cityRegion,
+        buildings: parseInt(site.numberOfBuildings) || 1,
+        is24_7: site.hours24_7
+      }));
 
-    // Show success state
-    setIsSubmitted(true);
+      const response = await supabase.functions.invoke('submit-proposal', {
+        body: {
+          company_name: data.companyName,
+          contact_name: data.contactName,
+          email: data.email,
+          phone: data.phone,
+          business_type: data.businessType,
+          sites: sitesData,
+          services: selectedServices,
+          has_existing_provider: data.existingFMProvider === 'yes',
+          contract_expiry_date: data.contractExpiryDate || null,
+          budget_approval_status: data.budgetApproval,
+          urgency_level: data.urgencyLevel,
+        }
+      });
 
-    // Show success toast
-    toast({
-      title: "Proposal Request Submitted",
-      description: "Thank you. Our team is reviewing your requirements."
-    });
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+
+      trackProposalRequest("proposal_request_form");
+      
+      setIsSubmitted(true);
+      
+      toast({
+        title: "Proposal Request Submitted",
+        description: "Thank you. Our team is reviewing your requirements."
+      });
+      
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } catch (error: any) {
+      console.error('Submission error:', error);
+      toast({
+        title: "Submission Failed",
+        description: error.message || "Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    }
   };
   const breadcrumbItems = [{
     label: "Home",

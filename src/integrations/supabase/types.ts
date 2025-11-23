@@ -14,16 +14,109 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      proposal_requests: {
+        Row: {
+          admin_notes: string | null
+          budget_approval_status: string | null
+          business_type: string | null
+          company_name: string
+          contact_name: string | null
+          contract_expiry_date: string | null
+          created_at: string
+          documents: Json | null
+          email: string
+          has_existing_provider: boolean | null
+          id: string
+          phone: string | null
+          services: Json
+          sites: Json
+          status: Database["public"]["Enums"]["proposal_status"]
+          updated_at: string
+          urgency_level: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          budget_approval_status?: string | null
+          business_type?: string | null
+          company_name: string
+          contact_name?: string | null
+          contract_expiry_date?: string | null
+          created_at?: string
+          documents?: Json | null
+          email: string
+          has_existing_provider?: boolean | null
+          id?: string
+          phone?: string | null
+          services?: Json
+          sites?: Json
+          status?: Database["public"]["Enums"]["proposal_status"]
+          updated_at?: string
+          urgency_level?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          budget_approval_status?: string | null
+          business_type?: string | null
+          company_name?: string
+          contact_name?: string | null
+          contract_expiry_date?: string | null
+          created_at?: string
+          documents?: Json | null
+          email?: string
+          has_existing_provider?: boolean | null
+          id?: string
+          phone?: string | null
+          services?: Json
+          sites?: Json
+          status?: Database["public"]["Enums"]["proposal_status"]
+          updated_at?: string
+          urgency_level?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      proposal_status:
+        | "new"
+        | "reviewing"
+        | "contacted"
+        | "quoted"
+        | "won"
+        | "lost"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +243,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      proposal_status: [
+        "new",
+        "reviewing",
+        "contacted",
+        "quoted",
+        "won",
+        "lost",
+      ],
+    },
   },
 } as const
