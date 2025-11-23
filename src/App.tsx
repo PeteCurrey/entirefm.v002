@@ -38,6 +38,7 @@ import Electrical from "./pages/services/Electrical";
 import FireAlarms from "./pages/services/FireAlarms";
 import FireSafety from "./pages/services/FireSafety";
 import ElectricalCompliance from "./pages/services/ElectricalCompliance";
+import HVACCompliance from "./pages/services/HVACCompliance";
 import FireLondon from "./pages/services/fire/London";
 import FireBirmingham from "./pages/services/fire/Birmingham";
 import FireManchester from "./pages/services/fire/Manchester";
@@ -142,6 +143,7 @@ const App = () => (
               <Route path="/services" element={<Services />} />
           <Route path="/services/hard-fm" element={<HardServices />} />
           <Route path="/services/hvac" element={<HVAC />} />
+          <Route path="/services/hvac-compliance" element={<HVACCompliance />} />
           <Route path="/services/ppm-compliance" element={<PPM />} />
           <Route path="/services/electrical" element={<Electrical />} />
           <Route path="/services/fire-alarms" element={<FireAlarms />} />
