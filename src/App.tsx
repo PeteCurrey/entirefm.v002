@@ -83,6 +83,20 @@ import DryRiserTesting from "./pages/services/DryRiserTesting";
 import LiftingEquipment from "./pages/services/LiftingEquipment";
 import HeightSafety from "./pages/services/HeightSafety";
 import SmokeVentSystems from "./pages/services/SmokeVentSystems";
+import RisingMains from "./pages/services/RisingMains";
+import FireCompartmentationSurveys from "./pages/services/FireCompartmentationSurveys";
+import PumpRoomMaintenance from "./pages/services/PumpRoomMaintenance";
+import PlantRoomRiskAssessments from "./pages/services/PlantRoomRiskAssessments";
+import GeneratorMaintenance from "./pages/services/GeneratorMaintenance";
+import LoadBankTesting from "./pages/services/LoadBankTesting";
+import UPSMaintenance from "./pages/services/UPSMaintenance";
+import DataCentreCoolingCompliance from "./pages/services/DataCentreCoolingCompliance";
+import DockLevellerMaintenance from "./pages/services/DockLevellerMaintenance";
+import RollerShutterMaintenance from "./pages/services/RollerShutterMaintenance";
+import EvacuationChairServicing from "./pages/services/EvacuationChairServicing";
+import CarParkCOMonitoring from "./pages/services/CarParkCOMonitoring";
+import WaterTreatmentPlantMaintenance from "./pages/services/WaterTreatmentPlantMaintenance";
+import BMSIntegrationTesting from "./pages/services/BMSIntegrationTesting";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
 import Birmingham from "./pages/locations/Birmingham";
@@ -172,6 +186,9 @@ import WhatIsAnEICR from "./pages/fm-insights/WhatIsAnEICR";
 import WhatIsATM44 from "./pages/fm-insights/WhatIsATM44";
 import WhatIsACOPL8 from "./pages/fm-insights/WhatIsACOPL8";
 import WhatIsFGasCompliance from "./pages/fm-insights/WhatIsFGasCompliance";
+import HowOftenEmergencyLightingTested from "./pages/fm-insights/HowOftenEmergencyLightingTested";
+import HowOftenFireAlarmsTested from "./pages/fm-insights/HowOftenFireAlarmsTested";
+import WhoIsTheResponsiblePerson from "./pages/fm-insights/WhoIsTheResponsiblePerson";
 import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
 import ELogbooks from "./pages/integrations/ELogbooks";
@@ -311,6 +328,20 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/services/lifting-equipment" element={<LiftingEquipment />} />
           <Route path="/services/height-safety" element={<HeightSafety />} />
           <Route path="/services/smoke-vent-systems" element={<SmokeVentSystems />} />
+          <Route path="/services/rising-mains" element={<RisingMains />} />
+          <Route path="/services/fire-compartmentation-surveys" element={<FireCompartmentationSurveys />} />
+          <Route path="/services/pump-room-maintenance" element={<PumpRoomMaintenance />} />
+          <Route path="/services/plant-room-risk-assessments" element={<PlantRoomRiskAssessments />} />
+          <Route path="/services/generator-maintenance" element={<GeneratorMaintenance />} />
+          <Route path="/services/load-bank-testing" element={<LoadBankTesting />} />
+          <Route path="/services/ups-maintenance" element={<UPSMaintenance />} />
+          <Route path="/services/data-centre-cooling-compliance" element={<DataCentreCoolingCompliance />} />
+          <Route path="/services/dock-leveller-maintenance" element={<DockLevellerMaintenance />} />
+          <Route path="/services/roller-shutter-maintenance" element={<RollerShutterMaintenance />} />
+          <Route path="/services/evacuation-chair-servicing" element={<EvacuationChairServicing />} />
+          <Route path="/services/car-park-co-monitoring" element={<CarParkCOMonitoring />} />
+          <Route path="/services/water-treatment-plant-maintenance" element={<WaterTreatmentPlantMaintenance />} />
+          <Route path="/services/bms-integration-testing" element={<BMSIntegrationTesting />} />
               <Route path="/sectors" element={<Sectors />} />
               <Route path="/sectors/industrial-logistics" element={<IndustrialLogistics />} />
               <Route path="/sectors/retail-service-stations" element={<RetailServiceStations />} />
@@ -365,6 +396,9 @@ const App = () => <QueryClientProvider client={queryClient}>
         <Route path="/fm-insights/what-is-a-tm44" element={<WhatIsATM44 />} />
         <Route path="/fm-insights/what-is-acop-l8" element={<WhatIsACOPL8 />} />
         <Route path="/fm-insights/what-is-f-gas-compliance" element={<WhatIsFGasCompliance />} />
+        <Route path="/fm-insights/how-often-emergency-lighting-tested" element={<HowOftenEmergencyLightingTested />} />
+        <Route path="/fm-insights/how-often-fire-alarms-tested" element={<HowOftenFireAlarmsTested />} />
+        <Route path="/fm-insights/who-is-the-responsible-person" element={<WhoIsTheResponsiblePerson />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/integrations/elogbooks" element={<ELogbooks />} />
@@ -399,6 +433,9 @@ const App = () => <QueryClientProvider client={queryClient}>
               {/* Comparison Pages */}
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
               <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
+              
+              {/* Site Map */}
+              <Route path="/site-map" element={<SiteMap />} />
               
               {/* Admin Routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
