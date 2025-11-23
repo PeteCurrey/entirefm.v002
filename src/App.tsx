@@ -183,20 +183,16 @@ import ProposalsDashboard from "./pages/admin/ProposalsDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
-
 const queryClient = new QueryClient();
 
 // Scroll to top on route change
 const ScrollToTop = () => {
   const location = useLocation();
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
-  
   return null;
 };
-
 const App = () => <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
