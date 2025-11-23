@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { GlobalSearch } from "@/components/shared/GlobalSearch";
 import { Badge } from "@/components/ui/badge";
+import { motion, AnimatePresence } from "framer-motion";
 const Header = ({ className }: { className?: string }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -136,22 +137,40 @@ const Header = ({ className }: { className?: string }) => {
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-sm font-light h-10">Services</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[500px] p-4">
+                  <motion.div 
+                    className="w-[500px] p-4"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  >
                     <div className="grid gap-2 mb-3">
-                      {servicesItems.map(item => (
+                      {servicesItems.map((item, index) => (
                         <NavigationMenuLink key={item.to} asChild>
-                          <Link 
-                            to={item.to} 
-                            className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground"
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.03, duration: 0.2 }}
                           >
-                            <div className="flex-1">
-                              <div className="text-sm font-medium leading-none mb-1">{item.label}</div>
-                              {item.description && (
-                                <div className="text-xs text-muted-foreground">{item.description}</div>
-                              )}
-                            </div>
-                            <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </Link>
+                            <Link 
+                              to={item.to} 
+                              className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]"
+                            >
+                              <div className="flex-1">
+                                <div className="text-sm font-medium leading-none mb-1">{item.label}</div>
+                                {item.description && (
+                                  <div className="text-xs text-muted-foreground">{item.description}</div>
+                                )}
+                              </div>
+                              <motion.div
+                                initial={{ x: -5, opacity: 0 }}
+                                whileHover={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                <ArrowRight className="w-4 h-4" />
+                              </motion.div>
+                            </Link>
+                          </motion.div>
                         </NavigationMenuLink>
                       ))}
                     </div>
@@ -159,61 +178,87 @@ const Header = ({ className }: { className?: string }) => {
                       <NavigationMenuLink asChild>
                         <Link 
                           to="/services" 
-                          className="flex items-center justify-between group rounded-md p-3 text-sm font-medium hover:bg-accent transition-colors"
+                          className="flex items-center justify-between group rounded-md p-3 text-sm font-medium hover:bg-accent transition-all duration-200 hover:scale-[1.02]"
                         >
                           View All Services
-                          <ArrowRight className="w-4 h-4" />
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                       </NavigationMenuLink>
                     </div>
-                  </div>
+                  </motion.div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-sm font-light h-10">Sectors</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[300px] gap-2 p-4">
-                    {sectorsItems.map(item => <NavigationMenuLink key={item.to} asChild>
-                        <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
-                          <div className="text-sm font-medium">{item.label}</div>
-                          <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </Link>
+                  <motion.div 
+                    className="grid w-[300px] gap-2 p-4"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  >
+                    {sectorsItems.map((item, index) => <NavigationMenuLink key={item.to} asChild>
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.03, duration: 0.2 }}
+                        >
+                          <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                            <div className="text-sm font-medium">{item.label}</div>
+                            <motion.div
+                              initial={{ x: -5, opacity: 0 }}
+                              whileHover={{ x: 0, opacity: 1 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <ArrowRight className="w-4 h-4" />
+                            </motion.div>
+                          </Link>
+                        </motion.div>
                       </NavigationMenuLink>)}
-                  </div>
+                  </motion.div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/fm-insights" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2 h-10 inline-flex items-center">
-                    FM Insights
-                  </Link>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link to="/fm-insights" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2 h-10 inline-flex items-center">
+                      FM Insights
+                    </Link>
+                  </motion.div>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/case-studies" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2 h-10 inline-flex items-center">
-                    Case Studies
-                  </Link>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link to="/case-studies" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2 h-10 inline-flex items-center">
+                      Case Studies
+                    </Link>
+                  </motion.div>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Button asChild size="sm" variant="default" className="h-10">
-                  <Link to="/request-proposal">Request Proposal</Link>
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild size="sm" variant="default" className="h-10">
+                    <Link to="/request-proposal">Request Proposal</Link>
+                  </Button>
+                </motion.div>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Button asChild size="sm" variant="outline" className="h-10">
-                  <a href="mailto:hello@entirefm.com" className="flex items-center gap-2">
-                    <Phone className="w-4 h-4" />
-                    <span className="hidden xl:inline">Emergency</span>
-                    <Badge variant="destructive" className="ml-1 text-[10px] px-1.5 py-0">24/7</Badge>
-                  </a>
-                </Button>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button asChild size="sm" variant="outline" className="h-10">
+                    <a href="mailto:hello@entirefm.com" className="flex items-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      <span className="hidden xl:inline">Emergency</span>
+                      <Badge variant="destructive" className="ml-1 text-[10px] px-1.5 py-0 animate-pulse">24/7</Badge>
+                    </a>
+                  </Button>
+                </motion.div>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -226,18 +271,47 @@ const Header = ({ className }: { className?: string }) => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && <div className="lg:hidden py-4 border-t border-border max-h-[80vh] overflow-y-auto">
-            <nav className="flex flex-col space-y-2">
-              {mobileNavItems.map(item => <Link key={item.to} to={item.to} className="text-sm font-light text-foreground hover:text-primary transition-colors py-2 px-2" onClick={() => setIsMobileMenuOpen(false)}>
-                  {item.label}
-                </Link>)}
-              <Button className="w-full mt-4" asChild>
-                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Request Proposal
-                </Link>
-              </Button>
-            </nav>
-          </div>}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              className="lg:hidden py-4 border-t border-border max-h-[80vh] overflow-y-auto"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <nav className="flex flex-col space-y-2">
+                {mobileNavItems.map((item, index) => (
+                  <motion.div
+                    key={item.to}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.03, duration: 0.2 }}
+                  >
+                    <Link 
+                      to={item.to} 
+                      className="text-sm font-light text-foreground hover:text-primary transition-colors py-2 px-2 block" 
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.3 }}
+                >
+                  <Button className="w-full mt-4" asChild>
+                    <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                      Request Proposal
+                    </Link>
+                  </Button>
+                </motion.div>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>;
 };
