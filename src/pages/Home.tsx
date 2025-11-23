@@ -15,7 +15,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-cover bg-center" style={{
         backgroundImage: `url(${heroImage})`
       }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent rounded-none" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
@@ -44,10 +44,10 @@ const Home = () => {
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl animate-fade-in-up" style={{
           animationDelay: "0.6s"
         }}>
-            <MetricCard value="41" label="Avg response time (mins)" />
-            <MetricCard value="87" label="First-time fix rate" suffix="%" />
-            <MetricCard value="120" label="Sites under management" suffix="+" />
-            <MetricCard value="98" label="SLA compliance" suffix="%" />
+            <MetricCard value="41" label="Avg response time (mins)" className="opacity-75" />
+            <MetricCard value="87" label="First-time fix rate" suffix="%" className="opacity-75" />
+            <MetricCard value="120" label="Sites under management" suffix="+" className="opacity-75" />
+            <MetricCard value="98" label="SLA compliance" suffix="%" className="opacity-75" />
           </div>
         </div>
 
