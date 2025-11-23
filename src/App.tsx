@@ -37,6 +37,7 @@ import PPM from "./pages/services/PPM";
 import Electrical from "./pages/services/Electrical";
 import FireAlarms from "./pages/services/FireAlarms";
 import FireSafety from "./pages/services/FireSafety";
+import ElectricalCompliance from "./pages/services/ElectricalCompliance";
 import FireLondon from "./pages/services/fire/London";
 import FireBirmingham from "./pages/services/fire/Birmingham";
 import FireManchester from "./pages/services/fire/Manchester";
@@ -145,6 +146,7 @@ const App = () => (
           <Route path="/services/electrical" element={<Electrical />} />
           <Route path="/services/fire-alarms" element={<FireAlarms />} />
           <Route path="/services/fire-safety" element={<FireSafety />} />
+          <Route path="/services/electrical-compliance" element={<ElectricalCompliance />} />
           <Route path="/fire/london" element={<FireLondon />} />
           <Route path="/fire/birmingham" element={<FireBirmingham />} />
           <Route path="/fire/manchester" element={<FireManchester />} />
