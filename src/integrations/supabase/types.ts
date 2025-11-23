@@ -74,6 +74,75 @@ export type Database = {
         }
         Relationships: []
       }
+      supplier_applications: {
+        Row: {
+          accreditation_documents: Json | null
+          admin_notes: string | null
+          company_name: string
+          contact_name: string
+          created_at: string
+          email: string
+          has_engineer_qualification_tracking: boolean | null
+          has_near_miss_reporting: boolean | null
+          has_safety_policy: boolean | null
+          id: string
+          insurance_documents: Json | null
+          phone: string
+          rams_template: Json | null
+          regions: string[]
+          registered_address: string
+          service_categories: string[]
+          status: string | null
+          updated_at: string
+          website: string | null
+          years_established: number
+        }
+        Insert: {
+          accreditation_documents?: Json | null
+          admin_notes?: string | null
+          company_name: string
+          contact_name: string
+          created_at?: string
+          email: string
+          has_engineer_qualification_tracking?: boolean | null
+          has_near_miss_reporting?: boolean | null
+          has_safety_policy?: boolean | null
+          id?: string
+          insurance_documents?: Json | null
+          phone: string
+          rams_template?: Json | null
+          regions: string[]
+          registered_address: string
+          service_categories: string[]
+          status?: string | null
+          updated_at?: string
+          website?: string | null
+          years_established: number
+        }
+        Update: {
+          accreditation_documents?: Json | null
+          admin_notes?: string | null
+          company_name?: string
+          contact_name?: string
+          created_at?: string
+          email?: string
+          has_engineer_qualification_tracking?: boolean | null
+          has_near_miss_reporting?: boolean | null
+          has_safety_policy?: boolean | null
+          id?: string
+          insurance_documents?: Json | null
+          phone?: string
+          rams_template?: Json | null
+          regions?: string[]
+          registered_address?: string
+          service_categories?: string[]
+          status?: string | null
+          updated_at?: string
+          website?: string | null
+          years_established?: number
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
