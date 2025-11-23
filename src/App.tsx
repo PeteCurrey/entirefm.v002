@@ -160,6 +160,7 @@ import FMInsights from "./pages/FMInsights";
 import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
 import Search from "./pages/Search";
+import SearchAnalyticsDashboard from "./pages/SearchAnalyticsDashboard";
 
 const queryClient = new QueryClient();
 
@@ -314,6 +315,7 @@ const App = () => (
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/tools/risk-diagnostic" element={<ComplianceDiagnostic />} />
               <Route path="/search" element={<Search />} />
+              <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
               <Route path="/fm-insights" element={<FMInsights />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/integrations" element={<Integrations />} />
