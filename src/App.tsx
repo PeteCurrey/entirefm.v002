@@ -85,6 +85,13 @@ import OfficesCorporate from "./pages/sectors/OfficesCorporate";
 import AviationTravelHub from "./pages/sectors/AviationTravelHub";
 import HospitalityLeisure from "./pages/sectors/HospitalityLeisure";
 import ResidentialPBSA from "./pages/sectors/ResidentialPBSA";
+import Offices from "./pages/sectors/Offices";
+import RetailHospitality from "./pages/sectors/RetailHospitality";
+import IndustrialLogisticsHub from "./pages/sectors/IndustrialLogisticsHub";
+import HealthcarePublic from "./pages/sectors/HealthcarePublic";
+import HotelsLeisure from "./pages/sectors/HotelsLeisure";
+import PBSAHub from "./pages/sectors/PBSAHub";
+import Education from "./pages/sectors/Education";
 import WhySwitch from "./pages/WhySwitch";
 import ComplianceDiagnostic from "./pages/ComplianceDiagnostic";
 import CostSavingsCalculator from "./pages/tools/CostSavingsCalculator";
@@ -224,6 +231,12 @@ const App = () => (
               <Route path="/sectors/aviation" element={<AviationTravelHub />} />
               <Route path="/sectors/hospitality-leisure" element={<HospitalityLeisure />} />
               <Route path="/sectors/residential-pbsa" element={<ResidentialPBSA />} />
+              <Route path="/sectors/offices" element={<Offices />} />
+              <Route path="/sectors/retail-hospitality" element={<RetailHospitality />} />
+              <Route path="/sectors/healthcare-public" element={<HealthcarePublic />} />
+              <Route path="/sectors/hotels-leisure" element={<HotelsLeisure />} />
+              <Route path="/sectors/pbsa" element={<PBSAHub />} />
+              <Route path="/sectors/education" element={<Education />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/locations/london" element={<London />} />
             <Route path="/locations/manchester" element={<Manchester />} />
