@@ -157,6 +157,15 @@ import PPMCalculator from "./pages/tools/PPMCalculator";
 import TM44Checker from "./pages/tools/TM44Checker";
 import WaterRiskGrader from "./pages/tools/WaterRiskGrader";
 import FMInsights from "./pages/FMInsights";
+import WhatIsFacilitiesManagement from "./pages/fm-insights/WhatIsFacilitiesManagement";
+import WhatIsHardFM from "./pages/fm-insights/WhatIsHardFM";
+import WhatIsSoftFM from "./pages/fm-insights/WhatIsSoftFM";
+import WhatIsStatutoryMaintenance from "./pages/fm-insights/WhatIsStatutoryMaintenance";
+import WhatIsPPM from "./pages/fm-insights/WhatIsPPM";
+import WhatIsAnEICR from "./pages/fm-insights/WhatIsAnEICR";
+import WhatIsATM44 from "./pages/fm-insights/WhatIsATM44";
+import WhatIsACOPL8 from "./pages/fm-insights/WhatIsACOPL8";
+import WhatIsFGasCompliance from "./pages/fm-insights/WhatIsFGasCompliance";
 import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
 import ELogbooks from "./pages/integrations/ELogbooks";
@@ -325,7 +334,16 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/tools/risk-diagnostic" element={<ComplianceDiagnostic />} />
               <Route path="/search" element={<Search />} />
               <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
-              <Route path="/fm-insights" element={<FMInsights />} />
+        <Route path="/fm-insights" element={<FMInsights />} />
+        <Route path="/fm-insights/what-is-facilities-management" element={<WhatIsFacilitiesManagement />} />
+        <Route path="/fm-insights/what-is-hard-fm" element={<WhatIsHardFM />} />
+        <Route path="/fm-insights/what-is-soft-fm" element={<WhatIsSoftFM />} />
+        <Route path="/fm-insights/what-is-statutory-maintenance" element={<WhatIsStatutoryMaintenance />} />
+        <Route path="/fm-insights/what-is-ppm" element={<WhatIsPPM />} />
+        <Route path="/fm-insights/what-is-an-eicr" element={<WhatIsAnEICR />} />
+        <Route path="/fm-insights/what-is-a-tm44" element={<WhatIsATM44 />} />
+        <Route path="/fm-insights/what-is-acop-l8" element={<WhatIsACOPL8 />} />
+        <Route path="/fm-insights/what-is-f-gas-compliance" element={<WhatIsFGasCompliance />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/integrations/elogbooks" element={<ELogbooks />} />
