@@ -103,11 +103,15 @@ const Header = ({ className }: { className?: string }) => {
     to: "/health-safety"
   }];
   const resourcesItems = [
-    { label: "All Resources", to: "/resources" },
     { label: "FM Insights", to: "/fm-insights" },
-    { label: "Compliance Calendar", to: "/resources/compliance-calendar" },
-    { label: "Fire Risk Guide", to: "/resources/fire-risk-guide" },
-    { label: "EICR Manual", to: "/resources/eicr-manual" }
+    { label: "Case Studies", to: "/case-studies" },
+    { label: "About", to: "/about" },
+    { label: "Contact", to: "/contact" },
+    { label: "Locations", to: "/locations" },
+    { label: "PPM Calculator", to: "/tools/ppm-calculator" },
+    { label: "Cost Savings Calculator", to: "/tools/cost-savings-calculator" },
+    { label: "SLA Benchmark", to: "/tools/sla-benchmark" },
+    { label: "Risk Diagnostic", to: "/tools/risk-diagnostic" }
   ];
   const mobileNavItems = [...servicesItems, ...sectorsItems, ...locationsItems, {
     label: "Case Studies",
@@ -222,23 +226,40 @@ const Header = ({ className }: { className?: string }) => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link to="/fm-insights" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2 h-10 inline-flex items-center">
-                      FM Insights
-                    </Link>
+                <NavigationMenuTrigger className="text-sm font-light h-10">Resources</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <motion.div 
+                    className="grid w-[300px] gap-2 p-4"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  >
+                    {resourcesItems.map((item, index) => (
+                      <NavigationMenuLink key={item.to} asChild>
+                        <motion.div
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.03, duration: 0.2 }}
+                        >
+                          <Link 
+                            to={item.to} 
+                            className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]"
+                          >
+                            <div className="text-sm font-medium">{item.label}</div>
+                            <motion.div
+                              initial={{ x: -5, opacity: 0 }}
+                              whileHover={{ x: 0, opacity: 1 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <ArrowRight className="w-4 h-4" />
+                            </motion.div>
+                          </Link>
+                        </motion.div>
+                      </NavigationMenuLink>
+                    ))}
                   </motion.div>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link to="/case-studies" className="text-sm font-light text-foreground hover:text-primary transition-colors px-4 py-2 h-10 inline-flex items-center">
-                      Case Studies
-                    </Link>
-                  </motion.div>
-                </NavigationMenuLink>
+                </NavigationMenuContent>
               </NavigationMenuItem>
 
               <NavigationMenuItem>

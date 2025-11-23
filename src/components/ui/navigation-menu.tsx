@@ -23,9 +23,8 @@ const NavigationMenuTrigger = React.forwardRef<React.ElementRef<typeof Navigatio
   className,
   children,
   ...props
-}, ref) => <NavigationMenuPrimitive.Trigger ref={ref} className="rounded-none">
-    {children}{" "}
-    <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-200 group-data-[state=open]:rotate-180" aria-hidden="true" />
+}, ref) => <NavigationMenuPrimitive.Trigger ref={ref} className={cn("rounded-none", className)}>
+    {children}
   </NavigationMenuPrimitive.Trigger>);
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
 const NavigationMenuContent = React.forwardRef<React.ElementRef<typeof NavigationMenuPrimitive.Content>, React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Content>>(({
