@@ -23,12 +23,16 @@ const ElectricalManchester = () => {
 
   const faqs = [
     {
-      question: "How often does a PBSA need EICR?",
-      answer: "Student accommodation requires EICR testing every 5 years minimum, with enhanced requirements for HMOs and PBSA developments. Many operators schedule more frequent inspections to maintain continuous licensing compliance."
+      question: "How often should commercial buildings in Manchester undergo EICR testing?",
+      answer: "Typically every 3–5 years depending on building use and insurer requirements. PBSA and HMO properties often require more frequent testing to maintain licensing compliance."
     },
     {
-      question: "Do you handle remedials too?",
-      answer: "Yes — priority. All C1/C2 defects receive immediate attention with same-day or next-day resolution to maintain student safety and licensing compliance."
+      question: "Can testing be done outside operating hours?",
+      answer: "Yes — we schedule around your business to prevent disruption. We offer evening, weekend and out-of-hours testing for operational facilities."
+    },
+    {
+      question: "Do you complete remedials as well?",
+      answer: "Yes. All urgent risks are prioritised and resolved promptly. C1 issues are addressed immediately, C2 issues scheduled rapidly with transparent costs."
     }
   ];
 
@@ -83,12 +87,12 @@ const ElectricalManchester = () => {
             Commercial Electrical Compliance – Manchester
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">
-            Student accommodations, major commercial estates and fast-growth infrastructure require robust electrical compliance.
+            EICR testing, fault remediation and certification across Manchester's commercial, PBSA and hospitality estates — zero downtime, zero excuses.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="text-lg" asChild>
-              <Link to="/contact">Request an Electrical Compliance Survey</Link>
+              <Link to="/contact">Request an Electrical Compliance Audit</Link>
             </Button>
             <Button 
               size="lg" 
@@ -114,145 +118,179 @@ const ElectricalManchester = () => {
             
             <section>
               <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Why Manchester Risk Is Higher
+                Protect People, Property & Operations in Manchester
               </h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                  Student accommodations, major commercial estates and fast-growth infrastructure = complex and ageing networks under strain.
+                  In a city with high student populations, large retail centres and older infrastructure in heavy daily use — electrical compliance is mission-critical.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                  Non-compliance here risks:
+                  Non-compliance risks:
                 </p>
                 <ul className="space-y-2 mb-6">
                   <li className="flex items-start gap-3">
                     <AlertTriangle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Fire and safety breaches</span>
+                    <span className="text-muted-foreground">Fire & operational shutdown</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <AlertTriangle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Operational shutdown</span>
+                    <span className="text-muted-foreground">Insurance rejection for claims</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <AlertTriangle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Insurance refusal</span>
+                    <span className="text-muted-foreground">Criminal liability under Electricity at Work Regulations</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <AlertTriangle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Student accommodation licensing failures</span>
+                    <span className="text-muted-foreground">Severe disruption to residents, guests & customers</span>
                   </li>
                 </ul>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  We ensure risk is controlled — and proven.
+                </p>
               </div>
             </section>
 
             <section>
               <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                What We Deliver
-              </h2>
-              <div className="prose prose-lg max-w-none">
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Full BS 7671 EICR</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Fault elimination + load balancing</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Evidence & traceability for insurers</span>
-                  </li>
-                </ul>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Remedials Without Delay
+                BS 7671 Testing & EICR Certification
               </h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Same-day urgent repairs where risk is present.
+                  We deliver:
                 </p>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Clear categorisation (C1/C2/C3/FI)</span>
+                    <span className="text-muted-foreground">Full fixed-wire testing (EICR)</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Immediate resolution for dangerous conditions</span>
+                    <span className="text-muted-foreground">Thermal imaging for early fault detection</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-muted-foreground">Operational uptime protected</span>
+                    <span className="text-muted-foreground">Surge protection and load balancing checks</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Distribution board inspection & labelling</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Earth bonding and protective device validation</span>
                   </li>
                 </ul>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Testing scheduled around live operations — minimal disruption.
+                </p>
               </div>
             </section>
 
             <section>
               <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Digital Audit-Ready Data
+                Remedials Resolved Fast
               </h2>
               <div className="prose prose-lg max-w-none">
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Every asset logged. Every fault resolved. Zero paper chase.
+                  We don't just hand you a list of problems — we fix them.
                 </p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="p-6">
-                    <FileCheck className="h-10 w-10 text-primary mb-4" />
-                    <h3 className="text-xl font-medium mb-2">Digital Archive</h3>
-                    <p className="text-muted-foreground">Every certificate digitally archived</p>
-                  </Card>
-                  <Card className="p-6">
-                    <Clock className="h-10 w-10 text-primary mb-4" />
-                    <h3 className="text-xl font-medium mb-2">Instant Access</h3>
-                    <p className="text-muted-foreground">Client portal with 24/7 documentation access</p>
-                  </Card>
-                </div>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">C1 issues resolved immediately</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">C2 issues scheduled rapidly with transparent costs</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">C3 recommendations included to future-proof estate</span>
+                  </li>
+                </ul>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Downtime reduced. Risk eliminated.
+                </p>
               </div>
             </section>
 
             <section>
               <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Sectors Covered
+                Compliance Documentation Without Stress
+              </h2>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                  We maintain:
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Digital EICR certification storage</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Asset-by-asset evidence trail</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Compliance score tracking</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                    <span className="text-muted-foreground">Alerts for renewal cycles</span>
+                  </li>
+                </ul>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Audit-ready governance — without paperwork pain.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                Sectors We Protect in Manchester
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 <Card className="p-6">
                   <Building2 className="h-8 w-8 text-primary mb-3" />
-                  <h3 className="text-lg font-medium mb-2">PBSA</h3>
-                  <p className="text-sm text-muted-foreground">Student accommodation safety</p>
+                  <h3 className="text-lg font-medium mb-2">PBSA / University Estates</h3>
+                  <p className="text-sm text-muted-foreground">Student accommodation and campus facilities</p>
                 </Card>
                 <Card className="p-6">
                   <Building2 className="h-8 w-8 text-primary mb-3" />
-                  <h3 className="text-lg font-medium mb-2">Trafford Park Industrial</h3>
-                  <p className="text-sm text-muted-foreground">Large-scale logistics compliance</p>
+                  <h3 className="text-lg font-medium mb-2">Trafford Park Industrial & Logistics</h3>
+                  <p className="text-sm text-muted-foreground">Large-scale distribution and manufacturing</p>
                 </Card>
                 <Card className="p-6">
                   <Building2 className="h-8 w-8 text-primary mb-3" />
-                  <h3 className="text-lg font-medium mb-2">Salford Quays Commercial</h3>
-                  <p className="text-sm text-muted-foreground">Corporate office electrical safety</p>
+                  <h3 className="text-lg font-medium mb-2">Hospitality & Entertainment</h3>
+                  <p className="text-sm text-muted-foreground">Hotels, venues and leisure facilities</p>
                 </Card>
                 <Card className="p-6">
                   <Building2 className="h-8 w-8 text-primary mb-3" />
-                  <h3 className="text-lg font-medium mb-2">Hospitality</h3>
-                  <p className="text-sm text-muted-foreground">Hotels and leisure venues</p>
+                  <h3 className="text-lg font-medium mb-2">Office & Corporate Estates</h3>
+                  <p className="text-sm text-muted-foreground">Business parks and commercial offices</p>
+                </Card>
+                <Card className="p-6">
+                  <Building2 className="h-8 w-8 text-primary mb-3" />
+                  <h3 className="text-lg font-medium mb-2">Retail Clusters</h3>
+                  <p className="text-sm text-muted-foreground">Including The Trafford Centre</p>
                 </Card>
               </div>
             </section>
 
             <section className="bg-muted/30 p-8 rounded-lg">
-              <h2 className="text-3xl font-light mb-6">Coverage</h2>
+              <h2 className="text-3xl font-light mb-6">Local Coverage</h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Serving: City Centre, Trafford, Didsbury, Bury, Stockport, Airport City.
+                City Centre, Salford Quays, Trafford, Didsbury, Bury, Stockport, Airport City.
               </p>
               <Card className="p-6 bg-background">
                 <p className="text-lg mb-4">
                   <strong>Email:</strong> <a href="mailto:manchester@entirefm.com" className="text-primary hover:underline">manchester@entirefm.com</a>
                 </p>
                 <Button size="lg" asChild>
-                  <Link to="/contact">Book Commercial EICR</Link>
+                  <Link to="/contact">Request EICR Survey</Link>
                 </Button>
               </Card>
             </section>
@@ -260,14 +298,14 @@ const ElectricalManchester = () => {
             <FAQSection faqs={faqs} />
 
             <section className="bg-primary text-white p-12 rounded-lg text-center">
-              <h2 className="text-3xl font-light mb-4">Protect Your Business. Request an EICR Today.</h2>
+              <h2 className="text-3xl font-light mb-4">Protect Compliance. Protect Operations. Protect People.</h2>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <Button size="lg" variant="secondary" asChild>
-                  <Link to="/contact">Book Electrical Compliance Survey</Link>
+                  <Link to="/contact">Book Electrical Compliance Audit</Link>
                 </Button>
               </div>
               <p className="mt-6 text-white/90">
-                Email: <a href="mailto:manchester@entirefm.com" className="underline">manchester@entirefm.com</a>
+                📩 <a href="mailto:manchester@entirefm.com" className="underline">manchester@entirefm.com</a>
               </p>
             </section>
           </div>
