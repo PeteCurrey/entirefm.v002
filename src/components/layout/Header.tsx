@@ -298,7 +298,7 @@ const Header = ({
                       delay: index * 0.03,
                       duration: 0.2
                     }}>
-                          <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                          <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02] font-extralight">
                             <div className="text-sm font-medium">{item.label}</div>
                             <motion.div initial={{
                           x: -5,

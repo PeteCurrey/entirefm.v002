@@ -23,7 +23,7 @@ const NavigationMenuTrigger = React.forwardRef<React.ElementRef<typeof Navigatio
   className,
   children,
   ...props
-}, ref) => <NavigationMenuPrimitive.Trigger ref={ref} className={cn("rounded-none", className)}>
+}, ref) => <NavigationMenuPrimitive.Trigger ref={ref} className="font-extralight px-[4px] text-base">
     {children}
   </NavigationMenuPrimitive.Trigger>);
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
