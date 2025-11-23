@@ -25,9 +25,8 @@ const proposalSchema = z.object({
   phone: z.string().min(10, "Valid phone number is required").max(20),
   sites: z.array(z.object({
     location: z.string().min(1, "Location is required"),
-    address: z.string().optional(),
+    address: z.string().optional()
   })).min(1, "At least one site location is required"),
-  
   // Step 2: Services Required
   services: z.object({
     fire: z.boolean(),
@@ -36,49 +35,46 @@ const proposalSchema = z.object({
     waterHygiene: z.boolean(),
     gas: z.boolean(),
     hvac: z.boolean(),
-    ppm: z.boolean(),
-  }).refine((data) => Object.values(data).some(v => v === true), {
-    message: "Please select at least one service",
+    ppm: z.boolean()
+  }).refine(data => Object.values(data).some(v => v === true), {
+    message: "Please select at least one service"
   }),
-  
   // Step 3: Estate Complexity
   assetCount: z.string().min(1, "Please select asset count range"),
   highRisk: z.string().min(1, "Please specify if high-risk environment"),
   operatingHours: z.string().min(1, "Please specify operating hours"),
-  
   // Step 4: Procurement
   contractExpiry: z.string().optional(),
   procurementStatus: z.string().min(1, "Please select procurement status"),
   budgetAwareness: z.string().min(1, "Please select budget awareness"),
-  
   // Step 5: Additional Information
-  additionalNotes: z.string().optional(),
+  additionalNotes: z.string().optional()
 });
-
 type ProposalFormData = z.infer<typeof proposalSchema>;
-
-const LOCATIONS = [
-  "London", "Birmingham", "Manchester", "Leeds", "Sheffield",
-  "Nottingham", "Derby", "Chesterfield", "Lincoln", "Leicester", "Liverpool", "Other"
-];
-
+const LOCATIONS = ["London", "Birmingham", "Manchester", "Leeds", "Sheffield", "Nottingham", "Derby", "Chesterfield", "Lincoln", "Leicester", "Liverpool", "Other"];
 const RequestProposal = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const { trackProposalRequest } = useConversionTracking();
+  const {
+    trackProposalRequest
+  } = useConversionTracking();
   const totalSteps = 5;
-
   const {
     register,
     handleSubmit,
     watch,
     setValue,
-    formState: { errors },
-    trigger,
+    formState: {
+      errors
+    },
+    trigger
   } = useForm<ProposalFormData>({
     resolver: zodResolver(proposalSchema),
     defaultValues: {
-      sites: [{ location: "", address: "" }],
+      sites: [{
+        location: "",
+        address: ""
+      }],
       services: {
         fire: false,
         electrical: false,
@@ -86,36 +82,35 @@ const RequestProposal = () => {
         waterHygiene: false,
         gas: false,
         hvac: false,
-        ppm: false,
-      },
-    },
+        ppm: false
+      }
+    }
   });
-
-  const sites = watch("sites") || [{ location: "", address: "" }];
+  const sites = watch("sites") || [{
+    location: "",
+    address: ""
+  }];
   const services = watch("services");
-
   const addSite = () => {
-    setValue("sites", [...sites, { location: "", address: "" }]);
+    setValue("sites", [...sites, {
+      location: "",
+      address: ""
+    }]);
   };
-
   const removeSite = (index: number) => {
     if (sites.length > 1) {
       setValue("sites", sites.filter((_, i) => i !== index));
     }
   };
-
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     setUploadedFiles([...uploadedFiles, ...files]);
   };
-
   const removeFile = (index: number) => {
     setUploadedFiles(uploadedFiles.filter((_, i) => i !== index));
   };
-
   const nextStep = async () => {
     let fieldsToValidate: any[] = [];
-    
     if (currentStep === 1) {
       fieldsToValidate = ["companyName", "contactName", "email", "phone", "sites"];
     } else if (currentStep === 2) {
@@ -125,19 +120,16 @@ const RequestProposal = () => {
     } else if (currentStep === 4) {
       fieldsToValidate = ["procurementStatus", "budgetAwareness"];
     }
-
     const isValid = await trigger(fieldsToValidate as any);
     if (isValid && currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     }
   };
-
   const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
   };
-
   const onSubmit = async (data: ProposalFormData) => {
     console.log("Form submitted:", data);
     console.log("Uploaded files:", uploadedFiles);
@@ -149,7 +141,7 @@ const RequestProposal = () => {
     // For now, we'll show a success toast
     toast({
       title: "Proposal Request Submitted",
-      description: "We'll review your requirements and send a tailored proposal within 24 hours.",
+      description: "We'll review your requirements and send a tailored proposal within 24 hours."
     });
 
     // In production, this would:
@@ -158,36 +150,31 @@ const RequestProposal = () => {
     // 3. Auto-send Capability Pack PDF
     // 4. Add to CRM/CAFM pipeline
   };
-
-  const breadcrumbItems = [
-    { label: "Home", href: "/" },
-    { label: "Request Proposal" },
-  ];
-
+  const breadcrumbItems = [{
+    label: "Home",
+    href: "/"
+  }, {
+    label: "Request Proposal"
+  }];
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Request FM Services Proposal | EntireFM",
     description: "Submit your facilities management requirements and receive a tailored proposal with fixed pricing, SLAs, and mobilisation timeline.",
-    url: "https://entirefm.co.uk/request-proposal",
+    url: "https://entirefm.co.uk/request-proposal"
   };
-
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Request FM Services Proposal | EntireFM</title>
-        <meta
-          name="description"
-          content="Submit your facilities management requirements and receive a tailored proposal with fixed pricing, SLAs, and mobilisation timeline within 24 hours."
-        />
+        <meta name="description" content="Submit your facilities management requirements and receive a tailored proposal with fixed pricing, SLAs, and mobilisation timeline within 24 hours." />
         <link rel="canonical" href="https://entirefm.co.uk/request-proposal" />
       </Helmet>
 
       <SchemaMarkup schema={schema} />
 
       <div className="bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <Breadcrumb items={breadcrumbItems} />
+        <div className="container mx-auto py-8 px-[16px]">
+          <Breadcrumb items={breadcrumbItems} className="my-[50px]" />
 
           <div className="max-w-4xl mx-auto mt-8">
             {/* Header */}
@@ -201,28 +188,14 @@ const RequestProposal = () => {
             </div>
 
             {/* Progress Indicator */}
-            <div className="mb-12">
-              <div className="flex justify-between items-center">
-                {[1, 2, 3, 4, 5].map((step) => (
-                  <div key={step} className="flex flex-col items-center flex-1">
-                    <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
-                        step <= currentStep
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-muted-foreground"
-                      }`}
-                    >
+            <div className="mb-12 py-0">
+              <div className="flex justify-between items-center py-0">
+                {[1, 2, 3, 4, 5].map(step => <div key={step} className="flex flex-col items-center flex-1 my-0 py-0">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${step <= currentStep ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
                       {step < currentStep ? <CheckCircle2 className="w-5 h-5" /> : step}
                     </div>
-                    {step < 5 && (
-                      <div
-                        className={`h-1 w-full transition-colors ${
-                          step < currentStep ? "bg-primary" : "bg-muted"
-                        }`}
-                      />
-                    )}
-                  </div>
-                ))}
+                    {step < 5 && <div className={`h-1 w-full transition-colors ${step < currentStep ? "bg-primary" : "bg-muted"}`} />}
+                  </div>)}
               </div>
               <div className="flex justify-between mt-2 text-xs text-muted-foreground">
                 <span>Business</span>
@@ -237,8 +210,7 @@ const RequestProposal = () => {
             <Card className="p-8">
               <form onSubmit={handleSubmit(onSubmit)}>
                 {/* Step 1: Business Details */}
-                {currentStep === 1 && (
-                  <div className="space-y-6">
+                {currentStep === 1 && <div className="space-y-6">
                     <div className="flex items-center gap-3 mb-6">
                       <Building2 className="w-6 h-6 text-primary" />
                       <h2 className="text-2xl font-light">Business Details</h2>
@@ -247,124 +219,76 @@ const RequestProposal = () => {
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="companyName">Company Name *</Label>
-                        <Input
-                          id="companyName"
-                          {...register("companyName")}
-                          placeholder="Your Company Ltd"
-                        />
-                        {errors.companyName && (
-                          <p className="text-sm text-destructive mt-1">{errors.companyName.message}</p>
-                        )}
+                        <Input id="companyName" {...register("companyName")} placeholder="Your Company Ltd" />
+                        {errors.companyName && <p className="text-sm text-destructive mt-1">{errors.companyName.message}</p>}
                       </div>
 
                       <div>
                         <Label htmlFor="contactName">Contact Name *</Label>
-                        <Input
-                          id="contactName"
-                          {...register("contactName")}
-                          placeholder="John Smith"
-                        />
-                        {errors.contactName && (
-                          <p className="text-sm text-destructive mt-1">{errors.contactName.message}</p>
-                        )}
+                        <Input id="contactName" {...register("contactName")} placeholder="John Smith" />
+                        {errors.contactName && <p className="text-sm text-destructive mt-1">{errors.contactName.message}</p>}
                       </div>
 
                       <div>
                         <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          {...register("email")}
-                          placeholder="john@company.com"
-                        />
-                        {errors.email && (
-                          <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
-                        )}
+                        <Input id="email" type="email" {...register("email")} placeholder="john@company.com" />
+                        {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
                       </div>
 
                       <div>
                         <Label htmlFor="phone">Phone Number *</Label>
-                        <Input
-                          id="phone"
-                          type="tel"
-                          {...register("phone")}
-                          placeholder="020 1234 5678"
-                        />
-                        {errors.phone && (
-                          <p className="text-sm text-destructive mt-1">{errors.phone.message}</p>
-                        )}
+                        <Input id="phone" type="tel" {...register("phone")} placeholder="020 1234 5678" />
+                        {errors.phone && <p className="text-sm text-destructive mt-1">{errors.phone.message}</p>}
                       </div>
                     </div>
 
                     <div className="space-y-4">
                       <Label>Site Location(s) *</Label>
-                      {sites.map((site, index) => (
-                        <div key={index} className="border rounded-lg p-4 space-y-4">
+                      {sites.map((site, index) => <div key={index} className="border rounded-lg p-4 space-y-4">
                           <div className="flex justify-between items-center">
                             <h3 className="font-medium">Site {index + 1}</h3>
-                            {sites.length > 1 && (
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => removeSite(index)}
-                              >
+                            {sites.length > 1 && <Button type="button" variant="ghost" size="sm" onClick={() => removeSite(index)}>
                                 <X className="w-4 h-4" />
-                              </Button>
-                            )}
+                              </Button>}
                           </div>
                           <div className="grid md:grid-cols-2 gap-4">
                             <div>
                               <Label>Location *</Label>
-                              <Select
-                                value={site.location}
-                                onValueChange={(value) => {
-                                  const newSites = [...sites];
-                                  newSites[index].location = value;
-                                  setValue("sites", newSites);
-                                }}
-                              >
+                              <Select value={site.location} onValueChange={value => {
+                          const newSites = [...sites];
+                          newSites[index].location = value;
+                          setValue("sites", newSites);
+                        }}>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Select location" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  {LOCATIONS.map((loc) => (
-                                    <SelectItem key={loc} value={loc}>
+                                  {LOCATIONS.map(loc => <SelectItem key={loc} value={loc}>
                                       {loc}
-                                    </SelectItem>
-                                  ))}
+                                    </SelectItem>)}
                                 </SelectContent>
                               </Select>
                             </div>
                             <div>
                               <Label>Address / Postcode (Optional)</Label>
-                              <Input
-                                value={site.address}
-                                onChange={(e) => {
-                                  const newSites = [...sites];
-                                  newSites[index].address = e.target.value;
-                                  setValue("sites", newSites);
-                                }}
-                                placeholder="SW1A 1AA"
-                              />
+                              <Input value={site.address} onChange={e => {
+                          const newSites = [...sites];
+                          newSites[index].address = e.target.value;
+                          setValue("sites", newSites);
+                        }} placeholder="SW1A 1AA" />
                             </div>
                           </div>
-                        </div>
-                      ))}
-                      {errors.sites && (
-                        <p className="text-sm text-destructive">{errors.sites.message}</p>
-                      )}
+                        </div>)}
+                      {errors.sites && <p className="text-sm text-destructive">{errors.sites.message}</p>}
                       <Button type="button" variant="outline" onClick={addSite} className="w-full">
                         <Plus className="w-4 h-4 mr-2" />
                         Add Another Site
                       </Button>
                     </div>
-                  </div>
-                )}
+                  </div>}
 
                 {/* Step 2: Services Required */}
-                {currentStep === 2 && (
-                  <div className="space-y-6">
+                {currentStep === 2 && <div className="space-y-6">
                     <div className="flex items-center gap-3 mb-6">
                       <Wrench className="w-6 h-6 text-primary" />
                       <h2 className="text-2xl font-light">Services Required</h2>
@@ -376,13 +300,7 @@ const RequestProposal = () => {
 
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="flex items-center space-x-2 border rounded-lg p-4">
-                        <Checkbox
-                          id="fire"
-                          checked={services.fire}
-                          onCheckedChange={(checked) =>
-                            setValue("services.fire", checked as boolean)
-                          }
-                        />
+                        <Checkbox id="fire" checked={services.fire} onCheckedChange={checked => setValue("services.fire", checked as boolean)} />
                         <Label htmlFor="fire" className="cursor-pointer flex-1">
                           <div className="font-medium">Fire Safety</div>
                           <div className="text-sm text-muted-foreground">
@@ -392,13 +310,7 @@ const RequestProposal = () => {
                       </div>
 
                       <div className="flex items-center space-x-2 border rounded-lg p-4">
-                        <Checkbox
-                          id="electrical"
-                          checked={services.electrical}
-                          onCheckedChange={(checked) =>
-                            setValue("services.electrical", checked as boolean)
-                          }
-                        />
+                        <Checkbox id="electrical" checked={services.electrical} onCheckedChange={checked => setValue("services.electrical", checked as boolean)} />
                         <Label htmlFor="electrical" className="cursor-pointer flex-1">
                           <div className="font-medium">Electrical Compliance</div>
                           <div className="text-sm text-muted-foreground">
@@ -408,13 +320,7 @@ const RequestProposal = () => {
                       </div>
 
                       <div className="flex items-center space-x-2 border rounded-lg p-4">
-                        <Checkbox
-                          id="emergencyLighting"
-                          checked={services.emergencyLighting}
-                          onCheckedChange={(checked) =>
-                            setValue("services.emergencyLighting", checked as boolean)
-                          }
-                        />
+                        <Checkbox id="emergencyLighting" checked={services.emergencyLighting} onCheckedChange={checked => setValue("services.emergencyLighting", checked as boolean)} />
                         <Label htmlFor="emergencyLighting" className="cursor-pointer flex-1">
                           <div className="font-medium">Emergency Lighting</div>
                           <div className="text-sm text-muted-foreground">
@@ -424,13 +330,7 @@ const RequestProposal = () => {
                       </div>
 
                       <div className="flex items-center space-x-2 border rounded-lg p-4">
-                        <Checkbox
-                          id="waterHygiene"
-                          checked={services.waterHygiene}
-                          onCheckedChange={(checked) =>
-                            setValue("services.waterHygiene", checked as boolean)
-                          }
-                        />
+                        <Checkbox id="waterHygiene" checked={services.waterHygiene} onCheckedChange={checked => setValue("services.waterHygiene", checked as boolean)} />
                         <Label htmlFor="waterHygiene" className="cursor-pointer flex-1">
                           <div className="font-medium">Water Hygiene</div>
                           <div className="text-sm text-muted-foreground">
@@ -440,13 +340,7 @@ const RequestProposal = () => {
                       </div>
 
                       <div className="flex items-center space-x-2 border rounded-lg p-4">
-                        <Checkbox
-                          id="gas"
-                          checked={services.gas}
-                          onCheckedChange={(checked) =>
-                            setValue("services.gas", checked as boolean)
-                          }
-                        />
+                        <Checkbox id="gas" checked={services.gas} onCheckedChange={checked => setValue("services.gas", checked as boolean)} />
                         <Label htmlFor="gas" className="cursor-pointer flex-1">
                           <div className="font-medium">Gas Safety</div>
                           <div className="text-sm text-muted-foreground">
@@ -456,13 +350,7 @@ const RequestProposal = () => {
                       </div>
 
                       <div className="flex items-center space-x-2 border rounded-lg p-4">
-                        <Checkbox
-                          id="hvac"
-                          checked={services.hvac}
-                          onCheckedChange={(checked) =>
-                            setValue("services.hvac", checked as boolean)
-                          }
-                        />
+                        <Checkbox id="hvac" checked={services.hvac} onCheckedChange={checked => setValue("services.hvac", checked as boolean)} />
                         <Label htmlFor="hvac" className="cursor-pointer flex-1">
                           <div className="font-medium">HVAC Compliance</div>
                           <div className="text-sm text-muted-foreground">
@@ -472,13 +360,7 @@ const RequestProposal = () => {
                       </div>
 
                       <div className="flex items-center space-x-2 border rounded-lg p-4">
-                        <Checkbox
-                          id="ppm"
-                          checked={services.ppm}
-                          onCheckedChange={(checked) =>
-                            setValue("services.ppm", checked as boolean)
-                          }
-                        />
+                        <Checkbox id="ppm" checked={services.ppm} onCheckedChange={checked => setValue("services.ppm", checked as boolean)} />
                         <Label htmlFor="ppm" className="cursor-pointer flex-1">
                           <div className="font-medium">PPM (Planned Maintenance)</div>
                           <div className="text-sm text-muted-foreground">
@@ -488,15 +370,11 @@ const RequestProposal = () => {
                       </div>
                     </div>
 
-                    {errors.services && (
-                      <p className="text-sm text-destructive">{errors.services.message}</p>
-                    )}
-                  </div>
-                )}
+                    {errors.services && <p className="text-sm text-destructive">{errors.services.message}</p>}
+                  </div>}
 
                 {/* Step 3: Estate Complexity */}
-                {currentStep === 3 && (
-                  <div className="space-y-6">
+                {currentStep === 3 && <div className="space-y-6">
                     <div className="flex items-center gap-3 mb-6">
                       <FileText className="w-6 h-6 text-primary" />
                       <h2 className="text-2xl font-light">Estate Complexity</h2>
@@ -504,10 +382,7 @@ const RequestProposal = () => {
 
                     <div>
                       <Label htmlFor="assetCount">Approximate Asset Count *</Label>
-                      <Select
-                        value={watch("assetCount")}
-                        onValueChange={(value) => setValue("assetCount", value)}
-                      >
+                      <Select value={watch("assetCount")} onValueChange={value => setValue("assetCount", value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select asset count range" />
                         </SelectTrigger>
@@ -519,17 +394,12 @@ const RequestProposal = () => {
                           <SelectItem value="1000+">1,000+ assets</SelectItem>
                         </SelectContent>
                       </Select>
-                      {errors.assetCount && (
-                        <p className="text-sm text-destructive mt-1">{errors.assetCount.message}</p>
-                      )}
+                      {errors.assetCount && <p className="text-sm text-destructive mt-1">{errors.assetCount.message}</p>}
                     </div>
 
                     <div>
                       <Label htmlFor="highRisk">High-Risk Environment? *</Label>
-                      <Select
-                        value={watch("highRisk")}
-                        onValueChange={(value) => setValue("highRisk", value)}
-                      >
+                      <Select value={watch("highRisk")} onValueChange={value => setValue("highRisk", value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select..." />
                         </SelectTrigger>
@@ -539,17 +409,12 @@ const RequestProposal = () => {
                           <SelectItem value="unsure">Unsure - Need assessment</SelectItem>
                         </SelectContent>
                       </Select>
-                      {errors.highRisk && (
-                        <p className="text-sm text-destructive mt-1">{errors.highRisk.message}</p>
-                      )}
+                      {errors.highRisk && <p className="text-sm text-destructive mt-1">{errors.highRisk.message}</p>}
                     </div>
 
                     <div>
                       <Label htmlFor="operatingHours">Operating Hours *</Label>
-                      <Select
-                        value={watch("operatingHours")}
-                        onValueChange={(value) => setValue("operatingHours", value)}
-                      >
+                      <Select value={watch("operatingHours")} onValueChange={value => setValue("operatingHours", value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select operating hours" />
                         </SelectTrigger>
@@ -560,16 +425,12 @@ const RequestProposal = () => {
                           <SelectItem value="shift">Shift-based operations</SelectItem>
                         </SelectContent>
                       </Select>
-                      {errors.operatingHours && (
-                        <p className="text-sm text-destructive mt-1">{errors.operatingHours.message}</p>
-                      )}
+                      {errors.operatingHours && <p className="text-sm text-destructive mt-1">{errors.operatingHours.message}</p>}
                     </div>
-                  </div>
-                )}
+                  </div>}
 
                 {/* Step 4: Procurement */}
-                {currentStep === 4 && (
-                  <div className="space-y-6">
+                {currentStep === 4 && <div className="space-y-6">
                     <div className="flex items-center gap-3 mb-6">
                       <Calendar className="w-6 h-6 text-primary" />
                       <h2 className="text-2xl font-light">Procurement Details</h2>
@@ -577,19 +438,12 @@ const RequestProposal = () => {
 
                     <div>
                       <Label htmlFor="contractExpiry">Current Contract Expiry Date (Optional)</Label>
-                      <Input
-                        id="contractExpiry"
-                        type="date"
-                        {...register("contractExpiry")}
-                      />
+                      <Input id="contractExpiry" type="date" {...register("contractExpiry")} />
                     </div>
 
                     <div>
                       <Label htmlFor="procurementStatus">Procurement Process Status *</Label>
-                      <Select
-                        value={watch("procurementStatus")}
-                        onValueChange={(value) => setValue("procurementStatus", value)}
-                      >
+                      <Select value={watch("procurementStatus")} onValueChange={value => setValue("procurementStatus", value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select status" />
                         </SelectTrigger>
@@ -601,17 +455,12 @@ const RequestProposal = () => {
                           <SelectItem value="renewal">Contract renewal review</SelectItem>
                         </SelectContent>
                       </Select>
-                      {errors.procurementStatus && (
-                        <p className="text-sm text-destructive mt-1">{errors.procurementStatus.message}</p>
-                      )}
+                      {errors.procurementStatus && <p className="text-sm text-destructive mt-1">{errors.procurementStatus.message}</p>}
                     </div>
 
                     <div>
                       <Label htmlFor="budgetAwareness">Budget Awareness *</Label>
-                      <Select
-                        value={watch("budgetAwareness")}
-                        onValueChange={(value) => setValue("budgetAwareness", value)}
-                      >
+                      <Select value={watch("budgetAwareness")} onValueChange={value => setValue("budgetAwareness", value)}>
                         <SelectTrigger>
                           <SelectValue placeholder="Select budget awareness" />
                         </SelectTrigger>
@@ -622,16 +471,12 @@ const RequestProposal = () => {
                           <SelectItem value="flexible">Flexible - focused on value</SelectItem>
                         </SelectContent>
                       </Select>
-                      {errors.budgetAwareness && (
-                        <p className="text-sm text-destructive mt-1">{errors.budgetAwareness.message}</p>
-                      )}
+                      {errors.budgetAwareness && <p className="text-sm text-destructive mt-1">{errors.budgetAwareness.message}</p>}
                     </div>
-                  </div>
-                )}
+                  </div>}
 
                 {/* Step 5: Submit */}
-                {currentStep === 5 && (
-                  <div className="space-y-6">
+                {currentStep === 5 && <div className="space-y-6">
                     <div className="flex items-center gap-3 mb-6">
                       <Upload className="w-6 h-6 text-primary" />
                       <h2 className="text-2xl font-light">Additional Information</h2>
@@ -639,12 +484,7 @@ const RequestProposal = () => {
 
                     <div>
                       <Label htmlFor="additionalNotes">Additional Notes (Optional)</Label>
-                      <Textarea
-                        id="additionalNotes"
-                        {...register("additionalNotes")}
-                        placeholder="Any specific requirements, constraints, or priorities we should know about..."
-                        rows={5}
-                      />
+                      <Textarea id="additionalNotes" {...register("additionalNotes")} placeholder="Any specific requirements, constraints, or priorities we should know about..." rows={5} />
                     </div>
 
                     <div>
@@ -653,14 +493,7 @@ const RequestProposal = () => {
                         Asset lists, current reports, site plans, or existing contracts
                       </p>
                       <div className="border-2 border-dashed rounded-lg p-6 text-center">
-                        <input
-                          type="file"
-                          id="fileUpload"
-                          multiple
-                          onChange={handleFileUpload}
-                          className="hidden"
-                          accept=".pdf,.doc,.docx,.xls,.xlsx,.csv"
-                        />
+                        <input type="file" id="fileUpload" multiple onChange={handleFileUpload} className="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.csv" />
                         <Label htmlFor="fileUpload" className="cursor-pointer">
                           <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
                           <p className="text-sm font-medium">Click to upload documents</p>
@@ -668,23 +501,14 @@ const RequestProposal = () => {
                         </Label>
                       </div>
 
-                      {uploadedFiles.length > 0 && (
-                        <div className="mt-4 space-y-2">
-                          {uploadedFiles.map((file, index) => (
-                            <div key={index} className="flex items-center justify-between p-2 bg-muted rounded">
+                      {uploadedFiles.length > 0 && <div className="mt-4 space-y-2">
+                          {uploadedFiles.map((file, index) => <div key={index} className="flex items-center justify-between p-2 bg-muted rounded">
                               <span className="text-sm truncate flex-1">{file.name}</span>
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => removeFile(index)}
-                              >
+                              <Button type="button" variant="ghost" size="sm" onClick={() => removeFile(index)}>
                                 <X className="w-4 h-4" />
                               </Button>
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                            </div>)}
+                        </div>}
                     </div>
 
                     <div className="bg-muted p-6 rounded-lg">
@@ -697,25 +521,18 @@ const RequestProposal = () => {
                         <li>✓ Optional site audit scheduled at your convenience</li>
                       </ul>
                     </div>
-                  </div>
-                )}
+                  </div>}
 
                 {/* Navigation Buttons */}
                 <div className="flex justify-between mt-8 pt-6 border-t">
-                  {currentStep > 1 && (
-                    <Button type="button" variant="outline" onClick={prevStep}>
+                  {currentStep > 1 && <Button type="button" variant="outline" onClick={prevStep}>
                       Previous
-                    </Button>
-                  )}
-                  {currentStep < totalSteps ? (
-                    <Button type="button" onClick={nextStep} className="ml-auto">
+                    </Button>}
+                  {currentStep < totalSteps ? <Button type="button" onClick={nextStep} className="ml-auto">
                       Next Step
-                    </Button>
-                  ) : (
-                    <Button type="submit" className="ml-auto">
+                    </Button> : <Button type="submit" className="ml-auto">
                       Submit Proposal Request
-                    </Button>
-                  )}
+                    </Button>}
                 </div>
               </form>
             </Card>
@@ -738,8 +555,6 @@ const RequestProposal = () => {
           </div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default RequestProposal;
