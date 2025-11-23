@@ -148,6 +148,9 @@ import IndustrialWarehouseSheffield from "./pages/case-studies/IndustrialWarehou
 import PBSAEstateManchester from "./pages/case-studies/PBSAEstateManchester";
 import SiteMap from "./pages/SiteMap";
 import RequestProposal from "./pages/RequestProposal";
+import PPMCalculator from "./pages/tools/PPMCalculator";
+import TM44Checker from "./pages/tools/TM44Checker";
+import WaterRiskGrader from "./pages/tools/WaterRiskGrader";
 
 const queryClient = new QueryClient();
 
@@ -163,6 +166,9 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/request-proposal" element={<RequestProposal />} />
+              <Route path="/tools/ppm-calculator" element={<PPMCalculator />} />
+              <Route path="/tools/tm44-checker" element={<TM44Checker />} />
+              <Route path="/tools/water-risk-grader" element={<WaterRiskGrader />} />
               <Route path="/services" element={<Services />} />
           <Route path="/services/hard-fm" element={<HardServices />} />
           <Route path="/services/hvac" element={<HVAC />} />
