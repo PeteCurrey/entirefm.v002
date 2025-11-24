@@ -123,6 +123,71 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://entirefm.com/services/rising-mains</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/fire-compartmentation-surveys</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/pump-room-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/plant-room-risk-assessments</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/generator-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/load-bank-testing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/data-centre-cooling-compliance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/dock-leveller-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/roller-shutter-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/evacuation-chair-servicing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/car-park-co-monitoring</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/water-treatment-plant-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/bms-integration-testing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
   
   <!-- Sector Pages - Priority 0.9 -->
   <url>
