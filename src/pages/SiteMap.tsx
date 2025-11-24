@@ -30,6 +30,27 @@ const EXPECTED_PAGES = {
   }, {
     url: '/services/ppm',
     name: 'PPM'
+  }, {
+    url: '/services/hard-services-fm',
+    name: 'Hard Services FM'
+  }, {
+    url: '/services/me-services',
+    name: 'M&E Services'
+  }, {
+    url: '/services/access-control',
+    name: 'Access Control'
+  }, {
+    url: '/services/emergency-systems',
+    name: 'Emergency Systems'
+  }, {
+    url: '/services/commercial-plumbing',
+    name: 'Commercial Plumbing'
+  }, {
+    url: '/services/building-inspections',
+    name: 'Building Inspections'
+  }, {
+    url: '/services/drone-inspections',
+    name: 'Drone Inspections'
   }],
   sectors: [{
     url: '/sectors/offices',
@@ -52,6 +73,18 @@ const EXPECTED_PAGES = {
   }, {
     url: '/sectors/education',
     name: 'Education'
+  }, {
+    url: '/sectors/airports',
+    name: 'Airports'
+  }, {
+    url: '/sectors/venues',
+    name: 'Venues'
+  }, {
+    url: '/sectors/residential',
+    name: 'Residential'
+  }, {
+    url: '/sectors/logistics-parks',
+    name: 'Logistics Parks'
   }],
   conversion: [{
     url: '/request-proposal',
@@ -62,6 +95,19 @@ const EXPECTED_PAGES = {
   }, {
     url: '/case-studies',
     name: 'Case Studies Index'
+  }],
+  corporate: [{
+    url: '/sustainability',
+    name: 'Sustainability'
+  }, {
+    url: '/innovation',
+    name: 'Innovation'
+  }, {
+    url: '/partnerships',
+    name: 'Partnerships'
+  }, {
+    url: '/awards',
+    name: 'Awards'
   }],
   caseStudies: [{
     url: '/case-studies/corporate-office-london',
@@ -150,12 +196,14 @@ const LOCATIONS = [{
 
 // Pages that actually exist in the routing
 const EXISTING_ROUTES = [
-// Compliance Hubs
-'/services/fire-safety', '/services/electrical-compliance', '/services/emergency-lighting', '/services/water-hygiene', '/services/gas-safety', '/services/hvac-compliance', '/services/ppm',
+// Compliance Hubs & Services
+'/services/fire-safety', '/services/electrical-compliance', '/services/emergency-lighting', '/services/water-hygiene', '/services/gas-safety', '/services/hvac-compliance', '/services/ppm', '/services/hard-services-fm', '/services/me-services', '/services/access-control', '/services/emergency-systems', '/services/commercial-plumbing', '/services/building-inspections', '/services/drone-inspections',
 // Sectors
-'/sectors/offices', '/sectors/retail-hospitality', '/sectors/industrial-logistics', '/sectors/healthcare-public', '/sectors/hotels-leisure', '/sectors/pbsa', '/sectors/education',
+'/sectors/offices', '/sectors/retail-hospitality', '/sectors/industrial-logistics', '/sectors/healthcare-public', '/sectors/hotels-leisure', '/sectors/pbsa', '/sectors/education', '/sectors/airports', '/sectors/venues', '/sectors/residential', '/sectors/logistics-parks',
 // Conversion
-'/resources', '/case-studies',
+'/request-proposal', '/resources', '/case-studies',
+// Corporate Pages
+'/sustainability', '/innovation', '/partnerships', '/awards',
 // Case Studies
 '/case-studies/corporate-office-london', '/case-studies/retail-complex-birmingham', '/case-studies/industrial-warehouse-sheffield', '/case-studies/pbsa-estate-manchester',
 // Compliance Location Pages
@@ -222,7 +270,7 @@ const SiteMap = () => {
   const filteredPages = useMemo(() => {
     const query = searchQuery.toLowerCase();
     if (!query) return null;
-    const allPages = [...EXPECTED_PAGES.complianceHubs, ...EXPECTED_PAGES.sectors, ...EXPECTED_PAGES.conversion, ...EXPECTED_PAGES.caseStudies, ...complianceLocationPages.map(p => ({
+    const allPages = [...EXPECTED_PAGES.complianceHubs, ...EXPECTED_PAGES.sectors, ...EXPECTED_PAGES.conversion, ...EXPECTED_PAGES.corporate, ...EXPECTED_PAGES.caseStudies, ...complianceLocationPages.map(p => ({
       url: p.url,
       name: `${p.service} - ${p.location}`
     }))];
@@ -240,6 +288,10 @@ const SiteMap = () => {
     })), ...EXPECTED_PAGES.conversion.map(p => ({
       ...p,
       category: 'Conversion',
+      status: checkPageStatus(p.url)
+    })), ...EXPECTED_PAGES.corporate.map(p => ({
+      ...p,
+      category: 'Corporate',
       status: checkPageStatus(p.url)
     })), ...EXPECTED_PAGES.caseStudies.map(p => ({
       ...p,
@@ -431,10 +483,35 @@ const SiteMap = () => {
                 </CardContent>
               </Card>
 
-              {/* 4. Compliance Location Pages Matrix */}
+              {/* 4. Corporate Pages */}
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle>4️⃣ Compliance Location Pages</CardTitle>
+                  <CardTitle>4️⃣ Corporate Pages</CardTitle>
+                  <CardDescription>Company information and credentials</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {EXPECTED_PAGES.corporate.map(page => {
+                  const status = checkPageStatus(page.url);
+                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                          <div className="flex items-center gap-3">
+                            {getStatusIcon(status)}
+                            <Link to={page.url} className="text-sm font-medium hover:underline">
+                              {page.name}
+                            </Link>
+                            <code className="text-xs text-muted-foreground">{page.url}</code>
+                          </div>
+                          {getStatusBadge(status)}
+                        </div>;
+                })}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 5. Compliance Location Pages Matrix */}
+              <Card className="mb-8">
+                <CardHeader>
+                  <CardTitle>5️⃣ Compliance Location Pages Matrix</CardTitle>
                   <CardDescription>
                     Service × Location Matrix: 7 services × 9 locations = 63 pages
                     {missingCount > 0 && <span className="block mt-2 text-red-600 font-semibold">
@@ -469,10 +546,10 @@ const SiteMap = () => {
                 </CardContent>
               </Card>
 
-              {/* 5. Case Studies */}
+              {/* 6. Case Studies */}
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle>5️⃣ Case Studies</CardTitle>
+                  <CardTitle>6️⃣ Case Studies</CardTitle>
                   <CardDescription>Client success stories and authority builders</CardDescription>
                 </CardHeader>
                 <CardContent>
