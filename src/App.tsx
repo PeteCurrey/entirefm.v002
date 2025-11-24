@@ -103,6 +103,12 @@ import AccessControl from "./pages/services/AccessControl";
 import EmergencySystems from "./pages/services/EmergencySystems";
 import CommercialPlumbing from "./pages/services/CommercialPlumbing";
 import BuildingInspections from "./pages/services/BuildingInspections";
+import SmartBuildingIoT from "./pages/services/SmartBuildingIoT";
+import ThermalImagingSurveys from "./pages/services/ThermalImagingSurveys";
+import PowerQualityAnalysis from "./pages/services/PowerQualityAnalysis";
+import WasteCompliance from "./pages/services/WasteCompliance";
+import WaterOptimisation from "./pages/services/WaterOptimisation";
+import SustainabilityMonitoring from "./pages/services/SustainabilityMonitoring";
 import DroneInspections from "./pages/services/DroneInspections";
 import CCTVMaintenance from "./pages/services/CCTVMaintenance";
 import ANPRSystems from "./pages/services/ANPRSystems";
@@ -391,6 +397,12 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/services/emergency-systems" element={<EmergencySystems />} />
           <Route path="/services/commercial-plumbing" element={<CommercialPlumbing />} />
           <Route path="/services/building-inspections" element={<BuildingInspections />} />
+          <Route path="/services/smart-building-iot" element={<SmartBuildingIoT />} />
+          <Route path="/services/thermal-imaging-surveys" element={<ThermalImagingSurveys />} />
+          <Route path="/services/power-quality-analysis" element={<PowerQualityAnalysis />} />
+          <Route path="/services/waste-compliance" element={<WasteCompliance />} />
+          <Route path="/services/water-optimisation" element={<WaterOptimisation />} />
+          <Route path="/services/sustainability-monitoring" element={<SustainabilityMonitoring />} />
           <Route path="/services/drone-inspections" element={<DroneInspections />} />
           <Route path="/services/cctv-maintenance" element={<CCTVMaintenance />} />
           <Route path="/services/anpr-systems" element={<ANPRSystems />} />
