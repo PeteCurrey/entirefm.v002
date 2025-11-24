@@ -88,6 +88,41 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://entirefm.com/services/hard-services-fm</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/me-services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/access-control</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/emergency-systems</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/commercial-plumbing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/building-inspections</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/drone-inspections</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
   
   <!-- Sector Pages - Priority 0.9 -->
   <url>
@@ -152,6 +187,26 @@
   </url>
   <url>
     <loc>https://entirefm.com/sectors/education</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/sectors/airports</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/sectors/venues</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/sectors/residential</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/sectors/logistics-parks</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -655,6 +710,26 @@
   </url>
   <url>
     <loc>https://entirefm.com/visual-standards</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/sustainability</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/innovation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/partnerships</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/awards</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
