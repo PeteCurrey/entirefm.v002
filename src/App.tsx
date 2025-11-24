@@ -104,6 +104,19 @@ import EmergencySystems from "./pages/services/EmergencySystems";
 import CommercialPlumbing from "./pages/services/CommercialPlumbing";
 import BuildingInspections from "./pages/services/BuildingInspections";
 import DroneInspections from "./pages/services/DroneInspections";
+import CCTVMaintenance from "./pages/services/CCTVMaintenance";
+import ANPRSystems from "./pages/services/ANPRSystems";
+import AccessControlAdvanced from "./pages/services/AccessControlAdvanced";
+import SecuritySystemsHealthcheck from "./pages/services/SecuritySystemsHealthcheck";
+import DrainageCCTVSurveys from "./pages/services/DrainageCCTVSurveys";
+import InterceptorMaintenance from "./pages/services/InterceptorMaintenance";
+import PumpStationServicing from "./pages/services/PumpStationServicing";
+import GreaseTrapMaintenance from "./pages/services/GreaseTrapMaintenance";
+import FumeExtractionLEV from "./pages/services/FumeExtractionLEV";
+import IndustrialRefrigeration from "./pages/services/IndustrialRefrigeration";
+import MEWPSafetyChecks from "./pages/services/MEWPSafetyChecks";
+import LoadingBaySafetySystems from "./pages/services/LoadingBaySafetySystems";
+import CompressorMaintenance from "./pages/services/CompressorMaintenance";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
 import Birmingham from "./pages/locations/Birmingham";
@@ -368,6 +381,19 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/services/commercial-plumbing" element={<CommercialPlumbing />} />
           <Route path="/services/building-inspections" element={<BuildingInspections />} />
           <Route path="/services/drone-inspections" element={<DroneInspections />} />
+          <Route path="/services/cctv-maintenance" element={<CCTVMaintenance />} />
+          <Route path="/services/anpr-systems" element={<ANPRSystems />} />
+          <Route path="/services/access-control-advanced" element={<AccessControlAdvanced />} />
+          <Route path="/services/security-systems-healthcheck" element={<SecuritySystemsHealthcheck />} />
+          <Route path="/services/drainage-cctv-surveys" element={<DrainageCCTVSurveys />} />
+          <Route path="/services/interceptor-maintenance" element={<InterceptorMaintenance />} />
+          <Route path="/services/pump-station-servicing" element={<PumpStationServicing />} />
+          <Route path="/services/grease-trap-maintenance" element={<GreaseTrapMaintenance />} />
+          <Route path="/services/fume-extraction-lev" element={<FumeExtractionLEV />} />
+          <Route path="/services/industrial-refrigeration" element={<IndustrialRefrigeration />} />
+          <Route path="/services/mewp-safety-checks" element={<MEWPSafetyChecks />} />
+          <Route path="/services/loading-bay-safety-systems" element={<LoadingBaySafetySystems />} />
+          <Route path="/services/compressor-maintenance" element={<CompressorMaintenance />} />
               <Route path="/sectors" element={<Sectors />} />
               <Route path="/sectors/industrial-logistics" element={<IndustrialLogistics />} />
               <Route path="/sectors/retail-service-stations" element={<RetailServiceStations />} />

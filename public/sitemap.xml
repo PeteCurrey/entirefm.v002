@@ -188,6 +188,71 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://entirefm.com/services/cctv-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/anpr-systems</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/access-control-advanced</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/security-systems-healthcheck</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/drainage-cctv-surveys</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/interceptor-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/pump-station-servicing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/grease-trap-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/fume-extraction-lev</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/industrial-refrigeration</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/mewp-safety-checks</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/loading-bay-safety-systems</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/compressor-maintenance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
   
   <!-- Sector Pages - Priority 0.9 -->
   <url>
