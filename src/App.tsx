@@ -146,6 +146,10 @@ import TenderSupport from "./pages/resources/TenderSupport";
 import Leadership from "./pages/Leadership";
 import SocialValue from "./pages/SocialValue";
 import VisualStandards from "./pages/VisualStandards";
+import Sustainability from "./pages/Sustainability";
+import Innovation from "./pages/Innovation";
+import Partnerships from "./pages/Partnerships";
+import Awards from "./pages/Awards";
 import GasLondon from "./pages/services/gas/London";
 import GasBirmingham from "./pages/services/gas/Birmingham";
 import GasManchester from "./pages/services/gas/Manchester";
@@ -357,6 +361,13 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/services/car-park-co-monitoring" element={<CarParkCOMonitoring />} />
           <Route path="/services/water-treatment-plant-maintenance" element={<WaterTreatmentPlantMaintenance />} />
           <Route path="/services/bms-integration-testing" element={<BMSIntegrationTesting />} />
+          <Route path="/services/hard-services-fm" element={<HardServicesFM />} />
+          <Route path="/services/me-services" element={<MEServices />} />
+          <Route path="/services/access-control" element={<AccessControl />} />
+          <Route path="/services/emergency-systems" element={<EmergencySystems />} />
+          <Route path="/services/commercial-plumbing" element={<CommercialPlumbing />} />
+          <Route path="/services/building-inspections" element={<BuildingInspections />} />
+          <Route path="/services/drone-inspections" element={<DroneInspections />} />
               <Route path="/sectors" element={<Sectors />} />
               <Route path="/sectors/industrial-logistics" element={<IndustrialLogistics />} />
               <Route path="/sectors/retail-service-stations" element={<RetailServiceStations />} />
@@ -449,6 +460,10 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/leadership" element={<Leadership />} />
               <Route path="/social-value" element={<SocialValue />} />
               <Route path="/visual-standards" element={<VisualStandards />} />
+              <Route path="/sustainability" element={<Sustainability />} />
+              <Route path="/innovation" element={<Innovation />} />
+              <Route path="/partnerships" element={<Partnerships />} />
+              <Route path="/awards" element={<Awards />} />
               <Route path="/tools/cost-savings-calculator" element={<CostSavingsCalculator />} />
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/careers" element={<Careers />} />
