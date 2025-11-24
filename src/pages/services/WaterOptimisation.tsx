@@ -92,7 +92,7 @@ const WaterOptimisation = () => {
                 <div>
                   <h3 className="text-xl font-medium mb-2">Flow Restrictors & Aerators</h3>
                   <p className="text-muted-foreground font-light leading-relaxed">
-                    Flow restrictors reduce water flow at taps and showers without affecting user experience. Standard tap flow: 12-15 litres/min. Aerated flow restrictors: 4-6 litres/min (60-70% reduction). Showers: standard 12-18 litres/min, restricted 6-9 litres/min. Aerators mix water with air creating sensation of normal flow despite reduced volume. Cost: £5-£20 per unit. Installation takes seconds. No maintenance required. No behaviour change required—savings are automatic. Typical payback: <12 months. Essential for offices, hotels, leisure centres, healthcare.
+                    Flow restrictors reduce water flow at taps and showers without affecting user experience. Standard tap flow: 12-15 litres/min. Aerated flow restrictors: 4-6 litres/min (60-70% reduction). Showers: standard 12-18 litres/min, restricted 6-9 litres/min. Aerators mix water with air creating sensation of normal flow despite reduced volume. Cost: £5-£20 per unit. Installation takes seconds. No maintenance required. No behaviour change required—savings are automatic. Typical payback: {'<'}12 months. Essential for offices, hotels, leisure centres, healthcare.
                   </p>
                 </div>
                 <div>
@@ -116,7 +116,7 @@ const WaterOptimisation = () => {
                 <div>
                   <h3 className="text-xl font-medium mb-2">Rainwater Harvesting</h3>
                   <p className="text-muted-foreground font-light leading-relaxed">
-                    Rainwater harvesting captures roof runoff for non-potable uses (toilet flushing, irrigation, cooling tower makeup, vehicle washing). System includes collection (gutters), filtration, storage (underground tanks 5-50m³), pumping, and distribution. Suitable for large buildings (&gt;5,000m²) with significant non-potable demand. Typical capture: 30-60% of roof area runoff (50-100 litres/m² roof/year). Capital cost: £15,000-£100,000+. Payback: 5-15 years (improves if installed during new-build). Benefits: cost reduction, BREEAM credits, reduced surface water drainage charges, flood risk mitigation.
+                    Rainwater harvesting captures roof runoff for non-potable uses (toilet flushing, irrigation, cooling tower makeup, vehicle washing). System includes collection (gutters), filtration, storage (underground tanks 5-50m³), pumping, and distribution. Suitable for large buildings ({'>'}5,000m²) with significant non-potable demand. Typical capture: 30-60% of roof area runoff (50-100 litres/m² roof/year). Capital cost: £15,000-£100,000+. Payback: 5-15 years (improves if installed during new-build). Benefits: cost reduction, BREEAM credits, reduced surface water drainage charges, flood risk mitigation.
                   </p>
                 </div>
                 <div>
@@ -180,7 +180,7 @@ const WaterOptimisation = () => {
                 <strong>Water Supply (Water Fittings) Regulations 1999:</strong> Prevents waste, misuse, contamination, and undue consumption of water. Requires water-efficient fittings in new installations. Enforced by water companies.
               </p>
               <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                <strong>BREEAM:</strong> Water credits awarded for consumption benchmarks (excellent: <0.4m³ per person per year for offices), flow restrictors, leak detection, rainwater harvesting, greywater recycling. Water consumption is significant BREEAM scoring category.
+                <strong>BREEAM:</strong> Water credits awarded for consumption benchmarks (excellent: {'<'}0.4m³ per person per year for offices), flow restrictors, leak detection, rainwater harvesting, greywater recycling. Water consumption is significant BREEAM scoring category.
               </p>
               <p className="text-muted-foreground font-light leading-relaxed">
                 <strong>ESG Reporting:</strong> Water consumption is a key environmental metric. Investors, regulators, and tenants increasingly demand water stewardship evidence—consumption data, reduction targets, and efficiency measures. Water optimisation supports ESG credentials and improves asset value.
