@@ -97,6 +97,13 @@ import EvacuationChairServicing from "./pages/services/EvacuationChairServicing"
 import CarParkCOMonitoring from "./pages/services/CarParkCOMonitoring";
 import WaterTreatmentPlantMaintenance from "./pages/services/WaterTreatmentPlantMaintenance";
 import BMSIntegrationTesting from "./pages/services/BMSIntegrationTesting";
+import HardServicesFM from "./pages/services/HardServicesFM";
+import MEServices from "./pages/services/MEServices";
+import AccessControl from "./pages/services/AccessControl";
+import EmergencySystems from "./pages/services/EmergencySystems";
+import CommercialPlumbing from "./pages/services/CommercialPlumbing";
+import BuildingInspections from "./pages/services/BuildingInspections";
+import DroneInspections from "./pages/services/DroneInspections";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
 import Birmingham from "./pages/locations/Birmingham";
