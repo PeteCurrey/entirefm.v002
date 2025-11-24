@@ -126,6 +126,118 @@ const Sectors = () => {
       </section>
 
       {/* CTA */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl font-light mb-4">
+              Explore Our Sectors
+            </h2>
+            <p className="text-lg text-muted-foreground font-light max-w-2xl">
+              Detailed sector guides with compliance insights, case studies, and service information.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/offices-corporate" className="hover:text-primary transition-colors">
+                  Offices & Corporate
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Grade A and multi-let schemes</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/industrial-logistics" className="hover:text-primary transition-colors">
+                  Industrial & Logistics
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Manufacturing and warehousing</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/retail-service-stations" className="hover:text-primary transition-colors">
+                  Retail & Service Stations
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Customer-facing operations</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/aviation" className="hover:text-primary transition-colors">
+                  Aviation & Transport
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Airports and terminals</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/hospitality-leisure" className="hover:text-primary transition-colors">
+                  Hospitality & Leisure
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Hotels and leisure facilities</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/residential-pbsa" className="hover:text-primary transition-colors">
+                  Residential & PBSA
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Student accommodation estates</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/airports" className="hover:text-primary transition-colors">
+                  Airport Facilities
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Terminal and airside infrastructure</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/venues" className="hover:text-primary transition-colors">
+                  Venues & Arenas
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">High-capacity event spaces</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/residential" className="hover:text-primary transition-colors">
+                  Residential Estate
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">BTR and PRS developments</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/logistics-parks" className="hover:text-primary transition-colors">
+                  Logistics Parks
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Distribution centres and estates</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/healthcare-public" className="hover:text-primary transition-colors">
+                  Healthcare & Public
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">HTM compliance environments</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <h3 className="font-medium mb-2">
+                <Link to="/sectors/education" className="hover:text-primary transition-colors">
+                  Education
+                </Link>
+              </h3>
+              <p className="text-sm text-muted-foreground font-light">Schools and academies</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
       <section className="py-16 bg-charcoal text-white">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-light mb-6">

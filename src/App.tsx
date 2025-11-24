@@ -117,6 +117,10 @@ import ResidentialPBSA from "./pages/sectors/ResidentialPBSA";
 import Offices from "./pages/sectors/Offices";
 import RetailHospitality from "./pages/sectors/RetailHospitality";
 import IndustrialLogisticsHub from "./pages/sectors/IndustrialLogisticsHub";
+import Airports from "./pages/sectors/Airports";
+import Venues from "./pages/sectors/Venues";
+import Residential from "./pages/sectors/Residential";
+import LogisticsParks from "./pages/sectors/LogisticsParks";
 import HealthcarePublic from "./pages/sectors/HealthcarePublic";
 import HotelsLeisure from "./pages/sectors/HotelsLeisure";
 import PBSAHub from "./pages/sectors/PBSAHub";
@@ -359,6 +363,10 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/sectors/hotels-leisure" element={<HotelsLeisure />} />
               <Route path="/sectors/pbsa" element={<PBSAHub />} />
               <Route path="/sectors/education" element={<Education />} />
+              <Route path="/sectors/airports" element={<Airports />} />
+              <Route path="/sectors/venues" element={<Venues />} />
+              <Route path="/sectors/residential" element={<Residential />} />
+              <Route path="/sectors/logistics-parks" element={<LogisticsParks />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/locations/london" element={<London />} />
             <Route path="/locations/manchester" element={<Manchester />} />
