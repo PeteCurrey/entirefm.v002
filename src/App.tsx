@@ -405,6 +405,18 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/services/mewp-safety-checks" element={<MEWPSafetyChecks />} />
           <Route path="/services/loading-bay-safety-systems" element={<LoadingBaySafetySystems />} />
           <Route path="/services/compressor-maintenance" element={<CompressorMaintenance />} />
+          <Route path="/services/bmu-cradle-servicing" element={<BMUCradleServicing />} />
+          <Route path="/services/mansafe-testing" element={<MansafeTesting />} />
+          <Route path="/services/abseil-rail-certification" element={<AbseilRailCertification />} />
+          <Route path="/services/roof-safety-inspections" element={<RoofSafetyInspections />} />
+          <Route path="/services/smoke-vent-systems" element={<SmokeVentSystems />} />
+          <Route path="/services/staircase-pressurisation" element={<StairwellPressurisationFans />} />
+          <Route path="/services/car-park-fume-extraction" element={<CarParkFumeExtraction />} />
+          <Route path="/services/indoor-air-quality-testing" element={<IndoorAirQualityTesting />} />
+          <Route path="/services/energy-optimisation" element={<EnergyOptimisation />} />
+          <Route path="/services/environmental-noise-surveys" element={<EnvironmentalNoiseSurveys />} />
+          <Route path="/services/air-filtration-hepa" element={<AirFiltrationHEPA />} />
+          <Route path="/services/dilapidation-compliance" element={<DilapidationCompliance />} />
               <Route path="/sectors" element={<Sectors />} />
               <Route path="/sectors/industrial-logistics" element={<IndustrialLogistics />} />
               <Route path="/sectors/retail-service-stations" element={<RetailServiceStations />} />
