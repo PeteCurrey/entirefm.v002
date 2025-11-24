@@ -291,7 +291,7 @@ export const GlobalSearch = () => {
   return <div ref={searchRef} className="relative w-full max-w-md">
       <div className="relative opacity-65">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-        <Input type="text" placeholder="Search services, sectors, resources..." value={query} onChange={e => setQuery(e.target.value)} onFocus={handleFocus} className="pr-4 pl-[40px] ml-0" />
+        <Input type="text" value={query} onChange={e => setQuery(e.target.value)} onFocus={handleFocus} className="pr-4 pl-[40px] ml-0" placeholder="Search ..." />
         {query && <Button variant="ghost" size="sm" className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6 p-0" onClick={() => {
         setQuery("");
         setResults([]);
