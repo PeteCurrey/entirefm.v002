@@ -12,9 +12,11 @@ const Locations = () => {
     { city: "Leeds", region: "Yorkshire", slug: "leeds" },
     { city: "Sheffield", region: "South Yorkshire", slug: "sheffield" },
     { city: "Liverpool", region: "Merseyside", slug: "liverpool" },
-    { city: "Newcastle", region: "North East", slug: "newcastle" },
     { city: "Leicester", region: "East Midlands", slug: "leicester" },
-    { city: "Bristol", region: "South West", slug: "bristol" }
+    { city: "Nottingham", region: "Nottinghamshire", slug: "nottingham" },
+    { city: "Derby", region: "Derbyshire", slug: "derby" },
+    { city: "Chesterfield", region: "North Derbyshire", slug: "chesterfield" },
+    { city: "Lincoln", region: "Lincolnshire", slug: "lincoln" }
   ];
 
   return (

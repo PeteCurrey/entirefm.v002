@@ -104,6 +104,10 @@ import Leeds from "./pages/locations/Leeds";
 import Sheffield from "./pages/locations/Sheffield";
 import Liverpool from "./pages/locations/Liverpool";
 import Leicester from "./pages/locations/Leicester";
+import Nottingham from "./pages/locations/Nottingham";
+import Derby from "./pages/locations/Derby";
+import Chesterfield from "./pages/locations/Chesterfield";
+import Lincoln from "./pages/locations/Lincoln";
 import IndustrialLogistics from "./pages/sectors/IndustrialLogistics";
 import RetailServiceStations from "./pages/sectors/RetailServiceStations";
 import OfficesCorporate from "./pages/sectors/OfficesCorporate";
@@ -363,6 +367,10 @@ const App = () => <QueryClientProvider client={queryClient}>
             <Route path="/locations/sheffield" element={<Sheffield />} />
             <Route path="/locations/liverpool" element={<Liverpool />} />
             <Route path="/locations/leicester" element={<Leicester />} />
+            <Route path="/locations/nottingham" element={<Nottingham />} />
+            <Route path="/locations/derby" element={<Derby />} />
+            <Route path="/locations/chesterfield" element={<Chesterfield />} />
+            <Route path="/locations/lincoln" element={<Lincoln />} />
               <Route path="/technology" element={<Technology />} />
           <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/case-studies/logistics" element={<LogisticsDistributionHub />} />
