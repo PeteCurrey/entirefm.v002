@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { GlobalSearch } from "@/components/shared/GlobalSearch";
@@ -317,22 +317,6 @@ const Header = ({
                       </NavigationMenuLink>)}
                   </motion.div>
                 </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <motion.div whileHover={{
-                scale: 1.05
-              }} whileTap={{
-                scale: 0.95
-              }}>
-                  <Button asChild size="sm" variant="outline" className="h-10">
-                    <a href="mailto:hello@entirefm.com" className="flex items-center gap-2">
-                      <Phone className="w-4 h-4" />
-                      <span className="hidden xl:inline">Emergency</span>
-                      <Badge variant="destructive" className="ml-1 text-[10px] px-1.5 py-0 animate-pulse">24/7</Badge>
-                    </a>
-                  </Button>
-                </motion.div>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
