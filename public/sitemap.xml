@@ -253,6 +253,66 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://entirefm.com/services/bmu-cradle-servicing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/mansafe-testing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/abseil-rail-certification</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/roof-safety-inspections</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/smoke-vent-systems</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/staircase-pressurisation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/car-park-fume-extraction</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/indoor-air-quality-testing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/energy-optimisation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/environmental-noise-surveys</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/air-filtration-hepa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://entirefm.com/services/dilapidation-compliance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
   
   <!-- Sector Pages - Priority 0.9 -->
   <url>
