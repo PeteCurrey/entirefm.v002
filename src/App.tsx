@@ -253,6 +253,18 @@ import ProposalsDashboard from "./pages/admin/ProposalsDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
+import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
+import EmergencyResponse from "./pages/services/EmergencyResponse";
+import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
+import DisasterRecovery from "./pages/services/DisasterRecovery";
+import OccupierExperience from "./pages/fm-operations/OccupierExperience";
+import Concierge from "./pages/soft-services/Concierge";
+import SpacePlanning from "./pages/services/SpacePlanning";
+import SpecialistCleaning from "./pages/soft-services/SpecialistCleaning";
+import GroundsMaintenance from "./pages/soft-services/GroundsMaintenance";
+import WasteRecycling from "./pages/soft-services/WasteRecycling";
+import FMStrategy from "./pages/fm-operations/FMStrategy";
+import FMOperationsTenderSupport from "./pages/fm-operations/TenderSupport";
 const queryClient = new QueryClient();
 
 // Scroll to top on route change
@@ -532,6 +544,20 @@ const App = () => <QueryClientProvider client={queryClient}>
               {/* Comparison Pages */}
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
               <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
+              
+              {/* Wave 7: FM Operations & Soft Services */}
+              <Route path="/fm-operations/asset-lifecycle" element={<AssetLifecycle />} />
+              <Route path="/fm-operations/business-continuity" element={<BusinessContinuity />} />
+              <Route path="/fm-operations/occupier-experience" element={<OccupierExperience />} />
+              <Route path="/fm-operations/fm-strategy" element={<FMStrategy />} />
+              <Route path="/fm-operations/tender-support" element={<FMOperationsTenderSupport />} />
+              <Route path="/services/emergency-response" element={<EmergencyResponse />} />
+              <Route path="/services/disaster-recovery" element={<DisasterRecovery />} />
+              <Route path="/services/space-planning" element={<SpacePlanning />} />
+              <Route path="/soft-services/concierge" element={<Concierge />} />
+              <Route path="/soft-services/specialist-cleaning" element={<SpecialistCleaning />} />
+              <Route path="/soft-services/grounds-maintenance" element={<GroundsMaintenance />} />
+              <Route path="/soft-services/waste-recycling" element={<WasteRecycling />} />
               
               {/* Site Map */}
               <Route path="/site-map" element={<SiteMap />} />
