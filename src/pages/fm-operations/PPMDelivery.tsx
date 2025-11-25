@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const PPMDelivery = () => {
   const breadcrumbItems = [
@@ -180,29 +181,30 @@ const PPMDelivery = () => {
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link to="/services/ppm" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">PPM Compliance</h3>
-                  <p className="text-sm text-muted-foreground font-light">Overview of PPM requirements</p>
-                </Link>
-                <Link to="/fm-operations/reactive-maintenance" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Reactive Maintenance</h3>
-                  <p className="text-sm text-muted-foreground font-light">Fault response and repair</p>
-                </Link>
-                <Link to="/fm-operations/asset-lifecycle" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Asset Lifecycle Planning</h3>
-                  <p className="text-sm text-muted-foreground font-light">Condition-based forecasting</p>
-                </Link>
-                <Link to="/services/building-inspections" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Building Inspections</h3>
-                  <p className="text-sm text-muted-foreground font-light">Compliance audits and surveys</p>
-                </Link>
-              </div>
-            </section>
+            <RelatedServices 
+              services={[
+                {
+                  title: "PPM Compliance",
+                  description: "Overview of PPM requirements and statutory maintenance obligations",
+                  link: "/services/ppm"
+                },
+                {
+                  title: "Reactive Maintenance",
+                  description: "24/7 fault response, SLA management and first-time fix focus",
+                  link: "/fm-operations/reactive-maintenance"
+                },
+                {
+                  title: "Asset Lifecycle Planning",
+                  description: "Condition-based forecasting and strategic capital planning",
+                  link: "/fm-operations/asset-lifecycle"
+                },
+                {
+                  title: "Building Inspections",
+                  description: "Comprehensive compliance audits and condition surveys",
+                  link: "/services/building-inspections"
+                }
+              ]}
+            />
 
             <section className="mb-12">
               <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">

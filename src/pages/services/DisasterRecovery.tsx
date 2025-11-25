@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const DisasterRecovery = () => {
   const breadcrumbItems = [
@@ -148,29 +149,30 @@ const DisasterRecovery = () => {
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link to="/services/emergency-response" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Emergency Response</h3>
-                  <p className="text-sm text-muted-foreground font-light">Critical incident management</p>
-                </Link>
-                <Link to="/fm-operations/business-continuity" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Business Continuity</h3>
-                  <p className="text-sm text-muted-foreground font-light">Resilience planning</p>
-                </Link>
-                <Link to="/services/building-fabric" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Building Fabric</h3>
-                  <p className="text-sm text-muted-foreground font-light">Structural repairs and maintenance</p>
-                </Link>
-                <Link to="/services/drainage-cctv-surveys" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Drainage Surveys</h3>
-                  <p className="text-sm text-muted-foreground font-light">Flood investigation and clearance</p>
-                </Link>
-              </div>
-            </section>
+            <RelatedServices 
+              services={[
+                {
+                  title: "Emergency Response",
+                  description: "Critical incident management and immediate make-safe",
+                  link: "/services/emergency-response"
+                },
+                {
+                  title: "Business Continuity",
+                  description: "Resilience planning and recovery preparedness",
+                  link: "/fm-operations/business-continuity"
+                },
+                {
+                  title: "Building Fabric",
+                  description: "Structural repairs and fabric restoration",
+                  link: "/services/building-fabric"
+                },
+                {
+                  title: "Asset Lifecycle Planning",
+                  description: "Post-recovery asset replacement planning",
+                  link: "/fm-operations/asset-lifecycle"
+                }
+              ]}
+            />
 
             <section className="mb-12">
               <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">

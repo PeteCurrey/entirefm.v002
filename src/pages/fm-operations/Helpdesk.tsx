@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const Helpdesk = () => {
   const breadcrumbItems = [
@@ -165,29 +166,30 @@ const Helpdesk = () => {
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link to="/fm-operations/reactive-maintenance" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Reactive Maintenance</h3>
-                  <p className="text-sm text-muted-foreground font-light">SLA-controlled fault resolution</p>
-                </Link>
-                <Link to="/fm-operations/ppm-delivery" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">PPM Delivery</h3>
-                  <p className="text-sm text-muted-foreground font-light">Preventative maintenance programmes</p>
-                </Link>
-                <Link to="/services/emergency-systems" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Emergency Systems</h3>
-                  <p className="text-sm text-muted-foreground font-light">Fire alarms, emergency lighting, PA systems</p>
-                </Link>
-                <Link to="/services/emergency-response" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Emergency Response</h3>
-                  <p className="text-sm text-muted-foreground font-light">Critical incident management</p>
-                </Link>
-              </div>
-            </section>
+            <RelatedServices 
+              services={[
+                {
+                  title: "Reactive Maintenance",
+                  description: "SLA-controlled fault resolution and first-time fix delivery",
+                  link: "/fm-operations/reactive-maintenance"
+                },
+                {
+                  title: "PPM Delivery",
+                  description: "Preventative maintenance programmes reducing call volumes",
+                  link: "/fm-operations/ppm-delivery"
+                },
+                {
+                  title: "Emergency Systems",
+                  description: "Fire alarms, emergency lighting and life-safety systems",
+                  link: "/services/emergency-systems"
+                },
+                {
+                  title: "Emergency Response",
+                  description: "Critical incident management and priority callout services",
+                  link: "/services/emergency-response"
+                }
+              ]}
+            />
 
             <section className="mb-12">
               <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
