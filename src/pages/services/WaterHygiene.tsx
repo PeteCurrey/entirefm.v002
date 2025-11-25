@@ -9,6 +9,10 @@ import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import heroImage from "@/assets/industrial-facility.jpg";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
+import { DualCTA } from "@/components/shared/DualCTA";
+import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
+import { DualCTA } from "@/components/shared/DualCTA";
 
 const WaterHygiene = () => {
   useConversionTracking();

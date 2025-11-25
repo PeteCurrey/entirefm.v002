@@ -7,6 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
+import { DualCTA } from "@/components/shared/DualCTA";
+import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
+import { DualCTA } from "@/components/shared/DualCTA";
 
 const HVAC = () => {
   const faqs = [
