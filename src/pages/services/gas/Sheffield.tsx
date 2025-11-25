@@ -46,8 +46,9 @@ const GasSafetySheffield = () => {
   return (
     <>
       <Helmet>
-        <title>Industrial Gas Safety Sheffield | Manufacturing Gas Compliance | CP15</title>
+        <title>Gas Safety & Boiler Compliance in Sheffield | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Industrial heat systems gas compliance in Sheffield. Strict GS(I&U) Regs enforcement, CO risk removal, and energy upgrades for high-load plants." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />

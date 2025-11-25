@@ -46,8 +46,9 @@ const GasSafetyLincoln = () => {
   return (
     <>
       <Helmet>
-        <title>Gas Safety Lincoln | Healthcare Gas Compliance | Heritage Building Gas Certification</title>
+        <title>Gas Safety & Boiler Compliance in Lincoln | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Healthcare + heritage assets gas safety in Lincoln. Sensitive inspection protocols, CO monitoring, and energy savings in public sector plantrooms." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />

@@ -40,10 +40,10 @@ const WaterLeeds = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Testing & Water Hygiene Leeds | Healthcare & PBSA Compliance | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in Leeds | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Specialist Legionella compliance for Leeds healthcare, PBSA, and public buildings. ACOP L8 and HTM 04-01 risk assessments, year-round monitoring, and rapid remedials." />
         <meta name="keywords" content="Legionella testing Leeds, healthcare water hygiene, PBSA compliance Leeds, ACOP L8, HTM 04-01, water safety Leeds" />
-        <link rel="canonical" href="https://entirefm.com/water/leeds" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

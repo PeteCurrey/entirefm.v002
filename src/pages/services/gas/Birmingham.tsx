@@ -46,8 +46,9 @@ const GasSafetyBirmingham = () => {
   return (
     <>
       <Helmet>
-        <title>Gas Safety & Boiler Compliance Birmingham | CP42 Industrial | Gas Safe</title>
+        <title>Gas Safety & Boiler Compliance in Birmingham | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Industrial gas safety compliance for Birmingham logistics & manufacturing estates. CP1/CP15, CP42 catering, PRV testing, and boiler optimisation." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />

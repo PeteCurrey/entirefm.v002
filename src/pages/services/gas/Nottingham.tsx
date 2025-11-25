@@ -46,8 +46,9 @@ const GasSafetyNottingham = () => {
   return (
     <>
       <Helmet>
-        <title>Gas Safety Nottingham | PBSA Gas Compliance | Heritage Building Gas Certification</title>
+        <title>Gas Safety & Boiler Compliance in Nottingham | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="PBSA & heritage structures gas safety in Nottingham. Full compliance governance, CO monitoring, and boiler energy optimisation." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />

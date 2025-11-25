@@ -40,10 +40,10 @@ const WaterBirmingham = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Testing & Water Hygiene Birmingham | ACOP L8 Compliance | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in Birmingham | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Legionella compliance for West Midlands businesses. ACOP L8 risk assessments, monitoring programmes, and rapid remedials for warehouses, retail, and corporate estates in Birmingham." />
         <meta name="keywords" content="Legionella testing Birmingham, water hygiene West Midlands, ACOP L8 Birmingham, warehouse Legionella compliance, HSG274, water tank inspection" />
-        <link rel="canonical" href="https://entirefm.com/water/birmingham" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

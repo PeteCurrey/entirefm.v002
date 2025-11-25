@@ -36,10 +36,10 @@ const WaterNottingham = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Testing & Water Hygiene Nottingham | PBSA Compliance | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in Nottingham | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Student accommodation Legionella compliance for Nottingham. ACOP L8 risk assessments, vacation period flushing, and rapid remedials for PBSA, universities, and commercial properties." />
         <meta name="keywords" content="Legionella testing Nottingham, PBSA water hygiene, student accommodation water safety, ACOP L8 Nottingham, university Legionella compliance" />
-        <link rel="canonical" href="https://entirefm.com/water/nottingham" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

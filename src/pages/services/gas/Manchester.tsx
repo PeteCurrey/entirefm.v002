@@ -46,8 +46,9 @@ const GasSafetyManchester = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Compliance Manchester | PBSA Gas Safety | CP42 Certification</title>
+        <title>Gas Safety & Boiler Compliance in Manchester | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Water hygiene protection for Manchester's PBSA & entertainment estates. ACOP L8 monitoring, CO risk elimination, and energy-efficiency upgrades." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />

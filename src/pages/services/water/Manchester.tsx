@@ -40,10 +40,10 @@ const WaterManchester = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Testing & Water Hygiene Manchester | PBSA Compliance | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in Manchester | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Specialist Legionella compliance for Manchester's student accommodation and commercial properties. ACOP L8 risk assessments, monitoring, and rapid remedials for PBSA, offices, and retail." />
         <meta name="keywords" content="Legionella testing Manchester, PBSA water hygiene, student accommodation Legionella, ACOP L8 Manchester, water safety compliance, HSG274" />
-        <link rel="canonical" href="https://entirefm.com/water/manchester" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

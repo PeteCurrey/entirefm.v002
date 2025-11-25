@@ -40,10 +40,10 @@ const WaterLondon = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Compliance & Water Hygiene London | ACOP L8 Testing | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in London | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Comprehensive Legionella compliance and water hygiene services across London. ACOP L8 risk assessments, monitoring programmes, and rapid remedials for corporate, retail & healthcare estates." />
         <meta name="keywords" content="Legionella testing London, water hygiene compliance, ACOP L8, HSG274, Legionella risk assessment, water tank inspection London, TMV testing" />
-        <link rel="canonical" href="https://entirefm.com/water/london" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 
