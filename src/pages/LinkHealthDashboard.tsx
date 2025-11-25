@@ -16,6 +16,7 @@ import { GSCConnectionButton } from '@/components/gsc/GSCConnectionButton';
 import { IndexationTab } from '@/components/gsc/IndexationTab';
 import { PerformanceTab } from '@/components/gsc/PerformanceTab';
 import { CrawlStatsTab } from '@/components/gsc/CrawlStatsTab';
+import { AlertSettings } from '@/components/gsc/AlertSettings';
 import { getSearchAnalytics, getCrawlStats } from '@/utils/gscApi';
 import { useToast } from '@/hooks/use-toast';
 
@@ -189,7 +190,7 @@ export default function LinkHealthDashboard() {
 
           {/* Issues Tabs */}
           <Tabs defaultValue="orphans" className="space-y-6">
-            <TabsList className="grid grid-cols-7 w-full">
+            <TabsList className="grid grid-cols-8 w-full">
               <TabsTrigger value="orphans" className="relative">
                 Orphans
                 {report.orphanPages.length > 0 && (
@@ -230,6 +231,9 @@ export default function LinkHealthDashboard() {
               </TabsTrigger>
               <TabsTrigger value="crawl-stats">
                 Crawl Stats
+              </TabsTrigger>
+              <TabsTrigger value="alerts">
+                Alerts
               </TabsTrigger>
             </TabsList>
 
@@ -383,6 +387,11 @@ export default function LinkHealthDashboard() {
                 data={crawlStats}
                 isLoading={gscLoading}
               />
+            </TabsContent>
+
+            {/* Alert Settings Tab */}
+            <TabsContent value="alerts">
+              <AlertSettings />
             </TabsContent>
           </Tabs>
         </div>
