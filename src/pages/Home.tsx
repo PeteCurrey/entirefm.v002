@@ -5,59 +5,48 @@ import ServiceCard from "@/components/shared/ServiceCard";
 import SectorCard from "@/components/shared/SectorCard";
 import MetricCard from "@/components/shared/MetricCard";
 import CaseStudyCard from "@/components/shared/CaseStudyCard";
+import { VideoHero } from "@/components/shared/VideoHero";
 import heroImage from "@/assets/hero-london.jpg";
 import industrialImage from "@/assets/industrial-facility.jpg";
 import officeImage from "@/assets/office-interior.jpg";
 const Home = () => {
   return <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{
-        backgroundImage: `url(${heroImage})`
-      }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent rounded-none" />
-        </div>
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl">
-            <h1 className="text-white mb-6 leading-tight animate-fade-in-up font-extralight md:text-4xl text-3xl">
-              Facilities Management &amp; FM Support Services
-            </h1>
-            <p style={{
-            animationDelay: "0.2s"
-          }} className="text-gray-200 mb-8 leading-relaxed max-w-2xl animate-fade-in-up font-extralight md:text-xl text-left tracking-wider text-lg">
-              EntireFM. Your Dedicated Facilities Management Company
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{
-            animationDelay: "0.4s"
-          }}>
-              <Button size="lg" asChild>
-                <Link to="/contact">Request a Proposal</Link>
-              </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white hover:text-charcoal" asChild>
-                <Link to="/case-studies">View Case Studies</Link>
-              </Button>
-            </div>
-          </div>
-
-          {/* Metrics Dashboard */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl animate-fade-in-up" style={{
-          animationDelay: "0.6s"
+      <VideoHero 
+        videoSrc="/videos/hero-video.mp4" 
+        posterImage={heroImage}
+      >
+        <div className="max-w-4xl">
+          <h1 className="text-white mb-6 leading-tight animate-fade-in-up font-extralight md:text-4xl text-3xl">
+            Facilities Management &amp; FM Support Services
+          </h1>
+          <p style={{
+          animationDelay: "0.2s"
+        }} className="text-gray-200 mb-8 leading-relaxed max-w-2xl animate-fade-in-up font-extralight md:text-xl text-left tracking-wider text-lg">
+            EntireFM. Your Dedicated Facilities Management Company
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{
+          animationDelay: "0.4s"
         }}>
-            <MetricCard value="41" label="Avg response time (mins)" className="opacity-75" />
-            <MetricCard value="87" label="First-time fix rate" suffix="%" className="opacity-75" />
-            <MetricCard value="120" label="Sites under management" suffix="+" className="opacity-75" />
-            <MetricCard value="98" label="SLA compliance" suffix="%" className="opacity-75" />
+            <Button size="lg" asChild>
+              <Link to="/contact">Request a Proposal</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white hover:text-charcoal" asChild>
+              <Link to="/case-studies">View Case Studies</Link>
+            </Button>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full" />
-          </div>
+        {/* Metrics Dashboard */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl animate-fade-in-up" style={{
+        animationDelay: "0.6s"
+      }}>
+          <MetricCard value="41" label="Avg response time (mins)" className="opacity-75" />
+          <MetricCard value="87" label="First-time fix rate" suffix="%" className="opacity-75" />
+          <MetricCard value="120" label="Sites under management" suffix="+" className="opacity-75" />
+          <MetricCard value="98" label="SLA compliance" suffix="%" className="opacity-75" />
         </div>
-      </section>
+      </VideoHero>
 
       {/* Trust Strip */}
       <section className="py-12 bg-muted/30">
