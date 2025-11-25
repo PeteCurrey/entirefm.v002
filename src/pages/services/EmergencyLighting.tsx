@@ -8,6 +8,7 @@ import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import heroImage from "@/assets/office-interior.jpg";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const EmergencyLighting = () => {
   useConversionTracking();
@@ -292,6 +293,30 @@ const EmergencyLighting = () => {
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
+              <RelatedServices 
+                services={[
+                  {
+                    title: "PPM Delivery",
+                    description: "Monthly functional testing and annual emergency lighting certification",
+                    link: "/fm-operations/ppm-delivery"
+                  },
+                  {
+                    title: "Fire Safety",
+                    description: "Comprehensive fire safety system testing and maintenance",
+                    link: "/services/fire-safety"
+                  },
+                  {
+                    title: "Reactive Maintenance",
+                    description: "Emergency lighting fault diagnosis and rapid repairs",
+                    link: "/fm-operations/reactive-maintenance"
+                  },
+                  {
+                    title: "Emergency Response",
+                    description: "Critical life-safety system emergency attendance",
+                    link: "/services/emergency-response"
+                  }
+                ]}
+              />
               <FAQSection faqs={faqs} />
             </div>
           </div>

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle, Flame, Shield, Database, Zap } from "lucide-react";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const GasSafety = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
@@ -286,6 +287,31 @@ const GasSafety = () => {
                   * Real performance stories coming soon
                 </p>
               </section>
+
+              <RelatedServices 
+                services={[
+                  {
+                    title: "PPM Delivery",
+                    description: "Annual gas safety inspections and boiler servicing schedules",
+                    link: "/fm-operations/ppm-delivery"
+                  },
+                  {
+                    title: "Reactive Maintenance",
+                    description: "Emergency gas leak response and appliance repairs",
+                    link: "/fm-operations/reactive-maintenance"
+                  },
+                  {
+                    title: "Emergency Response",
+                    description: "24/7 gas emergency attendance and make-safe procedures",
+                    link: "/services/emergency-response"
+                  },
+                  {
+                    title: "Asset Lifecycle Planning",
+                    description: "Boiler and heating system replacement forecasting",
+                    link: "/fm-operations/asset-lifecycle"
+                  }
+                ]}
+              />
 
               <FAQSection faqs={faqs} />
 

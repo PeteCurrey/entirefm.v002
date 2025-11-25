@@ -6,6 +6,7 @@ import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const Electrical = () => {
   const faqs = [
@@ -236,6 +237,31 @@ const Electrical = () => {
                   No jargon. No hiding behind standards.
                 </p>
               </section>
+
+              <RelatedServices 
+                services={[
+                  {
+                    title: "PPM Delivery",
+                    description: "Scheduled electrical testing and maintenance programs",
+                    link: "/fm-operations/ppm-delivery"
+                  },
+                  {
+                    title: "Reactive Maintenance",
+                    description: "24/7 electrical fault response and emergency repairs",
+                    link: "/fm-operations/reactive-maintenance"
+                  },
+                  {
+                    title: "Asset Lifecycle Planning",
+                    description: "Electrical infrastructure condition surveys and replacement forecasting",
+                    link: "/fm-operations/asset-lifecycle"
+                  },
+                  {
+                    title: "Technical Helpdesk",
+                    description: "Single point of contact for all electrical service requests",
+                    link: "/fm-operations/helpdesk"
+                  }
+                ]}
+              />
 
               <FAQSection faqs={faqs} />
 

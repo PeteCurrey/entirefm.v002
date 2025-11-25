@@ -8,6 +8,7 @@ import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import heroImage from "@/assets/industrial-facility.jpg";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const WaterHygiene = () => {
   useConversionTracking();
@@ -295,6 +296,30 @@ const WaterHygiene = () => {
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
+              <RelatedServices 
+                services={[
+                  {
+                    title: "PPM Delivery",
+                    description: "Water hygiene monitoring and Legionella testing programs",
+                    link: "/fm-operations/ppm-delivery"
+                  },
+                  {
+                    title: "Reactive Maintenance",
+                    description: "Emergency water system repairs and contamination response",
+                    link: "/fm-operations/reactive-maintenance"
+                  },
+                  {
+                    title: "Asset Lifecycle Planning",
+                    description: "Water infrastructure condition surveys and replacement planning",
+                    link: "/fm-operations/asset-lifecycle"
+                  },
+                  {
+                    title: "Business Continuity",
+                    description: "Water supply resilience and emergency provisions",
+                    link: "/fm-operations/business-continuity"
+                  }
+                ]}
+              />
               <FAQSection faqs={faqs} />
             </div>
           </div>

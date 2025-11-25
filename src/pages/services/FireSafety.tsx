@@ -9,6 +9,7 @@ import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { Download, Shield, AlertTriangle, FileCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/industrial-facility.jpg";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const FireSafety = () => {
   const { trackProposalRequest, trackDownload } = useConversionTracking();
@@ -376,6 +377,31 @@ const FireSafety = () => {
                 </div>
               </div>
             </section>
+
+            <RelatedServices 
+              services={[
+                {
+                  title: "PPM Delivery",
+                  description: "Fire safety system testing and statutory maintenance scheduling",
+                  link: "/fm-operations/ppm-delivery"
+                },
+                {
+                  title: "Emergency Response",
+                  description: "Critical fire system fault response and emergency attendance",
+                  link: "/services/emergency-response"
+                },
+                {
+                  title: "Business Continuity",
+                  description: "Fire safety resilience planning and emergency procedures",
+                  link: "/fm-operations/business-continuity"
+                },
+                {
+                  title: "Technical Helpdesk",
+                  description: "24/7 fire alarm monitoring and fault logging services",
+                  link: "/fm-operations/helpdesk"
+                }
+              ]}
+            />
 
             {/* FAQ Section */}
             <FAQSection faqs={faqs} />
