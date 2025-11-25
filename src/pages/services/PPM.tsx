@@ -107,7 +107,7 @@ const PPM = () => {
                   PPM = Predictability, Compliance & Cost Control
                 </h2>
                 <p className="text-lg text-muted-foreground font-light mb-6">
-                  When buildings are maintained reactively:
+                  When buildings are maintained <Link to="/fm-operations/reactive-maintenance" className="text-primary hover:underline">reactively</Link>:
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
                   {[
@@ -338,7 +338,7 @@ const PPM = () => {
                     Compliance without chaos. Uptime without uncertainty.
                   </h2>
                   <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
-                    Transform reactive maintenance into strategic asset management.
+                    Transform <Link to="/fm-operations/reactive-maintenance" className="text-white underline hover:text-gray-200">reactive maintenance</Link> into strategic <Link to="/fm-operations/asset-lifecycle" className="text-white underline hover:text-gray-200">asset management</Link>.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center">
                     <Button 

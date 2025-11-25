@@ -148,7 +148,9 @@ const Electrical = () => {
                 </p>
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Group-wide PPM scheduling</h3>
+                    <h3 className="font-medium mb-2">
+                      Group-wide <Link to="/fm-operations/ppm-delivery" className="text-primary hover:underline">PPM scheduling</Link>
+                    </h3>
                     <p className="text-sm font-light text-muted-foreground">
                       Coordinated maintenance across your entire portfolio.
                     </p>

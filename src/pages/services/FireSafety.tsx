@@ -294,7 +294,7 @@ const FireSafety = () => {
                 Remedials Resolved Fast
               </h2>
               <div className="space-y-4 text-muted-foreground font-light leading-relaxed">
-                <p>Every defect gets:</p>
+                <p>Every defect identified during <Link to="/fm-operations/ppm-delivery" className="text-primary hover:underline">PPM delivery</Link> gets:</p>
                 <div className="space-y-3 my-4">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">

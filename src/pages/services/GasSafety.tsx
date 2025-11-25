@@ -162,7 +162,7 @@ const GasSafety = () => {
                   Carbon Monoxide Risk — Zero Tolerance
                 </h2>
                 <p className="text-muted-foreground font-light mb-6">
-                  We test and enforce safety on:
+                  We test and enforce safety on every <Link to="/fm-operations/ppm-delivery" className="text-primary hover:underline">PPM visit</Link>:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
