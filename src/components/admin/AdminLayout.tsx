@@ -114,7 +114,7 @@ export default function AdminLayout() {
     { icon: BarChart3, label: "Search Analytics", path: "/admin/search-analytics" },
     { icon: Link, label: "Link Health", path: "/admin/link-health" },
     { icon: Map, label: "Site Map", path: "/admin/site-map" },
-    { icon: Wrench, label: "Tools", path: "/admin/ppm-calculator" },
+    { icon: Wrench, label: "Tools", path: "/admin/tm44-checker" },
   ];
 
   return (

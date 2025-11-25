@@ -298,6 +298,7 @@ const App = () => <QueryClientProvider client={queryClient}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/request-proposal" element={<RequestProposal />} />
+              <Route path="/tools/ppm-calculator" element={<PPMCalculator />} />
               <Route path="/services" element={<Services />} />
           <Route path="/services/hard-fm" element={<HardServices />} />
           <Route path="/services/hvac" element={<HVAC />} />
