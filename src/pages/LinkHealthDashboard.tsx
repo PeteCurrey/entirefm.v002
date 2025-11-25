@@ -12,10 +12,20 @@ import {
   type PageLinkData,
   getMinimumInboundLinks 
 } from '@/utils/linkValidation';
+import { GSCConnectionButton } from '@/components/gsc/GSCConnectionButton';
+import { IndexationTab } from '@/components/gsc/IndexationTab';
+import { PerformanceTab } from '@/components/gsc/PerformanceTab';
+import { CrawlStatsTab } from '@/components/gsc/CrawlStatsTab';
+import { getSearchAnalytics, getCrawlStats } from '@/utils/gscApi';
+import { useToast } from '@/hooks/use-toast';
 
 export default function LinkHealthDashboard() {
   const [report, setReport] = useState<LinkValidationReport | null>(null);
   const [loading, setLoading] = useState(true);
+  const [gscLoading, setGscLoading] = useState(false);
+  const [performanceData, setPerformanceData] = useState<any[]>([]);
+  const [crawlStats, setCrawlStats] = useState<any>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     const runValidation = async () => {
@@ -29,6 +39,46 @@ export default function LinkHealthDashboard() {
 
     runValidation();
   }, []);
+
+  const fetchGSCData = async () => {
+    setGscLoading(true);
+    try {
+      const endDate = new Date().toISOString().split('T')[0];
+      const startDate = new Date(Date.now() - 28 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+      
+      const [analytics, crawl] = await Promise.all([
+        getSearchAnalytics(startDate, endDate),
+        getCrawlStats()
+      ]);
+
+      if (analytics.rows) {
+        const formattedData = analytics.rows.map((row: any) => ({
+          url: row.keys[0],
+          clicks: row.clicks,
+          impressions: row.impressions,
+          ctr: (row.clicks / row.impressions) * 100,
+          position: row.position,
+        }));
+        setPerformanceData(formattedData);
+      }
+
+      setCrawlStats(crawl);
+
+      toast({
+        title: "GSC Data Loaded",
+        description: "Search Console data has been fetched successfully",
+      });
+    } catch (error) {
+      console.error('Failed to fetch GSC data:', error);
+      toast({
+        title: "Failed to Load GSC Data",
+        description: "Please ensure you're connected to Google Search Console",
+        variant: "destructive",
+      });
+    } finally {
+      setGscLoading(false);
+    }
+  };
 
   if (loading || !report) {
     return (
@@ -65,10 +115,20 @@ export default function LinkHealthDashboard() {
         <div className="container mx-auto px-4 py-12 max-w-7xl">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-light mb-2">Link Health Dashboard</h1>
-            <p className="text-muted-foreground">
-              Internal link validation, orphan detection, and conversion optimization analysis
-            </p>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h1 className="text-4xl font-light mb-2">Link Health Dashboard</h1>
+                <p className="text-muted-foreground">
+                  Internal link validation, orphan detection, and conversion optimization analysis
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <GSCConnectionButton />
+                <Button onClick={fetchGSCData} disabled={gscLoading} variant="outline">
+                  {gscLoading ? 'Loading...' : 'Fetch GSC Data'}
+                </Button>
+              </div>
+            </div>
           </div>
 
           {/* Health Score Overview */}
@@ -129,7 +189,7 @@ export default function LinkHealthDashboard() {
 
           {/* Issues Tabs */}
           <Tabs defaultValue="orphans" className="space-y-6">
-            <TabsList className="grid grid-cols-4 w-full max-w-2xl">
+            <TabsList className="grid grid-cols-7 w-full">
               <TabsTrigger value="orphans" className="relative">
                 Orphans
                 {report.orphanPages.length > 0 && (
@@ -161,6 +221,15 @@ export default function LinkHealthDashboard() {
                     {report.brokenLinks.length}
                   </Badge>
                 )}
+              </TabsTrigger>
+              <TabsTrigger value="indexation">
+                Indexation
+              </TabsTrigger>
+              <TabsTrigger value="performance">
+                Performance
+              </TabsTrigger>
+              <TabsTrigger value="crawl-stats">
+                Crawl Stats
               </TabsTrigger>
             </TabsList>
 
@@ -286,6 +355,34 @@ export default function LinkHealthDashboard() {
                   </div>
                 )}
               </Card>
+            </TabsContent>
+
+            {/* GSC Indexation Tab */}
+            <TabsContent value="indexation">
+              <IndexationTab 
+                data={performanceData.map(p => ({
+                  url: p.url,
+                  indexed: true,
+                  lastCrawled: new Date().toISOString(),
+                }))}
+                isLoading={gscLoading}
+              />
+            </TabsContent>
+
+            {/* GSC Performance Tab */}
+            <TabsContent value="performance">
+              <PerformanceTab 
+                data={performanceData}
+                isLoading={gscLoading}
+              />
+            </TabsContent>
+
+            {/* GSC Crawl Stats Tab */}
+            <TabsContent value="crawl-stats">
+              <CrawlStatsTab 
+                data={crawlStats}
+                isLoading={gscLoading}
+              />
             </TabsContent>
           </Tabs>
         </div>
