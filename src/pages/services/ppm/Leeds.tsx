@@ -27,12 +27,12 @@ const PPMLeeds = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance Leeds | Corporate PPM | Entire FM</title>
+        <title>PPM Services in Leeds | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="PPM safeguarding corporate HQ operations in Leeds. Fire, HVAC, electrical, gas, water bundled in one governance platform. Book PPM assessment." 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/leeds" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema

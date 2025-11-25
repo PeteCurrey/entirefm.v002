@@ -27,12 +27,12 @@ const HVACSheffield = () => {
   return (
     <>
       <Helmet>
-        <title>HVAC Compliance Sheffield | Industrial Air Handling | Entire FM</title>
+        <title>HVAC Compliance in Sheffield | TM44 & F-Gas Services | Entire FM</title>
         <meta 
           name="description" 
           content="Industrial HVAC compliance in Sheffield. TM44 audits, process cooling and F-Gas leak detection. Energy performance improvements. Book audit." 
         />
-        <link rel="canonical" href="https://entirefm.com/hvac/sheffield" />
+        <link rel="canonical" href="https://entirefm.com/services/hvac-compliance" />
       </Helmet>
 
       <ServiceSchema

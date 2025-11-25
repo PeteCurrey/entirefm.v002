@@ -27,12 +27,12 @@ const PPMBirmingham = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance Birmingham | PPM Services | Entire FM</title>
+        <title>PPM Services in Birmingham | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="Integrated PPM for Birmingham logistics and manufacturing estates. Fire, HVAC, electrical, water & gas compliance in one proactive programme. Build PPM plan." 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/birmingham" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema

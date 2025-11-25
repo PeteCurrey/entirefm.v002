@@ -27,12 +27,12 @@ const PPMChesterfield = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance Chesterfield | Logistics PPM | Entire FM</title>
+        <title>PPM Services in Chesterfield | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="PPM for Chesterfield logistics estates. Safety and productivity protection preventing lost orders from downtime. Book PPM audit." 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/chesterfield" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema

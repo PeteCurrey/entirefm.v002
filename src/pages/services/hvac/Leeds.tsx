@@ -27,12 +27,12 @@ const HVACLeeds = () => {
   return (
     <>
       <Helmet>
-        <title>HVAC & F-Gas Compliance Leeds | TM44 Audits | Entire FM</title>
+        <title>HVAC Compliance in Leeds | TM44 & F-Gas Services | Entire FM</title>
         <meta 
           name="description" 
           content="Corporate and retail HVAC compliance in Leeds. TM44 audits, AHU servicing and F-Gas infrastructure management. Book audit." 
         />
-        <link rel="canonical" href="https://entirefm.com/hvac/leeds" />
+        <link rel="canonical" href="https://entirefm.com/services/hvac-compliance" />
       </Helmet>
 
       <ServiceSchema

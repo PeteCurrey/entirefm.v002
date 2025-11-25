@@ -52,7 +52,7 @@ const PPMLondon = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance London | PPM Compliance | Entire FM</title>
+        <title>PPM Services in London | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="Proactive PPM programmes integrating fire, electrical, HVAC, water and gas compliance for London estates. Digital governance, predictive maintenance. Build programme." 
@@ -61,7 +61,7 @@ const PPMLondon = () => {
           name="keywords" 
           content="PPM London, planned preventive maintenance London, compliance management London, CAFM integration, asset lifecycle management, predictive maintenance London" 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/london" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema

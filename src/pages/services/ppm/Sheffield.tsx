@@ -27,12 +27,12 @@ const PPMSheffield = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance Sheffield | Industrial PPM | Entire FM</title>
+        <title>PPM Services in Sheffield | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="Industrial PPM for Sheffield manufacturing estates. Predictive maintenance and full compliance management. Protect asset availability." 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/sheffield" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema

@@ -27,12 +27,12 @@ const PPMManchester = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance Manchester | PPM PBSA | Entire FM</title>
+        <title>PPM Services in Manchester | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="Integrated PPM for Manchester student and hospitality estates. Protect reputation and revenue with proactive maintenance across essential services. Create schedule." 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/manchester" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema
