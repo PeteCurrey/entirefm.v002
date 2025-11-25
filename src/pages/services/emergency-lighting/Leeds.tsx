@@ -34,9 +34,34 @@ const EmergencyLightingLeeds = () => {
         <link rel="canonical" href="https://entirefm.com/emergency-lighting/leeds" />
       </Helmet>
 
-      <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Emergency Lighting Compliance - Leeds", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Leeds, UK" }} />
-      <BreadcrumbSchema items={[{ label: "Emergency Lighting Services", href: "/services/emergency-lighting" }, { label: "Leeds" }]} />
-      <LocalBusinessSchema name="EntireFM Leeds - Emergency Lighting" address={{ street: "Leeds Office", city: "Leeds", postalCode: "LS1 1AA", country: "UK" }} />
+      <SchemaMarkup schema={{ 
+        "@context": "https://schema.org", 
+        "@type": "Service", 
+        "name": "Emergency Lighting Compliance - Leeds", 
+        "serviceType": "Emergency Lighting Compliance",
+        "provider": { 
+          "@type": "Organization", 
+          "name": "EntireFM",
+          "url": "https://entirefm.com"
+        }, 
+        "areaServed": ["United Kingdom", "Leeds"],
+        "url": "https://entirefm.com/emergency-lighting/leeds",
+        "description": "BS 5266 testing and certification protecting safe evacuation for Leeds' corporate and hospitality estates. Monthly and annual 3-hour duration tests.",
+        "serviceOutput": "BS 5266 compliance certification, 3-hour duration testing, monthly testing",
+        "serviceAudience": ["Facilities Managers", "Property Managers", "Estate Teams"]
+      }} />
+      <BreadcrumbSchema items={[{ label: "Home", href: "/" }, { label: "Emergency Lighting Services", href: "/services/emergency-lighting" }, { label: "Leeds" }]} />
+      <LocalBusinessSchema 
+        name="EntireFM Leeds - Emergency Lighting" 
+        address={{ 
+          street: "Leeds Office", 
+          city: "Leeds", 
+          postalCode: "LS1 1AA", 
+          country: "UK" 
+        }}
+        email="leeds@entirefm.com"
+        serviceType="Emergency Lighting Compliance"
+      />
 
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-background/90 z-10" />

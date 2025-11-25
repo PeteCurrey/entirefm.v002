@@ -30,9 +30,34 @@ const EmergencyLightingChesterfield = () => {
         <link rel="canonical" href="https://entirefm.com/emergency-lighting/chesterfield" />
       </Helmet>
 
-      <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Emergency Lighting Compliance - Chesterfield", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Chesterfield, UK" }} />
-      <BreadcrumbSchema items={[{ label: "Emergency Lighting Services", href: "/services/emergency-lighting" }, { label: "Chesterfield" }]} />
-      <LocalBusinessSchema name="EntireFM Chesterfield - Emergency Lighting" address={{ street: "Chesterfield Office", city: "Chesterfield", postalCode: "S40 1AA", country: "UK" }} />
+      <SchemaMarkup schema={{ 
+        "@context": "https://schema.org", 
+        "@type": "Service", 
+        "name": "Emergency Lighting Compliance - Chesterfield", 
+        "serviceType": "Emergency Lighting Compliance",
+        "provider": { 
+          "@type": "Organization", 
+          "name": "EntireFM",
+          "url": "https://entirefm.com"
+        }, 
+        "areaServed": ["United Kingdom", "Chesterfield"],
+        "url": "https://entirefm.com/emergency-lighting/chesterfield",
+        "description": "Compliance testing for logistics & industrial estates along the M1. BS 5266 emergency lighting for warehouses.",
+        "serviceOutput": "BS 5266 compliance certification, warehouse emergency lighting testing",
+        "serviceAudience": ["Facilities Managers", "Property Managers", "Estate Teams"]
+      }} />
+      <BreadcrumbSchema items={[{ label: "Home", href: "/" }, { label: "Emergency Lighting Services", href: "/services/emergency-lighting" }, { label: "Chesterfield" }]} />
+      <LocalBusinessSchema 
+        name="EntireFM Chesterfield - Emergency Lighting" 
+        address={{ 
+          street: "Chesterfield Office", 
+          city: "Chesterfield", 
+          postalCode: "S40 1AA", 
+          country: "UK" 
+        }}
+        email="chesterfield@entirefm.com"
+        serviceType="Emergency Lighting Compliance"
+      />
 
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-background/90 z-10" />
