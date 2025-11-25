@@ -56,9 +56,9 @@ const FireLondon = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Alarm Compliance Services London | BS 5839 Testing & Certification</title>
+        <title>Fire Safety Compliance in London | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Protect people, operations, and legal responsibility across Greater London. Statutory fire alarm testing, BS 5839 certification & urgent remedials — handled with zero excuses by local engineers." />
-        <link rel="canonical" href="https://entirefm.com/fire/london" />
+        <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

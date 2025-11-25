@@ -12,9 +12,9 @@ const FireChesterfield = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Alarm Compliance Chesterfield | Regional Logistics Hub Fire Safety</title>
+        <title>Fire Safety Compliance in Chesterfield | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Fire compliance for Chesterfield's regional logistics hub. Uptime-focused BS 5839 testing protecting distribution operations." />
-        <link rel="canonical" href="https://entirefm.com/fire/chesterfield" />
+        <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>
 
       <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Fire Compliance - Chesterfield", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Chesterfield, UK" }} />

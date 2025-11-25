@@ -36,9 +36,9 @@ const FireLeeds = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Alarm Compliance Services Leeds | BS 5839 Testing West Yorkshire</title>
+        <title>Fire Safety Compliance in Leeds | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Professional fire alarm testing across Leeds and West Yorkshire. PBSA, retail campus and commercial compliance with BS 5839 certification." />
-        <link rel="canonical" href="https://entirefm.com/fire/leeds" />
+        <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

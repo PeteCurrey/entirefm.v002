@@ -25,9 +25,9 @@ const EmergencyLightingChesterfield = () => {
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Compliance Chesterfield | BS 5266 Logistics M1 Corridor</title>
+        <title>Emergency Lighting Compliance in Chesterfield | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Compliance testing for logistics & industrial estates along the M1. BS 5266 emergency lighting for warehouses." />
-        <link rel="canonical" href="https://entirefm.com/emergency-lighting/chesterfield" />
+        <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
       <SchemaMarkup schema={{ 

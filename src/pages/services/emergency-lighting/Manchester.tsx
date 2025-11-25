@@ -25,7 +25,7 @@ const EmergencyLightingManchester = () => {
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting in Manchester | BS 5266 Testing & Compliance | EntireFM</title>
+        <title>Emergency Lighting Compliance in Manchester | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Protect residents, guests & visitors with BS 5266 testing. Emergency lighting compliance for Manchester's PBSA, retail and hospitality estates." />
         <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
       </Helmet>

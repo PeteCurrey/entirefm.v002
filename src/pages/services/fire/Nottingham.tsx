@@ -15,9 +15,9 @@ const FireNottingham = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Alarm Compliance Nottingham | Historic Buildings & Student Housing</title>
+        <title>Fire Safety Compliance in Nottingham | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Fire compliance for Nottingham's historic buildings and student-dense environment. BS 5839 testing protecting heritage structures and PBSA developments." />
-        <link rel="canonical" href="https://entirefm.com/fire/nottingham" />
+        <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>
 
       <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Fire Alarm Compliance - Nottingham", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Nottingham, UK" }} />
