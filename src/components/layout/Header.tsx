@@ -165,7 +165,7 @@ const Header = ({
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList className="space-x-2">
-              <NavigationMenuItem className="text-sm">
+              <NavigationMenuItem className="text-sm text-gray-500">
                 <NavigationMenuTrigger className="text-sm font-light h-10">Services</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <motion.div className="w-[500px] p-4" initial={{
