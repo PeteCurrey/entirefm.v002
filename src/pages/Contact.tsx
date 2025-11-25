@@ -1,20 +1,81 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Users, Headphones, AlertCircle, Globe } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Phone, Mail, MapPin, Users, Headphones, AlertCircle, Globe, Send, Loader2 } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { ContactPointSchema, OrganizationSchema } from "@/components/shared/SchemaMarkup";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().max(20, "Phone must be less than 20 characters").optional(),
+  company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
+  message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters")
+});
 
 const Contact = () => {
   const { trackPhoneClick } = useConversionTracking();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    message: ""
+  });
+  const [submitting, setSubmitting] = useState(false);
+  
   const breadcrumbItems = [
     { label: "Contact" }
   ];
 
   const handlePhoneClick = () => {
     trackPhoneClick();
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      // Validate form data
+      const validatedData = contactSchema.parse(formData);
+      
+      setSubmitting(true);
+      
+      const { error } = await supabase.functions.invoke('submit-contact', {
+        body: validatedData
+      });
+
+      if (error) throw error;
+
+      toast.success('Thank you! We\'ll be in touch soon.');
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        message: ""
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const firstError = error.errors[0];
+        toast.error(firstError.message);
+      } else {
+        console.error('Error submitting contact form:', error);
+        toast.error('Failed to submit form. Please try again.');
+      }
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const contactMethods = [
@@ -209,29 +270,131 @@ const Contact = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* Contact Form Section */}
         <section className="py-16 px-4 bg-muted/30">
           <div className="max-w-4xl mx-auto">
-            <Card className="p-8 md:p-12 bg-gradient-to-br from-primary/5 to-accent/5 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Tell us what you need — we'll make it happen.
-              </h2>
-              <p className="text-xl text-muted-foreground mb-8">
-                Whether it's an emergency, a proposal request, or a strategic conversation with leadership, 
-                we're here to help right now.
-              </p>
-              
+            <Card className="p-8 md:p-12">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Send Us a Message
+                </h2>
+                <p className="text-xl text-muted-foreground">
+                  Fill out the form below and we'll get back to you as soon as possible.
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-semibold mb-2">
+                      Name *
+                    </label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="Your name"
+                      required
+                      maxLength={100}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-semibold mb-2">
+                      Email *
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="your@email.com"
+                      required
+                      maxLength={255}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-semibold mb-2">
+                      Phone
+                    </label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="Your phone number"
+                      maxLength={20}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-semibold mb-2">
+                      Company
+                    </label>
+                    <Input
+                      id="company"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      placeholder="Your company name"
+                      maxLength={100}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-semibold mb-2">
+                    Message *
+                  </label>
+                  <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Tell us how we can help..."
+                    required
+                    className="min-h-[150px]"
+                    maxLength={2000}
+                  />
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {formData.message.length}/2000 characters
+                  </p>
+                </div>
+
+                <div className="flex justify-center">
+                  <Button type="submit" size="lg" disabled={submitting} className="gap-2">
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-5 w-5" />
+                        Send Message
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </Card>
+
+            <div className="mt-8 text-center">
+              <p className="text-muted-foreground mb-4">Prefer to talk? We're here 24/7</p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button size="lg" className="gap-2">
-                  <Headphones className="w-5 h-5" />
-                  Call 24/7 Helpdesk
+                <Button size="lg" variant="outline" className="gap-2" asChild>
+                  <a href="tel:08001234567" onClick={handlePhoneClick}>
+                    <Headphones className="w-5 h-5" />
+                    Call 24/7 Helpdesk
+                  </a>
                 </Button>
-                <Button size="lg" variant="outline" className="gap-2">
-                  <Mail className="w-5 h-5" />
-                  Request a Proposal
+                <Button size="lg" variant="outline" className="gap-2" asChild>
+                  <a href="mailto:hello@entirefm.co.uk">
+                    <Mail className="w-5 h-5" />
+                    Email Us
+                  </a>
                 </Button>
               </div>
-            </Card>
+            </div>
           </div>
         </section>
       </div>

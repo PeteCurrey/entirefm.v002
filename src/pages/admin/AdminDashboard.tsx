@@ -11,7 +11,9 @@ import {
   TrendingUp,
   Clock,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Mail,
+  MessageSquare
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -20,6 +22,8 @@ export default function AdminDashboard() {
     newProposals: 0,
     activeProposals: 0,
     wonProposals: 0,
+    totalContacts: 0,
+    newContacts: 0,
   });
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -30,22 +34,32 @@ export default function AdminDashboard() {
 
   const fetchStats = async () => {
     try {
-      const { data, error } = await supabase
-        .from('proposal_requests')
-        .select('status');
+      const [proposalsResult, contactsResult] = await Promise.all([
+        supabase.from('proposal_requests').select('status'),
+        supabase.from('contact_submissions').select('status')
+      ]);
 
-      if (error) throw error;
+      if (proposalsResult.error) throw proposalsResult.error;
+      if (contactsResult.error) throw contactsResult.error;
 
-      const total = data?.length || 0;
-      const newCount = data?.filter(p => p.status === 'new').length || 0;
-      const activeCount = data?.filter(p => ['reviewing', 'contacted', 'quoted'].includes(p.status)).length || 0;
-      const wonCount = data?.filter(p => p.status === 'won').length || 0;
+      const proposals = proposalsResult.data || [];
+      const contacts = contactsResult.data || [];
+
+      const total = proposals.length;
+      const newCount = proposals.filter(p => p.status === 'new').length;
+      const activeCount = proposals.filter(p => ['reviewing', 'contacted', 'quoted'].includes(p.status)).length;
+      const wonCount = proposals.filter(p => p.status === 'won').length;
+      
+      const totalContacts = contacts.length;
+      const newContacts = contacts.filter(c => c.status === 'new').length;
 
       setStats({
         totalProposals: total,
         newProposals: newCount,
         activeProposals: activeCount,
         wonProposals: wonCount,
+        totalContacts,
+        newContacts,
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -93,7 +107,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <StatCard
             icon={FileText}
             label="Total Proposals"
@@ -103,16 +117,9 @@ export default function AdminDashboard() {
           />
           <StatCard
             icon={AlertCircle}
-            label="New Requests"
+            label="New Proposals"
             value={stats.newProposals}
             color="accent"
-            onClick={() => navigate('/admin/proposals')}
-          />
-          <StatCard
-            icon={Clock}
-            label="Active Proposals"
-            value={stats.activeProposals}
-            color="secondary"
             onClick={() => navigate('/admin/proposals')}
           />
           <StatCard
@@ -120,6 +127,27 @@ export default function AdminDashboard() {
             label="Won Projects"
             value={stats.wonProposals}
             color="primary"
+            onClick={() => navigate('/admin/proposals')}
+          />
+          <StatCard
+            icon={Mail}
+            label="Total Contacts"
+            value={stats.totalContacts}
+            color="secondary"
+            onClick={() => navigate('/admin/contacts')}
+          />
+          <StatCard
+            icon={MessageSquare}
+            label="New Contacts"
+            value={stats.newContacts}
+            color="accent"
+            onClick={() => navigate('/admin/contacts')}
+          />
+          <StatCard
+            icon={Clock}
+            label="Active Proposals"
+            value={stats.activeProposals}
+            color="secondary"
             onClick={() => navigate('/admin/proposals')}
           />
         </div>
@@ -136,6 +164,11 @@ export default function AdminDashboard() {
                 icon={FileText}
                 label="View All Proposals"
                 onClick={() => navigate('/admin/proposals')}
+              />
+              <QuickAction
+                icon={Mail}
+                label="Contact Submissions"
+                onClick={() => navigate('/admin/contacts')}
               />
               <QuickAction
                 icon={BarChart3}

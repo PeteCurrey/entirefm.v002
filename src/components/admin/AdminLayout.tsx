@@ -9,7 +9,8 @@ import {
   LogOut, 
   Menu,
   X,
-  BarChart3
+  BarChart3,
+  Mail
 } from "lucide-react";
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
@@ -106,6 +107,7 @@ export default function AdminLayout() {
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
     { icon: FileText, label: "Proposals", path: "/admin/proposals" },
+    { icon: Mail, label: "Contacts", path: "/admin/contacts" },
     { icon: BarChart3, label: "Analytics", path: "/search-analytics" },
   ];
 
