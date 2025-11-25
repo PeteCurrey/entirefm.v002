@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle, Flame, Zap, Droplet, Snowflake, Activity, Database, TrendingDown, Shield } from "lucide-react";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const PPM = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
@@ -302,6 +303,31 @@ const PPM = () => {
                   * Real performance stories coming soon
                 </p>
               </section>
+
+              <RelatedServices 
+                services={[
+                  {
+                    title: "PPM Delivery Operations",
+                    description: "Strategic PPM scheduling, delivery and performance management",
+                    link: "/fm-operations/ppm-delivery"
+                  },
+                  {
+                    title: "Asset Lifecycle Planning",
+                    description: "Condition-based maintenance and replacement forecasting",
+                    link: "/fm-operations/asset-lifecycle"
+                  },
+                  {
+                    title: "Reactive Maintenance",
+                    description: "Complementary reactive services reducing PPM workload",
+                    link: "/fm-operations/reactive-maintenance"
+                  },
+                  {
+                    title: "Building Inspections",
+                    description: "Comprehensive condition surveys informing PPM strategies",
+                    link: "/services/building-inspections"
+                  }
+                ]}
+              />
 
               <FAQSection faqs={faqs} />
 

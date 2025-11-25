@@ -6,6 +6,7 @@ import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle } from "lucide-react";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const HVAC = () => {
   const faqs = [
@@ -213,6 +214,31 @@ const HVAC = () => {
                   Zero copy-paste maintenance plans. We engineer outcomes.
                 </p>
               </section>
+
+              <RelatedServices 
+                services={[
+                  {
+                    title: "PPM Delivery",
+                    description: "Scheduled HVAC maintenance and filter replacement programs",
+                    link: "/fm-operations/ppm-delivery"
+                  },
+                  {
+                    title: "Reactive Maintenance",
+                    description: "Emergency HVAC repairs and 24/7 climate control response",
+                    link: "/fm-operations/reactive-maintenance"
+                  },
+                  {
+                    title: "Asset Lifecycle Planning",
+                    description: "HVAC system condition surveys and replacement forecasting",
+                    link: "/fm-operations/asset-lifecycle"
+                  },
+                  {
+                    title: "Energy Audits",
+                    description: "HVAC efficiency analysis and optimization strategies",
+                    link: "/services/energy-audits"
+                  }
+                ]}
+              />
 
               {/* FAQs Optimised to Rank */}
               <section>
