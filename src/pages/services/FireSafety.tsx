@@ -9,7 +9,8 @@ import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { Download, Shield, AlertTriangle, FileCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/industrial-facility.jpg";
-import { RelatedServices } from "@/components/shared/RelatedServices";
+import { RelatedServices } from "@/components/seo/RelatedServices";
+import { ComplianceDetails } from "@/components/seo/ComplianceDetails";
 import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
 import { DualCTA } from "@/components/shared/DualCTA";
 
@@ -42,11 +43,12 @@ const FireSafety = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Safety & Life Protection Services | EntireFM</title>
+        <title>Fire Safety Compliance & Testing | BS 5839, BS 5266 | EntireFM</title>
         <meta 
           name="description" 
-          content="Certified fire compliance across alarms, extinguishers, emergency lighting, passive systems and evacuation infrastructure. BS 5839, BS 5306, BS 5266 aligned." 
+          content="Expert fire alarm testing, emergency lighting, sprinklers & fire risk assessments. BS 5839, BS 5266 & BS 5306 compliant. Nationwide coverage with 24/7 emergency response." 
         />
+        <meta name="keywords" content="fire safety compliance, fire alarm testing BS 5839, emergency lighting testing, fire risk assessment, AOV systems, fire dampers, fire safety engineering, commercial fire protection" />
         <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>
 
@@ -77,10 +79,10 @@ const FireSafety = () => {
       >
         <div className="container mx-auto px-6 text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-light mb-6">
-            Fire Safety & Life Protection Services
+            Fire Safety Compliance & Life Protection Systems
           </h1>
           <p className="text-xl md:text-2xl mb-8 font-light max-w-3xl mx-auto">
-            Certified fire compliance across alarms, extinguishers, emergency lighting, passive systems and evacuation infrastructure — fully aligned with UK safety legislation.
+            BS 5839 fire alarm testing, BS 5266 emergency lighting, BS 5306 extinguisher maintenance, sprinkler systems and fire risk assessments. Weekly testing, annual certification & 24/7 emergency response nationwide.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -115,12 +117,12 @@ const FireSafety = () => {
           <div className="lg:col-span-2 space-y-12">
             {/* Fire Compliance Isn't Optional */}
             <section>
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Fire Compliance Isn't Optional — It's Accountability
+              <h2 className="text-3xl font-light mb-6">
+                Fire Safety Compliance Under UK Law
               </h2>
               <div className="space-y-4 text-muted-foreground font-light leading-relaxed">
                 <p>
-                  Regulators and insurers expect evidence, not promises. Without accredited compliance:
+                  The Regulatory Reform (Fire Safety) Order 2005 places legal accountability on building owners, employers and managing agents. Fire safety compliance isn't optional—regulators and insurers expect certified evidence through BS 5839 fire alarm testing, BS 5266 emergency lighting inspections, and documented fire risk assessments. Without accredited compliance:
                 </p>
                 <div className="grid sm:grid-cols-2 gap-4 my-6">
                   <div className="flex items-start gap-3 p-4 border border-destructive/20 rounded-lg bg-destructive/5">
@@ -380,30 +382,46 @@ const FireSafety = () => {
               </div>
             </section>
 
-            <RelatedServices 
-              services={[
-                {
-                  title: "PPM Delivery",
-                  description: "Fire safety system testing and statutory maintenance scheduling",
-                  link: "/fm-operations/ppm-delivery"
-                },
-                {
-                  title: "Emergency Response",
-                  description: "Critical fire system fault response and emergency attendance",
-                  link: "/services/emergency-response"
-                },
-                {
-                  title: "Business Continuity",
-                  description: "Fire safety resilience planning and emergency procedures",
-                  link: "/fm-operations/business-continuity"
-                },
-                {
-                  title: "Technical Helpdesk",
-                  description: "24/7 fire alarm monitoring and fault logging services",
-                  link: "/fm-operations/helpdesk"
-                }
+            {/* E-E-A-T Compliance Authority Blocks */}
+            <ComplianceDetails 
+              serviceName="Fire Safety"
+              legalFramework={[
+                "Regulatory Reform (Fire Safety) Order 2005",
+                "BS 5839-1:2017 (Fire detection and alarm systems)",
+                "BS 5266-1:2016 (Emergency lighting)",
+                "BS 5306-3:2017 (Fire extinguisher maintenance)",
+                "BS EN 12845:2015 (Sprinkler systems)",
+                "Building Regulations Approved Document B"
+              ]}
+              responsiblePerson="The Responsible Person (typically the building owner, employer, or managing agent)"
+              consequences={[
+                "Unlimited fines and up to 2 years imprisonment for serious breaches",
+                "Prohibition notices forcing immediate building closure",
+                "Insurance claims rejected due to non-compliance",
+                "Personal liability for directors and duty holders",
+                "Corporate manslaughter charges in the event of fatalities",
+                "HSE enforcement action and improvement notices",
+                "Reputational damage and loss of business continuity"
+              ]}
+              testingFrequency="Fire alarms: Weekly user tests + quarterly/bi-annual servicing (BS 5839) | Emergency lighting: Monthly function tests + annual 3-hour duration tests (BS 5266) | Fire extinguishers: Annual servicing + 5-year extended service (BS 5306) | Sprinklers: Weekly/monthly checks + annual full system test"
+              whatWeInspect={[
+                "Fire alarm control panel functionality and fault diagnostics",
+                "All smoke, heat and manual call point devices tested individually",
+                "Emergency lighting battery capacity and illumination levels",
+                "Fire extinguisher pressure, seals, signage and accessibility",
+                "Sprinkler pump operation, valve positioning and water flow tests",
+                "Fire door closer mechanisms, intumescent strips and signage",
+                "AOV (automatic opening vent) smoke control systems",
+                "Fire damper operation within ductwork and ventilation",
+                "Dry/wet riser inlet connections and pressure testing",
+                "Emergency evacuation signage and wayfinding compliance",
+                "Fire risk assessment recommendations and remedial actions",
+                "Digital compliance records with photographic evidence"
               ]}
             />
+
+            {/* Silo-Aware Related Services */}
+            <RelatedServices currentUrl="/services/fire-safety" />
 
             {/* FAQ Section */}
             <FAQSection faqs={faqs} />
