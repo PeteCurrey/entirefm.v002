@@ -1,6 +1,9 @@
+import { Helmet } from "react-helmet";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import officeImage from "@/assets/office-interior.jpg";
 import industrialImage from "@/assets/industrial-facility.jpg";
 
@@ -64,18 +67,37 @@ const Sectors = () => {
     }
   ];
 
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Sectors" },
+  ];
+
   return (
     <div className="min-h-screen pt-20">
+      <Helmet>
+        <title>Sectors We Serve | EntireFM</title>
+        <meta name="description" content="Sector-specific facilities management for offices, industrial, retail, aviation, hospitality, residential, education and healthcare environments." />
+      </Helmet>
+      
+      <Breadcrumb items={breadcrumbItems} />
+      
       {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-muted/50 to-white">
+      <section className="py-24 bg-gradient-to-b from-muted/50 to-background">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <h1 className="text-5xl md:text-6xl font-light mb-6">
               Different environments. Same reliability.
             </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed">
+            <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
               Sector-specific understanding meets consistent delivery standards. We adapt our approach to your environment without compromising on quality.
             </p>
+            
+            {/* Search Bar */}
+            <div className="flex justify-center">
+              <div className="w-full max-w-2xl">
+                <EnhancedGlobalSearch />
+              </div>
+            </div>
           </div>
         </div>
       </section>

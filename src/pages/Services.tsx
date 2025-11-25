@@ -1,8 +1,11 @@
+import { Helmet } from "react-helmet";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState("hard-services");
@@ -99,18 +102,37 @@ const Services = () => {
     }
   };
 
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Services" },
+  ];
+
   return (
     <div className="min-h-screen pt-20">
+      <Helmet>
+        <title>Facilities Management Services | EntireFM</title>
+        <meta name="description" content="Comprehensive facilities management services including hard services, compliance, soft services, projects and emergency response." />
+      </Helmet>
+      
+      <Breadcrumb items={breadcrumbItems} />
+      
       {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-muted/50 to-white">
+      <section className="py-24 bg-gradient-to-b from-muted/50 to-background">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <h1 className="text-5xl md:text-6xl font-light mb-6">
               Integrated facilities management – built around your sites.
             </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed">
+            <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
               Single-provider FM with the option of standalone services. Hard, soft, compliance, and projects – all coordinated under one accountable partner.
             </p>
+            
+            {/* Search Bar */}
+            <div className="flex justify-center">
+              <div className="w-full max-w-2xl">
+                <EnhancedGlobalSearch />
+              </div>
+            </div>
           </div>
         </div>
       </section>

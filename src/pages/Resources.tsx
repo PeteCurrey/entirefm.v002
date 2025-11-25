@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -5,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Download, FileText, BookOpen, Calendar } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
 
 const Resources = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -131,18 +134,37 @@ const Resources = () => {
     ? resources
     : resources.filter(r => r.category === activeCategory);
 
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Resources" },
+  ];
+
   return (
     <div className="min-h-screen pt-20">
+      <Helmet>
+        <title>Resources & Insights | EntireFM</title>
+        <meta name="description" content="Practical FM guides, compliance updates, and facilities management strategy insights for property and operations teams." />
+      </Helmet>
+      
+      <Breadcrumb items={breadcrumbItems} />
+      
       {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-muted/50 to-white">
+      <section className="py-24 bg-gradient-to-b from-muted/50 to-background">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
+          <div className="max-w-3xl mx-auto text-center mb-8">
+            <h1 className="text-5xl md:text-6xl font-light mb-6">
               Resources & Insights
             </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed">
+            <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
               Practical guides, compliance updates, and FM strategy insights for property and operations teams.
             </p>
+            
+            {/* Search Bar */}
+            <div className="flex justify-center">
+              <div className="w-full max-w-2xl">
+                <EnhancedGlobalSearch />
+              </div>
+            </div>
           </div>
         </div>
       </section>
