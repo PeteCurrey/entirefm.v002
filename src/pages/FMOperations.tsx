@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { EnhancedGlobalSearch } from '@/components/shared/EnhancedGlobalSearch';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
+import { RelatedServices } from '@/components/seo/RelatedServices';
 
 const FMOperations = () => {
   const breadcrumbItems = [
@@ -98,12 +99,12 @@ const FMOperations = () => {
   return (
     <>
       <Helmet>
-        <title>FM Operations & Service Excellence | EntireFM</title>
+        <title>FM Operations | PPM, Helpdesk & Asset Management | EntireFM</title>
         <meta 
           name="description" 
-          content="Comprehensive facilities management operations including PPM delivery, reactive maintenance, asset lifecycle management, helpdesk support, and strategic FM consulting." 
+          content="Expert FM operations including PPM delivery, 24/7 helpdesk, reactive maintenance, asset lifecycle management & mobilisation. Proven service excellence across UK portfolios." 
         />
-        <meta name="keywords" content="FM operations, facilities management, PPM delivery, reactive maintenance, asset management, helpdesk, mobilisation" />
+        <meta name="keywords" content="FM operations, PPM delivery, facilities helpdesk, reactive maintenance, asset lifecycle management, mobilisation, business continuity, occupier experience" />
       </Helmet>
 
       <Breadcrumb items={breadcrumbItems} />
@@ -116,7 +117,7 @@ const FMOperations = () => {
             <div className="max-w-4xl mx-auto text-center">
               <Badge className="mb-4">FM Operations Hub</Badge>
               <h1 className="text-4xl md:text-5xl font-light mb-6">
-                Operational Excellence in Facilities Management
+                FM Operations & Service Delivery Excellence
               </h1>
               <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8 max-w-3xl mx-auto">
                 From strategic planning to day-to-day operations, our comprehensive FM services 
@@ -275,6 +276,18 @@ const FMOperations = () => {
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Related Services - Silo Aware */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <RelatedServices 
+                currentUrl="/fm-operations"
+                title="Related FM Operations"
+              />
             </div>
           </div>
         </section>
