@@ -27,12 +27,12 @@ const HVACManchester = () => {
   return (
     <>
       <Helmet>
-        <title>HVAC Compliance Manchester | TM44 & F-Gas | Entire FM</title>
+        <title>HVAC Compliance in Manchester | TM44 & F-Gas Services | Entire FM</title>
         <meta 
           name="description" 
           content="TM44 audits, F-Gas compliance and IAQ monitoring for Manchester PBSA and corporate estates. Digital governance platform included." 
         />
-        <link rel="canonical" href="https://entirefm.com/hvac/manchester" />
+        <link rel="canonical" href="https://entirefm.com/services/hvac-compliance" />
       </Helmet>
 
       <ServiceSchema

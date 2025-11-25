@@ -27,12 +27,12 @@ const HVACDerby = () => {
   return (
     <>
       <Helmet>
-        <title>HVAC Compliance Derby | Transport & Manufacturing | Entire FM</title>
+        <title>HVAC Compliance in Derby | TM44 & F-Gas Services | Entire FM</title>
         <meta 
           name="description" 
           content="Transport and manufacturing HVAC compliance in Derby. TM44 certification, AHU and VRF maintenance. Zero downtime focus. Book F-Gas check." 
         />
-        <link rel="canonical" href="https://entirefm.com/hvac/derby" />
+        <link rel="canonical" href="https://entirefm.com/services/hvac-compliance" />
       </Helmet>
 
       <ServiceSchema

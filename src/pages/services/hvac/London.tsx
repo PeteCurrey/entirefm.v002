@@ -52,7 +52,7 @@ const HVACLondon = () => {
   return (
     <>
       <Helmet>
-        <title>HVAC & F-Gas Compliance London | TM44 AC Inspections | Entire FM</title>
+        <title>HVAC Compliance in London | TM44 & F-Gas Services | Entire FM</title>
         <meta 
           name="description" 
           content="TM44 AC inspections, F-Gas leak governance and HVAC maintenance for London estates. EC 517/2014 compliant refrigerant management. Book audit." 
@@ -61,7 +61,7 @@ const HVACLondon = () => {
           name="keywords" 
           content="TM44 London, F-Gas compliance London, HVAC maintenance London, air conditioning servicing London, refrigerant leak detection, AHU servicing, IAQ monitoring London" 
         />
-        <link rel="canonical" href="https://entirefm.com/hvac/london" />
+        <link rel="canonical" href="https://entirefm.com/services/hvac-compliance" />
       </Helmet>
 
       <ServiceSchema

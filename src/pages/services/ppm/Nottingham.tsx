@@ -27,12 +27,12 @@ const PPMNottingham = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance Nottingham | PBSA PPM | Entire FM</title>
+        <title>PPM Services in Nottingham | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="PPM for Nottingham PBSA and leisure estates. Proactive asset management prevents customer-facing failures. Build custom PPM plan." 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/nottingham" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema

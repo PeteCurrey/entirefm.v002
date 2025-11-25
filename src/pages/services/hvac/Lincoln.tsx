@@ -27,12 +27,12 @@ const HVACLincoln = () => {
   return (
     <>
       <Helmet>
-        <title>HVAC Compliance Lincoln | Healthcare & Heritage | Entire FM</title>
+        <title>HVAC Compliance in Lincoln | TM44 & F-Gas Services | Entire FM</title>
         <meta 
           name="description" 
           content="Healthcare and heritage HVAC compliance in Lincoln. Sensitive IAQ oversight, TM44 audits and energy optimization. Request TM44 inspection." 
         />
-        <link rel="canonical" href="https://entirefm.com/hvac/lincoln" />
+        <link rel="canonical" href="https://entirefm.com/services/hvac-compliance" />
       </Helmet>
 
       <ServiceSchema

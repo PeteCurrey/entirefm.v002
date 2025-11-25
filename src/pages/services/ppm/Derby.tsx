@@ -27,12 +27,12 @@ const PPMDerby = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance Derby | Aerospace PPM | Entire FM</title>
+        <title>PPM Services in Derby | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="PPM for Derby aerospace and engineering estates. Total reliability for production and public access. Schedule PPM review." 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/derby" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema

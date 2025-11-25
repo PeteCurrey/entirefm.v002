@@ -27,12 +27,12 @@ const HVACNottingham = () => {
   return (
     <>
       <Helmet>
-        <title>HVAC Compliance Nottingham | TM44 & IAQ Monitoring | Entire FM</title>
+        <title>HVAC Compliance in Nottingham | TM44 & F-Gas Services | Entire FM</title>
         <meta 
           name="description" 
           content="PBSA and leisure HVAC compliance in Nottingham. TM44 audits, refrigerant management and air quality monitoring. Book review." 
         />
-        <link rel="canonical" href="https://entirefm.com/hvac/nottingham" />
+        <link rel="canonical" href="https://entirefm.com/services/hvac-compliance" />
       </Helmet>
 
       <ServiceSchema

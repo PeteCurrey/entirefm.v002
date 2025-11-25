@@ -27,12 +27,12 @@ const PPMLincoln = () => {
   return (
     <>
       <Helmet>
-        <title>Planned Preventive Maintenance Lincoln | Healthcare PPM | Entire FM</title>
+        <title>PPM Services in Lincoln | Planned Preventative Maintenance | Entire FM</title>
         <meta 
           name="description" 
           content="PPM for Lincoln healthcare and heritage estates. Integrated maintenance with digital compliance governance. Build long-term maintenance plan." 
         />
-        <link rel="canonical" href="https://entirefm.com/ppm/lincoln" />
+        <link rel="canonical" href="https://entirefm.com/services/ppm" />
       </Helmet>
 
       <ServiceSchema
