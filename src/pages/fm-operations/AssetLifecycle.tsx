@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const AssetLifecycle = () => {
   const breadcrumbItems = [
@@ -161,29 +162,30 @@ const AssetLifecycle = () => {
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link to="/services/building-inspections" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Building Inspections</h3>
-                  <p className="text-sm text-muted-foreground font-light">Condition surveys and compliance audits</p>
-                </Link>
-                <Link to="/fm-operations/ppm-delivery" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">PPM Delivery</h3>
-                  <p className="text-sm text-muted-foreground font-light">Preventative maintenance programmes</p>
-                </Link>
-                <Link to="/services/energy-audits" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Energy Audits</h3>
-                  <p className="text-sm text-muted-foreground font-light">Performance reviews and efficiency analysis</p>
-                </Link>
-                <Link to="/fm-operations/fm-strategy" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">FM Strategy</h3>
-                  <p className="text-sm text-muted-foreground font-light">Estate performance consultancy</p>
-                </Link>
-              </div>
-            </section>
+            <RelatedServices 
+              services={[
+                {
+                  title: "Building Inspections",
+                  description: "Comprehensive condition surveys and compliance audits",
+                  link: "/services/building-inspections"
+                },
+                {
+                  title: "PPM Delivery",
+                  description: "Preventative maintenance extending asset life and performance",
+                  link: "/fm-operations/ppm-delivery"
+                },
+                {
+                  title: "Energy Audits",
+                  description: "Performance reviews identifying efficiency opportunities",
+                  link: "/services/energy-audits"
+                },
+                {
+                  title: "FM Strategy",
+                  description: "Estate performance consultancy and strategic planning",
+                  link: "/fm-operations/fm-strategy"
+                }
+              ]}
+            />
 
             <section className="mb-12">
               <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">

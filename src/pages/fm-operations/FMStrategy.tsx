@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const FMStrategy = () => {
   const breadcrumbItems = [
@@ -162,29 +163,30 @@ const FMStrategy = () => {
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link to="/fm-operations/tender-support" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Tender Support</h3>
-                  <p className="text-sm text-muted-foreground font-light">Bid advisory and procurement assistance</p>
-                </Link>
-                <Link to="/fm-operations/asset-lifecycle" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Asset Lifecycle Planning</h3>
-                  <p className="text-sm text-muted-foreground font-light">Capital planning and forecasting</p>
-                </Link>
-                <Link to="/services/energy-audits" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Energy Audits</h3>
-                  <p className="text-sm text-muted-foreground font-light">Building performance reviews</p>
-                </Link>
-                <Link to="/services/sustainability-monitoring" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Sustainability Monitoring</h3>
-                  <p className="text-sm text-muted-foreground font-light">ESG performance tracking</p>
-                </Link>
-              </div>
-            </section>
+            <RelatedServices 
+              services={[
+                {
+                  title: "Tender Support",
+                  description: "Expert bid advisory and procurement assistance",
+                  link: "/fm-operations/tender-support"
+                },
+                {
+                  title: "Asset Lifecycle Planning",
+                  description: "Strategic capital planning and investment forecasting",
+                  link: "/fm-operations/asset-lifecycle"
+                },
+                {
+                  title: "Energy Audits",
+                  description: "Comprehensive building performance reviews",
+                  link: "/services/energy-audits"
+                },
+                {
+                  title: "Business Continuity",
+                  description: "Resilience planning and risk management",
+                  link: "/fm-operations/business-continuity"
+                }
+              ]}
+            />
 
             <section className="mb-12">
               <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">

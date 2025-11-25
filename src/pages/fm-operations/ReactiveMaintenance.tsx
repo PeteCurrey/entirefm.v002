@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const ReactiveMaintenance = () => {
   const breadcrumbItems = [
@@ -171,29 +172,30 @@ const ReactiveMaintenance = () => {
               </div>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link to="/fm-operations/helpdesk" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Technical Helpdesk</h3>
-                  <p className="text-sm text-muted-foreground font-light">24/7 call logging and engineer dispatch</p>
-                </Link>
-                <Link to="/fm-operations/ppm-delivery" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">PPM Delivery</h3>
-                  <p className="text-sm text-muted-foreground font-light">Preventative maintenance programmes</p>
-                </Link>
-                <Link to="/fm-operations/asset-lifecycle" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Asset Lifecycle Planning</h3>
-                  <p className="text-sm text-muted-foreground font-light">Condition-based forecasting</p>
-                </Link>
-                <Link to="/services/emergency-response" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Emergency Response</h3>
-                  <p className="text-sm text-muted-foreground font-light">Critical incident management</p>
-                </Link>
-              </div>
-            </section>
+            <RelatedServices 
+              services={[
+                {
+                  title: "Technical Helpdesk",
+                  description: "24/7 call logging, intelligent triage and real-time engineer dispatch",
+                  link: "/fm-operations/helpdesk"
+                },
+                {
+                  title: "PPM Delivery",
+                  description: "Preventative maintenance programmes reducing reactive demand",
+                  link: "/fm-operations/ppm-delivery"
+                },
+                {
+                  title: "Asset Lifecycle Planning",
+                  description: "Condition-based forecasting preventing equipment failures",
+                  link: "/fm-operations/asset-lifecycle"
+                },
+                {
+                  title: "Emergency Response",
+                  description: "Critical incident management and priority response protocols",
+                  link: "/services/emergency-response"
+                }
+              ]}
+            />
 
             <section className="mb-12">
               <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">

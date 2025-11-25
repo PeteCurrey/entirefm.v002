@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const BusinessContinuity = () => {
   const breadcrumbItems = [
@@ -168,29 +169,30 @@ const BusinessContinuity = () => {
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link to="/services/emergency-response" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Emergency Response</h3>
-                  <p className="text-sm text-muted-foreground font-light">Critical incident management</p>
-                </Link>
-                <Link to="/services/disaster-recovery" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Disaster Recovery</h3>
-                  <p className="text-sm text-muted-foreground font-light">Major incident recovery services</p>
-                </Link>
-                <Link to="/fm-operations/asset-lifecycle" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Asset Lifecycle Planning</h3>
-                  <p className="text-sm text-muted-foreground font-light">Condition-based forecasting</p>
-                </Link>
-                <Link to="/services/generator-maintenance" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Generator Maintenance</h3>
-                  <p className="text-sm text-muted-foreground font-light">Backup power systems testing</p>
-                </Link>
-              </div>
-            </section>
+            <RelatedServices 
+              services={[
+                {
+                  title: "Emergency Response",
+                  description: "Critical incident management and priority response protocols",
+                  link: "/services/emergency-response"
+                },
+                {
+                  title: "Disaster Recovery",
+                  description: "Major incident recovery services and business restoration",
+                  link: "/services/disaster-recovery"
+                },
+                {
+                  title: "Asset Lifecycle Planning",
+                  description: "Condition-based forecasting and redundancy planning",
+                  link: "/fm-operations/asset-lifecycle"
+                },
+                {
+                  title: "FM Strategy",
+                  description: "Strategic risk management and resilience consultancy",
+                  link: "/fm-operations/fm-strategy"
+                }
+              ]}
+            />
 
             <section className="mb-12">
               <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
