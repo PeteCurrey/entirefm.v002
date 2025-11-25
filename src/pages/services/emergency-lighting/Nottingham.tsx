@@ -25,9 +25,9 @@ const EmergencyLightingNottingham = () => {
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Compliance Nottingham | BS 5266 PBSA & Heritage Testing</title>
+        <title>Emergency Lighting Compliance in Nottingham | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="BS 5266 testing for PBSA, retail and heritage estates. Student accommodation and heritage building evacuation safety." />
-        <link rel="canonical" href="https://entirefm.com/emergency-lighting/nottingham" />
+        <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
       <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Emergency Lighting Compliance - Nottingham", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Nottingham, UK" }} />

@@ -25,9 +25,9 @@ const EmergencyLightingSheffield = () => {
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Compliance Sheffield | BS 5266 Industrial & Retail Testing</title>
+        <title>Emergency Lighting Compliance in Sheffield | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Life-safety illumination testing for Sheffield's industrial, retail and public estates. BS 5266 compliance with rapid remedial execution." />
-        <link rel="canonical" href="https://entirefm.com/emergency-lighting/sheffield" />
+        <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
       <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Emergency Lighting Compliance - Sheffield", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Sheffield, UK" }} />

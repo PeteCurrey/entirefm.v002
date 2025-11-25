@@ -29,9 +29,9 @@ const EmergencyLightingLondon = () => {
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Compliance London | BS 5266 Testing & 3-Hour Tests</title>
+        <title>Emergency Lighting Compliance in London | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="BS 5266 testing & 3-hour duration verification to protect life safety and legal compliance across London's commercial estate." />
-        <link rel="canonical" href="https://entirefm.com/emergency-lighting/london" />
+        <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
       <SchemaMarkup schema={{ 

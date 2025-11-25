@@ -56,7 +56,7 @@ const FireBirmingham = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Safety in Birmingham | BS 5839 Testing & Statutory Compliance | EntireFM</title>
+        <title>Fire Safety Compliance in Birmingham | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Protect people, operations, and legal responsibility across Birmingham and the West Midlands. Statutory fire alarm testing, BS 5839 certification & urgent remedials — handled with zero excuses." />
         <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>

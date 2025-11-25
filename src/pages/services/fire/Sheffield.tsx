@@ -31,9 +31,9 @@ const FireSheffield = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Alarm Compliance Sheffield | Industrial & Logistics BS 5839 Testing</title>
+        <title>Fire Safety Compliance in Sheffield | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Fire compliance for Sheffield's heavy industrial, logistics and residential tower sites. Expert BS 5839 testing with manufacturing heritage knowledge." />
-        <link rel="canonical" href="https://entirefm.com/fire/sheffield" />
+        <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

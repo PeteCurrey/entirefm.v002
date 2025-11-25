@@ -12,9 +12,9 @@ const FireDerby = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Alarm Compliance Derby | Rail & Aerospace Critical Asset Safety</title>
+        <title>Fire Safety Compliance in Derby | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Fire compliance for Derby's rail and aerospace corridor. Critical asset safety with BS 5839 certification protecting advanced manufacturing operations." />
-        <link rel="canonical" href="https://entirefm.com/fire/derby" />
+        <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>
 
       <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Fire Compliance - Derby", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Derby, UK" }} />

@@ -12,9 +12,9 @@ const FireLincoln = () => {
   return (
     <>
       <Helmet>
-        <title>Fire Alarm Compliance Lincoln | Heritage Buildings & Healthcare Fire Safety</title>
+        <title>Fire Safety Compliance in Lincoln | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Fire compliance for Lincoln's heritage protected buildings and healthcare facilities. BS 5839 certification respecting conservation requirements." />
-        <link rel="canonical" href="https://entirefm.com/fire/lincoln" />
+        <link rel="canonical" href="https://entirefm.com/services/fire-safety" />
       </Helmet>
 
       <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Fire Compliance - Lincoln", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Lincoln, UK" }} />

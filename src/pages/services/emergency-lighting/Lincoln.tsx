@@ -25,9 +25,9 @@ const EmergencyLightingLincoln = () => {
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Compliance Lincoln | BS 5266 Healthcare & Heritage Testing</title>
+        <title>Emergency Lighting Compliance in Lincoln | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="BS 5266 testing for healthcare & heritage estates where evacuation reliability is non-negotiable. Life-safety compliance." />
-        <link rel="canonical" href="https://entirefm.com/emergency-lighting/lincoln" />
+        <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
       <SchemaMarkup schema={{ 
