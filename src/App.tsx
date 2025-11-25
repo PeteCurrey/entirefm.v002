@@ -299,6 +299,12 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/" element={<Home />} />
               <Route path="/request-proposal" element={<RequestProposal />} />
               <Route path="/tools/ppm-calculator" element={<PPMCalculator />} />
+              <Route path="/tools/tm44-checker" element={<TM44Checker />} />
+              <Route path="/tools/water-risk-grader" element={<WaterRiskGrader />} />
+              <Route path="/tools/cost-savings" element={<CostSavingsCalculator />} />
+              <Route path="/tools/cost-savings-calculator" element={<CostSavingsCalculator />} />
+              <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
+              <Route path="/tools/risk-diagnostic" element={<ComplianceDiagnostic />} />
               <Route path="/services" element={<Services />} />
           <Route path="/services/hard-fm" element={<HardServices />} />
           <Route path="/services/hvac" element={<HVAC />} />
