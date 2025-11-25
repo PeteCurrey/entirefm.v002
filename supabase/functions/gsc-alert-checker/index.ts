@@ -1,7 +1,7 @@
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.84.0';
-import { Resend } from 'npm:resend@2.0.0';
+import { Resend } from 'https://esm.sh/resend@4.0.0';
 
 const resend = new Resend(Deno.env.get('RESEND_API_KEY'));
 
@@ -86,11 +86,11 @@ async function checkAndSendAlerts(supabaseAdmin: any, pref: any) {
   }
 
   const alertTypes = pref.alert_types || [];
-  const dashboardUrl = `${Deno.env.get('SUPABASE_URL').replace('supabase.co', 'lovable.app')}/link-health`;
+  const dashboardUrl = `${(Deno.env.get('SUPABASE_URL') || '').replace('supabase.co', 'lovable.app')}/link-health`;
 
   // Check for indexation issues
   if (alertTypes.includes('indexation_issues')) {
-    const droppedPages = currentData.filter(d => !d.indexed).slice(0, 20);
+    const droppedPages = currentData.filter((d: any) => !d.indexed).slice(0, 20);
     
     if (droppedPages.length >= 5) {
       console.log(`Sending indexation alert for ${droppedPages.length} pages`);
@@ -101,12 +101,12 @@ async function checkAndSendAlerts(supabaseAdmin: any, pref: any) {
   // Check for crawl errors (simulated based on data patterns)
   if (alertTypes.includes('crawl_errors')) {
     const errorPages = currentData
-      .filter(d => d.crawl_status && d.crawl_status !== 'OK')
+      .filter((d: any) => d.crawl_status && d.crawl_status !== 'OK')
       .slice(0, 10);
     
     if (errorPages.length > 0) {
       console.log(`Sending crawl error alert for ${errorPages.length} errors`);
-      const errors = errorPages.map(e => ({
+      const errors = errorPages.map((e: any) => ({
         url: e.url,
         type: e.crawl_status || 'Unknown Error',
         count: 1,
@@ -117,17 +117,17 @@ async function checkAndSendAlerts(supabaseAdmin: any, pref: any) {
 
   // Check for performance drops
   if (alertTypes.includes('performance_drops')) {
-    const avgClicks = currentData.reduce((sum, d) => sum + (d.clicks || 0), 0) / currentData.length;
-    const avgImpressions = currentData.reduce((sum, d) => sum + (d.impressions || 0), 0) / currentData.length;
+    const avgClicks = currentData.reduce((sum: number, d: any) => sum + (d.clicks || 0), 0) / currentData.length;
+    const avgImpressions = currentData.reduce((sum: number, d: any) => sum + (d.impressions || 0), 0) / currentData.length;
     
     // Simulate performance drop detection (in production, compare with historical data)
     if (avgClicks < 10 || avgImpressions < 100) {
       console.log(`Sending performance drop alert`);
       
       const topAffected = currentData
-        .sort((a, b) => (b.clicks || 0) - (a.clicks || 0))
+        .sort((a: any, b: any) => (b.clicks || 0) - (a.clicks || 0))
         .slice(0, 5)
-        .map(p => ({
+        .map((p: any) => ({
           url: p.url,
           clicksChange: -25.5,
           impressionsChange: -18.2,
