@@ -130,10 +130,10 @@ const Suppliers = () => {
     }
   };
 
-  const uploadFile = async (file: File, folder: string): Promise<{ name: string; path: string; size: number }> => {
+  const uploadFile = async (file: File, folder: string, userId: string): Promise<{ name: string; path: string; size: number }> => {
     const fileExt = file.name.split('.').pop();
     const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-    const filePath = `${folder}/${fileName}`;
+    const filePath = `${userId}/${folder}/${fileName}`;
 
     const { error } = await supabase.storage
       .from('supplier-documents')
@@ -152,16 +152,29 @@ const Suppliers = () => {
     setIsSubmitting(true);
 
     try {
-      // Upload all files
+      // Get or create anonymous user session for file upload
+      const { data: { session } } = await supabase.auth.getSession();
+      let userId = session?.user?.id;
+      
+      // If no session, create anonymous session
+      if (!userId) {
+        const { data: anonData, error: anonError } = await supabase.auth.signInAnonymously();
+        if (anonError) throw new Error('Failed to create upload session');
+        userId = anonData.user?.id;
+      }
+      
+      if (!userId) throw new Error('Unable to establish upload session');
+
+      // Upload all files with user-scoped paths
       const insuranceUploads = await Promise.all(
-        insuranceFiles.map(file => uploadFile(file, 'insurance'))
+        insuranceFiles.map(file => uploadFile(file, 'insurance', userId))
       );
 
       const accreditationUploads = await Promise.all(
-        accreditationFiles.map(file => uploadFile(file, 'accreditations'))
+        accreditationFiles.map(file => uploadFile(file, 'accreditations', userId))
       );
 
-      const ramsUpload = ramsFile ? await uploadFile(ramsFile, 'rams') : undefined;
+      const ramsUpload = ramsFile ? await uploadFile(ramsFile, 'rams', userId) : undefined;
 
       // Submit application
       const { data, error } = await supabase.functions.invoke('submit-supplier-application', {
