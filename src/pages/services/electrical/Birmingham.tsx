@@ -52,9 +52,9 @@ const ElectricalBirmingham = () => {
   return (
     <>
       <Helmet>
-        <title>Commercial Electrical Compliance Birmingham | EICR Testing West Midlands</title>
+        <title>Electrical Compliance in Birmingham | EICR Testing & BS 7671 | EntireFM</title>
         <meta name="description" content="EICR testing & remedials across logistics, manufacturing & corporate estates in the West Midlands. Protect Birmingham operations with BS 7671 compliant electrical compliance." />
-        <link rel="canonical" href="https://entirefm.com/electrical/birmingham" />
+        <link rel="canonical" href="https://entirefm.com/services/electrical-compliance" />
       </Helmet>
 
       <SchemaMarkup schema={serviceSchema} />

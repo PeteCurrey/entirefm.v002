@@ -9,6 +9,7 @@ import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { Download, Zap, AlertTriangle, FileCheck, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/tech-dashboard.jpg";
+import { RegionalServiceIndex } from "@/components/shared/RegionalServiceIndex";
 
 const ElectricalCompliance = () => {
   const { trackProposalRequest, trackDownload } = useConversionTracking();
@@ -411,6 +412,12 @@ const ElectricalCompliance = () => {
             </section>
 
             {/* FAQ Section */}
+            {/* Regional Service Index */}
+            <RegionalServiceIndex 
+              serviceName="Electrical Compliance"
+              serviceSlug="electrical"
+            />
+
             <FAQSection faqs={faqs} />
 
             {/* Final CTA */}

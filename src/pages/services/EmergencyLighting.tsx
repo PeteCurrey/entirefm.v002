@@ -11,6 +11,7 @@ import heroImage from "@/assets/office-interior.jpg";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
 import { DualCTA } from "@/components/shared/DualCTA";
+import { RegionalServiceIndex } from "@/components/shared/RegionalServiceIndex";
 
 const EmergencyLighting = () => {
   useConversionTracking();
@@ -319,7 +320,13 @@ const EmergencyLighting = () => {
                   }
                 ]}
               />
-              <FAQSection faqs={faqs} />
+          {/* Regional Service Index */}
+          <RegionalServiceIndex 
+            serviceName="Emergency Lighting"
+            serviceSlug="emergency-lighting"
+          />
+
+          <FAQSection faqs={faqs} />
             </div>
           </div>
         </section>

@@ -17,13 +17,23 @@ https://www.entirefm.com/* https://entirefm.com/:splat      301!
 /london-facilities-management           /services/fire/london                    301
 /fm-birmingham                          /services/fire/birmingham                301
 /facilities-management-birmingham       /services/fire/birmingham                301
+/birmingham-facilities-management       /services/fire/birmingham                301
 /fm-manchester                          /services/fire/manchester                301
 /facilities-management-manchester       /services/fire/manchester                301
+/manchester-facilities-management       /services/fire/manchester                301
 /fm-nottingham                          /services/fire/nottingham                301
+/facilities-management-nottingham       /services/fire/nottingham                301
 /fm-derby                               /services/fire/derby                     301
+/facilities-management-derby            /services/fire/derby                     301
 /fm-sheffield                           /services/fire/sheffield                 301
+/facilities-management-sheffield        /services/fire/sheffield                 301
 /fm-chesterfield                        /services/fire/chesterfield              301
+/facilities-management-chesterfield     /services/fire/chesterfield              301
 /fm-lincoln                             /services/fire/lincoln                   301
+/facilities-management-lincoln          /services/fire/lincoln                   301
+/fm-leeds                               /services/fire/leeds                     301
+/facilities-management-leeds            /services/fire/leeds                     301
+/facilities-management-in-the-midlands  /sectors/industrial-logistics            301
 
 # ============================================
 # SECTOR MATCH REDIRECTS
@@ -35,7 +45,7 @@ https://www.entirefm.com/* https://entirefm.com/:splat      301!
 /airport-facilities-management          /sectors/airports                        301
 /hotel-facilities-management            /sectors/hotels-leisure                  301
 /residential-facilities-management      /sectors/residential                     301
-/service-station-fm                     /sectors/logistics-parks                 301
+/service-station-fm                     /sectors/retail-service-stations         301
 
 # ============================================
 # SERVICE MATCH REDIRECTS
@@ -44,10 +54,17 @@ https://www.entirefm.com/* https://entirefm.com/:splat      301!
 /hvac-contractor                        /services/hvac-compliance                301
 /safety-critical-emergency-systems      /services/emergency-systems              301
 /plumbing-gas                           /services/commercial-plumbing            301
+/gas-safety                             /services/gas-safety                     301
 /ppm                                    /services/ppm                            301
 /hard-services                          /services/hard-services-fm               301
 /mechanical-electrical                  /services/me-services                    301
 /mechanical-electrical/emergency-light-testing  /services/emergency-lighting     301
+/fire-safety                            /services/fire-safety                    301
+/fire-alarms                            /services/fire-alarms                    301
+/emergency-lighting                     /services/emergency-lighting             301
+/water-hygiene                          /services/water-hygiene                  301
+/electrical-testing                     /services/electrical-compliance          301
+/eicr-testing                           /services/electrical-compliance          301
 
 # ============================================
 # INDUSTRIAL & SPECIALIST REDIRECTS
@@ -56,6 +73,7 @@ https://www.entirefm.com/* https://entirefm.com/:splat      301!
 /industrial-cleaning                    /soft-services/specialist-cleaning       301
 /aerial-drone-building-inspection       /services/drone-inspections              301
 /building-inspecting-testing            /services/building-inspections           301
+/emergency-systems                      /services/emergency-systems              301
 
 # ============================================
 # CLIENT PORTAL & AUTHENTICATION
