@@ -53,6 +53,86 @@ export type Database = {
         }
         Relationships: []
       }
+      gsc_connections: {
+        Row: {
+          access_token: string | null
+          created_at: string | null
+          id: string
+          refresh_token: string | null
+          site_url: string
+          token_expires_at: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          access_token?: string | null
+          created_at?: string | null
+          id?: string
+          refresh_token?: string | null
+          site_url: string
+          token_expires_at?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          access_token?: string | null
+          created_at?: string | null
+          id?: string
+          refresh_token?: string | null
+          site_url?: string
+          token_expires_at?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      gsc_crawl_data: {
+        Row: {
+          clicks: number | null
+          connection_id: string | null
+          crawl_status: string | null
+          fetched_at: string | null
+          id: string
+          impressions: number | null
+          indexed: boolean | null
+          last_crawled: string | null
+          position: number | null
+          url: string
+        }
+        Insert: {
+          clicks?: number | null
+          connection_id?: string | null
+          crawl_status?: string | null
+          fetched_at?: string | null
+          id?: string
+          impressions?: number | null
+          indexed?: boolean | null
+          last_crawled?: string | null
+          position?: number | null
+          url: string
+        }
+        Update: {
+          clicks?: number | null
+          connection_id?: string | null
+          crawl_status?: string | null
+          fetched_at?: string | null
+          id?: string
+          impressions?: number | null
+          indexed?: boolean | null
+          last_crawled?: string | null
+          position?: number | null
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gsc_crawl_data_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "gsc_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       proposal_requests: {
         Row: {
           admin_notes: string | null

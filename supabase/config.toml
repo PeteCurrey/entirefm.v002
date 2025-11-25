@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.smart-search]
 verify_jwt = false
+
+[functions.gsc-api]
+verify_jwt = false
