@@ -249,6 +249,7 @@ import ConceptEvolution from "./pages/integrations/ConceptEvolution";
 import MyCompliance from "./pages/integrations/MyCompliance";
 import Search from "./pages/Search";
 import SearchAnalyticsDashboard from "./pages/SearchAnalyticsDashboard";
+import LinkHealthDashboard from "./pages/LinkHealthDashboard";
 import ProposalsDashboard from "./pages/admin/ProposalsDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -553,6 +554,7 @@ const App = () => <QueryClientProvider client={queryClient}>
               {/* Comparison Pages */}
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
               <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
+              <Route path="/link-health" element={<LinkHealthDashboard />} />
               
               {/* Wave 7: FM Operations & Soft Services */}
               <Route path="/fm-operations" element={<FMOperations />} />
