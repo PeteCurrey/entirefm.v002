@@ -253,6 +253,7 @@ import ProposalsDashboard from "./pages/admin/ProposalsDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
+import ContactSubmissions from "./pages/admin/ContactSubmissions";
 import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
 import EmergencyResponse from "./pages/services/EmergencyResponse";
 import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
@@ -577,6 +578,7 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
                 <Route path="proposals" element={<ProposalsDashboard />} />
+                <Route path="contacts" element={<ContactSubmissions />} />
               </Route>
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
