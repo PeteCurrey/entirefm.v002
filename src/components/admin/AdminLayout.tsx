@@ -10,7 +10,10 @@ import {
   Menu,
   X,
   BarChart3,
-  Mail
+  Mail,
+  Wrench,
+  Map,
+  Link
 } from "lucide-react";
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
@@ -108,7 +111,10 @@ export default function AdminLayout() {
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
     { icon: FileText, label: "Proposals", path: "/admin/proposals" },
     { icon: Mail, label: "Contacts", path: "/admin/contacts" },
-    { icon: BarChart3, label: "Analytics", path: "/search-analytics" },
+    { icon: BarChart3, label: "Search Analytics", path: "/admin/search-analytics" },
+    { icon: Link, label: "Link Health", path: "/admin/link-health" },
+    { icon: Map, label: "Site Map", path: "/admin/site-map" },
+    { icon: Wrench, label: "Tools", path: "/admin/ppm-calculator" },
   ];
 
   return (
