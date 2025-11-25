@@ -46,8 +46,9 @@ const GasSafetyLondon = () => {
   return (
     <>
       <Helmet>
-        <title>Commercial Gas Safety & Boiler Compliance London | CP42 Catering | Gas Safe</title>
+        <title>Gas Safety & Boiler Compliance in London | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Gas Safe inspections, catering CP42 certification and full legal compliance for high-occupancy estates across London. CO risk elimination, boiler servicing & energy efficiency." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />

@@ -40,10 +40,10 @@ const WaterSheffield = () => {
   return (
     <>
       <Helmet>
-        <title>Industrial Legionella Testing Sheffield | Manufacturing Water Safety | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in Sheffield | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Specialist Legionella compliance for Sheffield's industrial and manufacturing sector. ACOP L8 risk assessments, cooling tower monitoring, and rapid remedials with minimal downtime." />
         <meta name="keywords" content="Legionella testing Sheffield, industrial water hygiene, manufacturing compliance, cooling tower testing, ACOP L8, HSG274" />
-        <link rel="canonical" href="https://entirefm.com/water/sheffield" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

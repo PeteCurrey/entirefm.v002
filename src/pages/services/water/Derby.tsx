@@ -36,10 +36,10 @@ const WaterDerby = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Testing & Water Hygiene Derby | Transport & Aerospace Compliance | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in Derby | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Transport and aerospace Legionella compliance for Derby. ACOP L8 risk assessments, operational monitoring, and rapid remedials for transport hubs and manufacturing facilities." />
         <meta name="keywords" content="Legionella testing Derby, transport water hygiene, aerospace Legionella compliance, ACOP L8 Derby, HSG274, operational water safety" />
-        <link rel="canonical" href="https://entirefm.com/water/derby" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

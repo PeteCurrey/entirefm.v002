@@ -36,10 +36,10 @@ const WaterChesterfield = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Testing & Water Hygiene Chesterfield | Logistics & Distribution Compliance | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in Chesterfield | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Distribution centre Legionella compliance for Chesterfield. ACOP L8 risk assessments, operational monitoring, and rapid remedials for M1 corridor logistics facilities." />
         <meta name="keywords" content="Legionella testing Chesterfield, logistics water hygiene, distribution centre Legionella, ACOP L8 Chesterfield, M1 corridor water safety" />
-        <link rel="canonical" href="https://entirefm.com/water/chesterfield" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

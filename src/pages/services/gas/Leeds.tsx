@@ -46,8 +46,9 @@ const GasSafetyLeeds = () => {
   return (
     <>
       <Helmet>
-        <title>Gas Safety Compliance Leeds | CP42 Hotels | Restaurant Gas Certification</title>
+        <title>Gas Safety & Boiler Compliance in Leeds | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Corporate + hospitality heating/catering safety in Leeds. CP42 catering inspections, boiler servicing, and energy-efficiency upgrades." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />

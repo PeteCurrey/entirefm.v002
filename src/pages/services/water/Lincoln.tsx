@@ -36,10 +36,10 @@ const WaterLincoln = () => {
   return (
     <>
       <Helmet>
-        <title>Legionella Testing & Water Hygiene Lincoln | Healthcare & Heritage Compliance | Entire FM</title>
+        <title>Water Hygiene & Legionella Testing in Lincoln | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Healthcare and heritage Legionella compliance for Lincoln. ACOP L8 and HTM 04-01 risk assessments, specialist monitoring, and rapid remedials for sensitive buildings." />
         <meta name="keywords" content="Legionella testing Lincoln, healthcare water hygiene, heritage building water safety, ACOP L8 Lincoln, HTM 04-01 compliance" />
-        <link rel="canonical" href="https://entirefm.com/water/lincoln" />
+        <link rel="canonical" href="https://entirefm.com/services/water-hygiene" />
       </Helmet>
 
       <ServiceSchema 

@@ -46,8 +46,9 @@ const GasSafetyDerby = () => {
   return (
     <>
       <Helmet>
-        <title>Gas Safety Derby | Aerospace Industrial Gas Compliance | CP15 Certification</title>
+        <title>Gas Safety & Boiler Compliance in Derby | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Aerospace/industrial heating gas compliance in Derby. GS(I&U) Regs enforcement with zero fail tolerance and high-efficiency boiler upgrades." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />

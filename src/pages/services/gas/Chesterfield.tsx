@@ -46,8 +46,9 @@ const GasSafetyChesterfield = () => {
   return (
     <>
       <Helmet>
-        <title>Gas Safety Chesterfield | Logistics Warehouse Gas Compliance | CO Protection</title>
+        <title>Gas Safety & Boiler Compliance in Chesterfield | Local Testing & Statutory Compliance | EntireFM</title>
         <meta name="description" content="Logistics + warehouse heating compliance in Chesterfield. Gas safety with CO protection and energy-efficiency focus to reduce large-space heating costs." />
+        <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />
