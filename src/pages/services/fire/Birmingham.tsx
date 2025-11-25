@@ -18,6 +18,9 @@ import { FAQSection } from "@/components/shared/FAQSection";
 import { SchemaMarkup, ServiceSchema, LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { LocationCaseStudies } from "@/components/shared/LocationCaseStudies";
+import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const FireBirmingham = () => {
   const { trackPhoneClick, trackDownload, trackProposalRequest } = useConversionTracking();

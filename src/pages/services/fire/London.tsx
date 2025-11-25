@@ -18,6 +18,9 @@ import { FAQSection } from "@/components/shared/FAQSection";
 import { SchemaMarkup, ServiceSchema, LocalBusinessSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { LocationCaseStudies } from "@/components/shared/LocationCaseStudies";
+import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const FireLondon = () => {
   const { trackPhoneClick, trackDownload, trackProposalRequest } = useConversionTracking();
@@ -377,6 +380,20 @@ const FireLondon = () => {
 
             {/* FAQs */}
             <FAQSection faqs={faqs} />
+
+            <LocationCaseStudies location="london" />
+
+            <RelatedServices
+              services={[
+                { title: "Fire Alarm Systems", description: "Comprehensive BS 5839 fire detection and alarm compliance", link: "/services/fire-safety" },
+                { title: "Emergency Lighting", description: "BS 5266 evacuation lighting testing", link: "/services/emergency-lighting" },
+                { title: "PPM Delivery", description: "Structured fire system preventive maintenance", link: "/fm-operations/ppm-delivery" },
+                { title: "Reactive Maintenance", description: "24/7 emergency fire system response", link: "/fm-operations/reactive-maintenance" }
+              ]}
+              title="Related Fire Safety Services"
+            />
+
+            <KnowledgeCentreCTA />
 
             {/* Final CTA */}
             <Card className="p-8 bg-gradient-to-br from-destructive/10 to-background border-destructive/20">
