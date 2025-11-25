@@ -1,0 +1,84 @@
+# EntireFM SEO-Protective Redirects
+# Preserves ranking signals from legacy site structure
+
+# ============================================
+# FORCE HTTPS & WWW NORMALIZATION
+# ============================================
+http://entirefm.com/*      https://entirefm.com/:splat      301!
+http://www.entirefm.com/*  https://entirefm.com/:splat      301!
+https://www.entirefm.com/* https://entirefm.com/:splat      301!
+
+# ============================================
+# HIGH-PRIORITY LEGACY LOCATION REDIRECTS
+# Strong historical ranking for "FM + Location"
+# ============================================
+/fm-london                              /services/fire/london                    301
+/facilities-management-london           /services/fire/london                    301
+/london-facilities-management           /services/fire/london                    301
+/fm-birmingham                          /services/fire/birmingham                301
+/facilities-management-birmingham       /services/fire/birmingham                301
+/fm-manchester                          /services/fire/manchester                301
+/facilities-management-manchester       /services/fire/manchester                301
+/fm-nottingham                          /services/fire/nottingham                301
+/fm-derby                               /services/fire/derby                     301
+/fm-sheffield                           /services/fire/sheffield                 301
+/fm-chesterfield                        /services/fire/chesterfield              301
+/fm-lincoln                             /services/fire/lincoln                   301
+
+# ============================================
+# SECTOR MATCH REDIRECTS
+# Legacy sector pages to new structure
+# ============================================
+/retail-facilities-management           /sectors/retail-hospitality              301
+/commercial-facilities-management       /sectors/offices                         301
+/industrial-facilities-management       /sectors/industrial-logistics            301
+/airport-facilities-management          /sectors/airports                        301
+/hotel-facilities-management            /sectors/hotels-leisure                  301
+/residential-facilities-management      /sectors/residential                     301
+/service-station-fm                     /sectors/logistics-parks                 301
+
+# ============================================
+# SERVICE MATCH REDIRECTS
+# Core services with visible traffic history
+# ============================================
+/hvac-contractor                        /services/hvac-compliance                301
+/safety-critical-emergency-systems      /services/emergency-systems              301
+/plumbing-gas                           /services/commercial-plumbing            301
+/ppm                                    /services/ppm                            301
+/hard-services                          /services/hard-services-fm               301
+/mechanical-electrical                  /services/me-services                    301
+/mechanical-electrical/emergency-light-testing  /services/emergency-lighting     301
+
+# ============================================
+# INDUSTRIAL & SPECIALIST REDIRECTS
+# Niche pages to new equivalents
+# ============================================
+/industrial-cleaning                    /soft-services/specialist-cleaning       301
+/aerial-drone-building-inspection       /services/drone-inspections              301
+/building-inspecting-testing            /services/building-inspections           301
+
+# ============================================
+# CLIENT PORTAL & AUTHENTICATION
+# Temporary redirects - future portal planned
+# ============================================
+/client-login                           /resources                               302
+/client-login/account-registration      /resources                               302
+
+# ============================================
+# BLOG & RESOURCE CONTENT
+# Legacy content to Knowledge Centre
+# ============================================
+/blog                                   /resources                               301
+/blog/*                                 /resources                               301
+/facilities-management-glossary         /resources                               301
+
+# ============================================
+# TRAILING SLASH NORMALIZATION
+# ============================================
+/*/ /:splat 301
+
+# ============================================
+# FALLBACK: SPA ROUTING
+# All other requests serve index.html
+# ============================================
+/* /index.html 200
