@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
-import { GlobalSearch } from "@/components/shared/GlobalSearch";
+import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
 import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
@@ -159,7 +159,7 @@ const Header = ({
 
           {/* Desktop Search */}
           <div className="hidden lg:flex flex-1 max-w-md mx-8">
-            <GlobalSearch />
+            <EnhancedGlobalSearch />
           </div>
 
           {/* Desktop Navigation */}

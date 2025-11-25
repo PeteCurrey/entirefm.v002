@@ -4,8 +4,15 @@ import { ArrowRight, Settings, Shield, Users, TrendingUp, FileText, Headphones, 
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { EnhancedGlobalSearch } from '@/components/shared/EnhancedGlobalSearch';
+import { Breadcrumb } from '@/components/shared/Breadcrumb';
 
 const FMOperations = () => {
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "FM Operations" },
+  ];
+
   const operationalServices = [
     {
       title: 'Asset Lifecycle Management',
@@ -99,21 +106,31 @@ const FMOperations = () => {
         <meta name="keywords" content="FM operations, facilities management, PPM delivery, reactive maintenance, asset management, helpdesk, mobilisation" />
       </Helmet>
 
+      <Breadcrumb items={breadcrumbItems} />
+
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
         <section className="relative py-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
           <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl">
+            <div className="max-w-4xl mx-auto text-center">
               <Badge className="mb-4">FM Operations Hub</Badge>
-              <h1 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block">
+              <h1 className="text-4xl md:text-5xl font-light mb-6">
                 Operational Excellence in Facilities Management
               </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8 max-w-3xl">
+              <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8 max-w-3xl mx-auto">
                 From strategic planning to day-to-day operations, our comprehensive FM services 
                 deliver reliability, compliance, and value across your entire property portfolio.
               </p>
-              <div className="flex flex-wrap gap-4">
+              
+              {/* Search Bar */}
+              <div className="flex justify-center mb-8">
+                <div className="w-full max-w-2xl">
+                  <EnhancedGlobalSearch />
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap gap-4 justify-center">
                 <Link to="/request-proposal">
                   <Button size="lg">
                     Request Proposal

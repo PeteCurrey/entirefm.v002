@@ -1,1 +1,13 @@
 project_id = "iaevqfmiwadbrezmpoyd"
+
+[functions.submit-contact]
+verify_jwt = false
+
+[functions.submit-proposal]
+verify_jwt = false
+
+[functions.submit-supplier-application]
+verify_jwt = false
+
+[functions.smart-search]
+verify_jwt = false
