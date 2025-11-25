@@ -271,6 +271,8 @@ import Mobilisation from "./pages/fm-operations/Mobilisation";
 import PPMDelivery from "./pages/fm-operations/PPMDelivery";
 import ReactiveMaintenance from "./pages/fm-operations/ReactiveMaintenance";
 import FMOperations from "./pages/FMOperations";
+import { LegacyRedirects } from "./components/shared/LegacyRedirects";
+
 const queryClient = new QueryClient();
 
 // Scroll to top on route change
@@ -288,6 +290,7 @@ const App = () => <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <LoadingBar />
         <ScrollToTop />
+        <LegacyRedirects />
         <div className="flex flex-col min-h-screen">
           <Header className="opacity-95" />
           <main className="flex-grow">

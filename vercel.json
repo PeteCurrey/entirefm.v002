@@ -1,0 +1,180 @@
+{
+  "redirects": [
+    {
+      "source": "/fm-london",
+      "destination": "/services/fire/london",
+      "permanent": true
+    },
+    {
+      "source": "/facilities-management-london",
+      "destination": "/services/fire/london",
+      "permanent": true
+    },
+    {
+      "source": "/london-facilities-management",
+      "destination": "/services/fire/london",
+      "permanent": true
+    },
+    {
+      "source": "/fm-birmingham",
+      "destination": "/services/fire/birmingham",
+      "permanent": true
+    },
+    {
+      "source": "/facilities-management-birmingham",
+      "destination": "/services/fire/birmingham",
+      "permanent": true
+    },
+    {
+      "source": "/fm-manchester",
+      "destination": "/services/fire/manchester",
+      "permanent": true
+    },
+    {
+      "source": "/facilities-management-manchester",
+      "destination": "/services/fire/manchester",
+      "permanent": true
+    },
+    {
+      "source": "/fm-nottingham",
+      "destination": "/services/fire/nottingham",
+      "permanent": true
+    },
+    {
+      "source": "/fm-derby",
+      "destination": "/services/fire/derby",
+      "permanent": true
+    },
+    {
+      "source": "/fm-sheffield",
+      "destination": "/services/fire/sheffield",
+      "permanent": true
+    },
+    {
+      "source": "/fm-chesterfield",
+      "destination": "/services/fire/chesterfield",
+      "permanent": true
+    },
+    {
+      "source": "/fm-lincoln",
+      "destination": "/services/fire/lincoln",
+      "permanent": true
+    },
+    {
+      "source": "/retail-facilities-management",
+      "destination": "/sectors/retail-hospitality",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-facilities-management",
+      "destination": "/sectors/offices",
+      "permanent": true
+    },
+    {
+      "source": "/industrial-facilities-management",
+      "destination": "/sectors/industrial-logistics",
+      "permanent": true
+    },
+    {
+      "source": "/airport-facilities-management",
+      "destination": "/sectors/airports",
+      "permanent": true
+    },
+    {
+      "source": "/hotel-facilities-management",
+      "destination": "/sectors/hotels-leisure",
+      "permanent": true
+    },
+    {
+      "source": "/residential-facilities-management",
+      "destination": "/sectors/residential",
+      "permanent": true
+    },
+    {
+      "source": "/service-station-fm",
+      "destination": "/sectors/logistics-parks",
+      "permanent": true
+    },
+    {
+      "source": "/hvac-contractor",
+      "destination": "/services/hvac-compliance",
+      "permanent": true
+    },
+    {
+      "source": "/safety-critical-emergency-systems",
+      "destination": "/services/emergency-systems",
+      "permanent": true
+    },
+    {
+      "source": "/plumbing-gas",
+      "destination": "/services/commercial-plumbing",
+      "permanent": true
+    },
+    {
+      "source": "/ppm",
+      "destination": "/services/ppm",
+      "permanent": true
+    },
+    {
+      "source": "/hard-services",
+      "destination": "/services/hard-services-fm",
+      "permanent": true
+    },
+    {
+      "source": "/mechanical-electrical",
+      "destination": "/services/me-services",
+      "permanent": true
+    },
+    {
+      "source": "/mechanical-electrical/emergency-light-testing",
+      "destination": "/services/emergency-lighting",
+      "permanent": true
+    },
+    {
+      "source": "/industrial-cleaning",
+      "destination": "/soft-services/specialist-cleaning",
+      "permanent": true
+    },
+    {
+      "source": "/aerial-drone-building-inspection",
+      "destination": "/services/drone-inspections",
+      "permanent": true
+    },
+    {
+      "source": "/building-inspecting-testing",
+      "destination": "/services/building-inspections",
+      "permanent": true
+    },
+    {
+      "source": "/client-login",
+      "destination": "/resources",
+      "permanent": false
+    },
+    {
+      "source": "/client-login/account-registration",
+      "destination": "/resources",
+      "permanent": false
+    },
+    {
+      "source": "/blog",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/facilities-management-glossary",
+      "destination": "/resources",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
