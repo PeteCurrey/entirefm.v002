@@ -195,7 +195,7 @@ const HVAC = () => {
                   Asset-Centric Maintenance Strategy
                 </h2>
                 <p className="text-muted-foreground font-light mb-6">
-                  We create customised PPM schedules informed by:
+                  We create customised <Link to="/fm-operations/ppm-delivery" className="text-primary hover:underline">PPM schedules</Link> informed by:
                 </p>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[

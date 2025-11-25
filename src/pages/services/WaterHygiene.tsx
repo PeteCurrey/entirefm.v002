@@ -168,15 +168,15 @@ const WaterHygiene = () => {
         </section>
 
         {/* Remedials */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Remedials — Risk Closed, Same Visit Where Possible
-              </h2>
-              <p className="text-xl text-muted-foreground font-light mb-8 leading-relaxed">
-                When risk appears, it gets:
-              </p>
+          <section className="py-20 bg-muted/30">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
+                  Remedials — Risk Closed, Same Visit Where Possible
+                </h2>
+                <p className="text-xl text-muted-foreground font-light mb-8 leading-relaxed">
+                  When risk appears, our <Link to="/fm-operations/reactive-maintenance" className="text-primary hover:underline">reactive maintenance</Link> team ensures it gets:
+                </p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="bg-card p-8 rounded-lg border border-border text-center">
                   <div className="text-3xl mb-4">✔</div>
