@@ -298,9 +298,6 @@ const App = () => <QueryClientProvider client={queryClient}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/request-proposal" element={<RequestProposal />} />
-              <Route path="/tools/ppm-calculator" element={<PPMCalculator />} />
-              <Route path="/tools/tm44-checker" element={<TM44Checker />} />
-              <Route path="/tools/water-risk-grader" element={<WaterRiskGrader />} />
               <Route path="/services" element={<Services />} />
           <Route path="/services/hard-fm" element={<HardServices />} />
           <Route path="/services/hvac" element={<HVAC />} />
@@ -498,11 +495,7 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/about" element={<About />} />
               <Route path="/esg" element={<ESG />} />
               <Route path="/health-safety" element={<HealthSafety />} />
-              <Route path="/tools/cost-savings" element={<CostSavingsCalculator />} />
-              <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
-              <Route path="/tools/risk-diagnostic" element={<ComplianceDiagnostic />} />
               <Route path="/search" element={<Search />} />
-              <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
         <Route path="/fm-insights" element={<FMInsights />} />
         <Route path="/fm-insights/what-is-facilities-management" element={<WhatIsFacilitiesManagement />} />
         <Route path="/fm-insights/what-is-hard-fm" element={<WhatIsHardFM />} />
@@ -547,14 +540,10 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/innovation" element={<Innovation />} />
               <Route path="/partnerships" element={<Partnerships />} />
               <Route path="/awards" element={<Awards />} />
-              <Route path="/tools/cost-savings-calculator" element={<CostSavingsCalculator />} />
-              <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
               {/* Comparison Pages */}
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
-              <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
-              <Route path="/link-health" element={<LinkHealthDashboard />} />
               
               {/* Wave 7: FM Operations & Soft Services */}
               <Route path="/fm-operations" element={<FMOperations />} />
@@ -575,8 +564,6 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/soft-services/grounds-maintenance" element={<GroundsMaintenance />} />
               <Route path="/soft-services/waste-recycling" element={<WasteRecycling />} />
               
-              {/* Site Map */}
-              <Route path="/site-map" element={<SiteMap />} />
               
               {/* Admin Routes */}
               <Route path="/admin/login" element={<AdminLogin />} />
@@ -584,6 +571,15 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route index element={<AdminDashboard />} />
                 <Route path="proposals" element={<ProposalsDashboard />} />
                 <Route path="contacts" element={<ContactSubmissions />} />
+                <Route path="site-map" element={<SiteMap />} />
+                <Route path="link-health" element={<LinkHealthDashboard />} />
+                <Route path="search-analytics" element={<SearchAnalyticsDashboard />} />
+                <Route path="ppm-calculator" element={<PPMCalculator />} />
+                <Route path="tm44-checker" element={<TM44Checker />} />
+                <Route path="water-risk-grader" element={<WaterRiskGrader />} />
+                <Route path="cost-savings-calculator" element={<CostSavingsCalculator />} />
+                <Route path="sla-benchmark" element={<SLABenchmark />} />
+                <Route path="risk-diagnostic" element={<ComplianceDiagnostic />} />
               </Route>
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
