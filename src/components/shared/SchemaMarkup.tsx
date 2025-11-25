@@ -70,9 +70,11 @@ interface LocalBusinessSchemaProps {
     postalCode: string;
     country: string;
   };
+  email?: string;
+  serviceType?: string;
 }
 
-export const LocalBusinessSchema = ({ name, address }: LocalBusinessSchemaProps) => {
+export const LocalBusinessSchema = ({ name, address, email, serviceType }: LocalBusinessSchemaProps) => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -84,7 +86,12 @@ export const LocalBusinessSchema = ({ name, address }: LocalBusinessSchemaProps)
       "postalCode": address.postalCode,
       "addressCountry": address.country
     },
-    "telephone": "+44-800-XXX-XXXX"
+    "telephone": "+44-800-XXX-XXXX",
+    ...(email && { "email": email }),
+    ...(serviceType && { "department": {
+      "@type": "Service",
+      "serviceType": serviceType
+    }})
   };
 
   return (

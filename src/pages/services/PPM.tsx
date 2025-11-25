@@ -11,8 +11,6 @@ import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
 import { DualCTA } from "@/components/shared/DualCTA";
-import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
-import { DualCTA } from "@/components/shared/DualCTA";
 
 const PPM = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
