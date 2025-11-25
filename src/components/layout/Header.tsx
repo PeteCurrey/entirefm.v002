@@ -153,7 +153,7 @@ const Header = ({
   return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent", className)}>
       <div className="container mx-auto px-6 pr-[10px] pl-[10px]">
         <div className="h-20 gap-0 flex-row mx-0 my-[5px] flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2 mx-[5px] pl-[150px]">
+          <Link to="/" className="flex items-center space-x-2 mx-[5px] pl-[8px]">
             <img src={logo} alt="EntireFM Logo" className="h-12 w-auto" />
           </Link>
 
