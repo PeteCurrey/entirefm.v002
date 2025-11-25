@@ -13,6 +13,7 @@ import { RelatedServices } from "@/components/seo/RelatedServices";
 import { ComplianceDetails } from "@/components/seo/ComplianceDetails";
 import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
 import { DualCTA } from "@/components/shared/DualCTA";
+import { RegionalServiceIndex } from "@/components/shared/RegionalServiceIndex";
 
 const FireSafety = () => {
   const { trackProposalRequest, trackDownload } = useConversionTracking();
@@ -424,6 +425,12 @@ const FireSafety = () => {
             <RelatedServices currentUrl="/services/fire-safety" />
 
             {/* FAQ Section */}
+            {/* Regional Service Index */}
+            <RegionalServiceIndex 
+              serviceName="Fire Safety"
+              serviceSlug="fire"
+            />
+
             <FAQSection faqs={faqs} />
 
             {/* Final CTA */}

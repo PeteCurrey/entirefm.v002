@@ -25,9 +25,9 @@ const EmergencyLightingBirmingham = () => {
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting Compliance Birmingham | BS 5266 Testing Logistics & Retail</title>
+        <title>Emergency Lighting in Birmingham | BS 5266 Testing & Compliance | EntireFM</title>
         <meta name="description" content="Life-safety illumination testing across Birmingham's logistics, retail and corporate spaces. BS 5266 compliance with rapid remedials." />
-        <link rel="canonical" href="https://entirefm.com/emergency-lighting/birmingham" />
+        <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
       <SchemaMarkup schema={{ "@context": "https://schema.org", "@type": "Service", "name": "Emergency Lighting Compliance - Birmingham", "provider": { "@type": "Organization", "name": "EntireFM" }, "areaServed": "Birmingham, UK" }} />
