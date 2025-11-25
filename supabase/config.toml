@@ -14,3 +14,6 @@ verify_jwt = false
 
 [functions.gsc-api]
 verify_jwt = false
+
+[functions.gsc-alert-checker]
+verify_jwt = false

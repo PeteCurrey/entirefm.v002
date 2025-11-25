@@ -53,6 +53,69 @@ export type Database = {
         }
         Relationships: []
       }
+      gsc_alert_history: {
+        Row: {
+          alert_data: Json
+          alert_type: string
+          email_sent_to: string
+          id: string
+          sent_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          alert_data: Json
+          alert_type: string
+          email_sent_to: string
+          id?: string
+          sent_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          alert_data?: Json
+          alert_type?: string
+          email_sent_to?: string
+          id?: string
+          sent_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      gsc_alert_preferences: {
+        Row: {
+          alert_frequency: string | null
+          alert_types: Json | null
+          created_at: string | null
+          email: string
+          enabled: boolean | null
+          id: string
+          last_alert_sent: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          alert_frequency?: string | null
+          alert_types?: Json | null
+          created_at?: string | null
+          email: string
+          enabled?: boolean | null
+          id?: string
+          last_alert_sent?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          alert_frequency?: string | null
+          alert_types?: Json | null
+          created_at?: string | null
+          email?: string
+          enabled?: boolean | null
+          id?: string
+          last_alert_sent?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       gsc_connections: {
         Row: {
           access_token: string | null
