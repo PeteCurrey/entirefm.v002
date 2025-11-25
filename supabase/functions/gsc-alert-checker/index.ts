@@ -169,7 +169,7 @@ async function sendIndexationAlert(pref: any, siteUrl: string, droppedPages: any
   `;
 
   const { error } = await resend.emails.send({
-    from: 'GSC Alerts <onboarding@resend.dev>',
+    from: 'GSC Alerts <alerts@entirefm.com>',
     to: [pref.email],
     subject: `⚠️ Indexation Issues Detected - ${siteUrl}`,
     html,
@@ -198,7 +198,7 @@ async function sendCrawlErrorAlert(pref: any, siteUrl: string, errors: any[], da
   `;
 
   const { error } = await resend.emails.send({
-    from: 'GSC Alerts <onboarding@resend.dev>',
+    from: 'GSC Alerts <alerts@entirefm.com>',
     to: [pref.email],
     subject: `🔴 Crawl Errors Detected - ${siteUrl}`,
     html,
@@ -240,7 +240,7 @@ async function sendPerformanceDropAlert(
   `;
 
   const { error } = await resend.emails.send({
-    from: 'GSC Alerts <onboarding@resend.dev>',
+    from: 'GSC Alerts <alerts@entirefm.com>',
     to: [pref.email],
     subject: `📉 Performance Drop Detected - ${siteUrl}`,
     html,
