@@ -265,6 +265,11 @@ import GroundsMaintenance from "./pages/soft-services/GroundsMaintenance";
 import WasteRecycling from "./pages/soft-services/WasteRecycling";
 import FMStrategy from "./pages/fm-operations/FMStrategy";
 import FMOperationsTenderSupport from "./pages/fm-operations/TenderSupport";
+import Helpdesk from "./pages/fm-operations/Helpdesk";
+import Mobilisation from "./pages/fm-operations/Mobilisation";
+import PPMDelivery from "./pages/fm-operations/PPMDelivery";
+import ReactiveMaintenance from "./pages/fm-operations/ReactiveMaintenance";
+import FMOperations from "./pages/FMOperations";
 const queryClient = new QueryClient();
 
 // Scroll to top on route change
@@ -546,11 +551,16 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/search-analytics" element={<SearchAnalyticsDashboard />} />
               
               {/* Wave 7: FM Operations & Soft Services */}
+              <Route path="/fm-operations" element={<FMOperations />} />
               <Route path="/fm-operations/asset-lifecycle" element={<AssetLifecycle />} />
               <Route path="/fm-operations/business-continuity" element={<BusinessContinuity />} />
               <Route path="/fm-operations/occupier-experience" element={<OccupierExperience />} />
               <Route path="/fm-operations/fm-strategy" element={<FMStrategy />} />
               <Route path="/fm-operations/tender-support" element={<FMOperationsTenderSupport />} />
+              <Route path="/fm-operations/helpdesk" element={<Helpdesk />} />
+              <Route path="/fm-operations/mobilisation" element={<Mobilisation />} />
+              <Route path="/fm-operations/ppm-delivery" element={<PPMDelivery />} />
+              <Route path="/fm-operations/reactive-maintenance" element={<ReactiveMaintenance />} />
               <Route path="/services/emergency-response" element={<EmergencyResponse />} />
               <Route path="/services/disaster-recovery" element={<DisasterRecovery />} />
               <Route path="/services/space-planning" element={<SpacePlanning />} />

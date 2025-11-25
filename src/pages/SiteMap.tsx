@@ -139,6 +139,50 @@ const EXPECTED_PAGES = {
   }, {
     url: '/case-studies/emergency-lighting-lincoln',
     name: 'Emergency Lighting - Lincoln'
+  }],
+  fmOperations: [{
+    url: '/fm-operations',
+    name: 'FM Operations Hub'
+  }, {
+    url: '/fm-operations/asset-lifecycle',
+    name: 'Asset Lifecycle Management'
+  }, {
+    url: '/fm-operations/business-continuity',
+    name: 'Business Continuity Planning'
+  }, {
+    url: '/fm-operations/occupier-experience',
+    name: 'Occupier Experience'
+  }, {
+    url: '/fm-operations/fm-strategy',
+    name: 'FM Strategy & Consulting'
+  }, {
+    url: '/fm-operations/tender-support',
+    name: 'Tender Support'
+  }, {
+    url: '/fm-operations/helpdesk',
+    name: 'Helpdesk & Support'
+  }, {
+    url: '/fm-operations/mobilisation',
+    name: 'Mobilisation & Transition'
+  }, {
+    url: '/fm-operations/ppm-delivery',
+    name: 'PPM Delivery'
+  }, {
+    url: '/fm-operations/reactive-maintenance',
+    name: 'Reactive Maintenance'
+  }],
+  softServices: [{
+    url: '/soft-services/concierge',
+    name: 'Concierge Services'
+  }, {
+    url: '/soft-services/specialist-cleaning',
+    name: 'Specialist Cleaning'
+  }, {
+    url: '/soft-services/grounds-maintenance',
+    name: 'Grounds Maintenance'
+  }, {
+    url: '/soft-services/waste-recycling',
+    name: 'Waste & Recycling'
   }]
 };
 
@@ -197,9 +241,13 @@ const LOCATIONS = [{
 // Pages that actually exist in the routing
 const EXISTING_ROUTES = [
 // Compliance Hubs & Services
-'/services/fire-safety', '/services/electrical-compliance', '/services/emergency-lighting', '/services/water-hygiene', '/services/gas-safety', '/services/hvac-compliance', '/services/ppm', '/services/hard-services-fm', '/services/me-services', '/services/access-control', '/services/emergency-systems', '/services/commercial-plumbing', '/services/building-inspections', '/services/drone-inspections',
+'/services/fire-safety', '/services/electrical-compliance', '/services/emergency-lighting', '/services/water-hygiene', '/services/gas-safety', '/services/hvac-compliance', '/services/ppm', '/services/hard-services-fm', '/services/me-services', '/services/access-control', '/services/emergency-systems', '/services/commercial-plumbing', '/services/building-inspections', '/services/drone-inspections', '/services/emergency-response', '/services/disaster-recovery', '/services/space-planning',
 // Sectors
 '/sectors/offices', '/sectors/retail-hospitality', '/sectors/industrial-logistics', '/sectors/healthcare-public', '/sectors/hotels-leisure', '/sectors/pbsa', '/sectors/education', '/sectors/airports', '/sectors/venues', '/sectors/residential', '/sectors/logistics-parks',
+// FM Operations Hub & Pages
+'/fm-operations', '/fm-operations/asset-lifecycle', '/fm-operations/business-continuity', '/fm-operations/occupier-experience', '/fm-operations/fm-strategy', '/fm-operations/tender-support', '/fm-operations/helpdesk', '/fm-operations/mobilisation', '/fm-operations/ppm-delivery', '/fm-operations/reactive-maintenance',
+// Soft Services
+'/soft-services/concierge', '/soft-services/specialist-cleaning', '/soft-services/grounds-maintenance', '/soft-services/waste-recycling',
 // Conversion
 '/request-proposal', '/resources', '/case-studies',
 // Corporate Pages
@@ -270,7 +318,7 @@ const SiteMap = () => {
   const filteredPages = useMemo(() => {
     const query = searchQuery.toLowerCase();
     if (!query) return null;
-    const allPages = [...EXPECTED_PAGES.complianceHubs, ...EXPECTED_PAGES.sectors, ...EXPECTED_PAGES.conversion, ...EXPECTED_PAGES.corporate, ...EXPECTED_PAGES.caseStudies, ...complianceLocationPages.map(p => ({
+    const allPages = [...EXPECTED_PAGES.complianceHubs, ...EXPECTED_PAGES.sectors, ...EXPECTED_PAGES.conversion, ...EXPECTED_PAGES.corporate, ...EXPECTED_PAGES.caseStudies, ...EXPECTED_PAGES.fmOperations, ...EXPECTED_PAGES.softServices, ...complianceLocationPages.map(p => ({
       url: p.url,
       name: `${p.service} - ${p.location}`
     }))];
@@ -296,6 +344,14 @@ const SiteMap = () => {
     })), ...EXPECTED_PAGES.caseStudies.map(p => ({
       ...p,
       category: 'Case Study',
+      status: checkPageStatus(p.url)
+    })), ...EXPECTED_PAGES.fmOperations.map(p => ({
+      ...p,
+      category: 'FM Operations',
+      status: checkPageStatus(p.url)
+    })), ...EXPECTED_PAGES.softServices.map(p => ({
+      ...p,
+      category: 'Soft Services',
       status: checkPageStatus(p.url)
     })), ...complianceLocationPages.map(p => ({
       url: p.url,
@@ -555,6 +611,56 @@ const SiteMap = () => {
                 <CardContent>
                   <div className="space-y-2">
                     {EXPECTED_PAGES.caseStudies.map(page => {
+                  const status = checkPageStatus(page.url);
+                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                          <div className="flex items-center gap-3">
+                            {getStatusIcon(status)}
+                            <Link to={page.url} className="text-sm font-medium hover:underline">
+                              {page.name}
+                            </Link>
+                            <code className="text-xs text-muted-foreground">{page.url}</code>
+                          </div>
+                          {getStatusBadge(status)}
+                        </div>;
+                })}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 7. FM Operations Hub & Pages */}
+              <Card className="mb-8">
+                <CardHeader>
+                  <CardTitle>7️⃣ FM Operations Hub & Pages</CardTitle>
+                  <CardDescription>Operations excellence and service delivery pages</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {EXPECTED_PAGES.fmOperations.map(page => {
+                  const status = checkPageStatus(page.url);
+                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+                          <div className="flex items-center gap-3">
+                            {getStatusIcon(status)}
+                            <Link to={page.url} className="text-sm font-medium hover:underline">
+                              {page.name}
+                            </Link>
+                            <code className="text-xs text-muted-foreground">{page.url}</code>
+                          </div>
+                          {getStatusBadge(status)}
+                        </div>;
+                })}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* 8. Soft Services */}
+              <Card className="mb-8">
+                <CardHeader>
+                  <CardTitle>8️⃣ Soft Services</CardTitle>
+                  <CardDescription>Non-technical FM services and support</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {EXPECTED_PAGES.softServices.map(page => {
                   const status = checkPageStatus(page.url);
                   return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
                           <div className="flex items-center gap-3">
