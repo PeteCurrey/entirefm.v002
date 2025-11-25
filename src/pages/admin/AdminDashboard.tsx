@@ -3,19 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { 
-  Users, 
-  FileText, 
-  BarChart3, 
-  Settings,
-  TrendingUp,
-  Clock,
-  CheckCircle2,
-  AlertCircle,
-  Mail,
-  MessageSquare
-} from "lucide-react";
-
+import { Users, FileText, BarChart3, Settings, TrendingUp, Clock, CheckCircle2, AlertCircle, Mail, MessageSquare } from "lucide-react";
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
     totalProposals: 0,
@@ -23,43 +11,33 @@ export default function AdminDashboard() {
     activeProposals: 0,
     wonProposals: 0,
     totalContacts: 0,
-    newContacts: 0,
+    newContacts: 0
   });
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
   useEffect(() => {
     fetchStats();
   }, []);
-
   const fetchStats = async () => {
     try {
-      const [proposalsResult, contactsResult] = await Promise.all([
-        supabase.from('proposal_requests').select('status'),
-        supabase.from('contact_submissions').select('status')
-      ]);
-
+      const [proposalsResult, contactsResult] = await Promise.all([supabase.from('proposal_requests').select('status'), supabase.from('contact_submissions').select('status')]);
       if (proposalsResult.error) throw proposalsResult.error;
       if (contactsResult.error) throw contactsResult.error;
-
       const proposals = proposalsResult.data || [];
       const contacts = contactsResult.data || [];
-
       const total = proposals.length;
       const newCount = proposals.filter(p => p.status === 'new').length;
       const activeCount = proposals.filter(p => ['reviewing', 'contacted', 'quoted'].includes(p.status)).length;
       const wonCount = proposals.filter(p => p.status === 'won').length;
-      
       const totalContacts = contacts.length;
       const newContacts = contacts.filter(c => c.status === 'new').length;
-
       setStats({
         totalProposals: total,
         newProposals: newCount,
         activeProposals: activeCount,
         wonProposals: wonCount,
         totalContacts,
-        newContacts,
+        newContacts
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -67,12 +45,13 @@ export default function AdminDashboard() {
       setLoading(false);
     }
   };
-
-  const StatCard = ({ icon: Icon, label, value, color, onClick }: any) => (
-    <Card 
-      className="p-6 hover-lift cursor-pointer transition-all hover:border-primary/50"
-      onClick={onClick}
-    >
+  const StatCard = ({
+    icon: Icon,
+    label,
+    value,
+    color,
+    onClick
+  }: any) => <Card className="p-6 hover-lift cursor-pointer transition-all hover:border-primary/50" onClick={onClick}>
       <div className="flex items-start justify-between">
         <div>
           <p className="text-sm text-muted-foreground mb-1">{label}</p>
@@ -82,23 +61,17 @@ export default function AdminDashboard() {
           <Icon className={`h-6 w-6 text-${color}`} />
         </div>
       </div>
-    </Card>
-  );
-
-  const QuickAction = ({ icon: Icon, label, onClick }: any) => (
-    <Button
-      variant="outline"
-      className="w-full justify-start gap-3 h-auto py-4"
-      onClick={onClick}
-    >
+    </Card>;
+  const QuickAction = ({
+    icon: Icon,
+    label,
+    onClick
+  }: any) => <Button variant="outline" className="w-full justify-start gap-3 h-auto py-4" onClick={onClick}>
       <Icon className="h-5 w-5 text-primary" />
       <span>{label}</span>
-    </Button>
-  );
-
-  return (
-    <div className="min-h-screen bg-background py-12 px-4">
-      <div className="max-w-7xl mx-auto">
+    </Button>;
+  return <div className="min-h-screen bg-background py-12 px-4">
+      <div className="max-w-7xl mx-auto my-[50px]">
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">Admin Dashboard</h1>
           <p className="text-muted-foreground">
@@ -108,48 +81,12 @@ export default function AdminDashboard() {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <StatCard
-            icon={FileText}
-            label="Total Proposals"
-            value={stats.totalProposals}
-            color="primary"
-            onClick={() => navigate('/admin/proposals')}
-          />
-          <StatCard
-            icon={AlertCircle}
-            label="New Proposals"
-            value={stats.newProposals}
-            color="accent"
-            onClick={() => navigate('/admin/proposals')}
-          />
-          <StatCard
-            icon={CheckCircle2}
-            label="Won Projects"
-            value={stats.wonProposals}
-            color="primary"
-            onClick={() => navigate('/admin/proposals')}
-          />
-          <StatCard
-            icon={Mail}
-            label="Total Contacts"
-            value={stats.totalContacts}
-            color="secondary"
-            onClick={() => navigate('/admin/contacts')}
-          />
-          <StatCard
-            icon={MessageSquare}
-            label="New Contacts"
-            value={stats.newContacts}
-            color="accent"
-            onClick={() => navigate('/admin/contacts')}
-          />
-          <StatCard
-            icon={Clock}
-            label="Active Proposals"
-            value={stats.activeProposals}
-            color="secondary"
-            onClick={() => navigate('/admin/proposals')}
-          />
+          <StatCard icon={FileText} label="Total Proposals" value={stats.totalProposals} color="primary" onClick={() => navigate('/admin/proposals')} />
+          <StatCard icon={AlertCircle} label="New Proposals" value={stats.newProposals} color="accent" onClick={() => navigate('/admin/proposals')} />
+          <StatCard icon={CheckCircle2} label="Won Projects" value={stats.wonProposals} color="primary" onClick={() => navigate('/admin/proposals')} />
+          <StatCard icon={Mail} label="Total Contacts" value={stats.totalContacts} color="secondary" onClick={() => navigate('/admin/contacts')} />
+          <StatCard icon={MessageSquare} label="New Contacts" value={stats.newContacts} color="accent" onClick={() => navigate('/admin/contacts')} />
+          <StatCard icon={Clock} label="Active Proposals" value={stats.activeProposals} color="secondary" onClick={() => navigate('/admin/proposals')} />
         </div>
 
         {/* Quick Actions */}
@@ -160,31 +97,11 @@ export default function AdminDashboard() {
               Quick Actions
             </h2>
             <div className="space-y-3">
-              <QuickAction
-                icon={FileText}
-                label="View All Proposals"
-                onClick={() => navigate('/admin/proposals')}
-              />
-              <QuickAction
-                icon={Mail}
-                label="Contact Submissions"
-                onClick={() => navigate('/admin/contacts')}
-              />
-              <QuickAction
-                icon={BarChart3}
-                label="Analytics Dashboard"
-                onClick={() => navigate('/search-analytics')}
-              />
-              <QuickAction
-                icon={Users}
-                label="User Management"
-                onClick={() => {/* TODO */}}
-              />
-              <QuickAction
-                icon={Settings}
-                label="System Settings"
-                onClick={() => {/* TODO */}}
-              />
+              <QuickAction icon={FileText} label="View All Proposals" onClick={() => navigate('/admin/proposals')} />
+              <QuickAction icon={Mail} label="Contact Submissions" onClick={() => navigate('/admin/contacts')} />
+              <QuickAction icon={BarChart3} label="Analytics Dashboard" onClick={() => navigate('/search-analytics')} />
+              <QuickAction icon={Users} label="User Management" onClick={() => {/* TODO */}} />
+              <QuickAction icon={Settings} label="System Settings" onClick={() => {/* TODO */}} />
             </div>
           </Card>
 
@@ -198,6 +115,5 @@ export default function AdminDashboard() {
           </Card>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
