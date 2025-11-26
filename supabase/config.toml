@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.gsc-alert-checker]
 verify_jwt = false
+
+[functions.ping-sitemap]
+verify_jwt = false

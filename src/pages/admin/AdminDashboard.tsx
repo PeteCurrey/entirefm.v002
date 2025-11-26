@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Users, FileText, BarChart3, Settings, TrendingUp, Clock, CheckCircle2, AlertCircle, Mail, MessageSquare } from "lucide-react";
+import { SitemapPing } from "@/components/admin/SitemapPing";
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
     totalProposals: 0,
@@ -90,7 +91,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           <Card className="p-6">
             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-primary" />
@@ -114,6 +115,9 @@ export default function AdminDashboard() {
             </div>
           </Card>
         </div>
+
+        {/* Sitemap Management */}
+        <SitemapPing />
       </div>
     </div>;
 }
