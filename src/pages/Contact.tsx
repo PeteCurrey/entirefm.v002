@@ -50,12 +50,15 @@ const Contact = () => {
       setSubmitting(true);
       
       const { error } = await supabase.functions.invoke('submit-contact', {
-        body: validatedData
+        body: {
+          ...validatedData,
+          source_page: window.location.pathname,
+        }
       });
 
       if (error) throw error;
 
-      toast.success('Thank you! We\'ll be in touch soon.');
+      toast.success("Thanks – your enquiry has been received. Our FM team will be in touch shortly.");
       
       // Reset form
       setFormData({
@@ -71,7 +74,7 @@ const Contact = () => {
         toast.error(firstError.message);
       } else {
         console.error('Error submitting contact form:', error);
-        toast.error('Failed to submit form. Please try again.');
+        toast.error("Something went wrong submitting the form. Please try again or email enquiries@entirefm.com");
       }
     } finally {
       setSubmitting(false);

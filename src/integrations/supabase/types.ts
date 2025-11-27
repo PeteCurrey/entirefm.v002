@@ -21,10 +21,14 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          location: string | null
           message: string
           name: string
           phone: string | null
+          sector: string | null
+          source_page: string | null
           status: string | null
+          subject: string | null
           updated_at: string
         }
         Insert: {
@@ -33,10 +37,14 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          location?: string | null
           message: string
           name: string
           phone?: string | null
+          sector?: string | null
+          source_page?: string | null
           status?: string | null
+          subject?: string | null
           updated_at?: string
         }
         Update: {
@@ -45,10 +53,14 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          location?: string | null
           message?: string
           name?: string
           phone?: string | null
+          sector?: string | null
+          source_page?: string | null
           status?: string | null
+          subject?: string | null
           updated_at?: string
         }
         Relationships: []
