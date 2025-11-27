@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          last_activity_at: string
+          session_metadata: Json | null
+          source_page: string | null
+          transcript: Json
+          user_identifier: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          last_activity_at?: string
+          session_metadata?: Json | null
+          source_page?: string | null
+          transcript?: Json
+          user_identifier?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          last_activity_at?: string
+          session_metadata?: Json | null
+          source_page?: string | null
+          transcript?: Json
+          user_identifier?: string | null
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           admin_notes: string | null
