@@ -19,6 +19,11 @@ export const Footer = () => {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
+            <Link to="/fm-operations/report-issue">
+              <Button size="lg" variant="default" className="hover-lift">
+                Report an Issue
+              </Button>
+            </Link>
             <Link to="/fm-operations/helpdesk">
               <Button size="lg" variant="outline" className="hover-lift">
                 Speak to Our FM Team
@@ -46,11 +51,11 @@ export const Footer = () => {
               </ul>
             </div>
 
-            {/* FM Operations */}
             <div>
               <h3 className="font-medium mb-6 text-lg">FM Operations</h3>
               <ul className="space-y-3">
                 <li><Link to="/fm-operations/helpdesk" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Helpdesk</Link></li>
+                <li><Link to="/fm-operations/report-issue" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Report an Issue</Link></li>
                 <li><Link to="/fm-operations/mobilisation" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Mobilisation</Link></li>
                 <li><Link to="/fm-operations/ppm-delivery" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">PPM Delivery</Link></li>
                 <li><Link to="/fm-operations/reactive-maintenance" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Reactive Maintenance</Link></li>

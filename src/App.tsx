@@ -274,6 +274,7 @@ import PPMDelivery from "./pages/fm-operations/PPMDelivery";
 import ReactiveMaintenance from "./pages/fm-operations/ReactiveMaintenance";
 import FMOperations from "./pages/FMOperations";
 import Leads from "./pages/fm-operations/Leads";
+import ReportIssue from "./pages/fm-operations/ReportIssue";
 import { LegacyRedirects } from "./components/shared/LegacyRedirects";
 
 const queryClient = new QueryClient();
@@ -565,7 +566,8 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/fm-operations/mobilisation" element={<Mobilisation />} />
               <Route path="/fm-operations/ppm-delivery" element={<PPMDelivery />} />
               <Route path="/fm-operations/reactive-maintenance" element={<ReactiveMaintenance />} />
-              <Route path="/fm-operations/leads" element={<Leads />} />
+          <Route path="/fm-operations/leads" element={<Leads />} />
+          <Route path="/fm-operations/report-issue" element={<ReportIssue />} />
               <Route path="/services/emergency-response" element={<EmergencyResponse />} />
               <Route path="/services/disaster-recovery" element={<DisasterRecovery />} />
               <Route path="/services/space-planning" element={<SpacePlanning />} />
