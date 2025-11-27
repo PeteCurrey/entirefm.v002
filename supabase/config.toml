@@ -23,3 +23,6 @@ verify_jwt = false
 
 [functions.ai-assistant]
 verify_jwt = false
+
+[functions.submit-helpdesk-job]
+verify_jwt = false

@@ -62,9 +62,25 @@ const Helpdesk = () => {
               <h1 className="text-4xl md:text-5xl font-light mb-6">
                 Technical Helpdesk & 24/7 FM Support
               </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed">
+              <p className="text-xl text-muted-foreground font-light leading-relaxed mb-6">
                 Helpdesk engineered around first-time fix, SLA control, and proactive performance reporting.
               </p>
+              
+              <div className="bg-primary/10 border-2 border-primary/30 p-6 rounded-lg">
+                <h3 className="text-xl font-medium mb-3">Report a Maintenance Issue</h3>
+                <p className="text-muted-foreground mb-4">
+                  For sites, tenants, and FM contacts: log maintenance issues directly with our helpdesk team.
+                </p>
+                <Link 
+                  to="/fm-operations/report-issue" 
+                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                >
+                  Report Issue Now
+                </Link>
+                <p className="text-sm text-muted-foreground mt-3">
+                  Emergency? Call <strong>0800 123 4567</strong> (24/7)
+                </p>
+              </div>
             </section>
 
             <section className="mb-12">

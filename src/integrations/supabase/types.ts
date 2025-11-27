@@ -238,6 +238,63 @@ export type Database = {
           },
         ]
       }
+      helpdesk_jobs: {
+        Row: {
+          ai_summary: string | null
+          asset_reference: string
+          attachment_url: string | null
+          category: string
+          company: string
+          created_at: string
+          description: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          priority: string
+          role: string
+          site_location: string
+          source_page: string | null
+          status: string
+        }
+        Insert: {
+          ai_summary?: string | null
+          asset_reference: string
+          attachment_url?: string | null
+          category: string
+          company: string
+          created_at?: string
+          description: string
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+          priority: string
+          role: string
+          site_location: string
+          source_page?: string | null
+          status?: string
+        }
+        Update: {
+          ai_summary?: string | null
+          asset_reference?: string
+          attachment_url?: string | null
+          category?: string
+          company?: string
+          created_at?: string
+          description?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          priority?: string
+          role?: string
+          site_location?: string
+          source_page?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       proposal_requests: {
         Row: {
           admin_notes: string | null
