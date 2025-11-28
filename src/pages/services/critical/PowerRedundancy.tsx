@@ -71,7 +71,7 @@ export default function PowerRedundancy() {
   return (
     <>
       <Helmet>
-        <title>Power Redundancy & Load Bank Testing | EntireFM</title>
+        <title>Power Redundancy Testing (Load Banks & N+1)</title>
         <meta name="description" content="N+1 and N+2 power redundancy design, load bank testing, Black Building Tests, and backup power validation for mission-critical infrastructure." />
       </Helmet>
 
@@ -95,7 +95,7 @@ export default function PowerRedundancy() {
           />
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Power Redundancy & Load Bank Testing
+              Power Redundancy Testing (Load Banks & N+1)
             </h1>
             <p className="text-xl text-white/90 font-light max-w-3xl mx-auto">
               Validating backup power capacity and resilience through structured load testing and Black Building simulations.

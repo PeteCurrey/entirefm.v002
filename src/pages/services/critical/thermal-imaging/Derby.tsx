@@ -7,7 +7,7 @@ export default function ThermalImagingDerby() {
   return (
     <>
       <Helmet>
-        <title>Thermal Imaging Surveys in Derby | EntireFM</title>
+        <title>Thermal Imaging for Electrical Systems & Data Rooms — Derby</title>
         <meta name="description" content="Thermal imaging surveys in Derby. Electrical hotspot detection for Derbyshire facilities." />
         <link rel="canonical" href="https://entirefm.com/services/critical/thermal-imaging" />
       </Helmet>
@@ -16,7 +16,7 @@ export default function ThermalImagingDerby() {
         <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/placeholder.svg)' }} />
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">Thermal Imaging in Derby</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">Thermal Imaging for Electrical Systems & Data Rooms — Derby</h1>
             <p className="text-xl text-white/90 font-light">Electrical hotspot detection across Derbyshire</p>
           </div>
         </section>

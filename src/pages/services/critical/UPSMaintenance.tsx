@@ -72,7 +72,7 @@ const UPSMaintenance = () => {
   return (
     <>
       <Helmet>
-        <title>UPS Maintenance & Battery Replacements | Critical Power Systems | Entire FM</title>
+        <title>UPS Maintenance & Battery Testing | Critical Power</title>
         <meta name="description" content="UPS maintenance including battery impedance testing, load bank verification, and replacement cycles. Static and modular UPS servicing for data centres and mission-critical facilities." />
         <link rel="canonical" href="https://entirefm.com/services/critical/ups-maintenance" />
       </Helmet>
@@ -94,7 +94,7 @@ const UPSMaintenance = () => {
           <div className="container mx-auto px-6 relative z-20 text-white">
             <Breadcrumb items={breadcrumbItems} className="mb-6" />
             <h1 className="text-5xl md:text-6xl font-light mb-6 max-w-4xl">
-              UPS Maintenance & Battery Replacements
+              UPS Maintenance & Battery Testing
             </h1>
             <p className="text-xl md:text-2xl font-light max-w-3xl text-gray-200">
               Prevent power-cut failures through battery impedance testing, load verification, and timely replacement cycles.

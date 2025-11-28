@@ -71,7 +71,7 @@ export default function PowerQuality() {
   return (
     <>
       <Helmet>
-        <title>Electrical Load Testing & Power Quality Analysis | EntireFM</title>
+        <title>Power Quality Analysis (PF, THD & Voltage Stability)</title>
         <meta name="description" content="Power quality surveys identifying harmonic distortion, voltage sags, transients, and power factor issues. Corrective engineering to protect critical IT and electrical infrastructure." />
       </Helmet>
 
@@ -95,7 +95,7 @@ export default function PowerQuality() {
           />
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Electrical Load Testing & Power Quality Analysis
+              Power Quality Analysis (PF, THD & Voltage Stability)
             </h1>
             <p className="text-xl text-white/90 font-light max-w-3xl mx-auto">
               Identifying and correcting harmonic distortion, voltage instability, and power factor issues protecting critical systems.
