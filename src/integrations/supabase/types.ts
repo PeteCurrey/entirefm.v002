@@ -95,6 +95,36 @@ export type Database = {
         }
         Relationships: []
       }
+      error_404_logs: {
+        Row: {
+          count: number
+          created_at: string
+          id: string
+          ip_address: string | null
+          referrer: string | null
+          url_requested: string
+          user_agent: string | null
+        }
+        Insert: {
+          count?: number
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          referrer?: string | null
+          url_requested: string
+          user_agent?: string | null
+        }
+        Update: {
+          count?: number
+          created_at?: string
+          id?: string
+          ip_address?: string | null
+          referrer?: string | null
+          url_requested?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       gsc_alert_history: {
         Row: {
           alert_data: Json
@@ -292,6 +322,36 @@ export type Database = {
           site_location?: string
           source_page?: string | null
           status?: string
+        }
+        Relationships: []
+      }
+      link_validation_results: {
+        Row: {
+          broken_links: number
+          created_at: string
+          health_score: number
+          id: string
+          results_data: Json
+          scan_duration_ms: number | null
+          total_links_checked: number
+        }
+        Insert: {
+          broken_links: number
+          created_at?: string
+          health_score: number
+          id?: string
+          results_data: Json
+          scan_duration_ms?: number | null
+          total_links_checked: number
+        }
+        Update: {
+          broken_links?: number
+          created_at?: string
+          health_score?: number
+          id?: string
+          results_data?: Json
+          scan_duration_ms?: number | null
+          total_links_checked?: number
         }
         Relationships: []
       }
