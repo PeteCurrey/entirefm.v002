@@ -71,7 +71,7 @@ export default function ThermalImaging() {
   return (
     <>
       <Helmet>
-        <title>Thermal Imaging & Infrared Electrical Surveys | EntireFM</title>
+        <title>Thermal Imaging for Electrical Systems & Data Rooms</title>
         <meta name="description" content="Non-invasive thermal imaging surveys identifying electrical hotspots, overheating components, and fire risks. BS 7671 compliant infrared inspections for critical infrastructure." />
       </Helmet>
 
@@ -95,7 +95,7 @@ export default function ThermalImaging() {
           />
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Thermal Imaging & Infrared Electrical Surveys
+              Thermal Imaging for Electrical Systems & Data Rooms
             </h1>
             <p className="text-xl text-white/90 font-light max-w-3xl mx-auto">
               Detecting electrical faults and fire risks before catastrophic failure through professional infrared thermography.

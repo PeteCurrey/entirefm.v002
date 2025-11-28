@@ -71,7 +71,7 @@ export default function DataRoomAudits() {
   return (
     <>
       <Helmet>
-        <title>Data Room & Server Room Compliance Audits | EntireFM</title>
+        <title>Data Room Compliance Audits & Power Resilience</title>
         <meta name="description" content="Comprehensive data room and server room infrastructure audits covering power resilience, cooling adequacy, fire suppression, and environmental monitoring compliance." />
       </Helmet>
 
@@ -95,7 +95,7 @@ export default function DataRoomAudits() {
           />
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              Data Room & Server Room Compliance Audits
+              Data Room Compliance Audits & Power Resilience
             </h1>
             <p className="text-xl text-white/90 font-light max-w-3xl mx-auto">
               Infrastructure assessments ensuring power resilience, environmental control, and fire safety for mission-critical IT operations.

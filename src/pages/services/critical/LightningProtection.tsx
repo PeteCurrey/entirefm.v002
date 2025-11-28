@@ -38,7 +38,7 @@ const LightningProtection = () => {
   return (
     <>
       <Helmet>
-        <title>Lightning Protection Testing & Maintenance | BS EN 62305 | EntireFM</title>
+        <title>Lightning Protection Testing & Earthing Compliance | EntireFM</title>
         <meta name="description" content="Lightning protection testing for critical infrastructure. Annual testing, earth resistance measurement, continuity testing and BS EN 62305 compliance for commercial buildings." />
         <link rel="canonical" href="https://www.entirefm.com/services/critical/lightning-protection" />
       </Helmet>
@@ -60,7 +60,7 @@ const LightningProtection = () => {
           <div className="container mx-auto px-6 relative z-20 text-white">
             <Breadcrumb items={breadcrumbItems} className="mb-6" />
             <h1 className="text-5xl md:text-6xl font-light mb-6 max-w-4xl">
-              Lightning Protection Testing & Maintenance
+              Lightning Protection Testing & Earthing Compliance
             </h1>
             <p className="text-xl md:text-2xl font-light max-w-3xl text-gray-200">
               Protecting critical infrastructure from catastrophic lightning strike damage through annual BS EN 62305 compliance testing.

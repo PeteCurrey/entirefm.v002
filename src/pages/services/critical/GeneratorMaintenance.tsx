@@ -72,7 +72,7 @@ const GeneratorMaintenance = () => {
   return (
     <>
       <Helmet>
-        <title>Generator Servicing & Backup Power | Emergency Power Systems | Entire FM</title>
+        <title>Generator Servicing, ATS Testing & Backup Power</title>
         <meta name="description" content="Generator maintenance including planned servicing, fuel polishing, load testing, and emergency callout. ATS testing and fire compliance for generator rooms ensuring reliable backup power." />
         <link rel="canonical" href="https://entirefm.com/services/critical/generator-maintenance" />
       </Helmet>
@@ -94,7 +94,7 @@ const GeneratorMaintenance = () => {
           <div className="container mx-auto px-6 relative z-20 text-white">
             <Breadcrumb items={breadcrumbItems} className="mb-6" />
             <h1 className="text-5xl md:text-6xl font-light mb-6 max-w-4xl">
-              Generator Servicing & Backup Power
+              Generator Servicing, ATS Testing & Backup Power
             </h1>
             <p className="text-xl md:text-2xl font-light max-w-3xl text-gray-200">
               Planned servicing, load testing, and fuel management ensuring generators deliver when power fails.

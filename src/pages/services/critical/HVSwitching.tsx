@@ -71,7 +71,7 @@ export default function HVSwitching() {
   return (
     <>
       <Helmet>
-        <title>HV Switching, Maintenance & Authorised Personnel | EntireFM</title>
+        <title>HV Switching & Authorised Personnel Services</title>
         <meta name="description" content="High-voltage switching operations by qualified Authorised Persons. Planned maintenance, emergency response, load transfers, and isolation procedures for critical infrastructure." />
       </Helmet>
 
@@ -95,7 +95,7 @@ export default function HVSwitching() {
           />
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
-              HV Switching, Maintenance & Authorised Personnel
+              HV Switching & Authorised Personnel Services
             </h1>
             <p className="text-xl text-white/90 font-light max-w-3xl mx-auto">
               Qualified Authorised Persons for high-voltage switching operations, load transfers, and emergency isolations.

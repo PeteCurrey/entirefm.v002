@@ -72,7 +72,7 @@ const ArcFlashAssessment = () => {
   return (
     <>
       <Helmet>
-        <title>Arc Flash Risk Assessment | Electrical Safety Analysis | Entire FM</title>
+        <title>Arc Flash Risk Assessment (High Voltage & LV Systems)</title>
         <meta name="description" content="Arc flash risk assessment for high-voltage and low-voltage systems. System modelling, PPE recommendations, safety labelling, and insurance risk reduction through engineered controls." />
         <link rel="canonical" href="https://entirefm.com/services/critical/arc-flash-assessment" />
       </Helmet>
@@ -94,7 +94,7 @@ const ArcFlashAssessment = () => {
           <div className="container mx-auto px-6 relative z-20 text-white">
             <Breadcrumb items={breadcrumbItems} className="mb-6" />
             <h1 className="text-5xl md:text-6xl font-light mb-6 max-w-4xl">
-              Arc Flash Risk Assessment
+              Arc Flash Risk Assessment (High Voltage & LV Systems)
             </h1>
             <p className="text-xl md:text-2xl font-light max-w-3xl text-gray-200">
               System modelling and PPE recommendations protecting personnel from electrical explosion hazards.
