@@ -202,6 +202,18 @@ const LightningProtection = () => {
                     <ArrowRight className="w-4 h-4" />
                     Nottingham
                   </Link>
+                  <Link to="/services/critical/lightning-protection/derby" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    Derby
+                  </Link>
+                  <Link to="/services/critical/lightning-protection/chesterfield" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    Chesterfield
+                  </Link>
+                  <Link to="/services/critical/lightning-protection/lincoln" className="text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
+                    <ArrowRight className="w-4 h-4" />
+                    Lincoln
+                  </Link>
                 </div>
               </section>
 
