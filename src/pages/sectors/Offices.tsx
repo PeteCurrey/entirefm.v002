@@ -8,6 +8,7 @@ import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { CheckCircle2 } from "lucide-react";
+import { DynamicYouMayAlsoNeed } from "@/components/shared/DynamicYouMayAlsoNeed";
 
 const Offices = () => {
   const { trackProposalRequest } = useConversionTracking();
@@ -191,6 +192,8 @@ const Offices = () => {
           </div>
         </div>
       </section>
+
+      <DynamicYouMayAlsoNeed pageType="sector" currentPageUrl="/sectors/offices" />
 
       {/* Final CTA */}
       <section className="py-16 bg-charcoal text-white">

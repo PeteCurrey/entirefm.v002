@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import MetricCard from "@/components/shared/MetricCard";
 import { ArrowRight, Building2, Wind, Thermometer, Users, TrendingUp } from "lucide-react";
+import { DynamicYouMayAlsoNeed } from "@/components/shared/DynamicYouMayAlsoNeed";
 
 const CorporateHQ = () => {
   return (
@@ -207,6 +208,8 @@ const CorporateHQ = () => {
           </div>
         </div>
       </section>
+
+      <DynamicYouMayAlsoNeed pageType="case-study" />
 
       {/* CTA */}
       <section className="py-16 bg-secondary text-white">

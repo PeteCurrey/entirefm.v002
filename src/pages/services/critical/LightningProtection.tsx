@@ -8,6 +8,7 @@ import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { Helmet } from "react-helmet";
+import { DynamicYouMayAlsoNeed } from "@/components/shared/DynamicYouMayAlsoNeed";
 
 const LightningProtection = () => {
   const breadcrumbItems = [
@@ -271,6 +272,8 @@ const LightningProtection = () => {
           </div>
         </div>
       </div>
+
+      <DynamicYouMayAlsoNeed pageType="critical" currentPageUrl="/services/critical/lightning-protection" />
     </>
   );
 };
