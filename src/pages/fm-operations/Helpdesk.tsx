@@ -81,6 +81,19 @@ const Helpdesk = () => {
                   Emergency? Call <strong>0800 123 4567</strong> (24/7)
                 </p>
               </div>
+
+              <div className="mt-6 bg-muted/50 border border-border p-6 rounded-lg">
+                <h3 className="text-xl font-medium mb-3">Engineer Knowledge Base</h3>
+                <p className="text-muted-foreground mb-4">
+                  Access technical documentation, troubleshooting guides, and asset manuals for engineers and FM teams.
+                </p>
+                <Link 
+                  to="/fm-operations/knowledge-base" 
+                  className="inline-block bg-background text-foreground border border-border px-6 py-3 rounded-lg hover:bg-muted transition-colors font-medium"
+                >
+                  View Knowledge Base
+                </Link>
+              </div>
             </section>
 
             <section className="mb-12">
