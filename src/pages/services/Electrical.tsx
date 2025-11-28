@@ -10,6 +10,7 @@ import { RelatedServices } from "@/components/shared/RelatedServices";
 import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
 import { DualCTA } from "@/components/shared/DualCTA";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import { DynamicYouMayAlsoNeed } from "@/components/shared/DynamicYouMayAlsoNeed";
 
 const Electrical = () => {
   const faqs = [
@@ -269,7 +270,23 @@ const Electrical = () => {
               />
 
               <FAQSection faqs={faqs} />
+            </div>
 
+            <aside className="lg:col-span-1">
+              <div className="sticky top-24">
+                <SidebarCTA />
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+
+      <DynamicYouMayAlsoNeed pageType="compliance" currentPageUrl="/services/electrical" />
+
+      <div className="container mx-auto px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-3">
               {/* Final CTA */}
               <section className="border-t border-border pt-12">
                 <div className="text-center bg-charcoal text-white p-12 rounded-lg">
@@ -285,12 +302,6 @@ const Electrical = () => {
                 </div>
               </section>
             </div>
-
-            <aside className="lg:col-span-1">
-              <div className="sticky top-24">
-                <SidebarCTA />
-              </div>
-            </aside>
           </div>
         </div>
       </div>

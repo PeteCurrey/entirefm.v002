@@ -9,6 +9,7 @@ import { FAQSection } from "@/components/shared/FAQSection";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import { Helmet } from "react-helmet";
+import { DynamicYouMayAlsoNeed } from "@/components/shared/DynamicYouMayAlsoNeed";
 
 const UPSMaintenance = () => {
   const breadcrumbItems = [
@@ -261,6 +262,8 @@ const UPSMaintenance = () => {
           </div>
         </div>
       </div>
+
+      <DynamicYouMayAlsoNeed pageType="critical" currentPageUrl="/services/critical/ups-maintenance" />
     </>
   );
 };

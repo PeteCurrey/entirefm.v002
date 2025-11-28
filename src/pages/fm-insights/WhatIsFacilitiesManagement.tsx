@@ -7,6 +7,7 @@ import { FAQSection } from "@/components/shared/FAQSection";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { DynamicYouMayAlsoNeed } from "@/components/shared/DynamicYouMayAlsoNeed";
 
 const WhatIsFacilitiesManagement = () => {
   const breadcrumbItems = [
@@ -194,7 +195,15 @@ const WhatIsFacilitiesManagement = () => {
 
             {/* FAQ Section */}
             <FAQSection faqs={faqs} />
+          </article>
+        </div>
+      </div>
 
+      <DynamicYouMayAlsoNeed pageType="fm-insights" currentPageUrl="/fm-insights/what-is-facilities-management" />
+
+      <div className="container mx-auto px-6 py-16">
+        <div className="max-w-4xl mx-auto">
+          <article>
             {/* Related Insights */}
             <section className="mb-12">
               <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
@@ -213,7 +222,15 @@ const WhatIsFacilitiesManagement = () => {
                 ))}
               </div>
             </section>
+          </article>
+        </div>
+      </div>
 
+      <DynamicYouMayAlsoNeed pageType="fm-insights" currentPageUrl="/fm-insights/what-is-facilities-management" />
+
+      <div className="container mx-auto px-6 py-8">
+        <div className="max-w-4xl mx-auto">
+          <article>
             {/* CTA */}
             <Card className="p-8 bg-muted/30 text-center">
               <h3 className="text-2xl font-light mb-4">Need Comprehensive FM Support?</h3>

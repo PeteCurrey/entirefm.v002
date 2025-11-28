@@ -14,6 +14,7 @@ import { ComplianceDetails } from "@/components/seo/ComplianceDetails";
 import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
 import { DualCTA } from "@/components/shared/DualCTA";
 import { RegionalServiceIndex } from "@/components/shared/RegionalServiceIndex";
+import { DynamicYouMayAlsoNeed } from "@/components/shared/DynamicYouMayAlsoNeed";
 
 const FireSafety = () => {
   const { trackProposalRequest, trackDownload } = useConversionTracking();
@@ -432,7 +433,22 @@ const FireSafety = () => {
             />
 
             <FAQSection faqs={faqs} />
+          </div>
 
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <div className="sticky top-8">
+              <SidebarCTA />
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <DynamicYouMayAlsoNeed pageType="compliance" currentPageUrl="/services/fire-safety" />
+
+      <div className="container mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-3">
             {/* Final CTA */}
             <section className="bg-primary/5 p-8 rounded-lg border border-primary/20">
               <h2 className="text-2xl font-light mb-4">
@@ -449,13 +465,6 @@ const FireSafety = () => {
               </Button>
             </section>
           </div>
-
-          {/* Sidebar */}
-          <aside className="lg:col-span-1">
-            <div className="sticky top-8">
-              <SidebarCTA />
-            </div>
-          </aside>
         </div>
       </div>
     </>
