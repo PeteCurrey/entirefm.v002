@@ -241,7 +241,27 @@ const LOCATIONS = [{
 // Pages that actually exist in the routing
 const EXISTING_ROUTES = [
 // Compliance Hubs & Services
-'/services/fire-safety', '/services/electrical-compliance', '/services/emergency-lighting', '/services/water-hygiene', '/services/gas-safety', '/services/hvac-compliance', '/services/ppm', '/services/hard-services-fm', '/services/me-services', '/services/access-control', '/services/emergency-systems', '/services/commercial-plumbing', '/services/building-inspections', '/services/drone-inspections', '/services/emergency-response', '/services/disaster-recovery', '/services/space-planning',
+'/services/fire-safety', '/services/electrical-compliance', '/services/emergency-lighting', '/services/water-hygiene', '/services/gas-safety', '/services/hvac-compliance', '/services/ppm-compliance', '/services/ppm', '/services/hard-services-fm', '/services/me-services', '/services/access-control', '/services/emergency-systems', '/services/commercial-plumbing', '/services/building-inspections', '/services/drone-inspections', '/services/emergency-response', '/services/disaster-recovery', '/services/space-planning',
+// Critical Infrastructure Parent Pages
+'/services/critical/lightning-protection', '/services/critical/ups-maintenance', '/services/critical/generator-maintenance', '/services/critical/power-redundancy', '/services/critical/thermal-imaging', '/services/critical/arc-flash-assessment', '/services/critical/hv-switching', '/services/critical/power-quality', '/services/critical/data-room-audits',
+// Critical Infrastructure Regional Pages - Lightning Protection
+'/services/critical/lightning-protection/London', '/services/critical/lightning-protection/Birmingham', '/services/critical/lightning-protection/Manchester', '/services/critical/lightning-protection/Leeds', '/services/critical/lightning-protection/Sheffield', '/services/critical/lightning-protection/Nottingham', '/services/critical/lightning-protection/Derby', '/services/critical/lightning-protection/Chesterfield', '/services/critical/lightning-protection/Lincoln',
+// Critical Infrastructure Regional Pages - UPS Maintenance
+'/services/critical/ups-maintenance/London', '/services/critical/ups-maintenance/Birmingham', '/services/critical/ups-maintenance/Manchester', '/services/critical/ups-maintenance/Leeds', '/services/critical/ups-maintenance/Sheffield', '/services/critical/ups-maintenance/Nottingham', '/services/critical/ups-maintenance/Derby', '/services/critical/ups-maintenance/Chesterfield', '/services/critical/ups-maintenance/Lincoln',
+// Critical Infrastructure Regional Pages - Generator Maintenance
+'/services/critical/generator-maintenance/London', '/services/critical/generator-maintenance/Birmingham', '/services/critical/generator-maintenance/Manchester', '/services/critical/generator-maintenance/Leeds', '/services/critical/generator-maintenance/Sheffield', '/services/critical/generator-maintenance/Nottingham', '/services/critical/generator-maintenance/Derby', '/services/critical/generator-maintenance/Chesterfield', '/services/critical/generator-maintenance/Lincoln',
+// Critical Infrastructure Regional Pages - Thermal Imaging
+'/services/critical/thermal-imaging/London', '/services/critical/thermal-imaging/Birmingham', '/services/critical/thermal-imaging/Manchester', '/services/critical/thermal-imaging/Leeds', '/services/critical/thermal-imaging/Sheffield', '/services/critical/thermal-imaging/Nottingham', '/services/critical/thermal-imaging/Derby', '/services/critical/thermal-imaging/Chesterfield', '/services/critical/thermal-imaging/Lincoln',
+// Critical Infrastructure Regional Pages - Arc Flash Assessment
+'/services/critical/arc-flash-assessment/London', '/services/critical/arc-flash-assessment/Birmingham', '/services/critical/arc-flash-assessment/Manchester', '/services/critical/arc-flash-assessment/Leeds', '/services/critical/arc-flash-assessment/Sheffield', '/services/critical/arc-flash-assessment/Nottingham', '/services/critical/arc-flash-assessment/Derby', '/services/critical/arc-flash-assessment/Chesterfield', '/services/critical/arc-flash-assessment/Lincoln',
+// Critical Infrastructure Regional Pages - HV Switching
+'/services/critical/hv-switching/London', '/services/critical/hv-switching/Birmingham', '/services/critical/hv-switching/Manchester', '/services/critical/hv-switching/Leeds', '/services/critical/hv-switching/Sheffield', '/services/critical/hv-switching/Nottingham', '/services/critical/hv-switching/Derby', '/services/critical/hv-switching/Chesterfield', '/services/critical/hv-switching/Lincoln',
+// Critical Infrastructure Regional Pages - Power Redundancy
+'/services/critical/power-redundancy/London', '/services/critical/power-redundancy/Birmingham', '/services/critical/power-redundancy/Manchester', '/services/critical/power-redundancy/Leeds', '/services/critical/power-redundancy/Sheffield', '/services/critical/power-redundancy/Nottingham', '/services/critical/power-redundancy/Derby', '/services/critical/power-redundancy/Chesterfield', '/services/critical/power-redundancy/Lincoln',
+// Critical Infrastructure Regional Pages - Power Quality
+'/services/critical/power-quality/London', '/services/critical/power-quality/Birmingham', '/services/critical/power-quality/Manchester', '/services/critical/power-quality/Leeds', '/services/critical/power-quality/Sheffield', '/services/critical/power-quality/Nottingham', '/services/critical/power-quality/Derby', '/services/critical/power-quality/Chesterfield', '/services/critical/power-quality/Lincoln',
+// Critical Infrastructure Regional Pages - Data Room Audits
+'/services/critical/data-room-audits/London', '/services/critical/data-room-audits/Birmingham', '/services/critical/data-room-audits/Manchester', '/services/critical/data-room-audits/Leeds', '/services/critical/data-room-audits/Sheffield', '/services/critical/data-room-audits/Nottingham', '/services/critical/data-room-audits/Derby', '/services/critical/data-room-audits/Chesterfield', '/services/critical/data-room-audits/Lincoln',
 // Sectors
 '/sectors/offices', '/sectors/retail-hospitality', '/sectors/industrial-logistics', '/sectors/healthcare-public', '/sectors/hotels-leisure', '/sectors/pbsa', '/sectors/education', '/sectors/airports', '/sectors/venues', '/sectors/residential', '/sectors/logistics-parks',
 // FM Operations Hub & Pages
@@ -250,6 +270,8 @@ const EXISTING_ROUTES = [
 '/soft-services/concierge', '/soft-services/specialist-cleaning', '/soft-services/grounds-maintenance', '/soft-services/waste-recycling',
 // Conversion
 '/request-proposal', '/resources', '/case-studies',
+// Tools
+'/tools/risk-diagnostic', '/compliance-diagnostic',
 // Corporate Pages
 '/sustainability', '/innovation', '/partnerships', '/awards',
 // Case Studies

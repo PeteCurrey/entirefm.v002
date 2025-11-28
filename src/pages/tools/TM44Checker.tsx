@@ -13,6 +13,7 @@ import { toast } from "@/hooks/use-toast";
 import { ThermometerSnowflake, AlertCircle, Calendar, Mail } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { Link } from "react-router-dom";
 
 const tm44Schema = z.object({
   systemSize: z.string().min(1, "Please select system size"),
@@ -362,7 +363,7 @@ const TM44Checker = () => {
                           : "Ensure complete compliance across all building systems with a full audit."}
                       </p>
                       <Button asChild className="w-full">
-                        <a href="/request-proposal">Request Full Audit</a>
+                        <Link to="/request-proposal">Request Full Audit</Link>
                       </Button>
                     </Card>
                   </>

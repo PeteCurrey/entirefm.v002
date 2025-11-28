@@ -13,6 +13,7 @@ import { toast } from "@/hooks/use-toast";
 import { Calculator, AlertTriangle, TrendingUp, Shield, Mail } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { Link } from "react-router-dom";
 const calculatorSchema = z.object({
   buildingType: z.string().min(1, "Please select building type"),
   assetCount: z.string().min(1, "Please enter asset count"),
@@ -262,7 +263,7 @@ const PPMCalculator = () => {
                         We've sent a detailed breakdown to your email. Get a comprehensive audit of your maintenance program.
                       </p>
                       <Button asChild className="w-full">
-                        <a href="/request-proposal">Request Full Audit</a>
+                        <Link to="/request-proposal">Request Full Audit</Link>
                       </Button>
                     </Card>
                   </>}

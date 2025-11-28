@@ -283,6 +283,101 @@ import CriticalUPSMaintenance from "./pages/services/critical/UPSMaintenance";
 import CriticalGeneratorMaintenance from "./pages/services/critical/GeneratorMaintenance";
 import PowerRedundancy from "./pages/services/critical/PowerRedundancy";
 import ThermalImaging from "./pages/services/critical/ThermalImaging";
+import ArcFlashAssessment from "./pages/services/critical/ArcFlashAssessment";
+import HVSwitching from "./pages/services/critical/HVSwitching";
+import PowerQuality from "./pages/services/critical/PowerQuality";
+import DataRoomAudits from "./pages/services/critical/DataRoomAudits";
+
+// Critical Infrastructure Regional Pages
+import LightningProtectionLondon from "./pages/services/critical/lightning-protection/London";
+import LightningProtectionBirmingham from "./pages/services/critical/lightning-protection/Birmingham";
+import LightningProtectionManchester from "./pages/services/critical/lightning-protection/Manchester";
+import LightningProtectionLeeds from "./pages/services/critical/lightning-protection/Leeds";
+import LightningProtectionSheffield from "./pages/services/critical/lightning-protection/Sheffield";
+import LightningProtectionNottingham from "./pages/services/critical/lightning-protection/Nottingham";
+import LightningProtectionDerby from "./pages/services/critical/lightning-protection/Derby";
+import LightningProtectionChesterfield from "./pages/services/critical/lightning-protection/Chesterfield";
+import LightningProtectionLincoln from "./pages/services/critical/lightning-protection/Lincoln";
+
+import CriticalUPSMaintenanceLondon from "./pages/services/critical/ups-maintenance/London";
+import CriticalUPSMaintenanceBirmingham from "./pages/services/critical/ups-maintenance/Birmingham";
+import CriticalUPSMaintenanceManchester from "./pages/services/critical/ups-maintenance/Manchester";
+import CriticalUPSMaintenanceLeeds from "./pages/services/critical/ups-maintenance/Leeds";
+import CriticalUPSMaintenanceSheffield from "./pages/services/critical/ups-maintenance/Sheffield";
+import CriticalUPSMaintenanceNottingham from "./pages/services/critical/ups-maintenance/Nottingham";
+import CriticalUPSMaintenanceDerby from "./pages/services/critical/ups-maintenance/Derby";
+import CriticalUPSMaintenanceChesterfield from "./pages/services/critical/ups-maintenance/Chesterfield";
+import CriticalUPSMaintenanceLincoln from "./pages/services/critical/ups-maintenance/Lincoln";
+
+import CriticalGeneratorMaintenanceLondon from "./pages/services/critical/generator-maintenance/London";
+import CriticalGeneratorMaintenanceBirmingham from "./pages/services/critical/generator-maintenance/Birmingham";
+import CriticalGeneratorMaintenanceManchester from "./pages/services/critical/generator-maintenance/Manchester";
+import CriticalGeneratorMaintenanceLeeds from "./pages/services/critical/generator-maintenance/Leeds";
+import CriticalGeneratorMaintenanceSheffield from "./pages/services/critical/generator-maintenance/Sheffield";
+import CriticalGeneratorMaintenanceNottingham from "./pages/services/critical/generator-maintenance/Nottingham";
+import CriticalGeneratorMaintenanceDerby from "./pages/services/critical/generator-maintenance/Derby";
+import CriticalGeneratorMaintenanceChesterfield from "./pages/services/critical/generator-maintenance/Chesterfield";
+import CriticalGeneratorMaintenanceLincoln from "./pages/services/critical/generator-maintenance/Lincoln";
+
+import ThermalImagingLondon from "./pages/services/critical/thermal-imaging/London";
+import ThermalImagingBirmingham from "./pages/services/critical/thermal-imaging/Birmingham";
+import ThermalImagingManchester from "./pages/services/critical/thermal-imaging/Manchester";
+import ThermalImagingLeeds from "./pages/services/critical/thermal-imaging/Leeds";
+import ThermalImagingSheffield from "./pages/services/critical/thermal-imaging/Sheffield";
+import ThermalImagingNottingham from "./pages/services/critical/thermal-imaging/Nottingham";
+import ThermalImagingDerby from "./pages/services/critical/thermal-imaging/Derby";
+import ThermalImagingChesterfield from "./pages/services/critical/thermal-imaging/Chesterfield";
+import ThermalImagingLincoln from "./pages/services/critical/thermal-imaging/Lincoln";
+
+import ArcFlashAssessmentLondon from "./pages/services/critical/arc-flash-assessment/London";
+import ArcFlashAssessmentBirmingham from "./pages/services/critical/arc-flash-assessment/Birmingham";
+import ArcFlashAssessmentManchester from "./pages/services/critical/arc-flash-assessment/Manchester";
+import ArcFlashAssessmentLeeds from "./pages/services/critical/arc-flash-assessment/Leeds";
+import ArcFlashAssessmentSheffield from "./pages/services/critical/arc-flash-assessment/Sheffield";
+import ArcFlashAssessmentNottingham from "./pages/services/critical/arc-flash-assessment/Nottingham";
+import ArcFlashAssessmentDerby from "./pages/services/critical/arc-flash-assessment/Derby";
+import ArcFlashAssessmentChesterfield from "./pages/services/critical/arc-flash-assessment/Chesterfield";
+import ArcFlashAssessmentLincoln from "./pages/services/critical/arc-flash-assessment/Lincoln";
+
+import HVSwitchingLondon from "./pages/services/critical/hv-switching/London";
+import HVSwitchingBirmingham from "./pages/services/critical/hv-switching/Birmingham";
+import HVSwitchingManchester from "./pages/services/critical/hv-switching/Manchester";
+import HVSwitchingLeeds from "./pages/services/critical/hv-switching/Leeds";
+import HVSwitchingSheffield from "./pages/services/critical/hv-switching/Sheffield";
+import HVSwitchingNottingham from "./pages/services/critical/hv-switching/Nottingham";
+import HVSwitchingDerby from "./pages/services/critical/hv-switching/Derby";
+import HVSwitchingChesterfield from "./pages/services/critical/hv-switching/Chesterfield";
+import HVSwitchingLincoln from "./pages/services/critical/hv-switching/Lincoln";
+
+import PowerRedundancyLondon from "./pages/services/critical/power-redundancy/London";
+import PowerRedundancyBirmingham from "./pages/services/critical/power-redundancy/Birmingham";
+import PowerRedundancyManchester from "./pages/services/critical/power-redundancy/Manchester";
+import PowerRedundancyLeeds from "./pages/services/critical/power-redundancy/Leeds";
+import PowerRedundancySheffield from "./pages/services/critical/power-redundancy/Sheffield";
+import PowerRedundancyNottingham from "./pages/services/critical/power-redundancy/Nottingham";
+import PowerRedundancyDerby from "./pages/services/critical/power-redundancy/Derby";
+import PowerRedundancyChesterfield from "./pages/services/critical/power-redundancy/Chesterfield";
+import PowerRedundancyLincoln from "./pages/services/critical/power-redundancy/Lincoln";
+
+import PowerQualityLondon from "./pages/services/critical/power-quality/London";
+import PowerQualityBirmingham from "./pages/services/critical/power-quality/Birmingham";
+import PowerQualityManchester from "./pages/services/critical/power-quality/Manchester";
+import PowerQualityLeeds from "./pages/services/critical/power-quality/Leeds";
+import PowerQualitySheffield from "./pages/services/critical/power-quality/Sheffield";
+import PowerQualityNottingham from "./pages/services/critical/power-quality/Nottingham";
+import PowerQualityDerby from "./pages/services/critical/power-quality/Derby";
+import PowerQualityChesterfield from "./pages/services/critical/power-quality/Chesterfield";
+import PowerQualityLincoln from "./pages/services/critical/power-quality/Lincoln";
+
+import DataRoomAuditsLondon from "./pages/services/critical/data-room-audits/London";
+import DataRoomAuditsBirmingham from "./pages/services/critical/data-room-audits/Birmingham";
+import DataRoomAuditsManchester from "./pages/services/critical/data-room-audits/Manchester";
+import DataRoomAuditsLeeds from "./pages/services/critical/data-room-audits/Leeds";
+import DataRoomAuditsSheffield from "./pages/services/critical/data-room-audits/Sheffield";
+import DataRoomAuditsNottingham from "./pages/services/critical/data-room-audits/Nottingham";
+import DataRoomAuditsDerby from "./pages/services/critical/data-room-audits/Derby";
+import DataRoomAuditsChesterfield from "./pages/services/critical/data-room-audits/Chesterfield";
+import DataRoomAuditsLincoln from "./pages/services/critical/data-room-audits/Lincoln";
 
 const queryClient = new QueryClient();
 
@@ -316,11 +411,13 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/tools/cost-savings-calculator" element={<CostSavingsCalculator />} />
               <Route path="/tools/sla-benchmark" element={<SLABenchmark />} />
               <Route path="/tools/risk-diagnostic" element={<ComplianceDiagnostic />} />
+              <Route path="/compliance-diagnostic" element={<ComplianceDiagnostic />} /> {/* Alias */}
               <Route path="/services" element={<Services />} />
           <Route path="/services/hard-fm" element={<HardServices />} />
           <Route path="/services/hvac" element={<HVAC />} />
           <Route path="/services/hvac-compliance" element={<HVACCompliance />} />
           <Route path="/services/ppm-compliance" element={<PPM />} />
+          <Route path="/services/ppm" element={<PPM />} /> {/* Alias for ppm-compliance */}
           <Route path="/services/electrical" element={<Electrical />} />
           <Route path="/services/fire-alarms" element={<FireAlarms />} />
           <Route path="/services/fire-safety" element={<FireSafety />} />
@@ -435,12 +532,115 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/services/commercial-plumbing" element={<CommercialPlumbing />} />
           <Route path="/services/building-inspections" element={<BuildingInspections />} />
           <Route path="/services/smart-building-iot" element={<SmartBuildingIoT />} />
-              {/* Critical Infrastructure - New Consolidated Routes */}
+              {/* Critical Infrastructure - Parent Routes */}
               <Route path="/services/critical/lightning-protection" element={<LightningProtection />} />
               <Route path="/services/critical/ups-maintenance" element={<CriticalUPSMaintenance />} />
               <Route path="/services/critical/generator-maintenance" element={<CriticalGeneratorMaintenance />} />
               <Route path="/services/critical/power-redundancy" element={<PowerRedundancy />} />
               <Route path="/services/critical/thermal-imaging" element={<ThermalImaging />} />
+              <Route path="/services/critical/arc-flash-assessment" element={<ArcFlashAssessment />} />
+              <Route path="/services/critical/hv-switching" element={<HVSwitching />} />
+              <Route path="/services/critical/power-quality" element={<PowerQuality />} />
+              <Route path="/services/critical/data-room-audits" element={<DataRoomAudits />} />
+              
+              {/* Critical Infrastructure - Regional Routes: Lightning Protection */}
+              <Route path="/services/critical/lightning-protection/London" element={<LightningProtectionLondon />} />
+              <Route path="/services/critical/lightning-protection/Birmingham" element={<LightningProtectionBirmingham />} />
+              <Route path="/services/critical/lightning-protection/Manchester" element={<LightningProtectionManchester />} />
+              <Route path="/services/critical/lightning-protection/Leeds" element={<LightningProtectionLeeds />} />
+              <Route path="/services/critical/lightning-protection/Sheffield" element={<LightningProtectionSheffield />} />
+              <Route path="/services/critical/lightning-protection/Nottingham" element={<LightningProtectionNottingham />} />
+              <Route path="/services/critical/lightning-protection/Derby" element={<LightningProtectionDerby />} />
+              <Route path="/services/critical/lightning-protection/Chesterfield" element={<LightningProtectionChesterfield />} />
+              <Route path="/services/critical/lightning-protection/Lincoln" element={<LightningProtectionLincoln />} />
+              
+              {/* UPS Maintenance Regional Routes */}
+              <Route path="/services/critical/ups-maintenance/London" element={<CriticalUPSMaintenanceLondon />} />
+              <Route path="/services/critical/ups-maintenance/Birmingham" element={<CriticalUPSMaintenanceBirmingham />} />
+              <Route path="/services/critical/ups-maintenance/Manchester" element={<CriticalUPSMaintenanceManchester />} />
+              <Route path="/services/critical/ups-maintenance/Leeds" element={<CriticalUPSMaintenanceLeeds />} />
+              <Route path="/services/critical/ups-maintenance/Sheffield" element={<CriticalUPSMaintenanceSheffield />} />
+              <Route path="/services/critical/ups-maintenance/Nottingham" element={<CriticalUPSMaintenanceNottingham />} />
+              <Route path="/services/critical/ups-maintenance/Derby" element={<CriticalUPSMaintenanceDerby />} />
+              <Route path="/services/critical/ups-maintenance/Chesterfield" element={<CriticalUPSMaintenanceChesterfield />} />
+              <Route path="/services/critical/ups-maintenance/Lincoln" element={<CriticalUPSMaintenanceLincoln />} />
+              
+              {/* Generator Maintenance Regional Routes */}
+              <Route path="/services/critical/generator-maintenance/London" element={<CriticalGeneratorMaintenanceLondon />} />
+              <Route path="/services/critical/generator-maintenance/Birmingham" element={<CriticalGeneratorMaintenanceBirmingham />} />
+              <Route path="/services/critical/generator-maintenance/Manchester" element={<CriticalGeneratorMaintenanceManchester />} />
+              <Route path="/services/critical/generator-maintenance/Leeds" element={<CriticalGeneratorMaintenanceLeeds />} />
+              <Route path="/services/critical/generator-maintenance/Sheffield" element={<CriticalGeneratorMaintenanceSheffield />} />
+              <Route path="/services/critical/generator-maintenance/Nottingham" element={<CriticalGeneratorMaintenanceNottingham />} />
+              <Route path="/services/critical/generator-maintenance/Derby" element={<CriticalGeneratorMaintenanceDerby />} />
+              <Route path="/services/critical/generator-maintenance/Chesterfield" element={<CriticalGeneratorMaintenanceChesterfield />} />
+              <Route path="/services/critical/generator-maintenance/Lincoln" element={<CriticalGeneratorMaintenanceLincoln />} />
+              
+              {/* Thermal Imaging Regional Routes */}
+              <Route path="/services/critical/thermal-imaging/London" element={<ThermalImagingLondon />} />
+              <Route path="/services/critical/thermal-imaging/Birmingham" element={<ThermalImagingBirmingham />} />
+              <Route path="/services/critical/thermal-imaging/Manchester" element={<ThermalImagingManchester />} />
+              <Route path="/services/critical/thermal-imaging/Leeds" element={<ThermalImagingLeeds />} />
+              <Route path="/services/critical/thermal-imaging/Sheffield" element={<ThermalImagingSheffield />} />
+              <Route path="/services/critical/thermal-imaging/Nottingham" element={<ThermalImagingNottingham />} />
+              <Route path="/services/critical/thermal-imaging/Derby" element={<ThermalImagingDerby />} />
+              <Route path="/services/critical/thermal-imaging/Chesterfield" element={<ThermalImagingChesterfield />} />
+              <Route path="/services/critical/thermal-imaging/Lincoln" element={<ThermalImagingLincoln />} />
+              
+              {/* Arc Flash Assessment Regional Routes */}
+              <Route path="/services/critical/arc-flash-assessment/London" element={<ArcFlashAssessmentLondon />} />
+              <Route path="/services/critical/arc-flash-assessment/Birmingham" element={<ArcFlashAssessmentBirmingham />} />
+              <Route path="/services/critical/arc-flash-assessment/Manchester" element={<ArcFlashAssessmentManchester />} />
+              <Route path="/services/critical/arc-flash-assessment/Leeds" element={<ArcFlashAssessmentLeeds />} />
+              <Route path="/services/critical/arc-flash-assessment/Sheffield" element={<ArcFlashAssessmentSheffield />} />
+              <Route path="/services/critical/arc-flash-assessment/Nottingham" element={<ArcFlashAssessmentNottingham />} />
+              <Route path="/services/critical/arc-flash-assessment/Derby" element={<ArcFlashAssessmentDerby />} />
+              <Route path="/services/critical/arc-flash-assessment/Chesterfield" element={<ArcFlashAssessmentChesterfield />} />
+              <Route path="/services/critical/arc-flash-assessment/Lincoln" element={<ArcFlashAssessmentLincoln />} />
+              
+              {/* HV Switching Regional Routes */}
+              <Route path="/services/critical/hv-switching/London" element={<HVSwitchingLondon />} />
+              <Route path="/services/critical/hv-switching/Birmingham" element={<HVSwitchingBirmingham />} />
+              <Route path="/services/critical/hv-switching/Manchester" element={<HVSwitchingManchester />} />
+              <Route path="/services/critical/hv-switching/Leeds" element={<HVSwitchingLeeds />} />
+              <Route path="/services/critical/hv-switching/Sheffield" element={<HVSwitchingSheffield />} />
+              <Route path="/services/critical/hv-switching/Nottingham" element={<HVSwitchingNottingham />} />
+              <Route path="/services/critical/hv-switching/Derby" element={<HVSwitchingDerby />} />
+              <Route path="/services/critical/hv-switching/Chesterfield" element={<HVSwitchingChesterfield />} />
+              <Route path="/services/critical/hv-switching/Lincoln" element={<HVSwitchingLincoln />} />
+              
+              {/* Power Redundancy Regional Routes */}
+              <Route path="/services/critical/power-redundancy/London" element={<PowerRedundancyLondon />} />
+              <Route path="/services/critical/power-redundancy/Birmingham" element={<PowerRedundancyBirmingham />} />
+              <Route path="/services/critical/power-redundancy/Manchester" element={<PowerRedundancyManchester />} />
+              <Route path="/services/critical/power-redundancy/Leeds" element={<PowerRedundancyLeeds />} />
+              <Route path="/services/critical/power-redundancy/Sheffield" element={<PowerRedundancySheffield />} />
+              <Route path="/services/critical/power-redundancy/Nottingham" element={<PowerRedundancyNottingham />} />
+              <Route path="/services/critical/power-redundancy/Derby" element={<PowerRedundancyDerby />} />
+              <Route path="/services/critical/power-redundancy/Chesterfield" element={<PowerRedundancyChesterfield />} />
+              <Route path="/services/critical/power-redundancy/Lincoln" element={<PowerRedundancyLincoln />} />
+              
+              {/* Power Quality Regional Routes */}
+              <Route path="/services/critical/power-quality/London" element={<PowerQualityLondon />} />
+              <Route path="/services/critical/power-quality/Birmingham" element={<PowerQualityBirmingham />} />
+              <Route path="/services/critical/power-quality/Manchester" element={<PowerQualityManchester />} />
+              <Route path="/services/critical/power-quality/Leeds" element={<PowerQualityLeeds />} />
+              <Route path="/services/critical/power-quality/Sheffield" element={<PowerQualitySheffield />} />
+              <Route path="/services/critical/power-quality/Nottingham" element={<PowerQualityNottingham />} />
+              <Route path="/services/critical/power-quality/Derby" element={<PowerQualityDerby />} />
+              <Route path="/services/critical/power-quality/Chesterfield" element={<PowerQualityChesterfield />} />
+              <Route path="/services/critical/power-quality/Lincoln" element={<PowerQualityLincoln />} />
+              
+              {/* Data Room Audits Regional Routes */}
+              <Route path="/services/critical/data-room-audits/London" element={<DataRoomAuditsLondon />} />
+              <Route path="/services/critical/data-room-audits/Birmingham" element={<DataRoomAuditsBirmingham />} />
+              <Route path="/services/critical/data-room-audits/Manchester" element={<DataRoomAuditsManchester />} />
+              <Route path="/services/critical/data-room-audits/Leeds" element={<DataRoomAuditsLeeds />} />
+              <Route path="/services/critical/data-room-audits/Sheffield" element={<DataRoomAuditsSheffield />} />
+              <Route path="/services/critical/data-room-audits/Nottingham" element={<DataRoomAuditsNottingham />} />
+              <Route path="/services/critical/data-room-audits/Derby" element={<DataRoomAuditsDerby />} />
+              <Route path="/services/critical/data-room-audits/Chesterfield" element={<DataRoomAuditsChesterfield />} />
+              <Route path="/services/critical/data-room-audits/Lincoln" element={<DataRoomAuditsLincoln />} />
           <Route path="/services/waste-compliance" element={<WasteCompliance />} />
           <Route path="/services/water-optimisation" element={<WaterOptimisation />} />
           <Route path="/services/sustainability-monitoring" element={<SustainabilityMonitoring />} />
