@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Zap, Battery, Cog, Activity, Server, TrendingUp, Scan, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
@@ -51,6 +51,44 @@ const Header = ({
     label: "PPM & Asset Lifecycle",
     to: "/services/ppm-compliance",
     description: "Planned preventative maintenance"
+  }];
+
+  const criticalInfrastructureItems = [{
+    label: "Lightning Protection",
+    to: "/services/critical/lightning-protection",
+    icon: Zap
+  }, {
+    label: "UPS Maintenance",
+    to: "/services/critical/ups-maintenance",
+    icon: Battery
+  }, {
+    label: "Generator Maintenance",
+    to: "/services/critical/generator-maintenance",
+    icon: Cog
+  }, {
+    label: "Arc Flash Assessment",
+    to: "/services/critical/arc-flash-assessment",
+    icon: Activity
+  }, {
+    label: "HV Switching",
+    to: "/services/critical/hv-switching",
+    icon: Zap
+  }, {
+    label: "Power Redundancy",
+    to: "/services/critical/power-redundancy",
+    icon: TrendingUp
+  }, {
+    label: "Power Quality",
+    to: "/services/critical/power-quality",
+    icon: Activity
+  }, {
+    label: "Thermal Imaging",
+    to: "/services/critical/thermal-imaging",
+    icon: Scan
+  }, {
+    label: "Data Room Audits",
+    to: "/services/critical/data-room-audits",
+    icon: Server
   }];
   const sectorsItems = [{
     label: "Corporate Offices",
@@ -168,7 +206,7 @@ const Header = ({
               <NavigationMenuItem className="text-sm text-gray-500">
                 <NavigationMenuTrigger className="text-sm font-light h-10">Services</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <motion.div className="w-[500px] p-4" initial={{
+                  <motion.div className="w-[700px] p-4" initial={{
                   opacity: 0,
                   y: -10
                 }} animate={{
@@ -181,39 +219,83 @@ const Header = ({
                   duration: 0.2,
                   ease: "easeOut"
                 }}>
-                    <div className="grid gap-2 mb-3">
-                      {servicesItems.map((item, index) => <NavigationMenuLink key={item.to} asChild>
-                          <motion.div initial={{
-                        opacity: 0,
-                        x: -10
-                      }} animate={{
-                        opacity: 1,
-                        x: 0
-                      }} transition={{
-                        delay: index * 0.03,
-                        duration: 0.2
-                      }}>
-                            <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
-                              <div className="flex-1">
-                                <div className="text-sm font-medium leading-none mb-1">{item.label}</div>
-                                {item.description && <div className="text-xs text-muted-foreground">{item.description}</div>}
-                              </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      {/* Core Services Column */}
+                      <div>
+                        <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 px-3">Core Services</h4>
+                        <div className="grid gap-2">
+                          {servicesItems.map((item, index) => <NavigationMenuLink key={item.to} asChild>
                               <motion.div initial={{
-                            x: -5,
-                            opacity: 0
-                          }} whileHover={{
-                            x: 0,
-                            opacity: 1
+                            opacity: 0,
+                            x: -10
+                          }} animate={{
+                            opacity: 1,
+                            x: 0
                           }} transition={{
+                            delay: index * 0.03,
                             duration: 0.2
                           }}>
-                                <ArrowRight className="w-4 h-4" />
+                                <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                                  <div className="flex-1">
+                                    <div className="text-sm font-medium leading-none mb-1">{item.label}</div>
+                                    {item.description && <div className="text-xs text-muted-foreground">{item.description}</div>}
+                                  </div>
+                                  <motion.div initial={{
+                                x: -5,
+                                opacity: 0
+                              }} whileHover={{
+                                x: 0,
+                                opacity: 1
+                              }} transition={{
+                                duration: 0.2
+                              }}>
+                                    <ArrowRight className="w-4 h-4" />
+                                  </motion.div>
+                                </Link>
                               </motion.div>
-                            </Link>
-                          </motion.div>
-                        </NavigationMenuLink>)}
+                            </NavigationMenuLink>)}
+                        </div>
+                      </div>
+
+                      {/* Critical Infrastructure Column */}
+                      <div>
+                        <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 px-3">Critical Infrastructure</h4>
+                        <div className="grid gap-2">
+                          {criticalInfrastructureItems.map((item, index) => <NavigationMenuLink key={item.to} asChild>
+                              <motion.div initial={{
+                            opacity: 0,
+                            x: -10
+                          }} animate={{
+                            opacity: 1,
+                            x: 0
+                          }} transition={{
+                            delay: index * 0.03,
+                            duration: 0.2
+                          }}>
+                                <Link to={item.to} className="flex items-center gap-2 group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                                  <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                                  <div className="flex-1">
+                                    <div className="text-sm font-medium leading-none">{item.label}</div>
+                                  </div>
+                                  <motion.div initial={{
+                                x: -5,
+                                opacity: 0
+                              }} whileHover={{
+                                x: 0,
+                                opacity: 1
+                              }} transition={{
+                                duration: 0.2
+                              }}>
+                                    <ArrowRight className="w-4 h-4" />
+                                  </motion.div>
+                                </Link>
+                              </motion.div>
+                            </NavigationMenuLink>)}
+                        </div>
+                      </div>
                     </div>
-                    <div className="border-t pt-3">
+
+                    <div className="border-t pt-3 mt-3">
                       <NavigationMenuLink asChild>
                         <Link to="/services" className="flex items-center justify-between group rounded-md p-3 text-sm font-medium hover:bg-accent transition-all duration-200 hover:scale-[1.02]">
                           View All Services
@@ -364,6 +446,11 @@ const Header = ({
                   duration: 0.2
                 }}>
                         {servicesItems.map(item => <Link key={item.to} to={item.to} className="block px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            {item.label}
+                          </Link>)}
+                        <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Critical Infrastructure</div>
+                        {criticalInfrastructureItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-3 h-3 text-primary" />
                             {item.label}
                           </Link>)}
                       </motion.div>}

@@ -36,7 +36,7 @@ export const Footer = () => {
       {/* Main Footer */}
       <div className="py-16">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-12 mb-12">
             {/* Key Services */}
             <div>
               <h3 className="font-medium mb-6 text-lg">Key Services</h3>
@@ -48,6 +48,20 @@ export const Footer = () => {
                 <li><Link to="/services/water-hygiene" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Water Hygiene</Link></li>
                 <li><Link to="/services/ppm" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">PPM</Link></li>
                 <li><Link to="/services/hard-services-fm" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Hard Services</Link></li>
+              </ul>
+            </div>
+
+            {/* Critical Services */}
+            <div>
+              <h3 className="font-medium mb-6 text-lg">Critical Services</h3>
+              <ul className="space-y-3">
+                <li><Link to="/services/critical/lightning-protection" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Lightning Protection</Link></li>
+                <li><Link to="/services/critical/ups-maintenance" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">UPS Maintenance</Link></li>
+                <li><Link to="/services/critical/generator-maintenance" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Generator Maintenance</Link></li>
+                <li><Link to="/services/critical/arc-flash-assessment" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Arc Flash Assessment</Link></li>
+                <li><Link to="/services/critical/hv-switching" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">HV Switching</Link></li>
+                <li><Link to="/services/critical/power-redundancy" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Power Redundancy</Link></li>
+                <li><Link to="/services/critical/thermal-imaging" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Thermal Imaging</Link></li>
               </ul>
             </div>
 
