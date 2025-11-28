@@ -277,6 +277,12 @@ import Leads from "./pages/fm-operations/Leads";
 import ReportIssue from "./pages/fm-operations/ReportIssue";
 import KnowledgeBase from "./pages/fm-operations/KnowledgeBase";
 import { LegacyRedirects } from "./components/shared/LegacyRedirects";
+import { CriticalInfrastructureRedirects } from "./components/shared/CriticalInfrastructureRedirects";
+import LightningProtection from "./pages/services/critical/LightningProtection";
+import CriticalUPSMaintenance from "./pages/services/critical/UPSMaintenance";
+import CriticalGeneratorMaintenance from "./pages/services/critical/GeneratorMaintenance";
+import PowerRedundancy from "./pages/services/critical/PowerRedundancy";
+import ThermalImaging from "./pages/services/critical/ThermalImaging";
 
 const queryClient = new QueryClient();
 
@@ -296,6 +302,7 @@ const App = () => <QueryClientProvider client={queryClient}>
         <LoadingBar />
         <ScrollToTop />
         <LegacyRedirects />
+        <CriticalInfrastructureRedirects />
         <div className="flex flex-col min-h-screen">
           <Header className="opacity-95" />
           <main className="flex-grow">
@@ -428,8 +435,12 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/services/commercial-plumbing" element={<CommercialPlumbing />} />
           <Route path="/services/building-inspections" element={<BuildingInspections />} />
           <Route path="/services/smart-building-iot" element={<SmartBuildingIoT />} />
-          <Route path="/services/thermal-imaging-surveys" element={<ThermalImagingSurveys />} />
-          <Route path="/services/power-quality-analysis" element={<PowerQualityAnalysis />} />
+              {/* Critical Infrastructure - New Consolidated Routes */}
+              <Route path="/services/critical/lightning-protection" element={<LightningProtection />} />
+              <Route path="/services/critical/ups-maintenance" element={<CriticalUPSMaintenance />} />
+              <Route path="/services/critical/generator-maintenance" element={<CriticalGeneratorMaintenance />} />
+              <Route path="/services/critical/power-redundancy" element={<PowerRedundancy />} />
+              <Route path="/services/critical/thermal-imaging" element={<ThermalImaging />} />
           <Route path="/services/waste-compliance" element={<WasteCompliance />} />
           <Route path="/services/water-optimisation" element={<WaterOptimisation />} />
           <Route path="/services/sustainability-monitoring" element={<SustainabilityMonitoring />} />
