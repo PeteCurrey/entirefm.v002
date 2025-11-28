@@ -8,6 +8,7 @@ import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { CheckCircle2 } from "lucide-react";
+import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
 
 const HealthcarePublic = () => {
   const { trackProposalRequest } = useConversionTracking();
@@ -138,6 +139,26 @@ const HealthcarePublic = () => {
                   </Link>
                 </div>
               </div>
+
+              <YouMayAlsoNeed 
+                services={[
+                  {
+                    title: "Power Redundancy Testing",
+                    description: "Mission-critical N+1 validation for healthcare estates",
+                    url: "/services/critical/power-redundancy"
+                  },
+                  {
+                    title: "UPS Maintenance",
+                    description: "Life-critical power protection for medical equipment",
+                    url: "/services/critical/ups-maintenance"
+                  },
+                  {
+                    title: "Thermal Imaging",
+                    description: "Predictive diagnostics preventing critical system failures",
+                    url: "/services/critical/thermal-imaging"
+                  }
+                ]}
+              />
 
               {/* Case Study */}
               <Card className="p-8 bg-muted/50">

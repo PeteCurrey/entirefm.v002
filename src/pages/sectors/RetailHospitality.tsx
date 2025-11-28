@@ -8,6 +8,7 @@ import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { CheckCircle2 } from "lucide-react";
+import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
 
 const RetailHospitality = () => {
   const { trackProposalRequest } = useConversionTracking();
@@ -139,6 +140,26 @@ const RetailHospitality = () => {
                   </Link>
                 </div>
               </div>
+
+              <YouMayAlsoNeed 
+                services={[
+                  {
+                    title: "UPS Maintenance",
+                    description: "Protect retail point-of-sale and hospitality booking systems",
+                    url: "/services/critical/ups-maintenance"
+                  },
+                  {
+                    title: "Generator Maintenance",
+                    description: "Emergency power ensuring trading continuity during outages",
+                    url: "/services/critical/generator-maintenance"
+                  },
+                  {
+                    title: "Lightning Protection",
+                    description: "Protect high-value retail technology and building systems",
+                    url: "/services/critical/lightning-protection"
+                  }
+                ]}
+              />
 
               {/* Case Studies */}
               <Card className="p-8 bg-muted/50">

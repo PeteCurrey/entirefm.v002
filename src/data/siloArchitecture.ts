@@ -10,6 +10,7 @@ export type SiloType =
   | "sector" 
   | "fm-operations" 
   | "soft-services"
+  | "critical-infrastructure"
   | "case-study"
   | "insights";
 
@@ -40,11 +41,13 @@ export const complianceSilo: SiloPage[] = [
       "fire risk engineering",
       "emergency lighting systems"
     ],
-    allowedSiloLinks: ["compliance", "fm-operations", "sector", "case-study"],
+    allowedSiloLinks: ["compliance", "fm-operations", "sector", "critical-infrastructure", "case-study"],
     relatedPages: [
       "/services/emergency-lighting",
       "/services/fire-alarms",
       "/services/sprinklers",
+      "/services/critical/lightning-protection",
+      "/services/critical/thermal-imaging",
       "/fm-operations/ppm-delivery"
     ],
     caseStudies: ["/case-studies/corporate-office-london", "/case-studies/retail-complex-birmingham"]
@@ -62,10 +65,12 @@ export const complianceSilo: SiloPage[] = [
       "fixed wire testing",
       "electrical safety certificates"
     ],
-    allowedSiloLinks: ["compliance", "fm-operations", "sector", "case-study"],
+    allowedSiloLinks: ["compliance", "fm-operations", "sector", "critical-infrastructure", "case-study"],
     relatedPages: [
       "/services/emergency-lighting",
       "/services/fire-safety",
+      "/services/critical/arc-flash",
+      "/services/critical/thermal-imaging",
       "/fm-operations/ppm-delivery"
     ]
   },
@@ -138,10 +143,12 @@ export const complianceSilo: SiloPage[] = [
       "ventilation system compliance",
       "AC system inspection"
     ],
-    allowedSiloLinks: ["compliance", "fm-operations", "sector", "specialist-engineering"],
+    allowedSiloLinks: ["compliance", "fm-operations", "sector", "specialist-engineering", "critical-infrastructure"],
     relatedPages: [
       "/services/gas-safety",
       "/services/ahu-fire-interlock-testing",
+      "/services/critical/thermal-imaging",
+      "/services/critical/power-quality",
       "/fm-operations/ppm-delivery"
     ]
   },
@@ -163,6 +170,181 @@ export const complianceSilo: SiloPage[] = [
       "/fm-operations/asset-lifecycle",
       "/services/fire-safety",
       "/services/electrical-compliance"
+    ]
+  }
+];
+
+// CRITICAL INFRASTRUCTURE SILO - Mission-critical power, data and infrastructure services
+export const criticalInfrastructureSilo: SiloPage[] = [
+  {
+    title: "Lightning Protection",
+    url: "/services/critical/lightning-protection",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["lightning protection testing", "BS EN 62305 compliance", "earthing testing"],
+    supportingKeywords: [
+      "lightning conductor testing",
+      "earth resistance testing",
+      "lightning risk assessment",
+      "surge protection",
+      "BS 6651 compliance"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/critical/thermal-imaging",
+      "/services/electrical-compliance",
+      "/services/critical/arc-flash"
+    ]
+  },
+  {
+    title: "UPS Maintenance",
+    url: "/services/critical/ups-maintenance",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["UPS maintenance", "uninterruptible power supply", "battery backup testing"],
+    supportingKeywords: [
+      "UPS battery replacement",
+      "UPS load testing",
+      "power continuity",
+      "critical power systems",
+      "UPS preventative maintenance"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/critical/generator-maintenance",
+      "/services/critical/power-redundancy",
+      "/services/critical/power-quality"
+    ]
+  },
+  {
+    title: "Generator Maintenance",
+    url: "/services/critical/generator-maintenance",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["generator servicing", "emergency power maintenance", "standby generator testing"],
+    supportingKeywords: [
+      "load bank testing",
+      "diesel generator maintenance",
+      "backup power systems",
+      "generator compliance testing",
+      "power resilience"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/critical/ups-maintenance",
+      "/services/critical/power-redundancy",
+      "/services/electrical-compliance"
+    ]
+  },
+  {
+    title: "Power Redundancy Testing",
+    url: "/services/critical/power-redundancy",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["load bank testing", "power redundancy", "N+1 validation"],
+    supportingKeywords: [
+      "failover testing",
+      "power resilience testing",
+      "critical power testing",
+      "backup power validation",
+      "power infrastructure testing"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/critical/generator-maintenance",
+      "/services/critical/ups-maintenance",
+      "/services/critical/power-quality"
+    ]
+  },
+  {
+    title: "Power Quality Analysis",
+    url: "/services/critical/power-quality",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["power quality analysis", "harmonic testing", "voltage monitoring"],
+    supportingKeywords: [
+      "power factor correction",
+      "electrical harmonics",
+      "voltage stability",
+      "power quality surveys",
+      "electrical interference"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/critical/ups-maintenance",
+      "/services/critical/power-redundancy",
+      "/services/electrical-compliance"
+    ]
+  },
+  {
+    title: "Thermal Imaging Surveys",
+    url: "/services/critical/thermal-imaging",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["thermal imaging surveys", "infrared thermography", "electrical hotspot detection"],
+    supportingKeywords: [
+      "predictive maintenance",
+      "thermal scanning",
+      "electrical fault detection",
+      "building thermography",
+      "energy loss detection"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/electrical-compliance",
+      "/services/critical/arc-flash",
+      "/services/hvac-compliance"
+    ]
+  },
+  {
+    title: "Data Room Audits",
+    url: "/services/critical/data-room-audits",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["data room audits", "server room compliance", "critical environment monitoring"],
+    supportingKeywords: [
+      "data centre audits",
+      "cooling system audits",
+      "environmental monitoring",
+      "server room maintenance",
+      "critical infrastructure audits"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/critical/ups-maintenance",
+      "/services/critical/thermal-imaging",
+      "/services/critical/power-quality"
+    ]
+  },
+  {
+    title: "Arc Flash Assessment",
+    url: "/services/critical/arc-flash",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["arc flash assessment", "electrical safety study", "arc flash labeling"],
+    supportingKeywords: [
+      "arc flash risk assessment",
+      "electrical safety procedures",
+      "PPE requirements",
+      "incident energy analysis",
+      "electrical hazard assessment"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/electrical-compliance",
+      "/services/critical/thermal-imaging",
+      "/services/critical/hv-switching"
+    ]
+  },
+  {
+    title: "HV Switching Services",
+    url: "/services/critical/hv-switching",
+    silo: "critical-infrastructure",
+    primaryKeywords: ["HV switching", "high voltage operations", "authorised person HV"],
+    supportingKeywords: [
+      "HV isolations",
+      "switchgear operations",
+      "electrical switching",
+      "HV maintenance",
+      "high voltage procedures"
+    ],
+    allowedSiloLinks: ["critical-infrastructure", "compliance", "sector", "fm-operations"],
+    relatedPages: [
+      "/services/electrical-compliance",
+      "/services/critical/arc-flash",
+      "/services/critical/power-redundancy"
     ]
   }
 ];
@@ -241,11 +423,15 @@ export const sectorSilo: SiloPage[] = [
       "business park FM",
       "office compliance management"
     ],
-    allowedSiloLinks: ["compliance", "specialist-engineering", "fm-operations", "case-study"],
+    allowedSiloLinks: ["compliance", "specialist-engineering", "critical-infrastructure", "fm-operations", "case-study"],
     relatedPages: [
       "/services/fire-safety",
       "/services/electrical-compliance",
       "/services/hvac-compliance",
+      "/services/critical/ups-maintenance",
+      "/services/critical/lightning-protection",
+      "/services/critical/thermal-imaging",
+      "/services/critical/generator-maintenance",
       "/fm-operations/helpdesk",
       "/case-studies/corporate-office-london"
     ]
@@ -262,12 +448,16 @@ export const sectorSilo: SiloPage[] = [
       "manufacturing facility services",
       "cold storage maintenance"
     ],
-    allowedSiloLinks: ["compliance", "specialist-engineering", "fm-operations", "case-study"],
+    allowedSiloLinks: ["compliance", "specialist-engineering", "critical-infrastructure", "fm-operations", "case-study"],
     relatedPages: [
       "/services/fire-safety",
       "/services/dock-leveller-maintenance",
       "/services/compressor-maintenance",
       "/services/lifting-equipment",
+      "/services/critical/hv-switching",
+      "/services/critical/power-quality",
+      "/services/critical/power-redundancy",
+      "/services/critical/generator-maintenance",
       "/case-studies/industrial-warehouse-sheffield"
     ]
   },
@@ -283,11 +473,14 @@ export const sectorSilo: SiloPage[] = [
       "PBSA compliance management",
       "student housing safety"
     ],
-    allowedSiloLinks: ["compliance", "soft-services", "fm-operations", "case-study"],
+    allowedSiloLinks: ["compliance", "soft-services", "critical-infrastructure", "fm-operations", "case-study"],
     relatedPages: [
       "/services/fire-safety",
       "/services/water-hygiene",
       "/services/gas-safety",
+      "/services/critical/ups-maintenance",
+      "/services/critical/lightning-protection",
+      "/services/critical/thermal-imaging",
       "/soft-services/concierge",
       "/case-studies/pbsa-estate-manchester"
     ]
@@ -304,11 +497,14 @@ export const sectorSilo: SiloPage[] = [
       "medical building FM",
       "NHS facilities management"
     ],
-    allowedSiloLinks: ["compliance", "specialist-engineering", "fm-operations", "case-study"],
+    allowedSiloLinks: ["compliance", "specialist-engineering", "critical-infrastructure", "fm-operations", "case-study"],
     relatedPages: [
       "/services/water-hygiene",
       "/services/fire-safety",
       "/services/hvac-compliance",
+      "/services/critical/power-redundancy",
+      "/services/critical/ups-maintenance",
+      "/services/critical/thermal-imaging",
       "/fm-operations/business-continuity"
     ]
   },
@@ -324,11 +520,14 @@ export const sectorSilo: SiloPage[] = [
       "hospitality venue FM",
       "customer-facing facility services"
     ],
-    allowedSiloLinks: ["compliance", "specialist-engineering", "fm-operations", "case-study"],
+    allowedSiloLinks: ["compliance", "specialist-engineering", "critical-infrastructure", "fm-operations", "case-study"],
     relatedPages: [
       "/services/fire-safety",
       "/services/electrical-compliance",
       "/services/hvac-compliance",
+      "/services/critical/ups-maintenance",
+      "/services/critical/generator-maintenance",
+      "/services/critical/lightning-protection",
       "/case-studies/retail-complex-birmingham"
     ]
   }
@@ -348,11 +547,14 @@ export const fmOperationsSilo: SiloPage[] = [
       "asset maintenance programs",
       "structured maintenance delivery"
     ],
-    allowedSiloLinks: ["compliance", "specialist-engineering", "sector", "case-study"],
+    allowedSiloLinks: ["compliance", "specialist-engineering", "critical-infrastructure", "sector", "case-study"],
     relatedPages: [
       "/services/ppm-compliance",
       "/services/fire-safety",
       "/services/electrical-compliance",
+      "/services/critical/ups-maintenance",
+      "/services/critical/generator-maintenance",
+      "/services/critical/thermal-imaging",
       "/fm-operations/asset-lifecycle"
     ]
   },
@@ -404,10 +606,12 @@ export const fmOperationsSilo: SiloPage[] = [
       "rapid response FM",
       "emergency maintenance services"
     ],
-    allowedSiloLinks: ["compliance", "specialist-engineering", "fm-operations", "sector"],
+    allowedSiloLinks: ["compliance", "specialist-engineering", "critical-infrastructure", "fm-operations", "sector"],
     relatedPages: [
       "/fm-operations/helpdesk",
-      "/fm-operations/business-continuity"
+      "/fm-operations/business-continuity",
+      "/services/critical/generator-maintenance",
+      "/services/critical/ups-maintenance"
     ]
   }
 ];
@@ -461,6 +665,7 @@ export function getRelatedPages(currentUrl: string, maxResults: number = 3): Sil
   const allPages = [
     ...complianceSilo,
     ...specialistEngineeringSilo,
+    ...criticalInfrastructureSilo,
     ...sectorSilo,
     ...fmOperationsSilo,
     ...softServicesSilo
@@ -487,6 +692,7 @@ export function getRelevantCaseStudies(currentUrl: string): string[] {
   const allPages = [
     ...complianceSilo,
     ...specialistEngineeringSilo,
+    ...criticalInfrastructureSilo,
     ...sectorSilo,
     ...fmOperationsSilo
   ];

@@ -141,6 +141,37 @@ const Offices = () => {
                 </div>
               </div>
 
+              {/* Critical Infrastructure - You May Also Need */}
+              <div>
+                <h2 className="text-2xl font-light mb-6 underline-accent inline-block">You May Also Need</h2>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <Link to="/services/critical/ups-maintenance">
+                    <Card className="p-6 hover-lift cursor-pointer h-full">
+                      <h3 className="font-medium mb-2">UPS Maintenance</h3>
+                      <p className="text-sm text-muted-foreground font-light">Critical power continuity for office systems</p>
+                    </Card>
+                  </Link>
+                  <Link to="/services/critical/lightning-protection">
+                    <Card className="p-6 hover-lift cursor-pointer h-full">
+                      <h3 className="font-medium mb-2">Lightning Protection</h3>
+                      <p className="text-sm text-muted-foreground font-light">BS EN 62305 testing & earthing systems</p>
+                    </Card>
+                  </Link>
+                  <Link to="/services/critical/thermal-imaging">
+                    <Card className="p-6 hover-lift cursor-pointer h-full">
+                      <h3 className="font-medium mb-2">Thermal Imaging</h3>
+                      <p className="text-sm text-muted-foreground font-light">Predictive electrical & building diagnostics</p>
+                    </Card>
+                  </Link>
+                  <Link to="/services/critical/generator-maintenance">
+                    <Card className="p-6 hover-lift cursor-pointer h-full">
+                      <h3 className="font-medium mb-2">Generator Maintenance</h3>
+                      <p className="text-sm text-muted-foreground font-light">Emergency power resilience testing</p>
+                    </Card>
+                  </Link>
+                </div>
+              </div>
+
               {/* Case Study Placeholder */}
               <Card className="p-8 bg-muted/50">
                 <h3 className="text-xl font-light mb-4">Case Study</h3>
