@@ -6,6 +6,7 @@ import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle, TrendingDown, Phone } from "lucide-react";
+import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
 
 const IndustrialLogistics = () => {
   const faqs = [
@@ -294,6 +295,31 @@ const IndustrialLogistics = () => {
               </section>
 
               <FAQSection faqs={faqs} />
+
+              <YouMayAlsoNeed 
+                services={[
+                  {
+                    title: "HV Switching Services",
+                    description: "High voltage operations for large industrial estates",
+                    url: "/services/critical/hv-switching"
+                  },
+                  {
+                    title: "Power Quality Analysis",
+                    description: "Protect sensitive warehouse automation and control systems",
+                    url: "/services/critical/power-quality"
+                  },
+                  {
+                    title: "Power Redundancy Testing",
+                    description: "N+1 validation ensuring 24/7 operational continuity",
+                    url: "/services/critical/power-redundancy"
+                  },
+                  {
+                    title: "Generator Maintenance",
+                    description: "Critical backup power for distribution centres",
+                    url: "/services/critical/generator-maintenance"
+                  }
+                ]}
+              />
 
               {/* Final CTA */}
               <section className="border-t border-border pt-12">

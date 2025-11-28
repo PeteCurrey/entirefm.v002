@@ -7,6 +7,7 @@ import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
 
 const ReactiveMaintenance = () => {
   const breadcrumbItems = [
@@ -193,6 +194,21 @@ const ReactiveMaintenance = () => {
                   title: "Emergency Response",
                   description: "Critical incident management and priority response protocols",
                   link: "/services/emergency-response"
+                }
+              ]}
+            />
+
+            <YouMayAlsoNeed 
+              services={[
+                {
+                  title: "Generator Maintenance",
+                  description: "Emergency power systems requiring rapid reactive response capability",
+                  url: "/services/critical/generator-maintenance"
+                },
+                {
+                  title: "UPS Maintenance",
+                  description: "Critical power protection with 24/7 reactive support",
+                  url: "/services/critical/ups-maintenance"
                 }
               ]}
             />

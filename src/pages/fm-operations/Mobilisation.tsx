@@ -7,6 +7,7 @@ import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
 
 const Mobilisation = () => {
   const breadcrumbItems = [
@@ -214,6 +215,26 @@ const Mobilisation = () => {
                   title: "Tender Support",
                   description: "Pre-mobilisation bid support and contract review",
                   link: "/fm-operations/tender-support"
+                }
+              ]}
+            />
+
+            <YouMayAlsoNeed 
+              services={[
+                {
+                  title: "Lightning Protection",
+                  description: "Essential compliance testing during mobilisation asset verification",
+                  url: "/services/critical/lightning-protection"
+                },
+                {
+                  title: "Thermal Imaging",
+                  description: "Pre-mobilisation condition surveys identifying hidden defects",
+                  url: "/services/critical/thermal-imaging"
+                },
+                {
+                  title: "UPS Maintenance",
+                  description: "Critical power systems requiring validation during handover",
+                  url: "/services/critical/ups-maintenance"
                 }
               ]}
             />

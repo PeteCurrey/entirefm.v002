@@ -7,6 +7,7 @@ import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
 
 const BusinessContinuity = () => {
   const breadcrumbItems = [
@@ -190,6 +191,26 @@ const BusinessContinuity = () => {
                   title: "FM Strategy",
                   description: "Strategic risk management and resilience consultancy",
                   link: "/fm-operations/fm-strategy"
+                }
+              ]}
+            />
+
+            <YouMayAlsoNeed 
+              services={[
+                {
+                  title: "Power Redundancy Testing",
+                  description: "N+1 validation and failover testing ensuring business continuity",
+                  url: "/services/critical/power-redundancy"
+                },
+                {
+                  title: "UPS Maintenance",
+                  description: "Critical power protection systems supporting resilience strategies",
+                  url: "/services/critical/ups-maintenance"
+                },
+                {
+                  title: "Thermal Imaging",
+                  description: "Predictive diagnostics preventing critical system failures",
+                  url: "/services/critical/thermal-imaging"
                 }
               ]}
             />

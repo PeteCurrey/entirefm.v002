@@ -7,6 +7,7 @@ import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
 
 const PPMDelivery = () => {
   const breadcrumbItems = [
@@ -202,6 +203,26 @@ const PPMDelivery = () => {
                   title: "Building Inspections",
                   description: "Comprehensive compliance audits and condition surveys",
                   link: "/services/building-inspections"
+                }
+              ]}
+            />
+
+            <YouMayAlsoNeed 
+              services={[
+                {
+                  title: "UPS Maintenance",
+                  description: "Critical power continuity and battery testing as part of PPM schedules",
+                  url: "/services/critical/ups-maintenance"
+                },
+                {
+                  title: "Generator Maintenance",
+                  description: "Emergency power PPM with load bank testing and compliance validation",
+                  url: "/services/critical/generator-maintenance"
+                },
+                {
+                  title: "Thermal Imaging",
+                  description: "Predictive PPM using infrared diagnostics for electrical and building systems",
+                  url: "/services/critical/thermal-imaging"
                 }
               ]}
             />
