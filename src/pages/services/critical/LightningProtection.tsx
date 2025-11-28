@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet";
 const LightningProtection = () => {
   const breadcrumbItems = [
     { label: "Services", href: "/services" },
-    { label: "Critical Infrastructure", href: "/services/critical" },
+    { label: "Critical Infrastructure", href: "/services/critical-infrastructure" },
     { label: "Lightning Protection Testing" }
   ];
 
