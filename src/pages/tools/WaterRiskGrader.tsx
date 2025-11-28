@@ -14,6 +14,7 @@ import { toast } from "@/hooks/use-toast";
 import { Droplets, AlertTriangle, CheckCircle2, Mail } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { Link } from "react-router-dom";
 
 const waterRiskSchema = z.object({
   buildingType: z.string().min(1, "Please select building type"),
@@ -548,7 +549,7 @@ const WaterRiskGrader = () => {
                           : "Maintain compliance across all building systems with a comprehensive audit."}
                       </p>
                       <Button asChild className="w-full">
-                        <a href="/request-proposal">Request Full Audit</a>
+                        <Link to="/request-proposal">Request Full Audit</Link>
                       </Button>
                     </Card>
                   </>

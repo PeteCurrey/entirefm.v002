@@ -16,6 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { CheckCircle2, Building2, MapPin, Wrench, FileText, Upload, X, Plus, Download, Phone } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { Link } from "react-router-dom";
 
 // Form validation schema
 const proposalSchema = z.object({
@@ -245,10 +246,10 @@ const RequestProposal = () => {
               </p>
               <div className="flex gap-4 justify-center">
                 <Button asChild variant="outline">
-                  <a href="/">Return Home</a>
+                  <Link to="/">Return Home</Link>
                 </Button>
                 <Button asChild>
-                  <a href="/resources">Browse Resources</a>
+                  <Link to="/resources">Browse Resources</Link>
                 </Button>
               </div>
             </div>
