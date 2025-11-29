@@ -122,7 +122,7 @@ TONE & SAFETY:
 
 Keep responses concise and actionable. Ask clarifying questions when needed.`;
 
-async function extractAndSubmitJob(fullResponse: string, messages: any[], sessionId: string, sourcePage: string) {
+async function extractAndSubmitJob(fullResponse: string, messages: any[], sessionId: string, sourcePage: string, attachmentUrl: string | null) {
   const markerStart = fullResponse.indexOf('[JOB_SUBMISSION_MARKER]');
   const markerEnd = fullResponse.indexOf('[/JOB_SUBMISSION_MARKER]');
   
@@ -163,6 +163,7 @@ async function extractAndSubmitJob(fullResponse: string, messages: any[], sessio
         asset_reference: extracted.asset || 'Unknown',
         description: `${extracted.description}\n\nAccess Requirements: ${extracted.access}`,
         source_page: `AI Chat - ${sourcePage || 'unknown'}`,
+        attachment_url: attachmentUrl || null,
       }),
     });
 
@@ -186,7 +187,7 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, sessionId, sourcePage } = await req.json();
+    const { messages, sessionId, sourcePage, attachmentUrl } = await req.json();
 
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
     if (!LOVABLE_API_KEY) {
@@ -271,7 +272,7 @@ serve(async (req) => {
           }
 
           // After streaming completes, check for job submission
-          const jobId = await extractAndSubmitJob(fullResponse, messages, sessionId, sourcePage);
+          const jobId = await extractAndSubmitJob(fullResponse, messages, sessionId, sourcePage, attachmentUrl || null);
           
           if (jobId) {
             // Send job ID as final message
