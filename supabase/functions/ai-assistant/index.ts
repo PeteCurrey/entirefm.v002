@@ -80,9 +80,24 @@ After you have ALL of the following: site, location, asset/area, priority, descr
 
 Reply with confirmation: "Perfect — I've got everything I need. I'll log this with the 24/7 EntireFM helpdesk now.
 
+[JOB_SUBMISSION_MARKER]
+Site: [site location]
+Asset: [asset/area]
+Priority: [priority level]
+Description: [description]
+Access: [access requirements]
+Contact: [name]
+Phone: [phone number]
+Category: [best matching category from list]
+[/JOB_SUBMISSION_MARKER]
+
+Your job has been logged and the helpdesk team has been notified.
+
 🔴 If this becomes an emergency at any point (safety risk, major leak, fire, loss of critical power), please also call 01246 808012 immediately.
 
 You can also report or track issues here: https://entirefm.com/fm-operations/report-issue"
+
+IMPORTANT: You must output the [JOB_SUBMISSION_MARKER] block with all collected information so the system can automatically submit the job. Use one of these categories: Fire Safety, Electrical, HVAC, Water Hygiene, Gas Safety, Plumbing, Building Fabric, Cleaning, Security, Other
 
 Tone Rules:
 • Keep all responses short, clean, human, and conversational.
@@ -106,6 +121,64 @@ TONE & SAFETY:
 - If uncertain, say "Let me connect you with our specialist team"
 
 Keep responses concise and actionable. Ask clarifying questions when needed.`;
+
+async function extractAndSubmitJob(fullResponse: string, messages: any[], sessionId: string, sourcePage: string) {
+  const markerStart = fullResponse.indexOf('[JOB_SUBMISSION_MARKER]');
+  const markerEnd = fullResponse.indexOf('[/JOB_SUBMISSION_MARKER]');
+  
+  if (markerStart === -1 || markerEnd === -1) {
+    return null;
+  }
+
+  const jobData = fullResponse.substring(markerStart + 23, markerEnd).trim();
+  const lines = jobData.split('\n');
+  
+  const extracted: any = {};
+  for (const line of lines) {
+    const [key, ...valueParts] = line.split(':');
+    if (key && valueParts.length > 0) {
+      extracted[key.trim().toLowerCase()] = valueParts.join(':').trim();
+    }
+  }
+
+  try {
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+
+    const submitResponse = await fetch(`${supabaseUrl}/functions/v1/submit-helpdesk-job`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: extracted.contact || 'AI Chat User',
+        role: 'User',
+        company: extracted.site || 'Unknown',
+        email: 'ai-chat@entirefm.com',
+        phone: extracted.phone || 'Not provided',
+        site_location: extracted.site || 'Unknown',
+        category: extracted.category || 'Other',
+        priority: extracted.priority || 'Routine',
+        asset_reference: extracted.asset || 'Unknown',
+        description: `${extracted.description}\n\nAccess Requirements: ${extracted.access}`,
+        source_page: `AI Chat - ${sourcePage || 'unknown'}`,
+      }),
+    });
+
+    if (submitResponse.ok) {
+      const result = await submitResponse.json();
+      console.log('Job submitted successfully:', result.jobId);
+      return result.jobId;
+    } else {
+      console.error('Failed to submit job:', await submitResponse.text());
+      return null;
+    }
+  } catch (error) {
+    console.error('Error submitting job:', error);
+    return null;
+  }
+}
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -162,8 +235,66 @@ serve(async (req) => {
       throw new Error('AI service error');
     }
 
-    // Return the stream directly
-    return new Response(response.body, {
+    // Stream the response and collect it for job extraction
+    const reader = response.body!.getReader();
+    const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
+    let fullResponse = '';
+
+    const stream = new ReadableStream({
+      async start(controller) {
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            
+            const chunk = decoder.decode(value, { stream: true });
+            
+            // Parse SSE data and extract content
+            const lines = chunk.split('\n');
+            for (const line of lines) {
+              if (line.startsWith('data: ') && !line.includes('[DONE]')) {
+                try {
+                  const jsonStr = line.slice(6);
+                  const data = JSON.parse(jsonStr);
+                  const content = data.choices?.[0]?.delta?.content;
+                  if (content) {
+                    fullResponse += content;
+                  }
+                } catch (e) {
+                  // Skip invalid JSON
+                }
+              }
+            }
+            
+            controller.enqueue(value);
+          }
+
+          // After streaming completes, check for job submission
+          const jobId = await extractAndSubmitJob(fullResponse, messages, sessionId, sourcePage);
+          
+          if (jobId) {
+            // Send job ID as final message
+            const jobIdMessage = `\n\n**Job Reference: ${jobId}**\n\nThe helpdesk team at helpdesk@entirefm.com has been notified and will be in touch soon.`;
+            const finalChunk = `data: ${JSON.stringify({
+              choices: [{
+                delta: { content: jobIdMessage },
+                index: 0
+              }]
+            })}\n\n`;
+            controller.enqueue(encoder.encode(finalChunk));
+          }
+
+          controller.enqueue(encoder.encode('data: [DONE]\n\n'));
+          controller.close();
+        } catch (error) {
+          console.error('Stream error:', error);
+          controller.error(error);
+        }
+      }
+    });
+
+    return new Response(stream, {
       headers: {
         ...corsHeaders,
         'Content-Type': 'text/event-stream',
