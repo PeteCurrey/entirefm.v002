@@ -89,6 +89,56 @@ const About = () => {
           </div>
         </section>
 
+        {/* Our Story Section */}
+        <section className="py-20 px-4 bg-background">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              {/* Left Column - Story Text */}
+              <div className="space-y-6">
+                <div className="border-b-2 border-primary pb-2 mb-8">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground">EntireFM Our Story</h2>
+                </div>
+                
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  EntireFM is a proudly independent service provider specialising in facilities management and support services. Our journey began in 2009 as a modest building maintenance company, catering to local businesses and letting agents.
+                </p>
+
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  From the very start, we focused on delivering exceptional service with honesty, reliability and a commitment to quality. It didn't take long for EntireFM to stand out in the industry, capturing the attention of larger clients who recognised the value we brought to their operations. Many of these clients remain our trusted partners today, a testament to the enduring relationships we've built.
+                </p>
+
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  As our reputation grew, so did our client base. What started as a local business soon expanded to include multinational property management firms, consultancy companies, motorway service stations, logistics and manufacturing companies, and leading supermarket chains to name just a few. Despite our growth, the ethos that defined us in those early days continues to drive everything we do: delivering bespoke, personalised services tailored to each client's unique needs. We take pride in integrating seamlessly into our clients' teams, always going the extra mile to achieve excellence in every task.
+                </p>
+
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Today, EntireFM operates with a network of regional offices and a strong, dynamic team of forward thinking professionals. Our people share a common passion for pushing the boundaries of the facilities management industry, ensuring EntireFM remains at the forefront of innovation and service delivery. Our commitment to progress is matched by our dedication to being a responsible employer and an active supporter of the local communities we serve.
+                </p>
+
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Now a nationwide leader in facilities management, EntireFM provides comprehensive support services across a wide array of industries. We thrive in the fast paced world of facilities management, where no two days are ever the same. Our team's depth of expertise ensures that we can adapt quickly to meet the demands of new clients while maintaining the high standards of service our longstanding partners have come to expect.
+                </p>
+
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  Whether managing complex property portfolios, maintaining critical infrastructure, or providing tailored support solutions, EntireFM is your trusted partner for facilities management. By staying true to our values and continually evolving, we're shaping a future where excellence is the standard and client satisfaction is the ultimate measure of success.
+                </p>
+              </div>
+
+              {/* Right Column - Featured Quote */}
+              <div className="lg:sticky lg:top-24">
+                <div className="bg-gradient-to-br from-muted/50 to-muted/30 border-l-4 border-primary p-8 rounded-lg">
+                  <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed text-muted-foreground">
+                    "we aim to deliver a{" "}
+                    <span className="text-primary font-semibold">bespoke</span>{" "}
+                    facilities management solution to our clients, integrate in to their team and go the extra mile to achieve{" "}
+                    <span className="text-primary font-semibold">excellence</span>"
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* The Problem We Saw */}
         <section className="py-16 px-4">
           <div className="max-w-6xl mx-auto">
