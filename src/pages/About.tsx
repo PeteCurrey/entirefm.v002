@@ -7,6 +7,13 @@ import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
+import { useState } from "react";
+import earlyOffice from "@/assets/history/early-office-2009.jpg";
+import teamGrowth from "@/assets/history/team-growth-2013.jpg";
+import expansion from "@/assets/history/expansion-2017.jpg";
+import nationalPresence from "@/assets/history/national-presence-2020.jpg";
+import industryLeader from "@/assets/history/industry-leader-2024.jpg";
+import projectsShowcase from "@/assets/history/projects-showcase.jpg";
 
 const About = () => {
   const breadcrumbItems = [
@@ -70,33 +77,84 @@ const About = () => {
       year: "2009",
       title: "The Beginning",
       description: "Founded as a modest building maintenance company serving local businesses and letting agents",
-      icon: <Building2 className="h-5 w-5" />
+      icon: <Building2 className="h-5 w-5" />,
+      stats: ["5 team members", "20+ local clients", "Single office location"],
+      details: "Started with a focus on building maintenance, delivering reliable service to local businesses and property managers."
     },
     {
       year: "2011-2013",
       title: "Building Reputation",
       description: "Exceptional service captured attention of larger clients who recognized our value",
-      icon: <TrendingUp className="h-5 w-5" />
+      icon: <TrendingUp className="h-5 w-5" />,
+      stats: ["15+ team members", "100+ clients", "£2M+ annual turnover"],
+      details: "Word-of-mouth referrals led to partnerships with larger organizations seeking dependable facilities management."
     },
     {
       year: "2014-2017",
       title: "Rapid Expansion",
       description: "Client base grew to include multinational firms, consultancies, logistics companies, and leading supermarket chains",
-      icon: <Rocket className="h-5 w-5" />
+      icon: <Rocket className="h-5 w-5" />,
+      stats: ["50+ team members", "300+ clients", "Multiple regional hubs"],
+      details: "Secured contracts with multinational corporations, establishing EntireFM as a trusted national FM provider."
     },
     {
       year: "2018-2021",
       title: "National Presence",
       description: "Established network of regional offices with forward-thinking professionals pushing industry boundaries",
-      icon: <Award className="h-5 w-5" />
+      icon: <Award className="h-5 w-5" />,
+      stats: ["100+ team members", "500+ clients", "6 regional offices"],
+      details: "Expanded infrastructure with regional offices across the UK, ensuring local expertise with national consistency."
     },
     {
       year: "2022-Present",
       title: "Industry Leader",
       description: "Nationwide leader providing comprehensive FM services across diverse industries with unwavering commitment to excellence",
-      icon: <Target className="h-5 w-5" />
+      icon: <Target className="h-5 w-5" />,
+      stats: ["150+ team members", "800+ clients", "Nationwide coverage"],
+      details: "Today we're recognized as an industry leader, delivering excellence across facilities management, compliance, and innovation."
     }
   ];
+
+  const galleryImages = [
+    {
+      src: earlyOffice,
+      alt: "EntireFM early office 2009 - Our humble beginnings",
+      year: "2009",
+      caption: "Our first office where it all began"
+    },
+    {
+      src: teamGrowth,
+      alt: "EntireFM team on site 2013 - Growing team of engineers",
+      year: "2013",
+      caption: "Our growing team of dedicated engineers"
+    },
+    {
+      src: expansion,
+      alt: "EntireFM office meeting 2017 - Professional expansion",
+      year: "2017",
+      caption: "Expanding our professional services"
+    },
+    {
+      src: nationalPresence,
+      alt: "EntireFM national operations 2020 - Nationwide presence",
+      year: "2020",
+      caption: "Building our nationwide presence"
+    },
+    {
+      src: industryLeader,
+      alt: "EntireFM team 2024 - Industry leading team",
+      year: "2024",
+      caption: "Our team today - driving industry excellence"
+    },
+    {
+      src: projectsShowcase,
+      alt: "EntireFM project work - Professional facilities management",
+      year: "Present",
+      caption: "Delivering world-class facilities management"
+    }
+  ];
+
+  const [hoveredMilestone, setHoveredMilestone] = useState<number | null>(null);
 
   return (
     <>
@@ -210,18 +268,50 @@ const About = () => {
                           whileInView={{ scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-                          className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-colors shadow-sm"
+                          onMouseEnter={() => setHoveredMilestone(index)}
+                          onMouseLeave={() => setHoveredMilestone(null)}
+                          className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-lg relative overflow-hidden group cursor-pointer"
                         >
-                          <div className={`flex items-center gap-3 mb-3 ${
-                            isEven ? "md:justify-end justify-center" : "md:justify-start justify-center"
-                          }`}>
-                            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
-                              {milestone.icon}
+                          {/* Animated background gradient on hover */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          
+                          <div className="relative z-10">
+                            <div className={`flex items-center gap-3 mb-3 ${
+                              isEven ? "md:justify-end justify-center" : "md:justify-start justify-center"
+                            }`}>
+                              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                                {milestone.icon}
+                              </div>
+                              <span className="text-2xl font-bold text-primary">{milestone.year}</span>
                             </div>
-                            <span className="text-2xl font-bold text-primary">{milestone.year}</span>
+                            <h3 className="text-xl font-bold mb-2 text-foreground">{milestone.title}</h3>
+                            <p className="text-muted-foreground mb-4">{milestone.description}</p>
+                            
+                            {/* Stats that appear on hover */}
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ 
+                                height: hoveredMilestone === index ? "auto" : 0,
+                                opacity: hoveredMilestone === index ? 1 : 0
+                              }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="pt-4 border-t border-border/50 space-y-3">
+                                <p className="text-sm text-muted-foreground font-medium">{milestone.details}</p>
+                                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                                  {milestone.stats.map((stat, statIndex) => (
+                                    <span 
+                                      key={statIndex}
+                                      className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium"
+                                    >
+                                      {stat}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            </motion.div>
                           </div>
-                          <h3 className="text-xl font-bold mb-2 text-foreground">{milestone.title}</h3>
-                          <p className="text-muted-foreground">{milestone.description}</p>
                         </motion.div>
                       </div>
 
@@ -242,6 +332,56 @@ const About = () => {
                   );
                 })}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Photo Gallery Section */}
+        <section className="py-20 px-4 bg-background">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Our Journey in Pictures</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                From our early days to becoming a nationwide leader — witness the evolution of EntireFM through the years
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {galleryImages.map((image, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group relative overflow-hidden rounded-lg border border-border bg-card shadow-sm hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img 
+                      src={image.src} 
+                      alt={image.alt}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  
+                  {/* Overlay with caption */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+                      <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-sm font-bold rounded-full mb-3">
+                        {image.year}
+                      </span>
+                      <p className="text-foreground font-medium text-lg">
+                        {image.caption}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Year badge always visible */}
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-background/90 backdrop-blur-sm border border-border rounded-full text-sm font-bold text-foreground">
+                    {image.year}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
