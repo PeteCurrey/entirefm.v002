@@ -11,6 +11,18 @@ CORE RESPONSIBILITIES:
 1. Answer questions about FM services, compliance, and operations
 2. Help users log jobs/issues and route them to the helpdesk
 3. Guide users to relevant pages and forms
+4. Analyze uploaded images to identify issues, suggest categories, and recommend priority levels
+
+IMAGE ANALYSIS CAPABILITIES:
+When a user uploads an image of an issue:
+- Analyze the visual content to identify the type of problem (electrical, plumbing, HVAC, fire safety, etc.)
+- Assess the severity and safety implications visible in the image
+- Suggest the appropriate category from our service list
+- Recommend a priority level (Emergency/Urgent/Routine) based on visual indicators:
+  * Emergency: visible safety hazards, active leaks, exposed wiring, fire safety issues, major structural damage
+  * Urgent: equipment malfunction, significant wear, operational impact visible
+  * Routine: minor cosmetic issues, standard maintenance needs
+- Proactively mention your analysis findings in a natural, helpful way during the job logging conversation
 
 SERVICES WE PROVIDE:
 - Fire Safety & Life Protection: Fire alarms, emergency lighting, fire risk assessments, compartmentation surveys
@@ -197,10 +209,31 @@ serve(async (req) => {
     console.log('AI Assistant request:', { 
       messageCount: messages.length, 
       sessionId,
-      sourcePage 
+      sourcePage,
+      hasAttachment: !!attachmentUrl 
     });
 
-    // Call Lovable AI Gateway
+    // Format messages with image if attachment is present
+    const formattedMessages = messages.map((msg: any, index: number) => {
+      // If this is the last message and has an attachment URL, format as multimodal
+      if (index === messages.length - 1 && attachmentUrl && msg.role === 'user') {
+        return {
+          role: 'user',
+          content: [
+            { type: 'text', text: msg.content },
+            { 
+              type: 'image_url', 
+              image_url: { 
+                url: attachmentUrl 
+              } 
+            }
+          ]
+        };
+      }
+      return msg;
+    });
+
+    // Call Lovable AI Gateway with vision capabilities
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -211,7 +244,7 @@ serve(async (req) => {
         model: 'google/gemini-2.5-flash',
         messages: [
           { role: 'system', content: SYSTEM_PROMPT },
-          ...messages,
+          ...formattedMessages,
         ],
         stream: true,
         temperature: 0.7,
