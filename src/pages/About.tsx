@@ -1,10 +1,12 @@
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Shield, Zap, Target, Users } from "lucide-react";
+import { Shield, Zap, Target, Users, Building2, TrendingUp, Award, Rocket } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 
 const About = () => {
   const breadcrumbItems = [
@@ -60,6 +62,39 @@ const About = () => {
       icon: <Users className="h-6 w-6" />,
       title: "Stay humble",
       description: "Listen, fix, improve"
+    }
+  ];
+
+  const milestones = [
+    {
+      year: "2009",
+      title: "The Beginning",
+      description: "Founded as a modest building maintenance company serving local businesses and letting agents",
+      icon: <Building2 className="h-5 w-5" />
+    },
+    {
+      year: "2011-2013",
+      title: "Building Reputation",
+      description: "Exceptional service captured attention of larger clients who recognized our value",
+      icon: <TrendingUp className="h-5 w-5" />
+    },
+    {
+      year: "2014-2017",
+      title: "Rapid Expansion",
+      description: "Client base grew to include multinational firms, consultancies, logistics companies, and leading supermarket chains",
+      icon: <Rocket className="h-5 w-5" />
+    },
+    {
+      year: "2018-2021",
+      title: "National Presence",
+      description: "Established network of regional offices with forward-thinking professionals pushing industry boundaries",
+      icon: <Award className="h-5 w-5" />
+    },
+    {
+      year: "2022-Present",
+      title: "Industry Leader",
+      description: "Nationwide leader providing comprehensive FM services across diverse industries with unwavering commitment to excellence",
+      icon: <Target className="h-5 w-5" />
     }
   ];
 
@@ -134,6 +169,78 @@ const About = () => {
                     <span className="text-primary font-semibold">excellence</span>"
                   </blockquote>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Timeline Section */}
+        <section className="py-20 px-4 bg-gradient-to-br from-muted/30 to-background">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Our Journey</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                From a local maintenance company to a nationwide FM leader — driven by excellence at every step
+              </p>
+            </div>
+
+            <div className="relative">
+              {/* Vertical Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20 hidden md:block" />
+
+              {/* Timeline Items */}
+              <div className="space-y-12">
+                {milestones.map((milestone, index) => {
+                  const isEven = index % 2 === 0;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className={`flex flex-col md:flex-row gap-8 items-center ${
+                        isEven ? "md:flex-row-reverse" : ""
+                      }`}
+                    >
+                      {/* Content */}
+                      <div className={`flex-1 ${isEven ? "md:text-right" : "md:text-left"} text-center`}>
+                        <motion.div
+                          initial={{ scale: 0.9 }}
+                          whileInView={{ scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
+                          className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-colors shadow-sm"
+                        >
+                          <div className={`flex items-center gap-3 mb-3 ${
+                            isEven ? "md:justify-end justify-center" : "md:justify-start justify-center"
+                          }`}>
+                            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary">
+                              {milestone.icon}
+                            </div>
+                            <span className="text-2xl font-bold text-primary">{milestone.year}</span>
+                          </div>
+                          <h3 className="text-xl font-bold mb-2 text-foreground">{milestone.title}</h3>
+                          <p className="text-muted-foreground">{milestone.description}</p>
+                        </motion.div>
+                      </div>
+
+                      {/* Center Dot */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.1 + 0.1 }}
+                        className="relative z-10"
+                      >
+                        <div className="w-6 h-6 rounded-full bg-primary border-4 border-background shadow-lg" />
+                      </motion.div>
+
+                      {/* Spacer for alignment */}
+                      <div className="flex-1 hidden md:block" />
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </div>
