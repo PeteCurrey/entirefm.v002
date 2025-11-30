@@ -111,19 +111,19 @@ export default function AdminLayout() {
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
     { icon: FileText, label: "Proposals", path: "/admin/proposals" },
     { icon: Mail, label: "Contacts", path: "/admin/contacts" },
+    { icon: Wrench, label: "Helpdesk Jobs", path: "/admin/helpdesk-jobs" },
     { icon: BarChart3, label: "Search Analytics", path: "/admin/search-analytics" },
     { icon: Link, label: "Link Health", path: "/admin/link-health" },
     { icon: Map, label: "Site Map", path: "/admin/site-map" },
-    { icon: Wrench, label: "Tools", path: "/admin/tm44-checker" },
   ];
 
   return (
-    <div className="flex min-h-screen w-full bg-muted/30">
+    <div className="flex min-h-screen w-full bg-muted/30 pt-20">
       {/* Sidebar */}
       <aside 
         className={`${
           sidebarOpen ? 'w-64' : 'w-16'
-        } bg-card border-r border-border transition-all duration-300 flex flex-col`}
+        } bg-card border-r border-border transition-all duration-300 flex flex-col fixed left-0 top-20 bottom-0 z-40`}
       >
         {/* Sidebar Header */}
         <div className="p-4 border-b border-border flex items-center justify-between">
@@ -175,7 +175,7 @@ export default function AdminLayout() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto">
+      <main className={`flex-1 overflow-auto ${sidebarOpen ? 'ml-64' : 'ml-16'} transition-all duration-300`}>
         <Outlet />
       </main>
     </div>
