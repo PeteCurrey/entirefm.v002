@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight, Zap, Battery, Cog, Activity, Server, TrendingUp, Scan, Database } from "lucide-react";
+import { Menu, X, ArrowRight, Zap, Battery, Cog, Activity, Server, TrendingUp, Scan, Database, Calculator, PoundSterling, Target, Thermometer, Droplets, ShieldAlert, FileText, Flame, Droplet, Calendar, ClipboardCheck, Lightbulb, BookOpen, Building2, Info, Mail, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
@@ -150,43 +150,84 @@ const Header = ({
     label: "Health & Safety",
     to: "/health-safety"
   }];
-  const resourcesItems = [{
-    label: "FM Insights",
-    to: "/fm-insights"
-  }, {
-    label: "Case Studies",
-    to: "/case-studies"
-  }, {
-    label: "About",
-    to: "/about"
-  }, {
-    label: "Contact",
-    to: "/contact"
-  }, {
-    label: "Locations",
-    to: "/locations"
-  }, {
-    label: "Request Proposal",
-    to: "/request-proposal"
-  }, {
+  const toolsItems = [{
     label: "PPM Calculator",
-    to: "/tools/ppm-calculator"
+    to: "/tools/ppm-calculator",
+    description: "Calculate PPM ROI & risk exposure",
+    icon: Calculator
   }, {
     label: "Cost Savings Calculator",
-    to: "/tools/cost-savings-calculator"
+    to: "/tools/cost-savings-calculator",
+    description: "Estimate savings from improved FM",
+    icon: PoundSterling
   }, {
     label: "SLA Benchmark",
-    to: "/tools/sla-benchmark"
+    to: "/tools/sla-benchmark",
+    description: "Compare your SLA performance",
+    icon: Target
+  }, {
+    label: "TM44 Checker",
+    to: "/tools/tm44-checker",
+    description: "AC inspection compliance checker",
+    icon: Thermometer
+  }, {
+    label: "Water Risk Grader",
+    to: "/tools/water-risk-grader",
+    description: "Assess your L8 compliance risk",
+    icon: Droplets
   }, {
     label: "Risk Diagnostic",
-    to: "/tools/risk-diagnostic"
+    to: "/tools/risk-diagnostic",
+    description: "Identify compliance gaps",
+    icon: ShieldAlert
   }];
-  const mobileNavItems = [...servicesItems, ...sectorsItems, ...locationsItems, {
+
+  const guidesItems = [{
+    label: "Fire Risk Guide",
+    to: "/resources/fire-risk-guide",
+    icon: Flame
+  }, {
+    label: "EICR Manual",
+    to: "/resources/eicr-manual",
+    icon: FileText
+  }, {
+    label: "Legionella Guide",
+    to: "/resources/legionella-guide",
+    icon: Droplet
+  }, {
+    label: "Compliance Calendar",
+    to: "/resources/compliance-calendar",
+    icon: Calendar
+  }, {
+    label: "Audit Framework",
+    to: "/resources/audit-framework",
+    icon: ClipboardCheck
+  }, {
+    label: "Emergency Lighting Checklist",
+    to: "/resources/emergency-lighting-checklist",
+    icon: Lightbulb
+  }];
+
+  const knowledgeItems = [{
+    label: "FM Insights",
+    to: "/fm-insights",
+    icon: BookOpen
+  }, {
     label: "Case Studies",
-    to: "/case-studies"
-  }, ...resourcesItems, ...aboutItems, {
+    to: "/case-studies",
+    icon: Building2
+  }, {
+    label: "About EntireFM",
+    to: "/about",
+    icon: Info
+  }, {
     label: "Contact",
-    to: "/contact"
+    to: "/contact",
+    icon: Mail
+  }, {
+    label: "Locations",
+    to: "/locations",
+    icon: MapPin
   }];
   return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent", className)}>
       <div className="container mx-auto px-6 pr-[10px] pl-[10px]">
@@ -357,7 +398,7 @@ const Header = ({
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-sm font-light h-10">Resources</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <motion.div className="grid w-[300px] gap-2 p-4" initial={{
+                  <motion.div className="w-[800px] p-4" initial={{
                   opacity: 0,
                   y: -10
                 }} animate={{
@@ -370,33 +411,128 @@ const Header = ({
                   duration: 0.2,
                   ease: "easeOut"
                 }}>
-                    {resourcesItems.map((item, index) => <NavigationMenuLink key={item.to} asChild>
-                        <motion.div initial={{
-                      opacity: 0,
-                      x: -10
-                    }} animate={{
-                      opacity: 1,
-                      x: 0
-                    }} transition={{
-                      delay: index * 0.03,
-                      duration: 0.2
-                    }}>
-                          <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02] font-extralight">
-                            <div className="text-sm font-medium">{item.label}</div>
-                            <motion.div initial={{
-                          x: -5,
-                          opacity: 0
-                        }} whileHover={{
-                          x: 0,
-                          opacity: 1
-                        }} transition={{
-                          duration: 0.2
-                        }}>
-                              <ArrowRight className="w-4 h-4" />
-                            </motion.div>
-                          </Link>
-                        </motion.div>
-                      </NavigationMenuLink>)}
+                    <div className="grid grid-cols-3 gap-4">
+                      {/* Interactive Tools Column */}
+                      <div>
+                        <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 px-3">Interactive Tools</h4>
+                        <div className="grid gap-2">
+                          {toolsItems.map((item, index) => <NavigationMenuLink key={item.to} asChild>
+                              <motion.div initial={{
+                            opacity: 0,
+                            x: -10
+                          }} animate={{
+                            opacity: 1,
+                            x: 0
+                          }} transition={{
+                            delay: index * 0.03,
+                            duration: 0.2
+                          }}>
+                                <Link to={item.to} className="flex items-start gap-2 group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                                  <item.icon className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                                  <div className="flex-1">
+                                    <div className="text-sm font-medium leading-none mb-1">{item.label}</div>
+                                    <div className="text-xs text-muted-foreground">{item.description}</div>
+                                  </div>
+                                  <motion.div initial={{
+                                x: -5,
+                                opacity: 0
+                              }} whileHover={{
+                                x: 0,
+                                opacity: 1
+                              }} transition={{
+                                duration: 0.2
+                              }}>
+                                    <ArrowRight className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                                  </motion.div>
+                                </Link>
+                              </motion.div>
+                            </NavigationMenuLink>)}
+                        </div>
+                      </div>
+
+                      {/* Guides & Compliance Column */}
+                      <div>
+                        <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 px-3">Guides & Compliance</h4>
+                        <div className="grid gap-2">
+                          {guidesItems.map((item, index) => <NavigationMenuLink key={item.to} asChild>
+                              <motion.div initial={{
+                            opacity: 0,
+                            x: -10
+                          }} animate={{
+                            opacity: 1,
+                            x: 0
+                          }} transition={{
+                            delay: index * 0.03,
+                            duration: 0.2
+                          }}>
+                                <Link to={item.to} className="flex items-center gap-2 group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                                  <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                                  <div className="flex-1">
+                                    <div className="text-sm font-medium leading-none">{item.label}</div>
+                                  </div>
+                                  <motion.div initial={{
+                                x: -5,
+                                opacity: 0
+                              }} whileHover={{
+                                x: 0,
+                                opacity: 1
+                              }} transition={{
+                                duration: 0.2
+                              }}>
+                                    <ArrowRight className="w-4 h-4" />
+                                  </motion.div>
+                                </Link>
+                              </motion.div>
+                            </NavigationMenuLink>)}
+                        </div>
+                      </div>
+
+                      {/* Knowledge & Company Column */}
+                      <div>
+                        <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 px-3">Knowledge & Company</h4>
+                        <div className="grid gap-2">
+                          {knowledgeItems.map((item, index) => <NavigationMenuLink key={item.to} asChild>
+                              <motion.div initial={{
+                            opacity: 0,
+                            x: -10
+                          }} animate={{
+                            opacity: 1,
+                            x: 0
+                          }} transition={{
+                            delay: index * 0.03,
+                            duration: 0.2
+                          }}>
+                                <Link to={item.to} className="flex items-center gap-2 group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                                  <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                                  <div className="flex-1">
+                                    <div className="text-sm font-medium leading-none">{item.label}</div>
+                                  </div>
+                                  <motion.div initial={{
+                                x: -5,
+                                opacity: 0
+                              }} whileHover={{
+                                x: 0,
+                                opacity: 1
+                              }} transition={{
+                                duration: 0.2
+                              }}>
+                                    <ArrowRight className="w-4 h-4" />
+                                  </motion.div>
+                                </Link>
+                              </motion.div>
+                            </NavigationMenuLink>)}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="border-t pt-3 mt-3">
+                      <NavigationMenuLink asChild>
+                        <Link to="/resources" className="flex items-center justify-between group rounded-md p-3 text-sm font-medium hover:bg-accent transition-all duration-200 hover:scale-[1.02]">
+                          View All Resources
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </NavigationMenuLink>
+                    </div>
                   </motion.div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -502,7 +638,19 @@ const Header = ({
                 }} transition={{
                   duration: 0.2
                 }}>
-                        {resourcesItems.map(item => <Link key={item.to} to={item.to} className="block px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                        <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Interactive Tools</div>
+                        {toolsItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-3 h-3 text-primary" />
+                            {item.label}
+                          </Link>)}
+                        <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Guides & Compliance</div>
+                        {guidesItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-3 h-3 text-primary" />
+                            {item.label}
+                          </Link>)}
+                        <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Knowledge & Company</div>
+                        {knowledgeItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-3 h-3 text-primary" />
                             {item.label}
                           </Link>)}
                       </motion.div>}

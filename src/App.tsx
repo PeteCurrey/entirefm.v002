@@ -805,12 +805,6 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="site-map" element={<SiteMap />} />
                 <Route path="link-health" element={<LinkHealthDashboard />} />
                 <Route path="search-analytics" element={<SearchAnalyticsDashboard />} />
-                <Route path="ppm-calculator" element={<PPMCalculator />} />
-                <Route path="tm44-checker" element={<TM44Checker />} />
-                <Route path="water-risk-grader" element={<WaterRiskGrader />} />
-                <Route path="cost-savings-calculator" element={<CostSavingsCalculator />} />
-                <Route path="sla-benchmark" element={<SLABenchmark />} />
-                <Route path="risk-diagnostic" element={<ComplianceDiagnostic />} />
               </Route>
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
