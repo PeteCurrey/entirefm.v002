@@ -112,6 +112,7 @@ export default function AdminLayout() {
     { icon: FileText, label: "Proposals", path: "/admin/proposals" },
     { icon: Mail, label: "Contacts", path: "/admin/contacts" },
     { icon: Wrench, label: "Helpdesk Jobs", path: "/admin/helpdesk-jobs" },
+    { icon: Wrench, label: "CAFM Jobs", path: "/admin/jobs" },
     { icon: BarChart3, label: "Search Analytics", path: "/admin/search-analytics" },
     { icon: Link, label: "Link Health", path: "/admin/link-health" },
     { icon: Map, label: "Site Map", path: "/admin/site-map" },

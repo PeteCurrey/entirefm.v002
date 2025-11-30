@@ -277,6 +277,8 @@ import FMOperations from "./pages/FMOperations";
 import Leads from "./pages/fm-operations/Leads";
 import ReportIssue from "./pages/fm-operations/ReportIssue";
 import KnowledgeBase from "./pages/fm-operations/KnowledgeBase";
+import Platform from "./pages/fm-operations/Platform";
+import Jobs from "./pages/admin/Jobs";
 import { LegacyRedirects } from "./components/shared/LegacyRedirects";
 import { CriticalInfrastructureRedirects } from "./components/shared/CriticalInfrastructureRedirects";
 import LightningProtection from "./pages/services/critical/LightningProtection";
@@ -782,6 +784,7 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/fm-operations/leads" element={<Leads />} />
           <Route path="/fm-operations/report-issue" element={<ReportIssue />} />
           <Route path="/fm-operations/knowledge-base" element={<KnowledgeBase />} />
+          <Route path="/fm-operations/platform" element={<Platform />} />
               <Route path="/services/emergency-response" element={<EmergencyResponse />} />
               <Route path="/services/disaster-recovery" element={<DisasterRecovery />} />
               <Route path="/services/space-planning" element={<SpacePlanning />} />
@@ -798,6 +801,7 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="proposals" element={<ProposalsDashboard />} />
                 <Route path="contacts" element={<ContactSubmissions />} />
                 <Route path="helpdesk-jobs" element={<HelpdeskJobs />} />
+                <Route path="jobs" element={<Jobs />} />
                 <Route path="site-map" element={<SiteMap />} />
                 <Route path="link-health" element={<LinkHealthDashboard />} />
                 <Route path="search-analytics" element={<SearchAnalyticsDashboard />} />
