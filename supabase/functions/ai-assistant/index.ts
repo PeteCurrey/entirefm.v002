@@ -57,18 +57,22 @@ COMPLIANCE GUIDANCE:
 JOB LOGGING FLOW:
 When the user says they want to log a job, report a fault, raise a repair, or similar (e.g. "I need to log a job", "I need to report an issue", "we've got a fault", "I need to raise a ticket"), use a clean, conversational, step-by-step flow.
 
-Do NOT dump a long list. Do NOT output numbered points or big bullet clusters. Guide them gently, one question at a time.
+CRITICAL RULES:
+- One question per message only
+- Never dump long lists or numbered points
+- Keep responses conversational and human
+- Be patient and methodical
 
 Step 1 – Site & Location
-Reply: "No problem, I can log that for you. Let's do it step by step. First, which site is this for and what's the exact location? (For example: 'ABC Office, 2nd floor east wing.')"
+Reply: "No problem, I can log that for you. Which site is this for and what's the exact location?"
 Wait for user response.
 
 Step 2 – Asset / Area
-Reply: "Got it, thanks. What's the asset or area with the issue? (For example: VRF unit in meeting room 2, toilet in reception, lighting in warehouse aisle 3.)"
+Reply: "Got it. What's the asset or area with the issue?"
 Wait for user response.
 
 Step 3 – Priority
-Reply: "Understood. How urgent is this?
+Reply: "How urgent is this?
 
 • Emergency – safety risk, major leak, fire alarm, power loss
 • Urgent – affecting business operations
@@ -76,40 +80,45 @@ Reply: "Understood. How urgent is this?
 Wait for user response.
 
 Step 4 – Description
-Reply: "Thanks. Please give me a brief description of what's happening."
+Reply: "Please give me a brief description of what's happening."
 Wait for user response.
 
 Step 5 – Access Requirements
-Reply: "Got it. Are there any access requirements? (Examples: keys from security, permit needed, escort, restricted area, out-of-hours only.)"
+Reply: "Are there any access requirements? (For example: keys from security, permit needed, escort required, out-of-hours only, or just say 'none' if no special access needed.)"
 Wait for user response.
 
 Step 6 – Contact Details
-Reply: "Thanks. Finally, can I take your name and contact number in case an engineer or the helpdesk need to reach you?"
+Reply: "Finally, can I take your name and contact number?"
 Wait for user response.
 
-Step 7 – Confirmation
-After you have ALL of the following: site, location, asset/area, priority, description, access requirements, contact details
+Step 7 – Optional Email
+Reply: "Do you have an email address you'd like me to add? (Optional - just say 'no' if not needed.)"
+Wait for user response.
 
-Reply with confirmation: "Perfect — I've got everything I need. I'll log this with the 24/7 EntireFM helpdesk now.
+Step 8 – Confirmation
+After you have collected: site name, site location, asset/area, priority, description, access requirements, contact name, contact phone (and optional email)
+
+Reply with: "Perfect — I've logged this for you.
 
 [JOB_SUBMISSION_MARKER]
-Site: [site location]
-Asset: [asset/area]
-Priority: [priority level]
+SiteName: [site name]
+SiteLocation: [location within site]
+AssetOrArea: [asset/area]
+Priority: [Emergency/Urgent/Routine]
 Description: [description]
-Access: [access requirements]
-Contact: [name]
-Phone: [phone number]
-Category: [best matching category from list]
+AccessRequirements: [access requirements or 'None']
+ContactName: [name]
+ContactPhone: [phone number]
+ContactEmail: [email or leave empty]
 [/JOB_SUBMISSION_MARKER]
 
-Your job has been logged and the helpdesk team has been notified.
+Your job will be assigned a reference number shortly, and our 24/7 helpdesk will update you as it progresses.
 
-🔴 If this becomes an emergency at any point (safety risk, major leak, fire, loss of critical power), please also call 01246 808012 immediately.
+🔴 If this escalates to an emergency (safety risk, major leak, fire, power loss), please also call 0800 XXX XXXX immediately.
 
-You can also report or track issues here: https://entirefm.com/fm-operations/report-issue"
+Track or log more jobs at: https://entirefm.com/fm-operations/report-issue"
 
-IMPORTANT: You must output the [JOB_SUBMISSION_MARKER] block with all collected information so the system can automatically submit the job. Use one of these categories: Fire Safety, Electrical, HVAC, Water Hygiene, Gas Safety, Plumbing, Building Fabric, Cleaning, Security, Other
+IMPORTANT: You must output the [JOB_SUBMISSION_MARKER] block with EXACT field names (SiteName, SiteLocation, AssetOrArea, Priority, Description, AccessRequirements, ContactName, ContactPhone, ContactEmail) so the system can parse and submit the job automatically.
 
 Tone Rules:
 • Keep all responses short, clean, human, and conversational.
@@ -139,6 +148,7 @@ async function extractAndSubmitJob(fullResponse: string, messages: any[], sessio
   const markerEnd = fullResponse.indexOf('[/JOB_SUBMISSION_MARKER]');
   
   if (markerStart === -1 || markerEnd === -1) {
+    console.log('No job submission marker found');
     return null;
   }
 
@@ -149,42 +159,50 @@ async function extractAndSubmitJob(fullResponse: string, messages: any[], sessio
   for (const line of lines) {
     const [key, ...valueParts] = line.split(':');
     if (key && valueParts.length > 0) {
-      extracted[key.trim().toLowerCase()] = valueParts.join(':').trim();
+      const cleanKey = key.trim();
+      const cleanValue = valueParts.join(':').trim();
+      extracted[cleanKey] = cleanValue;
     }
   }
+
+  console.log('Extracted job data:', extracted);
 
   try {
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
 
-    const submitResponse = await fetch(`${supabaseUrl}/functions/v1/submit-helpdesk-job`, {
+    // Construct payload for log-job-from-chat endpoint
+    const payload = {
+      siteName: extracted.SiteName || extracted.sitename || 'Unknown',
+      siteLocation: extracted.SiteLocation || extracted.sitelocation || 'Unknown',
+      assetOrArea: extracted.AssetOrArea || extracted.assetorarea || 'Unknown',
+      priority: extracted.Priority || extracted.priority || 'Routine',
+      description: extracted.Description || extracted.description || 'No description provided',
+      accessRequirements: extracted.AccessRequirements || extracted.accessrequirements || 'None',
+      contactName: extracted.ContactName || extracted.contactname || 'AI Chat User',
+      contactPhone: extracted.ContactPhone || extracted.contactphone || 'Not provided',
+      contactEmail: extracted.ContactEmail || extracted.contactemail || null,
+      source: 'web-chat'
+    };
+
+    console.log('Submitting job with payload:', payload);
+
+    const submitResponse = await fetch(`${supabaseUrl}/functions/v1/log-job-from-chat`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${supabaseKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: extracted.contact || 'AI Chat User',
-        role: 'User',
-        company: extracted.site || 'Unknown',
-        email: 'ai-chat@entirefm.com',
-        phone: extracted.phone || 'Not provided',
-        site_location: extracted.site || 'Unknown',
-        category: extracted.category || 'Other',
-        priority: extracted.priority || 'Routine',
-        asset_reference: extracted.asset || 'Unknown',
-        description: `${extracted.description}\n\nAccess Requirements: ${extracted.access}`,
-        source_page: `AI Chat - ${sourcePage || 'unknown'}`,
-        attachment_url: attachmentUrl || null,
-      }),
+      body: JSON.stringify(payload),
     });
 
     if (submitResponse.ok) {
       const result = await submitResponse.json();
-      console.log('Job submitted successfully:', result.jobId);
-      return result.jobId;
+      console.log('Job submitted successfully:', result);
+      return result.jobRef;
     } else {
-      console.error('Failed to submit job:', await submitResponse.text());
+      const errorText = await submitResponse.text();
+      console.error('Failed to submit job:', submitResponse.status, errorText);
       return null;
     }
   } catch (error) {
@@ -305,14 +323,14 @@ serve(async (req) => {
           }
 
           // After streaming completes, check for job submission
-          const jobId = await extractAndSubmitJob(fullResponse, messages, sessionId, sourcePage, attachmentUrl || null);
+          const jobRef = await extractAndSubmitJob(fullResponse, messages, sessionId, sourcePage, attachmentUrl || null);
           
-          if (jobId) {
-            // Send job ID as final message
-            const jobIdMessage = `\n\n**Job Reference: ${jobId}**\n\nThe helpdesk team at helpdesk@entirefm.com has been notified and will be in touch soon.`;
+          if (jobRef) {
+            // Send job reference as final message
+            const jobRefMessage = `\n\n**Job Reference: ${jobRef}**\n\nOur 24/7 helpdesk will update you as the job progresses.`;
             const finalChunk = `data: ${JSON.stringify({
               choices: [{
-                delta: { content: jobIdMessage },
+                delta: { content: jobRefMessage },
                 index: 0
               }]
             })}\n\n`;
