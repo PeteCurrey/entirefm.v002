@@ -256,6 +256,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
 import ContactSubmissions from "./pages/admin/ContactSubmissions";
+import HelpdeskJobs from "./pages/admin/HelpdeskJobs";
 import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
 import EmergencyResponse from "./pages/services/EmergencyResponse";
 import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
@@ -796,6 +797,7 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route index element={<AdminDashboard />} />
                 <Route path="proposals" element={<ProposalsDashboard />} />
                 <Route path="contacts" element={<ContactSubmissions />} />
+                <Route path="helpdesk-jobs" element={<HelpdeskJobs />} />
                 <Route path="site-map" element={<SiteMap />} />
                 <Route path="link-health" element={<LinkHealthDashboard />} />
                 <Route path="search-analytics" element={<SearchAnalyticsDashboard />} />
