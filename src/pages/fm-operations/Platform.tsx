@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import platformImage from "@/assets/platform/operations-architecture.jpg";
+import RadarAnimation from "@/components/platform/RadarAnimation";
 
 const Platform = () => {
   const heroPoints = [
@@ -82,65 +82,125 @@ const Platform = () => {
   return (
     <>
       <Helmet>
-        <title>Field Operations Intelligence Platform | EntireFM CAFM</title>
+        <title>Field Operations Intelligence Platform | EntireFM</title>
         <meta 
           name="description" 
-          content="The operational backbone powering EntireFM's national FM delivery. Custom CAFM platform for live job tracking, PPM compliance, and director-level oversight." 
+          content="EntireFM's internal CAFM infrastructure powering national facilities management performance, compliance, and real-time operational visibility." 
         />
         <meta 
           name="keywords" 
-          content="CAFM, FM operations platform, field operations intelligence, job tracking, PPM compliance, facilities management software, asset management" 
+          content="CAFM, FM operations platform, field operations intelligence, job tracking, PPM compliance, facilities management software, asset management, real-time monitoring" 
         />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "EntireFM Field Operations Intelligence Platform",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web-based",
+            "description": "Internal CAFM platform for facilities management operations, compliance tracking, and real-time asset monitoring",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InternalUseOnly",
+              "description": "Available to EntireFM clients as part of service delivery"
+            },
+            "featureList": [
+              "Real-time job tracking",
+              "PPM compliance monitoring",
+              "Asset lifecycle management",
+              "Director-level intelligence",
+              "Audit-ready documentation"
+            ]
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="relative py-24 px-4 overflow-hidden">
-          <div className="container mx-auto max-w-7xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
-                Field Operations Intelligence Platform
-              </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                The operational backbone that powers our national FM delivery.
-              </p>
-            </motion.div>
+        <section className="relative overflow-hidden">
+          {/* Dark gradient background */}
+          <div 
+            className="absolute inset-0 z-0"
+            style={{
+              background: "linear-gradient(135deg, hsl(220, 30%, 15%) 0%, hsl(220, 40%, 8%) 100%)",
+            }}
+          />
+          
+          <div className="relative z-10 container mx-auto max-w-7xl px-4">
+            <div className="flex flex-col items-center justify-center min-h-[700px] py-20">
+              {/* Animated Radar */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="mb-12"
+              >
+                <RadarAnimation />
+              </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative rounded-2xl overflow-hidden mb-12 shadow-2xl"
-            >
-              <img 
-                src={platformImage} 
-                alt="Field Operations Intelligence Platform Architecture"
-                className="w-full h-auto"
-              />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap justify-center gap-6 md:gap-8"
-            >
-              {heroPoints.map((point, index) => (
-                <div 
-                  key={index}
-                  className="flex items-center gap-2 text-foreground"
+              {/* Content */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-center max-w-4xl"
+              >
+                <h1 
+                  className="text-5xl md:text-7xl font-thin tracking-tight mb-6"
+                  style={{ 
+                    color: "hsl(0, 0%, 98%)",
+                    letterSpacing: "-0.02em"
+                  }}
                 >
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <span className="text-sm md:text-base font-medium">{point}</span>
-                </div>
-              ))}
-            </motion.div>
+                  Field Operations Intelligence Platform
+                </h1>
+                
+                <p 
+                  className="text-lg md:text-xl mb-12 leading-relaxed font-light"
+                  style={{ color: "hsl(220, 20%, 75%)" }}
+                >
+                  Real-time visibility, engineered performance, and audit-ready compliance — the operational backbone behind our national FM delivery.
+                </p>
+
+                {/* CTA Buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="flex flex-wrap justify-center gap-4"
+                >
+                  <Button 
+                    asChild 
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-base font-normal transition-all hover:scale-105"
+                  >
+                    <Link to="/contact">Request Portal Access</Link>
+                  </Button>
+                  <Button 
+                    asChild 
+                    variant="outline" 
+                    size="lg"
+                    className="border-2 px-8 py-6 text-base font-normal transition-all hover:scale-105"
+                    style={{
+                      borderColor: "hsl(220, 20%, 50%)",
+                      color: "hsl(0, 0%, 98%)",
+                      background: "transparent"
+                    }}
+                  >
+                    <Link to="/resources">Download Compliance Overview</Link>
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
+
+          {/* Bottom fade */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 h-32 z-20"
+            style={{
+              background: "linear-gradient(to bottom, transparent, hsl(var(--background)))"
+            }}
+          />
         </section>
 
         {/* Built for Performance Section */}
