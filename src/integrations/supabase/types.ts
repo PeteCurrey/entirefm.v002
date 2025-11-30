@@ -325,6 +325,60 @@ export type Database = {
         }
         Relationships: []
       }
+      jobs: {
+        Row: {
+          access_requirements: string | null
+          asset_or_area: string
+          contact_email: string | null
+          contact_name: string
+          contact_phone: string
+          created_at: string
+          description: string
+          id: string
+          job_ref: string
+          priority: string
+          site_location: string
+          site_name: string
+          source: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          access_requirements?: string | null
+          asset_or_area: string
+          contact_email?: string | null
+          contact_name: string
+          contact_phone: string
+          created_at?: string
+          description: string
+          id?: string
+          job_ref: string
+          priority: string
+          site_location: string
+          site_name: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          access_requirements?: string | null
+          asset_or_area?: string
+          contact_email?: string | null
+          contact_name?: string
+          contact_phone?: string
+          created_at?: string
+          description?: string
+          id?: string
+          job_ref?: string
+          priority?: string
+          site_location?: string
+          site_name?: string
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       link_validation_results: {
         Row: {
           broken_links: number
@@ -510,6 +564,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      generate_job_ref: { Args: never; Returns: string }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

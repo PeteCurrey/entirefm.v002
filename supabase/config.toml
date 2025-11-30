@@ -26,3 +26,6 @@ verify_jwt = false
 
 [functions.submit-helpdesk-job]
 verify_jwt = false
+
+[functions.log-job-from-chat]
+verify_jwt = false
