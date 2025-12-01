@@ -14,7 +14,7 @@ const Home = () => {
       {/* Hero Section */}
       <VideoHero 
         videoSrc="/videos/hero-video.mp4" 
-        posterImage={heroImage}
+        posterImage="/images/hero-background.jpg"
       >
         <div className="max-w-4xl">
           <h1 className="text-white mb-6 leading-tight animate-fade-in-up font-extralight md:text-4xl text-3xl">
