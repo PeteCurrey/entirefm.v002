@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, Clock, Shield, Smartphone } from "lucide-react";
+import { motion } from "framer-motion";
 import ServiceCard from "@/components/shared/ServiceCard";
 import SectorCard from "@/components/shared/SectorCard";
 import MetricCard from "@/components/shared/MetricCard";
@@ -16,36 +17,55 @@ const Home = () => {
         videoSrc="/videos/hero-video.mp4" 
         posterImage="/images/hero-background.jpg"
       >
-        <div className="max-w-4xl">
-          <h1 className="text-white mb-6 leading-tight animate-fade-in-up font-extralight md:text-4xl text-3xl">
+        <motion.div 
+          className="max-w-4xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+            className="text-white mb-6 leading-tight font-extralight md:text-4xl text-3xl"
+          >
             Facilities Management &amp; FM Support Services
-          </h1>
-          <p style={{
-          animationDelay: "0.2s"
-        }} className="text-gray-200 mb-8 leading-relaxed max-w-2xl animate-fade-in-up font-extralight md:text-xl text-left tracking-wider text-lg">
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+            className="text-gray-200 mb-8 leading-relaxed max-w-2xl font-extralight md:text-xl text-left tracking-wider text-lg"
+          >
             EntireFM. Your Dedicated Facilities Management Company
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{
-          animationDelay: "0.4s"
-        }}>
-            <Button size="lg" asChild>
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
+            <Button size="lg" asChild className="hover-scale">
               <Link to="/contact">Request a Proposal</Link>
             </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white hover:text-charcoal" asChild>
+            <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white hover:text-charcoal hover-scale" asChild>
               <Link to="/case-studies">View Case Studies</Link>
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Metrics Dashboard */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl animate-fade-in-up" style={{
-        animationDelay: "0.6s"
-      }}>
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl"
+        >
           <MetricCard value="41" label="Avg response time (mins)" className="opacity-75" />
           <MetricCard value="87" label="First-time fix rate" suffix="%" className="opacity-75" />
           <MetricCard value="120" label="Sites under management" suffix="+" className="opacity-75" />
           <MetricCard value="98" label="SLA compliance" suffix="%" className="opacity-75" />
-        </div>
+        </motion.div>
       </VideoHero>
 
       {/* Trust Strip */}
