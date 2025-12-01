@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { useToolAnalytics, useToolPageView } from "@/hooks/useToolAnalytics";
+import { ToolHero } from "@/components/shared/ToolHero";
 import { toast } from "@/hooks/use-toast";
 import { ThermometerSnowflake, AlertCircle, Calendar, Mail } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
@@ -37,6 +39,8 @@ const TM44Checker = () => {
   });
 
   const { trackToolCompletion } = useConversionTracking();
+  const { trackToolComplete, trackToolStart } = useToolAnalytics();
+  useToolPageView("TM44 Renewal Checker");
 
   const {
     register,
@@ -103,9 +107,14 @@ const TM44Checker = () => {
   };
 
   const onSubmit = (data: TM44FormData) => {
+    trackToolStart("TM44 Renewal Checker", { systemSize: data.systemSize });
     calculateTM44Status(data);
     setShowResults(true);
     trackToolCompletion("TM44 Renewal Checker");
+    trackToolComplete("TM44 Renewal Checker", { 
+      urgency: results.urgency,
+      daysRemaining: results.daysRemaining 
+    });
     
     toast({
       title: "TM44 Status Calculated",
@@ -144,25 +153,23 @@ const TM44Checker = () => {
 
       <SchemaMarkup schema={schema} />
 
+      <ToolHero
+        icon={ThermometerSnowflake}
+        title="TM44 Renewal Checker"
+        description="Check your TM44 air conditioning inspection deadline and avoid £300+ statutory penalties"
+        stats={[
+          { value: "5yr", label: "Inspection Cycle" },
+          { value: "£300", label: "Initial Penalty" },
+          { value: "£20/day", label: "Continuing Fine" },
+          { value: "Free", label: "Instant Check" }
+        ]}
+      />
+
       <div className="bg-background">
         <div className="container mx-auto px-4 py-8">
           <Breadcrumb items={breadcrumbItems} />
 
           <div className="max-w-4xl mx-auto mt-8">
-            {/* Header */}
-            <div className="text-center mb-12">
-              <div className="flex justify-center mb-4">
-                <div className="p-4 bg-primary/10 rounded-full">
-                  <ThermometerSnowflake className="w-12 h-12 text-primary" />
-                </div>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-light mb-4">
-                TM44 Renewal Checker
-              </h1>
-              <p className="text-xl text-muted-foreground font-light">
-                Identify your AC inspection deadline and avoid statutory penalties
-              </p>
-            </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Checker Form */}

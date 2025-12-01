@@ -10,6 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { useToolAnalytics, useToolPageView } from "@/hooks/useToolAnalytics";
+import { ToolHero } from "@/components/shared/ToolHero";
 import { toast } from "@/hooks/use-toast";
 import { Droplets, AlertTriangle, CheckCircle2, Mail } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
@@ -49,6 +51,8 @@ const WaterRiskGrader = () => {
   });
 
   const { trackToolCompletion } = useConversionTracking();
+  const { trackToolComplete, trackToolStart } = useToolAnalytics();
+  useToolPageView("Water Hygiene Risk Grader");
 
   const {
     register,
@@ -184,9 +188,14 @@ const WaterRiskGrader = () => {
   };
 
   const onSubmit = (data: WaterRiskFormData) => {
+    trackToolStart("Water Hygiene Risk Grader", { buildingType: data.buildingType });
     calculateRisk(data);
     setShowResults(true);
     trackToolCompletion("Water Hygiene Risk Grader");
+    trackToolComplete("Water Hygiene Risk Grader", { 
+      riskLevel: results.riskLevel,
+      riskScore: results.riskScore 
+    });
     
     toast({
       title: "Risk Assessment Complete",
@@ -225,25 +234,23 @@ const WaterRiskGrader = () => {
 
       <SchemaMarkup schema={schema} />
 
+      <ToolHero
+        icon={Droplets}
+        title="Water Hygiene Risk Grader"
+        description="Assess your facility's legionella risk and ACOP L8 compliance status with instant analysis"
+        stats={[
+          { value: "ACOP L8", label: "Compliance Check" },
+          { value: "100%", label: "Free Assessment" },
+          { value: "2min", label: "Quick Grading" },
+          { value: "Instant", label: "Results" }
+        ]}
+      />
+
       <div className="bg-background">
         <div className="container mx-auto px-4 py-8">
           <Breadcrumb items={breadcrumbItems} />
 
           <div className="max-w-5xl mx-auto mt-8">
-            {/* Header */}
-            <div className="text-center mb-12">
-              <div className="flex justify-center mb-4">
-                <div className="p-4 bg-primary/10 rounded-full">
-                  <Droplets className="w-12 h-12 text-primary" />
-                </div>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-light mb-4">
-                Water Hygiene Risk Grader
-              </h1>
-              <p className="text-xl text-muted-foreground font-light">
-                Assess legionella risk and ACOP L8 compliance for your water systems
-              </p>
-            </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Assessment Form */}

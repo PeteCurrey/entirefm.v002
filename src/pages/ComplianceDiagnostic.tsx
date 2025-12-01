@@ -6,10 +6,15 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Progress } from "@/components/ui/progress";
-import { AlertTriangle, CheckCircle2, XCircle, ArrowRight, Download } from "lucide-react";
+import { AlertTriangle, CheckCircle2, XCircle, ArrowRight, Download, ShieldAlert } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useToolAnalytics, useToolPageView } from "@/hooks/useToolAnalytics";
+import { ToolHero } from "@/components/shared/ToolHero";
 
 const ComplianceDiagnostic = () => {
+  const { trackToolComplete, trackToolStart } = useToolAnalytics();
+  useToolPageView("Compliance Risk Diagnostic");
+
   const [step, setStep] = useState(1);
   const [estateType, setEstateType] = useState("");
   const [complianceChecks, setComplianceChecks] = useState({
@@ -49,8 +54,14 @@ const ComplianceDiagnostic = () => {
   };
 
   const handleComplete = () => {
+    trackToolStart("Compliance Risk Diagnostic", { estateType });
     calculateRiskScore();
     setStep(5);
+    trackToolComplete("Compliance Risk Diagnostic", { 
+      riskScore, 
+      riskLevel,
+      estateType 
+    });
   };
 
   const getRiskColor = () => {
@@ -82,23 +93,19 @@ const ComplianceDiagnostic = () => {
         <link rel="canonical" href="https://entirefm.com/tools/risk-diagnostic" />
       </Helmet>
 
-      <div className="min-h-screen pt-20">
-        {/* Hero */}
-        <section className="py-16 bg-gradient-to-b from-muted/50 to-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-3xl">
-              <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
-                Is Your FM Provider Putting You at Risk?
-              </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed mb-4">
-                If compliance fails, the <strong>Responsible Person is liable</strong> — not the contractor.
-              </p>
-              <p className="text-lg text-muted-foreground font-light leading-relaxed">
-                Score your risk in 90 seconds. Instant action plan. No obligations.
-              </p>
-            </div>
-          </div>
-        </section>
+      <ToolHero
+        icon={ShieldAlert}
+        title="Is Your FM Provider Putting You at Risk?"
+        description="If compliance fails, the Responsible Person is liable — not the contractor. Score your risk in 90 seconds."
+        stats={[
+          { value: "90s", label: "Quick Assessment" },
+          { value: "Free", label: "No Obligation" },
+          { value: "Instant", label: "Action Plan" },
+          { value: "4 Steps", label: "Simple Process" }
+        ]}
+      />
+
+      <div className="min-h-screen pt-8">
 
         {/* Diagnostic Flow */}
         <section className="py-16 bg-white">

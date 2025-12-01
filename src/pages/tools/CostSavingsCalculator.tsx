@@ -12,9 +12,13 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { WebApplicationSchema } from "@/components/shared/SchemaMarkup";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { useToolAnalytics, useToolPageView } from "@/hooks/useToolAnalytics";
+import { ToolHero } from "@/components/shared/ToolHero";
 
 const CostSavingsCalculator = () => {
   const { trackToolCompletion } = useConversionTracking();
+  const { trackToolComplete, trackToolStart } = useToolAnalytics();
+  useToolPageView("Cost Savings Calculator");
   const [reactiveSpend, setReactiveSpend] = useState(50000);
   const [estateType, setEstateType] = useState("");
   const [assetAge, setAssetAge] = useState("medium");
@@ -22,8 +26,18 @@ const CostSavingsCalculator = () => {
   const [showResults, setShowResults] = useState(false);
 
   const calculateSavings = () => {
+    trackToolStart("Cost Savings Calculator", { 
+      reactiveSpend, 
+      estateType, 
+      assetAge, 
+      downtimeSensitivity 
+    });
     setShowResults(true);
     trackToolCompletion('Cost Savings Calculator');
+    trackToolComplete("Cost Savings Calculator", { 
+      annualSavings, 
+      paybackMonths 
+    });
   };
 
   // Calculate savings based on inputs
@@ -52,20 +66,22 @@ const CostSavingsCalculator = () => {
       />
       <BreadcrumbSchema items={breadcrumbItems} />
 
+      <ToolHero
+        icon={Calculator}
+        title="FM Cost Savings Calculator"
+        description="Discover potential savings by switching from reactive to planned preventive maintenance"
+        stats={[
+          { value: "35%", label: "Average Savings" },
+          { value: "£50k+", label: "Typical Annual Benefit" },
+          { value: "12mo", label: "Average Payback" },
+          { value: "Free", label: "No Obligation" }
+        ]}
+      />
+
       <main>
-        <section className="py-16 bg-gradient-to-br from-background via-background to-muted/20">
+        <section className="py-8 bg-background">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} />
-            
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <Calculator className="w-16 h-16 mx-auto mb-6 text-primary" />
-              <h1 className="text-4xl md:text-5xl font-light mb-6 text-foreground">
-                Reactive Spend is Silent Profit Loss
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                See how much you're overpaying. Calculate your potential savings now.
-              </p>
-            </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {/* Calculator Form */}

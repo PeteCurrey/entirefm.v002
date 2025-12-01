@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { useToolAnalytics, useToolPageView } from "@/hooks/useToolAnalytics";
+import { ToolHero } from "@/components/shared/ToolHero";
 import { toast } from "@/hooks/use-toast";
 import { Calculator, AlertTriangle, TrendingUp, Shield, Mail } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
@@ -30,9 +32,9 @@ const PPMCalculator = () => {
     savings: 0,
     roi: 0
   });
-  const {
-    trackToolCompletion
-  } = useConversionTracking();
+  const { trackProposalRequest } = useConversionTracking();
+  const { trackToolComplete, trackToolStart } = useToolAnalytics();
+  useToolPageView("PPM Calculator");
   const {
     register,
     handleSubmit,
@@ -82,9 +84,11 @@ const PPMCalculator = () => {
     });
   };
   const onSubmit = (data: CalculatorFormData) => {
+    trackToolStart("PPM Calculator", { buildingType: data.buildingType });
     calculateResults(data);
     setShowResults(true);
-    trackToolCompletion("PPM Cost Calculator");
+    trackProposalRequest();
+    trackToolComplete("PPM Calculator", { roi: results.roi });
     toast({
       title: "Results Calculated",
       description: "Your PPM cost analysis has been generated. Check your email for the detailed report."
@@ -118,25 +122,23 @@ const PPMCalculator = () => {
 
       <SchemaMarkup schema={schema} />
 
+      <ToolHero
+        icon={Calculator}
+        title="PPM Cost & Risk Calculator"
+        description="Estimate your facility's reactive maintenance risk exposure and calculate the ROI of implementing planned preventative maintenance"
+        stats={[
+          { value: "40%", label: "Avg Cost Reduction" },
+          { value: "60%", label: "Downtime Prevention" },
+          { value: "5x", label: "Asset Lifespan" },
+          { value: "90s", label: "Takes Only" }
+        ]}
+      />
+
       <div className="bg-background">
         <div className="container mx-auto px-4 py-8">
           <Breadcrumb items={breadcrumbItems} className="my-[50px]" />
 
           <div className="max-w-4xl mx-auto mt-8">
-            {/* Header */}
-            <div className="text-center mb-12">
-              <div className="flex justify-center mb-4">
-                <div className="p-4 bg-primary/10 rounded-full">
-                  <Calculator className="w-12 h-12 text-primary" />
-                </div>
-              </div>
-              <h1 className="text-4xl md:text-5xl font-light mb-4">
-                PPM Cost & Risk Calculator
-              </h1>
-              <p className="text-xl text-muted-foreground font-light">
-                Quantify the financial risk of reactive maintenance vs the ROI of planned prevention
-              </p>
-            </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Calculator Form */}

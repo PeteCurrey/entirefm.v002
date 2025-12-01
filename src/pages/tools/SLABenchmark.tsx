@@ -11,9 +11,13 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { WebApplicationSchema } from "@/components/shared/SchemaMarkup";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { useToolAnalytics, useToolPageView } from "@/hooks/useToolAnalytics";
+import { ToolHero } from "@/components/shared/ToolHero";
 
 const SLABenchmark = () => {
   const { trackToolCompletion } = useConversionTracking();
+  const { trackToolComplete, trackToolStart } = useToolAnalytics();
+  useToolPageView("SLA Benchmark Tool");
   const [responseTime, setResponseTime] = useState("");
   const [resolutionTime, setResolutionTime] = useState("");
   const [firstTimeFix, setFirstTimeFix] = useState("");
@@ -22,8 +26,18 @@ const SLABenchmark = () => {
 
   const handleBenchmark = () => {
     if (responseTime && resolutionTime && firstTimeFix) {
+      trackToolStart("SLA Benchmark Tool", { 
+        responseTime, 
+        resolutionTime, 
+        firstTimeFix 
+      });
       setShowResults(true);
       trackToolCompletion('SLA Benchmark Tool');
+      trackToolComplete("SLA Benchmark Tool", { 
+        responseTime, 
+        resolutionTime, 
+        firstTimeFix 
+      });
     }
   };
 
@@ -69,20 +83,22 @@ const SLABenchmark = () => {
       />
       <BreadcrumbSchema items={breadcrumbItems} />
 
+      <ToolHero
+        icon={Activity}
+        title="SLA Performance Benchmark"
+        description="Compare your current service provider's performance against industry standards"
+        stats={[
+          { value: "4hrs", label: "Industry Std Response" },
+          { value: "24hrs", label: "Industry Std Resolution" },
+          { value: "85%", label: "Industry First Fix" },
+          { value: "Free", label: "Instant Results" }
+        ]}
+      />
+
       <main>
-        <section className="py-16 bg-gradient-to-br from-background via-background to-muted/20">
+        <section className="py-8 bg-background">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} />
-            
-            <div className="max-w-4xl mx-auto text-center mb-12">
-              <Activity className="w-16 h-16 mx-auto mb-6 text-primary" />
-              <h1 className="text-4xl md:text-5xl font-light mb-6 text-foreground">
-                If Your Provider's Slow, You're Paying Twice
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Benchmark their response & fix rates against industry performance.
-              </p>
-            </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {/* Input Form */}
