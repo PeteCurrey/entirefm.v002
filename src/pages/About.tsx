@@ -193,16 +193,60 @@ const About = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
           
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <div className="flex justify-center mb-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="flex justify-center mb-8"
+            >
               <Breadcrumb items={breadcrumbItems} />
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
+            >
               We didn't come from FM.<br />We came from fixing FM.
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-8">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+              className="text-xl md:text-2xl text-gray-200 mb-8"
+            >
               A business born from frustration — and driven by delivery.
-            </p>
+            </motion.p>
           </div>
+          
+          {/* Animated Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="w-6 h-10 border-2 border-white/60 rounded-full flex items-start justify-center p-2 cursor-pointer hover:border-white/80 transition-colors"
+              onClick={() => window.scrollTo({ top: window.innerHeight * 0.7, behavior: 'smooth' })}
+            >
+              <motion.div 
+                className="w-1 h-3 bg-white/70 rounded-full"
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* Our Story Section */}

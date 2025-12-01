@@ -144,20 +144,64 @@ const Services = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-8">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 text-white">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+              className="text-5xl md:text-6xl font-light mb-6 text-white"
+            >
               Integrated facilities management – built around your sites.
-            </h1>
-            <p className="text-xl text-gray-200 font-light leading-relaxed mb-8">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+              className="text-xl text-gray-200 font-light leading-relaxed mb-8"
+            >
               Single-provider FM with the option of standalone services. Hard, soft, compliance, and projects – all coordinated under one accountable partner.
-            </p>
+            </motion.p>
             
             {/* Search Bar */}
-            <div className="flex justify-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+              className="flex justify-center"
+            >
               <div className="w-full max-w-2xl">
                 <EnhancedGlobalSearch />
               </div>
-            </div>
+            </motion.div>
           </div>
+          
+          {/* Animated Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="w-6 h-10 border-2 border-white/60 rounded-full flex items-start justify-center p-2 cursor-pointer hover:border-white/80 transition-colors"
+              onClick={() => window.scrollTo({ top: window.innerHeight * 0.7, behavior: 'smooth' })}
+            >
+              <motion.div 
+                className="w-1 h-3 bg-white/70 rounded-full"
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
