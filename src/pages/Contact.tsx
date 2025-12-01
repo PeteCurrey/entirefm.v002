@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -31,6 +32,16 @@ const Contact = () => {
     message: ""
   });
   const [submitting, setSubmitting] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+  
+  // Parallax effect for hero section
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
   
   const breadcrumbItems = [
     { label: "Contact" }
@@ -141,11 +152,15 @@ const Contact = () => {
 
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 overflow-hidden">
-          {/* Background Image */}
-          <div 
+        <section ref={heroRef} className="relative py-20 px-4 overflow-hidden">
+          {/* Background Image with Parallax */}
+          <motion.div 
             className="absolute inset-0 bg-cover bg-center" 
-            style={{ backgroundImage: 'url(/images/hero-background.jpg)' }}
+            style={{ 
+              backgroundImage: 'url(/images/contact-hero.jpg)',
+              y,
+              opacity
+            }}
           />
           
           {/* Gradient Overlay */}

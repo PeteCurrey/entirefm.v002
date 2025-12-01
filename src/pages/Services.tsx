@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -9,6 +10,16 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState("hard-services");
+  const heroRef = useRef<HTMLElement>(null);
+  
+  // Parallax effect for hero section
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
 
   const services = {
     "hard-services": {
@@ -117,11 +128,15 @@ const Services = () => {
       <Breadcrumb items={breadcrumbItems} />
       
       {/* Hero */}
-      <section className="relative py-24 bg-gradient-to-b from-muted/50 to-background overflow-hidden">
-        {/* Background Image */}
-        <div 
+      <section ref={heroRef} className="relative py-24 bg-gradient-to-b from-muted/50 to-background overflow-hidden">
+        {/* Background Image with Parallax */}
+        <motion.div 
           className="absolute inset-0 bg-cover bg-center" 
-          style={{ backgroundImage: 'url(/images/hero-background.jpg)' }}
+          style={{ 
+            backgroundImage: 'url(/images/services-hero.jpg)',
+            y,
+            opacity
+          }}
         />
         
         {/* Gradient Overlay */}
