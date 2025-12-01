@@ -168,15 +168,24 @@ const About = () => {
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center" 
+            style={{ backgroundImage: 'url(/images/hero-background.jpg)' }}
+          />
+          
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+          
+          <div className="max-w-4xl mx-auto text-center relative z-10">
             <div className="flex justify-center mb-8">
               <Breadcrumb items={breadcrumbItems} />
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
               We didn't come from FM.<br />We came from fixing FM.
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
+            <p className="text-xl md:text-2xl text-gray-200 mb-8">
               A business born from frustration — and driven by delivery.
             </p>
           </div>

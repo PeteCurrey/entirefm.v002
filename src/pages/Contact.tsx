@@ -142,13 +142,20 @@ const Contact = () => {
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
         {/* Hero Section */}
         <section className="relative py-20 px-4 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center" 
+            style={{ backgroundImage: 'url(/images/hero-background.jpg)' }}
+          />
           
-          <div className="max-w-6xl mx-auto relative">
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+          
+          <div className="max-w-6xl mx-auto relative z-10">
             <Breadcrumb items={breadcrumbItems} />
             
             <div className="mt-8 text-center max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
                 One number. One team.<br />Zero runaround.
               </h1>
               
