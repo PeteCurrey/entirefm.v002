@@ -1,5 +1,6 @@
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface VideoHeroProps {
   videoSrc: string;
@@ -10,6 +11,7 @@ interface VideoHeroProps {
 export const VideoHero = ({ videoSrc, posterImage, children }: VideoHeroProps) => {
   const isMobile = useIsMobile();
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -23,26 +25,40 @@ export const VideoHero = ({ videoSrc, posterImage, children }: VideoHeroProps) =
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
+  // Parallax effect
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
+
   const shouldShowVideo = !isMobile && !prefersReducedMotion;
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Video (Desktop) or Image (Mobile) */}
+    <section ref={sectionRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Video (Desktop) or Image (Mobile) with Parallax */}
       {shouldShowVideo ? (
-        <video
+        <motion.video
           autoPlay
           muted
           loop
           playsInline
           poster={posterImage}
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ y: prefersReducedMotion ? 0 : y, opacity }}
         >
           <source src={videoSrc} type="video/mp4" />
-        </video>
+        </motion.video>
       ) : (
-        <div 
+        <motion.div 
           className="absolute inset-0 bg-cover bg-center" 
-          style={{ backgroundImage: `url(${posterImage})` }}
+          style={{ 
+            backgroundImage: `url(${posterImage})`,
+            y: prefersReducedMotion ? 0 : y,
+            opacity
+          }}
         />
       )}
       

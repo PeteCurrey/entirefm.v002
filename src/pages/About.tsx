@@ -5,9 +5,9 @@ import { Shield, Zap, Target, Users, Building2, TrendingUp, Award, Rocket } from
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import earlyOffice from "@/assets/history/early-office-2009.jpg";
 import teamGrowth from "@/assets/history/team-growth-2013.jpg";
 import expansion from "@/assets/history/expansion-2017.jpg";
@@ -155,6 +155,16 @@ const About = () => {
   ];
 
   const [hoveredMilestone, setHoveredMilestone] = useState<number | null>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  
+  // Parallax effect for hero section
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
 
   return (
     <>
@@ -168,11 +178,15 @@ const About = () => {
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background overflow-hidden">
-          {/* Background Image */}
-          <div 
+        <section ref={heroRef} className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background overflow-hidden">
+          {/* Background Image with Parallax */}
+          <motion.div 
             className="absolute inset-0 bg-cover bg-center" 
-            style={{ backgroundImage: 'url(/images/hero-background.jpg)' }}
+            style={{ 
+              backgroundImage: 'url(/images/about-hero.jpg)',
+              y,
+              opacity
+            }}
           />
           
           {/* Gradient Overlay */}
