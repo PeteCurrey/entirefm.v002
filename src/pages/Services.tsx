@@ -20,6 +20,7 @@ const Services = () => {
   
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
+  const blur = useTransform(scrollYProgress, [0, 1], [0, 8]);
 
   const services = {
     "hard-services": {
@@ -135,8 +136,9 @@ const Services = () => {
           style={{ 
             backgroundImage: 'url(/images/services-hero.jpg)',
             y,
-            opacity
-          }}
+            opacity,
+            filter: blur.get() !== undefined ? `blur(${blur.get()}px)` : 'none'
+          } as any}
         />
         
         {/* Gradient Overlay */}
