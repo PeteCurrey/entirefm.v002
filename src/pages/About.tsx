@@ -165,6 +165,7 @@ const About = () => {
   
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
+  const blur = useTransform(scrollYProgress, [0, 1], [0, 8]);
 
   return (
     <>
@@ -185,8 +186,9 @@ const About = () => {
             style={{ 
               backgroundImage: 'url(/images/about-hero.jpg)',
               y,
-              opacity
-            }}
+              opacity,
+              filter: blur.get() !== undefined ? `blur(${blur.get()}px)` : 'none'
+            } as any}
           />
           
           {/* Gradient Overlay */}

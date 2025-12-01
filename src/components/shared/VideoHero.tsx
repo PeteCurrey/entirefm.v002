@@ -33,6 +33,7 @@ export const VideoHero = ({ videoSrc, posterImage, children }: VideoHeroProps) =
   
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
+  const blur = useTransform(scrollYProgress, [0, 1], [0, 8]);
 
   const shouldShowVideo = !isMobile && !prefersReducedMotion;
 
@@ -47,7 +48,11 @@ export const VideoHero = ({ videoSrc, posterImage, children }: VideoHeroProps) =
           playsInline
           poster={posterImage}
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ y: prefersReducedMotion ? 0 : y, opacity }}
+          style={{ 
+            y: prefersReducedMotion ? 0 : y, 
+            opacity,
+            filter: prefersReducedMotion ? 'none' : blur.get() !== undefined ? `blur(${blur.get()}px)` : 'none'
+          } as any}
         >
           <source src={videoSrc} type="video/mp4" />
         </motion.video>
@@ -57,8 +62,9 @@ export const VideoHero = ({ videoSrc, posterImage, children }: VideoHeroProps) =
           style={{ 
             backgroundImage: `url(${posterImage})`,
             y: prefersReducedMotion ? 0 : y,
-            opacity
-          }}
+            opacity,
+            filter: prefersReducedMotion ? 'none' : blur.get() !== undefined ? `blur(${blur.get()}px)` : 'none'
+          } as any}
         />
       )}
       
