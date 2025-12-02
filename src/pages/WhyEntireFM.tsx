@@ -307,10 +307,10 @@ const WhyEntireFM = () => {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="secondary">
-                <a href="#" onClick={(e) => e.preventDefault()}>
+                <Link to="/compliance-pack">
                   <Download className="mr-2 h-5 w-5" />
                   Sample Compliance Pack
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

@@ -165,6 +165,7 @@ import PBSAHub from "./pages/sectors/PBSAHub";
 import Education from "./pages/sectors/Education";
 import WhySwitch from "./pages/WhySwitch";
 import WhyEntireFM from "./pages/WhyEntireFM";
+import CompliancePackRequest from "./pages/CompliancePackRequest";
 import ComplianceDiagnostic from "./pages/ComplianceDiagnostic";
 import CostSavingsCalculator from "./pages/tools/CostSavingsCalculator";
 import TopFMProviders from "./pages/resources/TopFMProviders";
@@ -770,6 +771,7 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/contact" element={<Contact />} />
               {/* Why EntireFM & Comparison Pages */}
               <Route path="/why-entirefm" element={<WhyEntireFM />} />
+              <Route path="/compliance-pack" element={<CompliancePackRequest />} />
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
               
               {/* Wave 7: FM Operations & Soft Services */}
