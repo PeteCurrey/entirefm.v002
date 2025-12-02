@@ -249,6 +249,8 @@ import HowOftenEmergencyLightingTested from "./pages/fm-insights/HowOftenEmergen
 import HowOftenFireAlarmsTested from "./pages/fm-insights/HowOftenFireAlarmsTested";
 import WhoIsTheResponsiblePerson from "./pages/fm-insights/WhoIsTheResponsiblePerson";
 import WhatIsPPMPlanner from "./pages/fm-insights/WhatIsPPMPlanner";
+import WhatIsComplianceCalendar from "./pages/fm-insights/WhatIsComplianceCalendar";
+import WhatIsAssetRegister from "./pages/fm-insights/WhatIsAssetRegister";
 import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
 import ELogbooks from "./pages/integrations/ELogbooks";
@@ -745,6 +747,8 @@ const App = () => <QueryClientProvider client={queryClient}>
         <Route path="/fm-insights/how-often-fire-alarms-tested" element={<HowOftenFireAlarmsTested />} />
         <Route path="/fm-insights/who-is-the-responsible-person" element={<WhoIsTheResponsiblePerson />} />
         <Route path="/fm-insights/what-is-a-ppm-planner" element={<WhatIsPPMPlanner />} />
+        <Route path="/fm-insights/what-is-a-compliance-calendar" element={<WhatIsComplianceCalendar />} />
+        <Route path="/fm-insights/what-is-an-asset-register" element={<WhatIsAssetRegister />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/integrations/elogbooks" element={<ELogbooks />} />

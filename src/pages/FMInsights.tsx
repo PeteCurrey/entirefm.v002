@@ -17,6 +17,33 @@ const FMInsights = () => {
 
   const insights = [
     {
+      title: "What Is a PPM Planner?",
+      category: "Best Practice",
+      type: "Guide",
+      description: "How PPM planners underpin maintenance strategy, compliance tracking, and lifecycle cost control.",
+      icon: Calendar,
+      link: "/fm-insights/what-is-a-ppm-planner",
+      date: "2025-01-20"
+    },
+    {
+      title: "What Is a Compliance Calendar?",
+      category: "Compliance",
+      type: "Guide",
+      description: "Track statutory maintenance deadlines and ensure nothing falls through the cracks.",
+      icon: Calendar,
+      link: "/fm-insights/what-is-a-compliance-calendar",
+      date: "2025-01-22"
+    },
+    {
+      title: "What Is an Asset Register?",
+      category: "Best Practice",
+      type: "Guide",
+      description: "The foundation of effective facilities management—cataloguing every maintainable item.",
+      icon: FileText,
+      link: "/fm-insights/what-is-an-asset-register",
+      date: "2025-01-24"
+    },
+    {
       title: "Fire Risk Assessment Guide",
       category: "Compliance",
       type: "Guide",
