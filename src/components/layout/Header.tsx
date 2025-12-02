@@ -135,6 +135,9 @@ const Header = ({
     to: "/locations/leicester"
   }];
   const aboutItems = [{
+    label: "Why EntireFM",
+    to: "/why-entirefm"
+  }, {
     label: "Our Story",
     to: "/about"
   }, {

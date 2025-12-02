@@ -164,6 +164,7 @@ import HotelsLeisure from "./pages/sectors/HotelsLeisure";
 import PBSAHub from "./pages/sectors/PBSAHub";
 import Education from "./pages/sectors/Education";
 import WhySwitch from "./pages/WhySwitch";
+import WhyEntireFM from "./pages/WhyEntireFM";
 import ComplianceDiagnostic from "./pages/ComplianceDiagnostic";
 import CostSavingsCalculator from "./pages/tools/CostSavingsCalculator";
 import TopFMProviders from "./pages/resources/TopFMProviders";
@@ -767,7 +768,8 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/awards" element={<Awards />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/contact" element={<Contact />} />
-              {/* Comparison Pages */}
+              {/* Why EntireFM & Comparison Pages */}
+              <Route path="/why-entirefm" element={<WhyEntireFM />} />
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
               
               {/* Wave 7: FM Operations & Soft Services */}

@@ -305,6 +305,11 @@ const RequestProposal = () => {
                 <p><strong className="text-foreground">Full documentation pack provided automatically</strong> — Complete tender-ready documentation delivered within 48 hours</p>
               </div>
             </div>
+            <div className="mt-6 pt-4 border-t">
+              <Link to="/why-entirefm" className="text-sm text-primary hover:underline font-medium">
+                Learn more about why clients choose EntireFM →
+              </Link>
+            </div>
           </Card>
 
           {/* Main Form Layout */}
