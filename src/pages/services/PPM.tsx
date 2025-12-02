@@ -314,6 +314,11 @@ const PPM = () => {
                     link: "/fm-operations/ppm-delivery"
                   },
                   {
+                    title: "What Is a PPM Planner?",
+                    description: "How PPM planners underpin compliance and reduce lifecycle costs",
+                    link: "/fm-insights/what-is-a-ppm-planner"
+                  },
+                  {
                     title: "Asset Lifecycle Planning",
                     description: "Condition-based maintenance and replacement forecasting",
                     link: "/fm-operations/asset-lifecycle"
@@ -322,11 +327,6 @@ const PPM = () => {
                     title: "Reactive Maintenance",
                     description: "Complementary reactive services reducing PPM workload",
                     link: "/fm-operations/reactive-maintenance"
-                  },
-                  {
-                    title: "Building Inspections",
-                    description: "Comprehensive condition surveys informing PPM strategies",
-                    link: "/services/building-inspections"
                   }
                 ]}
               />
