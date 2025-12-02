@@ -171,6 +171,13 @@ import CostSavingsCalculator from "./pages/tools/CostSavingsCalculator";
 import TopFMProviders from "./pages/resources/TopFMProviders";
 import FireAlarmTesting from "./pages/resources/FireAlarmTesting";
 import EntireFMvsMitie from "./pages/compare/EntireFMvsMitie";
+import Compare from "./pages/Compare";
+import EntireFMvsCBRE from "./pages/compare/EntireFMvsCBRE";
+import EntireFMvsJLL from "./pages/compare/EntireFMvsJLL";
+import EntireFMvsSodexo from "./pages/compare/EntireFMvsSodexo";
+import EntireFMvsInHouse from "./pages/compare/EntireFMvsInHouse";
+import EntireFMvsFreelance from "./pages/compare/EntireFMvsFreelance";
+import EntireFMvsCallOutOnly from "./pages/compare/EntireFMvsCallOutOnly";
 import SLABenchmark from "./pages/tools/SLABenchmark";
 import EnergyESG from "./pages/resources/EnergyESG";
 import EngineerStandards from "./pages/resources/EngineerStandards";
@@ -772,7 +779,14 @@ const App = () => <QueryClientProvider client={queryClient}>
               {/* Why EntireFM & Comparison Pages */}
               <Route path="/why-entirefm" element={<WhyEntireFM />} />
               <Route path="/compliance-pack" element={<CompliancePackRequest />} />
+              <Route path="/compare" element={<Compare />} />
               <Route path="/compare/entirefm-vs-mitie" element={<EntireFMvsMitie />} />
+              <Route path="/compare/entirefm-vs-cbre" element={<EntireFMvsCBRE />} />
+              <Route path="/compare/entirefm-vs-jll" element={<EntireFMvsJLL />} />
+              <Route path="/compare/entirefm-vs-sodexo" element={<EntireFMvsSodexo />} />
+              <Route path="/compare/entirefm-vs-in-house" element={<EntireFMvsInHouse />} />
+              <Route path="/compare/entirefm-vs-freelance" element={<EntireFMvsFreelance />} />
+              <Route path="/compare/entirefm-vs-call-out-only" element={<EntireFMvsCallOutOnly />} />
               
               {/* Wave 7: FM Operations & Soft Services */}
               <Route path="/fm-operations" element={<FMOperations />} />

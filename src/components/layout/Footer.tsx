@@ -109,6 +109,7 @@ export const Footer = () => {
               <h3 className="font-medium mb-6 text-lg">Connect</h3>
               <ul className="space-y-3">
                 <li><Link to="/why-entirefm" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Why EntireFM</Link></li>
+                <li><Link to="/compare" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Compare Providers</Link></li>
                 <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Contact</Link></li>
                 <li><Link to="/request-proposal" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Request a Proposal</Link></li>
                 <li><Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">About Us</Link></li>

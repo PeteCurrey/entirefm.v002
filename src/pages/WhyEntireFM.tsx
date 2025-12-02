@@ -312,6 +312,12 @@ const WhyEntireFM = () => {
                   Sample Compliance Pack
                 </Link>
               </Button>
+              <Button asChild size="lg" variant="ghost">
+                <Link to="/compare">
+                  <ArrowRight className="mr-2 h-5 w-5" />
+                  Compare Providers
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
