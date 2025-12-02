@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Check, X } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Check, Building2, Users, Zap, Monitor, Shield, Target, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 
@@ -9,130 +9,315 @@ const EntireFMvsMitie = () => {
   return (
     <>
       <Helmet>
-        <title>EntireFM vs Mitie | FM Provider Comparison 2025</title>
+        <title>EntireFM vs Mitie | Independent FM vs Enterprise FM</title>
         <meta
           name="description"
-          content="Compare EntireFM and Mitie facilities management. See performance, response times, and compliance delivery side-by-side."
+          content="Compare independent facilities management with enterprise FM. Understand the differences in accountability, responsiveness, and control between EntireFM and large-scale providers."
         />
         <link rel="canonical" href="https://entirefm.com/compare/entirefm-vs-mitie" />
       </Helmet>
 
       <main className="min-h-screen">
-        <section className="bg-gradient-to-br from-background via-background to-primary/5 py-16">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-background via-background to-primary/5 py-16 md:py-20">
           <div className="container mx-auto px-4">
             <Breadcrumb items={[{ label: "Compare Providers", href: "/compare" }, { label: "EntireFM vs Mitie" }]} />
             
             <h1 className="text-4xl md:text-5xl font-light mb-6 mt-8">
-              EntireFM vs Mitie: <span className="text-primary">Which FM Provider Delivers Better Results?</span>
+              EntireFM vs Mitie
             </h1>
             <p className="text-xl text-muted-foreground font-light max-w-3xl">
-              Independent comparison of service delivery, response times, and compliance performance.
+              A factual comparison of independent FM delivery versus large-scale enterprise facilities management. 
+              Different models suit different portfolios.
             </p>
           </div>
         </section>
 
+        {/* Section 1: Who They're For */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <Card className="p-8 text-center">
-                <div className="text-4xl font-light text-primary mb-2">&lt; 2 hrs</div>
-                <div className="text-sm text-muted-foreground">EntireFM Response Time</div>
-              </Card>
-              <Card className="p-8 text-center">
-                <div className="text-4xl font-light text-primary mb-2">98.7%</div>
-                <div className="text-sm text-muted-foreground">EntireFM SLA Achievement</div>
-              </Card>
-              <Card className="p-8 text-center">
-                <div className="text-4xl font-light text-primary mb-2">24/7</div>
-                <div className="text-sm text-muted-foreground">Direct Engineer Access</div>
-              </Card>
-            </div>
-
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl font-light mb-8">Feature Comparison</h2>
-              
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-4 font-light">Feature</th>
-                      <th className="text-center py-4 font-light">EntireFM</th>
-                      <th className="text-center py-4 font-light">Mitie</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { feature: "24/7 Direct Engineer Contact", entirefm: true, competitor: false },
-                      { feature: "Real-Time Portal Access", entirefm: true, competitor: true },
-                      { feature: "Guaranteed Response Times", entirefm: true, competitor: false },
-                      { feature: "Regional Account Manager", entirefm: true, competitor: true },
-                      { feature: "Flexible Contract Terms", entirefm: true, competitor: false },
-                      { feature: "Transparent Pricing", entirefm: true, competitor: false },
-                      { feature: "Proactive Compliance Alerts", entirefm: true, competitor: false },
-                      { feature: "Same-Day Emergency Response", entirefm: true, competitor: false },
-                    ].map((row, idx) => (
-                      <tr key={idx} className="border-b">
-                        <td className="py-4 font-light">{row.feature}</td>
-                        <td className="text-center py-4">
-                          {row.entirefm ? (
-                            <Check className="w-6 h-6 text-green-600 mx-auto" />
-                          ) : (
-                            <X className="w-6 h-6 text-muted-foreground mx-auto" />
-                          )}
-                        </td>
-                        <td className="text-center py-4">
-                          {row.competitor ? (
-                            <Check className="w-6 h-6 text-green-600 mx-auto" />
-                          ) : (
-                            <X className="w-6 h-6 text-muted-foreground mx-auto" />
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <div className="flex items-center gap-3 mb-8">
+                <Building2 className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl font-light">Who They're For</h2>
               </div>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                <Card className="bg-muted/30">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-medium mb-4 text-muted-foreground">Enterprise FM Providers</h3>
+                    <p className="text-muted-foreground font-light">
+                      Built for huge, multi-national portfolios. Central government contracts. 
+                      Organisations needing a single provider across multiple countries with 
+                      standardised reporting at group level.
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-primary/5 border-primary/20">
+                  <CardContent className="p-6">
+                    <h3 className="text-lg font-medium mb-4">EntireFM</h3>
+                    <p className="text-muted-foreground font-light">
+                      Built for investors, asset managers, estates, funds, and growing portfolios 
+                      that want attention and agility. Clients who need a partner that knows their 
+                      buildings — not just their contract number.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
 
-              <div className="mt-12 space-y-8">
+        {/* Section 2: Delivery Model */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <Users className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl font-light">Delivery Model</h2>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-2xl font-light mb-4">Why Clients Switch to EntireFM</h3>
+                  <h3 className="text-lg font-medium mb-4 text-muted-foreground">Enterprise Approach</h3>
                   <ul className="space-y-3">
-                    {[
-                      "Frustrated with slow response times and missed SLAs",
-                      "Lack of direct engineer access during emergencies",
-                      "Poor transparency in reporting and invoicing",
-                      "Rigid contract terms with limited flexibility",
-                      "Account manager changes causing disruption",
-                    ].map((reason, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <Check className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="font-light">{reason}</span>
-                      </li>
-                    ))}
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Large-scale, highly standardised delivery</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Layered management structures</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Designed for economies of scale</span>
+                    </li>
                   </ul>
                 </div>
-
+                
                 <div>
-                  <h3 className="text-2xl font-light mb-4">Real Client Feedback</h3>
-                  <Card className="p-6">
-                    <p className="italic font-light mb-4">
-                      "We moved from Mitie to EntireFM after ongoing SLA issues. The difference is night and day. 
-                      Response times are faster, engineers are more skilled, and the portal gives us full visibility."
-                    </p>
-                    <p className="text-sm text-muted-foreground">— FM Director, National Logistics Portfolio</p>
-                  </Card>
+                  <h3 className="text-lg font-medium mb-4">EntireFM Approach</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Senior FM oversight as standard</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Direct access to decision-makers</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Bespoke delivery model shaped per estate</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <div className="mt-12 bg-primary/5 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-light mb-4">Ready to Make the Switch?</h3>
-                <p className="text-muted-foreground font-light mb-6 max-w-2xl mx-auto">
-                  We handle the transition seamlessly. No disruption, no risk. Just better FM delivery.
-                </p>
-                <Button size="lg" asChild>
-                  <Link to="/contact">Request Comparison Proposal</Link>
-                </Button>
+        {/* Section 3: Responsiveness */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <Zap className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl font-light">Responsiveness</h2>
               </div>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-lg font-medium mb-4 text-muted-foreground">Enterprise Approach</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Multiple layers between request and resolution</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Ticket routing through internal systems</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Internal SLAs between departments</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-medium mb-4">EntireFM Approach</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Smaller chain of command</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Decisions made by people actually responsible for the account</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Ability to pivot quickly when the estate changes</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 4: Technology */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <Monitor className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl font-light">Technology</h2>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-lg font-medium mb-4 text-muted-foreground">Enterprise Approach</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Large enterprise CAFM platforms</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Configured across many clients</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground mt-2 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">Standardised reporting formats</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="text-lg font-medium mb-4">EntireFM Approach</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">In-house Field Operations Intelligence platform</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Designed around how engineers actually work</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Direct line between site, engineer, and decision-maker</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="font-light">Portal access with audit-ready records</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Risk & Governance */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <Shield className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl font-light">Risk & Governance</h2>
+              </div>
+              
+              <Card className="bg-card">
+                <CardContent className="p-8">
+                  <p className="text-lg font-light mb-6">
+                    Both models operate within the same statutory and compliance frameworks. 
+                    The difference lies in how accountability is structured.
+                  </p>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-3">
+                      <h4 className="font-medium">Same Standards</h4>
+                      <ul className="space-y-2 text-sm text-muted-foreground font-light">
+                        <li>• Regulatory Reform (Fire Safety) Order</li>
+                        <li>• Electricity at Work Regulations</li>
+                        <li>• Gas Safety (Installation and Use)</li>
+                        <li>• ACOP L8 Water Hygiene</li>
+                        <li>• F-Gas Regulations</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-3">
+                      <h4 className="font-medium">EntireFM Focus</h4>
+                      <ul className="space-y-2 text-sm font-light">
+                        <li className="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                          <span>Clarity over complexity</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                          <span>Accountability without "hiding" behind scale</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                          <span>Named individuals responsible for your compliance</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 6: When EntireFM Is The Better Fit */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-center gap-3 mb-8">
+                <Target className="w-8 h-8 text-primary" />
+                <h2 className="text-3xl font-light">When EntireFM Is The Better Fit</h2>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  "When you want to know who really owns your account",
+                  "When you don't want to be one of hundreds",
+                  "When your assets need tailored FM, not just contract coverage",
+                  "When decisions need to happen quickly without layers of approval",
+                  "When you need a partner that grows with your portfolio",
+                  "When you value direct access over corporate process"
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 p-4 rounded-lg bg-background border border-border">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="font-light">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16 bg-gradient-to-br from-primary/10 to-primary/5">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl font-light mb-4">
+                Considering a Change?
+              </h2>
+              <p className="text-lg text-muted-foreground font-light mb-8">
+                Talk to us about moving from enterprise FM to an independent partner. 
+                We'll give you an honest assessment of whether we're the right fit.
+              </p>
+              <Button asChild size="lg">
+                <Link to="/request-proposal">
+                  Request a Proposal
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
