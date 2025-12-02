@@ -252,6 +252,7 @@ import WhatIsPPMPlanner from "./pages/fm-insights/WhatIsPPMPlanner";
 import WhatIsComplianceCalendar from "./pages/fm-insights/WhatIsComplianceCalendar";
 import WhatIsAssetRegister from "./pages/fm-insights/WhatIsAssetRegister";
 import WhatIsLOTO from "./pages/fm-insights/WhatIsLOTO";
+import WhatIsFireRiskAssessment from "./pages/fm-insights/WhatIsFireRiskAssessment";
 import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
 import ELogbooks from "./pages/integrations/ELogbooks";
@@ -751,6 +752,7 @@ const App = () => <QueryClientProvider client={queryClient}>
         <Route path="/fm-insights/what-is-a-compliance-calendar" element={<WhatIsComplianceCalendar />} />
         <Route path="/fm-insights/what-is-an-asset-register" element={<WhatIsAssetRegister />} />
         <Route path="/fm-insights/what-is-lock-out-tag-out" element={<WhatIsLOTO />} />
+        <Route path="/fm-insights/what-is-a-fire-risk-assessment" element={<WhatIsFireRiskAssessment />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/integrations/elogbooks" element={<ELogbooks />} />
