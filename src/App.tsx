@@ -255,6 +255,7 @@ import WhatIsLOTO from "./pages/fm-insights/WhatIsLOTO";
 import WhatIsFireRiskAssessment from "./pages/fm-insights/WhatIsFireRiskAssessment";
 import WhatAreRAMS from "./pages/fm-insights/WhatAreRAMS";
 import HardFMvsSoftFM from "./pages/fm-insights/HardFMvsSoftFM";
+import WhatIsTFM from "./pages/fm-insights/WhatIsTFM";
 import Suppliers from "./pages/Suppliers";
 import Integrations from "./pages/Integrations";
 import ELogbooks from "./pages/integrations/ELogbooks";
@@ -757,6 +758,7 @@ const App = () => <QueryClientProvider client={queryClient}>
         <Route path="/fm-insights/what-is-a-fire-risk-assessment" element={<WhatIsFireRiskAssessment />} />
         <Route path="/fm-insights/what-are-rams" element={<WhatAreRAMS />} />
         <Route path="/fm-insights/hard-fm-vs-soft-fm" element={<HardFMvsSoftFM />} />
+        <Route path="/fm-insights/what-is-tfm" element={<WhatIsTFM />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/integrations" element={<Integrations />} />
               <Route path="/integrations/elogbooks" element={<ELogbooks />} />
