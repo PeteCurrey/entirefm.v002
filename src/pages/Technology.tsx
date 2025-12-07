@@ -147,9 +147,9 @@ const Technology = () => {
       <BreadcrumbSchema items={breadcrumbItems} />
       <SchemaMarkup schema={schema} />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
+        <section className="relative py-16 px-4 bg-gradient-to-br from-primary/10 via-background to-background">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-8">
               <Breadcrumb items={breadcrumbItems} />
