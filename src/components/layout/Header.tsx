@@ -529,11 +529,11 @@ const Header = ({
 
                     <div className="border-t pt-3 mt-3 flex items-center justify-between gap-4">
                       <NavigationMenuLink asChild>
-                        <Link to="/fm-operations/platform" className="flex items-center gap-2 group rounded-md p-3 text-sm font-medium bg-gradient-to-r from-primary/15 to-primary/5 border border-primary/20 hover:border-primary/40 hover:from-primary/20 hover:to-primary/10 transition-all duration-200 hover:scale-[1.02] text-primary">
+                        <a href="https://portal.entirefm.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 group rounded-md p-3 text-sm font-medium bg-gradient-to-r from-primary/15 to-primary/5 border border-primary/20 hover:border-primary/40 hover:from-primary/20 hover:to-primary/10 transition-all duration-200 hover:scale-[1.02] text-primary">
                           <Monitor className="w-4 h-4" />
                           EntireFM CAFM Portal
                           <span className="ml-1 inline-flex h-2 w-2 rounded-full bg-primary animate-pulse" />
-                        </Link>
+                        </a>
                       </NavigationMenuLink>
                       <NavigationMenuLink asChild>
                         <Link to="/resources" className="flex items-center justify-between group rounded-md p-3 text-sm font-medium hover:bg-accent transition-all duration-200 hover:scale-[1.02]">
