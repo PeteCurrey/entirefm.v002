@@ -1,6 +1,4 @@
 import { Helmet } from "react-helmet";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Phone, Download, CheckCircle2, ArrowRight } from "lucide-react";
@@ -66,9 +64,7 @@ const WaterLeeds = () => {
       <FAQSchema faqs={faqs} />
       <BreadcrumbSchema items={breadcrumbItems} />
 
-      <Header />
-
-      <main>
+      <main className="pt-20">
         {/* Hero Section */}
         <section 
           className="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-cover bg-center"
@@ -362,7 +358,6 @@ const WaterLeeds = () => {
         </div>
       </main>
 
-      <Footer />
     </>
   );
 };
