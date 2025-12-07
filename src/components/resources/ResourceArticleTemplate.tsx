@@ -138,7 +138,7 @@ export const ResourceArticleTemplate = ({
 
       <Breadcrumb items={breadcrumbItems} />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
         <section className="relative py-16 overflow-hidden border-b border-border">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />

@@ -151,9 +151,9 @@ const Contact = () => {
       <ContactPointSchema />
       <OrganizationSchema />
 
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pt-20">
         {/* Hero Section */}
-        <section ref={heroRef} className="relative py-20 px-4 overflow-hidden">
+        <section ref={heroRef} className="relative py-16 px-4 overflow-hidden">
           {/* Background Image with Parallax */}
           <motion.div 
             className="absolute inset-0 bg-cover bg-center" 

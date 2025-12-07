@@ -79,7 +79,7 @@ const HardFMvsSoftFM = () => {
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />
 
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-background pt-20">
         <div className="container mx-auto px-4 py-8 max-w-4xl">
           <Breadcrumb items={breadcrumbItems} />
 
