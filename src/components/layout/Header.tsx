@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight, Zap, Battery, Cog, Activity, Server, TrendingUp, Scan, Database, Calculator, PoundSterling, Target, Thermometer, Droplets, ShieldAlert, FileText, Flame, Droplet, Calendar, ClipboardCheck, Lightbulb, BookOpen, Building2, Info, Mail, MapPin } from "lucide-react";
+import { Menu, X, ArrowRight, Zap, Battery, Cog, Activity, Server, TrendingUp, Scan, Database, Calculator, PoundSterling, Target, Thermometer, Droplets, ShieldAlert, FileText, Flame, Droplet, Calendar, ClipboardCheck, Lightbulb, BookOpen, Building2, Info, Mail, MapPin, Monitor } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
@@ -528,7 +528,14 @@ const Header = ({
                       </div>
                     </div>
 
-                    <div className="border-t pt-3 mt-3">
+                    <div className="border-t pt-3 mt-3 flex items-center justify-between gap-4">
+                      <NavigationMenuLink asChild>
+                        <Link to="/fm-operations/platform" className="flex items-center gap-2 group rounded-md p-3 text-sm font-medium bg-primary/10 hover:bg-primary/20 transition-all duration-200 hover:scale-[1.02] text-primary">
+                          <Monitor className="w-4 h-4" />
+                          EntireFM CAFM Portal
+                          <Badge className="ml-1 text-xs">Highlight</Badge>
+                        </Link>
+                      </NavigationMenuLink>
                       <NavigationMenuLink asChild>
                         <Link to="/resources" className="flex items-center justify-between group rounded-md p-3 text-sm font-medium hover:bg-accent transition-all duration-200 hover:scale-[1.02]">
                           View All Resources

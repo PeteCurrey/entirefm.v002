@@ -125,13 +125,18 @@ const Home = () => {
       </section>
 
       {/* Service Matrix */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
+      <section className="py-24 relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/images/what-we-deliver-bg.jpg)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/85" />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block">
+            <h2 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block text-white">
               What We Deliver
             </h2>
-            <p className="text-lg text-muted-foreground font-light max-w-2xl leading-relaxed">
+            <p className="text-lg text-gray-300 font-light max-w-2xl leading-relaxed">
               Integrated FM combining hard, soft and project services under one contract. Or standalone services tailored to your needs.
             </p>
           </div>
@@ -167,12 +172,12 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <SectorCard title="Offices & Corporate" description="Grade A to multi-let schemes. Workplace services that support productivity." image={officeImage} />
-            <SectorCard title="Industrial & Logistics" description="24/7 operations. Critical infrastructure. Minimal disruption to workflow." image={industrialImage} />
-            <SectorCard title="Retail & Service Stations" description="Customer-facing environments. Out-of-hours works. Brand standards maintained." image={officeImage} />
-            <SectorCard title="Aviation & Transport" description="Regulated environments. Security clearances. Complex operational interfaces." image={industrialImage} />
-            <SectorCard title="Residential & PBSA" description="Resident satisfaction. Common areas. Estate management." image={officeImage} />
-            <SectorCard title="Construction & Developments" description="Site progression support. Handover coordination. Defects management." image={industrialImage} />
+            <SectorCard title="Offices & Corporate" description="Grade A to multi-let schemes. Workplace services that support productivity." image={officeImage} link="/sectors/offices" />
+            <SectorCard title="Industrial & Logistics" description="24/7 operations. Critical infrastructure. Minimal disruption to workflow." image={industrialImage} link="/sectors/industrial-logistics" />
+            <SectorCard title="Retail & Service Stations" description="Customer-facing environments. Out-of-hours works. Brand standards maintained." image={officeImage} link="/sectors/retail-hospitality" />
+            <SectorCard title="Aviation & Transport" description="Regulated environments. Security clearances. Complex operational interfaces." image={industrialImage} link="/sectors/healthcare-public" />
+            <SectorCard title="Residential & PBSA" description="Resident satisfaction. Common areas. Estate management." image={officeImage} link="/sectors/pbsa" />
+            <SectorCard title="Construction & Developments" description="Site progression support. Handover coordination. Defects management." image={industrialImage} link="/sectors" />
           </div>
 
           <div className="text-center mt-12">

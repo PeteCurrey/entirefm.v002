@@ -1,9 +1,16 @@
 import { useState } from "react";
 import CaseStudyCard from "@/components/shared/CaseStudyCard";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
 
 const CaseStudies = () => {
   const [activeFilter, setActiveFilter] = useState("All");
+
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Case Studies" },
+  ];
 
   const filters = ["All", "Offices", "Industrial", "Retail", "Aviation", "Residential", "Other"];
 
@@ -144,73 +151,90 @@ const CaseStudies = () => {
     : caseStudies.filter(cs => cs.sector.toLowerCase().includes(activeFilter.toLowerCase()));
 
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-charcoal to-charcoal-light text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
-              Proof in action.
-            </h1>
-            <p className="text-xl text-gray-300 font-light leading-relaxed">
-              Real results for real clients. Quantified outcomes, not marketing fluff.
-            </p>
-          </div>
-        </div>
-      </section>
+    <>
+      <Helmet>
+        <title>Case Studies | FM Success Stories | EntireFM</title>
+        <meta 
+          name="description" 
+          content="Real FM results for real clients. Explore our case studies showcasing quantified outcomes across logistics, aviation, retail, healthcare and more."
+        />
+        <link rel="canonical" href="https://entirefm.com/case-studies" />
+      </Helmet>
 
-      {/* Filters */}
-      <section className="py-8 bg-white border-b border-border sticky top-20 z-30">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-wrap gap-3">
-            {filters.map((filter) => (
-              <Button
-                key={filter}
-                variant={activeFilter === filter ? "default" : "outline"}
-                size="sm"
-                onClick={() => setActiveFilter(filter)}
-              >
-                {filter}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies Grid */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-6">
-          {filteredCaseStudies.length === 0 ? (
-            <div className="text-center py-16">
-              <p className="text-lg text-muted-foreground font-light">
-                No case studies found for this filter.
+      <div className="min-h-screen">
+        {/* Hero Section with Half-Page Image */}
+        <section className="relative h-[50vh] min-h-[400px] flex items-end">
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: 'url(/images/case-studies-hero.jpg)' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/40" />
+          <div className="container mx-auto px-6 py-12 relative z-10">
+            <Breadcrumb items={breadcrumbItems} />
+            <div className="max-w-3xl mt-6">
+              <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block text-white">
+                Proof in action.
+              </h1>
+              <p className="text-xl text-gray-300 font-light leading-relaxed">
+                Real results for real clients. Quantified outcomes, not marketing fluff.
               </p>
             </div>
-          ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredCaseStudies.map((caseStudy, index) => (
-                <CaseStudyCard key={index} {...caseStudy} />
+          </div>
+        </section>
+
+        {/* Filters */}
+        <section className="py-8 bg-white border-b border-border sticky top-20 z-30">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-wrap gap-3">
+              {filters.map((filter) => (
+                <Button
+                  key={filter}
+                  variant={activeFilter === filter ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setActiveFilter(filter)}
+                >
+                  {filter}
+                </Button>
               ))}
             </div>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* CTA */}
-      <section className="py-16 bg-secondary text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Want results like these?
-          </h2>
-          <p className="text-lg text-gray-200 font-light max-w-2xl mx-auto mb-8">
-            Every case study starts with understanding your current challenges. Share yours with us.
-          </p>
-          <Button size="lg" variant="secondary" className="bg-white text-secondary hover:bg-gray-100">
-            Request Similar Solution
-          </Button>
-        </div>
-      </section>
-    </div>
+        {/* Case Studies Grid */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-6">
+            {filteredCaseStudies.length === 0 ? (
+              <div className="text-center py-16">
+                <p className="text-lg text-muted-foreground font-light">
+                  No case studies found for this filter.
+                </p>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredCaseStudies.map((caseStudy, index) => (
+                  <CaseStudyCard key={index} {...caseStudy} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-16 bg-secondary text-white">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl md:text-4xl font-light mb-6">
+              Want results like these?
+            </h2>
+            <p className="text-lg text-gray-200 font-light max-w-2xl mx-auto mb-8">
+              Every case study starts with understanding your current challenges. Share yours with us.
+            </p>
+            <Button size="lg" variant="secondary" className="bg-white text-secondary hover:bg-gray-100">
+              Request Similar Solution
+            </Button>
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 
