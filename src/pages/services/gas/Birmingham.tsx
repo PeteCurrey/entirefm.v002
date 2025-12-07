@@ -61,7 +61,7 @@ const GasSafetyBirmingham = () => {
         ]} 
       />
 
-      <div className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+      <div className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
         <div 
           className="absolute inset-0 z-0"
           style={{
