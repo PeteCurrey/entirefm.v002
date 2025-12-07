@@ -17,7 +17,7 @@ const EntireFMvsFreelance = () => {
         <link rel="canonical" href="https://entirefm.com/compare/entirefm-vs-freelance" />
       </Helmet>
 
-      <main className="min-h-screen">
+      <main className="min-h-screen pt-20">
         <section className="bg-gradient-to-br from-background via-background to-primary/5 py-16">
           <div className="container mx-auto px-4">
             <Breadcrumb items={[{ label: "Compare Providers", href: "/compare" }, { label: "EntireFM vs Freelance Engineers" }]} />

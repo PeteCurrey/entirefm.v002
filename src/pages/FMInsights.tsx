@@ -137,7 +137,7 @@ const FMInsights = () => {
         <link rel="canonical" href="https://entirefm.co.uk/fm-insights" />
       </Helmet>
 
-      <div className="bg-background min-h-screen">
+      <div className="bg-background min-h-screen pt-20">
         {/* Hero Section with Half-Page Image */}
         <section className="relative h-[50vh] min-h-[400px] flex items-end">
           <div 

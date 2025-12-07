@@ -87,7 +87,7 @@ const Leadership = () => {
       <BreadcrumbSchema items={breadcrumbItems} />
       <SchemaMarkup schema={schema} />
 
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pt-20">
         {/* Hero Section */}
         <section className="relative py-20 px-4 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />

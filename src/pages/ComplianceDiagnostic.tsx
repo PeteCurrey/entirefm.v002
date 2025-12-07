@@ -105,7 +105,7 @@ const ComplianceDiagnostic = () => {
         ]}
       />
 
-      <div className="min-h-screen pt-8">
+      <div className="min-h-screen pt-20">
 
         {/* Diagnostic Flow */}
         <section className="py-16 bg-white">

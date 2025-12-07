@@ -102,7 +102,7 @@ const WhyEntireFM = () => {
       ]} />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/5 via-background to-background py-20 md:py-28">
+      <section className="bg-gradient-to-br from-primary/5 via-background to-background py-20 md:py-28 pt-28 md:pt-32">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 tracking-tight">
