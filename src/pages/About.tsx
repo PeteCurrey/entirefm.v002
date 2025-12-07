@@ -179,7 +179,7 @@ const About = () => {
 
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
-        <section ref={heroRef} className="relative py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-background overflow-hidden">
+        <section ref={heroRef} className="relative min-h-[70vh] py-32 px-4 bg-gradient-to-br from-primary/10 via-background to-background overflow-hidden flex items-center">
           {/* Background Image with Parallax */}
           <motion.div 
             className="absolute inset-0 bg-cover bg-center" 
