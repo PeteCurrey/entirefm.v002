@@ -161,7 +161,7 @@ const CaseStudies = () => {
         <link rel="canonical" href="https://entirefm.com/case-studies" />
       </Helmet>
 
-      <div className="min-h-screen">
+      <div className="min-h-screen pt-20">
         {/* Hero Section with Half-Page Image */}
         <section className="relative h-[50vh] min-h-[400px] flex items-end">
           <div 

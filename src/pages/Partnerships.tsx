@@ -49,7 +49,7 @@ const Partnerships = () => {
         }}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-background to-secondary/10">
+      <div className="min-h-screen bg-gradient-to-b from-background to-secondary/10 pt-20">
         <Breadcrumb
           items={[
             { label: "Home", href: "/" },

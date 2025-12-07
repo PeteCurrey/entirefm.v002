@@ -5,7 +5,6 @@ import { Menu, X, ArrowRight, Zap, Battery, Cog, Activity, Server, TrendingUp, S
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
-import { Badge } from "@/components/ui/badge";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
 const Header = ({
@@ -530,10 +529,10 @@ const Header = ({
 
                     <div className="border-t pt-3 mt-3 flex items-center justify-between gap-4">
                       <NavigationMenuLink asChild>
-                        <Link to="/fm-operations/platform" className="flex items-center gap-2 group rounded-md p-3 text-sm font-medium bg-primary/10 hover:bg-primary/20 transition-all duration-200 hover:scale-[1.02] text-primary">
+                        <Link to="/fm-operations/platform" className="flex items-center gap-2 group rounded-md p-3 text-sm font-medium bg-gradient-to-r from-primary/15 to-primary/5 border border-primary/20 hover:border-primary/40 hover:from-primary/20 hover:to-primary/10 transition-all duration-200 hover:scale-[1.02] text-primary">
                           <Monitor className="w-4 h-4" />
                           EntireFM CAFM Portal
-                          <Badge className="ml-1 text-xs">Highlight</Badge>
+                          <span className="ml-1 inline-flex h-2 w-2 rounded-full bg-primary animate-pulse" />
                         </Link>
                       </NavigationMenuLink>
                       <NavigationMenuLink asChild>

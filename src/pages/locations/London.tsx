@@ -86,7 +86,7 @@ const London = () => {
         }}
       />
 
-      <div className="min-h-screen">
+      <div className="min-h-screen pt-20">
         {/* Hero Section */}
         <section className="relative bg-charcoal text-white py-20">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />

@@ -177,7 +177,7 @@ const About = () => {
       <BreadcrumbSchema items={breadcrumbItems} />
       <SchemaMarkup schema={schema} />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
         <section ref={heroRef} className="relative min-h-[70vh] py-32 px-4 bg-gradient-to-br from-primary/10 via-background to-background overflow-hidden flex items-center">
           {/* Background Image with Parallax */}

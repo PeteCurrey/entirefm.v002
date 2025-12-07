@@ -59,7 +59,7 @@ const WaterHygiene = () => {
 
       <Header />
 
-      <main className="min-h-screen">
+      <main className="min-h-screen pt-20">
         {/* Hero Section */}
         <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
           <div 
