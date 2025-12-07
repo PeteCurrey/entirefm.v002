@@ -48,7 +48,7 @@ const MEServices = () => {
       <SchemaMarkup schema={serviceSchema} />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         <div className="container mx-auto px-4 py-12 lg:py-20">
           <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
             <div className="lg:col-span-2">

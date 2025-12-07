@@ -12,7 +12,7 @@ export default function ArcFlashAssessmentLeeds() {
         <link rel="canonical" href="https://entirefm.com/services/critical/arc-flash-assessment" />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center"

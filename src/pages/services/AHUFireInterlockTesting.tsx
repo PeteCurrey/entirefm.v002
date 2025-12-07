@@ -50,7 +50,7 @@ const AHUFireInterlockTesting = () => {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
         <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-charcoal/90 z-10" />

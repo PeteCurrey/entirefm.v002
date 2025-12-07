@@ -84,7 +84,7 @@ export default function DataRoomAudits() {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
         <section className="relative h-[40vh] min-h-[400px] flex items-center justify-center overflow-hidden">
           <div 
