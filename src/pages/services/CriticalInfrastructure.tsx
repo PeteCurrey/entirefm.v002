@@ -96,7 +96,7 @@ export default function CriticalInfrastructure() {
         areaServed="United Kingdom"
       />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
         <section className="relative h-[50vh] min-h-[500px] flex items-center justify-center overflow-hidden">
           <div 

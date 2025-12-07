@@ -50,7 +50,7 @@ const CarParkCOMonitoring = () => {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-charcoal/90 z-10" />
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1590674899484-d5640e854abe')] bg-cover bg-center" />

@@ -115,7 +115,7 @@ const Platform = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
         <section className="relative overflow-hidden">
           {/* Dark gradient background */}

@@ -120,7 +120,7 @@ export default function Leads() {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pt-20">
         <div className="container mx-auto py-8 px-4">
           <Breadcrumb items={breadcrumbItems} className="mb-8" />
 
