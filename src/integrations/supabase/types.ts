@@ -469,6 +469,42 @@ export type Database = {
         }
         Relationships: []
       }
+      search_analytics: {
+        Row: {
+          category: string | null
+          click_position: number | null
+          clicked_result: string | null
+          created_at: string
+          id: string
+          query: string
+          results_count: number
+          source_page: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          category?: string | null
+          click_position?: number | null
+          clicked_result?: string | null
+          created_at?: string
+          id?: string
+          query: string
+          results_count?: number
+          source_page?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          category?: string | null
+          click_position?: number | null
+          clicked_result?: string | null
+          created_at?: string
+          id?: string
+          query?: string
+          results_count?: number
+          source_page?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       supplier_applications: {
         Row: {
           accreditation_documents: Json | null

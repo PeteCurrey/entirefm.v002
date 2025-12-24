@@ -83,11 +83,11 @@ export const Footer = () => {
               <h3 className="font-medium mb-6 text-lg">Sectors</h3>
               <ul className="space-y-3">
                 <li><Link to="/sectors/offices" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Offices</Link></li>
-                <li><Link to="/sectors/retail-hospitality" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Retail & Hospitality</Link></li>
+                <li><Link to="/sectors/retail-service-stations" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Retail & Service Stations</Link></li>
                 <li><Link to="/sectors/industrial-logistics" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Industrial & Logistics</Link></li>
                 <li><Link to="/sectors/healthcare-public" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Healthcare</Link></li>
-                <li><Link to="/sectors/hotels-leisure" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Hotels & Leisure</Link></li>
-                <li><Link to="/sectors/residential-pbsa" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">PBSA</Link></li>
+                <li><Link to="/sectors/hospitality-leisure" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Hospitality & Leisure</Link></li>
+                <li><Link to="/sectors/pbsa" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">PBSA</Link></li>
                 <li><Link to="/sectors/education" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Education</Link></li>
                 <li><Link to="/sectors/airports" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Airports</Link></li>
               </ul>
