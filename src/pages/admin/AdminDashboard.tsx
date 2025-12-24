@@ -102,7 +102,7 @@ export default function AdminDashboard() {
             <div className="space-y-3">
               <QuickAction icon={FileText} label="View All Proposals" onClick={() => navigate('/admin/proposals')} />
               <QuickAction icon={Mail} label="Contact Submissions" onClick={() => navigate('/admin/contacts')} />
-              <QuickAction icon={BarChart3} label="Analytics Dashboard" onClick={() => navigate('/search-analytics')} />
+              <QuickAction icon={BarChart3} label="Analytics Dashboard" onClick={() => navigate('/admin/search-analytics')} />
               <QuickAction icon={Users} label="User Management" onClick={() => {/* TODO */}} />
               <QuickAction icon={Settings} label="System Settings" onClick={() => {/* TODO */}} />
             </div>

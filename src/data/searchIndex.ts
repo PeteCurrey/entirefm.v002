@@ -72,7 +72,7 @@ export const searchIndex: SearchItem[] = [
   },
   {
     title: "PPM & Asset Lifecycle",
-    url: "/services/ppm-compliance",
+    url: "/services/ppm",
     category: "Services",
     description: "Planned preventative maintenance, asset lifecycle management, compliance scheduling",
     keywords: ["ppm", "planned", "preventative", "maintenance", "asset", "lifecycle", "schedule", "compliance", "reactive"],
@@ -390,15 +390,15 @@ export const searchIndex: SearchItem[] = [
     keywords: ["office", "corporate", "hq", "headquarters", "commercial", "workplace", "business"]
   },
   {
-    title: "Retail & Hospitality",
-    url: "/sectors/retail-hospitality",
+    title: "Retail & Service Stations",
+    url: "/sectors/retail-service-stations",
     category: "Sectors",
-    description: "Facilities management for retail stores and hospitality venues",
-    keywords: ["retail", "shop", "store", "hospitality", "restaurant", "pub", "bar", "venue"]
+    description: "Facilities management for retail stores, service stations, and hospitality venues",
+    keywords: ["retail", "shop", "store", "hospitality", "restaurant", "pub", "bar", "venue", "service", "stations", "fuel"]
   },
   {
-    title: "Hotels & Leisure",
-    url: "/sectors/hotels-leisure",
+    title: "Hospitality & Leisure",
+    url: "/sectors/hospitality-leisure",
     category: "Sectors",
     description: "Hotel maintenance and leisure facility management",
     keywords: ["hotel", "leisure", "gym", "spa", "resort", "accommodation", "hospitality"]

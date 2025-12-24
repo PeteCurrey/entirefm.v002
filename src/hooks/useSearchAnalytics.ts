@@ -1,24 +1,26 @@
 import { useCallback } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface SearchAnalyticsData {
   query: string;
   category?: string;
   resultsCount: number;
-  timestamp: string;
+  timestamp?: string;
   clickedResult?: string;
 }
 
 /**
  * Hook for tracking search analytics
- * Tracks search queries, popular searches, and user interactions
+ * Persists search data to the database for comprehensive analytics
  */
 export const useSearchAnalytics = () => {
-  const trackSearch = useCallback((data: SearchAnalyticsData) => {
+  const trackSearch = useCallback(async (data: SearchAnalyticsData) => {
     const analyticsData = {
-      ...data,
-      timestamp: new Date().toISOString(),
-      page: window.location.pathname,
-      userAgent: navigator.userAgent,
+      query: data.query.trim().toLowerCase(),
+      results_count: data.resultsCount,
+      category: data.category || null,
+      source_page: window.location.pathname,
+      user_agent: navigator.userAgent,
     };
 
     // Google Analytics 4
@@ -35,12 +37,12 @@ export const useSearchAnalytics = () => {
       console.log('🔍 Search Tracked:', analyticsData);
     }
 
-    // Store in localStorage for popular searches tracking
+    // Store in localStorage for fallback and immediate local stats
     try {
       const searches = JSON.parse(localStorage.getItem('search_history') || '[]');
       searches.push({
         query: data.query,
-        timestamp: analyticsData.timestamp,
+        timestamp: new Date().toISOString(),
         resultsCount: data.resultsCount,
       });
       
@@ -51,29 +53,32 @@ export const useSearchAnalytics = () => {
       
       localStorage.setItem('search_history', JSON.stringify(searches));
     } catch (error) {
-      // Silent fail
+      // Silent fail for localStorage
     }
 
-    // Send to analytics endpoint if needed
+    // Persist to database via edge function
     try {
-      fetch('/api/track-search', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(analyticsData),
-      }).catch(() => {
-        // Silent fail - don't break user experience
+      const { error } = await supabase.functions.invoke('track-search', {
+        body: analyticsData,
       });
+      
+      if (error) {
+        console.error('Failed to track search to database:', error);
+      }
     } catch (error) {
-      // Silent fail
+      // Silent fail - don't break user experience
+      console.error('Search tracking error:', error);
     }
   }, []);
 
-  const trackSearchClick = useCallback((query: string, resultUrl: string, position: number) => {
+  const trackSearchClick = useCallback(async (query: string, resultUrl: string, position: number) => {
     const clickData = {
-      query,
-      resultUrl,
-      position,
-      timestamp: new Date().toISOString(),
+      query: query.trim().toLowerCase(),
+      results_count: 0, // Not applicable for click tracking
+      clicked_result: resultUrl,
+      click_position: position,
+      source_page: window.location.pathname,
+      user_agent: navigator.userAgent,
     };
 
     // Google Analytics 4
@@ -90,16 +95,25 @@ export const useSearchAnalytics = () => {
       console.log('🎯 Search Click Tracked:', clickData);
     }
 
-    // Update search history with click info
+    // Update local search history with click info
     try {
       const searches = JSON.parse(localStorage.getItem('search_history') || '[]');
       const updatedSearches = searches.map((search: any) => {
-        if (search.query === query) {
+        if (search.query.toLowerCase() === query.toLowerCase()) {
           return { ...search, clicked: true };
         }
         return search;
       });
       localStorage.setItem('search_history', JSON.stringify(updatedSearches));
+    } catch (error) {
+      // Silent fail
+    }
+
+    // Persist click to database
+    try {
+      await supabase.functions.invoke('track-search', {
+        body: clickData,
+      });
     } catch (error) {
       // Silent fail
     }
