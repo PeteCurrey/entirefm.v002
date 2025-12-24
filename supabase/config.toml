@@ -32,3 +32,6 @@ verify_jwt = false
 
 [functions.track-search]
 verify_jwt = false
+
+[functions.link-checker]
+verify_jwt = false
