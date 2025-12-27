@@ -107,6 +107,7 @@ const TenderSupport = () => {
             href: "/fm-operations/mobilisation",
             icon: ClipboardList
           }}
+          backgroundImage="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80"
         />
 
         {/* Key Features */}

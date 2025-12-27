@@ -107,6 +107,7 @@ const FMStrategy = () => {
             href: "/services",
             icon: FileText
           }}
+          backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80"
         />
 
         {/* Key Features */}

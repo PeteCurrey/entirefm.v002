@@ -1,14 +1,13 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
@@ -25,16 +24,6 @@ import {
 } from "lucide-react";
 
 const Helpdesk = () => {
-  const heroRef = useRef<HTMLElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
-
   const breadcrumbItems = [
     { label: "FM Operations", href: "/fm-operations" },
     { label: "Technical Helpdesk & 24/7 FM Support" }
@@ -103,103 +92,28 @@ const Helpdesk = () => {
       <FAQSchema faqs={faqs} />
 
       <div className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section 
-          ref={heroRef} 
-          className="relative min-h-[60vh] py-32 px-4 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal overflow-hidden flex items-center"
-        >
-          <motion.div 
-            className="absolute inset-0 bg-cover bg-center opacity-20" 
-            style={{ 
-              backgroundImage: 'url(/images/helpdesk-hero.jpg)',
-              y,
-              opacity
-            }}
-          />
-          
-          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/70 to-charcoal/50" />
-          
-          <div className="max-w-6xl mx-auto relative z-10 w-full">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="mb-6"
-            >
-              <Breadcrumb items={breadcrumbItems} />
-            </motion.div>
-            
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <motion.h1 
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-                  className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-white leading-tight"
-                >
-                  Technical Helpdesk & 24/7 FM Support
-                </motion.h1>
-                <motion.p 
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-                  className="text-xl text-gray-300 mb-8 leading-relaxed"
-                >
-                  Helpdesk engineered around first-time fix, SLA control, and proactive performance reporting. Your single point of contact for all reactive maintenance.
-                </motion.p>
-                <motion.div 
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-                  className="flex flex-col sm:flex-row gap-4"
-                >
-                  <Button size="lg" asChild className="hover-scale">
-                    <Link to="/fm-operations/report-issue">
-                      <AlertTriangle className="w-5 h-5 mr-2" />
-                      Report an Issue
-                    </Link>
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white hover:text-charcoal hover-scale" 
-                    asChild
-                  >
-                    <Link to="/fm-operations/knowledge-base">
-                      <FileText className="w-5 h-5 mr-2" />
-                      Knowledge Base
-                    </Link>
-                  </Button>
-                </motion.div>
-              </div>
-              
-              {/* Quick Stats */}
-              <motion.div 
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-                className="grid grid-cols-2 gap-4"
-              >
-                {[
-                  { value: "24/7", label: "Availability" },
-                  { value: "41", label: "Avg Response (mins)", suffix: "min" },
-                  { value: "80", label: "First-Time Fix", suffix: "%" },
-                  { value: "98", label: "SLA Compliance", suffix: "%" }
-                ].map((stat, index) => (
-                  <Card 
-                    key={index} 
-                    className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-center"
-                  >
-                    <div className="text-3xl md:text-4xl font-light text-white mb-1">
-                      {stat.value}{stat.suffix && <span className="text-primary">{stat.suffix}</span>}
-                    </div>
-                    <div className="text-sm text-gray-400">{stat.label}</div>
-                  </Card>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </section>
+        <ServiceHeroSection
+          breadcrumbItems={breadcrumbItems}
+          title="Technical Helpdesk & 24/7 FM Support"
+          description="Helpdesk engineered around first-time fix, SLA control, and proactive performance reporting. Your single point of contact for all reactive maintenance."
+          stats={[
+            { value: "24/7", label: "Availability" },
+            { value: "41", label: "Avg Response", suffix: "min" },
+            { value: "80", label: "First-Time Fix", suffix: "%" },
+            { value: "98", label: "SLA Compliance", suffix: "%" }
+          ]}
+          primaryCTA={{
+            label: "Report an Issue",
+            href: "/fm-operations/report-issue",
+            icon: AlertTriangle
+          }}
+          secondaryCTA={{
+            label: "Knowledge Base",
+            href: "/fm-operations/knowledge-base",
+            icon: FileText
+          }}
+          backgroundImage="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80"
+        />
 
         {/* Key Features */}
         <section className="py-16 bg-background">
