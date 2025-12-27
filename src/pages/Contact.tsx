@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin, Users, Headphones, AlertCircle, Globe, Send, Loader2 } from "lucide-react";
+import { Phone, Mail, MapPin, Users, Headphones, MessageCircle, Globe, Send, Loader2 } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
@@ -90,15 +90,14 @@ const Contact = () => {
   const contactMethods = [{
     icon: Headphones,
     title: "24/7 Helpdesk",
-    subtitle: "Always Answered by a Person",
-    description: "No voicemail nonsense. No excuses. Real people, real-time response.",
-    action: "Call 0800 123 4567",
-    href: "tel:08001234567",
-    onClick: handlePhoneClick
+    subtitle: "24/7 Maintenance Support & Site Monitoring",
+    description: "Report maintenance issues and get real-time updates on your requests.",
+    action: "Report an Issue",
+    href: "/fm-operations/helpdesk"
   }, {
     icon: Mail,
     title: "Send us an Email",
-    subtitle: "Immediate Triage",
+    subtitle: "We'll Get Back To You",
     description: "Your email goes straight to the right team. No waiting in queues.",
     action: "hello@entirefm.co.uk",
     href: "mailto:hello@entirefm.co.uk"
@@ -108,14 +107,15 @@ const Contact = () => {
     subtitle: "For All Existing Clients",
     description: "Live job tracking, compliance dashboard, and asset visibility 24/7.",
     action: "Access Portal",
-    href: "#"
+    href: "https://portal.entirefm.com",
+    external: true
   }, {
-    icon: AlertCircle,
-    title: "Escalation Line",
-    subtitle: "Direct to Senior Leadership",
-    description: "Critical issues get director-level attention immediately.",
-    action: "Emergency Escalation",
-    href: "tel:08001234567"
+    icon: MessageCircle,
+    title: "Live Chat",
+    subtitle: "Real-Time Support",
+    description: "Connect with our team instantly for quick questions and support.",
+    action: "Start Chat",
+    href: "#live-chat"
   }];
   const coverage = ["Hard services across all disciplines", "Critical compliance work", "Reactive emergencies", "Multi-site portfolios"];
   return <>
@@ -245,8 +245,13 @@ const Contact = () => {
                   <h3 className="text-2xl font-bold mb-1">{method.title}</h3>
                   <p className="text-primary font-semibold mb-3">{method.subtitle}</p>
                   
-                  <Button variant="outline" asChild onClick={method.onClick}>
-                    <a href={method.href}>{method.action}</a>
+                  <Button variant="outline" asChild>
+                    <a 
+                      href={method.href}
+                      {...(method.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    >
+                      {method.action}
+                    </a>
                   </Button>
                 </Card>)}
             </div>
