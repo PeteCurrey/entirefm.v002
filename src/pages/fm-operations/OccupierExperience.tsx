@@ -107,6 +107,7 @@ const OccupierExperience = () => {
             href: "/fm-operations/helpdesk",
             icon: Headphones
           }}
+          backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
         />
 
         {/* Key Features */}

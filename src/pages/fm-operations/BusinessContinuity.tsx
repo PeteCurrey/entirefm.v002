@@ -108,6 +108,7 @@ const BusinessContinuity = () => {
             href: "/services/emergency-response",
             icon: Phone
           }}
+          backgroundImage="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80"
         />
 
         {/* Key Features */}

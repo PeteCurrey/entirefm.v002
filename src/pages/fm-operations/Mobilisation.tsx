@@ -108,6 +108,7 @@ const Mobilisation = () => {
             href: "/fm-operations/ppm-delivery",
             icon: FileText
           }}
+          backgroundImage="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=80"
         />
 
         {/* Key Features */}
