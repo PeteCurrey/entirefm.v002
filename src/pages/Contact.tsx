@@ -13,7 +13,6 @@ import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
-
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
   email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
@@ -21,9 +20,10 @@ const contactSchema = z.object({
   company: z.string().trim().max(100, "Company name must be less than 100 characters").optional(),
   message: z.string().trim().min(1, "Message is required").max(2000, "Message must be less than 2000 characters")
 });
-
 const Contact = () => {
-  const { trackPhoneClick } = useConversionTracking();
+  const {
+    trackPhoneClick
+  } = useConversionTracking();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,45 +33,40 @@ const Contact = () => {
   });
   const [submitting, setSubmitting] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
-  
+
   // Parallax effect for hero section
-  const { scrollYProgress } = useScroll({
+  const {
+    scrollYProgress
+  } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
   const blur = useTransform(scrollYProgress, [0, 1], [0, 8]);
-  
-  const breadcrumbItems = [
-    { label: "Contact" }
-  ];
-
+  const breadcrumbItems = [{
+    label: "Contact"
+  }];
   const handlePhoneClick = () => {
     trackPhoneClick();
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     try {
       // Validate form data
       const validatedData = contactSchema.parse(formData);
-      
       setSubmitting(true);
-      
-      const { error } = await supabase.functions.invoke('submit-contact', {
+      const {
+        error
+      } = await supabase.functions.invoke('submit-contact', {
         body: {
           ...validatedData,
-          source_page: window.location.pathname,
+          source_page: window.location.pathname
         }
       });
-
       if (error) throw error;
-
       toast.success("Thanks – your enquiry has been received. Our FM team will be in touch shortly.");
-      
+
       // Reset form
       setFormData({
         name: "",
@@ -92,58 +87,41 @@ const Contact = () => {
       setSubmitting(false);
     }
   };
-
-  const contactMethods = [
-    {
-      icon: Headphones,
-      title: "24/7 Helpdesk",
-      subtitle: "24/7 Maintenance Support & Site Monitoring",
-      description: "No voicemail nonsense. No excuses. Real people, real-time response.",
-      action: "Call 0800 123 4567",
-      href: "tel:08001234567",
-      onClick: handlePhoneClick
-    },
-    {
-      icon: Mail,
-      title: "Direct Email Channel",
-      subtitle: "Immediate Triage",
-      description: "Your email goes straight to the right team. No waiting in queues.",
-      action: "hello@entirefm.co.uk",
-      href: "mailto:hello@entirefm.co.uk"
-    },
-    {
-      icon: Globe,
-      title: "Portal Access",
-      subtitle: "For All Existing Clients",
-      description: "Live job tracking, compliance dashboard, and asset visibility 24/7.",
-      action: "Access Portal",
-      href: "#"
-    },
-    {
-      icon: AlertCircle,
-      title: "Escalation Line",
-      subtitle: "Direct to Senior Leadership",
-      description: "Critical issues get director-level attention immediately.",
-      action: "Emergency Escalation",
-      href: "tel:08001234567"
-    }
-  ];
-
-  const coverage = [
-    "Hard services across all disciplines",
-    "Critical compliance work",
-    "Reactive emergencies",
-    "Multi-site portfolios"
-  ];
-
-  return (
-    <>
+  const contactMethods = [{
+    icon: Headphones,
+    title: "24/7 Helpdesk",
+    subtitle: "Always Answered by a Person",
+    description: "No voicemail nonsense. No excuses. Real people, real-time response.",
+    action: "Call 0800 123 4567",
+    href: "tel:08001234567",
+    onClick: handlePhoneClick
+  }, {
+    icon: Mail,
+    title: "Direct Email Channel",
+    subtitle: "Immediate Triage",
+    description: "Your email goes straight to the right team. No waiting in queues.",
+    action: "hello@entirefm.co.uk",
+    href: "mailto:hello@entirefm.co.uk"
+  }, {
+    icon: Globe,
+    title: "Portal Access",
+    subtitle: "For All Existing Clients",
+    description: "Live job tracking, compliance dashboard, and asset visibility 24/7.",
+    action: "Access Portal",
+    href: "#"
+  }, {
+    icon: AlertCircle,
+    title: "Escalation Line",
+    subtitle: "Direct to Senior Leadership",
+    description: "Critical issues get director-level attention immediately.",
+    action: "Emergency Escalation",
+    href: "tel:08001234567"
+  }];
+  const coverage = ["Hard services across all disciplines", "Critical compliance work", "Reactive emergencies", "Multi-site portfolios"];
+  return <>
       <Helmet>
         <title>Contact EntireFM | FM Support & Offices</title>
-        <meta 
-          name="description" 
-          content="Contact EntireFM for facilities management support. One number. One team. Zero runaround. 24/7 helpdesk, direct email, portal access, and UK-wide coverage." 
-        />
+        <meta name="description" content="Contact EntireFM for facilities management support. One number. One team. Zero runaround. 24/7 helpdesk, direct email, portal access, and UK-wide coverage." />
         <link rel="canonical" href="https://entirefm.com/contact" />
       </Helmet>
 
@@ -155,44 +133,56 @@ const Contact = () => {
         {/* Hero Section */}
         <section ref={heroRef} className="relative py-16 px-4 overflow-hidden">
           {/* Background Image with Parallax */}
-          <motion.div 
-            className="absolute inset-0 bg-cover bg-center" 
-            style={{ 
-              backgroundImage: 'url(/images/contact-hero.jpg)',
-              y,
-              opacity,
-              filter: blur.get() !== undefined ? `blur(${blur.get()}px)` : 'none'
-            } as any}
-          />
+          <motion.div className="absolute inset-0 bg-cover bg-center" style={{
+          backgroundImage: 'url(/images/contact-hero.jpg)',
+          y,
+          opacity,
+          filter: blur.get() !== undefined ? `blur(${blur.get()}px)` : 'none'
+        } as any} />
           
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
           
           <div className="max-w-6xl mx-auto relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            delay: 0.2,
+            duration: 0.6
+          }}>
               <Breadcrumb items={breadcrumbItems} />
             </motion.div>
             
             <div className="mt-8 text-center max-w-4xl mx-auto">
-              <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                className="text-5xl md:text-6xl font-bold mb-6 text-white"
-              >
+              <motion.h1 initial={{
+              opacity: 0,
+              y: 30
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              delay: 0.3,
+              duration: 0.8,
+              ease: "easeOut"
+            }} className="text-5xl md:text-6xl font-bold mb-6 text-white">
                 One number. One team.<br />Zero runaround.
               </motion.h1>
               
-              <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-                className="flex flex-wrap gap-4 justify-center mt-8"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 30
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              delay: 0.5,
+              duration: 0.8,
+              ease: "easeOut"
+            }} className="flex flex-wrap gap-4 justify-center mt-8">
                 <Button size="lg" className="gap-2 hover-scale">
                   <Headphones className="w-5 h-5" />
                   Speak to Helpdesk — Live
@@ -205,31 +195,33 @@ const Contact = () => {
             </div>
             
             {/* Animated Scroll Indicator */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
-              className="absolute bottom-8 left-1/2 -translate-x-1/2"
-            >
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="w-6 h-10 border-2 border-white/60 rounded-full flex items-start justify-center p-2 cursor-pointer hover:border-white/80 transition-colors"
-                onClick={() => window.scrollTo({ top: window.innerHeight * 0.7, behavior: 'smooth' })}
-              >
-                <motion.div 
-                  className="w-1 h-3 bg-white/70 rounded-full"
-                  animate={{ opacity: [0.7, 1, 0.7] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+            <motion.div initial={{
+            opacity: 0,
+            y: -20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            delay: 1,
+            duration: 0.6
+          }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
+              <motion.div animate={{
+              y: [0, 8, 0]
+            }} transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }} className="w-6 h-10 border-2 border-white/60 rounded-full flex items-start justify-center p-2 cursor-pointer hover:border-white/80 transition-colors" onClick={() => window.scrollTo({
+              top: window.innerHeight * 0.7,
+              behavior: 'smooth'
+            })}>
+                <motion.div className="w-1 h-3 bg-white/70 rounded-full" animate={{
+                opacity: [0.7, 1, 0.7]
+              }} transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }} />
               </motion.div>
             </motion.div>
           </div>
@@ -248,21 +240,15 @@ const Contact = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              {contactMethods.map((method, index) => (
-                <Card key={index} className="p-8 hover:shadow-lg transition-shadow">
+              {contactMethods.map((method, index) => <Card key={index} className="p-8 hover:shadow-lg transition-shadow">
                   <method.icon className="w-12 h-12 text-primary mb-4" />
                   <h3 className="text-2xl font-bold mb-1">{method.title}</h3>
                   <p className="text-primary font-semibold mb-3">{method.subtitle}</p>
-                  <p className="text-muted-foreground mb-4">{method.description}</p>
-                  <Button 
-                    variant="outline" 
-                    asChild
-                    onClick={method.onClick}
-                  >
+                  
+                  <Button variant="outline" asChild onClick={method.onClick}>
                     <a href={method.href}>{method.action}</a>
                   </Button>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -280,12 +266,10 @@ const Contact = () => {
                 </p>
                 
                 <div className="space-y-4">
-                  {coverage.map((item, index) => (
-                    <div key={index} className="flex items-center gap-3">
+                  {coverage.map((item, index) => <div key={index} className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
                       <p className="text-lg">{item}</p>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
 
                 <p className="text-xl font-bold mt-8 text-primary">
@@ -361,56 +345,40 @@ const Contact = () => {
                     <label htmlFor="name" className="block text-sm font-semibold mb-2">
                       Name *
                     </label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Your name"
-                      required
-                      maxLength={100}
-                    />
+                    <Input id="name" value={formData.name} onChange={e => setFormData({
+                    ...formData,
+                    name: e.target.value
+                  })} placeholder="Your name" required maxLength={100} />
                   </div>
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-semibold mb-2">
                       Email *
                     </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="your@email.com"
-                      required
-                      maxLength={255}
-                    />
+                    <Input id="email" type="email" value={formData.email} onChange={e => setFormData({
+                    ...formData,
+                    email: e.target.value
+                  })} placeholder="your@email.com" required maxLength={255} />
                   </div>
 
                   <div>
                     <label htmlFor="phone" className="block text-sm font-semibold mb-2">
                       Phone
                     </label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="Your phone number"
-                      maxLength={20}
-                    />
+                    <Input id="phone" type="tel" value={formData.phone} onChange={e => setFormData({
+                    ...formData,
+                    phone: e.target.value
+                  })} placeholder="Your phone number" maxLength={20} />
                   </div>
 
                   <div>
                     <label htmlFor="company" className="block text-sm font-semibold mb-2">
                       Company
                     </label>
-                    <Input
-                      id="company"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="Your company name"
-                      maxLength={100}
-                    />
+                    <Input id="company" value={formData.company} onChange={e => setFormData({
+                    ...formData,
+                    company: e.target.value
+                  })} placeholder="Your company name" maxLength={100} />
                   </div>
                 </div>
 
@@ -418,15 +386,10 @@ const Contact = () => {
                   <label htmlFor="message" className="block text-sm font-semibold mb-2">
                     Message *
                   </label>
-                  <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us how we can help..."
-                    required
-                    className="min-h-[150px]"
-                    maxLength={2000}
-                  />
+                  <Textarea id="message" value={formData.message} onChange={e => setFormData({
+                  ...formData,
+                  message: e.target.value
+                })} placeholder="Tell us how we can help..." required className="min-h-[150px]" maxLength={2000} />
                   <p className="text-sm text-muted-foreground mt-1">
                     {formData.message.length}/2000 characters
                   </p>
@@ -434,17 +397,13 @@ const Contact = () => {
 
                 <div className="flex justify-center">
                   <Button type="submit" size="lg" disabled={submitting} className="gap-2">
-                    {submitting ? (
-                      <>
+                    {submitting ? <>
                         <Loader2 className="h-5 w-5 animate-spin" />
                         Sending...
-                      </>
-                    ) : (
-                      <>
+                      </> : <>
                         <Send className="h-5 w-5" />
                         Send Message
-                      </>
-                    )}
+                      </>}
                   </Button>
                 </div>
               </form>
@@ -470,8 +429,6 @@ const Contact = () => {
           </div>
         </section>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Contact;
