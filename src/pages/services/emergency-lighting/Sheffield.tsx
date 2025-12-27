@@ -36,7 +36,7 @@ const EmergencyLightingSheffield = () => {
 
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-background/90 z-10" />
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop')` }} aria-label="Emergency lighting testing in Sheffield facility" />
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?q=80&w=2070&auto=format&fit=crop')` }} aria-label="Industrial emergency lighting system in Sheffield manufacturing facility" />
         
         <div className="relative z-20 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-7xl font-light text-white mb-6">Emergency Lighting Compliance – Sheffield</h1>
