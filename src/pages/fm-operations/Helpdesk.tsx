@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
@@ -7,11 +9,58 @@ import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { 
+  Headphones, 
+  Clock, 
+  CheckCircle2, 
+  Wrench, 
+  BarChart3, 
+  ArrowRight,
+  Phone,
+  AlertTriangle,
+  FileText,
+  Zap
+} from "lucide-react";
 
 const Helpdesk = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.6]);
+
   const breadcrumbItems = [
-    { label: "FM Operations", href: "/services" },
+    { label: "FM Operations", href: "/fm-operations" },
     { label: "Technical Helpdesk & 24/7 FM Support" }
+  ];
+
+  const keyFeatures = [
+    {
+      icon: Clock,
+      title: "24/7/365 Availability",
+      description: "Round-the-clock support with trained FM coordinators ready to respond"
+    },
+    {
+      icon: Zap,
+      title: "Rapid Response",
+      description: "P1 emergencies dispatched immediately, routine requests triaged efficiently"
+    },
+    {
+      icon: CheckCircle2,
+      title: "80%+ First-Time Fix",
+      description: "Competent engineers, optimised van stock, and diagnostic discipline"
+    },
+    {
+      icon: BarChart3,
+      title: "Transparent Reporting",
+      description: "Monthly SLA dashboards, trend analysis, and performance metrics"
+    }
   ];
 
   const faqs = [
@@ -53,195 +102,337 @@ const Helpdesk = () => {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="container mx-auto px-4 py-8">
-        <Breadcrumb items={breadcrumbItems} />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-          <div className="lg:col-span-2">
-            <section className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-light mb-6">
-                Technical Helpdesk & 24/7 FM Support
-              </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed mb-6">
-                Helpdesk engineered around first-time fix, SLA control, and proactive performance reporting.
-              </p>
+      <div className="min-h-screen bg-background">
+        {/* Hero Section */}
+        <section 
+          ref={heroRef} 
+          className="relative min-h-[60vh] py-32 px-4 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal overflow-hidden flex items-center"
+        >
+          <motion.div 
+            className="absolute inset-0 bg-cover bg-center opacity-20" 
+            style={{ 
+              backgroundImage: 'url(/images/helpdesk-hero.jpg)',
+              y,
+              opacity
+            }}
+          />
+          
+          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/70 to-charcoal/50" />
+          
+          <div className="max-w-6xl mx-auto relative z-10 w-full">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="mb-6"
+            >
+              <Breadcrumb items={breadcrumbItems} />
+            </motion.div>
+            
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <motion.h1 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+                  className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-white leading-tight"
+                >
+                  Technical Helpdesk & 24/7 FM Support
+                </motion.h1>
+                <motion.p 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+                  className="text-xl text-gray-300 mb-8 leading-relaxed"
+                >
+                  Helpdesk engineered around first-time fix, SLA control, and proactive performance reporting. Your single point of contact for all reactive maintenance.
+                </motion.p>
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+                  className="flex flex-col sm:flex-row gap-4"
+                >
+                  <Button size="lg" asChild className="hover-scale">
+                    <Link to="/fm-operations/report-issue">
+                      <AlertTriangle className="w-5 h-5 mr-2" />
+                      Report an Issue
+                    </Link>
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white hover:text-charcoal hover-scale" 
+                    asChild
+                  >
+                    <Link to="/fm-operations/knowledge-base">
+                      <FileText className="w-5 h-5 mr-2" />
+                      Knowledge Base
+                    </Link>
+                  </Button>
+                </motion.div>
+              </div>
               
-              <div className="bg-primary/10 border-2 border-primary/30 p-6 rounded-lg">
-                <h3 className="text-xl font-medium mb-3">Report a Maintenance Issue</h3>
-                <p className="text-muted-foreground mb-4">
-                  For sites, tenants, and FM contacts: log maintenance issues directly with our helpdesk team.
-                </p>
-                <Link 
-                  to="/fm-operations/report-issue" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium"
-                >
-                  Report Issue Now
-                </Link>
-                <p className="text-sm text-muted-foreground mt-3">
-                  Emergency? Call <strong>0800 123 4567</strong> (24/7)
-                </p>
-              </div>
-
-              <div className="mt-6 bg-muted/50 border border-border p-6 rounded-lg">
-                <h3 className="text-xl font-medium mb-3">Engineer Knowledge Base</h3>
-                <p className="text-muted-foreground mb-4">
-                  Access technical documentation, troubleshooting guides, and asset manuals for engineers and FM teams.
-                </p>
-                <Link 
-                  to="/fm-operations/knowledge-base" 
-                  className="inline-block bg-background text-foreground border border-border px-6 py-3 rounded-lg hover:bg-muted transition-colors font-medium"
-                >
-                  View Knowledge Base
-                </Link>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                The Helpdesk: Operational Command Centre
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                The FM helpdesk is the single point of contact for all reactive maintenance, faults, and service requests across commercial estates. It operates as the operational command centre—receiving calls, logging jobs, prioritising by urgency, dispatching engineers, monitoring progress, and reporting performance. A competent helpdesk delivers immediate response to emergencies, achieves high first-time fix rates, and provides transparent SLA reporting.
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Poor helpdesk performance—slow response, missed calls, inadequate triage, lack of customer communication—causes operational disruption, SLA failures, and user frustration. Our helpdesk operates 24/7/365 with trained FM coordinators, integrated CAFM systems, and real-time engineer dispatch. We prioritise first-time fix through competent engineers, optimised van stock, and diagnostic discipline.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Reactive Call Flow & Triage
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Call Receipt & Logging</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    All reactive calls received via phone, email, or online portal. Helpdesk coordinator logs call details: location, fault description, reporter contact, urgency assessment. Job logged into CAFM system with unique reference number. Customer receives automated confirmation with reference number and expected response time. Multi-channel access (phone, email, portal) ensures accessibility for building users. Automated call logging reduces manual errors and enables real-time tracking of job status from receipt to completion.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Prioritisation & SLA Assignment</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Each job is assigned a priority level based on SLA frameworks: <strong>P1 Emergency</strong> (immediate response)—fire alarm fault, water leak, power failure, lift entrapment, gas leak. <strong>P2 Urgent</strong> (2-4 hour response)—HVAC failure, lighting outage, access control fault, minor leak. <strong>P3 Routine</strong> (24-48 hour response)—dripping tap, cosmetic repairs, non-critical equipment faults. Priority assignment is objective and consistent—preventing subjective escalation and ensuring genuine emergencies receive immediate attention. Clear SLA timescales (response and fix times) are contractually defined and performance-monitored monthly.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Engineer Dispatch & Coordination</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Jobs are dispatched to appropriate engineers based on: trade specialism (electrical, HVAC, plumbing, fabric), geographic location (minimise travel time), availability (shift patterns, existing jobs), and competency (qualification/experience match). Mobile CAFM apps provide engineers with job details, asset history, technical drawings, and customer contact information before attending site. Real-time tracking enables helpdesk coordinators to monitor engineer location and job progress. Effective dispatch reduces response times, improves first-time fix, and optimises engineer utilisation.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                First-Time Fix Strategy
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                First-time fix (FTF) measures the percentage of reactive jobs resolved on the first engineer visit without requiring return visits, parts orders, or specialist support. High FTF rates (80%+ target) indicate diagnostic competence, adequate van stock, and effective pre-visit preparation. Low FTF rates suggest skills gaps, poor parts management, or reactive culture (fix quickly rather than fix correctly).
-              </p>
-              <div className="bg-muted/50 p-6 rounded-lg space-y-4">
-                <div>
-                  <h3 className="font-medium mb-2">Diagnostic Discipline</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Engineers are trained to diagnose root cause (not symptoms) before attempting repairs. Access to technical documentation, asset history, and manufacturer guides via mobile apps. Pre-visit review of previous maintenance records identifies recurring issues and likely failure modes.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Optimised Van Stock</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Engineer vans stocked with high-usage consumables and common replacement parts (fuses, bulbs, filters, seals, contactors). Van stock analysis (usage data, failure trends) ensures relevant parts availability without excessive inventory. Specialist parts (motors, control boards, pumps) sourced from suppliers with same-day/next-day delivery agreements.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Competency & Training</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Engineers hold trade qualifications (electrical, HVAC, plumbing) and receive ongoing training on building-specific systems, new technologies, and diagnostic techniques. Competency matrices map engineer skills to job types—ensuring appropriate dispatch. Mentoring programmes pair junior engineers with experienced technicians to transfer knowledge and improve diagnostic capability.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Escalation Pathways & Critical Response
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Emergency Response Protocol</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    P1 emergencies trigger immediate dispatch with client notification (email/SMS). On-call managers alerted for out-of-hours emergencies. Specialist subcontractors mobilised for critical systems (lifts, fire alarms, generators). Engineers provided with emergency contact lists, building access procedures, and isolation protocols. Emergency response is time-critical—delays cause safety risks, operational downtime, and contractual penalties. Clear escalation procedures ensure appropriate resources are deployed immediately.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Management Escalation</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Jobs escalated to management when: SLA breach imminent, repeated failures indicate systemic issue, customer dissatisfaction reported, specialist support required, or significant cost implications. Escalation triggers investigation, root cause analysis, and corrective action planning. Management escalation prevents minor issues becoming major failures and ensures contractual accountability.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Performance Reporting & Continuous Improvement
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Monthly helpdesk reporting includes: Total reactive calls, Response compliance (% within SLA), Resolution compliance (% fixed within SLA), First-time fix rate, Average time to resolve, Customer satisfaction score, Repeat call rate, Top fault categories (trend analysis). Performance data is reviewed monthly with clients—identifying recurring issues, operational inefficiencies, and improvement opportunities.
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Trend analysis highlights: Increasing call volumes (asset deterioration, maintenance backlog), Recurring faults (design issues, inadequate PPM), SLA failures (resourcing gaps, training needs). Data-driven insights inform PPM strategy, capital planning, and continuous improvement initiatives. Transparent reporting builds trust and demonstrates contractual accountability.
-              </p>
-            </section>
-
-            <RelatedServices 
-              services={[
-                {
-                  title: "Reactive Maintenance",
-                  description: "SLA-controlled fault resolution and first-time fix delivery",
-                  link: "/fm-operations/reactive-maintenance"
-                },
-                {
-                  title: "PPM Delivery",
-                  description: "Preventative maintenance programmes reducing call volumes",
-                  link: "/fm-operations/ppm-delivery"
-                },
-                {
-                  title: "Emergency Systems",
-                  description: "Fire alarms, emergency lighting and life-safety systems",
-                  link: "/services/emergency-systems"
-                },
-                {
-                  title: "Emergency Response",
-                  description: "Critical incident management and priority callout services",
-                  link: "/services/emergency-response"
-                }
-              ]}
-            />
-
-            <section className="mb-12">
-              <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
-                <h2 className="text-2xl font-light mb-4">Request Helpdesk Services</h2>
-                <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                  Our technical helpdesk delivers 24/7 reactive support with first-time fix focus and transparent SLA reporting. Whether you need standalone helpdesk services or integrated FM delivery, we provide engineered solutions that prioritise response, resolution, and performance.
-                </p>
-                <Link 
-                  to="/request-proposal" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                  Request Helpdesk Proposal
-                </Link>
-              </div>
-            </section>
-
-            <FAQSection faqs={faqs} />
+              {/* Quick Stats */}
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+                className="grid grid-cols-2 gap-4"
+              >
+                {[
+                  { value: "24/7", label: "Availability" },
+                  { value: "41", label: "Avg Response (mins)", suffix: "min" },
+                  { value: "80", label: "First-Time Fix", suffix: "%" },
+                  { value: "98", label: "SLA Compliance", suffix: "%" }
+                ].map((stat, index) => (
+                  <Card 
+                    key={index} 
+                    className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-center"
+                  >
+                    <div className="text-3xl md:text-4xl font-light text-white mb-1">
+                      {stat.value}{stat.suffix && <span className="text-primary">{stat.suffix}</span>}
+                    </div>
+                    <div className="text-sm text-gray-400">{stat.label}</div>
+                  </Card>
+                ))}
+              </motion.div>
+            </div>
           </div>
+        </section>
 
-          <aside className="lg:col-span-1">
-            <SidebarCTA />
-          </aside>
-        </div>
+        {/* Key Features */}
+        <section className="py-16 bg-background">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {keyFeatures.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <Card className="p-6 h-full hover:border-primary/50 transition-colors hover-lift">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
+                      <feature.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-medium mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Main Content */}
+        <section className="py-16 bg-muted/30">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-12">
+                
+                {/* Report Issue CTA */}
+                <Card className="p-8 bg-gradient-to-br from-primary/10 to-accent/5 border-primary/30">
+                  <div className="flex items-start gap-4">
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/20 flex-shrink-0">
+                      <Headphones className="w-7 h-7 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-medium mb-3">Report a Maintenance Issue</h3>
+                      <p className="text-muted-foreground mb-4">
+                        For sites, tenants, and FM contacts: log maintenance issues directly with our helpdesk team.
+                      </p>
+                      <div className="flex flex-wrap gap-4">
+                        <Button asChild>
+                          <Link to="/fm-operations/report-issue">
+                            Report Issue Now
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Knowledge Base CTA */}
+                <Card className="p-6 border-border">
+                  <div className="flex items-start gap-4">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-muted flex-shrink-0">
+                      <Wrench className="w-6 h-6 text-muted-foreground" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Engineer Knowledge Base</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Access technical documentation, troubleshooting guides, and asset manuals for engineers and FM teams.
+                      </p>
+                      <Button variant="outline" asChild>
+                        <Link to="/fm-operations/knowledge-base">
+                          View Knowledge Base
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Operational Command Centre */}
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    The Helpdesk: Operational Command Centre
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    The FM helpdesk is the single point of contact for all reactive maintenance, faults, and service requests across commercial estates. It operates as the operational command centre—receiving calls, logging jobs, prioritising by urgency, dispatching engineers, monitoring progress, and reporting performance.
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Our helpdesk operates 24/7/365 with trained FM coordinators, integrated CAFM systems, and real-time engineer dispatch. We prioritise first-time fix through competent engineers, optimised van stock, and diagnostic discipline.
+                  </p>
+                </div>
+
+                {/* Reactive Call Flow */}
+                <div>
+                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                    Reactive Call Flow & Triage
+                  </h2>
+                  <div className="space-y-6">
+                    {[
+                      {
+                        title: "Call Receipt & Logging",
+                        description: "All reactive calls received via phone, email, or online portal. Helpdesk coordinator logs call details: location, fault description, reporter contact, urgency assessment. Job logged into CAFM system with unique reference number."
+                      },
+                      {
+                        title: "Prioritisation & SLA Assignment",
+                        description: "Each job is assigned a priority level: P1 Emergency (immediate response), P2 Urgent (2-4 hour response), P3 Routine (24-48 hour response). Clear SLA timescales are contractually defined and performance-monitored monthly."
+                      },
+                      {
+                        title: "Engineer Dispatch & Coordination",
+                        description: "Jobs dispatched to appropriate engineers based on trade specialism, geographic location, availability, and competency. Mobile CAFM apps provide engineers with job details, asset history, and technical drawings."
+                      }
+                    ].map((item, index) => (
+                      <Card key={index} className="p-6">
+                        <h3 className="text-xl font-medium mb-3">{item.title}</h3>
+                        <p className="text-muted-foreground font-light leading-relaxed">
+                          {item.description}
+                        </p>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
+                {/* First-Time Fix Strategy */}
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    First-Time Fix Strategy
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-6">
+                    First-time fix (FTF) measures the percentage of reactive jobs resolved on the first engineer visit. High FTF rates (80%+ target) indicate diagnostic competence, adequate van stock, and effective pre-visit preparation.
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    {[
+                      {
+                        title: "Diagnostic Discipline",
+                        description: "Engineers trained to diagnose root cause before attempting repairs, with access to technical documentation and asset history."
+                      },
+                      {
+                        title: "Optimised Van Stock",
+                        description: "Engineer vans stocked with high-usage consumables and common replacement parts based on usage data analysis."
+                      },
+                      {
+                        title: "Competency & Training",
+                        description: "Trade qualifications with ongoing training on building-specific systems and diagnostic techniques."
+                      }
+                    ].map((item, index) => (
+                      <Card key={index} className="p-5 bg-muted/50">
+                        <h3 className="font-medium mb-2">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground font-light">{item.description}</p>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Escalation Pathways */}
+                <div>
+                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                    Escalation Pathways & Critical Response
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <Card className="p-6 border-l-4 border-l-destructive">
+                      <h3 className="text-xl font-medium mb-3">Emergency Response Protocol</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        P1 emergencies trigger immediate dispatch with client notification. On-call managers alerted for out-of-hours emergencies. Specialist subcontractors mobilised for critical systems.
+                      </p>
+                    </Card>
+                    <Card className="p-6 border-l-4 border-l-primary">
+                      <h3 className="text-xl font-medium mb-3">Management Escalation</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Jobs escalated when SLA breach imminent, repeated failures indicate systemic issues, or significant cost implications arise. Triggers investigation and corrective action planning.
+                      </p>
+                    </Card>
+                  </div>
+                </div>
+
+                {/* Performance Reporting */}
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Performance Reporting & Continuous Improvement
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    Monthly helpdesk reporting includes: Total reactive calls, Response compliance, Resolution compliance, First-time fix rate, Average time to resolve, Customer satisfaction score, Repeat call rate, and Top fault categories.
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Data-driven insights inform PPM strategy, capital planning, and continuous improvement initiatives. Transparent reporting builds trust and demonstrates contractual accountability.
+                  </p>
+                </div>
+
+                <RelatedServices 
+                  services={[
+                    {
+                      title: "Reactive Maintenance",
+                      description: "SLA-controlled fault resolution and first-time fix delivery",
+                      link: "/fm-operations/reactive-maintenance"
+                    },
+                    {
+                      title: "PPM Delivery",
+                      description: "Preventative maintenance programmes reducing call volumes",
+                      link: "/fm-operations/ppm-delivery"
+                    },
+                    {
+                      title: "Emergency Systems",
+                      description: "Fire alarms, emergency lighting and life-safety systems",
+                      link: "/services/emergency-systems"
+                    },
+                    {
+                      title: "Emergency Response",
+                      description: "Critical incident management and priority callout services",
+                      link: "/services/emergency-response"
+                    }
+                  ]}
+                />
+
+                {/* Request CTA */}
+                <Card className="p-8 bg-gradient-to-r from-secondary/10 to-primary/5 border-l-4 border-primary">
+                  <h2 className="text-2xl font-light mb-4">Request Helpdesk Services</h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-6">
+                    Our technical helpdesk delivers 24/7 reactive support with first-time fix focus and transparent SLA reporting. Whether you need standalone helpdesk services or integrated FM delivery, we provide engineered solutions that prioritise response, resolution, and performance.
+                  </p>
+                  <Button size="lg" asChild>
+                    <Link to="/request-proposal">
+                      Request Helpdesk Proposal
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                  </Button>
+                </Card>
+
+                <FAQSection faqs={faqs} />
+              </div>
+
+              <aside className="lg:col-span-1">
+                <div className="sticky top-24">
+                  <SidebarCTA />
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
