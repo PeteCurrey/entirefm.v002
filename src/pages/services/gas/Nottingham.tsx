@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Download, ArrowRight } from "lucide-react";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
 
 const GasSafetyNottingham = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
@@ -43,6 +43,20 @@ const GasSafetyNottingham = () => {
     }
   };
 
+  const heroStats = [
+    { value: "PBSA", label: "Specialist" },
+    { value: "CP1/15", label: "Certified" },
+    { value: "15-20", label: "Energy Savings", suffix: "%" },
+    { value: "24/7", label: "Response" }
+  ];
+
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Gas Safety", href: "/services/gas-safety" },
+    { label: "Nottingham" }
+  ];
+
   return (
     <>
       <Helmet>
@@ -52,64 +66,24 @@ const GasSafetyNottingham = () => {
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />
-      <BreadcrumbSchema 
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "Gas Safety", href: "/services/gas-safety" },
-          { label: "Nottingham" }
-        ]} 
-      />
+      <BreadcrumbSchema items={breadcrumbItems} />
 
-      <div className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/placeholder.svg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10 text-white py-20">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 leading-tight">
-              Gas Safety Compliance – Nottingham
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200 font-light leading-relaxed">
-              PBSA & heritage structures — heightened media risk management.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                onClick={() => trackProposalRequest('gas-nottingham')}
-                asChild
-              >
-                <Link to="/contact">
-                  Book Audit
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="bg-white/10 text-white border-white hover:bg-white hover:text-charcoal"
-                onClick={() => trackDownload('gas-compliance-checklist')}
-              >
-                <Download className="w-5 h-5 mr-2" />
-                Download Gas Safety Checklist
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "Gas Safety", href: "/services/gas-safety" },
-          { label: "Nottingham" }
-        ]}
+      <ServiceHeroSection
+        breadcrumbItems={breadcrumbItems}
+        title="Gas Safety Compliance – Nottingham"
+        description="PBSA & heritage structures — heightened media risk management. Full compliance governance and boiler energy optimisation."
+        stats={heroStats}
+        primaryCTA={{
+          label: "Book Audit",
+          href: "/contact",
+          icon: ArrowRight
+        }}
+        secondaryCTA={{
+          label: "Download Checklist",
+          href: "#",
+          icon: Download
+        }}
+        backgroundImage="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070"
       />
 
       <div className="container mx-auto px-4 py-16">
