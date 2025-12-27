@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -407,13 +408,13 @@ const Contact = () => {
             </Card>
 
             <div className="mt-8 text-center">
-              <p className="text-muted-foreground mb-4">Prefer to talk? We're here 24/7</p>
+              <p className="text-muted-foreground mb-4">Need to report an issue? We're here 24/7</p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button size="lg" variant="outline" className="gap-2" asChild>
-                  <a href="tel:08001234567" onClick={handlePhoneClick}>
+                  <Link to="/fm-operations/helpdesk">
                     <Headphones className="w-5 h-5" />
-                    Call 24/7 Helpdesk
-                  </a>
+                    Report an Issue
+                  </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="gap-2" asChild>
                   <a href="mailto:hello@entirefm.co.uk">
