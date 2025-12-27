@@ -1,18 +1,51 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import { Card } from "@/components/ui/card";
+import { 
+  Calendar, 
+  Shield, 
+  ClipboardCheck, 
+  BarChart3,
+  ArrowRight,
+  FileText
+} from "lucide-react";
 
 const PPMDelivery = () => {
   const breadcrumbItems = [
-    { label: "FM Operations", href: "/services" },
+    { label: "FM Operations", href: "/fm-operations" },
     { label: "PPM Delivery & Scheduling" }
+  ];
+
+  const keyFeatures = [
+    {
+      icon: Calendar,
+      title: "SFG20 Aligned",
+      description: "Maintenance schedules aligned to industry-standard SFG20 frequencies"
+    },
+    {
+      icon: Shield,
+      title: "100% Statutory Compliance",
+      description: "All legal maintenance obligations tracked and delivered on time"
+    },
+    {
+      icon: ClipboardCheck,
+      title: "Defect Management",
+      description: "Systematic identification, tracking, and remediation of asset defects"
+    },
+    {
+      icon: BarChart3,
+      title: "Performance Reporting",
+      description: "Monthly dashboards showing schedule adherence and compliance status"
+    }
   ];
 
   const faqs = [
@@ -54,201 +87,243 @@ const PPMDelivery = () => {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="container mx-auto px-4 py-8">
-        <Breadcrumb items={breadcrumbItems} />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-          <div className="lg:col-span-2">
-            <section className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-light mb-6">
-                PPM Delivery & Scheduling
-              </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                Delivering statutory and non-statutory maintenance in line with SFG20 and risk frameworks.
-              </p>
-            </section>
+      <div className="min-h-screen bg-background">
+        <ServiceHeroSection
+          breadcrumbItems={breadcrumbItems}
+          title="PPM Delivery & Scheduling"
+          description="Delivering statutory and non-statutory maintenance in line with SFG20 and risk frameworks. Scheduled PPM ensuring compliance, asset reliability and transparent performance reporting."
+          stats={[
+            { value: "95", label: "Schedule Adherence", suffix: "%" },
+            { value: "100", label: "Statutory Compliance", suffix: "%" },
+            { value: "SFG20", label: "Aligned Standards" },
+            { value: "24/7", label: "CAFM Visibility" }
+          ]}
+          primaryCTA={{
+            label: "Request Proposal",
+            href: "/request-proposal",
+            icon: ArrowRight
+          }}
+          secondaryCTA={{
+            label: "View Compliance Services",
+            href: "/services/ppm",
+            icon: FileText
+          }}
+        />
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                PPM: The Foundation of Asset Reliability
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Planned Preventative Maintenance (PPM) is scheduled, proactive maintenance designed to prevent equipment failures, ensure statutory compliance, and extend asset lifespan. Unlike reactive maintenance (responding to breakdowns), PPM is planned, predictable, and cost-effective. It forms the operational backbone of competent facilities management—delivering legal compliance, asset reliability, and operational continuity.
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Effective PPM requires: Accurate asset registers, Risk-based maintenance frequencies (SFG20, manufacturer guidance, statutory requirements), Competent engineers (trade qualifications, system knowledge), Structured scheduling (CAFM systems, route optimisation), Defect management (remediation tracking, compliance escalation), Performance reporting (schedule adherence, compliance status, defect trends). Poor PPM delivery—missed inspections, inadequate records, delayed remediation—causes compliance failures, asset deterioration, and increased reactive costs.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Statutory vs Non-Statutory PPM
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Statutory Maintenance (Legal Requirement)</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed mb-3">
-                    Statutory PPM is mandated by health & safety legislation—failure to comply results in enforcement action, prosecution, or insurance invalidation. Key statutory maintenance includes:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 text-muted-foreground font-light">
-                    <li><strong>Electrical:</strong> Fixed wire testing (EICR) every 5 years (commercial), portable appliance testing (PAT) annually</li>
-                    <li><strong>Fire Safety:</strong> Fire alarm weekly tests, quarterly maintenance, annual certification. Emergency lighting monthly tests, annual certification</li>
-                    <li><strong>Gas Safety:</strong> Commercial gas appliances annual inspection (Gas Safety Regulations)</li>
-                    <li><strong>Water Hygiene:</strong> Legionella risk assessment every 2 years, monthly temperature checks, quarterly cleaning</li>
-                    <li><strong>Lifting Equipment:</strong> Lifts examined every 6 months (LOLER), thorough examination and testing</li>
-                    <li><strong>Pressure Systems:</strong> Written scheme of examination, periodic inspections (PSSR)</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Non-Statutory Maintenance (Best Practice)</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed mb-3">
-                    Non-statutory PPM is manufacturer-recommended maintenance not legally required but essential for asset reliability, warranty validity, and operational performance:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 text-muted-foreground font-light">
-                    <li>HVAC plant servicing (boilers, chillers, AHUs) typically quarterly or bi-annually</li>
-                    <li>BMS calibration and software updates annually</li>
-                    <li>Access control and security systems quarterly maintenance</li>
-                    <li>Building fabric inspections (roofs, drainage, glazing) annually</li>
-                    <li>Pumps, motors, fans—bearing lubrication, belt tension, vibration checks</li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                SFG20 & Risk-Based Maintenance Frequencies
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                SFG20 (published by CIBSE/BSRIA) provides industry-standard maintenance schedules for building services equipment. It defines task frequencies, inspection procedures, and competency requirements for statutory and non-statutory maintenance. SFG20 is the benchmark for PPM specification in UK FM contracts.
-              </p>
-              <div className="bg-muted/50 p-6 rounded-lg space-y-4">
-                <div>
-                  <h3 className="font-medium mb-2">Risk-Based Frequency Adjustment</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    While SFG20 provides baseline frequencies, risk assessments inform adjustments: High-risk environments (hospitals, data centres)—increased frequency. Redundant systems (duty/standby configurations)—maintained at higher frequency to ensure backup availability. Low-use equipment—frequency reduced but never below statutory minimums. Condition monitoring (IoT, predictive analytics)—informs dynamic scheduling.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Manufacturer Recommendations</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Equipment warranties often require adherence to manufacturer maintenance schedules. PPM frequencies must balance SFG20 guidance, statutory requirements, manufacturer warranties, and operational risk. Deviation from manufacturer schedules may void warranties—compliance is documented and auditable.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                PPM Scheduling & Operational Coordination
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">CAFM-Driven Scheduling</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    CAFM systems generate PPM schedules automatically—calculating due dates based on last completion, statutory frequencies, and risk profiles. Schedules are optimised by: Geographic clustering (minimise travel time), Trade grouping (electrical, HVAC, plumbing tasks batched), Building access (coordinate with occupant schedules), Seasonal priorities (HVAC pre-season checks). Engineers receive mobile task lists with asset locations, maintenance procedures, and completion forms. Real-time schedule updates ensure visibility and accountability.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Stakeholder Communication</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    PPM activities are communicated to building users via: Advance notifications (email, portal, signage), Access arrangements (out-of-hours works, restricted areas), System shutdowns (planned outages for critical maintenance), Completion confirmations (works completed, systems tested, access restored). Proactive communication minimises disruption and demonstrates professional service delivery.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Defect Management & Remediation
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                PPM inspections identify defects requiring remediation. Each defect is: Categorised (critical, priority, observation), Photographed (evidence capture), Risk-assessed (safety, compliance, operational impact), Logged in CAFM (tracked to resolution), Reported (monthly defect status, remediation progress). Critical defects trigger immediate action. Priority defects are scheduled for rectification within agreed timescales. Observations are addressed during routine maintenance or capital works.
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Defect tracking ensures issues do not remain unresolved. Monthly reporting shows: Open defects (by category, age, location), Remediation progress (works scheduled, completed, outstanding), Compliance impact (defects affecting statutory compliance escalated immediately). Transparent defect management prevents compliance failures and demonstrates asset stewardship.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Performance Reporting & Continuous Improvement
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Monthly PPM reporting includes: Schedule adherence (% tasks completed on time), Compliance certificate status (all in-date), Defect summary (open/closed by priority), Engineer performance (task completion rates, quality scores), Cost analysis (labour, parts, subcontractors). Performance data informs: PPM frequency optimisation (adjust based on defect trends), Asset replacement planning (recurring defects indicate end-of-life), Engineer training needs (competency gaps), Contract efficiency improvements.
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Continuous improvement culture uses PPM data to reduce reactive demand, improve compliance, and enhance asset reliability. Quarterly reviews with clients assess performance trends, identify strategic opportunities, and agree improvement initiatives.
-              </p>
-            </section>
-
-            <RelatedServices 
-              services={[
-                {
-                  title: "PPM Compliance",
-                  description: "Overview of PPM requirements and statutory maintenance obligations",
-                  link: "/services/ppm"
-                },
-                {
-                  title: "Reactive Maintenance",
-                  description: "24/7 fault response, SLA management and first-time fix focus",
-                  link: "/fm-operations/reactive-maintenance"
-                },
-                {
-                  title: "Asset Lifecycle Planning",
-                  description: "Condition-based forecasting and strategic capital planning",
-                  link: "/fm-operations/asset-lifecycle"
-                },
-                {
-                  title: "Building Inspections",
-                  description: "Comprehensive compliance audits and condition surveys",
-                  link: "/services/building-inspections"
-                }
-              ]}
-            />
-
-            <YouMayAlsoNeed 
-              services={[
-                {
-                  title: "UPS Maintenance",
-                  description: "Critical power continuity and battery testing as part of PPM schedules",
-                  url: "/services/critical/ups-maintenance"
-                },
-                {
-                  title: "Generator Maintenance",
-                  description: "Emergency power PPM with load bank testing and compliance validation",
-                  url: "/services/critical/generator-maintenance"
-                },
-                {
-                  title: "Thermal Imaging",
-                  description: "Predictive PPM using infrared diagnostics for electrical and building systems",
-                  url: "/services/critical/thermal-imaging"
-                }
-              ]}
-            />
-
-            <section className="mb-12">
-              <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
-                <h2 className="text-2xl font-light mb-4">Request PPM Delivery Proposal</h2>
-                <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                  Our PPM delivery service combines statutory compliance with risk-based maintenance strategies, ensuring asset reliability, legal adherence, and transparent performance reporting. Contact us to discuss your PPM requirements.
-                </p>
-                <Link 
-                  to="/request-proposal" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+        {/* Key Features */}
+        <section className="py-16 bg-background">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {keyFeatures.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  Request Proposal
-                </Link>
-              </div>
-            </section>
-
-            <FAQSection faqs={faqs} />
+                  <Card className="p-6 h-full hover:border-primary/50 transition-colors hover-lift">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
+                      <feature.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-medium mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <aside className="lg:col-span-1">
-            <SidebarCTA />
-          </aside>
-        </div>
+        {/* Main Content */}
+        <section className="py-16 bg-muted/30">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-12">
+                
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    PPM: The Foundation of Asset Reliability
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    Planned Preventative Maintenance (PPM) is scheduled, proactive maintenance designed to prevent equipment failures, ensure statutory compliance, and extend asset lifespan. Unlike reactive maintenance (responding to breakdowns), PPM is planned, predictable, and cost-effective. It forms the operational backbone of competent facilities management—delivering legal compliance, asset reliability, and operational continuity.
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Effective PPM requires: Accurate asset registers, Risk-based maintenance frequencies (SFG20, manufacturer guidance, statutory requirements), Competent engineers (trade qualifications, system knowledge), Structured scheduling (CAFM systems, route optimisation), Defect management (remediation tracking, compliance escalation), Performance reporting (schedule adherence, compliance status, defect trends). Poor PPM delivery—missed inspections, inadequate records, delayed remediation—causes compliance failures, asset deterioration, and increased reactive costs.
+                  </p>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Statutory vs Non-Statutory PPM
+                  </h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Statutory Maintenance (Legal Requirement)</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed mb-3">
+                        Statutory PPM is mandated by health & safety legislation—failure to comply results in enforcement action, prosecution, or insurance invalidation. Key statutory maintenance includes:
+                      </p>
+                      <ul className="list-disc list-inside space-y-2 text-muted-foreground font-light">
+                        <li><strong>Electrical:</strong> Fixed wire testing (EICR) every 5 years (commercial), portable appliance testing (PAT) annually</li>
+                        <li><strong>Fire Safety:</strong> Fire alarm weekly tests, quarterly maintenance, annual certification. Emergency lighting monthly tests, annual certification</li>
+                        <li><strong>Gas Safety:</strong> Commercial gas appliances annual inspection (Gas Safety Regulations)</li>
+                        <li><strong>Water Hygiene:</strong> Legionella risk assessment every 2 years, monthly temperature checks, quarterly cleaning</li>
+                        <li><strong>Lifting Equipment:</strong> Lifts examined every 6 months (LOLER), thorough examination and testing</li>
+                        <li><strong>Pressure Systems:</strong> Written scheme of examination, periodic inspections (PSSR)</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Non-Statutory Maintenance (Best Practice)</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed mb-3">
+                        Non-statutory PPM is manufacturer-recommended maintenance not legally required but essential for asset reliability, warranty validity, and operational performance:
+                      </p>
+                      <ul className="list-disc list-inside space-y-2 text-muted-foreground font-light">
+                        <li>HVAC plant servicing (boilers, chillers, AHUs) typically quarterly or bi-annually</li>
+                        <li>BMS calibration and software updates annually</li>
+                        <li>Access control and security systems quarterly maintenance</li>
+                        <li>Building fabric inspections (roofs, drainage, glazing) annually</li>
+                        <li>Pumps, motors, fans—bearing lubrication, belt tension, vibration checks</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    SFG20 & Risk-Based Maintenance Frequencies
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    SFG20 (published by CIBSE/BSRIA) provides industry-standard maintenance schedules for building services equipment. It defines task frequencies, inspection procedures, and competency requirements for statutory and non-statutory maintenance. SFG20 is the benchmark for PPM specification in UK FM contracts.
+                  </p>
+                  <div className="bg-muted/50 p-6 rounded-lg space-y-4">
+                    <div>
+                      <h3 className="font-medium mb-2">Risk-Based Frequency Adjustment</h3>
+                      <p className="text-sm text-muted-foreground font-light">
+                        While SFG20 provides baseline frequencies, risk assessments inform adjustments: High-risk environments (hospitals, data centres)—increased frequency. Redundant systems (duty/standby configurations)—maintained at higher frequency to ensure backup availability. Low-use equipment—frequency reduced but never below statutory minimums. Condition monitoring (IoT, predictive analytics)—informs dynamic scheduling.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium mb-2">Manufacturer Recommendations</h3>
+                      <p className="text-sm text-muted-foreground font-light">
+                        Equipment warranties often require adherence to manufacturer maintenance schedules. PPM frequencies must balance SFG20 guidance, statutory requirements, manufacturer warranties, and operational risk. Deviation from manufacturer schedules may void warranties—compliance is documented and auditable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    PPM Scheduling & Operational Coordination
+                  </h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">CAFM-Driven Scheduling</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        CAFM systems generate PPM schedules automatically—calculating due dates based on last completion, statutory frequencies, and risk profiles. Schedules are optimised by: Geographic clustering (minimise travel time), Trade grouping (electrical, HVAC, plumbing tasks batched), Building access (coordinate with occupant schedules), Seasonal priorities (HVAC pre-season checks). Engineers receive mobile task lists with asset locations, maintenance procedures, and completion forms. Real-time schedule updates ensure visibility and accountability.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Stakeholder Communication</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        PPM activities are communicated to building users via: Advance notifications (email, portal, signage), Access arrangements (out-of-hours works, restricted areas), System shutdowns (planned outages for critical maintenance), Completion confirmations (works completed, systems tested, access restored). Proactive communication minimises disruption and demonstrates professional service delivery.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Defect Management & Remediation
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    PPM inspections identify defects requiring remediation. Each defect is: Categorised (critical, priority, observation), Photographed (evidence capture), Risk-assessed (safety, compliance, operational impact), Logged in CAFM (tracked to resolution), Reported (monthly defect status, remediation progress). Critical defects trigger immediate action. Priority defects are scheduled for rectification within agreed timescales. Observations are addressed during routine maintenance or capital works.
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Defect tracking ensures issues do not remain unresolved. Monthly reporting shows: Open defects (by category, age, location), Remediation progress (works scheduled, completed, outstanding), Compliance impact (defects affecting statutory compliance escalated immediately). Transparent defect management prevents compliance failures and demonstrates asset stewardship.
+                  </p>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Performance Reporting & Continuous Improvement
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    Monthly PPM reporting includes: Schedule adherence (% tasks completed on time), Compliance certificate status (all in-date), Defect summary (open/closed by priority), Engineer performance (task completion rates, quality scores), Cost analysis (labour, parts, subcontractors). Performance data informs: PPM frequency optimisation (adjust based on defect trends), Asset replacement planning (recurring defects indicate end-of-life), Engineer training needs (competency gaps), Contract efficiency improvements.
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Continuous improvement culture uses PPM data to reduce reactive demand, improve compliance, and enhance asset reliability. Quarterly reviews with clients assess performance trends, identify strategic opportunities, and agree improvement initiatives.
+                  </p>
+                </div>
+
+                <RelatedServices 
+                  services={[
+                    {
+                      title: "PPM Compliance",
+                      description: "Overview of PPM requirements and statutory maintenance obligations",
+                      link: "/services/ppm"
+                    },
+                    {
+                      title: "Reactive Maintenance",
+                      description: "24/7 fault response, SLA management and first-time fix focus",
+                      link: "/fm-operations/reactive-maintenance"
+                    },
+                    {
+                      title: "Asset Lifecycle Planning",
+                      description: "Condition-based forecasting and strategic capital planning",
+                      link: "/fm-operations/asset-lifecycle"
+                    },
+                    {
+                      title: "Building Inspections",
+                      description: "Comprehensive compliance audits and condition surveys",
+                      link: "/services/building-inspections"
+                    }
+                  ]}
+                />
+
+                <YouMayAlsoNeed 
+                  services={[
+                    {
+                      title: "UPS Maintenance",
+                      description: "Critical power continuity and battery testing as part of PPM schedules",
+                      url: "/services/critical/ups-maintenance"
+                    },
+                    {
+                      title: "Generator Maintenance",
+                      description: "Emergency power PPM with load bank testing and compliance validation",
+                      url: "/services/critical/generator-maintenance"
+                    },
+                    {
+                      title: "Thermal Imaging",
+                      description: "Predictive PPM using infrared diagnostics for electrical and building systems",
+                      url: "/services/critical/thermal-imaging"
+                    }
+                  ]}
+                />
+
+                <section>
+                  <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
+                    <h2 className="text-2xl font-light mb-4">Request PPM Delivery Proposal</h2>
+                    <p className="text-muted-foreground font-light leading-relaxed mb-6">
+                      Our PPM delivery service provides structured, compliant maintenance across commercial estates. We deliver statutory and non-statutory maintenance aligned to SFG20, with transparent reporting and proactive defect management.
+                    </p>
+                    <Link 
+                      to="/request-proposal" 
+                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                    >
+                      Request PPM Proposal
+                    </Link>
+                  </div>
+                </section>
+
+                <FAQSection faqs={faqs} />
+              </div>
+
+              <aside className="lg:col-span-1">
+                <SidebarCTA />
+              </aside>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

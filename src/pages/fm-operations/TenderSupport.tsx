@@ -1,17 +1,50 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import { Card } from "@/components/ui/card";
+import { 
+  FileText, 
+  Scale, 
+  CheckSquare, 
+  Handshake,
+  ArrowRight,
+  ClipboardList
+} from "lucide-react";
 
 const TenderSupport = () => {
   const breadcrumbItems = [
-    { label: "FM Operations", href: "/services" },
+    { label: "FM Operations", href: "/fm-operations" },
     { label: "FM Tender Support & Bid Advisory" }
+  ];
+
+  const keyFeatures = [
+    {
+      icon: FileText,
+      title: "Specification Development",
+      description: "Clear, measurable requirements aligned to SFG20 and statutory standards"
+    },
+    {
+      icon: Scale,
+      title: "Evaluation Framework",
+      description: "Objective quality/price scoring with defensible methodology"
+    },
+    {
+      icon: CheckSquare,
+      title: "Procurement Compliance",
+      description: "Public Contracts Regulations compliant processes"
+    },
+    {
+      icon: Handshake,
+      title: "Contract Negotiation",
+      description: "Balanced terms, risk allocation, and commercial structures"
+    }
   ];
 
   const faqs = [
@@ -53,163 +86,193 @@ const TenderSupport = () => {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="container mx-auto px-4 py-8">
-        <Breadcrumb items={breadcrumbItems} />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-          <div className="lg:col-span-2">
-            <section className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-light mb-6">
-                FM Tender Support & Bid Advisory
-              </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                Clear technical input for estates teams preparing FM tenders.
-              </p>
-            </section>
+      <div className="min-h-screen bg-background">
+        <ServiceHeroSection
+          breadcrumbItems={breadcrumbItems}
+          title="FM Tender Support & Bid Advisory"
+          description="Clear technical input for estates teams preparing FM tenders. Professional procurement assistance from specification through contract award."
+          stats={[
+            { value: "PCR", label: "Compliant" },
+            { value: "60/40", label: "Quality/Price" },
+            { value: "SFG20", label: "Aligned" },
+            { value: "ITT", label: "Ready" }
+          ]}
+          primaryCTA={{
+            label: "Request Support",
+            href: "/request-proposal",
+            icon: ArrowRight
+          }}
+          secondaryCTA={{
+            label: "View Mobilisation",
+            href: "/fm-operations/mobilisation",
+            icon: ClipboardList
+          }}
+        />
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Tender Support: Professional Procurement Assistance
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                FM procurement is complex—requiring technical specification expertise, procurement process knowledge, commercial acumen, and mobilization planning. Organizations without internal FM procurement capability risk: Poor specifications (ambiguous requirements, inadequate detail—disputes arise), Weak evaluation (subjective decisions, inadequate contractor assessment), Commercial disadvantage (unfavorable contract terms, excessive costs), Failed mobilization (service disruption, compliance gaps). Professional tender support delivers: Technical specification development (clear, measurable requirements), Procurement process management (compliant, efficient execution), Evaluation framework design (objective contractor assessment), Contract negotiation support (favorable commercial terms), Mobilization planning (smooth transition, Day 1 readiness).
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Tender support is particularly valuable for: Major contract re-tenders (IFM, multi-million pound value), Complex portfolios (multi-site, diverse building types), Public sector procurement (Public Contracts Regulations compliance), Organizations without procurement expertise (first tender, limited internal capability). Our tender support service combines FM technical expertise with procurement professionalism—ensuring specifications are compliant, processes are robust, and outcomes deliver value. We act as client advisor—independent, objective, focused solely on achieving best procurement outcome.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Technical Specification Development
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Service Scope Definition & Requirements Capture</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Specification development process: Stakeholder engagement (understand operational requirements, current pain points, improvement priorities), Asset data review (verify building systems, condition, age—inform maintenance requirements), Compliance assessment (identify statutory obligations—electrical, fire, gas, water, lifting equipment), Service categorization (hard services, soft services, specialist—define boundaries clearly), Standards definition (quality levels, frequencies, response times—align to SFG20, BS standards, risk-based assessment). Specification outputs: Service schedules (detailed activity lists, frequencies, standards), Performance framework (KPIs, SLAs, reporting requirements), Statutory compliance schedule (all legal obligations listed with frequencies), Commercial structure (payment mechanisms, variations, incentives). Specification must be: Clear (unambiguous language, measurable requirements—prevent disputes), Comprehensive (cover all services, no gaps—avoid scope creep), Proportionate (appropriate detail level—not over/under-specified), Output-focused (what to achieve, not prescriptive how—allow innovation).
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Performance Framework & KPI Design</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    KPI framework design: Reactive maintenance (response times, resolution times, first-time fix rates—target 80%+), PPM delivery (schedule adherence—target 95%+), Compliance status (certificates in-date, statutory maintenance current—target 100%), Helpdesk performance (call answer times, customer satisfaction—target NPS 50+), Cost control (budget adherence, variation management—target ±5%), Safety (incident rates, near-misses—target zero harm). KPIs must be: Measurable (objective data collection, no subjective assessment), Achievable (realistic targets given asset condition, budget), Relevant (align to organizational priorities—not arbitrary metrics), Incentivized (link to payment, contract extensions—drive performance). Performance reporting: Monthly dashboards (real-time visibility), Quarterly reviews (trend analysis, improvement actions), Annual assessment (contract performance evaluation, lessons learned). Well-designed KPIs drive contractor performance—poorly designed KPIs create gaming, disputes, and misaligned behaviors.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Commercial Structure & Payment Mechanisms</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Commercial model options: <strong>Fixed price:</strong> Predictable annual cost, contractor bears risk—appropriate for stable, well-defined scope. <strong>Cost-plus:</strong> Transparent costs, client bears risk—appropriate for uncertain scope, requires open-book accounting. <strong>Gainshare/painshare:</strong> Share savings/overruns—aligns interests for cost improvement, requires baseline agreement. <strong>Hybrid:</strong> Fixed price PPM, cost-plus reactive—balances predictability with flexibility. Payment terms: Monthly/quarterly payments (cashflow management), Performance deductions (KPI failures penalized—incentivize compliance), Variation procedures (add/remove services—clear pricing basis), Indexation (inflation adjustments—CPI, wage inflation). Commercial structure must balance: Risk allocation (fair distribution between parties), Cost certainty (client budget predictability vs contractor flexibility), Performance incentives (reward excellence, penalize failures), Transparency (understand cost drivers, validate value for money).
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Procurement Process Management
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Market Engagement & Pre-Qualification</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Pre-tender market activities: Soft market testing (engage suppliers informally—understand capability, pricing ranges, innovation), Supplier days (present opportunity, Q&A sessions—increase competition, improve bid quality), Pre-qualification (assess financial stability, capability, track record—shortlist suitable bidders). Pre-qualification criteria: Financial standing (turnover, profit, credit rating—demonstrate stability), Technical capability (qualifications, accreditations, resources—evidence competence), Experience (relevant contract examples, client references—demonstrate track record), Health & safety (policies, incident rates, prosecutions—evidence safety culture). Pre-qualification prevents: Time wasted evaluating unsuitable bidders, Risk of contractor failure (inadequate financial stability, capability gaps), Poor bid quality (bidders without relevant experience submitting generic proposals). Typically 3-6 pre-qualified bidders invited to tender—balance competition with evaluation resource.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">ITT Documentation & Tender Period Management</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    ITT (Invitation to Tender) package includes: Executive summary (opportunity overview, key requirements), Service specification (detailed requirements, standards, frequencies), Contract terms (draft agreement, payment terms, KPIs), Pricing schedule (transparent cost breakdown template), Evaluation criteria (quality/price weighting, scoring methodology), Tender timetable (submission deadline, evaluation period, contract award date). Tender period management: Issue ITT (simultaneous to all bidders—ensure fairness), Clarification period (bidder questions answered, amendments issued to all), Site visits (enable bidders to assess buildings, meet stakeholders), Deadline management (strict submission deadline—late bids rejected). ITT must be: Complete (all information for informed bidding), Clear (unambiguous requirements, transparent evaluation), Fair (equal treatment of bidders, no preferential information), Compliant (Public Contracts Regulations if applicable—prevent legal challenges). Poor ITT documentation causes: Low-quality bids (bidders lack information for comprehensive proposals), Evaluation difficulties (incomplete/inconsistent responses), Commercial disputes (ambiguities interpreted differently).
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Bid Evaluation & Contractor Selection
-              </h2>
-              <div className="bg-muted/50 p-6 rounded-lg space-y-4">
-                <div>
-                  <h3 className="font-medium mb-2">Quality & Price Evaluation</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Evaluation criteria weighting: Typically 60-70% quality (technical methodology, resources, track record, innovation), 30-40% price (total cost, value for money). Quality assessment: Technical capability (methodology, compliance understanding, risk mitigation), Resources (engineer numbers, qualifications, management structure), Track record (references, case studies, relevant experience), Social value (local employment, apprenticeships, sustainability). Price assessment: Total contract value (compare like-for-like), Cost breakdown (understand cost drivers, validate reasonableness), Value for money (quality vs price balance—cheapest not always best). Scoring methodology: Defined scoring scales (0-10, clear definitions for each score), Weighted scores (quality and price combined according to weighting), Moderation (panel review, consensus—ensure consistency). Evaluation must be: Objective (criteria-based, not subjective preferences), Documented (scoring justifications, audit trail—defensible decisions), Consistent (same standards applied to all bidders—prevent bias).
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Due Diligence & Reference Checks</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Contractor due diligence: Financial checks (credit reports, accounts analysis—validate financial stability), Reference checks (contact existing clients—verify performance claims), Site visits (inspect current contracts—assess actual delivery quality), Insurance verification (confirm adequate cover levels—public/employer's liability, professional indemnity), Accreditations (SafeContractor, CHAS, Constructionline—validate health & safety competence). Due diligence prevents: Contractor failure (financial collapse mid-contract), Performance issues (capability claims not matched by reality), Insurance gaps (inadequate cover—client liability exposure). Thorough due diligence complements tender evaluation—validating bidder claims before contract award.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Contract Negotiation & Award</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Final negotiation with preferred bidder: Clarify ambiguities (resolve specification uncertainties), Negotiate commercial terms (payment schedules, liability caps, termination provisions), Finalize KPIs (agree targets, reporting, performance deductions), Mobilization planning (transition timeline, resource allocation, risk mitigation). Contract award: Formal notification (preferred bidder, standstill period if public sector), Unsuccessful bidder feedback (explain decision, support continuous improvement), Contract execution (sign formal agreement—legal binding), Mobilization commencement (transition programme activates). Professional negotiation ensures: Balanced risk allocation (fair terms for both parties), Commercial clarity (no ambiguities causing future disputes), Mobilization readiness (smooth transition from Day 1).
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Mobilization Planning & Transition Support
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Mobilization planning ensures smooth transition: Transition programme (detailed timeline—pre-go-live, Day 1, post-go-live stabilization), Asset data handover (verify registers, conduct surveys, update CAFM), Compliance gap analysis (identify missing certificates, overdue inspections—agree catch-up schedule), TUPE management (staff transfers, competency validation, induction), Technology setup (CAFM configuration, helpdesk integration, reporting dashboards), Stakeholder communications (occupier notifications, contractor introductions). Mobilization risks: Compliance gaps (undiscovered issues—costly emergency works), Asset data inaccuracies (missing equipment—impacts PPM scheduling), TUPE complications (staff disputes, skills gaps), Service disruption (Day 1 failures—occupier complaints).
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Mobilization support activities: Project management (coordinate parties, manage timeline), Risk management (identify issues early, implement mitigations), Go-live readiness reviews (checkpoint assessments, sign-off criteria), Post-go-live support (issue resolution, performance monitoring—30-90 days). Professional mobilization support prevents service disruption, compliance failures, and commercial disputes—setting foundation for successful long-term contract performance. See Mobilisation service for detailed transition management.
-              </p>
-            </section>
-
-            <RelatedServices 
-              services={[
-                {
-                  title: "FM Strategy",
-                  description: "Strategic estate performance consultancy and optimization",
-                  link: "/fm-operations/fm-strategy"
-                },
-                {
-                  title: "FM Mobilisation",
-                  description: "Structured contract transition and handover management",
-                  link: "/fm-operations/mobilisation"
-                },
-                {
-                  title: "Building Inspections",
-                  description: "Pre-tender compliance audits and condition surveys",
-                  link: "/services/building-inspections"
-                },
-                {
-                  title: "Asset Lifecycle Planning",
-                  description: "Capital forecasting for tender submissions",
-                  link: "/fm-operations/asset-lifecycle"
-                }
-              ]}
-            />
-
-            <section className="mb-12">
-              <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
-                <h2 className="text-2xl font-light mb-4">Request Tender Support</h2>
-                <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                  Our tender support service provides professional procurement assistance for FM contracts—from specification development through evaluation to mobilization. We deliver compliant, efficient procurement achieving best value outcomes. Contact us to discuss your tender requirements.
-                </p>
-                <Link 
-                  to="/request-proposal" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+        {/* Key Features */}
+        <section className="py-16 bg-background">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {keyFeatures.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  Request Tender Support
-                </Link>
-              </div>
-            </section>
-
-            <FAQSection faqs={faqs} />
+                  <Card className="p-6 h-full hover:border-primary/50 transition-colors hover-lift">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
+                      <feature.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-medium mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <aside className="lg:col-span-1">
-            <SidebarCTA />
-          </aside>
-        </div>
+        {/* Main Content */}
+        <section className="py-16 bg-muted/30">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-12">
+                
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Tender Support: Professional Procurement Assistance
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    FM procurement is complex—requiring technical specification expertise, procurement process knowledge, commercial acumen, and mobilization planning. Organizations without internal FM procurement capability risk: Poor specifications (ambiguous requirements, inadequate detail—disputes arise), Weak evaluation (subjective decisions, inadequate contractor assessment), Commercial disadvantage (unfavorable contract terms, excessive costs), Failed mobilization (service disruption, compliance gaps). Professional tender support delivers: Technical specification development (clear, measurable requirements), Procurement process management (compliant, efficient execution), Evaluation framework design (objective contractor assessment), Contract negotiation support (favorable commercial terms), Mobilization planning (smooth transition, Day 1 readiness).
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Tender support is particularly valuable for: Major contract re-tenders (IFM, multi-million pound value), Complex portfolios (multi-site, diverse building types), Public sector procurement (Public Contracts Regulations compliance), Organizations without procurement expertise (first tender, limited internal capability). Our tender support service combines FM technical expertise with procurement professionalism—ensuring specifications are compliant, processes are robust, and outcomes deliver value. We act as client advisor—independent, objective, focused solely on achieving best procurement outcome.
+                  </p>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Technical Specification Development
+                  </h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Service Scope Definition & Requirements Capture</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Specification development process: Stakeholder engagement (understand operational requirements, current pain points, improvement priorities), Asset data review (verify building systems, condition, age—inform maintenance requirements), Compliance assessment (identify statutory obligations—electrical, fire, gas, water, lifting equipment), Service categorization (hard services, soft services, specialist—define boundaries clearly), Standards definition (quality levels, frequencies, response times—align to SFG20, BS standards, risk-based assessment). Specification outputs: Service schedules (detailed activity lists, frequencies, standards), Performance framework (KPIs, SLAs, reporting requirements), Statutory compliance schedule (all legal obligations listed with frequencies), Commercial structure (payment mechanisms, variations, incentives). Specification must be: Clear (unambiguous language, measurable requirements—prevent disputes), Comprehensive (cover all services, no gaps—avoid scope creep), Proportionate (appropriate detail level—not over/under-specified), Output-focused (what to achieve, not prescriptive how—allow innovation).
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Performance Framework & KPI Design</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        KPI framework design: Reactive maintenance (response times, resolution times, first-time fix rates—target 80%+), PPM delivery (schedule adherence—target 95%+), Compliance status (certificates in-date, statutory maintenance current—target 100%), Helpdesk performance (call answer times, customer satisfaction—target NPS 50+), Cost control (budget adherence, variation management—target ±5%), Safety (incident rates, near-misses—target zero harm). KPIs must be: Measurable (objective data collection, no subjective assessment), Achievable (realistic targets given asset condition, budget), Relevant (align to organizational priorities—not arbitrary metrics), Incentivized (link to payment, contract extensions—drive performance). Performance reporting: Monthly dashboards (real-time visibility), Quarterly reviews (trend analysis, improvement actions), Annual assessment (contract performance evaluation, lessons learned). Well-designed KPIs drive contractor performance—poorly designed KPIs create gaming, disputes, and misaligned behaviors.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Commercial Structure & Payment Mechanisms</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Commercial model options: <strong>Fixed price:</strong> Predictable annual cost, contractor bears risk—appropriate for stable, well-defined scope. <strong>Cost-plus:</strong> Transparent costs, client bears risk—appropriate for uncertain scope, requires open-book accounting. <strong>Gainshare/painshare:</strong> Share savings/overruns—aligns interests for cost improvement, requires baseline agreement. <strong>Hybrid:</strong> Fixed price PPM, cost-plus reactive—balances predictability with flexibility. Payment terms: Monthly/quarterly payments (cashflow management), Performance deductions (KPI failures penalized—incentivize compliance), Variation procedures (add/remove services—clear pricing basis), Indexation (inflation adjustments—CPI, wage inflation). Commercial structure must balance: Risk allocation (fair distribution between parties), Cost certainty (client budget predictability vs contractor flexibility), Performance incentives (reward excellence, penalize failures), Transparency (understand cost drivers, validate value for money).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Procurement Process Management
+                  </h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Market Engagement & Pre-Qualification</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Pre-tender market activities: Soft market testing (engage suppliers informally—understand capability, pricing ranges, innovation), Supplier days (present opportunity, Q&A sessions—increase competition, improve bid quality), Pre-qualification (assess financial stability, capability, track record—shortlist suitable bidders). Pre-qualification criteria: Financial standing (turnover, profit, credit rating—demonstrate stability), Technical capability (qualifications, accreditations, resources—evidence competence), Experience (relevant contract examples, client references—demonstrate track record), Health & safety (policies, incident rates, prosecutions—evidence safety culture). Pre-qualification prevents: Time wasted evaluating unsuitable bidders, Risk of contractor failure (inadequate financial stability, capability gaps), Poor bid quality (bidders without relevant experience submitting generic proposals). Typically 3-6 pre-qualified bidders invited to tender—balance competition with evaluation resource.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">ITT Documentation & Tender Period Management</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        ITT (Invitation to Tender) package includes: Executive summary (opportunity overview, key requirements), Service specification (detailed requirements, standards, frequencies), Contract terms (draft agreement, payment terms, KPIs), Pricing schedule (transparent cost breakdown template), Evaluation criteria (quality/price weighting, scoring methodology), Tender timetable (submission deadline, evaluation period, contract award date). Tender period management: Issue ITT (simultaneous to all bidders—ensure fairness), Clarification period (bidder questions answered, amendments issued to all), Site visits (enable bidders to assess buildings, meet stakeholders), Deadline management (strict submission deadline—late bids rejected). ITT must be: Complete (all information for informed bidding), Clear (unambiguous requirements, transparent evaluation), Fair (equal treatment of bidders, no preferential information), Compliant (Public Contracts Regulations if applicable—prevent legal challenges). Poor ITT documentation causes: Low-quality bids (bidders lack information for comprehensive proposals), Evaluation difficulties (incomplete/inconsistent responses), Commercial disputes (ambiguities interpreted differently).
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Bid Evaluation & Contractor Selection
+                  </h2>
+                  <div className="bg-muted/50 p-6 rounded-lg space-y-4">
+                    <div>
+                      <h3 className="font-medium mb-2">Quality & Price Evaluation</h3>
+                      <p className="text-sm text-muted-foreground font-light">
+                        Evaluation weighting: Typical 60% quality, 40% price (quality-focused) or 50/50 (balanced). Quality criteria: Technical capability, methodology, resources, track record, innovation. Price evaluation: Total cost comparison, value for money assessment, pricing realism (identify unsustainably low bids). Scoring methodology: Clear definitions for each score level, consistent panel application, documented justification.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium mb-2">Due Diligence & Reference Checks</h3>
+                      <p className="text-sm text-muted-foreground font-light">
+                        Reference checks: Contact existing clients, verify claims, assess performance on similar contracts. Financial due diligence: Credit checks, accounts review, assess contractor financial stability. Site visits: Inspect current contract delivery, meet operational teams, assess real-world performance. Due diligence prevents: Selecting contractors with poor performance history, Financial failures mid-contract, Capability gaps discovered post-award.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium mb-2">Award & Contract Negotiation</h3>
+                      <p className="text-sm text-muted-foreground font-light">
+                        Preferred bidder selection: Highest-scoring bidder subject to due diligence and contract negotiation. Contract negotiation: Clarify ambiguities, agree variations to draft terms, finalize commercial arrangements. Standstill period (public sector): Mandatory 10-day notification period before contract signature. Contract execution: Formal signing, mobilization planning commencement, project governance establishment.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <RelatedServices 
+                  services={[
+                    {
+                      title: "FM Mobilisation",
+                      description: "Contract transition and Day 1 readiness",
+                      link: "/fm-operations/mobilisation"
+                    },
+                    {
+                      title: "FM Strategy",
+                      description: "Operating model design and procurement strategy",
+                      link: "/fm-operations/fm-strategy"
+                    },
+                    {
+                      title: "PPM Delivery",
+                      description: "Post-contract statutory maintenance delivery",
+                      link: "/fm-operations/ppm-delivery"
+                    },
+                    {
+                      title: "Technical Helpdesk",
+                      description: "Reactive support operational from Day 1",
+                      link: "/fm-operations/helpdesk"
+                    }
+                  ]}
+                />
+
+                <section>
+                  <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
+                    <h2 className="text-2xl font-light mb-4">Request Tender Support</h2>
+                    <p className="text-muted-foreground font-light leading-relaxed mb-6">
+                      Our tender support service provides professional procurement assistance—from specification development through contract award. We deliver compliant processes, objective evaluation, and successful outcomes for FM procurements of all sizes.
+                    </p>
+                    <Link 
+                      to="/request-proposal" 
+                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                    >
+                      Request Tender Support
+                    </Link>
+                  </div>
+                </section>
+
+                <FAQSection faqs={faqs} />
+              </div>
+
+              <aside className="lg:col-span-1">
+                <SidebarCTA />
+              </aside>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
