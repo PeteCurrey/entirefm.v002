@@ -107,9 +107,10 @@ const FMOperations = () => {
         <meta name="keywords" content="FM operations, PPM delivery, facilities helpdesk, reactive maintenance, asset lifecycle management, mobilisation, business continuity, occupier experience" />
       </Helmet>
 
-      <Breadcrumb items={breadcrumbItems} />
-
       <div className="min-h-screen bg-background pt-20">
+        <div className="container mx-auto px-4 py-4">
+          <Breadcrumb items={breadcrumbItems} />
+        </div>
         {/* Hero Section */}
         <section className="relative py-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
