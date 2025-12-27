@@ -97,7 +97,7 @@ const Contact = () => {
     onClick: handlePhoneClick
   }, {
     icon: Mail,
-    title: "Direct Email Channel",
+    title: "Send us an Email",
     subtitle: "Immediate Triage",
     description: "Your email goes straight to the right team. No waiting in queues.",
     action: "hello@entirefm.co.uk",
