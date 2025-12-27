@@ -97,7 +97,7 @@ const Contact = () => {
     {
       icon: Headphones,
       title: "24/7 Helpdesk",
-      subtitle: "Always Answered by a Person",
+      subtitle: "24/7 Maintenance Support & Site Monitoring",
       description: "No voicemail nonsense. No excuses. Real people, real-time response.",
       action: "Call 0800 123 4567",
       href: "tel:08001234567",
