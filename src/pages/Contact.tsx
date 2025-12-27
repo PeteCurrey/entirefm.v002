@@ -263,12 +263,12 @@ const Contact = () => {
         {/* UK Coverage Section */}
         <section className="py-16 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center font-light text-3xl">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   Nationwide Facilities Management
                 </h2>
-                <p className="text-xl text-muted-foreground mb-6">
+                <p className="text-lg text-muted-foreground mb-6">
                   Engineer coverage across the country with central coordination for:
                 </p>
                 
@@ -279,7 +279,7 @@ const Contact = () => {
                     </div>)}
                 </div>
 
-                <p className="text-xl font-bold mt-8 text-primary">
+                <p className="text-lg font-semibold mt-8 text-primary">
                   We're always local — everywhere you operate.
                 </p>
               </div>
@@ -287,43 +287,33 @@ const Contact = () => {
               <Card className="p-8 bg-gradient-to-br from-primary/5 to-accent/5">
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <Phone className="w-8 h-8 text-primary flex-shrink-0" />
+                    <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="text-xl font-bold mb-1">24/7 Helpdesk</h3>
-                      <a href="tel:08001234567" className="text-2xl text-primary hover:underline">
-                        0800 123 4567
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Mail className="w-8 h-8 text-primary flex-shrink-0" />
-                    <div>
-                      <h3 className="text-xl font-bold mb-1">Email</h3>
-                      <a href="mailto:hello@entirefm.co.uk" className="text-lg text-primary hover:underline">
+                      <h3 className="text-lg font-bold mb-1">Email</h3>
+                      <a href="mailto:hello@entirefm.co.uk" className="text-primary hover:underline">
                         hello@entirefm.co.uk
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <MapPin className="w-8 h-8 text-primary flex-shrink-0" />
+                    <MapPin className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="text-xl font-bold mb-1">Head Office</h3>
+                      <h3 className="text-lg font-bold mb-1">Head Office</h3>
                       <p className="text-muted-foreground">
-                        London Office<br />
-                        United Kingdom
+                        2 Old Brick Works Lane<br />
+                        Chesterfield S41 7JD
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <Users className="w-8 h-8 text-primary flex-shrink-0" />
+                    <Users className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="text-xl font-bold mb-1">Office Hours</h3>
+                      <h3 className="text-lg font-bold mb-1">Office Hours</h3>
                       <p className="text-muted-foreground">
-                        Monday - Friday: 8am - 6pm<br />
-                        Emergency line: 24/7/365
+                        Monday – Friday: 8am – 6pm<br />
+                        Helpdesk: 24/7/365
                       </p>
                     </div>
                   </div>
