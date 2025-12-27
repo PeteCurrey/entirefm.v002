@@ -1,17 +1,50 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import { Card } from "@/components/ui/card";
+import { 
+  Users, 
+  MessageSquare, 
+  Star, 
+  TrendingUp,
+  ArrowRight,
+  Headphones
+} from "lucide-react";
 
 const OccupierExperience = () => {
   const breadcrumbItems = [
-    { label: "FM Operations", href: "/services" },
+    { label: "FM Operations", href: "/fm-operations" },
     { label: "Occupier Experience & Tenant Engagement" }
+  ];
+
+  const keyFeatures = [
+    {
+      icon: Star,
+      title: "Satisfaction Tracking",
+      description: "NPS surveys, real-time feedback, and performance benchmarking"
+    },
+    {
+      icon: MessageSquare,
+      title: "Proactive Communication",
+      description: "Advance notifications, status updates, and transparent reporting"
+    },
+    {
+      icon: Users,
+      title: "Building Manager Support",
+      description: "Client-facing representatives driving stakeholder engagement"
+    },
+    {
+      icon: TrendingUp,
+      title: "Continuous Improvement",
+      description: "Data-driven insights informing service refinements"
+    }
   ];
 
   const faqs = [
@@ -53,169 +86,211 @@ const OccupierExperience = () => {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="container mx-auto px-4 py-8">
-        <Breadcrumb items={breadcrumbItems} />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-          <div className="lg:col-span-2">
-            <section className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-light mb-6">
-                Occupier Experience & Tenant Engagement
-              </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                Enhancing satisfaction, communication and building usability through structured FM delivery.
-              </p>
-            </section>
+      <div className="min-h-screen bg-background">
+        <ServiceHeroSection
+          breadcrumbItems={breadcrumbItems}
+          title="Occupier Experience & Tenant Engagement"
+          description="Enhancing satisfaction, communication and building usability through structured FM delivery and proactive service management."
+          stats={[
+            { value: "+50", label: "Target NPS" },
+            { value: "80", label: "First-Time Fix", suffix: "%" },
+            { value: "24hr", label: "Acknowledgement" },
+            { value: "100", label: "Transparency", suffix: "%" }
+          ]}
+          primaryCTA={{
+            label: "Request Proposal",
+            href: "/request-proposal",
+            icon: ArrowRight
+          }}
+          secondaryCTA={{
+            label: "Contact Helpdesk",
+            href: "/fm-operations/helpdesk",
+            icon: Headphones
+          }}
+        />
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Occupier Experience: Beyond Technical Delivery
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Occupier experience encompasses all interactions between building users and facilities services. While technical competence—reliable HVAC, compliant electrical systems, functioning access control—is essential, occupier satisfaction depends equally on: Responsive communication (advance notifications, status updates), Fast resolution (helpdesk response, first-time fix), Professional conduct (courteous engineers, minimal disruption), Proactive service (issues resolved before complaints). Poor occupier experience—regardless of technical excellence—causes tenant complaints, lease non-renewals, and reputational damage.
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Commercial landlords, corporate occupiers, and residential operators increasingly prioritize occupier satisfaction as competitive differentiator. High satisfaction delivers: Tenant retention (reduced churn, lease renewals), Rental premiums (desirable buildings command higher rents), Employer branding (workplace experience attracts talent), ESG credentials (wellbeing, satisfaction metrics support social value reporting). Our occupier-focused FM delivery combines technical competence with communication, responsiveness, and stakeholder engagement—translating engineering excellence into positive user experiences.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Measuring Occupier Satisfaction
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Satisfaction Surveys & Feedback Mechanisms</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Regular satisfaction surveys (quarterly or bi-annually) assess: Overall satisfaction (1-10 scale, benchmarked against industry standards), Service category performance (helpdesk, maintenance, cleaning, comfort), Communication effectiveness (advance notices, responsiveness, clarity), Improvement priorities (what matters most to occupiers). Post-service feedback (automated after helpdesk resolution) captures real-time satisfaction—identifying individual service failures and performance trends. Surveys use standardized questions enabling longitudinal tracking and peer benchmarking.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Net Promoter Score (NPS) & Benchmarking</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    NPS measures likelihood to recommend building/FM service (0-10 scale): Promoters (9-10)—highly satisfied, advocates; Passives (7-8)—satisfied but unenthusiastic; Detractors (0-6)—dissatisfied, risk of churn. NPS = % Promoters - % Detractors. Industry benchmarks: Excellent ({'>'} +50), Good (+30 to +50), Average (+10 to +30), Poor ({'<'} +10). NPS provides single-metric satisfaction indicator enabling trend tracking and competitive benchmarking. High NPS correlates with tenant retention, referrals, and lease renewals.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Complaint Analysis & Resolution Tracking</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Complaint data reveals satisfaction pain points: Complaint frequency (total per month, per occupier), Complaint categories (HVAC, cleanliness, access, communication), Resolution time (average days to close), Repeat complaints (chronic issues indicating systemic problems). Analysis identifies: Service gaps (recurring issues requiring process improvements), Communication failures (complaints from lack of information vs actual service failures), Training needs (engineer conduct, customer service skills). Reducing complaints through proactive service and enhanced communication improves satisfaction more effectively than reactive complaint handling.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Communication & Stakeholder Engagement
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Proactive Communication Strategies</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Communication prevents dissatisfaction: Advance notifications (planned maintenance 7 days notice, system shutdowns 48 hours notice), Service updates (helpdesk job progress, expected completion times), Building announcements (access changes, amenity closures, safety information), Educational content (energy efficiency, waste recycling, emergency procedures). Communication channels: Email (formal notifications, newsletters), Digital displays (lobby screens, lift panels), Mobile apps (push notifications, self-service), Intranet portals (documents, service requests), Notice boards (visual communications in common areas). Effective communication is timely, clear, and relevant—avoiding information overload while ensuring critical messages reach intended audiences.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Building Manager Engagement</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Building managers act as client-facing FM representatives: Visible presence (regular site visits, known to occupiers), Single point of contact (queries, complaints, escalations), Relationship management (tenant meetings, feedback sessions, issue resolution), Service coordination (link occupiers to helpdesk, specialists, contractors), Building advocacy (represent occupier interests, champion improvements). Building managers translate technical FM delivery into occupier satisfaction—providing human interface to otherwise anonymous service delivery. High-performing building managers are proactive communicators, problem solvers, and relationship builders.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Occupier Forums & Consultation</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Regular forums (quarterly meetings, working groups) enable: Feedback collection (satisfaction, improvement priorities, concerns), Service updates (performance reporting, planned improvements, compliance updates), Consultation (major works, service changes, sustainability initiatives), Relationship building (trust, transparency, collaborative problem-solving). Forums demonstrate occupier voice is heard—increasing engagement, satisfaction, and trust. Actions arising from forums must be tracked and delivered—failure to act on feedback damages credibility and reduces future engagement.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Service Quality & First Impressions
-              </h2>
-              <div className="bg-muted/50 p-6 rounded-lg space-y-4">
-                <div>
-                  <h3 className="font-medium mb-2">Helpdesk Responsiveness & First-Time Fix</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Fast helpdesk response and high first-time fix rates are primary satisfaction drivers. Target: acknowledge calls within 1 hour, attend within SLA, resolve 80%+ on first visit. Poor helpdesk performance—slow response, repeat visits, poor communication—is leading cause of dissatisfaction.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Engineer Conduct & Professionalism</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Engineer behavior impacts satisfaction: courteous communication, minimal disruption, clean work areas, ID badges visible, professional appearance. Training in customer service skills, communication, and occupier interaction improves satisfaction beyond technical competence alone.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Comfort & Environmental Quality</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Temperature control, air quality, lighting, and noise levels directly affect occupier satisfaction. Regular comfort surveys identify problem areas. BMS optimization, HVAC tuning, and IAQ monitoring improve environmental quality—enhancing productivity and satisfaction.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Continuous Improvement & Service Excellence
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Occupier satisfaction improves through: Data-driven insights (survey analysis, complaint trends, satisfaction scores inform targeted improvements), Service refinements (adjust PPM, enhance helpdesk processes, improve communication protocols), Training investment (customer service skills, communication, technical competency), Technology adoption (self-service portals, mobile apps, real-time tracking), Stakeholder engagement (forums, feedback loops, transparent communication).
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Continuous improvement culture uses satisfaction data to identify priorities, implement changes, and measure impact. Quarterly satisfaction reviews with clients assess trends, celebrate successes, and agree improvement actions. High-performing FM organizations treat occupier satisfaction as strategic KPI—equal in importance to technical compliance and cost control.
-              </p>
-            </section>
-
-            <RelatedServices 
-              services={[
-                {
-                  title: "Technical Helpdesk",
-                  description: "24/7 responsive service delivery and user support",
-                  link: "/fm-operations/helpdesk"
-                },
-                {
-                  title: "Building Concierge",
-                  description: "Professional front-of-house and reception services",
-                  link: "/soft-services/concierge"
-                },
-                {
-                  title: "Space Planning",
-                  description: "Workplace optimization and occupancy management",
-                  link: "/services/space-planning"
-                },
-                {
-                  title: "Reactive Maintenance",
-                  description: "Fast fault resolution enhancing user satisfaction",
-                  link: "/fm-operations/reactive-maintenance"
-                }
-              ]}
-            />
-
-            <section className="mb-12">
-              <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
-                <h2 className="text-2xl font-light mb-4">Enhance Occupier Satisfaction</h2>
-                <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                  Our occupier-focused FM delivery combines technical competence with communication, responsiveness, and stakeholder engagement. We deliver engineered services that enhance satisfaction, support tenant retention, and improve building reputation.
-                </p>
-                <Link 
-                  to="/request-proposal" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+        {/* Key Features */}
+        <section className="py-16 bg-background">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {keyFeatures.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  Request Occupier Experience Consultation
-                </Link>
-              </div>
-            </section>
-
-            <FAQSection faqs={faqs} />
+                  <Card className="p-6 h-full hover:border-primary/50 transition-colors hover-lift">
+                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
+                      <feature.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <h3 className="text-lg font-medium mb-2">{feature.title}</h3>
+                    <p className="text-sm text-muted-foreground">{feature.description}</p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <aside className="lg:col-span-1">
-            <SidebarCTA />
-          </aside>
-        </div>
+        {/* Main Content */}
+        <section className="py-16 bg-muted/30">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-12">
+                
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Occupier Experience: Beyond Technical Delivery
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    Occupier experience encompasses all interactions between building users and facilities services. While technical competence—reliable HVAC, compliant electrical systems, functioning access control—is essential, occupier satisfaction depends equally on: Responsive communication (advance notifications, status updates), Fast resolution (helpdesk response, first-time fix), Professional conduct (courteous engineers, minimal disruption), Proactive service (issues resolved before complaints). Poor occupier experience—regardless of technical excellence—causes tenant complaints, lease non-renewals, and reputational damage.
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Commercial landlords, corporate occupiers, and residential operators increasingly prioritize occupier satisfaction as competitive differentiator. High satisfaction delivers: Tenant retention (reduced churn, lease renewals), Rental premiums (desirable buildings command higher rents), Employer branding (workplace experience attracts talent), ESG credentials (wellbeing, satisfaction metrics support social value reporting). Our occupier-focused FM delivery combines technical competence with communication, responsiveness, and stakeholder engagement—translating engineering excellence into positive user experiences.
+                  </p>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Measuring Occupier Satisfaction
+                  </h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Satisfaction Surveys & Feedback Mechanisms</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Regular satisfaction surveys (quarterly or bi-annually) assess: Overall satisfaction (1-10 scale, benchmarked against industry standards), Service category performance (helpdesk, maintenance, cleaning, comfort), Communication effectiveness (advance notices, responsiveness, clarity), Improvement priorities (what matters most to occupiers). Post-service feedback (automated after helpdesk resolution) captures real-time satisfaction—identifying individual service failures and performance trends. Surveys use standardized questions enabling longitudinal tracking and peer benchmarking.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Net Promoter Score (NPS) & Benchmarking</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        NPS measures likelihood to recommend building/FM service (0-10 scale): Promoters (9-10)—highly satisfied, advocates; Passives (7-8)—satisfied but unenthusiastic; Detractors (0-6)—dissatisfied, risk of churn. NPS = % Promoters - % Detractors. Industry benchmarks: Excellent ({'>'} +50), Good (+30 to +50), Average (+10 to +30), Poor ({'<'} +10). NPS provides single-metric satisfaction indicator enabling trend tracking and competitive benchmarking. High NPS correlates with tenant retention, referrals, and lease renewals.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Complaint Analysis & Resolution Tracking</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Complaint data reveals satisfaction pain points: Complaint frequency (total per month, per occupier), Complaint categories (HVAC, cleanliness, access, communication), Resolution time (average days to close), Repeat complaints (chronic issues indicating systemic problems). Analysis identifies: Service gaps (recurring issues requiring process improvements), Communication failures (complaints from lack of information vs actual service failures), Training needs (engineer conduct, customer service skills). Reducing complaints through proactive service and enhanced communication improves satisfaction more effectively than reactive complaint handling.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Communication & Stakeholder Engagement
+                  </h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Proactive Communication Strategies</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Communication prevents dissatisfaction: Advance notifications (planned maintenance 7 days notice, system shutdowns 48 hours notice), Service updates (helpdesk job progress, expected completion times), Building announcements (access changes, amenity closures, safety information), Educational content (energy efficiency, waste recycling, emergency procedures). Communication channels: Email (formal notifications, newsletters), Digital displays (lobby screens, lift panels), Mobile apps (push notifications, self-service), Intranet portals (documents, service requests), Notice boards (visual communications in common areas). Effective communication is timely, clear, and relevant—avoiding information overload while ensuring critical messages reach intended audiences.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Building Manager Engagement</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Building managers act as client-facing FM representatives: Visible presence (regular site visits, known to occupiers), Single point of contact (queries, complaints, escalations), Relationship management (tenant meetings, feedback sessions, issue resolution), Service coordination (link occupiers to helpdesk, specialists, contractors), Building advocacy (represent occupier interests, champion improvements). Building managers translate technical FM delivery into occupier satisfaction—providing human interface to otherwise anonymous service delivery. High-performing building managers are proactive communicators, problem solvers, and relationship builders.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-medium mb-2">Occupier Forums & Consultation</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Regular forums (quarterly meetings, working groups) enable: Feedback collection (satisfaction, improvement priorities, concerns), Service updates (performance reporting, planned improvements, compliance updates), Consultation (major works, service changes, sustainability initiatives), Relationship building (trust, transparency, collaborative problem-solving). Forums demonstrate occupier voice is heard—increasing engagement, satisfaction, and trust. Actions arising from forums must be tracked and delivered—failure to act on feedback damages credibility and reduces future engagement.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Service Quality & First Impressions
+                  </h2>
+                  <div className="bg-muted/50 p-6 rounded-lg space-y-4">
+                    <div>
+                      <h3 className="font-medium mb-2">Helpdesk Responsiveness & First-Time Fix</h3>
+                      <p className="text-sm text-muted-foreground font-light">
+                        Fast helpdesk response and high first-time fix rates are primary satisfaction drivers. Target: acknowledge calls within 1 hour, attend within SLA, resolve 80%+ on first visit. Poor helpdesk performance—slow response, repeat visits, poor communication—is leading cause of dissatisfaction.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium mb-2">Engineer Conduct & Professionalism</h3>
+                      <p className="text-sm text-muted-foreground font-light">
+                        Engineer behavior impacts satisfaction: courteous communication, minimal disruption, clean work areas, ID badges visible, professional appearance. Training in customer service skills, communication, and occupier interaction improves satisfaction beyond technical competence alone.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="font-medium mb-2">Comfort & Environmental Quality</h3>
+                      <p className="text-sm text-muted-foreground font-light">
+                        Temperature control, air quality, lighting, and noise levels directly affect occupier satisfaction. Regular comfort surveys identify problem areas. BMS optimization, HVAC tuning, and IAQ monitoring improve environmental quality—enhancing productivity and satisfaction.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
+                    Continuous Improvement & Service Excellence
+                  </h2>
+                  <p className="text-muted-foreground font-light leading-relaxed mb-4">
+                    Occupier satisfaction improves through: Data-driven insights (survey analysis, complaint trends, satisfaction scores inform targeted improvements), Service refinements (adjust PPM, enhance helpdesk processes, improve communication protocols), Training investment (customer service skills, communication, technical competency), Technology adoption (self-service portals, mobile apps, real-time tracking), Stakeholder engagement (forums, feedback loops, transparent communication).
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Continuous improvement culture uses satisfaction data to identify priorities, implement changes, and measure impact. Quarterly satisfaction reviews with clients assess trends, celebrate successes, and agree improvement actions. High-performing FM organizations treat occupier satisfaction as strategic KPI—equal in importance to technical compliance and cost control.
+                  </p>
+                </div>
+
+                <RelatedServices 
+                  services={[
+                    {
+                      title: "Technical Helpdesk",
+                      description: "24/7 responsive service delivery and user support",
+                      link: "/fm-operations/helpdesk"
+                    },
+                    {
+                      title: "Building Concierge",
+                      description: "Professional front-of-house and reception services",
+                      link: "/soft-services/concierge"
+                    },
+                    {
+                      title: "Space Planning",
+                      description: "Workplace optimization and occupancy management",
+                      link: "/services/space-planning"
+                    },
+                    {
+                      title: "Reactive Maintenance",
+                      description: "Fast-response repairs supporting occupier satisfaction",
+                      link: "/fm-operations/reactive-maintenance"
+                    }
+                  ]}
+                />
+
+                <section>
+                  <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
+                    <h2 className="text-2xl font-light mb-4">Request Occupier Experience Review</h2>
+                    <p className="text-muted-foreground font-light leading-relaxed mb-6">
+                      Our occupier experience service assesses current satisfaction levels, identifies improvement opportunities, and implements strategies to enhance tenant engagement. We deliver measurable satisfaction improvements through proactive communication and responsive service delivery.
+                    </p>
+                    <Link 
+                      to="/request-proposal" 
+                      className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                    >
+                      Request Experience Review
+                    </Link>
+                  </div>
+                </section>
+
+                <FAQSection faqs={faqs} />
+              </div>
+
+              <aside className="lg:col-span-1">
+                <SidebarCTA />
+              </aside>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
