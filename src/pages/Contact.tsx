@@ -183,13 +183,20 @@ const Contact = () => {
               duration: 0.8,
               ease: "easeOut"
             }} className="flex flex-wrap gap-4 justify-center mt-8">
-                <Button size="lg" className="gap-2 hover-scale">
-                  <Headphones className="w-5 h-5" />
-                  Speak to Helpdesk — Live
+                <Button size="lg" className="gap-2 hover-scale" asChild>
+                  <a href="/fm-operations/helpdesk">
+                    <Headphones className="w-5 h-5" />
+                    Speak to Helpdesk — Live
+                  </a>
                 </Button>
-                <Button size="lg" variant="outline" className="gap-2 hover-scale">
-                  <MapPin className="w-5 h-5" />
-                  Book a Site Visit Today
+                <Button size="lg" variant="outline" className="gap-2 hover-scale bg-white/10 border-white/30 text-white hover:bg-white/20" asChild>
+                  <a href="#contact-form" onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector('#contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                  }}>
+                    <MapPin className="w-5 h-5" />
+                    Book a Site Visit Today
+                  </a>
                 </Button>
               </motion.div>
             </div>
@@ -332,7 +339,7 @@ const Contact = () => {
         </section>
 
         {/* Contact Form Section */}
-        <section className="py-16 px-4 bg-muted/30">
+        <section id="contact-form" className="py-16 px-4 bg-muted/30">
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 md:p-12">
               <div className="text-center mb-8">
