@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin, Users, Headphones, MessageCircle, Globe, Send, Loader2 } from "lucide-react";
+import { Phone, Mail, MapPin, Users, Headphones, AlertCircle, Globe, Send, Loader2 } from "lucide-react";
 import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
@@ -90,14 +90,15 @@ const Contact = () => {
   const contactMethods = [{
     icon: Headphones,
     title: "24/7 Helpdesk",
-    subtitle: "24/7 Maintenance Support & Site Monitoring",
-    description: "Report maintenance issues and get real-time updates on your requests.",
-    action: "Report an Issue",
-    href: "/fm-operations/helpdesk"
+    subtitle: "Always Answered by a Person",
+    description: "No voicemail nonsense. No excuses. Real people, real-time response.",
+    action: "Call 0800 123 4567",
+    href: "tel:08001234567",
+    onClick: handlePhoneClick
   }, {
     icon: Mail,
-    title: "Send us an Email",
-    subtitle: "We'll Get Back To You",
+    title: "Direct Email Channel",
+    subtitle: "Immediate Triage",
     description: "Your email goes straight to the right team. No waiting in queues.",
     action: "hello@entirefm.co.uk",
     href: "mailto:hello@entirefm.co.uk"
@@ -107,15 +108,14 @@ const Contact = () => {
     subtitle: "For All Existing Clients",
     description: "Live job tracking, compliance dashboard, and asset visibility 24/7.",
     action: "Access Portal",
-    href: "https://portal.entirefm.com",
-    external: true
+    href: "#"
   }, {
-    icon: MessageCircle,
-    title: "Live Chat",
-    subtitle: "Real-Time Support",
-    description: "Connect with our team instantly for quick questions and support.",
-    action: "Start Chat",
-    href: "#live-chat"
+    icon: AlertCircle,
+    title: "Escalation Line",
+    subtitle: "Direct to Senior Leadership",
+    description: "Critical issues get director-level attention immediately.",
+    action: "Emergency Escalation",
+    href: "tel:08001234567"
   }];
   const coverage = ["Hard services across all disciplines", "Critical compliance work", "Reactive emergencies", "Multi-site portfolios"];
   return <>
@@ -183,20 +183,13 @@ const Contact = () => {
               duration: 0.8,
               ease: "easeOut"
             }} className="flex flex-wrap gap-4 justify-center mt-8">
-                <Button size="lg" className="gap-2 hover-scale" asChild>
-                  <a href="/fm-operations/helpdesk">
-                    <Headphones className="w-5 h-5" />
-                    Speak to Helpdesk — Live
-                  </a>
+                <Button size="lg" className="gap-2 hover-scale">
+                  <Headphones className="w-5 h-5" />
+                  Speak to Helpdesk — Live
                 </Button>
-                <Button size="lg" variant="outline" className="gap-2 hover-scale bg-white/10 border-white/30 text-white hover:bg-white/20" asChild>
-                  <a href="#contact-form" onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector('#contact-form')?.scrollIntoView({ behavior: 'smooth' });
-                  }}>
-                    <MapPin className="w-5 h-5" />
-                    Book a Site Visit Today
-                  </a>
+                <Button size="lg" variant="outline" className="gap-2 hover-scale">
+                  <MapPin className="w-5 h-5" />
+                  Book a Site Visit Today
                 </Button>
               </motion.div>
             </div>
@@ -252,13 +245,8 @@ const Contact = () => {
                   <h3 className="text-2xl font-bold mb-1">{method.title}</h3>
                   <p className="text-primary font-semibold mb-3">{method.subtitle}</p>
                   
-                  <Button variant="outline" asChild>
-                    <a 
-                      href={method.href}
-                      {...(method.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    >
-                      {method.action}
-                    </a>
+                  <Button variant="outline" asChild onClick={method.onClick}>
+                    <a href={method.href}>{method.action}</a>
                   </Button>
                 </Card>)}
             </div>
@@ -268,10 +256,10 @@ const Contact = () => {
         {/* UK Coverage Section */}
         <section className="py-16 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-center font-light text-3xl">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Nationwide Facilities Management
+                  Supporting the UK
                 </h2>
                 <p className="text-xl text-muted-foreground mb-6">
                   Engineer coverage across the country with central coordination for:
@@ -339,7 +327,7 @@ const Contact = () => {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact-form" className="py-16 px-4 bg-muted/30">
+        <section className="py-16 px-4 bg-muted/30">
           <div className="max-w-4xl mx-auto">
             <Card className="p-8 md:p-12">
               <div className="text-center mb-8">
