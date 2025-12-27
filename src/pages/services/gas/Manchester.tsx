@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Download, ArrowRight } from "lucide-react";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
 
 const GasSafetyManchester = () => {
   const { trackDownload, trackProposalRequest } = useConversionTracking();
@@ -32,7 +32,7 @@ const GasSafetyManchester = () => {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Entire FM - Gas Safety & Boiler Compliance Manchester",
-    "description": "Water hygiene protection for PBSA & entertainment-led estates in Manchester.",
+    "description": "Gas safety compliance for PBSA & entertainment-led estates in Manchester.",
     "areaServed": "Manchester",
     "serviceType": "Gas Safety Compliance",
     "email": "manchester@entirefm.com",
@@ -43,73 +43,47 @@ const GasSafetyManchester = () => {
     }
   };
 
+  const heroStats = [
+    { value: "PBSA", label: "Specialist" },
+    { value: "CP42", label: "Catering Safety" },
+    { value: "20-30", label: "Energy Savings", suffix: "%" },
+    { value: "24/7", label: "Response" }
+  ];
+
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Gas Safety", href: "/services/gas-safety" },
+    { label: "Manchester" }
+  ];
+
   return (
     <>
       <Helmet>
         <title>Gas Safety & Boiler Compliance in Manchester | Local Testing & Statutory Compliance | EntireFM</title>
-        <meta name="description" content="Water hygiene protection for Manchester's PBSA & entertainment estates. ACOP L8 monitoring, CO risk elimination, and energy-efficiency upgrades." />
+        <meta name="description" content="Gas safety protection for Manchester's PBSA & entertainment estates. CP42 catering, CO risk elimination, and energy-efficiency upgrades." />
         <link rel="canonical" href="https://entirefm.com/services/gas-safety" />
       </Helmet>
 
       <SchemaMarkup schema={LocalBusinessSchema} />
-      <BreadcrumbSchema 
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "Gas Safety", href: "/services/gas-safety" },
-          { label: "Manchester" }
-        ]} 
-      />
+      <BreadcrumbSchema items={breadcrumbItems} />
 
-      <div className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/placeholder.svg')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <div className="container mx-auto px-4 relative z-10 text-white py-20">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 leading-tight">
-              Legionella Compliance – Manchester
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200 font-light leading-relaxed">
-              Water hygiene protection for PBSA & entertainment-led estates.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                onClick={() => trackProposalRequest('gas-manchester')}
-                asChild
-              >
-                <Link to="/contact">
-                  Request Legionella Monitoring
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Link>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="bg-white/10 text-white border-white hover:bg-white hover:text-charcoal"
-                onClick={() => trackDownload('gas-compliance-checklist')}
-              >
-                <Download className="w-5 h-5 mr-2" />
-                Download Gas Compliance Checklist
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Breadcrumb
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "Gas Safety", href: "/services/gas-safety" },
-          { label: "Manchester" }
-        ]}
+      <ServiceHeroSection
+        breadcrumbItems={breadcrumbItems}
+        title="Gas Safety & Boiler Compliance – Manchester"
+        description="Gas safety protection for PBSA & entertainment-led estates. CP42 certification, CO monitoring, and energy-efficiency upgrades."
+        stats={heroStats}
+        primaryCTA={{
+          label: "Request Gas Audit",
+          href: "/contact",
+          icon: ArrowRight
+        }}
+        secondaryCTA={{
+          label: "Download Checklist",
+          href: "#",
+          icon: Download
+        }}
+        backgroundImage="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=2070"
       />
 
       <div className="container mx-auto px-4 py-16">
