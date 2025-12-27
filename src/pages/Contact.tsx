@@ -169,7 +169,7 @@ const Contact = () => {
               duration: 0.8,
               ease: "easeOut"
             }} className="text-5xl md:text-6xl font-bold mb-6 text-white">
-                One number. One team.<br />Zero runaround.
+                Get in Touch
               </motion.h1>
               
               <motion.div initial={{
@@ -235,7 +235,7 @@ const Contact = () => {
                 Ways to Reach Us
               </h2>
               <p className="text-xl text-muted-foreground">
-                No voicemail. No excuses. Just results.
+                Choose the best way to connect with our team.
               </p>
             </div>
 
