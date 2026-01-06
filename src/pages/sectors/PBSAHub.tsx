@@ -1,184 +1,141 @@
-import { Helmet } from "react-helmet";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
-import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { useConversionTracking } from "@/hooks/useConversionTracking";
-import { CheckCircle2 } from "lucide-react";
+import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
+import { GraduationCap } from "lucide-react";
 
 const PBSAHub = () => {
-  const { trackProposalRequest } = useConversionTracking();
-
-  const challenges = [
-    "High occupant turnover",
-    "Fire evacuation safety",
-    "Legionella temperature control",
-    "Comfort expectations + rising complaints"
-  ];
-
-  const delivery = [
-    "Compliance-focused PPM",
-    "Rapid remedials & safety prioritisation",
-    "IAQ monitoring & ventilation assurance"
-  ];
-
   return (
-    <div className="min-h-screen pt-20">
-      <Helmet>
-        <title>PBSA Facilities Management | Student Accommodation Compliance</title>
-        <meta name="description" content="High-density estates demand strict governance — we keep them compliant and incident-free. PBSA facilities management with rapid response." />
-      </Helmet>
-
-      <SchemaMarkup schema={{
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "PBSA Facilities Management",
-        "description": "Facilities management for purpose-built student accommodation",
-        "provider": {
-          "@type": "Organization",
-          "name": "Entire FM"
+    <SectorPageTemplate
+      title="PBSA Facilities Management | Student Accommodation Compliance"
+      metaDescription="High-density estates demand strict governance — we keep them compliant and incident-free. PBSA facilities management with rapid response."
+      canonicalUrl="https://entirefm.com/sectors/pbsa"
+      heroTitle="PBSA Facilities Management"
+      heroSubtitle="High-density estates demand strict governance — we keep them compliant and incident-free."
+      heroImage="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80"
+      heroIcon={GraduationCap}
+      stats={[
+        { value: "30+", label: "PBSA Buildings" },
+        { value: "24/7", label: "Response Coverage" },
+        { value: "100%", label: "Compliance Rate" },
+        { value: "<4hr", label: "Emergency Response" }
+      ]}
+      sectorSummary={{
+        title: "Student Accommodation FM",
+        paragraphs: [
+          "Purpose-built student accommodation presents unique facilities management challenges. High occupant turnover, varied usage patterns, and stringent safety requirements demand specialist expertise and rapid response capabilities.",
+          "Our PBSA FM services combine comprehensive compliance management with resident-focused service delivery, ensuring safe, comfortable, and well-maintained student living environments across multi-building estates."
+        ]
+      }}
+      complianceRisks={[
+        {
+          title: "High Occupant Turnover",
+          description: "Annual turnovers create intensive maintenance windows. Quick turnaround cleaning, repairs, and safety checks are essential to meet move-in deadlines."
+        },
+        {
+          title: "Fire Evacuation Safety",
+          description: "Large numbers of young residents require robust fire safety systems. Regular testing, emergency lighting, and clear evacuation routes are critical.",
+          link: "/services/fire-safety",
+          linkText: "Fire Safety Services"
+        },
+        {
+          title: "Legionella Temperature Control",
+          description: "Multiple water systems across high-density buildings require comprehensive water hygiene programmes and regular temperature monitoring.",
+          link: "/services/water-hygiene",
+          linkText: "Water Hygiene Services"
+        },
+        {
+          title: "Comfort Expectations & Complaints",
+          description: "Student expectations for comfort are high. HVAC failures, noise issues, and maintenance delays quickly escalate to complaints and reputation damage."
         }
-      }} />
-
-      <BreadcrumbSchema items={[
-        { label: "Home", href: "/" },
-        { label: "Sectors", href: "/sectors" },
-        { label: "PBSA", href: "/sectors/pbsa" }
-      ]} />
-
-      <Breadcrumb 
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Sectors", href: "/sectors" },
-          { label: "PBSA" }
-        ]}
-      />
-
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
-              PBSA Facilities Management
-            </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-              High-density estates demand strict governance — we keep them compliant and incident-free.
-            </p>
-            <Button 
-              size="lg" 
-              onClick={() => trackProposalRequest('pbsa_hero')}
-              asChild
-            >
-              <Link to="/contact">Request PBSA Compliance Audit</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-12">
-              {/* Challenges */}
-              <Card className="p-8">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Challenges
-                </h2>
-                <ul className="space-y-4">
-                  {challenges.map((challenge, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground font-light">{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Delivery */}
-              <Card className="p-8">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Delivery
-                </h2>
-                <ul className="space-y-4">
-                  {delivery.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground font-light">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Related Services */}
-              <div>
-                <h2 className="text-2xl font-light mb-6">Related Services</h2>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <Link to="/services/fire-safety">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Fire Safety</h3>
-                      <p className="text-sm text-muted-foreground font-light">Evacuation assurance</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/water-hygiene">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Water Hygiene</h3>
-                      <p className="text-sm text-muted-foreground font-light">Temperature control</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/hvac-compliance">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Ventilation</h3>
-                      <p className="text-sm text-muted-foreground font-light">IAQ monitoring</p>
-                    </Card>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Case Study */}
-              <Card className="p-8 bg-muted/50">
-                <h3 className="text-xl font-light mb-4">Case Study</h3>
-                <p className="text-muted-foreground font-light mb-4">
-                  <strong>30+ building PBSA estate:</strong> Compliance restored in 3 weeks. Fire risk eliminated. Water hygiene regime implemented. Zero student disruption.
-                </p>
-                <Link to="/case-studies" className="text-primary hover:text-primary/80 transition-colors text-sm font-medium">
-                  View All Case Studies →
-                </Link>
-              </Card>
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <SidebarCTA />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-16 bg-charcoal text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Request PBSA Compliance Audit
-          </h2>
-          <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto mb-8">
-            High-density estates protected with zero incidents.
-          </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
-            className="bg-white text-charcoal hover:bg-gray-100"
-            onClick={() => trackProposalRequest('pbsa_cta')}
-            asChild
-          >
-            <Link to="/contact">Request PBSA Compliance Audit</Link>
-          </Button>
-        </div>
-      </section>
-    </div>
+      ]}
+      keySystems={[
+        {
+          category: "Safety Systems",
+          items: [
+            "Fire alarm and detection systems",
+            "Emergency lighting networks",
+            "Smoke ventilation (AOV)",
+            "Door entry and access control",
+            "CCTV and security systems",
+            "Fire door maintenance"
+          ]
+        },
+        {
+          category: "Building Services",
+          items: [
+            "Communal heating systems",
+            "Domestic hot water",
+            "Ventilation and extraction",
+            "Lifts and accessibility",
+            "Laundry equipment",
+            "BMS and energy management"
+          ]
+        }
+      ]}
+      operationalChallenges={[
+        {
+          title: "Term-Time Pressures",
+          description: "Maintenance must be scheduled around academic calendars, with intensive works during vacation periods and minimal disruption during term time."
+        },
+        {
+          title: "Multi-Building Coordination",
+          description: "Large PBSA estates require coordinated maintenance across multiple buildings with consistent service standards and centralized reporting."
+        },
+        {
+          title: "Resident Communication",
+          description: "Young residents expect digital communication and rapid response. Poor service delivery generates complaints and impacts operator reputation."
+        }
+      ]}
+      whyEntireFM={[
+        "Compliance-focused PPM programmes tailored to PBSA requirements",
+        "Rapid remedials with safety prioritisation",
+        "IAQ monitoring and ventilation assurance",
+        "Digital reporting for operator visibility",
+        "Multi-site coordination and consistent standards",
+        "24/7 emergency response capability"
+      ]}
+      caseStudies={[
+        {
+          title: "30+ Building PBSA Estate",
+          description: "Compliance restored in 3 weeks. Fire risk eliminated. Water hygiene regime implemented. Zero student disruption.",
+          link: "/case-studies",
+          linkText: "View Case Studies"
+        }
+      ]}
+      relatedServices={[
+        {
+          title: "Fire Safety",
+          description: "Evacuation assurance",
+          href: "/services/fire-safety"
+        },
+        {
+          title: "Water Hygiene",
+          description: "Temperature control",
+          href: "/services/water-hygiene"
+        },
+        {
+          title: "Ventilation",
+          description: "IAQ monitoring",
+          href: "/services/hvac-compliance"
+        }
+      ]}
+      faqs={[
+        {
+          question: "How do you handle high-turnover periods in PBSA?",
+          answer: "We schedule intensive maintenance during vacation periods, with rapid turnaround teams for move-in readiness. Our digital tracking ensures all units are signed off before new residents arrive."
+        },
+        {
+          question: "What compliance is required for student accommodation?",
+          answer: "PBSA requires fire safety compliance (fire alarms, emergency lighting, fire doors), water hygiene management, electrical EICRs, gas safety certificates, and lift maintenance certification."
+        },
+        {
+          question: "Can you manage multiple PBSA buildings?",
+          answer: "Yes. We provide coordinated FM services across multi-building estates with centralized helpdesk, consistent service standards, and unified compliance reporting."
+        },
+        {
+          question: "How do you minimise disruption to students?",
+          answer: "We schedule routine maintenance during low-occupancy periods and use discreet service delivery during term time. Emergency works are handled rapidly with clear resident communication."
+        }
+      ]}
+    />
   );
 };
 
