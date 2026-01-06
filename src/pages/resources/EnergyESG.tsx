@@ -1,11 +1,12 @@
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Leaf, TrendingDown, Users, Award, Lightbulb, Wind, Thermometer, CheckCircle } from "lucide-react";
+import { Leaf, TrendingDown, Users, Award, Lightbulb, Wind, Thermometer, CheckCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import AnimatedSection from "@/components/shared/AnimatedSection";
 
 const EnergyESG = () => {
   const breadcrumbItems = [
@@ -79,6 +80,12 @@ const EnergyESG = () => {
     }
   ];
 
+  const stats = [
+    { value: "10-30%", label: "Energy Reduction Range" },
+    { value: "2-3yr", label: "Typical Payback" },
+    { value: "100%", label: "Compliance Coverage" }
+  ];
+
   return (
     <>
       <Helmet>
@@ -90,171 +97,222 @@ const EnergyESG = () => {
       <SchemaMarkup schema={schemaData} />
       <BreadcrumbSchema items={breadcrumbItems} />
 
-      <main>
+      <main className="min-h-screen">
         {/* Hero */}
-        <section className="relative py-20 bg-gradient-to-br from-primary/5 via-background to-muted/20">
-          <div className="container mx-auto px-4">
+        <section className="relative pt-24 pb-20 bg-gradient-to-br from-primary/5 via-background to-muted/30 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
+          <div className="container mx-auto px-6 relative">
             <Breadcrumb items={breadcrumbItems} />
             
-            <div className="max-w-4xl mx-auto text-center">
-              <Leaf className="w-16 h-16 mx-auto mb-6 text-primary" />
-              <h1 className="text-4xl md:text-5xl font-light mb-6 text-foreground">
-                Energy is Now a Board Priority
+            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto text-center mt-8">
+              <div className="flex justify-center mb-6">
+                <div className="p-4 bg-primary/10 rounded-2xl">
+                  <Leaf className="w-12 h-12 text-primary" />
+                </div>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight">
+                Energy is Now a
+                <span className="block text-primary">Board Priority</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
+              <p className="text-xl md:text-2xl text-muted-foreground font-light mb-8">
                 We turn FM actions into OpEx savings.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
+                <Button asChild size="lg" className="shadow-lg">
                   <Link to="/contact">Request Energy Optimisation Proposal</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg">
                   <Link to="/tools/cost-savings-calculator">Benchmark My Building Performance</Link>
                 </Button>
               </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        {/* Stats Banner */}
+        <section className="py-12 bg-charcoal text-white">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
+              {stats.map((stat, index) => (
+                <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
+                  <div className="text-3xl md:text-4xl font-light text-primary mb-2">{stat.value}</div>
+                  <div className="text-sm text-gray-300 font-light">{stat.label}</div>
+                </AnimatedSection>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Strategic Wins */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl font-light mb-12 text-center">Strategic Wins We Deliver</h2>
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-6">
+            <AnimatedSection animation="fade-up" className="max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-light mb-4 text-center">Strategic Wins We Deliver</h2>
+              <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+                Practical energy initiatives with measurable outcomes
+              </p>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {strategicWins.map((win, index) => (
-                  <Card key={index}>
-                    <CardContent className="pt-6">
-                      <win.icon className="w-10 h-10 mb-4 text-primary" />
-                      <h3 className="text-lg font-medium mb-2">{win.title}</h3>
-                      <p className="text-sm text-muted-foreground">{win.description}</p>
-                    </CardContent>
-                  </Card>
+                  <AnimatedSection key={index} animation="fade-up" delay={index * 75}>
+                    <Card className="h-full hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+                      <CardContent className="pt-6">
+                        <div className="p-3 bg-primary/10 rounded-xl w-fit mb-4">
+                          <win.icon className="w-8 h-8 text-primary" />
+                        </div>
+                        <h3 className="text-lg font-medium mb-2">{win.title}</h3>
+                        <p className="text-sm text-muted-foreground font-light">{win.description}</p>
+                      </CardContent>
+                    </Card>
+                  </AnimatedSection>
                 ))}
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
 
         {/* Board-Level Value */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
+        <section className="py-20 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <AnimatedSection animation="fade-up" className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
-                <Award className="w-12 h-12 mx-auto mb-4 text-primary" />
-                <h2 className="text-3xl font-light mb-4">Board-Level Value</h2>
-                <p className="text-muted-foreground">
+                <div className="p-3 bg-primary/10 rounded-xl w-fit mx-auto mb-4">
+                  <Award className="w-10 h-10 text-primary" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-light mb-4">Board-Level Value</h2>
+                <p className="text-lg text-muted-foreground font-light">
                   FM becomes the hero — not the overhead.
                 </p>
               </div>
 
               <div className="grid gap-6">
                 {boardLevelValue.map((item, index) => (
-                  <Card key={index}>
-                    <CardContent className="p-6">
-                      <div className="grid md:grid-cols-3 gap-6">
-                        <div>
-                          <p className="text-sm text-muted-foreground mb-2">ESG Driver</p>
-                          <p className="font-medium text-foreground">{item.driver}</p>
+                  <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
+                    <Card className="hover:shadow-lg transition-all">
+                      <CardContent className="p-6">
+                        <div className="grid md:grid-cols-3 gap-6">
+                          <div>
+                            <p className="text-sm text-muted-foreground mb-2">ESG Driver</p>
+                            <p className="font-medium text-foreground text-lg">{item.driver}</p>
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground mb-2">FM Action</p>
+                            <p className="font-medium text-foreground text-lg">{item.action}</p>
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground mb-2">Measurable Gain</p>
+                            <p className="font-medium text-primary text-lg">{item.gain}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-sm text-muted-foreground mb-2">FM Action</p>
-                          <p className="font-medium text-foreground">{item.action}</p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-muted-foreground mb-2">Measurable Gain</p>
-                          <p className="font-medium text-primary">{item.gain}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </AnimatedSection>
                 ))}
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
 
         {/* Targeted Results */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-6">
+            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <TrendingDown className="w-12 h-12 mx-auto mb-4 text-primary" />
-                <h2 className="text-3xl font-light mb-4">Targeted Results</h2>
+                <div className="p-3 bg-primary/10 rounded-xl w-fit mx-auto mb-4">
+                  <TrendingDown className="w-10 h-10 text-primary" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-light mb-4">Targeted Results</h2>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
-                <Card>
-                  <CardContent className="pt-6 text-center">
-                    <div className="text-4xl font-light text-primary mb-2">10–30%</div>
-                    <p className="text-sm text-muted-foreground">Energy Reduction Typical Range</p>
-                  </CardContent>
-                </Card>
+                <AnimatedSection animation="fade-up" delay={0}>
+                  <Card className="hover:shadow-lg transition-all">
+                    <CardContent className="pt-8 text-center">
+                      <div className="text-5xl font-light text-primary mb-4">10–30%</div>
+                      <p className="text-muted-foreground font-light">Energy Reduction Typical Range</p>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
 
-                <Card>
-                  <CardContent className="pt-6 text-center">
-                    <Users className="w-10 h-10 mx-auto mb-3 text-primary" />
-                    <p className="text-sm text-muted-foreground">
-                      Soft FM enhancements improve workplace scoring
-                    </p>
-                  </CardContent>
-                </Card>
+                <AnimatedSection animation="fade-up" delay={100}>
+                  <Card className="hover:shadow-lg transition-all">
+                    <CardContent className="pt-8 text-center">
+                      <div className="p-3 bg-primary/10 rounded-xl w-fit mx-auto mb-4">
+                        <Users className="w-10 h-10 text-primary" />
+                      </div>
+                      <p className="text-muted-foreground font-light">
+                        Soft FM enhancements improve workplace scoring
+                      </p>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
 
-                <Card>
-                  <CardContent className="pt-6 text-center">
-                    <CheckCircle className="w-10 h-10 mx-auto mb-3 text-primary" />
-                    <p className="text-sm text-muted-foreground">
-                      Scalable investment with short payback timelines
-                    </p>
-                  </CardContent>
-                </Card>
+                <AnimatedSection animation="fade-up" delay={200}>
+                  <Card className="hover:shadow-lg transition-all">
+                    <CardContent className="pt-8 text-center">
+                      <div className="p-3 bg-primary/10 rounded-xl w-fit mx-auto mb-4">
+                        <CheckCircle className="w-10 h-10 text-primary" />
+                      </div>
+                      <p className="text-muted-foreground font-light">
+                        Scalable investment with short payback timelines
+                      </p>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
 
         {/* Final CTA */}
-        <section className="py-20 bg-gradient-to-br from-primary/10 via-background to-muted/20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
+        <section className="py-20 bg-gradient-to-br from-charcoal via-charcoal to-charcoal/95 text-white">
+          <div className="container mx-auto px-6">
+            <AnimatedSection animation="fade-up" className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-light mb-6">
                 Secure Energy Savings and Sustainability Approvals
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-lg text-gray-300 font-light mb-8">
                 Proposal drafted with costed outcomes and measurable impact.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
+                <Button asChild size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100 shadow-lg">
                   <Link to="/contact">Request Energy Proposal</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
+                <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
                   <Link to="/services/hvac">Explore HVAC Services</Link>
                 </Button>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
 
         {/* Related Resources */}
-        <section className="py-12 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h3 className="text-xl font-light mb-6 text-center">Related Resources</h3>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Button asChild variant="outline">
-                  <Link to="/resources/audit-framework">FM Audit Framework</Link>
-                </Button>
-                <Button asChild variant="outline">
-                  <Link to="/tools/cost-savings-calculator">Cost Savings Calculator</Link>
-                </Button>
-                <Button asChild variant="outline">
-                  <Link to="/services">All Services</Link>
-                </Button>
-                <Button asChild variant="outline">
-                  <Link to="/sectors/offices-corporate">Corporate Sector</Link>
-                </Button>
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto">
+              <h3 className="text-xl font-light mb-8 text-center">Related Resources</h3>
+              <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <Link to="/resources/audit-framework" className="group">
+                  <Card className="p-4 h-full hover:border-primary/30 transition-all text-center">
+                    <span className="text-sm font-medium group-hover:text-primary transition-colors">FM Audit Framework</span>
+                  </Card>
+                </Link>
+                <Link to="/tools/cost-savings-calculator" className="group">
+                  <Card className="p-4 h-full hover:border-primary/30 transition-all text-center">
+                    <span className="text-sm font-medium group-hover:text-primary transition-colors">Cost Savings Calculator</span>
+                  </Card>
+                </Link>
+                <Link to="/services" className="group">
+                  <Card className="p-4 h-full hover:border-primary/30 transition-all text-center">
+                    <span className="text-sm font-medium group-hover:text-primary transition-colors">All Services</span>
+                  </Card>
+                </Link>
+                <Link to="/sectors/offices-corporate" className="group">
+                  <Card className="p-4 h-full hover:border-primary/30 transition-all text-center">
+                    <span className="text-sm font-medium group-hover:text-primary transition-colors">Corporate Sector</span>
+                  </Card>
+                </Link>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </section>
       </main>

@@ -9,9 +9,11 @@ import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { toast } from "@/hooks/use-toast";
-import { FileText, Download, CheckCircle2, Zap } from "lucide-react";
+import { FileText, Download, CheckCircle2, Zap, ArrowRight, Shield, Clock } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import { Link } from "react-router-dom";
 
 const downloadSchema = z.object({
   name: z.string().min(2, "Name required").max(100),
@@ -66,6 +68,15 @@ const EICRManual = () => {
     description: "Essential guide to Electrical Installation Condition Reports (EICR) and BS 7671 compliance for commercial properties.",
   };
 
+  const features = [
+    { icon: Shield, text: "EICR requirements and legal obligations for landlords" },
+    { icon: CheckCircle2, text: "Understanding C1, C2, C3 codes and required actions" },
+    { icon: FileText, text: "BS 7671:2018+A2:2022 18th Edition compliance checklist" },
+    { icon: Clock, text: "5-year testing cycles and certificate management" },
+    { icon: Zap, text: "Common EICR failures and remedial action priorities" },
+    { icon: Shield, text: "Contractor selection and NICEIC/NAPIT accreditation" },
+  ];
+
   return (
     <>
       <Helmet>
@@ -79,178 +90,224 @@ const EICRManual = () => {
 
       <SchemaMarkup schema={schema} />
 
-      <div className="bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <Breadcrumb items={breadcrumbItems} />
+      <div className="min-h-screen bg-background">
+        {/* Hero Section */}
+        <section className="relative pt-24 pb-16 bg-gradient-to-br from-primary/5 via-background to-muted/30 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5" />
+          <div className="container mx-auto px-6 relative">
+            <Breadcrumb items={breadcrumbItems} />
 
-          <div className="max-w-5xl mx-auto mt-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <div className="mb-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 bg-primary/10 rounded-lg">
-                      <Zap className="w-8 h-8 text-primary" />
+            <div className="max-w-6xl mx-auto mt-8">
+              <div className="grid lg:grid-cols-2 gap-12 items-start">
+                <AnimatedSection animation="fade-up">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-4 bg-primary/10 rounded-2xl">
+                      <Zap className="w-10 h-10 text-primary" />
                     </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Free Resource</div>
-                      <h1 className="text-3xl font-light">Electrical EICR Survival Manual</h1>
-                    </div>
+                    <span className="text-sm font-medium text-primary bg-primary/10 px-4 py-2 rounded-full">
+                      Free Resource
+                    </span>
                   </div>
-                  <p className="text-lg text-muted-foreground font-light">
+                  <h1 className="text-4xl md:text-5xl font-light mb-4 leading-tight">
+                    Electrical EICR
+                    <span className="block text-primary">Survival Manual</span>
+                  </h1>
+                  <p className="text-lg text-muted-foreground font-light leading-relaxed mb-8">
                     Everything property managers need to know about Electrical Installation Condition Reports and BS 7671 compliance.
                   </p>
-                </div>
 
-                <Card className="p-6 mb-6">
-                  <h2 className="text-xl font-light mb-4">What's Inside</h2>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">EICR requirements and legal obligations for landlords</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">Understanding C1, C2, C3 codes and required actions</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">BS 7671:2018+A2:2022 18th Edition compliance checklist</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">5-year testing cycles and certificate management</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">Common EICR failures and remedial action priorities</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-sm">Contractor selection and NICEIC/NAPIT accreditation</span>
-                    </li>
-                  </ul>
-                </Card>
+                  <Card className="p-6 mb-6 bg-background/80 backdrop-blur">
+                    <h2 className="text-xl font-light mb-4">What's Inside</h2>
+                    <ul className="space-y-3">
+                      {features.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <feature.icon className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                          <span className="text-sm font-light">{feature.text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
 
-                <Card className="p-6 bg-muted">
-                  <div className="flex items-start gap-3">
-                    <FileText className="w-6 h-6 text-primary shrink-0" />
-                    <div>
-                      <div className="font-medium mb-1">32-page PDF manual</div>
-                      <div className="text-sm text-muted-foreground">
-                        Instant access • No payment required • BS 7671 compliant
+                  <Card className="p-6 bg-muted">
+                    <div className="flex items-start gap-3">
+                      <FileText className="w-6 h-6 text-primary shrink-0" />
+                      <div>
+                        <div className="font-medium mb-1">32-page PDF manual</div>
+                        <div className="text-sm text-muted-foreground">
+                          Instant access • No payment required • BS 7671 compliant
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
-              </div>
+                  </Card>
+                </AnimatedSection>
 
-              <div>
-                {!downloadReady ? (
-                  <Card className="p-6">
-                    <h2 className="text-2xl font-light mb-2">Download Your Free Manual</h2>
-                    <p className="text-sm text-muted-foreground mb-6">
-                      Enter your details to receive instant access to the EICR Survival Manual.
-                    </p>
+                <AnimatedSection animation="fade-up" delay={150}>
+                  {!downloadReady ? (
+                    <Card className="p-8 shadow-xl border-primary/10">
+                      <h2 className="text-2xl font-light mb-2">Download Your Free Manual</h2>
+                      <p className="text-sm text-muted-foreground mb-6">
+                        Enter your details to receive instant access to the EICR Survival Manual.
+                      </p>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                      <div>
-                        <Label htmlFor="name">Your Name *</Label>
-                        <Input
-                          id="name"
-                          placeholder="John Smith"
-                          {...register("name")}
-                        />
-                        {errors.name && (
-                          <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
-                        )}
+                      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                        <div>
+                          <Label htmlFor="name">Your Name *</Label>
+                          <Input
+                            id="name"
+                            placeholder="John Smith"
+                            className="mt-1"
+                            {...register("name")}
+                          />
+                          {errors.name && (
+                            <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <Label htmlFor="email">Work Email *</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="john@company.com"
+                            className="mt-1"
+                            {...register("email")}
+                          />
+                          {errors.email && (
+                            <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <Label htmlFor="companyName">Company Name *</Label>
+                          <Input
+                            id="companyName"
+                            placeholder="Your Company Ltd"
+                            className="mt-1"
+                            {...register("companyName")}
+                          />
+                          {errors.companyName && (
+                            <p className="text-sm text-destructive mt-1">{errors.companyName.message}</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <Label htmlFor="role">Your Role (Optional)</Label>
+                          <Input
+                            id="role"
+                            placeholder="Facilities Manager"
+                            className="mt-1"
+                            {...register("role")}
+                          />
+                        </div>
+
+                        <Button type="submit" className="w-full shadow-lg" size="lg">
+                          <Download className="w-4 h-4 mr-2" />
+                          Get Free Manual
+                        </Button>
+
+                        <p className="text-xs text-muted-foreground text-center">
+                          We'll also send you occasional FM insights. Unsubscribe anytime.
+                        </p>
+                      </form>
+                    </Card>
+                  ) : (
+                    <Card className="p-8 shadow-xl">
+                      <div className="text-center mb-6">
+                        <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-4">
+                          <CheckCircle2 className="w-10 h-10 text-green-600" />
+                        </div>
+                        <h2 className="text-2xl font-light mb-2">Your Manual is Ready!</h2>
+                        <p className="text-muted-foreground">
+                          We've also sent a copy to your email.
+                        </p>
                       </div>
 
-                      <div>
-                        <Label htmlFor="email">Work Email *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@company.com"
-                          {...register("email")}
-                        />
-                        {errors.email && (
-                          <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <Label htmlFor="companyName">Company Name *</Label>
-                        <Input
-                          id="companyName"
-                          placeholder="Your Company Ltd"
-                          {...register("companyName")}
-                        />
-                        {errors.companyName && (
-                          <p className="text-sm text-destructive mt-1">{errors.companyName.message}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <Label htmlFor="role">Your Role (Optional)</Label>
-                        <Input
-                          id="role"
-                          placeholder="Facilities Manager"
-                          {...register("role")}
-                        />
-                      </div>
-
-                      <Button type="submit" className="w-full" size="lg">
+                      <Button onClick={handleDownload} className="w-full mb-4 shadow-lg" size="lg">
                         <Download className="w-4 h-4 mr-2" />
-                        Get Free Manual
+                        Download EICR Survival Manual
                       </Button>
 
-                      <p className="text-xs text-muted-foreground text-center">
-                        We'll also send you occasional FM insights. Unsubscribe anytime.
-                      </p>
-                    </form>
-                  </Card>
-                ) : (
-                  <Card className="p-6">
-                    <div className="text-center mb-6">
-                      <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                        <CheckCircle2 className="w-8 h-8 text-green-600" />
+                      <div className="border-t pt-4">
+                        <p className="text-sm text-muted-foreground mb-3">
+                          Need EICR testing or remedial works?
+                        </p>
+                        <Button asChild variant="outline" className="w-full">
+                          <Link to="/services/electrical-compliance">
+                            View Electrical Services <ArrowRight className="w-4 h-4 ml-2" />
+                          </Link>
+                        </Button>
                       </div>
-                      <h2 className="text-2xl font-light mb-2">Your Manual is Ready!</h2>
-                      <p className="text-muted-foreground">
-                        We've also sent a copy to your email.
-                      </p>
-                    </div>
+                    </Card>
+                  )}
 
-                    <Button onClick={handleDownload} className="w-full mb-4" size="lg">
-                      <Download className="w-4 h-4 mr-2" />
-                      Download EICR Survival Manual
-                    </Button>
-
-                    <div className="border-t pt-4">
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Need EICR testing or remedial works?
-                      </p>
-                      <Button asChild variant="outline" className="w-full">
-                        <a href="/services/electrical-compliance">View Electrical Services</a>
-                      </Button>
-                    </div>
+                  <Card className="p-6 mt-6">
+                    <h3 className="font-medium mb-3">Why EntireFM?</h3>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        NICEIC approved contractors
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        BS 7671:2018+A2:2022 certified engineers
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        Same-day emergency electrical response
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        Remedial works completed within certification
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        Digital certificate management portal
+                      </li>
+                    </ul>
                   </Card>
-                )}
-
-                <Card className="p-6 mt-6">
-                  <h3 className="font-medium mb-3">Why EntireFM?</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>✓ NICEIC approved contractors</li>
-                    <li>✓ BS 7671:2018+A2:2022 certified engineers</li>
-                    <li>✓ Same-day emergency electrical response</li>
-                    <li>✓ Remedial works completed within certification</li>
-                    <li>✓ Digital certificate management portal</li>
-                  </ul>
-                </Card>
+                </AnimatedSection>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Related Resources */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-6">
+            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto">
+              <h2 className="text-2xl font-light mb-8 text-center">Related Resources</h2>
+              <div className="grid md:grid-cols-3 gap-4">
+                <Link to="/fm-insights/what-is-an-eicr" className="group">
+                  <Card className="p-6 h-full hover:border-primary/30 transition-all">
+                    <h3 className="font-medium mb-2 group-hover:text-primary transition-colors">What is an EICR?</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Complete guide to EICRs</p>
+                    <span className="text-sm text-primary flex items-center gap-2">
+                      Read More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Card>
+                </Link>
+                <Link to="/services/electrical" className="group">
+                  <Card className="p-6 h-full hover:border-primary/30 transition-all">
+                    <h3 className="font-medium mb-2 group-hover:text-primary transition-colors">Electrical Services</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Testing & compliance</p>
+                    <span className="text-sm text-primary flex items-center gap-2">
+                      View Services <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Card>
+                </Link>
+                <Link to="/contact" className="group">
+                  <Card className="p-6 h-full hover:border-primary/30 transition-all">
+                    <h3 className="font-medium mb-2 group-hover:text-primary transition-colors">Get a Quote</h3>
+                    <p className="text-sm text-muted-foreground mb-4">EICR testing for your property</p>
+                    <span className="text-sm text-primary flex items-center gap-2">
+                      Contact Us <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Card>
+                </Link>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
       </div>
     </>
   );
