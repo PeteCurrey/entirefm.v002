@@ -95,6 +95,113 @@ export type Database = {
         }
         Relationships: []
       }
+      content_items: {
+        Row: {
+          author_id: string | null
+          category: string
+          content: string | null
+          created_at: string | null
+          excerpt: string | null
+          featured_image: string | null
+          id: string
+          keywords: string[] | null
+          meta_description: string | null
+          meta_title: string | null
+          published_at: string | null
+          scheduled_for: string | null
+          slug: string
+          status: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          author_id?: string | null
+          category: string
+          content?: string | null
+          created_at?: string | null
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: string
+          keywords?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          scheduled_for?: string | null
+          slug: string
+          status?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          author_id?: string | null
+          category?: string
+          content?: string | null
+          created_at?: string | null
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: string
+          keywords?: string[] | null
+          meta_description?: string | null
+          meta_title?: string | null
+          published_at?: string | null
+          scheduled_for?: string | null
+          slug?: string
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      dynamic_pages: {
+        Row: {
+          created_at: string | null
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          page_data: Json
+          published_at: string | null
+          slug: string
+          status: string | null
+          template_id: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          page_data?: Json
+          published_at?: string | null
+          slug: string
+          status?: string | null
+          template_id?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          page_data?: Json
+          published_at?: string | null
+          slug?: string
+          status?: string | null
+          template_id?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dynamic_pages_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "page_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       error_404_logs: {
         Row: {
           count: number
@@ -409,6 +516,110 @@ export type Database = {
         }
         Relationships: []
       }
+      locations: {
+        Row: {
+          active: boolean | null
+          county: string | null
+          coverage_areas: string[] | null
+          created_at: string | null
+          id: string
+          key_industries: string[] | null
+          local_context: string | null
+          name: string
+          population: number | null
+          region: string | null
+          slug: string
+        }
+        Insert: {
+          active?: boolean | null
+          county?: string | null
+          coverage_areas?: string[] | null
+          created_at?: string | null
+          id?: string
+          key_industries?: string[] | null
+          local_context?: string | null
+          name: string
+          population?: number | null
+          region?: string | null
+          slug: string
+        }
+        Update: {
+          active?: boolean | null
+          county?: string | null
+          coverage_areas?: string[] | null
+          created_at?: string | null
+          id?: string
+          key_industries?: string[] | null
+          local_context?: string | null
+          name?: string
+          population?: number | null
+          region?: string | null
+          slug?: string
+        }
+        Relationships: []
+      }
+      media_assets: {
+        Row: {
+          alt_text: string | null
+          content_item_id: string | null
+          created_at: string | null
+          id: string
+          prompt: string | null
+          type: string
+          url: string
+        }
+        Insert: {
+          alt_text?: string | null
+          content_item_id?: string | null
+          created_at?: string | null
+          id?: string
+          prompt?: string | null
+          type: string
+          url: string
+        }
+        Update: {
+          alt_text?: string | null
+          content_item_id?: string | null
+          created_at?: string | null
+          id?: string
+          prompt?: string | null
+          type?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "media_assets_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "content_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      page_templates: {
+        Row: {
+          created_at: string | null
+          id: string
+          name: string
+          template_data: Json
+          type: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          name: string
+          template_data?: Json
+          type: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          name?: string
+          template_data?: Json
+          type?: string
+        }
+        Relationships: []
+      }
       proposal_requests: {
         Row: {
           admin_notes: string | null
@@ -504,6 +715,83 @@ export type Database = {
           user_agent?: string | null
         }
         Relationships: []
+      }
+      service_types: {
+        Row: {
+          active: boolean | null
+          category: string | null
+          created_at: string | null
+          faqs: Json | null
+          id: string
+          name: string
+          slug: string
+          template_content: Json | null
+        }
+        Insert: {
+          active?: boolean | null
+          category?: string | null
+          created_at?: string | null
+          faqs?: Json | null
+          id?: string
+          name: string
+          slug: string
+          template_content?: Json | null
+        }
+        Update: {
+          active?: boolean | null
+          category?: string | null
+          created_at?: string | null
+          faqs?: Json | null
+          id?: string
+          name?: string
+          slug?: string
+          template_content?: Json | null
+        }
+        Relationships: []
+      }
+      social_posts: {
+        Row: {
+          content_item_id: string | null
+          created_at: string | null
+          id: string
+          media_urls: string[] | null
+          platform: string
+          post_text: string
+          posted_at: string | null
+          scheduled_for: string | null
+          status: string | null
+        }
+        Insert: {
+          content_item_id?: string | null
+          created_at?: string | null
+          id?: string
+          media_urls?: string[] | null
+          platform: string
+          post_text: string
+          posted_at?: string | null
+          scheduled_for?: string | null
+          status?: string | null
+        }
+        Update: {
+          content_item_id?: string | null
+          created_at?: string | null
+          id?: string
+          media_urls?: string[] | null
+          platform?: string
+          post_text?: string
+          posted_at?: string | null
+          scheduled_for?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "social_posts_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "content_items"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       supplier_applications: {
         Row: {
