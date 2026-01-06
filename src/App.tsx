@@ -416,6 +416,18 @@ import FMDoncaster from "./pages/fm-locations/FMDoncaster";
 import FMRotherham from "./pages/fm-locations/FMRotherham";
 import FMTelford from "./pages/fm-locations/FMTelford";
 
+// Facilities Management Long-form URL Landing Pages
+import FacilitiesManagementChesterfield from "./pages/fm-locations/FacilitiesManagementChesterfield";
+import FacilitiesManagementManchester from "./pages/fm-locations/FacilitiesManagementManchester";
+import FacilitiesManagementTelford from "./pages/fm-locations/FacilitiesManagementTelford";
+import FacilitiesManagementMidlands from "./pages/fm-locations/FacilitiesManagementMidlands";
+import FacilitiesManagementLincoln from "./pages/fm-locations/FacilitiesManagementLincoln";
+import FacilitiesManagementLondon from "./pages/fm-locations/FacilitiesManagementLondon";
+import FacilitiesManagementBradford from "./pages/fm-locations/FacilitiesManagementBradford";
+import FacilitiesManagementDerby from "./pages/fm-locations/FacilitiesManagementDerby";
+import FacilitiesManagementBirmingham from "./pages/fm-locations/FacilitiesManagementBirmingham";
+import LondonFacilitiesManagement from "./pages/fm-locations/LondonFacilitiesManagement";
+
 const queryClient = new QueryClient();
 
 // Scroll to top on route change
@@ -456,6 +468,18 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/fm-doncaster" element={<FMDoncaster />} />
               <Route path="/fm-rotherham" element={<FMRotherham />} />
               <Route path="/fm-telford" element={<FMTelford />} />
+              
+              {/* Facilities Management Long-form URL Landing Pages */}
+              <Route path="/facilities-management-chesterfield" element={<FacilitiesManagementChesterfield />} />
+              <Route path="/facilities-management-manchester" element={<FacilitiesManagementManchester />} />
+              <Route path="/facilities-management-telford" element={<FacilitiesManagementTelford />} />
+              <Route path="/facilities-management-midlands" element={<FacilitiesManagementMidlands />} />
+              <Route path="/facilities-management-lincoln" element={<FacilitiesManagementLincoln />} />
+              <Route path="/facilities-management-london" element={<FacilitiesManagementLondon />} />
+              <Route path="/facilities-management-bradford" element={<FacilitiesManagementBradford />} />
+              <Route path="/facilities-management-derby" element={<FacilitiesManagementDerby />} />
+              <Route path="/facilities-management-birmingham" element={<FacilitiesManagementBirmingham />} />
+              <Route path="/london-facilities-management" element={<LondonFacilitiesManagement />} />
               
               <Route path="/request-proposal" element={<RequestProposal />} />
               <Route path="/tools/ppm-calculator" element={<PPMCalculator />} />

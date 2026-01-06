@@ -14,9 +14,10 @@ import industrialImage from "@/assets/industrial-facility.jpg";
 
 interface GeoLandingPageProps {
   cityData: CityData;
+  customSlug?: string;
 }
 
-const GeoLandingPage = ({ cityData }: GeoLandingPageProps) => {
+const GeoLandingPage = ({ cityData, customSlug }: GeoLandingPageProps) => {
   const {
     name,
     region,
@@ -33,17 +34,20 @@ const GeoLandingPage = ({ cityData }: GeoLandingPageProps) => {
     localContext
   } = cityData;
 
+  const canonicalSlug = customSlug || `fm-${cityData.slug}`;
+  const canonicalUrl = `https://entirefm.com/${canonicalSlug}`;
+
   return (
     <div className="min-h-screen">
       <Helmet>
         <title>{metaTitle}</title>
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={`facilities management ${name}, FM services ${name}, commercial maintenance ${region}, M&E services ${name}, building management ${name}`} />
-        <link rel="canonical" href={`https://entirefm.com/fm-${cityData.slug}`} />
+        <link rel="canonical" href={canonicalUrl} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://entirefm.com/fm-${cityData.slug}`} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={heroImage} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metaTitle} />
