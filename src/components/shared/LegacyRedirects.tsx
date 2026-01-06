@@ -16,22 +16,18 @@ interface RedirectRule {
 }
 
 const redirectRules: RedirectRule[] = [
-  // Legacy location URL redirects - now redirect to proper FM landing pages
-  { from: '/facilities-management-london', to: '/fm-london', permanent: true },
-  { from: '/london-facilities-management', to: '/fm-london', permanent: true },
-  { from: '/facilities-management-birmingham', to: '/fm-birmingham', permanent: true },
-  { from: '/facilities-management-manchester', to: '/fm-manchester', permanent: true },
+  // Legacy location URL redirects - only for URLs without dedicated pages
+  // The following have dedicated pages: facilities-management-chesterfield, facilities-management-manchester,
+  // facilities-management-telford, facilities-management-midlands, facilities-management-lincoln,
+  // facilities-management-london, facilities-management-bradford, facilities-management-derby,
+  // facilities-management-birmingham, london-facilities-management
   { from: '/facilities-management-leeds', to: '/fm-leeds', permanent: true },
   { from: '/facilities-management-sheffield', to: '/fm-sheffield', permanent: true },
   { from: '/facilities-management-nottingham', to: '/fm-nottingham', permanent: true },
-  { from: '/facilities-management-derby', to: '/fm-derby', permanent: true },
-  { from: '/facilities-management-lincoln', to: '/fm-lincoln', permanent: true },
-  { from: '/facilities-management-chesterfield', to: '/fm-chesterfield', permanent: true },
   { from: '/facilities-management-liverpool', to: '/fm-liverpool', permanent: true },
   { from: '/facilities-management-oxford', to: '/fm-oxford', permanent: true },
   { from: '/facilities-management-doncaster', to: '/fm-doncaster', permanent: true },
   { from: '/facilities-management-rotherham', to: '/fm-rotherham', permanent: true },
-  { from: '/facilities-management-telford', to: '/fm-telford', permanent: true },
 
   // SECTOR MATCH REDIRECTS
   { from: '/retail-facilities-management', to: '/sectors/retail-hospitality', permanent: true },

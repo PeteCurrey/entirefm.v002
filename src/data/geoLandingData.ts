@@ -665,7 +665,7 @@ export const cityData: Record<string, CityData> = {
     slug: "telford",
     name: "Telford",
     region: "Shropshire",
-    heroImage: "https://images.unsplash.com/photo-1590074072786-a66914d668f1?w=1920&q=80",
+    heroImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80",
     tagline: "West Midlands Gateway FM",
     description: "From Telford's modern business parks to the birthplace of the Industrial Revolution, EntireFM delivers facilities management across Shropshire.",
     keyIndustries: ["Manufacturing", "Technology", "Distribution", "Retail", "Tourism"],
@@ -709,5 +709,103 @@ export const cityData: Record<string, CityData> = {
     metaTitle: "Facilities Management Telford | FM Services Shropshire | EntireFM",
     metaDescription: "Professional facilities management in Telford & Shropshire. Manufacturing FM, technology support, retail services & 24/7 maintenance.",
     localContext: "Telford is one of the UK's fastest-growing business locations, combining modern industry with the heritage of Ironbridge, birthplace of the Industrial Revolution."
+  },
+  bradford: {
+    slug: "bradford",
+    name: "Bradford",
+    region: "West Yorkshire",
+    heroImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80",
+    tagline: "West Yorkshire's Industrial Heritage, Modern FM Solutions",
+    description: "From Bradford city centre to the UNESCO World Heritage site of Saltaire, EntireFM delivers expert facilities management across West Yorkshire's second city.",
+    keyIndustries: ["Manufacturing", "Healthcare", "Education", "Retail", "Financial Services"],
+    coverageAreas: ["Bradford City Centre", "Saltaire", "Shipley", "Keighley", "Bingley", "Ilkley", "Skipton", "Pudsey", "Idle", "Thornbury"],
+    localClients: ["Bradford Business District", "West Yorkshire Healthcare Trust", "Bradford College Campus", "Saltaire Mills Complex", "Keighley Industrial Estate"],
+    caseStudies: [
+      {
+        sector: "Healthcare",
+        title: "Full FM for Bradford healthcare campus",
+        metrics: ["HTM compliance maintained", "CQC audit ready", "24/7 critical systems support"]
+      },
+      {
+        sector: "Manufacturing",
+        title: "Industrial facility management in Keighley",
+        metrics: ["Zero production disruption", "PPM completion 99%", "Energy optimisation delivered"]
+      },
+      {
+        sector: "Heritage",
+        title: "Saltaire Mills heritage property FM",
+        metrics: ["UNESCO conservation requirements met", "Historic fabric protected", "Modern services integrated"]
+      }
+    ],
+    faqs: [
+      {
+        question: "Do you cover Bradford city centre and surrounding areas?",
+        answer: "Yes, we provide comprehensive FM services across Bradford city centre, Saltaire, Shipley, Keighley, and the wider West Yorkshire region."
+      },
+      {
+        question: "Can you manage heritage and listed buildings like Saltaire?",
+        answer: "Absolutely. We have experience in heritage property FM, including UNESCO World Heritage sites, understanding conservation requirements while maintaining modern building services."
+      },
+      {
+        question: "What industries do you serve in Bradford?",
+        answer: "We serve diverse sectors in Bradford including manufacturing, healthcare, education, retail, financial services, and commercial property."
+      },
+      {
+        question: "How quickly can you respond to emergencies in Bradford?",
+        answer: "Our average emergency response time in Bradford is under 40 minutes, with engineers based locally across West Yorkshire."
+      }
+    ],
+    metaTitle: "Facilities Management Bradford | FM Services West Yorkshire | EntireFM",
+    metaDescription: "Expert facilities management in Bradford & West Yorkshire. Healthcare FM, manufacturing support, heritage property services & 24/7 maintenance.",
+    localContext: "Bradford combines industrial heritage with modern enterprise. From the UNESCO World Heritage site of Saltaire to thriving business districts, EntireFM understands West Yorkshire's diverse property landscape."
+  },
+  midlands: {
+    slug: "midlands",
+    name: "The Midlands",
+    region: "East & West Midlands",
+    heroImage: "https://images.unsplash.com/photo-1574236170880-ffa2e8c2b5af?w=1920&q=80",
+    tagline: "Heart of England FM Excellence",
+    description: "From Birmingham to Nottingham, Derby to Leicester, EntireFM provides comprehensive facilities management across the entire Midlands corridor.",
+    keyIndustries: ["Automotive", "Aerospace", "Manufacturing", "Logistics", "Food Processing", "Retail"],
+    coverageAreas: ["Birmingham", "Nottingham", "Derby", "Leicester", "Coventry", "Wolverhampton", "Stoke-on-Trent", "Worcester", "Solihull", "Telford"],
+    localClients: ["Midlands Manufacturing Consortium", "East Midlands Distribution Network", "West Midlands Retail Portfolio", "Automotive Supplier Campus", "Birmingham Airport Commercial Estate"],
+    caseStudies: [
+      {
+        sector: "Automotive",
+        title: "FM for major automotive manufacturing campus",
+        metrics: ["JIT production supported", "Zero line stoppages", "PPM completion 99.5%"]
+      },
+      {
+        sector: "Logistics",
+        title: "East Midlands distribution corridor management",
+        metrics: ["24/7 operational support", "Multi-site coordination", "Response time under 40 mins"]
+      },
+      {
+        sector: "Retail",
+        title: "Regional shopping centre portfolio FM",
+        metrics: ["Trading hours protected 100%", "Tenant satisfaction up 25%", "Energy costs reduced 18%"]
+      }
+    ],
+    faqs: [
+      {
+        question: "Do you cover the entire Midlands region?",
+        answer: "Yes, we provide comprehensive FM services across both the East and West Midlands, from Birmingham and Wolverhampton to Nottingham, Derby, and Leicester."
+      },
+      {
+        question: "Can you support automotive and manufacturing facilities?",
+        answer: "Absolutely. The Midlands is the UK's manufacturing heartland and we have extensive experience supporting automotive, aerospace, and advanced manufacturing environments."
+      },
+      {
+        question: "What's your response time across the Midlands?",
+        answer: "With engineers strategically based across the region, our average response time across the Midlands is under 40 minutes for emergency call-outs."
+      },
+      {
+        question: "Do you work with logistics and distribution centres?",
+        answer: "Yes, we provide 24/7 FM support to the Midlands logistics corridor, understanding the critical nature of distribution and warehousing operations."
+      }
+    ],
+    metaTitle: "Facilities Management Midlands | FM Services East & West Midlands | EntireFM",
+    metaDescription: "Professional facilities management across the Midlands. Automotive FM, logistics support, manufacturing compliance & 24/7 maintenance from Birmingham to Nottingham.",
+    localContext: "The Midlands is the industrial engine of the UK, home to automotive giants, aerospace innovation, and the nation's logistics backbone. EntireFM delivers FM that matches the region's ambition and scale."
   }
 };
