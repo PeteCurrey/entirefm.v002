@@ -5,6 +5,11 @@ import { Card } from "@/components/ui/card";
 import { SchemaMarkup, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
+import { ArrowRight, Camera, Thermometer, Building2, Phone, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import CTASection from "@/components/shared/CTASection";
 
 const DroneInspections = () => {
   const serviceSchema = {
@@ -37,6 +42,42 @@ const DroneInspections = () => {
     }
   ];
 
+  const stats = [
+    { value: "60-80%", label: "Cost Savings" },
+    { value: "CAA", label: "Licensed Pilots" },
+    { value: "Same Day", label: "Reporting" },
+    { value: "4K+", label: "Image Quality" }
+  ];
+
+  const capabilities = [
+    {
+      icon: Building2,
+      title: "Roof Inspections",
+      description: "Membrane condition, ponding water, drainage blockages, and structural damage on flat and pitched roofs."
+    },
+    {
+      icon: Camera,
+      title: "Façade Surveys",
+      description: "Cladding defects, render cracks, window seal failures, and masonry deterioration on high-rise buildings."
+    },
+    {
+      icon: Thermometer,
+      title: "Thermal Imaging",
+      description: "Heat loss detection, insulation defects, water ingress, and electrical hotspots through infrared analysis."
+    }
+  ];
+
+  const benefits = [
+    "No scaffolding or access equipment required",
+    "Minimal disruption to building occupants",
+    "High-resolution photographic evidence",
+    "Thermal imaging for hidden defects",
+    "Immediate digital reporting",
+    "Insurance and surveyor accepted",
+    "CAA compliant operations",
+    "Cost-effective for large buildings"
+  ];
+
   return (
     <>
       <Helmet>
@@ -48,95 +89,158 @@ const DroneInspections = () => {
       <SchemaMarkup schema={serviceSchema} />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen bg-background pt-20">
-        <div className="container mx-auto px-4 py-12 lg:py-20">
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-            <div className="lg:col-span-2">
-              <section className="mb-16">
-                <h1 className="text-4xl lg:text-5xl font-light mb-6 tracking-tight">
-                  Drone Building Inspections
-                </h1>
-                <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  Roof inspections, façade surveys, high-rise inaccessible areas.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Link to="/request-proposal">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90">
-                      Request Proposal
-                    </Button>
-                  </Link>
-                  <Link to="/contact">
-                    <Button size="lg" variant="outline">
-                      Contact Us
-                    </Button>
-                  </Link>
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/90 via-primary/50 to-charcoal z-10" />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80')] bg-cover bg-center" />
+        
+        <div className="container mx-auto px-6 relative z-20 text-white py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Breadcrumb items={[
+              { label: "Services", href: "/services" },
+              { label: "Drone Inspections" }
+            ]} className="mb-6" />
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 max-w-4xl">
+              Drone Building Inspections
+            </h1>
+            <p className="text-xl md:text-2xl font-light max-w-3xl text-gray-200 mb-8">
+              Roof inspections, façade surveys, high-rise inaccessible areas — without scaffolding.
+            </p>
+            
+            <div className="flex flex-wrap gap-4">
+              <Button size="lg" className="bg-white text-charcoal hover:bg-gray-100" asChild>
+                <Link to="/request-proposal">
+                  Request Proposal
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal" asChild>
+                <Link to="/contact">Contact Us</Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Banner */}
+      <section className="bg-charcoal py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center text-white"
+              >
+                <div className="text-3xl md:text-4xl font-light mb-2">{stat.value}</div>
+                <div className="text-sm text-gray-400 font-light">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-2 space-y-16">
+            
+            <AnimatedSection>
+              <section className="bg-gradient-to-br from-primary/10 to-transparent p-8 rounded-2xl border border-primary/20">
+                <div className="flex items-start gap-4 mb-4">
+                  <Camera className="w-8 h-8 text-primary flex-shrink-0" />
+                  <h2 className="text-3xl font-light">
+                    Drone Survey Capabilities
+                  </h2>
                 </div>
+                <p className="text-lg font-light leading-relaxed text-muted-foreground">
+                  Drone technology enables safe, cost-effective inspections of building areas previously requiring scaffolding, cherry pickers, or rope access. High-resolution photography and thermal imaging detect defects invisible from ground level.
+                </p>
               </section>
+            </AnimatedSection>
 
-              <section className="mb-16">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Drone Survey Capabilities
-                </h2>
-                <Card className="p-8 bg-card/50 backdrop-blur">
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Drone technology enables safe, cost-effective inspections of building areas previously requiring scaffolding, cherry pickers, or rope access. High-resolution photography and thermal imaging detect defects invisible from ground level.
-                  </p>
-                </Card>
-              </section>
-
-              <section className="mb-16">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+            <AnimatedSection delay={0.1}>
+              <section>
+                <h2 className="text-3xl font-light mb-8 underline-accent inline-block">
                   Applications
                 </h2>
-                <div className="space-y-4">
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">Roof Inspections</h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                      Membrane condition, ponding water, drainage blockages, and structural damage on flat and pitched roofs.
-                    </p>
-                  </Card>
-
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">Façade Surveys</h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                      Cladding defects, render cracks, window seal failures, and masonry deterioration on high-rise buildings.
-                    </p>
-                  </Card>
-
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">Thermal Imaging</h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                      Heat loss detection, insulation defects, water ingress, and electrical hotspots through infrared analysis.
-                    </p>
-                  </Card>
+                <div className="grid gap-6">
+                  {capabilities.map((capability, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Card className="p-6 hover:border-primary transition-colors">
+                        <div className="flex items-start gap-4">
+                          <div className="p-3 bg-primary/10 rounded-lg">
+                            <capability.icon className="w-6 h-6 text-primary" />
+                          </div>
+                          <div>
+                            <h3 className="font-medium mb-2 text-lg">{capability.title}</h3>
+                            <p className="text-muted-foreground font-light">{capability.description}</p>
+                          </div>
+                        </div>
+                      </Card>
+                    </motion.div>
+                  ))}
                 </div>
               </section>
+            </AnimatedSection>
 
-              <FAQSection faqs={faqs} />
-
-              <section className="mt-16">
-                <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-                  <h2 className="text-2xl font-light mb-4">
-                    Discuss Drone Survey Requirements
-                  </h2>
-                  <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                    Talk to our team about drone inspection services for your property.
-                  </p>
-                  <Link to="/request-proposal">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90">
-                      Request Proposal
-                    </Button>
-                  </Link>
-                </Card>
+            <AnimatedSection delay={0.2}>
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Why Choose Drone Inspections?
+                </h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {benefits.map((benefit, index) => (
+                    <motion.div 
+                      key={index}
+                      className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="font-light">{benefit}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </section>
-            </div>
+            </AnimatedSection>
 
-            <div className="lg:col-span-1">
-              <div className="sticky top-8">
-                <SidebarCTA />
-              </div>
-            </div>
+            <AnimatedSection delay={0.3}>
+              <FAQSection faqs={faqs} />
+            </AnimatedSection>
+
+            <CTASection
+              title="Discuss Drone Survey Requirements"
+              description="Talk to our team about drone inspection services for your property."
+              primaryLabel="Request Proposal"
+              primaryHref="/request-proposal"
+              secondaryLabel="Contact Us"
+              secondaryHref="/contact"
+              secondaryIcon={Phone}
+              variant="gradient"
+            />
           </div>
+
+          <aside className="lg:col-span-1">
+            <div className="sticky top-24">
+              <SidebarCTA />
+            </div>
+          </aside>
         </div>
       </div>
     </>
