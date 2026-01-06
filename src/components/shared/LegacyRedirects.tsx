@@ -16,18 +16,7 @@ interface RedirectRule {
 }
 
 const redirectRules: RedirectRule[] = [
-  // Legacy location URL redirects - only for URLs without dedicated pages
-  // The following have dedicated pages: facilities-management-chesterfield, facilities-management-manchester,
-  // facilities-management-telford, facilities-management-midlands, facilities-management-lincoln,
-  // facilities-management-london, facilities-management-bradford, facilities-management-derby,
-  // facilities-management-birmingham, london-facilities-management
-  { from: '/facilities-management-leeds', to: '/fm-leeds', permanent: true },
-  { from: '/facilities-management-sheffield', to: '/fm-sheffield', permanent: true },
-  { from: '/facilities-management-nottingham', to: '/fm-nottingham', permanent: true },
-  { from: '/facilities-management-liverpool', to: '/fm-liverpool', permanent: true },
-  { from: '/facilities-management-oxford', to: '/fm-oxford', permanent: true },
-  { from: '/facilities-management-doncaster', to: '/fm-doncaster', permanent: true },
-  { from: '/facilities-management-rotherham', to: '/fm-rotherham', permanent: true },
+  // Legacy location URL redirects - all facilities-management-* URLs now have dedicated pages
 
   // SECTOR MATCH REDIRECTS
   { from: '/retail-facilities-management', to: '/sectors/retail-hospitality', permanent: true },

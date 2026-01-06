@@ -427,6 +427,13 @@ import FacilitiesManagementBradford from "./pages/fm-locations/FacilitiesManagem
 import FacilitiesManagementDerby from "./pages/fm-locations/FacilitiesManagementDerby";
 import FacilitiesManagementBirmingham from "./pages/fm-locations/FacilitiesManagementBirmingham";
 import LondonFacilitiesManagement from "./pages/fm-locations/LondonFacilitiesManagement";
+import FacilitiesManagementLeeds from "./pages/fm-locations/FacilitiesManagementLeeds";
+import FacilitiesManagementSheffield from "./pages/fm-locations/FacilitiesManagementSheffield";
+import FacilitiesManagementNottingham from "./pages/fm-locations/FacilitiesManagementNottingham";
+import FacilitiesManagementLiverpool from "./pages/fm-locations/FacilitiesManagementLiverpool";
+import FacilitiesManagementOxford from "./pages/fm-locations/FacilitiesManagementOxford";
+import FacilitiesManagementDoncaster from "./pages/fm-locations/FacilitiesManagementDoncaster";
+import FacilitiesManagementRotherham from "./pages/fm-locations/FacilitiesManagementRotherham";
 
 const queryClient = new QueryClient();
 
@@ -480,6 +487,13 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/facilities-management-derby" element={<FacilitiesManagementDerby />} />
               <Route path="/facilities-management-birmingham" element={<FacilitiesManagementBirmingham />} />
               <Route path="/london-facilities-management" element={<LondonFacilitiesManagement />} />
+              <Route path="/facilities-management-leeds" element={<FacilitiesManagementLeeds />} />
+              <Route path="/facilities-management-sheffield" element={<FacilitiesManagementSheffield />} />
+              <Route path="/facilities-management-nottingham" element={<FacilitiesManagementNottingham />} />
+              <Route path="/facilities-management-liverpool" element={<FacilitiesManagementLiverpool />} />
+              <Route path="/facilities-management-oxford" element={<FacilitiesManagementOxford />} />
+              <Route path="/facilities-management-doncaster" element={<FacilitiesManagementDoncaster />} />
+              <Route path="/facilities-management-rotherham" element={<FacilitiesManagementRotherham />} />
               
               <Route path="/request-proposal" element={<RequestProposal />} />
               <Route path="/tools/ppm-calculator" element={<PPMCalculator />} />
