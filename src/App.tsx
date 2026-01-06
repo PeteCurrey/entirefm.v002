@@ -275,6 +275,13 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
 import ContactSubmissions from "./pages/admin/ContactSubmissions";
 import HelpdeskJobs from "./pages/admin/HelpdeskJobs";
+import MarketingDashboard from "./pages/admin/MarketingDashboard";
+import ContentList from "./pages/admin/ContentList";
+import ContentEditor from "./pages/admin/ContentEditor";
+import SocialMediaManager from "./pages/admin/SocialMediaManager";
+import AIMediaStudio from "./pages/admin/AIMediaStudio";
+import PageManager from "./pages/admin/PageManager";
+import PageCreator from "./pages/admin/PageCreator";
 import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
 import EmergencyResponse from "./pages/services/EmergencyResponse";
 import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
@@ -909,6 +916,18 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="contacts" element={<ContactSubmissions />} />
                 <Route path="helpdesk-jobs" element={<HelpdeskJobs />} />
                 <Route path="jobs" element={<Jobs />} />
+                {/* Marketing Routes */}
+                <Route path="marketing" element={<MarketingDashboard />} />
+                <Route path="marketing/content" element={<ContentList />} />
+                <Route path="marketing/content/new" element={<ContentEditor />} />
+                <Route path="marketing/content/:id" element={<ContentEditor />} />
+                <Route path="marketing/social" element={<SocialMediaManager />} />
+                <Route path="marketing/media" element={<AIMediaStudio />} />
+                {/* Page Management Routes */}
+                <Route path="pages" element={<PageManager />} />
+                <Route path="pages/new" element={<PageCreator />} />
+                <Route path="pages/:id" element={<PageCreator />} />
+                {/* Tools Routes */}
                 <Route path="site-map" element={<SiteMap />} />
                 <Route path="link-health" element={<LinkHealthDashboard />} />
                 <Route path="search-analytics" element={<SearchAnalyticsDashboard />} />
