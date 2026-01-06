@@ -1,20 +1,50 @@
 import { Helmet } from "react-helmet";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { ServiceSchema } from "@/components/shared/SchemaMarkup";
+import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
-import heroImage from "@/assets/office-interior.jpg";
 import { RelatedServices } from "@/components/shared/RelatedServices";
-import { KnowledgeCentreCTA } from "@/components/shared/KnowledgeCentreCTA";
-import { DualCTA } from "@/components/shared/DualCTA";
 import { RegionalServiceIndex } from "@/components/shared/RegionalServiceIndex";
+import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { ArrowRight, FileText, Lightbulb, Shield, CheckCircle2, FileCheck, AlertTriangle } from "lucide-react";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import ContentSection from "@/components/shared/ContentSection";
+import FeatureCardGrid from "@/components/shared/FeatureCardGrid";
 
 const EmergencyLighting = () => {
   useConversionTracking();
+
+  const breadcrumbItems = [
+    { label: "Services", href: "/services" },
+    { label: "Emergency Lighting Compliance" }
+  ];
+
+  const keyFeatures = [
+    {
+      icon: Lightbulb,
+      title: "Monthly Function Tests",
+      description: "Regular verification that all emergency lighting units operate correctly"
+    },
+    {
+      icon: Shield,
+      title: "Annual 3-Hour Duration",
+      description: "Full battery capacity testing to BS 5266 requirements"
+    },
+    {
+      icon: CheckCircle2,
+      title: "Battery Replacements",
+      description: "Proactive battery management before failure occurs"
+    },
+    {
+      icon: FileCheck,
+      title: "Digital Certification",
+      description: "Instant downloadable certificates with photo evidence"
+    }
+  ];
 
   const faqs = [
     {
@@ -43,316 +73,327 @@ const EmergencyLighting = () => {
         <meta property="og:url" content="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
-      <BreadcrumbSchema 
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Services", href: "/services" },
-          { label: "Emergency Lighting Compliance" }
-        ]}
-      />
-
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema
         name="Emergency Lighting & Evacuation Safety Compliance"
         description="BS 5266 certified emergency lighting testing, 3-hour duration verification and remedials for compliant and safe evacuation across commercial estates."
         provider="Entire FM"
         areaServed="United Kingdom"
       />
+      <FAQSchema faqs={faqs} />
 
-      <Header />
+      <div className="min-h-screen bg-background">
+        <ServiceHeroSection
+          breadcrumbItems={breadcrumbItems}
+          title="Emergency Lighting & Evacuation Safety"
+          description="BS 5266 testing, 3-hour duration verification and remedials for compliant and safe evacuation across commercial estates."
+          stats={[
+            { value: "BS 5266", label: "Certified" },
+            { value: "3hr", label: "Duration Testing" },
+            { value: "Monthly", label: "Function Tests" },
+            { value: "24/7", label: "Support" }
+          ]}
+          primaryCTA={{
+            label: "Request 3-Hour Duration Test",
+            href: "/request-proposal",
+            icon: ArrowRight
+          }}
+          secondaryCTA={{
+            label: "Download BS 5266 Checklist",
+            href: "/resources",
+            icon: FileText
+          }}
+          backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
+        />
 
-      <main className="min-h-screen pt-20">
-        {/* Hero Section */}
-        <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImage})` }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/90 to-background/70" />
-          </div>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl">
-              <h1 className="text-5xl md:text-6xl font-light mb-6 leading-tight">
-                Emergency Lighting & Evacuation Safety Compliance
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-muted-foreground font-light leading-relaxed">
-                BS 5266 testing, 3-hour duration verification and remedials for compliant and safe evacuation across commercial estates.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" asChild className="text-lg px-8">
-                  <Link to="/contact">Request 3-Hour Duration Test</Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="text-lg px-8">
-                  <a href="mailto:hello@entirefm.com">Download BS 5266 Audit Checklist</a>
-                </Button>
-              </div>
-            </div>
+        {/* Key Features Grid */}
+        <section className="py-16 bg-background">
+          <div className="max-w-6xl mx-auto px-4">
+            <FeatureCardGrid features={keyFeatures} columns={4} variant="gradient" />
           </div>
         </section>
 
         {/* Evacuation Safety Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Evacuation Safety When Visibility Fails
-              </h2>
-              <p className="text-xl text-muted-foreground font-light mb-8 leading-relaxed">
-                In an emergency, people don't panic because of fire — they panic because they can't see.
-              </p>
-              <div className="grid md:grid-cols-2 gap-8 text-left mt-12">
-                <div className="bg-card p-8 rounded-lg border border-border">
-                  <h3 className="text-2xl font-light mb-4">When Emergency Lighting Fails:</h3>
+        <ContentSection variant="muted" title="Evacuation Safety When Visibility Fails" subtitle="In an emergency, people don't panic because of fire — they panic because they can't see." centered>
+          <div className="max-w-4xl mx-auto">
+            <AnimatedSection delay={0.1}>
+              <div className="grid md:grid-cols-2 gap-6 text-left mt-8">
+                <div className="bg-card p-6 rounded-lg border border-border">
+                  <h3 className="text-xl font-light mb-4 text-foreground">When Emergency Lighting Fails:</h3>
                   <ul className="space-y-3 text-muted-foreground">
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">→</span>
-                      <span>Evacuation slows</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">→</span>
-                      <span>Injury & liability rise</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">→</span>
-                      <span>Insurers reject claims</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">→</span>
-                      <span>Fire safety enforcement escalates</span>
-                    </li>
+                    {[
+                      "Evacuation slows",
+                      "Injury & liability rise",
+                      "Insurers reject claims",
+                      "Fire safety enforcement escalates"
+                    ].map((item, index) => (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        className="flex items-start gap-2"
+                      >
+                        <AlertTriangle className="w-4 h-4 text-destructive mt-1 flex-shrink-0" />
+                        <span className="font-light">{item}</span>
+                      </motion.li>
+                    ))}
                   </ul>
                 </div>
-                <div className="bg-primary/5 p-8 rounded-lg border border-primary/20 flex items-center justify-center">
-                  <div>
-                    <p className="text-2xl font-light text-center">
+                <div className="bg-primary/5 p-6 rounded-lg border border-primary/20 flex items-center justify-center">
+                  <div className="text-center">
+                    <p className="text-xl font-light">
                       Compliance isn't optional —<br />
-                      <span className="text-primary text-3xl">it's life preservation.</span>
+                      <span className="text-primary text-2xl font-medium">it's life preservation.</span>
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
-        </section>
+        </ContentSection>
 
-        {/* Full BS 5266 Compliance */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Full BS 5266 Compliance Delivery
-              </h2>
-              <p className="text-xl text-muted-foreground font-light mb-12 leading-relaxed">
-                We maintain and certify:
-              </p>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  "Monthly functional testing",
-                  "Annual 3-hour duration testing",
-                  "Signage illumination performance",
-                  "Escape route coverage mapping",
-                  "Battery and fitting replacements",
-                  "Logbooks & digital certification"
-                ].map((service, index) => (
-                  <div key={index} className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-colors">
-                    <div className="flex items-start gap-3">
-                      <span className="text-primary text-2xl">🔦</span>
-                      <span className="text-lg font-light">{service}</span>
-                    </div>
+        {/* Main Content Grid */}
+        <section className="py-16 bg-background">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-12">
+                
+                {/* Full BS 5266 Compliance */}
+                <AnimatedSection>
+                  <h2 className="text-3xl font-light mb-6">
+                    <span className="underline-accent">Full BS 5266 Compliance Delivery</span>
+                  </h2>
+                  <p className="text-xl text-muted-foreground font-light mb-8">We maintain and certify:</p>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {[
+                      "Monthly functional testing",
+                      "Annual 3-hour duration testing",
+                      "Signage illumination performance",
+                      "Escape route coverage mapping",
+                      "Battery and fitting replacements",
+                      "Logbooks & digital certification"
+                    ].map((service, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
+                        className="bg-card p-5 rounded-lg border border-border hover:border-primary/50 transition-colors"
+                      >
+                        <div className="flex items-start gap-3">
+                          <Lightbulb className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <span className="font-light text-foreground">{service}</span>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <p className="text-xl text-center mt-12 text-muted-foreground font-light">
-                Your evacuation stays safe — even when power fails.
-              </p>
-            </div>
-          </div>
-        </section>
+                  <p className="text-lg text-center mt-8 text-foreground font-medium">
+                    Your evacuation stays safe — even when power fails.
+                  </p>
+                </AnimatedSection>
 
-        {/* Live Remedials */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Live Remedials — Zero Exposure
-              </h2>
-              <p className="text-xl text-muted-foreground font-light mb-8 leading-relaxed">
-                Any failure identified during testing triggers our <Link to="/fm-operations/reactive-maintenance" className="text-primary hover:underline">reactive maintenance</Link> process, ensuring it:
-              </p>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-card p-8 rounded-lg border border-border text-center">
-                  <div className="text-3xl mb-4">✔</div>
-                  <h3 className="text-xl font-light mb-2">Risk-coded</h3>
-                  <p className="text-muted-foreground font-light">Severity categorized</p>
-                </div>
-                <div className="bg-card p-8 rounded-lg border border-border text-center">
-                  <div className="text-3xl mb-4">✔</div>
-                  <h3 className="text-xl font-light mb-2">Costed</h3>
-                  <p className="text-muted-foreground font-light">Transparent pricing</p>
-                </div>
-                <div className="bg-card p-8 rounded-lg border border-border text-center">
-                  <div className="text-3xl mb-4">✔</div>
-                  <h3 className="text-xl font-light mb-2">Resolved rapidly</h3>
-                  <p className="text-muted-foreground font-light">Fast deployment</p>
-                </div>
-              </div>
-              <p className="text-xl text-center mt-8 text-muted-foreground font-light">
-                We don't leave evacuation safety to chance.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Digital Compliance Governance */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Digital Compliance Governance
-              </h2>
-              <p className="text-xl text-muted-foreground font-light mb-8 leading-relaxed">
-                Every test. Every asset. Every result. Stored electronically with:
-              </p>
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                {[
-                  "Photo evidence",
-                  "Remedial lifecycle logs",
-                  "Downloadable certificates",
-                  "Automatic re-test alerts"
-                ].map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-card p-6 rounded-lg border border-border">
-                    <span className="text-primary text-xl">•</span>
-                    <span className="text-lg font-light">{feature}</span>
+                {/* Live Remedials */}
+                <AnimatedSection delay={0.1} className="bg-muted/30 p-8 rounded-xl">
+                  <h2 className="text-3xl font-light mb-6">
+                    Live Remedials — Zero Exposure
+                  </h2>
+                  <p className="text-muted-foreground font-light mb-8">
+                    Any failure identified during testing triggers our <Link to="/fm-operations/reactive-maintenance" className="text-primary hover:underline">reactive maintenance</Link> process, ensuring it:
+                  </p>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {[
+                      { title: "Risk-coded", desc: "Severity categorized" },
+                      { title: "Costed", desc: "Transparent pricing" },
+                      { title: "Resolved rapidly", desc: "Fast deployment" }
+                    ].map((item, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        className="bg-card p-6 rounded-lg border border-border text-center"
+                      >
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                          <CheckCircle2 className="w-6 h-6 text-primary" />
+                        </div>
+                        <h3 className="text-lg font-medium mb-2 text-foreground">{item.title}</h3>
+                        <p className="text-muted-foreground font-light text-sm">{item.desc}</p>
+                      </motion.div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <div className="bg-primary/5 p-8 rounded-lg border border-primary/20 text-center">
-                <p className="text-xl font-light">
-                  Auditors love this.<br />
-                  <span className="text-primary">Insurers expect it.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Sectors We Protect */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Sectors We Protect
-              </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-                {[
-                  { name: "PBSA & residential", link: "/sectors/residential-pbsa" },
-                  { name: "Retail & hospitality", link: "/sectors/retail-service-stations" },
-                  { name: "Corporate offices", link: "/sectors/offices-corporate" },
-                  { name: "Public buildings & venues", link: "/sectors" },
-                  { name: "Logistics & industrial", link: "/sectors/industrial-logistics" }
-                ].map((sector, index) => (
-                  <Link 
-                    key={index}
-                    to={sector.link}
-                    className="bg-card p-6 rounded-lg border border-border hover:border-primary transition-colors text-center"
-                  >
-                    <span className="text-lg font-light">{sector.name}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Case Studies Placeholder */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-light mb-6 underline-accent inline-block">
-                Case Study Highlights
-              </h2>
-              <div className="grid md:grid-cols-2 gap-8 mt-8">
-                <div className="bg-card p-8 rounded-lg border border-border">
-                  <h3 className="text-xl font-light mb-4">City Retail Centre</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Compliance restored within 48 hours of audit deadline.
+                  <p className="text-lg text-center mt-8 text-foreground font-medium">
+                    We don't leave evacuation safety to chance.
                   </p>
-                </div>
-                <div className="bg-card p-8 rounded-lg border border-border">
-                  <h3 className="text-xl font-light mb-4">PBSA Building</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Duration failures eliminated across full site.
+                </AnimatedSection>
+
+                {/* Digital Compliance Governance */}
+                <AnimatedSection delay={0.2}>
+                  <h2 className="text-3xl font-light mb-6">
+                    <span className="underline-accent">Digital Compliance Governance</span>
+                  </h2>
+                  <p className="text-muted-foreground font-light mb-8">
+                    Every test. Every asset. Every result. Stored electronically with:
                   </p>
-                </div>
+                  <div className="grid md:grid-cols-2 gap-4 mb-8">
+                    {[
+                      "Photo evidence",
+                      "Remedial lifecycle logs",
+                      "Downloadable certificates",
+                      "Automatic re-test alerts"
+                    ].map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
+                        className="flex items-center gap-3 bg-card p-5 rounded-lg border border-border"
+                      >
+                        <FileCheck className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="font-light text-foreground">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <div className="bg-primary/5 p-6 rounded-lg border border-primary/20 text-center">
+                    <p className="text-lg font-light">
+                      Auditors love this. <span className="text-primary font-medium">Insurers expect it.</span>
+                    </p>
+                  </div>
+                </AnimatedSection>
+
+                {/* Sectors We Protect */}
+                <AnimatedSection delay={0.1}>
+                  <h2 className="text-3xl font-light mb-6">
+                    <span className="underline-accent">Sectors We Protect</span>
+                  </h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {[
+                      { name: "PBSA & residential", link: "/sectors/residential-pbsa" },
+                      { name: "Retail & hospitality", link: "/sectors/retail-service-stations" },
+                      { name: "Corporate offices", link: "/sectors/offices-corporate" },
+                      { name: "Public buildings & venues", link: "/sectors" },
+                      { name: "Logistics & industrial", link: "/sectors/industrial-logistics" }
+                    ].map((sector, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <Link 
+                          to={sector.link}
+                          className="block bg-card p-5 rounded-lg border border-border hover:border-primary transition-colors text-center"
+                        >
+                          <span className="font-light text-foreground">{sector.name}</span>
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+                </AnimatedSection>
+
+                {/* Case Study Highlights */}
+                <AnimatedSection delay={0.2}>
+                  <h2 className="text-3xl font-light mb-6">
+                    <span className="underline-accent">Case Study Highlights</span>
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      className="bg-card p-6 rounded-xl border border-border hover:border-primary/30 transition-colors"
+                    >
+                      <h3 className="text-xl font-medium mb-3 text-foreground">City Retail Centre</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Compliance restored within 48 hours of audit deadline.
+                      </p>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 }}
+                      className="bg-card p-6 rounded-xl border border-border hover:border-primary/30 transition-colors"
+                    >
+                      <h3 className="text-xl font-medium mb-3 text-foreground">PBSA Building</h3>
+                      <p className="text-muted-foreground font-light leading-relaxed">
+                        Duration failures eliminated across full site.
+                      </p>
+                    </motion.div>
+                  </div>
+                  <p className="text-sm text-muted-foreground text-center mt-6">
+                    Detailed case studies coming soon
+                  </p>
+                </AnimatedSection>
+
+                {/* Related Services */}
+                <RelatedServices 
+                  services={[
+                    {
+                      title: "PPM Delivery",
+                      description: "Monthly functional testing and annual emergency lighting certification",
+                      link: "/fm-operations/ppm-delivery"
+                    },
+                    {
+                      title: "Fire Safety",
+                      description: "Comprehensive fire safety system testing and maintenance",
+                      link: "/services/fire-safety"
+                    },
+                    {
+                      title: "Reactive Maintenance",
+                      description: "Emergency lighting fault diagnosis and rapid repairs",
+                      link: "/fm-operations/reactive-maintenance"
+                    },
+                    {
+                      title: "Emergency Response",
+                      description: "Critical life-safety system emergency attendance",
+                      link: "/services/emergency-response"
+                    }
+                  ]}
+                />
+
+                <RegionalServiceIndex 
+                  serviceName="Emergency Lighting"
+                  serviceSlug="emergency-lighting"
+                />
+
+                <FAQSection faqs={faqs} />
               </div>
-              <p className="text-sm text-muted-foreground text-center mt-8">
-                Detailed case studies coming soon
-              </p>
-            </div>
-          </div>
-        </section>
 
-        {/* FAQs */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <RelatedServices 
-                services={[
-                  {
-                    title: "PPM Delivery",
-                    description: "Monthly functional testing and annual emergency lighting certification",
-                    link: "/fm-operations/ppm-delivery"
-                  },
-                  {
-                    title: "Fire Safety",
-                    description: "Comprehensive fire safety system testing and maintenance",
-                    link: "/services/fire-safety"
-                  },
-                  {
-                    title: "Reactive Maintenance",
-                    description: "Emergency lighting fault diagnosis and rapid repairs",
-                    link: "/fm-operations/reactive-maintenance"
-                  },
-                  {
-                    title: "Emergency Response",
-                    description: "Critical life-safety system emergency attendance",
-                    link: "/services/emergency-response"
-                  }
-                ]}
-              />
-          {/* Regional Service Index */}
-          <RegionalServiceIndex 
-            serviceName="Emergency Lighting"
-            serviceSlug="emergency-lighting"
-          />
-
-          <FAQSection faqs={faqs} />
+              {/* Sidebar */}
+              <aside className="lg:col-span-1">
+                <div className="sticky top-24">
+                  <SidebarCTA />
+                </div>
+              </aside>
             </div>
           </div>
         </section>
 
         {/* Final CTA */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-4xl font-light mb-6">
-                Evacuation readiness = life safety.
-              </h2>
-              <p className="text-xl text-muted-foreground font-light mb-8">
-                Don't leave it unclear.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <p className="text-lg">📩 hello@entirefm.com</p>
-                <Button size="lg" asChild>
-                  <Link to="/contact">Request 3-Hour Test</Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
+        <ContentSection variant="gradient" centered>
+          <AnimatedSection className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-light mb-4">
+              Evacuation readiness = life safety.
+            </h2>
+            <p className="text-lg text-muted-foreground mb-2">
+              Don't leave it unclear.
+            </p>
+            <p className="text-muted-foreground mb-8">📩 hello@entirefm.com</p>
+            <Button size="lg" asChild>
+              <Link to="/request-proposal">
+                <ArrowRight className="w-5 h-5 mr-2" />
+                Request 3-Hour Test
+              </Link>
+            </Button>
+          </AnimatedSection>
+        </ContentSection>
+      </div>
     </>
   );
 };
