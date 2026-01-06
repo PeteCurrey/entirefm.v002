@@ -35,3 +35,12 @@ verify_jwt = false
 
 [functions.link-checker]
 verify_jwt = false
+
+[functions.generate-content]
+verify_jwt = false
+
+[functions.generate-image]
+verify_jwt = false
+
+[functions.schedule-content]
+verify_jwt = false

@@ -13,7 +13,11 @@ import {
   Mail,
   Wrench,
   Map,
-  Link
+  Link,
+  Megaphone,
+  Layout,
+  ChevronDown,
+  ChevronRight
 } from "lucide-react";
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
@@ -107,16 +111,36 @@ export default function AdminLayout() {
     );
   }
 
+  const [expandedSections, setExpandedSections] = useState<string[]>(['marketing']);
+
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
     { icon: FileText, label: "Proposals", path: "/admin/proposals" },
     { icon: Mail, label: "Contacts", path: "/admin/contacts" },
     { icon: Wrench, label: "Helpdesk Jobs", path: "/admin/helpdesk-jobs" },
     { icon: Wrench, label: "CAFM Jobs", path: "/admin/jobs" },
+    { 
+      icon: Megaphone, 
+      label: "Marketing", 
+      path: "/admin/marketing",
+      children: [
+        { label: "Dashboard", path: "/admin/marketing" },
+        { label: "Content", path: "/admin/marketing/content" },
+        { label: "Social Media", path: "/admin/marketing/social" },
+        { label: "AI Media", path: "/admin/marketing/media" },
+      ]
+    },
+    { icon: Layout, label: "Pages", path: "/admin/pages" },
     { icon: BarChart3, label: "Search Analytics", path: "/admin/search-analytics" },
     { icon: Link, label: "Link Health", path: "/admin/link-health" },
     { icon: Map, label: "Site Map", path: "/admin/site-map" },
   ];
+
+  const toggleSection = (label: string) => {
+    setExpandedSections(prev => 
+      prev.includes(label) ? prev.filter(s => s !== label) : [...prev, label]
+    );
+  };
 
   return (
     <div className="flex min-h-screen w-full bg-muted/30 pt-20">
@@ -142,17 +166,56 @@ export default function AdminLayout() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
-            const isActive = location.pathname === item.path;
+            const isActive = location.pathname === item.path || 
+              (item.children && item.children.some(c => location.pathname === c.path));
+            const isExpanded = expandedSections.includes(item.label);
+            
+            if (item.children) {
+              return (
+                <div key={item.path}>
+                  <button
+                    onClick={() => sidebarOpen && toggleSection(item.label)}
+                    className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors w-full ${
+                      isActive ? 'bg-primary/10 text-primary' : 'hover:bg-muted text-foreground'
+                    }`}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {sidebarOpen && (
+                      <>
+                        <span className="flex-1 text-left">{item.label}</span>
+                        {isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+                      </>
+                    )}
+                  </button>
+                  {sidebarOpen && isExpanded && (
+                    <div className="ml-8 mt-1 space-y-1">
+                      {item.children.map(child => (
+                        <NavLink
+                          key={child.path}
+                          to={child.path}
+                          className={`block px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                            location.pathname === child.path
+                              ? 'bg-primary text-primary-foreground'
+                              : 'hover:bg-muted text-muted-foreground'
+                          }`}
+                        >
+                          {child.label}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+            
             return (
               <NavLink
                 key={item.path}
                 to={item.path}
                 className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-                  isActive
-                    ? 'bg-primary text-primary-foreground'
-                    : 'hover:bg-muted text-foreground'
+                  isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-muted text-foreground'
                 }`}
               >
                 <item.icon className="h-5 w-5" />
