@@ -96,7 +96,7 @@ const EngineerStandards = () => {
           <div className="container mx-auto px-6 relative">
             <Breadcrumb items={breadcrumbItems} />
             
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto text-center mt-8">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto text-center mt-8">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight">
                 Professional engineers.
                 <span className="block text-primary">Professional outcomes.</span>
@@ -121,7 +121,7 @@ const EngineerStandards = () => {
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
               {stats.map((stat, index) => (
-                <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
+                <AnimatedSection key={index} direction="up" delay={index * 0.1}>
                   <div className="text-3xl md:text-4xl font-light text-primary mb-2">{stat.value}</div>
                   <div className="text-sm text-gray-300 font-light">{stat.label}</div>
                 </AnimatedSection>
@@ -133,14 +133,14 @@ const EngineerStandards = () => {
         {/* What Clients See */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-6xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light mb-4 text-center">What Clients See</h2>
               <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
                 Professional behaviour is a performance standard.
               </p>
               <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {whatClientsSee.map((item, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={index * 75}>
+                  <AnimatedSection key={index} direction="up" delay={index * 0.075}>
                     <Card className="flex items-start gap-4 p-6 hover:shadow-lg hover:border-primary/30 transition-all">
                       <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                       <p className="text-lg font-light">{item}</p>
@@ -155,7 +155,7 @@ const EngineerStandards = () => {
         {/* What Clients Don't See — But Feel */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-6xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light mb-4 text-center">
                 What Clients Don't See — But Feel
               </h2>
@@ -164,7 +164,7 @@ const EngineerStandards = () => {
               </p>
               <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
                 {whatClientsFeel.map((item, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={index * 75}>
+                  <AnimatedSection key={index} direction="up" delay={index * 0.075}>
                     <Card className="flex items-start gap-4 p-6 bg-background hover:shadow-lg hover:border-primary/30 transition-all">
                       <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                       <p className="text-lg font-light">{item}</p>
@@ -172,7 +172,7 @@ const EngineerStandards = () => {
                   </AnimatedSection>
                 ))}
               </div>
-              <AnimatedSection animation="fade-up" delay={300}>
+              <AnimatedSection direction="up" delay={0.3}>
                 <Card className="p-8 bg-background border-primary/20 max-w-2xl mx-auto text-center">
                   <p className="text-xl font-light text-foreground">
                     Poor presentation = poor workmanship more often than not.
@@ -187,7 +187,7 @@ const EngineerStandards = () => {
         {/* Standards We Enforce */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-6xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light mb-4 text-center">
                 Standards We Enforce
               </h2>
@@ -196,7 +196,7 @@ const EngineerStandards = () => {
               </p>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {standards.map((standard, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={index * 75}>
+                  <AnimatedSection key={index} direction="up" delay={index * 0.075}>
                     <Card className="p-6 hover:shadow-lg hover:border-primary/30 transition-all h-full">
                       <div className="p-3 bg-primary/10 rounded-xl w-fit mb-4">
                         <standard.icon className="h-6 w-6 text-primary" />
@@ -214,7 +214,7 @@ const EngineerStandards = () => {
         {/* Brand Protection Statement */}
         <section className="py-20 bg-gradient-to-br from-charcoal via-charcoal to-charcoal/95 text-white">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto">
+            <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light mb-6">
                 Your site reflects your brand.
                 <span className="block text-primary">Our engineers reflect ours.</span>
@@ -229,7 +229,7 @@ const EngineerStandards = () => {
         {/* Internal Links Section */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto text-center">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto text-center">
               <h2 className="text-2xl font-light mb-8">Explore More</h2>
               <div className="grid sm:grid-cols-3 gap-4">
                 <Link to="/about" className="group">

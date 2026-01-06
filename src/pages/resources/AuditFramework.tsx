@@ -48,7 +48,7 @@ const AuditFramework = () => {
               ]}
             />
             
-            <AnimatedSection animation="fade-up" className="max-w-4xl mt-8">
+            <AnimatedSection direction="up" className="max-w-4xl mt-8">
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-4 bg-primary/10 rounded-2xl">
                   <ClipboardCheck className="w-10 h-10 text-primary" />
@@ -85,7 +85,7 @@ const AuditFramework = () => {
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
               {stats.map((stat, index) => (
-                <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
+                <AnimatedSection key={index} direction="up" delay={index * 0.1}>
                   <div className="text-3xl md:text-4xl font-light text-primary mb-2">{stat.value}</div>
                   <div className="text-sm text-gray-300 font-light">{stat.label}</div>
                 </AnimatedSection>
@@ -97,7 +97,7 @@ const AuditFramework = () => {
         {/* What The Audit Framework Covers */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light mb-4 text-center">
                 What The Audit Framework Covers
               </h2>
@@ -108,7 +108,7 @@ const AuditFramework = () => {
             
             <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
               {coverageAreas.map((item, index) => (
-                <AnimatedSection key={index} animation="fade-up" delay={index * 50}>
+                <AnimatedSection key={index} direction="up" delay={index * 0.05}>
                   <Card className="p-5 hover:shadow-lg hover:border-primary/30 transition-all duration-300 group">
                     <div className="flex items-start gap-4">
                       <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
@@ -126,7 +126,7 @@ const AuditFramework = () => {
         {/* Why It Converts */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto text-center">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-light mb-6">
                 Why It Converts
               </h2>
@@ -145,7 +145,7 @@ const AuditFramework = () => {
         {/* Related Resources */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-light mb-8 text-center">Related Resources</h2>
               <div className="grid md:grid-cols-3 gap-4">
                 <Link to="/resources/switch-playbook" className="group">
@@ -183,7 +183,7 @@ const AuditFramework = () => {
         {/* CTA */}
         <section className="py-20 bg-gradient-to-br from-charcoal via-charcoal to-charcoal/95 text-white">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="text-center max-w-3xl mx-auto">
+            <AnimatedSection direction="up" className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light mb-6">
                 Download the FM Audit Framework
               </h2>
