@@ -116,15 +116,28 @@ const SectorPageTemplate = ({
   };
 
   const heroRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLElement>(null);
+  
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
+  });
+
+  const { scrollYProgress: contentProgress } = useScroll({
+    target: contentRef,
+    offset: ["start end", "start 0.3"]
   });
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.3]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+  
+  // Transition zone animations
+  const transitionOpacity = useTransform(contentProgress, [0, 0.5], [0, 1]);
+  const lineScale = useTransform(contentProgress, [0, 0.6], [0, 1]);
+  const contentY = useTransform(contentProgress, [0, 1], [60, 0]);
+  const contentOpacity = useTransform(contentProgress, [0, 0.5], [0, 1]);
 
   return (
     <>
@@ -314,8 +327,40 @@ const SectorPageTemplate = ({
           </motion.div>
         </section>
 
+        {/* Hero-to-Content Transition Zone */}
+        <motion.div 
+          className="relative h-24 -mt-12 z-30"
+          style={{ opacity: transitionOpacity }}
+        >
+          {/* Gradient Fade */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+          
+          {/* Animated Center Line */}
+          <motion.div 
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 origin-center"
+            style={{ scaleX: lineScale }}
+          >
+            <div className="w-32 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+          </motion.div>
+          
+          {/* Decorative Dot */}
+          <motion.div 
+            className="absolute bottom-4 left-1/2 -translate-x-1/2"
+            style={{ opacity: transitionOpacity }}
+          >
+            <div className="w-2 h-2 rounded-full bg-primary/60" />
+          </motion.div>
+        </motion.div>
+
         {/* Main Content */}
-        <section className="py-16 lg:py-24">
+        <motion.section 
+          ref={contentRef}
+          className="py-16 lg:py-24"
+          style={{ 
+            opacity: contentOpacity,
+            y: contentY 
+          }}
+        >
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
               <div className="lg:col-span-2 space-y-16">
@@ -527,7 +572,7 @@ const SectorPageTemplate = ({
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
       </div>
     </>
   );
