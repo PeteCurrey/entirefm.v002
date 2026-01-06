@@ -112,6 +112,7 @@ export default function AdminLayout() {
         { label: "Content", path: "/admin/marketing/content" },
         { label: "Social Media", path: "/admin/marketing/social" },
         { label: "AI Media", path: "/admin/marketing/media" },
+        { label: "SEO Tools", path: "/admin/marketing/seo-tools" },
       ]
     },
     { icon: Layout, label: "Pages", path: "/admin/pages" },

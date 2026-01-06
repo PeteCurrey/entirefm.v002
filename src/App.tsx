@@ -282,6 +282,7 @@ import SocialMediaManager from "./pages/admin/SocialMediaManager";
 import AIMediaStudio from "./pages/admin/AIMediaStudio";
 import PageManager from "./pages/admin/PageManager";
 import PageCreator from "./pages/admin/PageCreator";
+import SEOTools from "./pages/admin/SEOTools";
 import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
 import EmergencyResponse from "./pages/services/EmergencyResponse";
 import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
@@ -923,6 +924,7 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="marketing/content/:id" element={<ContentEditor />} />
                 <Route path="marketing/social" element={<SocialMediaManager />} />
                 <Route path="marketing/media" element={<AIMediaStudio />} />
+                <Route path="marketing/seo-tools" element={<SEOTools />} />
                 {/* Page Management Routes */}
                 <Route path="pages" element={<PageManager />} />
                 <Route path="pages/new" element={<PageCreator />} />
