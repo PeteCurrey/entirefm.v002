@@ -16,19 +16,22 @@ interface RedirectRule {
 }
 
 const redirectRules: RedirectRule[] = [
-  // HIGH-PRIORITY LEGACY LOCATION REDIRECTS
-  { from: '/fm-london', to: '/services/fire/london', permanent: true },
-  { from: '/facilities-management-london', to: '/services/fire/london', permanent: true },
-  { from: '/london-facilities-management', to: '/services/fire/london', permanent: true },
-  { from: '/fm-birmingham', to: '/services/fire/birmingham', permanent: true },
-  { from: '/facilities-management-birmingham', to: '/services/fire/birmingham', permanent: true },
-  { from: '/fm-manchester', to: '/services/fire/manchester', permanent: true },
-  { from: '/facilities-management-manchester', to: '/services/fire/manchester', permanent: true },
-  { from: '/fm-nottingham', to: '/services/fire/nottingham', permanent: true },
-  { from: '/fm-derby', to: '/services/fire/derby', permanent: true },
-  { from: '/fm-sheffield', to: '/services/fire/sheffield', permanent: true },
-  { from: '/fm-chesterfield', to: '/services/fire/chesterfield', permanent: true },
-  { from: '/fm-lincoln', to: '/services/fire/lincoln', permanent: true },
+  // Legacy location URL redirects - now redirect to proper FM landing pages
+  { from: '/facilities-management-london', to: '/fm-london', permanent: true },
+  { from: '/london-facilities-management', to: '/fm-london', permanent: true },
+  { from: '/facilities-management-birmingham', to: '/fm-birmingham', permanent: true },
+  { from: '/facilities-management-manchester', to: '/fm-manchester', permanent: true },
+  { from: '/facilities-management-leeds', to: '/fm-leeds', permanent: true },
+  { from: '/facilities-management-sheffield', to: '/fm-sheffield', permanent: true },
+  { from: '/facilities-management-nottingham', to: '/fm-nottingham', permanent: true },
+  { from: '/facilities-management-derby', to: '/fm-derby', permanent: true },
+  { from: '/facilities-management-lincoln', to: '/fm-lincoln', permanent: true },
+  { from: '/facilities-management-chesterfield', to: '/fm-chesterfield', permanent: true },
+  { from: '/facilities-management-liverpool', to: '/fm-liverpool', permanent: true },
+  { from: '/facilities-management-oxford', to: '/fm-oxford', permanent: true },
+  { from: '/facilities-management-doncaster', to: '/fm-doncaster', permanent: true },
+  { from: '/facilities-management-rotherham', to: '/fm-rotherham', permanent: true },
+  { from: '/facilities-management-telford', to: '/fm-telford', permanent: true },
 
   // SECTOR MATCH REDIRECTS
   { from: '/retail-facilities-management', to: '/sectors/retail-hospitality', permanent: true },
