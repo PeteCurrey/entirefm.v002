@@ -1,12 +1,16 @@
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Wind, AlertTriangle, FileText } from "lucide-react";
+import { ArrowRight, Wind, AlertTriangle, FileText, Phone, CheckCircle2, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { Card } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import CTASection from "@/components/shared/CTASection";
 
 const FumeExtractionLEV = () => {
   const breadcrumbItems = [
@@ -37,6 +41,27 @@ const FumeExtractionLEV = () => {
     }
   ];
 
+  const stats = [
+    { value: "COSHH", label: "Compliant Testing" },
+    { value: "14 Months", label: "Max Testing Interval" },
+    { value: "P601/P602", label: "Qualified Engineers" },
+    { value: "HSG258", label: "Guidance Followed" }
+  ];
+
+  const testingRequirements = [
+    { title: "Testing Intervals", desc: "COSHH requires LEV testing at least every 14 months. High-risk processes require more frequent testing. New installations must be commissioned before use." },
+    { title: "Hood Face Velocity Tests", desc: "Measure airflow at extraction hoods to verify performance meets design specifications and COSHH control requirements for specific contaminants." },
+    { title: "Filter Checks", desc: "Inspect filter loading, pressure drop, and efficiency to ensure continued contaminant capture without excessive energy consumption or reduced performance." },
+    { title: "Reporting", desc: "Comprehensive test certificates, performance comparison against baseline, identified defects, and remedial recommendations meeting HSG258 guidance standards." }
+  ];
+
+  const risks = [
+    { title: "Worker health risks", desc: "Exposure to hazardous substances causes respiratory disease, occupational asthma, and long-term illness" },
+    { title: "HSE enforcement", desc: "Improvement or prohibition notices, prosecution, and unlimited fines for COSHH breaches" },
+    { title: "Occupational health claims", desc: "Employee litigation for exposure-related illness caused by inadequate workplace controls" },
+    { title: "Insurance invalidation", desc: "Policies require documented compliance with health and safety legislation as a condition of cover" }
+  ];
+
   return (
     <>
       <Helmet>
@@ -53,28 +78,75 @@ const FumeExtractionLEV = () => {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen bg-background pt-20">
-        <div className="relative h-[40vh] bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80')] bg-cover bg-center opacity-20" />
-          <div className="container mx-auto px-4 relative z-10 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">LEV Testing & Maintenance</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Protecting air quality and ensuring compliance with COSHH regulations
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/90 via-primary/50 to-charcoal z-10" />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80')] bg-cover bg-center" />
+        
+        <div className="container mx-auto px-6 relative z-20 text-white py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Breadcrumb items={breadcrumbItems} className="mb-6" />
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 max-w-4xl">
+              LEV Testing & Maintenance
+            </h1>
+            <p className="text-xl md:text-2xl font-light max-w-3xl text-gray-200 mb-8">
+              Protecting air quality and ensuring compliance with COSHH regulations.
             </p>
+            
+            <div className="flex flex-wrap gap-4">
+              <Button size="lg" className="bg-white text-charcoal hover:bg-gray-100" asChild>
+                <Link to="/request-proposal">
+                  Request Proposal
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal" asChild>
+                <Link to="/contact">Contact Support</Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Banner */}
+      <section className="bg-charcoal py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center text-white"
+              >
+                <div className="text-2xl md:text-3xl font-light mb-2">{stat.value}</div>
+                <div className="text-sm text-gray-400 font-light">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
+      </section>
 
-        <div className="container mx-auto px-4 py-12">
-          <Breadcrumb items={breadcrumbItems} />
-          
-          <div className="grid lg:grid-cols-3 gap-8 mt-8">
-            <div className="lg:col-span-2 space-y-12">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-2 space-y-16">
+            
+            <AnimatedSection>
               <section>
-                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
+                <div className="flex items-center gap-3 mb-6">
                   <Wind className="w-8 h-8 text-primary" />
-                  Workplace Air Quality Protection
-                </h2>
-                <div className="prose prose-lg max-w-none space-y-4">
+                  <h2 className="text-3xl font-light underline-accent inline-block">
+                    Workplace Air Quality Protection
+                  </h2>
+                </div>
+                <div className="space-y-4 text-muted-foreground font-light leading-relaxed">
                   <p>
                     Local Exhaust Ventilation (LEV) systems protect workers from hazardous fumes, dust, vapors, and airborne contaminants generated during industrial processes—meeting COSHH (Control of Substances Hazardous to Health) regulatory requirements.
                   </p>
@@ -83,116 +155,112 @@ const FumeExtractionLEV = () => {
                   </p>
                 </div>
               </section>
+            </AnimatedSection>
 
+            <AnimatedSection delay={0.1}>
               <section>
-                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
+                <div className="flex items-center gap-3 mb-6">
                   <FileText className="w-8 h-8 text-primary" />
-                  COSHH Testing Requirements
-                </h2>
+                  <h2 className="text-3xl font-light underline-accent inline-block">
+                    COSHH Testing Requirements
+                  </h2>
+                </div>
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border rounded-lg p-6">
-                    <h3 className="text-xl font-semibold mb-3">Testing Intervals</h3>
-                    <p className="text-muted-foreground">
-                      COSHH requires LEV testing at least every 14 months. High-risk processes require more frequent testing. New installations must be commissioned before use.
-                    </p>
-                  </div>
-                  <div className="border rounded-lg p-6">
-                    <h3 className="text-xl font-semibold mb-3">Hood Face Velocity Tests</h3>
-                    <p className="text-muted-foreground">
-                      Measure airflow at extraction hoods to verify performance meets design specifications and COSHH control requirements for specific contaminants.
-                    </p>
-                  </div>
-                  <div className="border rounded-lg p-6">
-                    <h3 className="text-xl font-semibold mb-3">Filter Checks</h3>
-                    <p className="text-muted-foreground">
-                      Inspect filter loading, pressure drop, and efficiency to ensure continued contaminant capture without excessive energy consumption or reduced performance.
-                    </p>
-                  </div>
-                  <div className="border rounded-lg p-6">
-                    <h3 className="text-xl font-semibold mb-3">Reporting</h3>
-                    <p className="text-muted-foreground">
-                      Comprehensive test certificates, performance comparison against baseline, identified defects, and remedial recommendations meeting HSG258 guidance standards.
-                    </p>
-                  </div>
+                  {testingRequirements.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Card className="p-6 h-full hover:border-primary transition-colors">
+                        <h3 className="font-medium mb-3">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground font-light">{item.desc}</p>
+                      </Card>
+                    </motion.div>
+                  ))}
                 </div>
               </section>
+            </AnimatedSection>
 
-              <section>
-                <h2 className="text-3xl font-bold mb-6 flex items-center gap-2">
-                  <AlertTriangle className="w-8 h-8 text-destructive" />
-                  Risks of Non-Compliant LEV Systems
-                </h2>
-                <div className="bg-destructive/10 border-l-4 border-destructive p-6 rounded-lg space-y-4">
-                  <p className="font-semibold text-lg">
-                    Inadequate LEV systems expose organizations to:
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">→</span>
-                      <span><strong>Worker health risks:</strong> Exposure to hazardous substances causes respiratory disease, occupational asthma, and long-term illness</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">→</span>
-                      <span><strong>HSE enforcement:</strong> Improvement or prohibition notices, prosecution, and unlimited fines for COSHH breaches</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">→</span>
-                      <span><strong>Occupational health claims:</strong> Employee litigation for exposure-related illness caused by inadequate workplace controls</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-destructive mt-1">→</span>
-                      <span><strong>Insurance invalidation:</strong> Policies require documented compliance with health and safety legislation as a condition of cover</span>
-                    </li>
-                  </ul>
+            <AnimatedSection delay={0.2}>
+              <section className="bg-destructive/5 border border-destructive/20 p-8 rounded-2xl">
+                <div className="flex items-start gap-4 mb-6">
+                  <AlertTriangle className="w-8 h-8 text-destructive flex-shrink-0" />
+                  <h2 className="text-3xl font-light">
+                    Risks of Non-Compliant LEV Systems
+                  </h2>
                 </div>
-              </section>
-
-              <section>
-                <h2 className="text-3xl font-bold mb-6">Related Industrial Services</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/services/industrial-refrigeration" className="border rounded-lg p-4 hover:border-primary transition-colors">
-                    <h3 className="font-semibold mb-2">Industrial Refrigeration</h3>
-                    <p className="text-sm text-muted-foreground">Cold room compliance</p>
-                  </Link>
-                  <Link to="/services/compressor-maintenance" className="border rounded-lg p-4 hover:border-primary transition-colors">
-                    <h3 className="font-semibold mb-2">Compressor Maintenance</h3>
-                    <p className="text-sm text-muted-foreground">Air compressor servicing</p>
-                  </Link>
-                  <Link to="/services/hvac" className="border rounded-lg p-4 hover:border-primary transition-colors">
-                    <h3 className="font-semibold mb-2">HVAC Systems</h3>
-                    <p className="text-sm text-muted-foreground">Ventilation and air quality</p>
-                  </Link>
-                  <Link to="/services/health-safety" className="border rounded-lg p-4 hover:border-primary transition-colors">
-                    <h3 className="font-semibold mb-2">Health & Safety</h3>
-                    <p className="text-sm text-muted-foreground">Workplace compliance</p>
-                  </Link>
-                </div>
-              </section>
-
-              <section className="bg-primary/5 rounded-lg p-8">
-                <h2 className="text-2xl font-bold mb-4">Request LEV Testing</h2>
-                <p className="text-muted-foreground mb-6">
-                  Speak to our team about COSHH-compliant LEV testing for your industrial environment.
+                <p className="font-medium text-lg mb-6">
+                  Inadequate LEV systems expose organizations to:
                 </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button asChild size="lg">
-                    <Link to="/request-proposal">
-                      Request Proposal <ArrowRight className="ml-2 w-4 h-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <Link to="/contact">Contact Support</Link>
-                  </Button>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {risks.map((risk, index) => (
+                    <motion.div 
+                      key={index}
+                      className="flex items-start gap-3 p-4 bg-background/50 rounded-lg"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <AlertTriangle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-medium">{risk.title}</span>
+                        <p className="text-sm text-muted-foreground">{risk.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </section>
+            </AnimatedSection>
 
+            <AnimatedSection delay={0.3}>
+              <section className="bg-muted/30 p-8 rounded-2xl">
+                <h2 className="text-3xl font-light mb-6">Related Industrial Services</h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    { name: "Industrial Refrigeration", desc: "Cold room compliance", href: "/services/industrial-refrigeration" },
+                    { name: "Compressor Maintenance", desc: "Air compressor servicing", href: "/services/compressor-maintenance" },
+                    { name: "HVAC Systems", desc: "Ventilation and air quality", href: "/services/hvac" },
+                    { name: "Health & Safety", desc: "Workplace compliance", href: "/services/health-safety" }
+                  ].map((service, index) => (
+                    <Link key={index} to={service.href}>
+                      <motion.div 
+                        className="p-4 border rounded-lg hover:border-primary hover:bg-muted/30 transition-all"
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <h3 className="font-medium mb-1">{service.name}</h3>
+                        <p className="text-sm text-muted-foreground">{service.desc}</p>
+                      </motion.div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.4}>
               <FAQSection faqs={faqs} />
-            </div>
+            </AnimatedSection>
 
-            <aside className="space-y-6">
-              <SidebarCTA />
-            </aside>
+            <CTASection
+              title="Request LEV Testing"
+              description="Speak to our team about COSHH-compliant LEV testing for your industrial environment."
+              primaryLabel="Request Proposal"
+              primaryHref="/request-proposal"
+              secondaryLabel="Contact Support"
+              secondaryHref="/contact"
+              secondaryIcon={Phone}
+              variant="gradient"
+            />
           </div>
+
+          <aside className="lg:col-span-1">
+            <div className="sticky top-24">
+              <SidebarCTA />
+            </div>
+          </aside>
         </div>
       </div>
     </>

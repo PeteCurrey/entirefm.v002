@@ -1,12 +1,16 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { ArrowRight, Wind, AlertCircle } from "lucide-react";
+import { ArrowRight, Wind, AlertCircle, Shield, CheckCircle2, Phone, FileText } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { FAQSchema, ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { motion } from "framer-motion";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import CTASection from "@/components/shared/CTASection";
 
 const SmokeVentSystems = () => {
   const breadcrumbItems = [
@@ -43,6 +47,13 @@ const SmokeVentSystems = () => {
     { title: "Emergency Lighting", link: "/services/emergency-lighting" }
   ];
 
+  const stats = [
+    { value: "BS EN 12101", label: "Compliant Testing" },
+    { value: "24/7", label: "Emergency Response" },
+    { value: "100%", label: "Certification Rate" },
+    { value: "UK-Wide", label: "Coverage" }
+  ];
+
   return (
     <>
       <Helmet>
@@ -58,168 +69,283 @@ const SmokeVentSystems = () => {
         areaServed="United Kingdom"
       />
 
-      <div className="min-h-screen bg-background pt-20">
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
-          <Breadcrumb items={breadcrumbItems} />
-
-          <header className="mb-12">
-            <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/90 via-primary/60 to-charcoal z-10" />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80')] bg-cover bg-center" />
+        
+        <div className="container mx-auto px-6 relative z-20 text-white py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Breadcrumb items={breadcrumbItems} className="mb-6" />
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 max-w-4xl">
               Smoke Vent & Fire Extraction Systems
             </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed">
+            <p className="text-xl md:text-2xl font-light max-w-3xl text-gray-200 mb-8">
               Life safety assets requiring strict performance governance.
             </p>
-          </header>
+            
+            <div className="flex flex-wrap gap-4">
+              <Button size="lg" className="bg-white text-charcoal hover:bg-gray-100" asChild>
+                <Link to="/request-proposal">
+                  Request Proposal
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-charcoal" asChild>
+                <Link to="/contact">Contact Specialists</Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-          <article className="prose prose-lg max-w-none">
-            <section className="mb-12">
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Smoke kills more people in fires than flames. Smoke vent systems (Automatic Opening Vents - AOVs) and fire extraction systems remove smoke and heat from escape routes, stairwells, and protected areas, maintaining tenable conditions for evacuation and firefighting operations. They're legally required in many commercial, industrial, and residential buildings under Building Regulations and fire safety law.
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                But these systems must activate reliably when needed. Weekly testing, 6-monthly servicing, and annual inspections to BS EN 12101 standards ensure functional readiness. The Regulatory Reform (Fire Safety) Order 2005 places maintenance obligations on responsible persons — failures create prosecution risk and catastrophic safety consequences.
-              </p>
-            </section>
+      {/* Stats Banner */}
+      <section className="bg-charcoal py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="text-center text-white"
+              >
+                <div className="text-2xl md:text-3xl font-light mb-2">{stat.value}</div>
+                <div className="text-sm text-gray-400 font-light">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Applicable Standards
-              </h2>
-              <ul className="space-y-2">
-                <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>BS EN 12101 series:</strong> Smoke and heat control systems standards</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>BS 7346 series:</strong> Components for smoke and heat control systems</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>BS 9999:2017:</strong> Fire safety in building design, management and use</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>Approved Document B:</strong> Building Regulations fire safety guidance</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>Regulatory Reform (Fire Safety) Order 2005:</strong> Legal requirement for functional smoke control</li>
-              </ul>
-            </section>
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-2 space-y-16">
+            
+            <AnimatedSection>
+              <section>
+                <div className="flex items-center gap-3 mb-6">
+                  <Wind className="w-8 h-8 text-primary" />
+                  <h2 className="text-3xl font-light underline-accent inline-block">
+                    Why Smoke Control Matters
+                  </h2>
+                </div>
+                <div className="space-y-4 text-muted-foreground font-light leading-relaxed">
+                  <p>
+                    Smoke kills more people in fires than flames. Smoke vent systems (Automatic Opening Vents - AOVs) and fire extraction systems remove smoke and heat from escape routes, stairwells, and protected areas, maintaining tenable conditions for evacuation and firefighting operations.
+                  </p>
+                  <p>
+                    But these systems must activate reliably when needed. Weekly testing, 6-monthly servicing, and annual inspections to BS EN 12101 standards ensure functional readiness. The Regulatory Reform (Fire Safety) Order 2005 places maintenance obligations on responsible persons — failures create prosecution risk and catastrophic safety consequences.
+                  </p>
+                </div>
+              </section>
+            </AnimatedSection>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Responsible Person Obligations
-              </h2>
-              <ul className="space-y-2">
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Commission weekly manual operation tests</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Arrange 6-monthly functional testing by competent engineers</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Conduct annual full system inspections with certification</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Verify integration with fire detection and alarm systems</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Maintain emergency power backup systems</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Keep test certificates and service records accessible</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Remediate defects immediately</li>
-              </ul>
-            </section>
+            <AnimatedSection delay={0.1}>
+              <section>
+                <div className="flex items-center gap-3 mb-6">
+                  <FileText className="w-8 h-8 text-primary" />
+                  <h2 className="text-3xl font-light underline-accent inline-block">
+                    Applicable Standards
+                  </h2>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    { standard: "BS EN 12101 series", desc: "Smoke and heat control systems standards" },
+                    { standard: "BS 7346 series", desc: "Components for smoke and heat control systems" },
+                    { standard: "BS 9999:2017", desc: "Fire safety in building design, management and use" },
+                    { standard: "Approved Document B", desc: "Building Regulations fire safety guidance" },
+                    { standard: "Fire Safety Order 2005", desc: "Legal requirement for functional smoke control" }
+                  ].map((item, index) => (
+                    <motion.div 
+                      key={index}
+                      className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg border hover:border-primary transition-colors"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <Shield className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-medium">{item.standard}</span>
+                        <p className="text-sm text-muted-foreground">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </section>
+            </AnimatedSection>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Inspection & Testing Frequencies
-              </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="border-b border-border">
-                      <th className="text-left p-3 font-medium">Test Type</th>
-                      <th className="text-left p-3 font-medium">Frequency</th>
-                      <th className="text-left p-3 font-medium">Components Tested</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-sm">
-                    <tr className="border-b border-border/50">
-                      <td className="p-3">Manual Operation</td>
-                      <td className="p-3">Weekly</td>
-                      <td className="p-3">Manual call point activation, visual confirmation</td>
-                    </tr>
-                    <tr className="border-b border-border/50">
-                      <td className="p-3">Functional Test</td>
-                      <td className="p-3">6-monthly</td>
-                      <td className="p-3">Actuators, motors, control panels, detectors</td>
-                    </tr>
-                    <tr className="border-b border-border/50">
-                      <td className="p-3">Full Inspection</td>
-                      <td className="p-3">Annually</td>
-                      <td className="p-3">Complete system, backup power, integration</td>
-                    </tr>
-                    <tr className="border-b border-border/50">
-                      <td className="p-3">Emergency Power</td>
-                      <td className="p-3">Monthly</td>
-                      <td className="p-3">Battery condition and charge status</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
+            <AnimatedSection delay={0.2}>
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Responsible Person Obligations
+                </h2>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {[
+                    "Commission weekly manual operation tests",
+                    "Arrange 6-monthly functional testing by competent engineers",
+                    "Conduct annual full system inspections with certification",
+                    "Verify integration with fire detection and alarm systems",
+                    "Maintain emergency power backup systems",
+                    "Keep test certificates and service records accessible",
+                    "Remediate defects immediately"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3 p-3 bg-muted/30 rounded-lg">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="font-light text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </AnimatedSection>
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Non-Compliance Consequences
-              </h2>
-              <div className="space-y-4">
-                <Card className="p-6 border-l-4 border-l-red-500">
-                  <AlertCircle className="w-6 h-6 text-red-500 mb-3" />
+            <AnimatedSection delay={0.3}>
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Inspection & Testing Frequencies
+                </h2>
+                <div className="overflow-x-auto rounded-lg border">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b bg-muted/50">
+                        <th className="text-left p-4 font-medium">Test Type</th>
+                        <th className="text-left p-4 font-medium">Frequency</th>
+                        <th className="text-left p-4 font-medium">Components Tested</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-sm">
+                      {[
+                        { type: "Manual Operation", freq: "Weekly", components: "Manual call point activation, visual confirmation" },
+                        { type: "Functional Test", freq: "6-monthly", components: "Actuators, motors, control panels, detectors" },
+                        { type: "Full Inspection", freq: "Annually", components: "Complete system, backup power, integration" },
+                        { type: "Emergency Power", freq: "Monthly", components: "Battery condition and charge status" }
+                      ].map((row, index) => (
+                        <tr key={index} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                          <td className="p-4 font-medium">{row.type}</td>
+                          <td className="p-4 text-primary">{row.freq}</td>
+                          <td className="p-4 text-muted-foreground">{row.components}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.4}>
+              <section className="bg-destructive/5 border border-destructive/20 p-8 rounded-2xl">
+                <div className="flex items-start gap-4 mb-6">
+                  <AlertCircle className="w-8 h-8 text-destructive flex-shrink-0" />
+                  <h2 className="text-3xl font-light">
+                    Non-Compliance Consequences
+                  </h2>
+                </div>
+                
+                <Card className="p-6 border-l-4 border-l-destructive mb-6 bg-background">
                   <h3 className="text-lg font-medium mb-2">Life Safety Failure</h3>
                   <p className="text-sm text-muted-foreground">
                     Non-functional smoke vents trap occupants in smoke-filled spaces during fires, preventing evacuation and causing deaths. Responsible persons face Corporate Manslaughter charges when system failures cause fatalities.
                   </p>
                 </Card>
 
-                <ul className="space-y-2">
-                  <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>Criminal prosecution:</strong> Fire service enforcement under Fire Safety Order</li>
-                  <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>Unlimited fines:</strong> No cap on penalties for fire safety breaches</li>
-                  <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>Imprisonment:</strong> Up to 2 years for responsible persons</li>
-                  <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>Prohibition notices:</strong> Building closures until compliance achieved</li>
-                  <li className="flex items-start"><span className="text-primary mr-2">•</span><strong>Insurance invalidation:</strong> Claims rejected without maintenance records</li>
-                </ul>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Our Smoke Vent Service
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                We deliver systematic smoke control system maintenance through specialist engineers:
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Weekly manual operation testing coordination</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>6-monthly functional testing by competent engineers</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Annual BS EN 12101 compliance inspections</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Fire detection system integration verification</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Emergency power backup testing and maintenance</li>
-                <li className="flex items-start"><span className="text-primary mr-2">•</span>Complete certification and audit trail management</li>
-              </ul>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid md:grid-cols-3 gap-4">
-                {relatedServices.map((service) => (
-                  <Link key={service.link} to={service.link}>
-                    <Card className="p-6 hover-lift h-full">
-                      <h3 className="text-lg font-medium mb-2">{service.title}</h3>
-                      <div className="flex items-center text-sm text-primary">
-                        Learn more <ArrowRight className="w-4 h-4 ml-2" />
+                <div className="grid md:grid-cols-2 gap-3">
+                  {[
+                    { title: "Criminal prosecution", desc: "Fire service enforcement under Fire Safety Order" },
+                    { title: "Unlimited fines", desc: "No cap on penalties for fire safety breaches" },
+                    { title: "Imprisonment", desc: "Up to 2 years for responsible persons" },
+                    { title: "Prohibition notices", desc: "Building closures until compliance achieved" },
+                    { title: "Insurance invalidation", desc: "Claims rejected without maintenance records" }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3 p-3 bg-background/50 rounded-lg">
+                      <AlertCircle className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-medium text-sm">{item.title}</span>
+                        <p className="text-xs text-muted-foreground">{item.desc}</p>
                       </div>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-            </section>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </AnimatedSection>
 
-            <FAQSection faqs={faqs} />
+            <AnimatedSection delay={0.5}>
+              <section className="bg-muted/30 p-8 rounded-2xl">
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Our Smoke Vent Service
+                </h2>
+                <p className="text-muted-foreground font-light leading-relaxed mb-6">
+                  We deliver systematic smoke control system maintenance through specialist engineers:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    "Weekly manual operation testing coordination",
+                    "6-monthly functional testing by competent engineers",
+                    "Annual BS EN 12101 compliance inspections",
+                    "Fire detection system integration verification",
+                    "Emergency power backup testing and maintenance",
+                    "Complete certification and audit trail management"
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-start gap-3 p-3 bg-background/50 rounded-lg">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="font-light text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </AnimatedSection>
 
-            <Card className="p-8 bg-muted/30 text-center">
-              <h3 className="text-2xl font-light mb-4">Need Smoke Vent Maintenance?</h3>
-              <p className="text-muted-foreground font-light mb-6">
-                Request a proposal for smoke vent and fire extraction system services.
-              </p>
-              <Button asChild size="lg">
-                <Link to="/request-proposal">
-                  Request a Proposal <ArrowRight className="w-4 h-4 ml-2" />
-                </Link>
-              </Button>
-            </Card>
-          </article>
+            <AnimatedSection delay={0.6}>
+              <section>
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  Related Services
+                </h2>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {relatedServices.map((service, index) => (
+                    <Link key={service.link} to={service.link}>
+                      <motion.div 
+                        className="p-6 border rounded-lg hover:border-primary hover:bg-muted/30 transition-all h-full"
+                        whileHover={{ scale: 1.02, y: -4 }}
+                      >
+                        <h3 className="text-lg font-medium mb-2">{service.title}</h3>
+                        <div className="flex items-center text-sm text-primary">
+                          Learn more <ArrowRight className="w-4 h-4 ml-2" />
+                        </div>
+                      </motion.div>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.7}>
+              <FAQSection faqs={faqs} />
+            </AnimatedSection>
+
+            <CTASection
+              title="Need Smoke Vent Maintenance?"
+              description="Request a proposal for smoke vent and fire extraction system services."
+              primaryLabel="Request a Proposal"
+              primaryHref="/request-proposal"
+              secondaryLabel="24/7 Helpdesk"
+              secondaryHref="tel:+448001234567"
+              secondaryIcon={Phone}
+              variant="gradient"
+            />
+          </div>
+
+          <aside className="lg:col-span-1">
+            <div className="sticky top-24">
+              <SidebarCTA />
+            </div>
+          </aside>
         </div>
       </div>
     </>
