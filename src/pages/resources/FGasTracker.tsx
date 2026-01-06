@@ -99,7 +99,7 @@ const FGasTracker = () => {
 
             <div className="max-w-6xl mx-auto mt-8">
               <div className="grid lg:grid-cols-2 gap-12 items-start">
-                <AnimatedSection animation="fade-up">
+                <AnimatedSection direction="up">
                   <div className="flex items-center gap-4 mb-6">
                     <div className="p-4 bg-primary/10 rounded-2xl">
                       <Wind className="w-10 h-10 text-primary" />
@@ -141,7 +141,7 @@ const FGasTracker = () => {
                   </Card>
                 </AnimatedSection>
 
-                <AnimatedSection animation="fade-up" delay={150}>
+                <AnimatedSection direction="up" delay={0.15}>
                   {!downloadReady ? (
                     <Card className="p-8 shadow-xl border-primary/10">
                       <h2 className="text-2xl font-light mb-2">Download Your Free Tracker</h2>
@@ -274,7 +274,7 @@ const FGasTracker = () => {
         {/* Related Resources */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-light mb-8 text-center">Related Resources</h2>
               <div className="grid md:grid-cols-3 gap-4">
                 <Link to="/fm-insights/what-is-fgas-compliance" className="group">

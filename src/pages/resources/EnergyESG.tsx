@@ -104,7 +104,7 @@ const EnergyESG = () => {
           <div className="container mx-auto px-6 relative">
             <Breadcrumb items={breadcrumbItems} />
             
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto text-center mt-8">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto text-center mt-8">
               <div className="flex justify-center mb-6">
                 <div className="p-4 bg-primary/10 rounded-2xl">
                   <Leaf className="w-12 h-12 text-primary" />
@@ -134,7 +134,7 @@ const EnergyESG = () => {
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto text-center">
               {stats.map((stat, index) => (
-                <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
+                <AnimatedSection key={index} direction="up" delay={index * 0.1}>
                   <div className="text-3xl md:text-4xl font-light text-primary mb-2">{stat.value}</div>
                   <div className="text-sm text-gray-300 font-light">{stat.label}</div>
                 </AnimatedSection>
@@ -146,14 +146,14 @@ const EnergyESG = () => {
         {/* Strategic Wins */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-6xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-6xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-light mb-4 text-center">Strategic Wins We Deliver</h2>
               <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
                 Practical energy initiatives with measurable outcomes
               </p>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {strategicWins.map((win, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={index * 75}>
+                  <AnimatedSection key={index} direction="up" delay={index * 0.075}>
                     <Card className="h-full hover:shadow-lg hover:border-primary/30 transition-all duration-300">
                       <CardContent className="pt-6">
                         <div className="p-3 bg-primary/10 rounded-xl w-fit mb-4">
@@ -173,7 +173,7 @@ const EnergyESG = () => {
         {/* Board-Level Value */}
         <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-5xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-5xl mx-auto">
               <div className="text-center mb-12">
                 <div className="p-3 bg-primary/10 rounded-xl w-fit mx-auto mb-4">
                   <Award className="w-10 h-10 text-primary" />
@@ -186,7 +186,7 @@ const EnergyESG = () => {
 
               <div className="grid gap-6">
                 {boardLevelValue.map((item, index) => (
-                  <AnimatedSection key={index} animation="fade-up" delay={index * 100}>
+                  <AnimatedSection key={index} direction="up" delay={index * 0.1}>
                     <Card className="hover:shadow-lg transition-all">
                       <CardContent className="p-6">
                         <div className="grid md:grid-cols-3 gap-6">
@@ -215,7 +215,7 @@ const EnergyESG = () => {
         {/* Targeted Results */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
                 <div className="p-3 bg-primary/10 rounded-xl w-fit mx-auto mb-4">
                   <TrendingDown className="w-10 h-10 text-primary" />
@@ -224,7 +224,7 @@ const EnergyESG = () => {
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
-                <AnimatedSection animation="fade-up" delay={0}>
+                <AnimatedSection direction="up" delay={0}>
                   <Card className="hover:shadow-lg transition-all">
                     <CardContent className="pt-8 text-center">
                       <div className="text-5xl font-light text-primary mb-4">10–30%</div>
@@ -233,7 +233,7 @@ const EnergyESG = () => {
                   </Card>
                 </AnimatedSection>
 
-                <AnimatedSection animation="fade-up" delay={100}>
+                <AnimatedSection direction="up" delay={0.1}>
                   <Card className="hover:shadow-lg transition-all">
                     <CardContent className="pt-8 text-center">
                       <div className="p-3 bg-primary/10 rounded-xl w-fit mx-auto mb-4">
@@ -246,7 +246,7 @@ const EnergyESG = () => {
                   </Card>
                 </AnimatedSection>
 
-                <AnimatedSection animation="fade-up" delay={200}>
+                <AnimatedSection direction="up" delay={0.2}>
                   <Card className="hover:shadow-lg transition-all">
                     <CardContent className="pt-8 text-center">
                       <div className="p-3 bg-primary/10 rounded-xl w-fit mx-auto mb-4">
@@ -266,7 +266,7 @@ const EnergyESG = () => {
         {/* Final CTA */}
         <section className="py-20 bg-gradient-to-br from-charcoal via-charcoal to-charcoal/95 text-white">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-3xl mx-auto text-center">
+            <AnimatedSection direction="up" className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl font-light mb-6">
                 Secure Energy Savings and Sustainability Approvals
               </h2>
@@ -288,7 +288,7 @@ const EnergyESG = () => {
         {/* Related Resources */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
-            <AnimatedSection animation="fade-up" className="max-w-4xl mx-auto">
+            <AnimatedSection direction="up" className="max-w-4xl mx-auto">
               <h3 className="text-xl font-light mb-8 text-center">Related Resources</h3>
               <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <Link to="/resources/audit-framework" className="group">
