@@ -400,6 +400,22 @@ import DataRoomAuditsDerby from "./pages/services/critical/data-room-audits/Derb
 import DataRoomAuditsChesterfield from "./pages/services/critical/data-room-audits/Chesterfield";
 import DataRoomAuditsLincoln from "./pages/services/critical/data-room-audits/Lincoln";
 
+// Geographical FM Landing Pages
+import FMLondon from "./pages/fm-locations/FMLondon";
+import FMLeeds from "./pages/fm-locations/FMLeeds";
+import FMBirmingham from "./pages/fm-locations/FMBirmingham";
+import FMLincoln from "./pages/fm-locations/FMLincoln";
+import FMChesterfield from "./pages/fm-locations/FMChesterfield";
+import FMSheffield from "./pages/fm-locations/FMSheffield";
+import FMNottingham from "./pages/fm-locations/FMNottingham";
+import FMManchester from "./pages/fm-locations/FMManchester";
+import FMLiverpool from "./pages/fm-locations/FMLiverpool";
+import FMDerby from "./pages/fm-locations/FMDerby";
+import FMOxford from "./pages/fm-locations/FMOxford";
+import FMDoncaster from "./pages/fm-locations/FMDoncaster";
+import FMRotherham from "./pages/fm-locations/FMRotherham";
+import FMTelford from "./pages/fm-locations/FMTelford";
+
 const queryClient = new QueryClient();
 
 // Scroll to top on route change
@@ -424,6 +440,23 @@ const App = () => <QueryClientProvider client={queryClient}>
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
+              
+              {/* Geographical FM Landing Pages */}
+              <Route path="/fm-london" element={<FMLondon />} />
+              <Route path="/fm-leeds" element={<FMLeeds />} />
+              <Route path="/fm-birmingham" element={<FMBirmingham />} />
+              <Route path="/fm-lincoln" element={<FMLincoln />} />
+              <Route path="/fm-chesterfield" element={<FMChesterfield />} />
+              <Route path="/fm-sheffield" element={<FMSheffield />} />
+              <Route path="/fm-nottingham" element={<FMNottingham />} />
+              <Route path="/fm-manchester" element={<FMManchester />} />
+              <Route path="/fm-liverpool" element={<FMLiverpool />} />
+              <Route path="/fm-derby" element={<FMDerby />} />
+              <Route path="/fm-oxford" element={<FMOxford />} />
+              <Route path="/fm-doncaster" element={<FMDoncaster />} />
+              <Route path="/fm-rotherham" element={<FMRotherham />} />
+              <Route path="/fm-telford" element={<FMTelford />} />
+              
               <Route path="/request-proposal" element={<RequestProposal />} />
               <Route path="/tools/ppm-calculator" element={<PPMCalculator />} />
               <Route path="/tools/tm44-checker" element={<TM44Checker />} />
