@@ -1,16 +1,113 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { 
+  Users, 
+  KeyRound, 
+  Bell, 
+  Calendar, 
+  Sparkles, 
+  GraduationCap,
+  ArrowRight,
+  Phone,
+  CheckCircle2
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { FAQSchema } from "@/components/shared/SchemaMarkup";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import FeatureCardGrid from "@/components/shared/FeatureCardGrid";
+import StatsBanner from "@/components/shared/StatsBanner";
+import CTASection from "@/components/shared/CTASection";
+import ContentSection from "@/components/shared/ContentSection";
+import ServiceFeatureList from "@/components/shared/ServiceFeatureList";
+import { TrustBar } from "@/components/shared/TrustBar";
 
 const Concierge = () => {
   const breadcrumbItems = [
+    { label: "Services", href: "/services" },
     { label: "Soft Services", href: "/services" },
     { label: "Building Concierge & Front-of-House" }
+  ];
+
+  const heroStats = [
+    { value: "95", suffix: "%", label: "Occupier Satisfaction" },
+    { value: "50", suffix: "+", label: "Buildings Supported" },
+    { value: "24", suffix: "/7", label: "Coverage Available" },
+    { value: "100", suffix: "%", label: "Staff Retention" }
+  ];
+
+  const features = [
+    {
+      icon: Users,
+      title: "Visitor Reception",
+      description: "Professional greeting, registration, and escort services with digital visitor management systems."
+    },
+    {
+      icon: KeyRound,
+      title: "Access Management",
+      description: "Key collection, fob activation, contractor sign-in, and access control coordination."
+    },
+    {
+      icon: Bell,
+      title: "Occupier Support",
+      description: "First-line query resolution, helpdesk liaison, and proactive service coordination."
+    },
+    {
+      icon: Calendar,
+      title: "Amenity Bookings",
+      description: "Meeting room management, car parking allocation, and facility reservations."
+    },
+    {
+      icon: Sparkles,
+      title: "Premium Services",
+      description: "Package acceptance, dry cleaning coordination, taxi bookings, and personal errands."
+    },
+    {
+      icon: GraduationCap,
+      title: "Trained Excellence",
+      description: "Hospitality-trained staff with comprehensive building knowledge and customer service skills."
+    }
+  ];
+
+  const coreServices = [
+    {
+      title: "Visitor Reception & Management",
+      description: "Professional visitor greeting and registration including digital sign-in, visitor badges, host notification, and escort services. Pre-registration streamlines arrivals while security screening ensures compliance. Premium buildings offer refreshments, cloakroom, and Wi-Fi access."
+    },
+    {
+      title: "Access Control & Key Management",
+      description: "Coordination of building access including key sign-out and tracking, temporary fob activation, contractor sign-in with induction verification, and visitor escorts to restricted areas. Balances convenience with security protocols."
+    },
+    {
+      title: "Occupier Support & Information",
+      description: "First-line support for building queries, navigation, service contacts. Log helpdesk requests, liaise with FM team, provide status updates. Building knowledge covers fire procedures, emergency contacts, and facility usage."
+    },
+    {
+      title: "Amenity Coordination",
+      description: "Management of meeting room bookings, car parking allocation, gym access, and event spaces. Digital booking systems enable self-service while concierge handles complex requirements and last-minute changes."
+    }
+  ];
+
+  const premiumServices = [
+    {
+      title: "Personalized Occupier Services",
+      description: "Package acceptance and distribution, dry cleaning coordination, taxi and courier bookings, local recommendations, and discretionary personal errands for executives."
+    },
+    {
+      title: "Event Support & Coordination",
+      description: "Pre-event planning including space setup and AV coordination. Event-day registration and attendee management. Post-event reset and feedback collection."
+    }
+  ];
+
+  const stats = [
+    { value: "95", suffix: "%", label: "Occupier Satisfaction" },
+    { value: "50", suffix: "+", label: "Buildings Supported" },
+    { value: "4.8", suffix: "/5", label: "Service Rating" },
+    { value: "100", suffix: "%", label: "Mystery Shopper Pass Rate" }
   ];
 
   const faqs = [
@@ -52,169 +149,187 @@ const Concierge = () => {
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="container mx-auto px-4 py-8">
-        <Breadcrumb items={breadcrumbItems} />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-          <div className="lg:col-span-2">
-            <section className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-light mb-6">
-                Building Concierge & Front-of-House Services
-              </h1>
-              <p className="text-xl text-muted-foreground font-light leading-relaxed">
-                First-impression management for commercial and residential estates.
-              </p>
-            </section>
+      {/* Hero Section */}
+      <ServiceHeroSection
+        breadcrumbItems={breadcrumbItems}
+        title="Building Concierge & Front-of-House"
+        description="First-impression management for commercial and residential estates. Hospitality-trained teams delivering visitor reception, access management, and proactive occupier support."
+        stats={heroStats}
+        primaryCTA={{ label: "Request Quote", href: "/request-proposal", icon: ArrowRight }}
+        secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
+      />
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Concierge: The Face of Building Management
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Building concierge delivers first-impression management—visitor reception, access control, information provision, and occupier support. Concierge is the visible face of building management—greeting visitors, resolving queries, coordinating services. Professional concierge enhances occupier satisfaction, supports building security, and strengthens brand reputation. Poor concierge—unwelcoming, unhelpful, unprofessional—damages first impressions regardless of technical FM excellence.
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Concierge services are appropriate for: Corporate headquarters (premium reception, visitor management), Multi-tenant commercial offices (occupier support, amenity coordination), Residential buildings (resident services, package management, security liaison), Hospitality-adjacent buildings (meeting spaces, events, flexible workspace). Service levels range from basic reception (visitor registration, call handling) to premium concierge (personalized service, problem-solving, relationship management). Our concierge teams combine hospitality standards with FM integration—delivering professional reception services that enhance occupier experience.
-              </p>
-            </section>
+      {/* Trust Bar */}
+      <TrustBar variant="compact" />
 
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Core Concierge Services
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Visitor Reception & Management</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Professional visitor greeting and registration: Welcome (courteous greeting, professional first impression), Registration (digital sign-in, visitor badges, host notification), Escort (accompany visitors to meeting locations, ensure security compliance), Departure (check-out, badge return, feedback collection). Visitor management systems enable: Pre-registration (visitors expected, streamlined arrival), Security screening (watchlist checks, compliance with building policies), Data capture (audit trail, emergency roll-call, analytics). Premium buildings offer: Refreshments (tea, coffee, water while waiting), Cloakroom services (coat storage, umbrella provision), Wi-Fi access (guest network credentials).
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Access Control & Key Management</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Coordination of building access: Key collection (sign-out, tracking, return management), Fob activation (temporary access, contractor passes), Contractor sign-in (induction verification, permit-to-work liaison), Visitor escorts (accompany to restricted areas), Lost access (deactivate lost fobs, issue replacements). Access management ensures security while enabling efficient building operations. Concierge liaises with security, FM, and occupiers to balance access convenience with security protocols.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Occupier Support & Information</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    First-line occupier support: Queries (building navigation, amenity locations, service contacts), Service coordination (log helpdesk requests, liaise with FM team, provide status updates), Information distribution (notices, communications, post/package management), Building knowledge (fire procedures, emergency contacts, facility usage). Concierge acts as single point of contact—simplifying occupier interaction with building management. Proactive concierge anticipates needs, resolves issues, and enhances occupier satisfaction through responsive support.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Amenity Coordination & Bookings</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Management of shared facilities: Meeting room bookings (calendar management, setup, catering coordination), Car parking (space allocation, visitor parking, permit management), Gym/wellness facilities (access management, equipment bookings, class scheduling), Event spaces (booking, setup, post-event reset). Booking systems (digital calendars, mobile apps) enable self-service while concierge provides support for complex requirements, conflicts, and last-minute changes.
-                  </p>
-                </div>
+      {/* Features Grid */}
+      <ContentSection
+        title="The Face of Building Management"
+        subtitle="Professional concierge enhances occupier satisfaction, supports building security, and strengthens brand reputation through exceptional front-of-house service."
+        centered
+      >
+        <FeatureCardGrid features={features} columns={3} variant="gradient" />
+      </ContentSection>
+
+      {/* Stats Banner */}
+      <StatsBanner stats={stats} variant="gradient" />
+
+      {/* Core Services */}
+      <ContentSection
+        title="Core Concierge Services"
+        subtitle="Essential front-of-house functions that create positive first impressions and streamline building operations."
+        variant="muted"
+      >
+        <ServiceFeatureList items={coreServices} variant="cards" columns={2} />
+      </ContentSection>
+
+      {/* Premium Services */}
+      <ContentSection
+        title="Premium Concierge Services"
+        subtitle="Hospitality-level services that differentiate Grade A buildings and enhance occupier experience."
+      >
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {premiumServices.map((service, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="h-full p-8 bg-gradient-to-br from-primary/5 to-background border border-primary/20 rounded-2xl">
+                <h3 className="text-xl font-medium mb-4 text-foreground">{service.title}</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">{service.description}</p>
               </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Premium Concierge Services
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Personalized Occupier Services</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Premium concierge provides hospitality-level services: Package acceptance (receive, store, notify, distribute parcels), Dry cleaning coordination (collection, drop-off service), Taxi/courier bookings (pre-book, coordinate arrivals), Local recommendations (restaurants, hotels, transport), Personal errands (discretionary services for executives). Personalization enhances occupier experience—recognizing regular visitors, remembering preferences, anticipating needs. Premium service is differentiator for Grade A buildings attracting corporate occupiers.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-medium mb-2">Event Support & Coordination</h3>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Support for building events (conferences, exhibitions, networking): Pre-event planning (space setup, AV coordination, catering liaison), Event-day support (registration, directions, attendee management), Post-event reset (space restoration, feedback collection). Event coordination demonstrates building capabilities and enhances occupier satisfaction through seamless delivery of complex activities.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Concierge Training & Standards
-              </h2>
-              <div className="bg-muted/50 p-6 rounded-lg space-y-4">
-                <div>
-                  <h3 className="font-medium mb-2">Customer Service Excellence</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Training in hospitality standards: Professional greeting (eye contact, smile, courteous language), Active listening (understand needs, ask clarifying questions), Problem-solving (resourceful, proactive, escalate appropriately), Conflict resolution (calm, professional, de-escalate tensions). Customer service training differentiates concierge from basic reception—creating positive experiences through professional, proactive support.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Building Knowledge & FM Integration</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Comprehensive building understanding: Layout and navigation (direct visitors confidently), Amenity locations (meeting rooms, facilities, services), Emergency procedures (fire, evacuation, first aid, incident management), FM coordination (helpdesk liaison, maintenance scheduling, contractor management). Building knowledge enables effective information provision and service coordination—enhancing occupier support.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Professional Presentation & Conduct</h3>
-                  <p className="text-sm text-muted-foreground font-light">
-                    Consistent professional standards: Uniform/dress code (smart, clean, building-appropriate), Personal presentation (groomed, name badge visible), Communication (clear, articulate, positive tone), Punctuality and reliability (consistent shift coverage, minimal absences). Professional presentation reinforces building brand and occupier confidence in service quality.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Technology Integration
-              </h2>
-              <p className="text-muted-foreground font-light leading-relaxed mb-4">
-                Modern concierge services leverage technology: Visitor management systems (digital registration, pre-registration, badge printing, host notifications—eliminates paper logs), Access control integration (temporary passes, contractor access, audit trails), Booking platforms (meeting rooms, parking, amenities—calendar sync, mobile apps), Communication tools (digital displays, mobile apps, occupier portals—real-time information), CAFM integration (service request logging, helpdesk tracking, building data access).
-              </p>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Technology streamlines administrative tasks enabling concierge to focus on relationship-building and proactive service. However, technology cannot replace human interaction—professional, courteous staff remain essential for positive first impressions and occupier satisfaction. Best-practice concierge combines digital efficiency with personal service excellence.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-3xl font-light mb-4 underline-accent inline-block">
-                Related Services
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Link to="/fm-operations/occupier-experience" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Occupier Experience</h3>
-                  <p className="text-sm text-muted-foreground font-light">Tenant engagement and satisfaction</p>
-                </Link>
-                <Link to="/services/access-control" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Access Control</h3>
-                  <p className="text-sm text-muted-foreground font-light">Security and access management</p>
-                </Link>
-                <Link to="/services/front-of-house" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Front of House Services</h3>
-                  <p className="text-sm text-muted-foreground font-light">Reception and soft FM services</p>
-                </Link>
-                <Link to="/fm-operations/helpdesk" className="p-4 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors">
-                  <h3 className="font-medium mb-2">Technical Helpdesk</h3>
-                  <p className="text-sm text-muted-foreground font-light">Service coordination and support</p>
-                </Link>
-              </div>
-            </section>
-
-            <section className="mb-12">
-              <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
-                <h2 className="text-2xl font-light mb-4">Request Concierge Services</h2>
-                <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                  Our building concierge services combine hospitality standards with FM integration—delivering professional reception that enhances first impressions, supports occupiers, and strengthens building reputation. Contact us to discuss concierge requirements for your estate.
-                </p>
-                <Link 
-                  to="/request-proposal" 
-                  className="inline-block bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                  Request Concierge Proposal
-                </Link>
-              </div>
-            </section>
-
-            <FAQSection faqs={faqs} />
-          </div>
-
-          <aside className="lg:col-span-1">
-            <SidebarCTA />
-          </aside>
+            </AnimatedSection>
+          ))}
         </div>
-      </div>
+      </ContentSection>
+
+      {/* Training & Standards */}
+      <ContentSection
+        title="Training & Service Standards"
+        subtitle="Hospitality-trained staff with comprehensive building knowledge deliver consistently excellent service."
+        variant="gradient"
+      >
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Customer Service Excellence",
+              items: [
+                "Professional greeting and active listening",
+                "Problem-solving and conflict resolution",
+                "Hospitality-standard presentation",
+                "Proactive service delivery"
+              ]
+            },
+            {
+              title: "Building Knowledge",
+              items: [
+                "Complete layout and navigation mastery",
+                "Emergency procedures and first aid",
+                "Technical systems understanding",
+                "FM and helpdesk coordination"
+              ]
+            },
+            {
+              title: "Professional Standards",
+              items: [
+                "Uniform and presentation standards",
+                "Clear, articulate communication",
+                "Punctuality and reliability",
+                "Continuous improvement focus"
+              ]
+            }
+          ].map((section, idx) => (
+            <AnimatedSection key={idx} delay={idx * 0.1}>
+              <div className="p-8 bg-card border border-border rounded-2xl h-full">
+                <h3 className="text-xl font-medium mb-4">{section.title}</h3>
+                <ul className="space-y-3">
+                  {section.items.map((item, itemIdx) => (
+                    <li key={itemIdx} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* Technology */}
+      <ContentSection
+        title="Technology Integration"
+        subtitle="Modern concierge services leverage technology to streamline administration while maintaining the human touch that creates positive experiences."
+      >
+        <AnimatedSection>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {[
+              { title: "Visitor Management", desc: "Digital registration, pre-registration, badge printing" },
+              { title: "Access Control", desc: "Temporary passes, contractor access, audit trails" },
+              { title: "Booking Systems", desc: "Meeting rooms, parking, amenities with calendar sync" },
+              { title: "CAFM Integration", desc: "Service requests, helpdesk tracking, building data" }
+            ].map((tech, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="p-6 bg-muted/30 border border-border rounded-xl text-center"
+              >
+                <h4 className="font-medium mb-2">{tech.title}</h4>
+                <p className="text-sm text-muted-foreground font-light">{tech.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </AnimatedSection>
+      </ContentSection>
+
+      {/* Related Services */}
+      <ContentSection
+        title="Related Services"
+        centered
+        variant="muted"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {[
+            { title: "Occupier Experience", desc: "Tenant engagement and satisfaction", href: "/fm-operations/occupier-experience" },
+            { title: "Access Control", desc: "Security and access management", href: "/services/access-control" },
+            { title: "Front of House", desc: "Reception and soft FM services", href: "/services/front-of-house" },
+            { title: "Technical Helpdesk", desc: "Service coordination and support", href: "/fm-operations/helpdesk" }
+          ].map((service, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+            >
+              <Link 
+                to={service.href}
+                className="block p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-md transition-all group"
+              >
+                <h3 className="font-medium mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="text-sm text-muted-foreground font-light">{service.desc}</p>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* FAQ Section */}
+      <ContentSection
+        title="Frequently Asked Questions"
+        centered
+      >
+        <div className="max-w-3xl mx-auto">
+          <FAQSection faqs={faqs} />
+        </div>
+      </ContentSection>
+
+      {/* CTA Section */}
+      <CTASection
+        title="Request Concierge Services"
+        description="Elevate your building's first impression with hospitality-trained concierge teams. Professional, proactive, and personalized service for commercial and residential estates."
+        variant="dark"
+      />
     </>
   );
 };
