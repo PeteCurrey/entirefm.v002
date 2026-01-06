@@ -1,706 +1,518 @@
-import { useState, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Search, Download, CheckCircle2, XCircle, AlertTriangle, RefreshCw } from 'lucide-react';
 
-// Define all expected pages
-const EXPECTED_PAGES = {
-  complianceHubs: [{
-    url: '/services/fire-safety',
-    name: 'Fire Safety'
-  }, {
-    url: '/services/electrical-compliance',
-    name: 'Electrical Compliance'
-  }, {
-    url: '/services/emergency-lighting',
-    name: 'Emergency Lighting'
-  }, {
-    url: '/services/water-hygiene',
-    name: 'Water Hygiene'
-  }, {
-    url: '/services/gas-safety',
-    name: 'Gas Safety'
-  }, {
-    url: '/services/hvac-compliance',
-    name: 'HVAC Compliance'
-  }, {
-    url: '/services/ppm',
-    name: 'PPM'
-  }, {
-    url: '/services/hard-services-fm',
-    name: 'Hard Services FM'
-  }, {
-    url: '/services/me-services',
-    name: 'M&E Services'
-  }, {
-    url: '/services/access-control',
-    name: 'Access Control'
-  }, {
-    url: '/services/emergency-systems',
-    name: 'Emergency Systems'
-  }, {
-    url: '/services/commercial-plumbing',
-    name: 'Commercial Plumbing'
-  }, {
-    url: '/services/building-inspections',
-    name: 'Building Inspections'
-  }, {
-    url: '/services/drone-inspections',
-    name: 'Drone Inspections'
-  }],
-  sectors: [{
-    url: '/sectors/offices',
-    name: 'Offices'
-  }, {
-    url: '/sectors/retail-hospitality',
-    name: 'Retail & Hospitality'
-  }, {
-    url: '/sectors/industrial-logistics',
-    name: 'Industrial & Logistics'
-  }, {
-    url: '/sectors/healthcare-public',
-    name: 'Healthcare & Public'
-  }, {
-    url: '/sectors/hotels-leisure',
-    name: 'Hotels & Leisure'
-  }, {
-    url: '/sectors/pbsa',
-    name: 'PBSA'
-  }, {
-    url: '/sectors/education',
-    name: 'Education'
-  }, {
-    url: '/sectors/airports',
-    name: 'Airports'
-  }, {
-    url: '/sectors/venues',
-    name: 'Venues'
-  }, {
-    url: '/sectors/residential',
-    name: 'Residential'
-  }, {
-    url: '/sectors/logistics-parks',
-    name: 'Logistics Parks'
-  }],
-  conversion: [{
-    url: '/request-proposal',
-    name: 'Request Proposal'
-  }, {
-    url: '/resources',
-    name: 'Resources Hub'
-  }, {
-    url: '/case-studies',
-    name: 'Case Studies Index'
-  }],
-  corporate: [{
-    url: '/sustainability',
-    name: 'Sustainability'
-  }, {
-    url: '/innovation',
-    name: 'Innovation'
-  }, {
-    url: '/partnerships',
-    name: 'Partnerships'
-  }, {
-    url: '/awards',
-    name: 'Awards'
-  }],
-  caseStudies: [{
-    url: '/case-studies/corporate-office-london',
-    name: 'Corporate Office - London'
-  }, {
-    url: '/case-studies/retail-complex-birmingham',
-    name: 'Retail Complex - Birmingham'
-  }, {
-    url: '/case-studies/industrial-warehouse-sheffield',
-    name: 'Industrial Warehouse - Sheffield'
-  }, {
-    url: '/case-studies/pbsa-estate-manchester',
-    name: 'PBSA Estate - Manchester'
-  }, {
-    url: '/case-studies/healthcare-derby',
-    name: 'Healthcare - Derby'
-  }, {
-    url: '/case-studies/hotel-leeds',
-    name: 'Hotel - Leeds'
-  }, {
-    url: '/case-studies/student-campus-nottingham',
-    name: 'Student Campus - Nottingham'
-  }, {
-    url: '/case-studies/data-room-london',
-    name: 'Data Room - London'
-  }, {
-    url: '/case-studies/distribution-chesterfield',
-    name: 'Distribution - Chesterfield'
-  }, {
-    url: '/case-studies/emergency-lighting-lincoln',
-    name: 'Emergency Lighting - Lincoln'
-  }],
-  fmOperations: [{
-    url: '/fm-operations',
-    name: 'FM Operations Hub'
-  }, {
-    url: '/fm-operations/asset-lifecycle',
-    name: 'Asset Lifecycle Management'
-  }, {
-    url: '/fm-operations/business-continuity',
-    name: 'Business Continuity Planning'
-  }, {
-    url: '/fm-operations/occupier-experience',
-    name: 'Occupier Experience'
-  }, {
-    url: '/fm-operations/fm-strategy',
-    name: 'FM Strategy & Consulting'
-  }, {
-    url: '/fm-operations/tender-support',
-    name: 'Tender Support'
-  }, {
-    url: '/fm-operations/helpdesk',
-    name: 'Helpdesk & Support'
-  }, {
-    url: '/fm-operations/mobilisation',
-    name: 'Mobilisation & Transition'
-  }, {
-    url: '/fm-operations/ppm-delivery',
-    name: 'PPM Delivery'
-  }, {
-    url: '/fm-operations/reactive-maintenance',
-    name: 'Reactive Maintenance'
-  }],
-  softServices: [{
-    url: '/soft-services/concierge',
-    name: 'Concierge Services'
-  }, {
-    url: '/soft-services/specialist-cleaning',
-    name: 'Specialist Cleaning'
-  }, {
-    url: '/soft-services/grounds-maintenance',
-    name: 'Grounds Maintenance'
-  }, {
-    url: '/soft-services/waste-recycling',
-    name: 'Waste & Recycling'
-  }]
+// All site pages organized by category
+const SITE_PAGES = {
+  main: [
+    { url: '/', name: 'Home' },
+    { url: '/about', name: 'About Us' },
+    { url: '/contact', name: 'Contact' },
+    { url: '/careers', name: 'Careers' },
+    { url: '/why-entirefm', name: 'Why EntireFM' },
+    { url: '/leadership', name: 'Leadership' },
+    { url: '/sustainability', name: 'Sustainability' },
+    { url: '/innovation', name: 'Innovation' },
+    { url: '/partnerships', name: 'Partnerships' },
+    { url: '/awards', name: 'Awards' },
+    { url: '/esg', name: 'ESG' },
+    { url: '/health-safety', name: 'Health & Safety' },
+    { url: '/social-value', name: 'Social Value' },
+    { url: '/suppliers', name: 'Suppliers' },
+  ],
+  services: [
+    { url: '/services', name: 'Services Overview' },
+    { url: '/services/fire-safety', name: 'Fire Safety' },
+    { url: '/services/electrical-compliance', name: 'Electrical Compliance' },
+    { url: '/services/emergency-lighting', name: 'Emergency Lighting' },
+    { url: '/services/water-hygiene', name: 'Water Hygiene' },
+    { url: '/services/gas-safety', name: 'Gas Safety' },
+    { url: '/services/hvac-compliance', name: 'HVAC Compliance' },
+    { url: '/services/ppm', name: 'PPM' },
+    { url: '/services/hard-services-fm', name: 'Hard Services FM' },
+    { url: '/services/me-services', name: 'M&E Services' },
+    { url: '/services/access-control', name: 'Access Control' },
+    { url: '/services/emergency-systems', name: 'Emergency Systems' },
+    { url: '/services/commercial-plumbing', name: 'Commercial Plumbing' },
+    { url: '/services/building-inspections', name: 'Building Inspections' },
+    { url: '/services/drone-inspections', name: 'Drone Inspections' },
+    { url: '/services/emergency-response', name: 'Emergency Response' },
+    { url: '/services/disaster-recovery', name: 'Disaster Recovery' },
+    { url: '/services/space-planning', name: 'Space Planning' },
+    { url: '/services/hard-fm', name: 'Hard FM' },
+    { url: '/services/hvac', name: 'HVAC' },
+    { url: '/services/electrical', name: 'Electrical' },
+    { url: '/services/fire-alarms', name: 'Fire Alarms' },
+    { url: '/services/sprinklers', name: 'Sprinklers & Risers' },
+    { url: '/services/plumbing', name: 'Plumbing' },
+    { url: '/services/building-fabric', name: 'Building Fabric' },
+    { url: '/services/dry-riser-testing', name: 'Dry Riser Testing' },
+    { url: '/services/lifting-equipment', name: 'Lifting Equipment' },
+    { url: '/services/height-safety', name: 'Height Safety' },
+    { url: '/services/smoke-vent-systems', name: 'Smoke Vent Systems' },
+    { url: '/services/rising-mains', name: 'Rising Mains' },
+    { url: '/services/fire-compartmentation-surveys', name: 'Fire Compartmentation Surveys' },
+    { url: '/services/pump-room-maintenance', name: 'Pump Room Maintenance' },
+    { url: '/services/plant-room-risk-assessments', name: 'Plant Room Risk Assessments' },
+    { url: '/services/generator-maintenance', name: 'Generator Maintenance' },
+    { url: '/services/load-bank-testing', name: 'Load Bank Testing' },
+    { url: '/services/ups-maintenance', name: 'UPS Maintenance' },
+    { url: '/services/data-centre-cooling-compliance', name: 'Data Centre Cooling' },
+    { url: '/services/dock-leveller-maintenance', name: 'Dock Leveller Maintenance' },
+    { url: '/services/roller-shutter-maintenance', name: 'Roller Shutter Maintenance' },
+    { url: '/services/evacuation-chair-servicing', name: 'Evacuation Chair Servicing' },
+    { url: '/services/car-park-co-monitoring', name: 'Car Park CO Monitoring' },
+    { url: '/services/water-treatment-plant-maintenance', name: 'Water Treatment Maintenance' },
+    { url: '/services/bms-integration-testing', name: 'BMS Integration Testing' },
+    { url: '/services/smart-building-iot', name: 'Smart Building IoT' },
+    { url: '/services/waste-compliance', name: 'Waste Compliance' },
+    { url: '/services/water-optimisation', name: 'Water Optimisation' },
+    { url: '/services/sustainability-monitoring', name: 'Sustainability Monitoring' },
+    { url: '/services/cctv-maintenance', name: 'CCTV Maintenance' },
+    { url: '/services/anpr-systems', name: 'ANPR Systems' },
+    { url: '/services/access-control-advanced', name: 'Access Control Advanced' },
+    { url: '/services/security-systems-healthcheck', name: 'Security Systems Healthcheck' },
+    { url: '/services/drainage-cctv-surveys', name: 'Drainage CCTV Surveys' },
+    { url: '/services/interceptor-maintenance', name: 'Interceptor Maintenance' },
+    { url: '/services/pump-station-servicing', name: 'Pump Station Servicing' },
+    { url: '/services/grease-trap-maintenance', name: 'Grease Trap Maintenance' },
+    { url: '/services/fume-extraction-lev', name: 'Fume Extraction LEV' },
+    { url: '/services/industrial-refrigeration', name: 'Industrial Refrigeration' },
+    { url: '/services/mewp-safety-checks', name: 'MEWP Safety Checks' },
+    { url: '/services/loading-bay-safety-systems', name: 'Loading Bay Safety' },
+    { url: '/services/compressor-maintenance', name: 'Compressor Maintenance' },
+    { url: '/services/bmu-cradle-servicing', name: 'BMU Cradle Servicing' },
+    { url: '/services/mansafe-testing', name: 'Mansafe Testing' },
+    { url: '/services/abseil-rail-certification', name: 'Abseil Rail Certification' },
+    { url: '/services/roof-safety-inspections', name: 'Roof Safety Inspections' },
+    { url: '/services/staircase-pressurisation', name: 'Staircase Pressurisation' },
+    { url: '/services/car-park-fume-extraction', name: 'Car Park Fume Extraction' },
+    { url: '/services/indoor-air-quality-testing', name: 'Indoor Air Quality Testing' },
+    { url: '/services/energy-optimisation', name: 'Energy Optimisation' },
+    { url: '/services/environmental-noise-surveys', name: 'Environmental Noise Surveys' },
+    { url: '/services/air-filtration-hepa', name: 'Air Filtration HEPA' },
+    { url: '/services/dilapidation-compliance', name: 'Dilapidation Compliance' },
+    { url: '/services/front-of-house', name: 'Front of House' },
+    { url: '/services/thermal-imaging-surveys', name: 'Thermal Imaging Surveys' },
+    { url: '/services/power-quality-analysis', name: 'Power Quality Analysis' },
+  ],
+  criticalInfrastructure: [
+    { url: '/services/critical/lightning-protection', name: 'Lightning Protection' },
+    { url: '/services/critical/ups-maintenance', name: 'UPS Maintenance' },
+    { url: '/services/critical/generator-maintenance', name: 'Generator Maintenance' },
+    { url: '/services/critical/power-redundancy', name: 'Power Redundancy' },
+    { url: '/services/critical/thermal-imaging', name: 'Thermal Imaging' },
+    { url: '/services/critical/arc-flash-assessment', name: 'Arc Flash Assessment' },
+    { url: '/services/critical/hv-switching', name: 'HV Switching' },
+    { url: '/services/critical/power-quality', name: 'Power Quality' },
+    { url: '/services/critical/data-room-audits', name: 'Data Room Audits' },
+  ],
+  sectors: [
+    { url: '/sectors', name: 'Sectors Overview' },
+    { url: '/sectors/offices', name: 'Offices' },
+    { url: '/sectors/retail-hospitality', name: 'Retail & Hospitality' },
+    { url: '/sectors/industrial-logistics', name: 'Industrial & Logistics' },
+    { url: '/sectors/healthcare-public', name: 'Healthcare & Public' },
+    { url: '/sectors/hotels-leisure', name: 'Hotels & Leisure' },
+    { url: '/sectors/pbsa', name: 'PBSA' },
+    { url: '/sectors/education', name: 'Education' },
+    { url: '/sectors/airports', name: 'Airports' },
+    { url: '/sectors/venues', name: 'Venues' },
+    { url: '/sectors/residential', name: 'Residential' },
+    { url: '/sectors/logistics-parks', name: 'Logistics Parks' },
+    { url: '/sectors/offices-corporate', name: 'Offices Corporate' },
+    { url: '/sectors/retail-service-stations', name: 'Retail Service Stations' },
+    { url: '/sectors/aviation', name: 'Aviation' },
+    { url: '/sectors/hospitality-leisure', name: 'Hospitality & Leisure' },
+    { url: '/sectors/residential-pbsa', name: 'Residential PBSA' },
+  ],
+  fmOperations: [
+    { url: '/fm-operations', name: 'FM Operations Hub' },
+    { url: '/fm-operations/asset-lifecycle', name: 'Asset Lifecycle Management' },
+    { url: '/fm-operations/business-continuity', name: 'Business Continuity' },
+    { url: '/fm-operations/occupier-experience', name: 'Occupier Experience' },
+    { url: '/fm-operations/fm-strategy', name: 'FM Strategy' },
+    { url: '/fm-operations/tender-support', name: 'Tender Support' },
+    { url: '/fm-operations/helpdesk', name: 'Helpdesk' },
+    { url: '/fm-operations/mobilisation', name: 'Mobilisation' },
+    { url: '/fm-operations/ppm-delivery', name: 'PPM Delivery' },
+    { url: '/fm-operations/reactive-maintenance', name: 'Reactive Maintenance' },
+    { url: '/fm-operations/leads', name: 'Leads' },
+    { url: '/fm-operations/report-issue', name: 'Report Issue' },
+    { url: '/fm-operations/knowledge-base', name: 'Knowledge Base' },
+    { url: '/fm-operations/platform', name: 'Platform' },
+  ],
+  softServices: [
+    { url: '/soft-services/concierge', name: 'Concierge Services' },
+    { url: '/soft-services/specialist-cleaning', name: 'Specialist Cleaning' },
+    { url: '/soft-services/grounds-maintenance', name: 'Grounds Maintenance' },
+    { url: '/soft-services/waste-recycling', name: 'Waste & Recycling' },
+  ],
+  locations: [
+    { url: '/locations', name: 'Locations Overview' },
+    { url: '/locations/london', name: 'London' },
+    { url: '/locations/manchester', name: 'Manchester' },
+    { url: '/locations/birmingham', name: 'Birmingham' },
+    { url: '/locations/leeds', name: 'Leeds' },
+    { url: '/locations/sheffield', name: 'Sheffield' },
+    { url: '/locations/liverpool', name: 'Liverpool' },
+    { url: '/locations/leicester', name: 'Leicester' },
+    { url: '/locations/nottingham', name: 'Nottingham' },
+    { url: '/locations/derby', name: 'Derby' },
+    { url: '/locations/chesterfield', name: 'Chesterfield' },
+    { url: '/locations/lincoln', name: 'Lincoln' },
+  ],
+  geoLandingFM: [
+    { url: '/fm-london', name: 'FM London' },
+    { url: '/fm-leeds', name: 'FM Leeds' },
+    { url: '/fm-birmingham', name: 'FM Birmingham' },
+    { url: '/fm-lincoln', name: 'FM Lincoln' },
+    { url: '/fm-chesterfield', name: 'FM Chesterfield' },
+    { url: '/fm-sheffield', name: 'FM Sheffield' },
+    { url: '/fm-nottingham', name: 'FM Nottingham' },
+    { url: '/fm-manchester', name: 'FM Manchester' },
+    { url: '/fm-liverpool', name: 'FM Liverpool' },
+    { url: '/fm-derby', name: 'FM Derby' },
+    { url: '/fm-oxford', name: 'FM Oxford' },
+    { url: '/fm-doncaster', name: 'FM Doncaster' },
+    { url: '/fm-rotherham', name: 'FM Rotherham' },
+    { url: '/fm-telford', name: 'FM Telford' },
+  ],
+  geoLandingFacilitiesManagement: [
+    { url: '/facilities-management-london', name: 'Facilities Management London' },
+    { url: '/facilities-management-leeds', name: 'Facilities Management Leeds' },
+    { url: '/facilities-management-birmingham', name: 'Facilities Management Birmingham' },
+    { url: '/facilities-management-sheffield', name: 'Facilities Management Sheffield' },
+    { url: '/facilities-management-nottingham', name: 'Facilities Management Nottingham' },
+    { url: '/facilities-management-manchester', name: 'Facilities Management Manchester' },
+    { url: '/facilities-management-liverpool', name: 'Facilities Management Liverpool' },
+    { url: '/facilities-management-derby', name: 'Facilities Management Derby' },
+    { url: '/facilities-management-oxford', name: 'Facilities Management Oxford' },
+    { url: '/facilities-management-doncaster', name: 'Facilities Management Doncaster' },
+    { url: '/facilities-management-rotherham', name: 'Facilities Management Rotherham' },
+    { url: '/facilities-management-chesterfield', name: 'Facilities Management Chesterfield' },
+    { url: '/facilities-management-telford', name: 'Facilities Management Telford' },
+    { url: '/facilities-management-midlands', name: 'Facilities Management Midlands' },
+    { url: '/facilities-management-lincoln', name: 'Facilities Management Lincoln' },
+    { url: '/facilities-management-bradford', name: 'Facilities Management Bradford' },
+    { url: '/london-facilities-management', name: 'London Facilities Management' },
+  ],
+  caseStudies: [
+    { url: '/case-studies', name: 'Case Studies Overview' },
+    { url: '/case-studies/logistics', name: 'Logistics & Distribution' },
+    { url: '/case-studies/retail', name: 'Retail' },
+    { url: '/case-studies/corporate', name: 'Corporate' },
+    { url: '/case-studies/aviation', name: 'Aviation' },
+    { url: '/case-studies/pbsa', name: 'PBSA' },
+    { url: '/case-studies/hospitality', name: 'Hospitality' },
+    { url: '/case-studies/service-stations', name: 'Service Stations' },
+    { url: '/case-studies/engineering', name: 'Engineering' },
+    { url: '/case-studies/healthcare', name: 'Healthcare' },
+    { url: '/case-studies/corporate-office-london', name: 'Corporate Office London' },
+    { url: '/case-studies/retail-complex-birmingham', name: 'Retail Complex Birmingham' },
+    { url: '/case-studies/industrial-warehouse-sheffield', name: 'Industrial Warehouse Sheffield' },
+    { url: '/case-studies/pbsa-estate-manchester', name: 'PBSA Estate Manchester' },
+  ],
+  resources: [
+    { url: '/resources', name: 'Resources Hub' },
+    { url: '/resources/compliance-calendar', name: 'Compliance Calendar' },
+    { url: '/resources/audit-framework', name: 'Audit Framework' },
+    { url: '/resources/switch-playbook', name: 'Switching Provider Guide' },
+    { url: '/resources/fire-risk-guide', name: 'Fire Risk Guide' },
+    { url: '/resources/eicr-manual', name: 'EICR Manual' },
+    { url: '/resources/emergency-lighting-checklist', name: 'Emergency Lighting Checklist' },
+    { url: '/resources/legionella-guide', name: 'Legionella Guide' },
+    { url: '/resources/fgas-tracker', name: 'F-Gas Tracker' },
+    { url: '/resources/energy-esg', name: 'Energy & ESG' },
+    { url: '/resources/engineer-standards', name: 'Engineer Standards' },
+    { url: '/resources/tender-support', name: 'Tender Support' },
+    { url: '/resources/top-fm-providers-uk', name: 'Top FM Providers UK' },
+    { url: '/resources/fire-alarm-testing-frequency', name: 'Fire Alarm Testing Frequency' },
+  ],
+  fmInsights: [
+    { url: '/fm-insights', name: 'FM Insights Hub' },
+    { url: '/fm-insights/what-is-facilities-management', name: 'What is Facilities Management?' },
+    { url: '/fm-insights/what-is-hard-fm', name: 'What is Hard FM?' },
+    { url: '/fm-insights/what-is-soft-fm', name: 'What is Soft FM?' },
+    { url: '/fm-insights/what-is-statutory-maintenance', name: 'What is Statutory Maintenance?' },
+    { url: '/fm-insights/what-is-ppm', name: 'What is PPM?' },
+    { url: '/fm-insights/what-is-an-eicr', name: 'What is an EICR?' },
+    { url: '/fm-insights/what-is-a-tm44', name: 'What is a TM44?' },
+    { url: '/fm-insights/what-is-acop-l8', name: 'What is ACOP L8?' },
+    { url: '/fm-insights/what-is-f-gas-compliance', name: 'What is F-Gas Compliance?' },
+    { url: '/fm-insights/how-often-emergency-lighting-tested', name: 'Emergency Lighting Testing Frequency' },
+    { url: '/fm-insights/how-often-fire-alarms-tested', name: 'Fire Alarm Testing Frequency' },
+    { url: '/fm-insights/who-is-the-responsible-person', name: 'Who is the Responsible Person?' },
+    { url: '/fm-insights/what-is-a-ppm-planner', name: 'What is a PPM Planner?' },
+    { url: '/fm-insights/what-is-a-compliance-calendar', name: 'What is a Compliance Calendar?' },
+    { url: '/fm-insights/what-is-an-asset-register', name: 'What is an Asset Register?' },
+    { url: '/fm-insights/what-is-lock-out-tag-out', name: 'What is Lock Out Tag Out?' },
+    { url: '/fm-insights/what-is-a-fire-risk-assessment', name: 'What is a Fire Risk Assessment?' },
+    { url: '/fm-insights/what-are-rams', name: 'What are RAMS?' },
+    { url: '/fm-insights/hard-fm-vs-soft-fm', name: 'Hard FM vs Soft FM' },
+    { url: '/fm-insights/what-is-tfm', name: 'What is TFM?' },
+    { url: '/fm-insights/what-is-ifm', name: 'What is IFM?' },
+  ],
+  tools: [
+    { url: '/tools/ppm-calculator', name: 'PPM Calculator' },
+    { url: '/tools/tm44-checker', name: 'TM44 Checker' },
+    { url: '/tools/water-risk-grader', name: 'Water Risk Grader' },
+    { url: '/tools/cost-savings-calculator', name: 'Cost Savings Calculator' },
+    { url: '/tools/sla-benchmark', name: 'SLA Benchmark' },
+    { url: '/tools/risk-diagnostic', name: 'Risk Diagnostic' },
+    { url: '/compliance-diagnostic', name: 'Compliance Diagnostic' },
+  ],
+  compare: [
+    { url: '/compare', name: 'Compare Overview' },
+    { url: '/compare/entirefm-vs-mitie', name: 'EntireFM vs Mitie' },
+    { url: '/compare/entirefm-vs-cbre', name: 'EntireFM vs CBRE' },
+    { url: '/compare/entirefm-vs-jll', name: 'EntireFM vs JLL' },
+    { url: '/compare/entirefm-vs-sodexo', name: 'EntireFM vs Sodexo' },
+    { url: '/compare/entirefm-vs-in-house', name: 'EntireFM vs In-House' },
+    { url: '/compare/entirefm-vs-freelance', name: 'EntireFM vs Freelance' },
+    { url: '/compare/entirefm-vs-call-out-only', name: 'EntireFM vs Call-Out Only' },
+  ],
+  integrations: [
+    { url: '/integrations', name: 'Integrations Overview' },
+    { url: '/integrations/elogbooks', name: 'eLogbooks' },
+    { url: '/integrations/dwellant', name: 'Dwellant' },
+    { url: '/integrations/verisae', name: 'Verisae' },
+    { url: '/integrations/mri-qube', name: 'MRI Qube' },
+    { url: '/integrations/planon', name: 'Planon' },
+    { url: '/integrations/concept-evolution', name: 'Concept Evolution' },
+    { url: '/integrations/mycompliance', name: 'MyCompliance' },
+  ],
+  conversion: [
+    { url: '/request-proposal', name: 'Request Proposal' },
+    { url: '/compliance-pack', name: 'Compliance Pack' },
+    { url: '/technology', name: 'Technology' },
+    { url: '/search', name: 'Search' },
+  ],
 };
 
-// Generate compliance location pages matrix
-const SERVICES = [{
-  slug: 'fire',
-  name: 'Fire Safety'
-}, {
-  slug: 'electrical',
-  name: 'Electrical Compliance'
-}, {
-  slug: 'emergency-lighting',
-  name: 'Emergency Lighting'
-}, {
-  slug: 'water',
-  name: 'Water Hygiene'
-}, {
-  slug: 'gas',
-  name: 'Gas Safety'
-}, {
-  slug: 'hvac',
-  name: 'HVAC Compliance'
-}, {
-  slug: 'ppm',
-  name: 'PPM'
-}];
-const LOCATIONS = [{
-  slug: 'London',
-  name: 'London'
-}, {
-  slug: 'Birmingham',
-  name: 'Birmingham'
-}, {
-  slug: 'Manchester',
-  name: 'Manchester'
-}, {
-  slug: 'Leeds',
-  name: 'Leeds'
-}, {
-  slug: 'Sheffield',
-  name: 'Sheffield'
-}, {
-  slug: 'Nottingham',
-  name: 'Nottingham'
-}, {
-  slug: 'Derby',
-  name: 'Derby'
-}, {
-  slug: 'Chesterfield',
-  name: 'Chesterfield'
-}, {
-  slug: 'Lincoln',
-  name: 'Lincoln'
-}];
+// Service location matrix data
+const COMPLIANCE_SERVICES = ['fire', 'electrical', 'emergency-lighting', 'water', 'gas', 'hvac', 'ppm'];
+const COMPLIANCE_LOCATIONS = ['London', 'Birmingham', 'Manchester', 'Leeds', 'Sheffield', 'Nottingham', 'Derby', 'Chesterfield', 'Lincoln'];
 
-// Pages that actually exist in the routing
-const EXISTING_ROUTES = [
-// Compliance Hubs & Services
-'/services/fire-safety', '/services/electrical-compliance', '/services/emergency-lighting', '/services/water-hygiene', '/services/gas-safety', '/services/hvac-compliance', '/services/ppm-compliance', '/services/ppm', '/services/hard-services-fm', '/services/me-services', '/services/access-control', '/services/emergency-systems', '/services/commercial-plumbing', '/services/building-inspections', '/services/drone-inspections', '/services/emergency-response', '/services/disaster-recovery', '/services/space-planning',
-// Critical Infrastructure Parent Pages
-'/services/critical/lightning-protection', '/services/critical/ups-maintenance', '/services/critical/generator-maintenance', '/services/critical/power-redundancy', '/services/critical/thermal-imaging', '/services/critical/arc-flash-assessment', '/services/critical/hv-switching', '/services/critical/power-quality', '/services/critical/data-room-audits',
-// Critical Infrastructure Regional Pages - Lightning Protection
-'/services/critical/lightning-protection/London', '/services/critical/lightning-protection/Birmingham', '/services/critical/lightning-protection/Manchester', '/services/critical/lightning-protection/Leeds', '/services/critical/lightning-protection/Sheffield', '/services/critical/lightning-protection/Nottingham', '/services/critical/lightning-protection/Derby', '/services/critical/lightning-protection/Chesterfield', '/services/critical/lightning-protection/Lincoln',
-// Critical Infrastructure Regional Pages - UPS Maintenance
-'/services/critical/ups-maintenance/London', '/services/critical/ups-maintenance/Birmingham', '/services/critical/ups-maintenance/Manchester', '/services/critical/ups-maintenance/Leeds', '/services/critical/ups-maintenance/Sheffield', '/services/critical/ups-maintenance/Nottingham', '/services/critical/ups-maintenance/Derby', '/services/critical/ups-maintenance/Chesterfield', '/services/critical/ups-maintenance/Lincoln',
-// Critical Infrastructure Regional Pages - Generator Maintenance
-'/services/critical/generator-maintenance/London', '/services/critical/generator-maintenance/Birmingham', '/services/critical/generator-maintenance/Manchester', '/services/critical/generator-maintenance/Leeds', '/services/critical/generator-maintenance/Sheffield', '/services/critical/generator-maintenance/Nottingham', '/services/critical/generator-maintenance/Derby', '/services/critical/generator-maintenance/Chesterfield', '/services/critical/generator-maintenance/Lincoln',
-// Critical Infrastructure Regional Pages - Thermal Imaging
-'/services/critical/thermal-imaging/London', '/services/critical/thermal-imaging/Birmingham', '/services/critical/thermal-imaging/Manchester', '/services/critical/thermal-imaging/Leeds', '/services/critical/thermal-imaging/Sheffield', '/services/critical/thermal-imaging/Nottingham', '/services/critical/thermal-imaging/Derby', '/services/critical/thermal-imaging/Chesterfield', '/services/critical/thermal-imaging/Lincoln',
-// Critical Infrastructure Regional Pages - Arc Flash Assessment
-'/services/critical/arc-flash-assessment/London', '/services/critical/arc-flash-assessment/Birmingham', '/services/critical/arc-flash-assessment/Manchester', '/services/critical/arc-flash-assessment/Leeds', '/services/critical/arc-flash-assessment/Sheffield', '/services/critical/arc-flash-assessment/Nottingham', '/services/critical/arc-flash-assessment/Derby', '/services/critical/arc-flash-assessment/Chesterfield', '/services/critical/arc-flash-assessment/Lincoln',
-// Critical Infrastructure Regional Pages - HV Switching
-'/services/critical/hv-switching/London', '/services/critical/hv-switching/Birmingham', '/services/critical/hv-switching/Manchester', '/services/critical/hv-switching/Leeds', '/services/critical/hv-switching/Sheffield', '/services/critical/hv-switching/Nottingham', '/services/critical/hv-switching/Derby', '/services/critical/hv-switching/Chesterfield', '/services/critical/hv-switching/Lincoln',
-// Critical Infrastructure Regional Pages - Power Redundancy
-'/services/critical/power-redundancy/London', '/services/critical/power-redundancy/Birmingham', '/services/critical/power-redundancy/Manchester', '/services/critical/power-redundancy/Leeds', '/services/critical/power-redundancy/Sheffield', '/services/critical/power-redundancy/Nottingham', '/services/critical/power-redundancy/Derby', '/services/critical/power-redundancy/Chesterfield', '/services/critical/power-redundancy/Lincoln',
-// Critical Infrastructure Regional Pages - Power Quality
-'/services/critical/power-quality/London', '/services/critical/power-quality/Birmingham', '/services/critical/power-quality/Manchester', '/services/critical/power-quality/Leeds', '/services/critical/power-quality/Sheffield', '/services/critical/power-quality/Nottingham', '/services/critical/power-quality/Derby', '/services/critical/power-quality/Chesterfield', '/services/critical/power-quality/Lincoln',
-// Critical Infrastructure Regional Pages - Data Room Audits
-'/services/critical/data-room-audits/London', '/services/critical/data-room-audits/Birmingham', '/services/critical/data-room-audits/Manchester', '/services/critical/data-room-audits/Leeds', '/services/critical/data-room-audits/Sheffield', '/services/critical/data-room-audits/Nottingham', '/services/critical/data-room-audits/Derby', '/services/critical/data-room-audits/Chesterfield', '/services/critical/data-room-audits/Lincoln',
-// Sectors
-'/sectors/offices', '/sectors/retail-hospitality', '/sectors/industrial-logistics', '/sectors/healthcare-public', '/sectors/hotels-leisure', '/sectors/pbsa', '/sectors/education', '/sectors/airports', '/sectors/venues', '/sectors/residential', '/sectors/logistics-parks',
-// FM Operations Hub & Pages
-'/fm-operations', '/fm-operations/asset-lifecycle', '/fm-operations/business-continuity', '/fm-operations/occupier-experience', '/fm-operations/fm-strategy', '/fm-operations/tender-support', '/fm-operations/helpdesk', '/fm-operations/mobilisation', '/fm-operations/ppm-delivery', '/fm-operations/reactive-maintenance',
-// Soft Services
-'/soft-services/concierge', '/soft-services/specialist-cleaning', '/soft-services/grounds-maintenance', '/soft-services/waste-recycling',
-// Conversion
-'/request-proposal', '/resources', '/case-studies',
-// Tools
-'/tools/risk-diagnostic', '/compliance-diagnostic',
-// Corporate Pages
-'/sustainability', '/innovation', '/partnerships', '/awards',
-// Case Studies
-'/case-studies/corporate-office-london', '/case-studies/retail-complex-birmingham', '/case-studies/industrial-warehouse-sheffield', '/case-studies/pbsa-estate-manchester',
-// Compliance Location Pages
-'/services/fire/Birmingham', '/services/fire/Leeds', '/services/fire/London', '/services/fire/Manchester', '/services/fire/Derby', '/services/fire/Chesterfield', '/services/fire/Lincoln', '/services/fire/Nottingham', '/services/fire/Sheffield', '/services/electrical/Birmingham', '/services/electrical/Chesterfield', '/services/electrical/Derby', '/services/electrical/Leeds', '/services/electrical/Lincoln', '/services/electrical/London', '/services/electrical/Manchester', '/services/electrical/Nottingham', '/services/electrical/Sheffield', '/services/emergency-lighting/Birmingham', '/services/emergency-lighting/London', '/services/emergency-lighting/Manchester', '/services/emergency-lighting/Derby', '/services/emergency-lighting/Nottingham', '/services/emergency-lighting/Chesterfield', '/services/emergency-lighting/Lincoln', '/services/emergency-lighting/Sheffield', '/services/emergency-lighting/Leeds', '/services/water/Birmingham', '/services/water/Chesterfield', '/services/water/Derby', '/services/water/Leeds', '/services/water/Lincoln', '/services/water/London', '/services/water/Manchester', '/services/water/Nottingham', '/services/water/Sheffield', '/services/gas/Birmingham', '/services/gas/Chesterfield', '/services/gas/Derby', '/services/gas/Leeds', '/services/gas/Lincoln', '/services/gas/London', '/services/gas/Manchester', '/services/gas/Nottingham', '/services/gas/Sheffield', '/services/hvac/Birmingham', '/services/hvac/Chesterfield', '/services/hvac/Derby', '/services/hvac/Leeds', '/services/hvac/Lincoln', '/services/hvac/London', '/services/hvac/Manchester', '/services/hvac/Nottingham', '/services/hvac/Sheffield', '/services/ppm/Birmingham', '/services/ppm/Chesterfield', '/services/ppm/Derby', '/services/ppm/Leeds', '/services/ppm/Lincoln', '/services/ppm/London', '/services/ppm/Manchester', '/services/ppm/Nottingham', '/services/ppm/Sheffield'];
+// Critical Infrastructure services
+const CRITICAL_SERVICES = ['lightning-protection', 'ups-maintenance', 'generator-maintenance', 'thermal-imaging', 'arc-flash-assessment', 'hv-switching', 'power-redundancy', 'power-quality', 'data-room-audits'];
+
+// Section component for rendering link grids
+const SitemapSection = ({ title, pages, columns = 4 }: { title: string; pages: { url: string; name: string }[]; columns?: number }) => (
+  <section className="mb-10">
+    <h2 className="text-lg font-semibold text-foreground mb-4 border-b border-border pb-2">{title}</h2>
+    <div className={`grid grid-cols-2 md:grid-cols-${columns} gap-2`}>
+      {pages.map((page) => (
+        <Link
+          key={page.url}
+          to={page.url}
+          className="text-sm text-primary hover:text-primary/80 hover:underline py-1 truncate"
+        >
+          {page.name}
+        </Link>
+      ))}
+    </div>
+  </section>
+);
+
+// Matrix table component
+const ServiceLocationMatrix = ({ 
+  title, 
+  services, 
+  locations, 
+  urlPattern 
+}: { 
+  title: string; 
+  services: string[]; 
+  locations: string[]; 
+  urlPattern: (service: string, location: string) => string;
+}) => (
+  <section className="mb-10">
+    <h2 className="text-lg font-semibold text-foreground mb-4 border-b border-border pb-2">{title}</h2>
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm border-collapse">
+        <thead>
+          <tr className="bg-muted">
+            <th className="text-left p-2 border border-border font-medium">Service</th>
+            {locations.map((loc) => (
+              <th key={loc} className="text-center p-2 border border-border font-medium">{loc}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {services.map((service) => (
+            <tr key={service} className="hover:bg-muted/50">
+              <td className="p-2 border border-border font-medium capitalize">
+                {service.replace(/-/g, ' ')}
+              </td>
+              {locations.map((location) => (
+                <td key={location} className="text-center p-2 border border-border">
+                  <Link
+                    to={urlPattern(service, location)}
+                    className="text-primary hover:text-primary/80 hover:underline"
+                  >
+                    ✓
+                  </Link>
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+);
+
+// Geo landing pages matrix
+const GeoLandingMatrix = () => {
+  const cities = ['London', 'Leeds', 'Birmingham', 'Sheffield', 'Nottingham', 'Manchester', 'Liverpool', 'Derby', 'Oxford', 'Doncaster', 'Rotherham', 'Chesterfield', 'Telford', 'Lincoln', 'Bradford', 'Midlands'];
+  
+  return (
+    <section className="mb-10">
+      <h2 className="text-lg font-semibold text-foreground mb-4 border-b border-border pb-2">Geographical FM Landing Pages Matrix</h2>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm border-collapse">
+          <thead>
+            <tr className="bg-muted">
+              <th className="text-left p-2 border border-border font-medium">Location</th>
+              <th className="text-center p-2 border border-border font-medium">/fm-{'{city}'}</th>
+              <th className="text-center p-2 border border-border font-medium">/facilities-management-{'{city}'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cities.map((city) => {
+              const slug = city.toLowerCase();
+              const hasFM = ['london', 'leeds', 'birmingham', 'lincoln', 'chesterfield', 'sheffield', 'nottingham', 'manchester', 'liverpool', 'derby', 'oxford', 'doncaster', 'rotherham', 'telford'].includes(slug);
+              const hasFacilitiesManagement = ['london', 'leeds', 'birmingham', 'sheffield', 'nottingham', 'manchester', 'liverpool', 'derby', 'oxford', 'doncaster', 'rotherham', 'chesterfield', 'telford', 'midlands', 'lincoln', 'bradford'].includes(slug);
+              
+              return (
+                <tr key={city} className="hover:bg-muted/50">
+                  <td className="p-2 border border-border font-medium">{city}</td>
+                  <td className="text-center p-2 border border-border">
+                    {hasFM ? (
+                      <Link to={`/fm-${slug}`} className="text-primary hover:text-primary/80 hover:underline">
+                        /fm-{slug}
+                      </Link>
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
+                  </td>
+                  <td className="text-center p-2 border border-border">
+                    {hasFacilitiesManagement ? (
+                      <Link to={`/facilities-management-${slug}`} className="text-primary hover:text-primary/80 hover:underline">
+                        /facilities-management-{slug}
+                      </Link>
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+            <tr className="hover:bg-muted/50">
+              <td className="p-2 border border-border font-medium">London (Alt)</td>
+              <td className="text-center p-2 border border-border">
+                <span className="text-muted-foreground">—</span>
+              </td>
+              <td className="text-center p-2 border border-border">
+                <Link to="/london-facilities-management" className="text-primary hover:text-primary/80 hover:underline">
+                  /london-facilities-management
+                </Link>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+};
+
 const SiteMap = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const checkPageStatus = (url: string) => {
-    const normalizedUrl = url.toLowerCase();
-    const exists = EXISTING_ROUTES.some(route => route.toLowerCase() === normalizedUrl);
-    return exists ? 'exists' : 'missing';
-  };
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'exists':
-        return <CheckCircle2 className="w-4 h-4 text-green-600" />;
-      case 'missing':
-        return <XCircle className="w-4 h-4 text-red-600" />;
-      case 'unpublished':
-        return <AlertTriangle className="w-4 h-4 text-yellow-600" />;
-      case 'mismatch':
-        return <RefreshCw className="w-4 h-4 text-orange-600" />;
-      default:
-        return null;
-    }
-  };
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case 'exists':
-        return <Badge variant="default" className="bg-green-600">✔ Exists</Badge>;
-      case 'missing':
-        return <Badge variant="destructive">❌ Missing</Badge>;
-      case 'unpublished':
-        return <Badge variant="secondary">⚠️ Unpublished</Badge>;
-      case 'mismatch':
-        return <Badge variant="outline">🔁 Slug Mismatch</Badge>;
-      default:
-        return null;
-    }
-  };
+  // Calculate total pages
+  const totalPages = Object.values(SITE_PAGES).reduce((acc, pages) => acc + pages.length, 0) +
+    (COMPLIANCE_SERVICES.length * COMPLIANCE_LOCATIONS.length) +
+    (CRITICAL_SERVICES.length * COMPLIANCE_LOCATIONS.length);
 
-  // Generate compliance location matrix
-  const complianceLocationPages = useMemo(() => {
-    const pages: {
-      service: string;
-      location: string;
-      url: string;
-      status: string;
-    }[] = [];
-    SERVICES.forEach(service => {
-      LOCATIONS.forEach(location => {
-        const url = `/services/${service.slug}/${location.slug}`;
-        pages.push({
-          service: service.name,
-          location: location.name,
-          url,
-          status: checkPageStatus(url)
-        });
-      });
-    });
-    return pages;
-  }, []);
-
-  // Filter pages based on search
-  const filteredPages = useMemo(() => {
-    const query = searchQuery.toLowerCase();
-    if (!query) return null;
-    const allPages = [...EXPECTED_PAGES.complianceHubs, ...EXPECTED_PAGES.sectors, ...EXPECTED_PAGES.conversion, ...EXPECTED_PAGES.corporate, ...EXPECTED_PAGES.caseStudies, ...EXPECTED_PAGES.fmOperations, ...EXPECTED_PAGES.softServices, ...complianceLocationPages.map(p => ({
-      url: p.url,
-      name: `${p.service} - ${p.location}`
-    }))];
-    return allPages.filter(page => page.url.toLowerCase().includes(query) || page.name.toLowerCase().includes(query));
-  }, [searchQuery, complianceLocationPages]);
-  const exportCSV = () => {
-    const allPages = [...EXPECTED_PAGES.complianceHubs.map(p => ({
-      ...p,
-      category: 'Compliance Hub',
-      status: checkPageStatus(p.url)
-    })), ...EXPECTED_PAGES.sectors.map(p => ({
-      ...p,
-      category: 'Sector',
-      status: checkPageStatus(p.url)
-    })), ...EXPECTED_PAGES.conversion.map(p => ({
-      ...p,
-      category: 'Conversion',
-      status: checkPageStatus(p.url)
-    })), ...EXPECTED_PAGES.corporate.map(p => ({
-      ...p,
-      category: 'Corporate',
-      status: checkPageStatus(p.url)
-    })), ...EXPECTED_PAGES.caseStudies.map(p => ({
-      ...p,
-      category: 'Case Study',
-      status: checkPageStatus(p.url)
-    })), ...EXPECTED_PAGES.fmOperations.map(p => ({
-      ...p,
-      category: 'FM Operations',
-      status: checkPageStatus(p.url)
-    })), ...EXPECTED_PAGES.softServices.map(p => ({
-      ...p,
-      category: 'Soft Services',
-      status: checkPageStatus(p.url)
-    })), ...complianceLocationPages.map(p => ({
-      url: p.url,
-      name: `${p.service} - ${p.location}`,
-      category: 'Compliance Location',
-      status: p.status
-    }))];
-    const csv = [['Category', 'Page Name', 'URL', 'Status'], ...allPages.map(page => [page.category, page.name, page.url, page.status])].map(row => row.join(',')).join('\n');
-    const blob = new Blob([csv], {
-      type: 'text/csv'
-    });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'entirefm-site-map.csv';
-    a.click();
-  };
-  const missingCount = complianceLocationPages.filter(p => p.status === 'missing').length;
-  const totalCompliancePages = complianceLocationPages.length;
-  return <>
+  return (
+    <>
       <Helmet>
-        <title>Site Map & URL Registry - EntireFM</title>
-        <meta name="robots" content="noindex, nofollow" />
+        <title>Sitemap | EntireFM - All Pages & Services</title>
+        <meta name="description" content="Complete sitemap of EntireFM facilities management services, locations, sectors, and resources. Find all pages across our comprehensive FM services platform." />
       </Helmet>
 
-      <div className="min-h-screen bg-background py-12 pt-20">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <div className="min-h-screen bg-background py-12 pt-24">
+        <div className="container mx-auto px-4 max-w-6xl">
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-foreground text-2xl font-extralight mt-0 mr-0 mb-0 ml-0 py-[20px] my-[20px]">Site Map & URL Registry</h1>
-            <div className="bg-muted/50 border border-border rounded-lg p-4 mb-6">
-              <p className="text-sm text-muted-foreground">
-                ℹ️ This page is for build validation only and will be hidden from public menus.
-              </p>
-            </div>
+          <header className="mb-10">
+            <h1 className="text-3xl font-bold text-foreground mb-3">Sitemap</h1>
+            <p className="text-muted-foreground">
+              Complete directory of all {totalPages}+ pages across EntireFM's facilities management platform.
+            </p>
+          </header>
 
-            {/* Search & Export */}
-            <div className="flex gap-4 items-center mb-6">
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-                <Input type="text" placeholder="Search URLs or page names..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10" />
-              </div>
-              <Button onClick={exportCSV} variant="outline">
-                <Download className="w-4 h-4 mr-2" />
-                Export CSV
-              </Button>
-            </div>
+          {/* Main Pages */}
+          <SitemapSection title="Main Pages" pages={SITE_PAGES.main} columns={4} />
 
-            {/* Summary Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium">Total Pages</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold">{EXISTING_ROUTES.length}</div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium">Compliance Matrix</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold">{totalCompliancePages - missingCount}/{totalCompliancePages}</div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium">Missing Pages</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-red-600">{missingCount}</div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium">Completion</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold">
-                    {Math.round((totalCompliancePages - missingCount) / totalCompliancePages * 100)}%
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          {/* Services */}
+          <SitemapSection title="Services" pages={SITE_PAGES.services} columns={4} />
 
-          {/* Search Results */}
-          {filteredPages && <Card className="mb-8">
-              <CardHeader>
-                <CardTitle>Search Results ({filteredPages.length})</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {filteredPages.map(page => {
-                const status = checkPageStatus(page.url);
-                return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                        <div className="flex items-center gap-3 flex-1">
-                          {getStatusIcon(status)}
-                          <Link to={page.url} className="text-sm font-medium hover:underline">
-                            {page.name}
-                          </Link>
-                          <code className="text-xs text-muted-foreground">{page.url}</code>
-                        </div>
-                        {getStatusBadge(status)}
-                      </div>;
-              })}
-                </div>
-              </CardContent>
-            </Card>}
+          {/* Critical Infrastructure */}
+          <SitemapSection title="Critical Infrastructure Services" pages={SITE_PAGES.criticalInfrastructure} columns={3} />
 
-          {!searchQuery && <>
-              {/* 1. Compliance Hubs */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>1️⃣ Compliance Hubs</CardTitle>
-                  <CardDescription>Core service compliance pages</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {EXPECTED_PAGES.complianceHubs.map(page => {
-                  const status = checkPageStatus(page.url);
-                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                          <div className="flex items-center gap-3">
-                            {getStatusIcon(status)}
-                            <Link to={page.url} className="text-sm font-medium hover:underline">
-                              {page.name}
-                            </Link>
-                            <code className="text-xs text-muted-foreground">{page.url}</code>
-                          </div>
-                          {getStatusBadge(status)}
-                        </div>;
-                })}
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Sectors */}
+          <SitemapSection title="Sectors" pages={SITE_PAGES.sectors} columns={4} />
 
-              {/* 2. Core Sector Pages */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>2️⃣ Core Sector Pages</CardTitle>
-                  <CardDescription>Industry-specific landing pages</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {EXPECTED_PAGES.sectors.map(page => {
-                  const status = checkPageStatus(page.url);
-                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                          <div className="flex items-center gap-3">
-                            {getStatusIcon(status)}
-                            <Link to={page.url} className="text-sm font-medium hover:underline">
-                              {page.name}
-                            </Link>
-                            <code className="text-xs text-muted-foreground">{page.url}</code>
-                          </div>
-                          {getStatusBadge(status)}
-                        </div>;
-                })}
-                  </div>
-                </CardContent>
-              </Card>
+          {/* FM Operations */}
+          <SitemapSection title="FM Operations" pages={SITE_PAGES.fmOperations} columns={4} />
 
-              {/* 3. RFP & Conversion */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>3️⃣ RFP & Conversion</CardTitle>
-                  <CardDescription>Lead generation and conversion pages</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {EXPECTED_PAGES.conversion.map(page => {
-                  const status = checkPageStatus(page.url);
-                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                          <div className="flex items-center gap-3">
-                            {getStatusIcon(status)}
-                            <Link to={page.url} className="text-sm font-medium hover:underline">
-                              {page.name}
-                            </Link>
-                            <code className="text-xs text-muted-foreground">{page.url}</code>
-                          </div>
-                          {getStatusBadge(status)}
-                        </div>;
-                })}
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Soft Services */}
+          <SitemapSection title="Soft Services" pages={SITE_PAGES.softServices} columns={4} />
 
-              {/* 4. Corporate Pages */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>4️⃣ Corporate Pages</CardTitle>
-                  <CardDescription>Company information and credentials</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {EXPECTED_PAGES.corporate.map(page => {
-                  const status = checkPageStatus(page.url);
-                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                          <div className="flex items-center gap-3">
-                            {getStatusIcon(status)}
-                            <Link to={page.url} className="text-sm font-medium hover:underline">
-                              {page.name}
-                            </Link>
-                            <code className="text-xs text-muted-foreground">{page.url}</code>
-                          </div>
-                          {getStatusBadge(status)}
-                        </div>;
-                })}
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Locations */}
+          <SitemapSection title="Locations" pages={SITE_PAGES.locations} columns={4} />
 
-              {/* 5. Compliance Location Pages Matrix */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>5️⃣ Compliance Location Pages Matrix</CardTitle>
-                  <CardDescription>
-                    Service × Location Matrix: 7 services × 9 locations = 63 pages
-                    {missingCount > 0 && <span className="block mt-2 text-red-600 font-semibold">
-                        ⚠️ Detected {missingCount} missing page{missingCount !== 1 ? 's' : ''}
-                      </span>}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                      <thead>
-                        <tr className="border-b border-border">
-                          <th className="text-left p-2 font-semibold">Service</th>
-                          {LOCATIONS.map(loc => <th key={loc.slug} className="text-center p-2 font-semibold">{loc.name}</th>)}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {SERVICES.map(service => <tr key={service.slug} className="border-b border-border hover:bg-muted/50">
-                            <td className="p-2 font-medium">{service.name}</td>
-                            {LOCATIONS.map(location => {
-                        const page = complianceLocationPages.find(p => p.service === service.name && p.location === location.name);
-                        return <td key={location.slug} className="text-center p-2">
-                                  {page && <Link to={page.url} className="inline-block">
-                                      {getStatusIcon(page.status)}
-                                    </Link>}
-                                </td>;
-                      })}
-                          </tr>)}
-                      </tbody>
-                    </table>
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Geo Landing Pages Matrix */}
+          <GeoLandingMatrix />
 
-              {/* 6. Case Studies */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>6️⃣ Case Studies</CardTitle>
-                  <CardDescription>Client success stories and authority builders</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {EXPECTED_PAGES.caseStudies.map(page => {
-                  const status = checkPageStatus(page.url);
-                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                          <div className="flex items-center gap-3">
-                            {getStatusIcon(status)}
-                            <Link to={page.url} className="text-sm font-medium hover:underline">
-                              {page.name}
-                            </Link>
-                            <code className="text-xs text-muted-foreground">{page.url}</code>
-                          </div>
-                          {getStatusBadge(status)}
-                        </div>;
-                })}
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Case Studies */}
+          <SitemapSection title="Case Studies" pages={SITE_PAGES.caseStudies} columns={3} />
 
-              {/* 7. FM Operations Hub & Pages */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>7️⃣ FM Operations Hub & Pages</CardTitle>
-                  <CardDescription>Operations excellence and service delivery pages</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {EXPECTED_PAGES.fmOperations.map(page => {
-                  const status = checkPageStatus(page.url);
-                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                          <div className="flex items-center gap-3">
-                            {getStatusIcon(status)}
-                            <Link to={page.url} className="text-sm font-medium hover:underline">
-                              {page.name}
-                            </Link>
-                            <code className="text-xs text-muted-foreground">{page.url}</code>
-                          </div>
-                          {getStatusBadge(status)}
-                        </div>;
-                })}
-                  </div>
-                </CardContent>
-              </Card>
+          {/* Resources */}
+          <SitemapSection title="Resources" pages={SITE_PAGES.resources} columns={3} />
 
-              {/* 8. Soft Services */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle>8️⃣ Soft Services</CardTitle>
-                  <CardDescription>Non-technical FM services and support</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {EXPECTED_PAGES.softServices.map(page => {
-                  const status = checkPageStatus(page.url);
-                  return <div key={page.url} className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
-                          <div className="flex items-center gap-3">
-                            {getStatusIcon(status)}
-                            <Link to={page.url} className="text-sm font-medium hover:underline">
-                              {page.name}
-                            </Link>
-                            <code className="text-xs text-muted-foreground">{page.url}</code>
-                          </div>
-                          {getStatusBadge(status)}
-                        </div>;
-                })}
-                  </div>
-                </CardContent>
-              </Card>
-            </>}
+          {/* FM Insights */}
+          <SitemapSection title="FM Insights & Guides" pages={SITE_PAGES.fmInsights} columns={3} />
+
+          {/* Tools */}
+          <SitemapSection title="Tools & Calculators" pages={SITE_PAGES.tools} columns={3} />
+
+          {/* Compare */}
+          <SitemapSection title="Comparisons" pages={SITE_PAGES.compare} columns={3} />
+
+          {/* Integrations */}
+          <SitemapSection title="Integrations" pages={SITE_PAGES.integrations} columns={4} />
+
+          {/* Conversion & Utility */}
+          <SitemapSection title="Conversion & Utility" pages={SITE_PAGES.conversion} columns={4} />
+
+          {/* Compliance Service Location Matrix */}
+          <ServiceLocationMatrix
+            title="Compliance Services by Location"
+            services={COMPLIANCE_SERVICES}
+            locations={COMPLIANCE_LOCATIONS}
+            urlPattern={(service, location) => `/services/${service}/${location}`}
+          />
+
+          {/* Critical Infrastructure Location Matrix */}
+          <ServiceLocationMatrix
+            title="Critical Infrastructure by Location"
+            services={CRITICAL_SERVICES}
+            locations={COMPLIANCE_LOCATIONS}
+            urlPattern={(service, location) => `/services/critical/${service}/${location}`}
+          />
         </div>
       </div>
-    </>;
+    </>
+  );
 };
+
 export default SiteMap;
