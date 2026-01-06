@@ -1,206 +1,141 @@
-import { Helmet } from "react-helmet";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
-import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { useConversionTracking } from "@/hooks/useConversionTracking";
-import { CheckCircle2 } from "lucide-react";
-import { YouMayAlsoNeed } from "@/components/shared/YouMayAlsoNeed";
+import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
+import { Hospital } from "lucide-react";
 
 const HealthcarePublic = () => {
-  const { trackProposalRequest } = useConversionTracking();
-
-  const challenges = [
-    "Infection risk (water hygiene, ventilation)",
-    "CQC / HSE inspection accountability",
-    "Public access safety",
-    "Estate complexity across NHS & local gov"
-  ];
-
-  const delivery = [
-    "Legionella + critical ventilation",
-    "Fire safety assurance",
-    "Full asset logging for audits",
-    "CAFM transparency tools"
-  ];
-
   return (
-    <div className="min-h-screen pt-20">
-      <Helmet>
-        <title>Healthcare & Public Sector Facilities Management | Zero Tolerance Compliance</title>
-        <meta name="description" content="Zero tolerance on compliance — risk removed, governance proven. Healthcare and public sector FM with CQC and HSE accountability." />
-      </Helmet>
-
-      <SchemaMarkup schema={{
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "Healthcare & Public Sector Facilities Management",
-        "description": "Facilities management for healthcare and public buildings with zero tolerance compliance",
-        "provider": {
-          "@type": "Organization",
-          "name": "Entire FM"
+    <SectorPageTemplate
+      title="Healthcare & Public Sector Facilities Management | Zero Tolerance Compliance"
+      metaDescription="Zero tolerance on compliance — risk removed, governance proven. Healthcare and public sector FM with CQC and HSE accountability."
+      canonicalUrl="https://entirefm.com/sectors/healthcare-public"
+      heroTitle="Healthcare & Public Sector Facilities Management"
+      heroSubtitle="Zero tolerance on compliance — risk removed, governance proven."
+      heroImage="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
+      heroIcon={Hospital}
+      stats={[
+        { value: "100%", label: "CQC Compliance" },
+        { value: "127", label: "Remedials Closed" },
+        { value: "Zero", label: "Inspection Findings" },
+        { value: "4", label: "Buildings Managed" }
+      ]}
+      sectorSummary={{
+        title: "Healthcare FM Requirements",
+        paragraphs: [
+          "Healthcare and public sector buildings operate under intense regulatory scrutiny. Infection control, patient safety, and public access all demand facilities management that meets the highest standards of compliance and accountability.",
+          "Our approach delivers zero-tolerance compliance with full audit trail documentation, ensuring CQC inspections, HSE visits, and regulatory reviews are passed with confidence."
+        ]
+      }}
+      complianceRisks={[
+        {
+          title: "Infection Risk Control",
+          description: "Water hygiene and ventilation systems present infection control risks. Legionella prevention and air quality management are critical in healthcare settings.",
+          link: "/services/water-hygiene",
+          linkText: "Water Hygiene Services"
+        },
+        {
+          title: "CQC / HSE Inspection Accountability",
+          description: "Regulatory inspections require current compliance documentation and evidence of proactive maintenance. Our digital reporting ensures audit-ready records."
+        },
+        {
+          title: "Public Access Safety",
+          description: "Healthcare and public buildings must maintain safe environments for vulnerable visitors. Fire safety, accessibility, and emergency systems require constant vigilance.",
+          link: "/services/fire-safety",
+          linkText: "Fire Safety Services"
+        },
+        {
+          title: "Estate Complexity",
+          description: "NHS and local government estates often span multiple buildings with varied ages and systems. Coordinated maintenance across complex portfolios requires specialist expertise."
         }
-      }} />
-
-      <BreadcrumbSchema items={[
-        { label: "Home", href: "/" },
-        { label: "Sectors", href: "/sectors" },
-        { label: "Healthcare & Public", href: "/sectors/healthcare-public" }
-      ]} />
-
-      <Breadcrumb 
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Sectors", href: "/sectors" },
-          { label: "Healthcare & Public" }
-        ]}
-      />
-
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
-              Healthcare & Public Sector Facilities Management
-            </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-              Zero tolerance on compliance — risk removed, governance proven.
-            </p>
-            <Button 
-              size="lg" 
-              onClick={() => trackProposalRequest('healthcare_public_hero')}
-              asChild
-            >
-              <Link to="/contact">Request Compliance Review</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-12">
-              {/* Challenges */}
-              <Card className="p-8">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Challenges
-                </h2>
-                <ul className="space-y-4">
-                  {challenges.map((challenge, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground font-light">{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Delivery */}
-              <Card className="p-8">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Delivery
-                </h2>
-                <ul className="space-y-4">
-                  {delivery.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground font-light">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Related Services */}
-              <div>
-                <h2 className="text-2xl font-light mb-6">Related Services</h2>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <Link to="/services/water-hygiene">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Water Hygiene</h3>
-                      <p className="text-sm text-muted-foreground font-light">Legionella control</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/fire-safety">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Fire Safety</h3>
-                      <p className="text-sm text-muted-foreground font-light">Public access assurance</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/hvac-compliance">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Ventilation</h3>
-                      <p className="text-sm text-muted-foreground font-light">Critical air quality</p>
-                    </Card>
-                  </Link>
-                </div>
-              </div>
-
-              <YouMayAlsoNeed 
-                services={[
-                  {
-                    title: "Power Redundancy Testing",
-                    description: "Mission-critical N+1 validation for healthcare estates",
-                    url: "/services/critical/power-redundancy"
-                  },
-                  {
-                    title: "UPS Maintenance",
-                    description: "Life-critical power protection for medical equipment",
-                    url: "/services/critical/ups-maintenance"
-                  },
-                  {
-                    title: "Thermal Imaging",
-                    description: "Predictive diagnostics preventing critical system failures",
-                    url: "/services/critical/thermal-imaging"
-                  }
-                ]}
-              />
-
-              {/* Case Study */}
-              <Card className="p-8 bg-muted/50">
-                <h3 className="text-xl font-light mb-4">Case Study</h3>
-                <p className="text-muted-foreground font-light mb-4">
-                  <strong>Hospital estate:</strong> Asset governance restored across 4 buildings. 127 remedials closed. CQC inspection passed with zero findings.
-                </p>
-                <Link to="/case-studies" className="text-primary hover:text-primary/80 transition-colors text-sm font-medium">
-                  View All Case Studies →
-                </Link>
-              </Card>
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <SidebarCTA />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-16 bg-charcoal text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Request Compliance Review
-          </h2>
-          <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto mb-8">
-            Zero tolerance compliance for healthcare and public estates.
-          </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
-            className="bg-white text-charcoal hover:bg-gray-100"
-            onClick={() => trackProposalRequest('healthcare_public_cta')}
-            asChild
-          >
-            <Link to="/contact">Request Compliance Review</Link>
-          </Button>
-        </div>
-      </section>
-    </div>
+      ]}
+      keySystems={[
+        {
+          category: "Critical Safety Systems",
+          items: [
+            "Medical gas systems",
+            "Fire detection and suppression",
+            "Emergency lighting and signage",
+            "Water hygiene systems",
+            "Ventilation and air handling",
+            "Nurse call systems"
+          ]
+        },
+        {
+          category: "Building Infrastructure",
+          items: [
+            "HVAC and temperature control",
+            "Backup power generation",
+            "Lifts and patient transport",
+            "BMS and energy management",
+            "Access control systems",
+            "Security and CCTV"
+          ]
+        }
+      ]}
+      operationalChallenges={[
+        {
+          title: "24/7 Clinical Operations",
+          description: "Healthcare facilities operate around the clock. Maintenance must be scheduled to minimise disruption to clinical services and patient care."
+        },
+        {
+          title: "Infection Control Protocols",
+          description: "All maintenance activities must comply with infection control requirements. Our engineers follow strict protocols and use appropriate PPE."
+        },
+        {
+          title: "Regulatory Documentation",
+          description: "Healthcare regulators require comprehensive maintenance records and compliance evidence. Our digital systems provide instant access to audit-ready documentation."
+        }
+      ]}
+      whyEntireFM={[
+        "Legionella and critical ventilation expertise",
+        "Fire safety assurance for public buildings",
+        "Full asset logging for CQC and HSE audits",
+        "CAFM transparency tools for governance",
+        "DBS-checked engineers for healthcare access",
+        "24/7 emergency response capability"
+      ]}
+      caseStudies={[
+        {
+          title: "Hospital Estate",
+          description: "Asset governance restored across 4 buildings. 127 remedials closed. CQC inspection passed with zero findings.",
+          link: "/case-studies",
+          linkText: "View Case Studies"
+        }
+      ]}
+      relatedServices={[
+        {
+          title: "Water Hygiene",
+          description: "Legionella control",
+          href: "/services/water-hygiene"
+        },
+        {
+          title: "Fire Safety",
+          description: "Public access assurance",
+          href: "/services/fire-safety"
+        },
+        {
+          title: "Ventilation",
+          description: "Critical air quality",
+          href: "/services/hvac-compliance"
+        }
+      ]}
+      faqs={[
+        {
+          question: "How do you support CQC compliance?",
+          answer: "We provide comprehensive documentation and audit-ready records for all maintenance activities. Our digital systems ensure instant access to compliance certificates, maintenance logs, and remedial tracking."
+        },
+        {
+          question: "Can you work in clinical environments?",
+          answer: "Yes. Our engineers are trained in healthcare-specific protocols including infection control, patient confidentiality, and working in sensitive clinical areas. All staff are DBS-checked."
+        },
+        {
+          question: "What water hygiene services do you provide?",
+          answer: "We deliver full ACOP L8 compliance including legionella risk assessments, temperature monitoring, water sampling, remedial works, and ongoing management of water hygiene schemes."
+        },
+        {
+          question: "How do you handle emergency call-outs in healthcare?",
+          answer: "Our 24/7 helpdesk provides immediate response for critical failures. Priority is given to life-safety systems and clinical service continuity with rapid engineer dispatch."
+        }
+      ]}
+    />
   );
 };
 

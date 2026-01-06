@@ -1,221 +1,143 @@
-import { Helmet } from "react-helmet";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
-import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { useConversionTracking } from "@/hooks/useConversionTracking";
-import { CheckCircle2 } from "lucide-react";
-import { DynamicYouMayAlsoNeed } from "@/components/shared/DynamicYouMayAlsoNeed";
+import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
+import { Building2 } from "lucide-react";
 
 const Offices = () => {
-  const { trackProposalRequest } = useConversionTracking();
-
-  const challenges = [
-    "Occupant comfort complaints",
-    "HVAC failures disrupting productivity",
-    "Fire & electrical governance scrutiny",
-    "ESG + EPC uplift pressure",
-    "Stakeholder visibility on compliance"
-  ];
-
-  const delivery = [
-    "Statutory compliance (Fire, Elec, HVAC, Gas, Water)",
-    "Asset lifecycle PPM",
-    "Optimised BMS control",
-    "Smart work order management",
-    "Rapid remedials & uptime protection"
-  ];
-
   return (
-    <div className="min-h-screen pt-20">
-      <Helmet>
-        <title>Corporate Office Facilities Management | Compliance & Productivity</title>
-        <meta name="description" content="Compliance-driven FM protecting productivity, reputation and operational continuity for corporate workplaces. Fire, electrical, HVAC, gas and water compliance." />
-      </Helmet>
-
-      <SchemaMarkup schema={{
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "Corporate Office Facilities Management",
-        "description": "Compliance-driven facilities management for corporate workplaces",
-        "provider": {
-          "@type": "Organization",
-          "name": "Entire FM"
+    <SectorPageTemplate
+      title="Corporate Office Facilities Management | Compliance & Productivity"
+      metaDescription="Compliance-driven FM protecting productivity, reputation and operational continuity for corporate workplaces. Fire, electrical, HVAC, gas and water compliance."
+      canonicalUrl="https://entirefm.com/sectors/offices"
+      heroTitle="Facilities Management for Corporate Workplaces"
+      heroSubtitle="Compliance-driven FM that protects productivity, reputation and operational continuity for the corporate environment."
+      heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
+      heroIcon={Building2}
+      stats={[
+        { value: "500+", label: "Office Buildings" },
+        { value: "99.2%", label: "Uptime Achieved" },
+        { value: "24/7", label: "Support Available" },
+        { value: "34%", label: "Satisfaction Improvement" }
+      ]}
+      sectorSummary={{
+        title: "Corporate Office FM",
+        paragraphs: [
+          "Corporate office environments demand seamless facilities management that protects both productivity and compliance. Building failures impact employee comfort, operational continuity, and ultimately business performance.",
+          "Our approach combines rigorous statutory compliance with smart preventive maintenance, ensuring your workplace operates at peak efficiency while meeting all regulatory requirements."
+        ]
+      }}
+      complianceRisks={[
+        {
+          title: "Occupant Comfort Complaints",
+          description: "Temperature fluctuations, poor air quality, and lighting issues directly impact employee productivity and satisfaction. Proactive HVAC and BMS management prevents complaints.",
+          link: "/services/hvac",
+          linkText: "HVAC Services"
+        },
+        {
+          title: "HVAC Failures Disrupting Productivity",
+          description: "System breakdowns during working hours cause significant business disruption. Planned maintenance and rapid response minimise operational impact.",
+          link: "/services/hvac-compliance",
+          linkText: "HVAC Compliance"
+        },
+        {
+          title: "Fire & Electrical Governance",
+          description: "Corporate offices face increasing scrutiny from regulators and insurers. Current fire safety documentation and electrical certificates are mandatory.",
+          link: "/services/fire-safety",
+          linkText: "Fire Safety"
+        },
+        {
+          title: "ESG & EPC Uplift Pressure",
+          description: "Environmental targets and minimum EPC requirements drive energy efficiency improvements. Our services support sustainability goals while reducing operating costs."
         }
-      }} />
-
-      <BreadcrumbSchema items={[
-        { label: "Home", href: "/" },
-        { label: "Sectors", href: "/sectors" },
-        { label: "Corporate Offices", href: "/sectors/offices" }
-      ]} />
-
-      <Breadcrumb 
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Sectors", href: "/sectors" },
-          { label: "Corporate Offices" }
-        ]}
-      />
-
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
-              Facilities Management for Corporate Workplaces
-            </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-              Compliance-driven FM that protects productivity, reputation and operational continuity for the corporate environment.
-            </p>
-            <Button 
-              size="lg" 
-              onClick={() => trackProposalRequest('offices_hero')}
-              asChild
-            >
-              <Link to="/contact">Request Office Compliance Audit</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-12">
-              {/* Challenges */}
-              <Card className="p-8">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Challenges We Solve
-                </h2>
-                <ul className="space-y-4">
-                  {challenges.map((challenge, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground font-light">{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Our Delivery */}
-              <Card className="p-8">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Our Delivery
-                </h2>
-                <ul className="space-y-4">
-                  {delivery.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground font-light">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Related Services */}
-              <div>
-                <h2 className="text-2xl font-light mb-6">Related Services</h2>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <Link to="/services/fire-safety">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Fire Safety</h3>
-                      <p className="text-sm text-muted-foreground font-light">BS 5839 compliance & testing</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/hvac-compliance">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">HVAC Compliance</h3>
-                      <p className="text-sm text-muted-foreground font-light">TM44 & F-Gas governance</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/ppm">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">PPM Programmes</h3>
-                      <p className="text-sm text-muted-foreground font-light">Asset lifecycle management</p>
-                    </Card>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Critical Infrastructure - You May Also Need */}
-              <div>
-                <h2 className="text-2xl font-light mb-6 underline-accent inline-block">You May Also Need</h2>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <Link to="/services/critical/ups-maintenance">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">UPS Maintenance</h3>
-                      <p className="text-sm text-muted-foreground font-light">Critical power continuity for office systems</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/critical/lightning-protection">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Lightning Protection</h3>
-                      <p className="text-sm text-muted-foreground font-light">BS EN 62305 testing & earthing systems</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/critical/thermal-imaging">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Thermal Imaging</h3>
-                      <p className="text-sm text-muted-foreground font-light">Predictive electrical & building diagnostics</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/critical/generator-maintenance">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Generator Maintenance</h3>
-                      <p className="text-sm text-muted-foreground font-light">Emergency power resilience testing</p>
-                    </Card>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Case Study Placeholder */}
-              <Card className="p-8 bg-muted/50">
-                <h3 className="text-xl font-light mb-4">Case Study</h3>
-                <p className="text-muted-foreground font-light mb-4">
-                  12-building corporate estate – unified compliance delivery, digital governance platform, and 34% improvement in tenant satisfaction scores.
-                </p>
-                <Link to="/case-studies" className="text-primary hover:text-primary/80 transition-colors text-sm font-medium">
-                  View All Case Studies →
-                </Link>
-              </Card>
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <SidebarCTA />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <DynamicYouMayAlsoNeed pageType="sector" currentPageUrl="/sectors/offices" />
-
-      {/* Final CTA */}
-      <section className="py-16 bg-charcoal text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Book Workplace Audit
-          </h2>
-          <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto mb-8">
-            Protect productivity and compliance across your corporate estate.
-          </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
-            className="bg-white text-charcoal hover:bg-gray-100"
-            onClick={() => trackProposalRequest('offices_cta')}
-            asChild
-          >
-            <Link to="/contact">Request Office Compliance Audit</Link>
-          </Button>
-        </div>
-      </section>
-    </div>
+      ]}
+      keySystems={[
+        {
+          category: "Building Services",
+          items: [
+            "Air handling and HVAC systems",
+            "Building Management Systems (BMS)",
+            "Lighting and emergency lighting",
+            "Power distribution systems",
+            "Water systems and plumbing",
+            "Lifts and vertical transport"
+          ]
+        },
+        {
+          category: "Safety & Security",
+          items: [
+            "Fire detection and alarm systems",
+            "Access control and security",
+            "CCTV and surveillance",
+            "Emergency evacuation systems",
+            "Fire suppression systems",
+            "Intruder alarms"
+          ]
+        }
+      ]}
+      operationalChallenges={[
+        {
+          title: "Business Hours Constraints",
+          description: "Intrusive maintenance must occur outside core business hours. Careful scheduling and out-of-hours teams ensure minimal disruption to operations."
+        },
+        {
+          title: "Multi-Tenant Coordination",
+          description: "Office buildings with multiple tenants require coordinated maintenance access, clear communication, and fair service level distribution."
+        },
+        {
+          title: "Stakeholder Visibility",
+          description: "Property managers, landlords, and tenants all require visibility on compliance status and maintenance activities. Digital reporting delivers transparency."
+        }
+      ]}
+      whyEntireFM={[
+        "Statutory compliance across fire, electrical, HVAC, gas and water",
+        "Asset lifecycle PPM programmes",
+        "Optimised BMS control for comfort and efficiency",
+        "Smart work order management with digital reporting",
+        "Rapid remedials protecting uptime",
+        "ESG and sustainability support"
+      ]}
+      caseStudies={[
+        {
+          title: "12-Building Corporate Estate",
+          description: "Unified compliance delivery, digital governance platform, and 34% improvement in tenant satisfaction scores.",
+          link: "/case-studies",
+          linkText: "View Case Studies"
+        }
+      ]}
+      relatedServices={[
+        {
+          title: "Fire Safety",
+          description: "BS 5839 compliance & testing",
+          href: "/services/fire-safety"
+        },
+        {
+          title: "HVAC Compliance",
+          description: "TM44 & F-Gas governance",
+          href: "/services/hvac-compliance"
+        },
+        {
+          title: "PPM Programmes",
+          description: "Asset lifecycle management",
+          href: "/services/ppm"
+        }
+      ]}
+      faqs={[
+        {
+          question: "What compliance is required for corporate offices?",
+          answer: "Corporate offices require fire safety compliance (fire alarms, emergency lighting, fire risk assessments), electrical EICRs, HVAC TM44 inspections, water hygiene management, and gas safety certification where applicable."
+        },
+        {
+          question: "How do you minimise disruption to office workers?",
+          answer: "We schedule intrusive maintenance outside core business hours and coordinate with building management for access. Emergency works are handled discreetly with clear communication."
+        },
+        {
+          question: "Can you manage multi-tenant office buildings?",
+          answer: "Yes. We provide coordinated FM services with clear responsibility splits between landlord and tenant systems, centralised helpdesk, and transparent reporting for all stakeholders."
+        },
+        {
+          question: "How do you support ESG and sustainability goals?",
+          answer: "Our services include energy audits, BMS optimisation, LED lighting upgrades, and carbon reduction strategies. We help clients meet EPC requirements and environmental targets."
+        }
+      ]}
+    />
   );
 };
 
