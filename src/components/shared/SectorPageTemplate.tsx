@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SchemaMarkup, FAQSchema } from "@/components/shared/SchemaMarkup";
@@ -115,6 +115,17 @@ const SectorPageTemplate = ({
     "description": metaDescription
   };
 
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.3]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
   return (
     <>
       <Helmet>
@@ -127,67 +138,180 @@ const SectorPageTemplate = ({
       <FAQSchema faqs={faqs} />
 
       <div className="min-h-screen bg-background">
-        {/* Hero Section */}
-        <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/85 to-primary/20 z-10" />
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroImage})` }}
+        {/* Hero Section with Parallax */}
+        <section ref={heroRef} className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+          {/* Parallax Background Image */}
+          <motion.div 
+            className="absolute inset-0 z-0"
+            style={{ y: backgroundY, scale }}
+          >
+            <div 
+              className="absolute inset-0 bg-cover bg-center h-[120%] w-full"
+              style={{ backgroundImage: `url(${heroImage})` }}
+            />
+          </motion.div>
+          
+          {/* Gradient Overlay with animated opacity */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-charcoal/95 via-charcoal/85 to-primary/20 z-10"
+            style={{ opacity }}
           />
           
-          <div className="container mx-auto px-4 relative z-20 py-32">
+          {/* Floating particles effect */}
+          <div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 bg-primary/30 rounded-full"
+                style={{
+                  left: `${15 + i * 15}%`,
+                  top: `${20 + (i % 3) * 25}%`,
+                }}
+                animate={{
+                  y: [-20, 20, -20],
+                  x: [-10, 10, -10],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 4 + i * 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.3,
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Hero Content with parallax text */}
+          <motion.div 
+            className="container mx-auto px-4 relative z-20 py-32"
+            style={{ y: textY }}
+          >
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="max-w-4xl"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-primary/20 rounded-xl backdrop-blur-sm">
+              <motion.div 
+                className="flex items-center gap-3 mb-6"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <motion.div 
+                  className="p-3 bg-primary/20 rounded-xl backdrop-blur-sm border border-primary/30"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
                   <HeroIcon className="w-8 h-8 text-primary" />
-                </div>
+                </motion.div>
                 <span className="text-primary font-medium uppercase tracking-wider text-sm">Sector Expertise</span>
-              </div>
+              </motion.div>
               
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
-                {heroTitle}
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed mb-8 max-w-3xl">
+              <motion.h1 
+                className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                {heroTitle.split(' ').map((word, i) => (
+                  <motion.span
+                    key={i}
+                    className="inline-block mr-3"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.h1>
+              
+              <motion.p 
+                className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed mb-8 max-w-3xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
                 {heroSubtitle}
-              </p>
+              </motion.p>
               
-              <div className="flex flex-wrap gap-4 mb-12">
-                <Button size="lg" asChild className="hover-lift">
-                  <Link to="/request-proposal">
-                    Request Proposal
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="hover-lift bg-white/10 border-white/30 text-white hover:bg-white hover:text-charcoal">
-                  <Link to="/contact">
-                    <Phone className="w-5 h-5 mr-2" />
-                    Contact Us
-                  </Link>
-                </Button>
-              </div>
+              <motion.div 
+                className="flex flex-wrap gap-4 mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                  <Button size="lg" asChild className="hover-lift shadow-lg shadow-primary/25">
+                    <Link to="/request-proposal">
+                      Request Proposal
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                  <Button size="lg" variant="outline" asChild className="hover-lift bg-white/10 border-white/30 text-white hover:bg-white hover:text-charcoal backdrop-blur-sm">
+                    <Link to="/contact">
+                      <Phone className="w-5 h-5 mr-2" />
+                      Contact Us
+                    </Link>
+                  </Button>
+                </motion.div>
+              </motion.div>
 
               {stats && stats.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
+                  transition={{ delay: 0.9, duration: 0.6 }}
                   className="grid grid-cols-2 md:grid-cols-4 gap-6"
                 >
                   {stats.map((stat, index) => (
-                    <div key={index} className="text-center md:text-left">
-                      <div className="text-3xl md:text-4xl font-light text-primary mb-1">{stat.value}</div>
+                    <motion.div 
+                      key={index} 
+                      className="text-center md:text-left p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 1 + index * 0.1, duration: 0.4 }}
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                    >
+                      <motion.div 
+                        className="text-3xl md:text-4xl font-light text-primary mb-1"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1.2 + index * 0.1 }}
+                      >
+                        {stat.value}
+                      </motion.div>
                       <div className="text-sm text-gray-400 font-light">{stat.label}</div>
-                    </div>
+                    </motion.div>
                   ))}
                 </motion.div>
               )}
             </motion.div>
-          </div>
+          </motion.div>
+          
+          {/* Scroll indicator */}
+          <motion.div 
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+          >
+            <motion.div
+              className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <motion.div 
+                className="w-1.5 h-3 bg-primary rounded-full mt-2"
+                animate={{ y: [0, 8, 0], opacity: [1, 0.5, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* Main Content */}
