@@ -1,184 +1,128 @@
-import { Helmet } from "react-helmet";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
-import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { useConversionTracking } from "@/hooks/useConversionTracking";
-import { CheckCircle2 } from "lucide-react";
+import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
+import { GraduationCap } from "lucide-react";
 
 const Education = () => {
-  const { trackProposalRequest } = useConversionTracking();
-
-  const challenges = [
-    "Aged plant infrastructure",
-    "Large campus-scale risk profiles",
-    "Water hygiene and lab environments",
-    "Insurer scrutiny"
-  ];
-
-  const delivery = [
-    "Asset lifecycle governance",
-    "Fire compartmentation + evacuation safety",
-    "Digital compliance dashboard for estates teams"
-  ];
-
   return (
-    <div className="min-h-screen pt-20">
-      <Helmet>
-        <title>Universities & Education Facilities Management | Campus Compliance</title>
-        <meta name="description" content="Safe learning environments — full compliance across complex, multi-building estates. University and education FM with digital governance." />
-      </Helmet>
-
-      <SchemaMarkup schema={{
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "Universities & Education Facilities Management",
-        "description": "Facilities management for universities and education with campus-wide compliance",
-        "provider": {
-          "@type": "Organization",
-          "name": "Entire FM"
+    <SectorPageTemplate
+      title="Universities & Education Facilities Management | Campus Compliance"
+      metaDescription="Safe learning environments — full compliance across complex, multi-building estates. University and education FM with digital governance."
+      canonicalUrl="https://entirefm.com/sectors/education"
+      heroTitle="Universities & Education FM"
+      heroSubtitle="Safe learning environments — full compliance across complex, multi-building campus estates with digital governance and asset lifecycle management."
+      heroImage="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80"
+      heroIcon={GraduationCap}
+      stats={[
+        { value: "64%", label: "IAQ Improvement" },
+        { value: "100%", label: "Campus Coverage" },
+        { value: "BS 9999", label: "Compliant" },
+        { value: "Multi-Site", label: "Governance" },
+      ]}
+      sectorSummary={{
+        title: "Campus FM Challenges",
+        paragraphs: [
+          "University estates present unique facilities management challenges: aged plant infrastructure across multiple buildings, large-scale risk profiles, specialist lab environments, and heightened insurer scrutiny.",
+          "Our approach delivers asset lifecycle governance, fire compartmentation assurance, and digital compliance dashboards designed specifically for estates teams managing complex educational portfolios."
+        ]
+      }}
+      complianceRisks={[
+        {
+          title: "Aged Plant Infrastructure",
+          description: "Many university buildings contain legacy mechanical and electrical systems requiring specialist maintenance knowledge and proactive lifecycle planning to avoid costly failures."
+        },
+        {
+          title: "Fire Compartmentation",
+          description: "Large buildings with multiple occupancy types require rigorous fire compartmentation surveys and ongoing maintenance to protect students and staff.",
+          link: "/services/fire-compartmentation-surveys",
+          linkText: "Fire compartmentation surveys"
+        },
+        {
+          title: "Water Hygiene in Lab Environments",
+          description: "Research facilities and laboratories present complex water hygiene challenges requiring specialist treatment and monitoring protocols.",
+          link: "/services/water-hygiene",
+          linkText: "Water hygiene management"
+        },
+        {
+          title: "Insurer Scrutiny",
+          description: "Educational institutions face increasing insurance requirements around fire safety, electrical compliance, and water hygiene documentation."
         }
-      }} />
-
-      <BreadcrumbSchema items={[
-        { label: "Home", href: "/" },
-        { label: "Sectors", href: "/sectors" },
-        { label: "Education", href: "/sectors/education" }
-      ]} />
-
-      <Breadcrumb 
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Sectors", href: "/sectors" },
-          { label: "Education" }
-        ]}
-      />
-
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-light mb-6 underline-accent inline-block">
-              Facilities Management for Universities & Education
-            </h1>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-              Safe learning environments — full compliance across complex, multi-building estates.
-            </p>
-            <Button 
-              size="lg" 
-              onClick={() => trackProposalRequest('education_hero')}
-              asChild
-            >
-              <Link to="/contact">Build Campus PPM Plan</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-12">
-              {/* Challenges */}
-              <Card className="p-8">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Challenges
-                </h2>
-                <ul className="space-y-4">
-                  {challenges.map((challenge, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground font-light">{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Delivery */}
-              <Card className="p-8">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Delivery
-                </h2>
-                <ul className="space-y-4">
-                  {delivery.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground font-light">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-
-              {/* Related Services */}
-              <div>
-                <h2 className="text-2xl font-light mb-6">Related Services</h2>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <Link to="/services/ppm">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">PPM Programmes</h3>
-                      <p className="text-sm text-muted-foreground font-light">Campus-wide governance</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/fire-safety">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Fire Safety</h3>
-                      <p className="text-sm text-muted-foreground font-light">Compartmentation assurance</p>
-                    </Card>
-                  </Link>
-                  <Link to="/services/water-hygiene">
-                    <Card className="p-6 hover-lift cursor-pointer h-full">
-                      <h3 className="font-medium mb-2">Water Hygiene</h3>
-                      <p className="text-sm text-muted-foreground font-light">Lab environments</p>
-                    </Card>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Case Study */}
-              <Card className="p-8 bg-muted/50">
-                <h3 className="text-xl font-light mb-4">Case Study</h3>
-                <p className="text-muted-foreground font-light mb-4">
-                  <strong>Teaching block ventilation upgrade:</strong> IAQ improved by 64%. Student comfort complaints eliminated. Works completed during summer break.
-                </p>
-                <Link to="/case-studies" className="text-primary hover:text-primary/80 transition-colors text-sm font-medium">
-                  View All Case Studies →
-                </Link>
-              </Card>
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <SidebarCTA />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-16 bg-charcoal text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Build Campus PPM Plan
-          </h2>
-          <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto mb-8">
-            Safe learning environments with full estate compliance.
-          </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
-            className="bg-white text-charcoal hover:bg-gray-100"
-            onClick={() => trackProposalRequest('education_cta')}
-            asChild
-          >
-            <Link to="/contact">Build Campus PPM Plan</Link>
-          </Button>
-        </div>
-      </section>
-    </div>
+      ]}
+      keySystems={[
+        {
+          category: "Building Systems",
+          items: [
+            "HVAC and ventilation systems",
+            "Fire detection and suppression",
+            "Emergency lighting",
+            "Electrical distribution",
+            "Water treatment systems",
+            "Building management systems"
+          ]
+        },
+        {
+          category: "Specialist Facilities",
+          items: [
+            "Laboratory fume extraction",
+            "Lecture theatre AV systems",
+            "Sports facility equipment",
+            "Student accommodation plant",
+            "Catering equipment",
+            "Library environmental controls"
+          ]
+        }
+      ]}
+      operationalChallenges={[
+        {
+          title: "Term-Time Restrictions",
+          description: "Major works must be scheduled during vacation periods. Reactive maintenance during term time requires minimal disruption to teaching and research activities."
+        },
+        {
+          title: "Multi-Building Estates",
+          description: "Campus estates often span dozens of buildings of varying age and construction. Consistent compliance standards must be applied across the entire portfolio."
+        },
+        {
+          title: "Stakeholder Coordination",
+          description: "Works require coordination with academic departments, student services, security, and estates teams to minimize impact on university operations."
+        }
+      ]}
+      whyEntireFM={[
+        "Asset lifecycle governance across complex estates",
+        "Fire compartmentation and evacuation safety expertise",
+        "Digital compliance dashboard for estates teams",
+        "Vacation scheduling for major works",
+        "Specialist laboratory and research facility support"
+      ]}
+      caseStudies={[
+        {
+          title: "Teaching Block Ventilation Upgrade",
+          description: "IAQ improved by 64%. Student comfort complaints eliminated. Works completed during summer break.",
+          link: "/case-studies",
+          linkText: "View case studies"
+        }
+      ]}
+      relatedServices={[
+        { title: "PPM Programmes", description: "Campus-wide governance", href: "/services/ppm" },
+        { title: "Fire Safety", description: "Compartmentation assurance", href: "/services/fire-safety" },
+        { title: "Water Hygiene", description: "Lab environments", href: "/services/water-hygiene" }
+      ]}
+      faqs={[
+        {
+          question: "How do you manage maintenance during term time?",
+          answer: "We prioritize non-disruptive works during teaching hours and schedule noisy or intrusive maintenance outside peak times. Major works are planned for vacation periods."
+        },
+        {
+          question: "Can you provide a single compliance dashboard for our entire estate?",
+          answer: "Yes. Our digital platform provides real-time visibility of compliance status, upcoming inspections, and certification expiry across all buildings in your portfolio."
+        },
+        {
+          question: "Do you have experience with laboratory facilities?",
+          answer: "Our engineers are trained in laboratory-specific systems including fume extraction, specialist ventilation, and water treatment for research environments."
+        },
+        {
+          question: "How do you handle emergency callouts during term time?",
+          answer: "Our 24/7 helpdesk provides rapid response for emergencies. Engineers coordinate with security and estates teams to access buildings while minimizing disruption."
+        }
+      ]}
+    />
   );
 };
 
