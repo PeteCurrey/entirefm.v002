@@ -370,13 +370,18 @@ const SectorPageTemplate = ({
                   <h2 className="text-3xl font-light mb-6">
                     <span className="underline-accent">{sectorSummary.title}</span>
                   </h2>
-                  <Card className="p-8 bg-card/50 backdrop-blur border-border/50">
-                    {sectorSummary.paragraphs.map((paragraph, idx) => (
-                      <p key={idx} className="text-muted-foreground font-light leading-relaxed mb-4 last:mb-0">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </Card>
+                  <motion.div
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
+                    <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-300">
+                      {sectorSummary.paragraphs.map((paragraph, idx) => (
+                        <p key={idx} className="text-muted-foreground font-light leading-relaxed mb-4 last:mb-0">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </Card>
+                  </motion.div>
                 </AnimatedSection>
 
                 {/* Compliance Risks */}
@@ -390,14 +395,19 @@ const SectorPageTemplate = ({
                         key={index}
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        whileHover={{ scale: 1.02, x: 8 }}
                         viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
+                        transition={{ delay: index * 0.1, type: "spring", stiffness: 300 }}
                       >
-                        <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:shadow-lg transition-all duration-300">
+                        <Card className="p-6 bg-card/50 backdrop-blur border-border/50 hover:shadow-xl hover:border-destructive/30 transition-all duration-300 cursor-default">
                           <div className="flex items-start gap-4">
-                            <div className="p-2 bg-destructive/10 rounded-lg flex-shrink-0">
+                            <motion.div 
+                              className="p-2 bg-destructive/10 rounded-lg flex-shrink-0"
+                              whileHover={{ rotate: 12, scale: 1.1 }}
+                              transition={{ type: "spring", stiffness: 400 }}
+                            >
                               <AlertTriangle className="w-5 h-5 text-destructive" />
-                            </div>
+                            </motion.div>
                             <div>
                               <h3 className="font-medium mb-2">{risk.title}</h3>
                               <p className="text-sm text-muted-foreground font-light leading-relaxed">
@@ -405,7 +415,7 @@ const SectorPageTemplate = ({
                                 {risk.link && (
                                   <>
                                     {" "}
-                                    <Link to={risk.link} className="text-primary hover:underline">
+                                    <Link to={risk.link} className="text-primary hover:underline font-medium">
                                       {risk.linkText || "Learn more"}
                                     </Link>
                                   </>
@@ -425,23 +435,39 @@ const SectorPageTemplate = ({
                     <h2 className="text-3xl font-light mb-6">
                       <span className="underline-accent">Key Systems</span>
                     </h2>
-                    <Card className="p-8 bg-card/50 backdrop-blur border-border/50">
-                      <div className="grid md:grid-cols-2 gap-8">
-                        {keySystems.map((system, idx) => (
-                          <div key={idx}>
-                            <h3 className="font-medium mb-4 text-primary">{system.category}</h3>
-                            <ul className="space-y-2">
-                              {system.items.map((item, itemIdx) => (
-                                <li key={itemIdx} className="text-sm text-muted-foreground font-light flex items-start gap-2">
-                                  <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                  <span>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </Card>
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-300">
+                        <div className="grid md:grid-cols-2 gap-8">
+                          {keySystems.map((system, idx) => (
+                            <motion.div 
+                              key={idx}
+                              initial={{ opacity: 0, y: 10 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: idx * 0.15 }}
+                            >
+                              <h3 className="font-medium mb-4 text-primary">{system.category}</h3>
+                              <ul className="space-y-2">
+                                {system.items.map((item, itemIdx) => (
+                                  <motion.li 
+                                    key={itemIdx} 
+                                    className="text-sm text-muted-foreground font-light flex items-start gap-2 group"
+                                    whileHover={{ x: 4 }}
+                                    transition={{ type: "spring", stiffness: 400 }}
+                                  >
+                                    <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                                    <span>{item}</span>
+                                  </motion.li>
+                                ))}
+                              </ul>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </Card>
+                    </motion.div>
                   </AnimatedSection>
                 )}
 
@@ -451,18 +477,30 @@ const SectorPageTemplate = ({
                     <h2 className="text-3xl font-light mb-6">
                       <span className="underline-accent">Operational Challenges</span>
                     </h2>
-                    <Card className="p-8 bg-card/50 backdrop-blur border-border/50">
-                      <div className="space-y-6">
-                        {operationalChallenges.map((challenge, idx) => (
-                          <div key={idx}>
-                            <h3 className="font-medium mb-2">{challenge.title}</h3>
-                            <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                              {challenge.description}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </Card>
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-300">
+                        <div className="space-y-6">
+                          {operationalChallenges.map((challenge, idx) => (
+                            <motion.div 
+                              key={idx}
+                              initial={{ opacity: 0, x: -10 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              whileHover={{ x: 4 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: idx * 0.1, type: "spring", stiffness: 300 }}
+                            >
+                              <h3 className="font-medium mb-2">{challenge.title}</h3>
+                              <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                                {challenge.description}
+                              </p>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </Card>
+                    </motion.div>
                   </AnimatedSection>
                 )}
 
@@ -474,16 +512,26 @@ const SectorPageTemplate = ({
                   <h2 className="text-3xl font-light mb-6">
                     <span className="underline-accent">Why EntireFM</span>
                   </h2>
-                  <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-                    <ul className="space-y-3">
-                      {whyEntireFM.map((point, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-muted-foreground font-light">
-                          <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </Card>
+                  <motion.div
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
+                    <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20 hover:shadow-xl hover:from-primary/10 hover:to-primary/15 transition-all duration-300">
+                      <ul className="space-y-3">
+                        {whyEntireFM.map((point, idx) => (
+                          <motion.li 
+                            key={idx} 
+                            className="flex items-start gap-3 text-muted-foreground font-light group"
+                            whileHover={{ x: 6 }}
+                            transition={{ type: "spring", stiffness: 400 }}
+                          >
+                            <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                            <span>{point}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </Card>
+                  </motion.div>
                 </AnimatedSection>
 
                 {/* Case Studies */}
@@ -494,20 +542,29 @@ const SectorPageTemplate = ({
                     </h2>
                     <div className="grid md:grid-cols-2 gap-4">
                       {caseStudies.map((study, idx) => (
-                        <Card key={idx} className="p-6 bg-card/50 backdrop-blur hover:shadow-lg transition-all duration-300 hover-lift">
-                          <h3 className="font-medium mb-3">
-                            <Link to={study.link} className="hover:text-primary transition-colors">
-                              {study.title}
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          whileHover={{ scale: 1.03, y: -4 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.1, type: "spring", stiffness: 300 }}
+                        >
+                          <Card className="p-6 h-full bg-card/50 backdrop-blur hover:shadow-xl hover:border-primary/40 transition-all duration-300">
+                            <h3 className="font-medium mb-3">
+                              <Link to={study.link} className="hover:text-primary transition-colors">
+                                {study.title}
+                              </Link>
+                            </h3>
+                            <p className="text-sm text-muted-foreground font-light leading-relaxed mb-4">
+                              {study.description}
+                            </p>
+                            <Link to={study.link} className="text-sm text-primary hover:underline inline-flex items-center gap-1 group">
+                              {study.linkText}
+                              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
-                          </h3>
-                          <p className="text-sm text-muted-foreground font-light leading-relaxed mb-4">
-                            {study.description}
-                          </p>
-                          <Link to={study.link} className="text-sm text-primary hover:underline inline-flex items-center gap-1">
-                            {study.linkText}
-                            <ArrowRight className="w-4 h-4" />
-                          </Link>
-                        </Card>
+                          </Card>
+                        </motion.div>
                       ))}
                     </div>
                   </AnimatedSection>
@@ -521,12 +578,21 @@ const SectorPageTemplate = ({
                     </h2>
                     <div className="grid md:grid-cols-3 gap-4">
                       {relatedServices.map((service, idx) => (
-                        <Link key={idx} to={service.href}>
-                          <Card className="p-6 h-full hover-lift cursor-pointer bg-card/50 backdrop-blur hover:border-primary/50 transition-all duration-300">
-                            <h3 className="font-medium mb-2">{service.title}</h3>
-                            <p className="text-sm text-muted-foreground font-light">{service.description}</p>
-                          </Card>
-                        </Link>
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          whileHover={{ scale: 1.05, y: -6 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.08, type: "spring", stiffness: 300 }}
+                        >
+                          <Link to={service.href}>
+                            <Card className="p-6 h-full cursor-pointer bg-card/50 backdrop-blur hover:border-primary/50 hover:shadow-xl transition-all duration-300">
+                              <h3 className="font-medium mb-2">{service.title}</h3>
+                              <p className="text-sm text-muted-foreground font-light">{service.description}</p>
+                            </Card>
+                          </Link>
+                        </motion.div>
                       ))}
                     </div>
                   </AnimatedSection>

@@ -375,13 +375,18 @@ const ServicePageTemplate = ({
                   <h2 className="text-3xl font-light mb-6">
                     <span className="underline-accent">{overview.title}</span>
                   </h2>
-                  <Card className="p-8 bg-card/50 backdrop-blur border-border/50">
-                    {overview.paragraphs.map((paragraph, idx) => (
-                      <p key={idx} className="text-muted-foreground font-light leading-relaxed mb-4 last:mb-0">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </Card>
+                  <motion.div
+                    whileHover={{ scale: 1.01, y: -2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
+                    <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-300">
+                      {overview.paragraphs.map((paragraph, idx) => (
+                        <p key={idx} className="text-muted-foreground font-light leading-relaxed mb-4 last:mb-0">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </Card>
+                  </motion.div>
                 </AnimatedSection>
 
                 {/* Service Components */}
@@ -396,10 +401,11 @@ const ServicePageTemplate = ({
                           key={index}
                           initial={{ opacity: 0, y: 20 }}
                           whileInView={{ opacity: 1, y: 0 }}
+                          whileHover={{ scale: 1.03, y: -4 }}
                           viewport={{ once: true }}
-                          transition={{ delay: index * 0.1 }}
+                          transition={{ delay: index * 0.1, type: "spring", stiffness: 300 }}
                         >
-                          <Card className="p-6 h-full bg-card/50 backdrop-blur border-border/50 hover:shadow-lg transition-all duration-300">
+                          <Card className="p-6 h-full bg-card/50 backdrop-blur border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-300">
                             <h3 className="font-medium mb-3">{component.title}</h3>
                             <p className="text-sm text-muted-foreground font-light leading-relaxed">
                               {component.description}
@@ -417,23 +423,32 @@ const ServicePageTemplate = ({
                     <h2 className="text-3xl font-light mb-6">
                       <span className="underline-accent">{compliance.title}</span>
                     </h2>
-                    <Card className="p-8 bg-card/50 backdrop-blur border-border/50">
-                      {compliance.intro && (
-                        <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                          {compliance.intro}
-                        </p>
-                      )}
-                      <div className="space-y-4">
-                        {compliance.items.map((item, idx) => (
-                          <div key={idx}>
-                            <h3 className="font-medium mb-2">{item.title}</h3>
-                            <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                              {item.description}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </Card>
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-300">
+                        {compliance.intro && (
+                          <p className="text-muted-foreground font-light leading-relaxed mb-6">
+                            {compliance.intro}
+                          </p>
+                        )}
+                        <div className="space-y-4">
+                          {compliance.items.map((item, idx) => (
+                            <motion.div 
+                              key={idx}
+                              whileHover={{ x: 4 }}
+                              transition={{ type: "spring", stiffness: 400 }}
+                            >
+                              <h3 className="font-medium mb-2">{item.title}</h3>
+                              <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                                {item.description}
+                              </p>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </Card>
+                    </motion.div>
                   </AnimatedSection>
                 )}
 
@@ -443,16 +458,26 @@ const ServicePageTemplate = ({
                     <h2 className="text-3xl font-light mb-6">
                       <span className="underline-accent">Maintenance Requirements</span>
                     </h2>
-                    <Card className="p-8 bg-card/50 backdrop-blur border-border/50">
-                      <ul className="space-y-3">
-                        {maintenance.map((item, idx) => (
-                          <li key={idx} className="flex items-start gap-3 text-muted-foreground font-light">
-                            <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </Card>
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <Card className="p-8 bg-card/50 backdrop-blur border-border/50 hover:shadow-xl hover:border-primary/30 transition-all duration-300">
+                        <ul className="space-y-3">
+                          {maintenance.map((item, idx) => (
+                            <motion.li 
+                              key={idx} 
+                              className="flex items-start gap-3 text-muted-foreground font-light group"
+                              whileHover={{ x: 6 }}
+                              transition={{ type: "spring", stiffness: 400 }}
+                            >
+                              <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                              <span>{item}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </Card>
+                    </motion.div>
                   </AnimatedSection>
                 )}
 
@@ -462,23 +487,38 @@ const ServicePageTemplate = ({
                     <h2 className="text-3xl font-light mb-6">
                       <span className="underline-accent">Risks of Non-Compliance</span>
                     </h2>
-                    <Card className="p-8 bg-destructive/5 border-destructive/20">
-                      <div className="flex items-center gap-3 mb-6">
-                        <AlertTriangle className="w-6 h-6 text-destructive" />
-                        <span className="font-medium">Key Risks</span>
-                      </div>
-                      <div className="space-y-4">
-                        {risks.map((risk, idx) => (
-                          <div key={idx} className="flex items-start gap-3">
-                            <span className="text-destructive mt-1">→</span>
-                            <div>
-                              <span className="font-medium">{risk.title}:</span>{" "}
-                              <span className="text-muted-foreground font-light">{risk.description}</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </Card>
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <Card className="p-8 bg-destructive/5 border-destructive/20 hover:shadow-xl hover:border-destructive/40 transition-all duration-300">
+                        <div className="flex items-center gap-3 mb-6">
+                          <motion.div
+                            whileHover={{ rotate: 12, scale: 1.1 }}
+                            transition={{ type: "spring", stiffness: 400 }}
+                          >
+                            <AlertTriangle className="w-6 h-6 text-destructive" />
+                          </motion.div>
+                          <span className="font-medium">Key Risks</span>
+                        </div>
+                        <div className="space-y-4">
+                          {risks.map((risk, idx) => (
+                            <motion.div 
+                              key={idx} 
+                              className="flex items-start gap-3"
+                              whileHover={{ x: 6 }}
+                              transition={{ type: "spring", stiffness: 400 }}
+                            >
+                              <span className="text-destructive mt-1">→</span>
+                              <div>
+                                <span className="font-medium">{risk.title}:</span>{" "}
+                                <span className="text-muted-foreground font-light">{risk.description}</span>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </Card>
+                    </motion.div>
                   </AnimatedSection>
                 )}
 
@@ -488,16 +528,26 @@ const ServicePageTemplate = ({
                     <h2 className="text-3xl font-light mb-6">
                       <span className="underline-accent">How EntireFM Delivers</span>
                     </h2>
-                    <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-                      <ul className="space-y-3">
-                        {benefits.map((benefit, idx) => (
-                          <li key={idx} className="flex items-start gap-3 text-muted-foreground font-light">
-                            <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                            <span>{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </Card>
+                    <motion.div
+                      whileHover={{ scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    >
+                      <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20 hover:shadow-xl hover:from-primary/10 hover:to-primary/15 transition-all duration-300">
+                        <ul className="space-y-3">
+                          {benefits.map((benefit, idx) => (
+                            <motion.li 
+                              key={idx} 
+                              className="flex items-start gap-3 text-muted-foreground font-light group"
+                              whileHover={{ x: 6 }}
+                              transition={{ type: "spring", stiffness: 400 }}
+                            >
+                              <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                              <span>{benefit}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </Card>
+                    </motion.div>
                   </AnimatedSection>
                 )}
 
@@ -512,12 +562,21 @@ const ServicePageTemplate = ({
                     </h2>
                     <div className="grid md:grid-cols-2 gap-4">
                       {relatedServices.map((service, idx) => (
-                        <Link key={idx} to={service.href}>
-                          <Card className="p-6 h-full hover-lift cursor-pointer bg-card/50 backdrop-blur hover:border-primary/50 transition-all duration-300">
-                            <h3 className="font-medium mb-2">{service.title}</h3>
-                            <p className="text-sm text-muted-foreground font-light">{service.description}</p>
-                          </Card>
-                        </Link>
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          whileHover={{ scale: 1.03, y: -4 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.08, type: "spring", stiffness: 300 }}
+                        >
+                          <Link to={service.href}>
+                            <Card className="p-6 h-full cursor-pointer bg-card/50 backdrop-blur hover:border-primary/50 hover:shadow-xl transition-all duration-300">
+                              <h3 className="font-medium mb-2">{service.title}</h3>
+                              <p className="text-sm text-muted-foreground font-light">{service.description}</p>
+                            </Card>
+                          </Link>
+                        </motion.div>
                       ))}
                     </div>
                   </AnimatedSection>
@@ -530,23 +589,32 @@ const ServicePageTemplate = ({
 
                 {/* Final CTA */}
                 <AnimatedSection delay={0.8}>
-                  <Card className="p-8 bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-                    <h2 className="text-2xl font-light mb-4">{ctaTitle}</h2>
-                    <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                      {ctaDescription}
-                    </p>
-                    <div className="flex flex-wrap gap-4">
-                      <Button size="lg" asChild>
-                        <Link to="/request-proposal">
-                          Request Proposal
-                          <ArrowRight className="w-5 h-5 ml-2" />
-                        </Link>
-                      </Button>
-                      <Button size="lg" variant="outline" asChild>
-                        <Link to="/contact">Contact Support</Link>
-                      </Button>
-                    </div>
-                  </Card>
+                  <motion.div
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
+                    <Card className="p-8 bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 hover:shadow-xl hover:from-primary/15 hover:to-primary/10 transition-all duration-300">
+                      <h2 className="text-2xl font-light mb-4">{ctaTitle}</h2>
+                      <p className="text-muted-foreground font-light leading-relaxed mb-6">
+                        {ctaDescription}
+                      </p>
+                      <div className="flex flex-wrap gap-4">
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                          <Button size="lg" asChild className="shadow-lg shadow-primary/25">
+                            <Link to="/request-proposal">
+                              Request Proposal
+                              <ArrowRight className="w-5 h-5 ml-2" />
+                            </Link>
+                          </Button>
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                          <Button size="lg" variant="outline" asChild>
+                            <Link to="/contact">Contact Support</Link>
+                          </Button>
+                        </motion.div>
+                      </div>
+                    </Card>
+                  </motion.div>
                 </AnimatedSection>
               </div>
 
