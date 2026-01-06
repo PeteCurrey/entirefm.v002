@@ -296,16 +296,28 @@ const COMPLIANCE_LOCATIONS = ['London', 'Birmingham', 'Manchester', 'Leeds', 'Sh
 // Critical Infrastructure services
 const CRITICAL_SERVICES = ['lightning-protection', 'ups-maintenance', 'generator-maintenance', 'thermal-imaging', 'arc-flash-assessment', 'hv-switching', 'power-redundancy', 'power-quality', 'data-room-audits'];
 
+// Helper function for grid columns - Tailwind needs to see full class names at build time
+const getGridColsClass = (cols: number): string => {
+  const colsMap: Record<number, string> = {
+    2: 'md:grid-cols-2',
+    3: 'md:grid-cols-3',
+    4: 'md:grid-cols-4',
+    5: 'md:grid-cols-5',
+    6: 'md:grid-cols-6',
+  };
+  return colsMap[cols] || 'md:grid-cols-4';
+};
+
 // Section component for rendering link grids
 const SitemapSection = ({ title, pages, columns = 4 }: { title: string; pages: { url: string; name: string }[]; columns?: number }) => (
-  <section className="mb-10">
+  <section className="mb-10 bg-card rounded-lg p-6 border border-border shadow-sm">
     <h2 className="text-lg font-semibold text-foreground mb-4 border-b border-border pb-2">{title}</h2>
-    <div className={`grid grid-cols-2 md:grid-cols-${columns} gap-2`}>
+    <div className={`grid grid-cols-2 ${getGridColsClass(columns)} gap-3`}>
       {pages.map((page) => (
         <Link
           key={page.url}
           to={page.url}
-          className="text-sm text-primary hover:text-primary/80 hover:underline py-1 truncate"
+          className="text-sm text-primary hover:text-primary/80 hover:underline py-2 px-3 rounded-md hover:bg-muted transition-colors truncate"
         >
           {page.name}
         </Link>
