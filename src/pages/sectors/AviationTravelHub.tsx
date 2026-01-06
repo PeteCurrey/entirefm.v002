@@ -1,365 +1,138 @@
-import { Helmet } from "react-helmet";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { Phone, ArrowRight } from "lucide-react";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import { FAQSection } from "@/components/shared/FAQSection";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
-
-const faqs = [
-  {
-    question: "Are you authorised to work airside?",
-    answer: "Yes — our engineers and supervisors are security cleared and hold current airside passes, ensuring full compliance with aviation security standards."
-  },
-  {
-    question: "Do you support both landside and airside operations?",
-    answer: "Seamlessly — we operate across both environments using the same control systems, but with heightened safety protocols for airside work."
-  },
-  {
-    question: "Do you comply with aviation safety governance?",
-    answer: "Yes — we're fully compliant with airside safety requirements and CAA expectations, with strict adherence to Permit to Work and incident reporting procedures."
-  },
-  {
-    question: "How do you avoid passenger disruption?",
-    answer: "Through night scheduling, micro-zone control strategies, and rapid execution capabilities that minimize impact on passenger flow and operations."
-  }
-];
+import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
+import { Plane } from "lucide-react";
 
 const AviationTravelHub = () => {
   return (
-    <>
-      <Helmet>
-        <title>Aviation Facilities Management UK</title>
-        <meta 
-          name="description" 
-          content="Airside compliance & landside experience — no downtime." 
-        />
-        <link rel="canonical" href="https://entirefm.com/sectors/aviation" />
-      </Helmet>
-
-      <ServiceSchema 
-        name="Aviation & Travel Hub Facilities Management"
-        description="Mission-critical maintenance for airports and travel hubs where safety, security, and passenger flow are non-negotiable"
-        provider="EntireFM"
-        areaServed="United Kingdom"
-      />
-
-      <FAQSchema faqs={faqs} />
-
-      <div className="container mx-auto px-4 py-8">
-        <Breadcrumb 
-          items={[
-            { label: "Sectors", href: "/sectors" },
-            { label: "Aviation & Travel Hub" }
-          ]} 
-        />
-
-        <div className="grid lg:grid-cols-3 gap-8 mt-8">
-          <div className="lg:col-span-2">
-            {/* Hero Section */}
-            <section className="mb-16">
-              <h1 className="text-4xl md:text-5xl font-light mb-6 leading-tight">
-                Airside Reliability. Landside Experience. <span className="text-primary">One FM Partner.</span>
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 font-light leading-relaxed">
-                Mission-critical maintenance for environments where safety, security, and passenger flow are non-negotiable.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg">
-                  <Link to="/contact">
-                    Request Aviation FM Proposal
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link to="/contact">
-                    Book Airside Site Survey
-                  </Link>
-                </Button>
-              </div>
-            </section>
-
-            {/* Crisis Section */}
-            <section className="mb-16">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                In Aviation, Downtime Isn't an Option — It's a Crisis
-              </h2>
-              <p className="text-muted-foreground mb-6 font-light leading-relaxed">
-                When assets fail at airports, the consequences cascade rapidly:
-              </p>
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-2">🚫 Passenger congestion multiplies</p>
-                </div>
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-2">🚫 Security risk escalates</p>
-                </div>
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-2">🚫 Airline schedules unravel</p>
-                </div>
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-2">🚫 Revenue evaporates</p>
-                </div>
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-2">🚫 Brand damage spreads fast</p>
-                </div>
-              </div>
-              <p className="text-lg font-medium">
-                We maintain continuous passenger movement — from kerb to gate.
-              </p>
-            </section>
-
-            {/* Where We Operate */}
-            <section className="mb-16">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Where We Operate
-              </h2>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Regional airports</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Travel hubs & stations</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Landside retail & hospitality zones</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Car parks & external routes</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Secure airside operational spaces</span>
-                </li>
-              </ul>
-              <p className="text-muted-foreground mt-4 font-light italic">
-                Authorised & trained for restricted access environments.
-              </p>
-            </section>
-
-            {/* Specialist Services Table */}
-            <section className="mb-16">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Specialist Aviation FM Services
-              </h2>
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="bg-muted">
-                      <th className="text-left p-4 font-medium">Mission-Critical Area</th>
-                      <th className="text-left p-4 font-medium">What We Deliver</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-border">
-                      <td className="p-4 font-medium">Passenger Circulation</td>
-                      <td className="p-4 text-muted-foreground font-light">Escalators, travelators, lifts, signage, lighting</td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="p-4 font-medium">Climate & IAQ</td>
-                      <td className="p-4 text-muted-foreground font-light">Terminal HVAC, BMS optimisation, air quality compliance</td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="p-4 font-medium">Life Safety</td>
-                      <td className="p-4 text-muted-foreground font-light">Fire systems, emergency lighting, evacuation clearance</td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="p-4 font-medium">Security Systems</td>
-                      <td className="p-4 text-muted-foreground font-light">Access control, surveillance infrastructure (in partnership)</td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="p-4 font-medium">Electrical & Standby</td>
-                      <td className="p-4 text-muted-foreground font-light">Generators, UPS, critical circuit protection</td>
-                    </tr>
-                    <tr className="border-b border-border">
-                      <td className="p-4 font-medium">Fabric & Branding</td>
-                      <td className="p-4 text-muted-foreground font-light">Front-of-house perfection + rapid remediation</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-lg font-medium mt-6">
-                If it keeps people moving, safe, and secure — we own it.
-              </p>
-            </section>
-
-            {/* Airside Compliance */}
-            <section className="mb-16">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Airside Compliance & Accreditation
-              </h2>
-              <p className="text-muted-foreground mb-4 font-light leading-relaxed">
-                We operate under:
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Aviation security vetting & airside pass controls</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Permit to Work & safety briefing regimes</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Strict RAMS and incident reporting</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">✓</span>
-                  <span className="text-muted-foreground font-light">Aviation-specific life safety standards</span>
-                </li>
-              </ul>
-              <p className="text-lg font-medium mt-6">
-                Your operations remain CAA-grade compliant.
-              </p>
-            </section>
-
-            {/* Passenger Experience */}
-            <section className="mb-16">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Passenger Experience is a Commercial Metric
-              </h2>
-              <p className="text-muted-foreground mb-4 font-light leading-relaxed">
-                EntireFM impacts:
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">→</span>
-                  <span className="text-muted-foreground font-light">Overall satisfaction scores</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">→</span>
-                  <span className="text-muted-foreground font-light">Queuing times & movement efficiency</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">→</span>
-                  <span className="text-muted-foreground font-light">Comfort perception (temp, air quality, lighting)</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">→</span>
-                  <span className="text-muted-foreground font-light">Accessibility performance</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-3 mt-1">→</span>
-                  <span className="text-muted-foreground font-light">Retail / F&B revenue opportunities</span>
-                </li>
-              </ul>
-              <p className="text-lg font-medium mt-6">
-                Smooth flow = commercial growth.
-              </p>
-            </section>
-
-            {/* PPM Built Around Flight Schedules */}
-            <section className="mb-16">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                PPM Built Around Flight Schedules
-              </h2>
-              <p className="text-muted-foreground mb-4 font-light leading-relaxed">
-                We plan around:
-              </p>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-1">Peak hours avoidance</p>
-                  <p className="text-sm text-muted-foreground font-light">Work scheduled during quieter periods</p>
-                </div>
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-1">Night-works capability</p>
-                  <p className="text-sm text-muted-foreground font-light">24/7 operational flexibility</p>
-                </div>
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-1">Rapid reactive models</p>
-                  <p className="text-sm text-muted-foreground font-light">Emergency response protocols</p>
-                </div>
-                <div className="bg-muted/30 p-4 rounded-lg">
-                  <p className="font-medium mb-1">SLA acceleration</p>
-                  <p className="text-sm text-muted-foreground font-light">Based on criticality levels</p>
-                </div>
-              </div>
-              <p className="text-lg font-medium mt-6">
-                No disruption to airline efficiency.
-              </p>
-            </section>
-
-            {/* Case Studies */}
-            <section className="mb-16">
-              <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                Proven Approach in Complex Estates
-              </h2>
-              <div className="space-y-6">
-                <div className="bg-muted/30 p-6 rounded-lg">
-                  <h3 className="text-xl font-medium mb-3">Terminal Retail Mall Compliance</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">✓</span>
-                      <span className="text-muted-foreground font-light">Fire compliance uplift in terminal retail mall</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">✓</span>
-                      <span className="text-muted-foreground font-light">Zero-failure evacuation routes verified airside</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-muted/30 p-6 rounded-lg">
-                  <h3 className="text-xl font-medium mb-3">Terminal Climate Optimization</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">✓</span>
-                      <span className="text-muted-foreground font-light">HVAC redesign improved IAQ scores by 37%</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">✓</span>
-                      <span className="text-muted-foreground font-light">Cosmetic + brand-critical repairs completed under live terminal conditions</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <p className="text-lg font-medium mt-6">
-                We turn aviation FM into a zero-drama operation.
-              </p>
-            </section>
-
-            {/* FAQs */}
-            <FAQSection faqs={faqs} />
-
-            {/* Final CTA */}
-            <section className="bg-charcoal text-white p-8 rounded-lg mt-16">
-              <h2 className="text-3xl font-light mb-4">
-                A travel hub that fails loses the confidence of the world.
-              </h2>
-              <p className="text-lg mb-6 font-light text-gray-300">
-                Partner with FM specialists who match aviation's operational tempo.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" variant="secondary">
-                  <Link to="/contact">
-                    Request Aviation FM Proposal
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <a href="tel:+448001234567" className="text-white border-white hover:bg-white hover:text-charcoal">
-                    <Phone className="w-4 h-4 mr-2" />
-                    Speak to FM Specialist (24/7)
-                  </a>
-                </Button>
-              </div>
-            </section>
-          </div>
-
-          {/* Sidebar */}
-          <aside className="lg:col-span-1">
-            <div className="sticky top-8">
-              <SidebarCTA />
-            </div>
-          </aside>
-        </div>
-      </div>
-    </>
+    <SectorPageTemplate
+      title="Aviation & Travel Hub Facilities Management | Airside FM Services"
+      metaDescription="Airside compliance & landside experience — no downtime. Mission-critical maintenance for airports and travel hubs with CAA-grade compliance."
+      canonicalUrl="https://entirefm.com/sectors/aviation"
+      heroTitle="Aviation & Travel Hub FM"
+      heroSubtitle="Mission-critical maintenance for environments where safety, security, and passenger flow are non-negotiable. Airside reliability meets landside excellence."
+      heroImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80"
+      heroIcon={Plane}
+      stats={[
+        { value: "24/7", label: "Operational Support" },
+        { value: "100%", label: "Airside Clearance" },
+        { value: "37%", label: "IAQ Improvement" },
+        { value: "CAA", label: "Grade Compliant" },
+      ]}
+      sectorSummary={{
+        title: "In Aviation, Downtime Isn't an Option — It's a Crisis",
+        paragraphs: [
+          "When assets fail at airports and travel hubs, the consequences cascade rapidly: passenger congestion multiplies, security risk escalates, airline schedules unravel, revenue evaporates, and brand damage spreads fast.",
+          "We maintain continuous passenger movement — from kerb to gate. Our engineers are security cleared for restricted access environments and trained in aviation-specific operational protocols."
+        ]
+      }}
+      complianceRisks={[
+        {
+          title: "Aviation Security Vetting",
+          description: "All personnel require airside passes and security vetting. Our engineers maintain current clearances and understand restricted area protocols for seamless operations."
+        },
+        {
+          title: "Life Safety Systems",
+          description: "Fire systems, emergency lighting, and evacuation clearance require heightened attention in high-occupancy public spaces.",
+          link: "/services/fire-safety",
+          linkText: "Fire safety compliance"
+        },
+        {
+          title: "Climate & IAQ Control",
+          description: "Terminal HVAC and BMS optimisation ensure passenger comfort and air quality compliance across large footprint buildings.",
+          link: "/services/hvac-compliance",
+          linkText: "HVAC compliance"
+        },
+        {
+          title: "Permit to Work Regimes",
+          description: "Strict RAMS and incident reporting protocols ensure all works comply with aviation-specific safety standards and CAA expectations."
+        }
+      ]}
+      keySystems={[
+        {
+          category: "Passenger Circulation",
+          items: [
+            "Escalators & travelators",
+            "Passenger lifts",
+            "Signage & wayfinding",
+            "Emergency lighting",
+            "Public address systems",
+            "Automated doors & gates"
+          ]
+        },
+        {
+          category: "Critical Infrastructure",
+          items: [
+            "Terminal HVAC systems",
+            "Standby generators & UPS",
+            "Fire detection & suppression",
+            "Security system infrastructure",
+            "BMS & building controls",
+            "High-bay lighting systems"
+          ]
+        }
+      ]}
+      operationalChallenges={[
+        {
+          title: "24/7 Operations",
+          description: "Airports and travel hubs never close. Maintenance must occur during minimal disruption windows, requiring night shifts and rapid mobilization for emergency works."
+        },
+        {
+          title: "Peak Hours Avoidance",
+          description: "PPM is planned around flight schedules and passenger flow patterns. Night-works capability and rapid reactive models ensure zero disruption to airline efficiency."
+        },
+        {
+          title: "Multi-Zone Coordination",
+          description: "Works span airside and landside environments, retail zones, car parks, and secure operational spaces — all requiring different access protocols and safety measures."
+        },
+        {
+          title: "Passenger Experience Impact",
+          description: "FM directly affects satisfaction scores, queuing times, comfort perception, accessibility performance, and retail revenue opportunities."
+        }
+      ]}
+      whyEntireFM={[
+        "Security-cleared engineers with airside pass controls",
+        "24/7 helpdesk with rapid emergency response",
+        "CAA-grade compliance and documentation",
+        "Night scheduling and micro-zone control strategies",
+        "Seamless landside and airside operational support"
+      ]}
+      caseStudies={[
+        {
+          title: "Terminal Retail Mall Compliance",
+          description: "Fire compliance uplift in terminal retail mall. Zero-failure evacuation routes verified airside.",
+          link: "/case-studies",
+          linkText: "View case studies"
+        },
+        {
+          title: "Terminal Climate Optimization",
+          description: "HVAC redesign improved IAQ scores by 37%. Brand-critical repairs completed under live terminal conditions.",
+          link: "/case-studies",
+          linkText: "View case studies"
+        }
+      ]}
+      relatedServices={[
+        { title: "Fire Safety", description: "Life safety systems", href: "/services/fire-safety" },
+        { title: "Generator Maintenance", description: "Standby power", href: "/services/generator-maintenance" },
+        { title: "HVAC Compliance", description: "Terminal climate", href: "/services/hvac-compliance" }
+      ]}
+      faqs={[
+        {
+          question: "Are you authorised to work airside?",
+          answer: "Yes — our engineers and supervisors are security cleared and hold current airside passes, ensuring full compliance with aviation security standards."
+        },
+        {
+          question: "Do you support both landside and airside operations?",
+          answer: "Seamlessly — we operate across both environments using the same control systems, but with heightened safety protocols for airside work."
+        },
+        {
+          question: "Do you comply with aviation safety governance?",
+          answer: "Yes — we're fully compliant with airside safety requirements and CAA expectations, with strict adherence to Permit to Work and incident reporting procedures."
+        },
+        {
+          question: "How do you avoid passenger disruption?",
+          answer: "Through night scheduling, micro-zone control strategies, and rapid execution capabilities that minimize impact on passenger flow and operations."
+        }
+      ]}
+    />
   );
 };
 
