@@ -27,6 +27,7 @@ export default function AdminLayout() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [expandedSections, setExpandedSections] = useState<string[]>(['marketing']);
   const { toast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
@@ -95,23 +96,6 @@ export default function AdminLayout() {
     return <Navigate to="/admin/login" replace />;
   }
 
-  if (!isAdmin) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="text-center max-w-md p-8">
-          <h1 className="text-3xl font-bold mb-4">Access Denied</h1>
-          <p className="text-muted-foreground mb-6">
-            You don't have permission to access the admin area.
-          </p>
-          <Button onClick={() => navigate('/')}>
-            Return to Home
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
-  const [expandedSections, setExpandedSections] = useState<string[]>(['marketing']);
 
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
