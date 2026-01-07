@@ -44,3 +44,6 @@ verify_jwt = false
 
 [functions.schedule-content]
 verify_jwt = false
+
+[functions.analyze-page]
+verify_jwt = false
