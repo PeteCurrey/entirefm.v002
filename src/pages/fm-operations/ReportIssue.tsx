@@ -5,49 +5,30 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { AlertCircle, CheckCircle2, Loader2, Phone } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
-const CATEGORIES = [
-  "Fire Safety",
-  "Electrical",
-  "HVAC",
-  "Water / Drainage",
-  "Gas",
-  "General Building Fabric",
-  "Access Control / Security",
-  "Other"
-];
-
-const PRIORITIES = [
-  { value: "Emergency", label: "Emergency (life or building safety)" },
-  { value: "Urgent", label: "Urgent (within 24 hours)" },
-  { value: "Routine", label: "Routine" }
-];
-
-const ROLES = [
-  "Tenant",
-  "Landlord",
-  "FM Manager",
-  "Building Manager",
-  "Other"
-];
-
+const CATEGORIES = ["Fire Safety", "Electrical", "HVAC", "Water / Drainage", "Gas", "General Building Fabric", "Access Control / Security", "Other"];
+const PRIORITIES = [{
+  value: "Emergency",
+  label: "Emergency (life or building safety)"
+}, {
+  value: "Urgent",
+  label: "Urgent (within 24 hours)"
+}, {
+  value: "Routine",
+  label: "Routine"
+}];
+const ROLES = ["Tenant", "Landlord", "FM Manager", "Building Manager", "Other"];
 export default function ReportIssue() {
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-
   const [formData, setFormData] = useState({
     name: "",
     role: "",
@@ -58,39 +39,35 @@ export default function ReportIssue() {
     category: "",
     priority: "",
     asset_reference: "",
-    description: "",
+    description: ""
   });
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!formData.name || !formData.email || !formData.company || !formData.site_location ||
-        !formData.category || !formData.priority || !formData.asset_reference || !formData.description) {
+    if (!formData.name || !formData.email || !formData.company || !formData.site_location || !formData.category || !formData.priority || !formData.asset_reference || !formData.description) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     setIsSubmitting(true);
-
     try {
-      const { data, error } = await supabase.functions.invoke('submit-helpdesk-job', {
+      const {
+        data,
+        error
+      } = await supabase.functions.invoke('submit-helpdesk-job', {
         body: {
           ...formData,
-          source_page: window.location.pathname,
+          source_page: window.location.pathname
         }
       });
-
       if (error) throw error;
-
       if (data?.success) {
         setSubmitSuccess(true);
         toast({
           title: "Issue Reported",
-          description: "Our helpdesk team will review your issue and respond shortly.",
+          description: "Our helpdesk team will review your issue and respond shortly."
         });
       } else {
         throw new Error(data?.error || 'Submission failed');
@@ -100,16 +77,14 @@ export default function ReportIssue() {
       toast({
         title: "Submission Failed",
         description: "Something went wrong. Please try again or call our helpdesk directly.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   if (submitSuccess) {
-    return (
-      <>
+    return <>
         <Helmet>
           <title>Issue Reported | EntireFM</title>
         </Helmet>
@@ -133,12 +108,9 @@ export default function ReportIssue() {
             </div>
           </div>
         </div>
-      </>
-    );
+      </>;
   }
-
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Report a Maintenance Issue | EntireFM Helpdesk</title>
         <meta name="description" content="Log maintenance issues directly with EntireFM's 24/7 helpdesk. Quick, simple reporting for fire safety, electrical, HVAC, water, and all FM services." />
@@ -163,7 +135,7 @@ export default function ReportIssue() {
             <Alert className="border-primary/50 bg-primary/5">
               <Phone className="h-4 w-4 text-primary" />
               <AlertDescription>
-                <strong>Need immediate assistance?</strong> Call our 24/7 helpdesk: <span className="font-bold">0800 123 4567</span>
+                <strong>020 4586 5422</strong> Call our 24/7 helpdesk: <span className="font-bold">0800 123 4567</span>
               </AlertDescription>
             </Alert>
           </div>
@@ -179,67 +151,52 @@ export default function ReportIssue() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="name">Your Name *</Label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="John Smith"
-                      required
-                    />
+                    <Input id="name" value={formData.name} onChange={e => setFormData({
+                    ...formData,
+                    name: e.target.value
+                  })} placeholder="John Smith" required />
                   </div>
                   <div>
                     <Label htmlFor="role">You Are *</Label>
-                    <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
+                    <Select value={formData.role} onValueChange={value => setFormData({
+                    ...formData,
+                    role: value
+                  })}>
                       <SelectTrigger id="role">
                         <SelectValue placeholder="Select your role" />
                       </SelectTrigger>
                       <SelectContent>
-                        {ROLES.map(role => (
-                          <SelectItem key={role} value={role}>{role}</SelectItem>
-                        ))}
+                        {ROLES.map(role => <SelectItem key={role} value={role}>{role}</SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
                     <Label htmlFor="company">Company / Building / Site Name *</Label>
-                    <Input
-                      id="company"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      placeholder="ABC Logistics, Unit 5"
-                      required
-                    />
+                    <Input id="company" value={formData.company} onChange={e => setFormData({
+                    ...formData,
+                    company: e.target.value
+                  })} placeholder="ABC Logistics, Unit 5" required />
                   </div>
                   <div>
                     <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="john.smith@company.com"
-                      required
-                    />
+                    <Input id="email" type="email" value={formData.email} onChange={e => setFormData({
+                    ...formData,
+                    email: e.target.value
+                  })} placeholder="john.smith@company.com" required />
                   </div>
                   <div>
                     <Label htmlFor="phone">Phone</Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="07XXX XXXXXX"
-                    />
+                    <Input id="phone" type="tel" value={formData.phone} onChange={e => setFormData({
+                    ...formData,
+                    phone: e.target.value
+                  })} placeholder="07XXX XXXXXX" />
                   </div>
                   <div>
                     <Label htmlFor="site_location">Site Location *</Label>
-                    <Input
-                      id="site_location"
-                      value={formData.site_location}
-                      onChange={(e) => setFormData({ ...formData, site_location: e.target.value })}
-                      placeholder="Manchester, M1 1AA"
-                      required
-                    />
+                    <Input id="site_location" value={formData.site_location} onChange={e => setFormData({
+                    ...formData,
+                    site_location: e.target.value
+                  })} placeholder="Manchester, M1 1AA" required />
                   </div>
                 </div>
               </div>
@@ -251,27 +208,29 @@ export default function ReportIssue() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="category">Issue Category *</Label>
-                      <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
+                      <Select value={formData.category} onValueChange={value => setFormData({
+                      ...formData,
+                      category: value
+                    })}>
                         <SelectTrigger id="category">
                           <SelectValue placeholder="Select category" />
                         </SelectTrigger>
                         <SelectContent>
-                          {CATEGORIES.map(cat => (
-                            <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                          ))}
+                          {CATEGORIES.map(cat => <SelectItem key={cat} value={cat}>{cat}</SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
                     <div>
                       <Label htmlFor="priority">Priority *</Label>
-                      <Select value={formData.priority} onValueChange={(value) => setFormData({ ...formData, priority: value })}>
+                      <Select value={formData.priority} onValueChange={value => setFormData({
+                      ...formData,
+                      priority: value
+                    })}>
                         <SelectTrigger id="priority">
                           <SelectValue placeholder="Select priority" />
                         </SelectTrigger>
                         <SelectContent>
-                          {PRIORITIES.map(p => (
-                            <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>
-                          ))}
+                          {PRIORITIES.map(p => <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
@@ -279,13 +238,10 @@ export default function ReportIssue() {
 
                   <div>
                     <Label htmlFor="asset_reference">Asset / Area Reference *</Label>
-                    <Input
-                      id="asset_reference"
-                      value={formData.asset_reference}
-                      onChange={(e) => setFormData({ ...formData, asset_reference: e.target.value })}
-                      placeholder="e.g. Fire alarm panel, 3rd floor east wing / AHU Unit 4 / Main entrance door"
-                      required
-                    />
+                    <Input id="asset_reference" value={formData.asset_reference} onChange={e => setFormData({
+                    ...formData,
+                    asset_reference: e.target.value
+                  })} placeholder="e.g. Fire alarm panel, 3rd floor east wing / AHU Unit 4 / Main entrance door" required />
                     <p className="text-sm text-muted-foreground mt-1">
                       Specify the equipment, room, floor, or location of the issue
                     </p>
@@ -293,42 +249,23 @@ export default function ReportIssue() {
 
                   <div>
                     <Label htmlFor="description">Description of Issue *</Label>
-                    <Textarea
-                      id="description"
-                      value={formData.description}
-                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                      placeholder="Please describe the issue in detail. Include any error messages, unusual sounds, leaks, or other observations."
-                      rows={6}
-                      required
-                    />
+                    <Textarea id="description" value={formData.description} onChange={e => setFormData({
+                    ...formData,
+                    description: e.target.value
+                  })} placeholder="Please describe the issue in detail. Include any error messages, unusual sounds, leaks, or other observations." rows={6} required />
                   </div>
                 </div>
               </div>
 
               {/* Submit */}
               <div className="flex gap-4">
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="flex-1 md:flex-initial"
-                >
-                  {isSubmitting ? (
-                    <>
+                <Button type="submit" size="lg" disabled={isSubmitting} className="flex-1 md:flex-initial">
+                  {isSubmitting ? <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Submitting...
-                    </>
-                  ) : (
-                    'Submit Issue'
-                  )}
+                    </> : 'Submit Issue'}
                 </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="lg"
-                  onClick={() => navigate('/fm-operations/helpdesk')}
-                  disabled={isSubmitting}
-                >
+                <Button type="button" variant="outline" size="lg" onClick={() => navigate('/fm-operations/helpdesk')} disabled={isSubmitting}>
                   Cancel
                 </Button>
               </div>
@@ -340,6 +277,5 @@ export default function ReportIssue() {
           </div>
         </section>
       </div>
-    </>
-  );
+    </>;
 }
