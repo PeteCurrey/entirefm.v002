@@ -10,8 +10,50 @@ import { VideoHero } from "@/components/shared/VideoHero";
 import heroImage from "@/assets/hero-london.jpg";
 import industrialImage from "@/assets/industrial-facility.jpg";
 import officeImage from "@/assets/office-interior.jpg";
+
+// Animation variants for reusable motion patterns
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 }
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -30 },
+  visible: { opacity: 1, x: 0 }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }
+  }
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }
+  }
+};
+
 const Home = () => {
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       {/* Hero Section */}
       <VideoHero 
         videoSrc="/videos/hero-video.mp4" 
@@ -69,176 +111,358 @@ const Home = () => {
       </VideoHero>
 
       {/* Trust Strip */}
-      <section className="py-12 bg-muted/30">
+      <motion.section 
+        className="py-12 bg-muted/30 overflow-hidden"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={fadeInUp}
+        transition={{ duration: 0.6 }}
+      >
         <div className="container mx-auto px-6">
-          <p className="text-center text-sm text-muted-foreground mb-8 font-light">
+          <motion.p 
+            className="text-center text-sm text-muted-foreground mb-8 font-light"
+            variants={fadeInUp}
+          >
             Trusted by operations teams across the UK
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-50">
-            {["Logistics Group", "Retail Chain", "Aviation Hub", "Property Fund", "Industrial Estate"].map(client => <div key={client} className="text-lg font-light text-muted-foreground">
+          </motion.p>
+          <motion.div 
+            className="flex flex-wrap justify-center items-center gap-12"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {["Logistics Group", "Retail Chain", "Aviation Hub", "Property Fund", "Industrial Estate"].map((client, index) => (
+              <motion.div 
+                key={client} 
+                className="text-lg font-light text-muted-foreground opacity-50 hover:opacity-80 transition-opacity duration-300"
+                variants={staggerItem}
+                whileHover={{ scale: 1.05 }}
+              >
                 {client}
-              </div>)}
-          </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* FM Partner Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.div 
+            className="text-center max-w-3xl mx-auto mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-4xl md:text-5xl mb-6 underline-accent inline-block font-extralight">
               Your Space, Our Expertise.     
             </h2>
             <p className="text-muted-foreground leading-relaxed text-xl font-extralight">
               Complete Facilities Management &amp; FM Support Services
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[{
-            icon: CheckCircle2,
-            title: "No more chasing contractors",
-            description: "Dedicated helpdesk and single point of contact. We own the problem until it's solved."
-          }, {
-            icon: Shield,
-            title: "Compliance without the chaos",
-            description: "PPM schedules, digital asset registers, and clear audit trails. Everything documented."
-          }, {
-            icon: Smartphone,
-            title: "Tech-enabled, not tech-distracted",
-            description: "CAFM platform, live portals, and real-time job tracking without the complexity."
-          }, {
-            icon: Clock,
-            title: "Owner-led, no corporate scripts",
-            description: "Direct access to decision makers. Quick responses. Real accountability."
-          }].map((feature, index) => <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            {[
+              {
+                icon: CheckCircle2,
+                title: "No more chasing contractors",
+                description: "Dedicated helpdesk and single point of contact. We own the problem until it's solved."
+              },
+              {
+                icon: Shield,
+                title: "Compliance without the chaos",
+                description: "PPM schedules, digital asset registers, and clear audit trails. Everything documented."
+              },
+              {
+                icon: Smartphone,
+                title: "Tech-enabled, not tech-distracted",
+                description: "CAFM platform, live portals, and real-time job tracking without the complexity."
+              },
+              {
+                icon: Clock,
+                title: "Owner-led, no corporate scripts",
+                description: "Direct access to decision makers. Quick responses. Real accountability."
+              }
+            ].map((feature, index) => (
+              <motion.div 
+                key={index} 
+                className="text-center group"
+                variants={staggerItem}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              >
+                <motion.div 
+                  className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors duration-300"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <feature.icon className="w-8 h-8 text-primary" />
-                </div>
+                </motion.div>
                 <h3 className="text-lg font-light mb-3">{feature.title}</h3>
                 <p className="text-sm text-muted-foreground font-light leading-relaxed">
                   {feature.description}
                 </p>
-              </div>)}
-          </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* Service Matrix */}
-      <section className="py-24 relative">
+      <section className="py-24 relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: 'url(/images/what-we-deliver-bg.jpg)' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/75 to-black/85" />
         <div className="container mx-auto px-6 relative z-10">
-          <div className="mb-16">
+          <motion.div 
+            className="mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInLeft}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block text-white">
               What We Deliver
             </h2>
             <p className="text-lg text-gray-300 font-light max-w-2xl leading-relaxed">
               Integrated FM combining hard, soft and project services under one contract. Or standalone services tailored to your needs.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <ServiceCard title="Hard Services & M&E" description="Mechanical, electrical, and building fabric maintenance" items={["HVAC, electrical, mechanical systems", "Plumbing, gas, and drainage", "Emergency systems and lighting", "Energy optimisation and BMS"]} />
-            <ServiceCard title="Compliance & Life Safety" description="Statutory compliance and risk management" items={["Fire alarms, emergency lighting, extinguishers", "FRA actions and remediation", "Gas safety, water hygiene, LOLER", "Complete audit trails"]} />
-            <ServiceCard title="Soft Services & Workplace" description="Day-to-day operations and environment management" items={["Commercial cleaning and washrooms", "Grounds maintenance and waste", "Reception and concierge services", "Security coordination"]} />
-            <ServiceCard title="Projects & Small Works" description="From minor works to complete fit-outs" items={["Office and retail fit-outs", "Building refurbishments", "Service station upgrades", "Landlord make-good works"]} />
-          </div>
+          <motion.div 
+            className="grid md:grid-cols-2 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <motion.div variants={staggerItem}>
+              <ServiceCard 
+                title="Hard Services & M&E" 
+                description="Mechanical, electrical, and building fabric maintenance" 
+                items={["HVAC, electrical, mechanical systems", "Plumbing, gas, and drainage", "Emergency systems and lighting", "Energy optimisation and BMS"]} 
+              />
+            </motion.div>
+            <motion.div variants={staggerItem}>
+              <ServiceCard 
+                title="Compliance & Life Safety" 
+                description="Statutory compliance and risk management" 
+                items={["Fire alarms, emergency lighting, extinguishers", "FRA actions and remediation", "Gas safety, water hygiene, LOLER", "Complete audit trails"]} 
+              />
+            </motion.div>
+            <motion.div variants={staggerItem}>
+              <ServiceCard 
+                title="Soft Services & Workplace" 
+                description="Day-to-day operations and environment management" 
+                items={["Commercial cleaning and washrooms", "Grounds maintenance and waste", "Reception and concierge services", "Security coordination"]} 
+              />
+            </motion.div>
+            <motion.div variants={staggerItem}>
+              <ServiceCard 
+                title="Projects & Small Works" 
+                description="From minor works to complete fit-outs" 
+                items={["Office and retail fit-outs", "Building refurbishments", "Service station upgrades", "Landlord make-good works"]} 
+              />
+            </motion.div>
+          </motion.div>
 
-          <div className="text-center mt-12">
-            <Button size="lg" asChild>
+          <motion.div 
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            <Button size="lg" asChild className="hover-scale">
               <Link to="/services">
                 Explore All Services
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Sectors Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="mb-16">
+          <motion.div 
+            className="mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInLeft}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block">
               Where We Operate
             </h2>
             <p className="text-lg text-muted-foreground font-light max-w-2xl leading-relaxed">
               Sector-specific understanding across diverse environments.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <SectorCard title="Offices & Corporate" description="Grade A to multi-let schemes. Workplace services that support productivity." image={officeImage} link="/sectors/offices" />
-            <SectorCard title="Industrial & Logistics" description="24/7 operations. Critical infrastructure. Minimal disruption to workflow." image={industrialImage} link="/sectors/industrial-logistics" />
-            <SectorCard title="Retail & Service Stations" description="Customer-facing environments. Out-of-hours works. Brand standards maintained." image={officeImage} link="/sectors/retail-hospitality" />
-            <SectorCard title="Aviation & Transport" description="Regulated environments. Security clearances. Complex operational interfaces." image={industrialImage} link="/sectors/healthcare-public" />
-            <SectorCard title="Residential & PBSA" description="Resident satisfaction. Common areas. Estate management." image={officeImage} link="/sectors/pbsa" />
-            <SectorCard title="Construction & Developments" description="Site progression support. Handover coordination. Defects management." image={industrialImage} link="/sectors" />
-          </div>
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <motion.div variants={scaleIn}>
+              <SectorCard title="Offices & Corporate" description="Grade A to multi-let schemes. Workplace services that support productivity." image={officeImage} link="/sectors/offices" />
+            </motion.div>
+            <motion.div variants={scaleIn}>
+              <SectorCard title="Industrial & Logistics" description="24/7 operations. Critical infrastructure. Minimal disruption to workflow." image={industrialImage} link="/sectors/industrial-logistics" />
+            </motion.div>
+            <motion.div variants={scaleIn}>
+              <SectorCard title="Retail & Service Stations" description="Customer-facing environments. Out-of-hours works. Brand standards maintained." image={officeImage} link="/sectors/retail-hospitality" />
+            </motion.div>
+            <motion.div variants={scaleIn}>
+              <SectorCard title="Aviation & Transport" description="Regulated environments. Security clearances. Complex operational interfaces." image={industrialImage} link="/sectors/healthcare-public" />
+            </motion.div>
+            <motion.div variants={scaleIn}>
+              <SectorCard title="Residential & PBSA" description="Resident satisfaction. Common areas. Estate management." image={officeImage} link="/sectors/pbsa" />
+            </motion.div>
+            <motion.div variants={scaleIn}>
+              <SectorCard title="Construction & Developments" description="Site progression support. Handover coordination. Defects management." image={industrialImage} link="/sectors" />
+            </motion.div>
+          </motion.div>
 
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline" asChild>
+          <motion.div 
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <Button size="lg" variant="outline" asChild className="hover-scale">
               <Link to="/sectors">
                 View All Sectors
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Case Studies Preview */}
-      <section className="py-24 bg-charcoal text-white">
+      <section className="py-24 bg-charcoal text-white overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="mb-16">
+          <motion.div 
+            className="mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInLeft}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block">
               Proof in Action
             </h2>
             <p className="text-lg text-gray-400 font-light max-w-2xl leading-relaxed">
               Real results for real clients.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <CaseStudyCard sector="Logistics" title="Reducing reactive call-outs by 32% for regional logistics hub" metrics={["Response time cut from 2hrs to 41 mins", "£47k annual cost savings", "98% SLA compliance achieved"]} />
-            <CaseStudyCard sector="Aviation" title="Delivering compliant FM across 3 UK airports" metrics={["Zero compliance breaches in 18 months", "24/7 helpdesk response maintained", "Security-cleared engineer network"]} />
-            <CaseStudyCard sector="Mixed-Use" title="Integrated FM for 12-building commercial estate" metrics={["Single point of contact for all trades", "Tenant satisfaction up 34%", "Digital asset register deployed"]} />
-          </div>
+          <motion.div 
+            className="grid md:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <motion.div variants={staggerItem}>
+              <CaseStudyCard 
+                sector="Logistics" 
+                title="Reducing reactive call-outs by 32% for regional logistics hub" 
+                metrics={["Response time cut from 2hrs to 41 mins", "£47k annual cost savings", "98% SLA compliance achieved"]} 
+              />
+            </motion.div>
+            <motion.div variants={staggerItem}>
+              <CaseStudyCard 
+                sector="Aviation" 
+                title="Delivering compliant FM across 3 UK airports" 
+                metrics={["Zero compliance breaches in 18 months", "24/7 helpdesk response maintained", "Security-cleared engineer network"]} 
+              />
+            </motion.div>
+            <motion.div variants={staggerItem}>
+              <CaseStudyCard 
+                sector="Mixed-Use" 
+                title="Integrated FM for 12-building commercial estate" 
+                metrics={["Single point of contact for all trades", "Tenant satisfaction up 34%", "Digital asset register deployed"]} 
+              />
+            </motion.div>
+          </motion.div>
 
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-charcoal" asChild>
+          <motion.div 
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-charcoal hover-scale" asChild>
               <Link to="/case-studies" className="bg-primary">
                 View All Case Studies
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 bg-gradient-to-r from-secondary to-secondary/80 text-white">
+      <motion.section 
+        className="py-24 bg-gradient-to-r from-secondary to-secondary/80 text-white overflow-hidden"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-light mb-6">
+          <motion.h2 
+            className="text-4xl md:text-5xl font-light mb-6"
+            variants={fadeInUp}
+            transition={{ duration: 0.6 }}
+          >
             Ready to fix your facilities management problem?
-          </h2>
-          <p className="text-xl text-gray-200 mb-10 font-light max-w-2xl mx-auto leading-relaxed">
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-gray-200 mb-10 font-light max-w-2xl mx-auto leading-relaxed"
+            variants={fadeInUp}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             Send us your current issues and incumbent contract details – we'll give you a clear, no-nonsense action plan.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-secondary hover:bg-gray-100" asChild>
+          </motion.p>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            variants={fadeInUp}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Button size="lg" variant="secondary" className="bg-white text-secondary hover:bg-gray-100 hover-scale" asChild>
               <Link to="/contact">Request a Proposal</Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-secondary" asChild>
+            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-secondary hover-scale" asChild>
               <a href="tel:08001234567" className="bg-primary">Call 24/7 Helpdesk</a>
             </Button>
-          </div>
+          </motion.div>
         </div>
-      </section>
-    </div>;
+      </motion.section>
+    </div>
+  );
 };
+
 export default Home;
