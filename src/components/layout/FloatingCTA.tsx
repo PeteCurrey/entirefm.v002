@@ -37,7 +37,7 @@ const FloatingCTA = () => {
             <Button
               size="lg"
               onClick={() => setIsOpen(true)}
-              className="h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all"
+              className="h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] hover:animate-none"
             >
               <HelpCircle className="h-6 w-6" />
             </Button>
