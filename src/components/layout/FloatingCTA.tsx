@@ -34,13 +34,22 @@ const FloatingCTA = () => {
             transition={{ duration: 0.2 }}
             className="fixed bottom-6 right-6 z-50"
           >
-            <Button
-              size="lg"
-              onClick={() => setIsOpen(true)}
-              className="h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] hover:animate-none"
-            >
-              <HelpCircle className="h-6 w-6" />
-            </Button>
+            <div className="relative">
+              <Button
+                size="lg"
+                onClick={() => setIsOpen(true)}
+                className="h-14 w-14 rounded-full shadow-lg hover:shadow-xl transition-all animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite] hover:animate-none"
+              >
+                <HelpCircle className="h-6 w-6" />
+              </Button>
+              {/* Notification badge */}
+              <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75"></span>
+                <span className="relative inline-flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold text-destructive-foreground">
+                  1
+                </span>
+              </span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
