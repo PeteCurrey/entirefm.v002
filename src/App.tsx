@@ -8,7 +8,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/layout/FloatingCTA";
 import LoadingBar from "@/components/layout/LoadingBar";
-import FloatingAIButton from "@/components/ai-assistant/FloatingAIButton";
+
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Sectors from "./pages/Sectors";
@@ -941,7 +941,6 @@ const App = () => <QueryClientProvider client={queryClient}>
           </main>
           <Footer />
           <FloatingCTA />
-          <FloatingAIButton />
         </div>
       </BrowserRouter>
     </TooltipProvider>
