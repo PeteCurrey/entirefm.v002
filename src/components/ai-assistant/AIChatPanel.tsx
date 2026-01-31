@@ -12,16 +12,65 @@ interface Message {
 interface AIChatPanelProps {
   onClose: () => void;
 }
+const STORAGE_KEY = 'entirefm-chat-session';
+const SESSION_EXPIRY_MS = 30 * 60 * 1000; // 30 minutes
+
+interface StoredSession {
+  sessionId: string;
+  messages: Message[];
+  timestamp: number;
+}
+
+function getStoredSession(): StoredSession | null {
+  try {
+    const stored = sessionStorage.getItem(STORAGE_KEY);
+    if (!stored) return null;
+    
+    const session: StoredSession = JSON.parse(stored);
+    // Check if session is expired
+    if (Date.now() - session.timestamp > SESSION_EXPIRY_MS) {
+      sessionStorage.removeItem(STORAGE_KEY);
+      return null;
+    }
+    return session;
+  } catch {
+    return null;
+  }
+}
+
+function saveSession(sessionId: string, messages: Message[]) {
+  try {
+    const session: StoredSession = {
+      sessionId,
+      messages,
+      timestamp: Date.now()
+    };
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+  } catch {
+    // Silently fail if storage is full
+  }
+}
+
+const defaultMessages: Message[] = [{
+  role: "assistant",
+  content: "Hello! I'm the EntireFM assistant. I can help you with:\n\n• Understanding our FM services\n• Compliance questions (EICR, TM44, ACOP L8, etc.)\n• Logging a maintenance issue\n• Finding the right service or form\n\nWhat can I help you with today?"
+}];
+
 export default function AIChatPanel({
   onClose
 }: AIChatPanelProps) {
-  const [messages, setMessages] = useState<Message[]>([{
-    role: "assistant",
-    content: "Hello! I'm the EntireFM assistant. I can help you with:\n\n• Understanding our FM services\n• Compliance questions (EICR, TM44, ACOP L8, etc.)\n• Logging a maintenance issue\n• Finding the right service or form\n\nWhat can I help you with today?"
-  }]);
+  const [sessionId] = useState(() => {
+    const stored = getStoredSession();
+    return stored?.sessionId || crypto.randomUUID();
+  });
+  
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const stored = getStoredSession();
+    return stored?.messages || defaultMessages;
+  });
+  
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [sessionId] = useState(() => crypto.randomUUID());
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploadedFileUrl, setUploadedFileUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
@@ -36,6 +85,13 @@ export default function AIChatPanel({
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Save session whenever messages change
+  useEffect(() => {
+    if (messages.length > 0) {
+      saveSession(sessionId, messages);
+    }
+  }, [messages, sessionId]);
   const uploadFile = async (file: File): Promise<string | null> => {
     try {
       setIsUploading(true);
