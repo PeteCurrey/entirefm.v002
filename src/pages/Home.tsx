@@ -7,6 +7,7 @@ import SectorCard from "@/components/shared/SectorCard";
 import MetricCard from "@/components/shared/MetricCard";
 import CaseStudyCard from "@/components/shared/CaseStudyCard";
 import { VideoHero } from "@/components/shared/VideoHero";
+import { ClientLogosSection } from "@/components/home/ClientLogosSection";
 import heroImage from "@/assets/hero-london.jpg";
 import industrialImage from "@/assets/industrial-facility.jpg";
 import officeImage from "@/assets/office-interior.jpg";
@@ -110,42 +111,8 @@ const Home = () => {
         </motion.div>
       </VideoHero>
 
-      {/* Trust Strip */}
-      <motion.section 
-        className="py-12 bg-muted/30 overflow-hidden"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={fadeInUp}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="container mx-auto px-6">
-          <motion.p 
-            className="text-center text-sm text-muted-foreground mb-8 font-light"
-            variants={fadeInUp}
-          >
-            Trusted by operations teams across the UK
-          </motion.p>
-          <motion.div 
-            className="flex flex-wrap justify-center items-center gap-12"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {["Logistics Group", "Retail Chain", "Aviation Hub", "Property Fund", "Industrial Estate"].map((client, index) => (
-              <motion.div 
-                key={client} 
-                className="text-lg font-light text-muted-foreground opacity-50 hover:opacity-80 transition-opacity duration-300"
-                variants={staggerItem}
-                whileHover={{ scale: 1.05 }}
-              >
-                {client}
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
+      {/* Client Logos Section */}
+      <ClientLogosSection />
 
       {/* FM Partner Section */}
       <section className="py-24 bg-white overflow-hidden">
