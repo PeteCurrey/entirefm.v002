@@ -52,7 +52,17 @@ const scaleIn = {
   }
 };
 
+const getTimeGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return "Good Morning";
+  if (hour >= 12 && hour < 17) return "Good Afternoon";
+  if (hour >= 17 && hour < 21) return "Good Evening";
+  return "Good Evening";
+};
+
 const Home = () => {
+  const greeting = getTimeGreeting();
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -66,6 +76,14 @@ const Home = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
         >
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
+            className="text-primary mb-4 font-extralight tracking-wider md:text-lg text-base"
+          >
+            {greeting}
+          </motion.p>
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
