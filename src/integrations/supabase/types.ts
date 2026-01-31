@@ -468,7 +468,9 @@ export type Database = {
       jobs: {
         Row: {
           access_requirements: string | null
+          admin_notes: string | null
           asset_or_area: string
+          attachment_url: string | null
           contact_email: string | null
           contact_name: string
           contact_phone: string
@@ -485,7 +487,9 @@ export type Database = {
         }
         Insert: {
           access_requirements?: string | null
+          admin_notes?: string | null
           asset_or_area: string
+          attachment_url?: string | null
           contact_email?: string | null
           contact_name: string
           contact_phone: string
@@ -502,7 +506,9 @@ export type Database = {
         }
         Update: {
           access_requirements?: string | null
+          admin_notes?: string | null
           asset_or_area?: string
+          attachment_url?: string | null
           contact_email?: string | null
           contact_name?: string
           contact_phone?: string
