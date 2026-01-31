@@ -9,11 +9,23 @@ interface CaseStudyCardProps {
   title: string;
   metrics: string[];
   slug?: string;
+  image?: string;
 }
 
-const CaseStudyCard = ({ sector, title, metrics, slug = "/case-studies" }: CaseStudyCardProps) => {
+const CaseStudyCard = ({ sector, title, metrics, slug = "/case-studies", image }: CaseStudyCardProps) => {
   return (
-    <Card className="relative p-6 bg-white/5 backdrop-blur-sm border-white/10 hover:border-primary/50 hover:bg-white/10 transition-all duration-500 group cursor-pointer h-full flex flex-col overflow-hidden">
+    <Card className="relative p-6 bg-white/5 backdrop-blur-sm border-white/10 hover:border-primary/50 transition-all duration-500 group cursor-pointer h-full flex flex-col overflow-hidden">
+      {/* Background image */}
+      {image && (
+        <>
+          <div 
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+            style={{ backgroundImage: `url(${image})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/95 to-charcoal/70 group-hover:from-charcoal group-hover:via-charcoal/90 group-hover:to-charcoal/60 transition-all duration-500" />
+        </>
+      )}
+      
       {/* Gradient accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
