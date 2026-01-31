@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Card } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -13,13 +14,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import {
   Select,
   SelectContent,
   SelectItem,
@@ -27,8 +21,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Loader2, Search } from "lucide-react";
+import { Eye, Loader2, Search, RefreshCw } from "lucide-react";
 import { format } from "date-fns";
+import HelpdeskJobDetailPanel from "@/components/admin/jobs/HelpdeskJobDetailPanel";
 
 interface HelpdeskJob {
   id: string;
@@ -46,69 +41,62 @@ interface HelpdeskJob {
   ai_summary: string | null;
   status: string;
   source_page: string | null;
+  attachment_url: string | null;
 }
 
 export default function HelpdeskJobs() {
-  const [jobs, setJobs] = useState<HelpdeskJob[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedJob, setSelectedJob] = useState<HelpdeskJob | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    fetchJobs();
-  }, []);
-
-  const fetchJobs = async () => {
-    try {
+  const { data: jobs, isLoading, refetch } = useQuery({
+    queryKey: ['helpdesk-jobs'],
+    queryFn: async () => {
       const { data, error } = await supabase
         .from('helpdesk_jobs')
         .select('*')
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setJobs(data || []);
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: "Failed to load helpdesk jobs",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
+      return data as HelpdeskJob[];
     }
-  };
+  });
 
-  const updateJobStatus = async (jobId: string, newStatus: string) => {
-    try {
+  const updateMutation = useMutation({
+    mutationFn: async ({ id, updates }: { id: string; updates: Partial<HelpdeskJob> }) => {
       const { error } = await supabase
         .from('helpdesk_jobs')
-        .update({ status: newStatus })
-        .eq('id', jobId);
+        .update(updates)
+        .eq('id', id);
 
       if (error) throw error;
-
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['helpdesk-jobs'] });
       toast({
-        title: "Status Updated",
-        description: "Job status has been updated successfully",
+        title: "Job Updated",
+        description: "Changes have been saved successfully.",
       });
-
-      fetchJobs();
-      if (selectedJob?.id === jobId) {
-        setSelectedJob({ ...selectedJob, status: newStatus });
-      }
-    } catch (error: any) {
+    },
+    onError: () => {
       toast({
         title: "Error",
-        description: "Failed to update status",
+        description: "Failed to update job. Please try again.",
         variant: "destructive",
       });
     }
+  });
+
+  const handleSave = async (updates: { status: string; ai_summary: string }) => {
+    if (!selectedJob) return;
+    await updateMutation.mutateAsync({ id: selectedJob.id, updates });
+    setSelectedJob({ ...selectedJob, ...updates });
   };
 
-  const filteredJobs = jobs.filter(job => {
+  const filteredJobs = jobs?.filter(job => {
     const matchesSearch = 
       job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -120,14 +108,14 @@ export default function HelpdeskJobs() {
     const matchesPriority = priorityFilter === "all" || job.priority === priorityFilter;
 
     return matchesSearch && matchesStatus && matchesPriority;
-  });
+  }) || [];
 
   const getPriorityBadge = (priority: string) => {
     switch (priority) {
       case "Emergency":
-        return <Badge className="bg-red-600">Emergency</Badge>;
+        return <Badge className="bg-red-600 text-white">Emergency</Badge>;
       case "Urgent":
-        return <Badge className="bg-orange-600">Urgent</Badge>;
+        return <Badge className="bg-orange-500 text-white">Urgent</Badge>;
       default:
         return <Badge variant="secondary">Routine</Badge>;
     }
@@ -136,11 +124,17 @@ export default function HelpdeskJobs() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "new":
-        return <Badge variant="default">New</Badge>;
+        return <Badge className="bg-blue-600 text-white">New</Badge>;
+      case "acknowledged":
+        return <Badge className="bg-indigo-600 text-white">Acknowledged</Badge>;
       case "in_progress":
-        return <Badge className="bg-blue-600">In Progress</Badge>;
+        return <Badge className="bg-yellow-600 text-white">In Progress</Badge>;
+      case "awaiting_parts":
+        return <Badge className="bg-purple-600 text-white">Awaiting Parts</Badge>;
+      case "awaiting_access":
+        return <Badge className="bg-purple-600 text-white">Awaiting Access</Badge>;
       case "resolved":
-        return <Badge className="bg-green-600">Resolved</Badge>;
+        return <Badge className="bg-green-600 text-white">Resolved</Badge>;
       case "closed":
         return <Badge variant="secondary">Closed</Badge>;
       default:
@@ -148,7 +142,7 @@ export default function HelpdeskJobs() {
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center h-[calc(100vh-5rem)] bg-background">
         <div className="text-center">
@@ -159,13 +153,33 @@ export default function HelpdeskJobs() {
     );
   }
 
+  // Show detail view if a job is selected
+  if (selectedJob) {
+    return (
+      <div className="p-8 bg-background">
+        <HelpdeskJobDetailPanel
+          job={selectedJob}
+          onBack={() => setSelectedJob(null)}
+          onSave={handleSave}
+          isSaving={updateMutation.isPending}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="p-8 bg-background">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Helpdesk Jobs</h1>
-        <p className="text-muted-foreground">
-          Manage maintenance issues reported via the helpdesk form
-        </p>
+      <div className="mb-8 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">Helpdesk Jobs</h1>
+          <p className="text-muted-foreground">
+            Manage maintenance issues reported via the helpdesk form
+          </p>
+        </div>
+        <Button variant="outline" onClick={() => refetch()} className="gap-2">
+          <RefreshCw className="h-4 w-4" />
+          Refresh
+        </Button>
       </div>
 
       {/* Filters */}
@@ -186,7 +200,10 @@ export default function HelpdeskJobs() {
           <SelectContent>
             <SelectItem value="all">All Statuses</SelectItem>
             <SelectItem value="new">New</SelectItem>
+            <SelectItem value="acknowledged">Acknowledged</SelectItem>
             <SelectItem value="in_progress">In Progress</SelectItem>
+            <SelectItem value="awaiting_parts">Awaiting Parts</SelectItem>
+            <SelectItem value="awaiting_access">Awaiting Access</SelectItem>
             <SelectItem value="resolved">Resolved</SelectItem>
             <SelectItem value="closed">Closed</SelectItem>
           </SelectContent>
@@ -205,50 +222,56 @@ export default function HelpdeskJobs() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-card p-4 rounded-lg border">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+        <Card className="p-4">
           <p className="text-sm text-muted-foreground">Total Jobs</p>
-          <p className="text-2xl font-bold">{jobs.length}</p>
-        </div>
-        <div className="bg-card p-4 rounded-lg border">
+          <p className="text-2xl font-bold">{jobs?.length || 0}</p>
+        </Card>
+        <Card className="p-4">
           <p className="text-sm text-muted-foreground">New</p>
-          <p className="text-2xl font-bold">{jobs.filter(j => j.status === 'new').length}</p>
-        </div>
-        <div className="bg-card p-4 rounded-lg border">
+          <p className="text-2xl font-bold">{jobs?.filter(j => j.status === 'new').length || 0}</p>
+        </Card>
+        <Card className="p-4">
           <p className="text-sm text-muted-foreground">In Progress</p>
-          <p className="text-2xl font-bold">{jobs.filter(j => j.status === 'in_progress').length}</p>
-        </div>
-        <div className="bg-card p-4 rounded-lg border">
-          <p className="text-sm text-muted-foreground">Emergency</p>
-          <p className="text-2xl font-bold text-red-600">{jobs.filter(j => j.priority === 'Emergency').length}</p>
-        </div>
+          <p className="text-2xl font-bold">{jobs?.filter(j => j.status === 'in_progress').length || 0}</p>
+        </Card>
+        <Card className="p-4">
+          <p className="text-sm text-muted-foreground">Resolved</p>
+          <p className="text-2xl font-bold">{jobs?.filter(j => j.status === 'resolved').length || 0}</p>
+        </Card>
+        <Card className="p-4">
+          <p className="text-sm text-muted-foreground text-red-600">Emergency</p>
+          <p className="text-2xl font-bold text-red-600">{jobs?.filter(j => j.priority === 'Emergency').length || 0}</p>
+        </Card>
       </div>
 
       {/* Table */}
-      <div className="bg-card rounded-lg border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Date</TableHead>
-              <TableHead>Priority</TableHead>
-              <TableHead>Company</TableHead>
-              <TableHead>Contact</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead>Location</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredJobs.length === 0 ? (
+      {filteredJobs.length === 0 ? (
+        <Card className="p-8 text-center">
+          <p className="text-muted-foreground">No helpdesk jobs found</p>
+        </Card>
+      ) : (
+        <Card>
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
-                  No helpdesk jobs found
-                </TableCell>
+                <TableHead>Date</TableHead>
+                <TableHead>Priority</TableHead>
+                <TableHead>Company</TableHead>
+                <TableHead>Contact</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead>Location</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
-            ) : (
-              filteredJobs.map((job) => (
-                <TableRow key={job.id}>
+            </TableHeader>
+            <TableBody>
+              {filteredJobs.map((job) => (
+                <TableRow 
+                  key={job.id}
+                  className="cursor-pointer hover:bg-muted/50"
+                  onClick={() => setSelectedJob(job)}
+                >
                   <TableCell className="text-sm">
                     {format(new Date(job.created_at), 'dd/MM/yyyy HH:mm')}
                   </TableCell>
@@ -267,123 +290,20 @@ export default function HelpdeskJobs() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => setSelectedJob(job)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedJob(job);
+                      }}
                     >
                       <Eye className="h-4 w-4" />
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </div>
-
-      {/* Job Detail Dialog */}
-      <Dialog open={!!selectedJob} onOpenChange={() => setSelectedJob(null)}>
-        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-          {selectedJob && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                  Job Details
-                  {getPriorityBadge(selectedJob.priority)}
-                </DialogTitle>
-                <DialogDescription>
-                  Submitted {format(new Date(selectedJob.created_at), 'dd/MM/yyyy HH:mm')}
-                </DialogDescription>
-              </DialogHeader>
-
-              <div className="space-y-6">
-                {/* Status Update */}
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Update Status</label>
-                  <Select
-                    value={selectedJob.status}
-                    onValueChange={(value) => updateJobStatus(selectedJob.id, value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="new">New</SelectItem>
-                      <SelectItem value="in_progress">In Progress</SelectItem>
-                      <SelectItem value="resolved">Resolved</SelectItem>
-                      <SelectItem value="closed">Closed</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* AI Summary */}
-                {selectedJob.ai_summary && (
-                  <div className="bg-muted/50 p-4 rounded-lg">
-                    <h4 className="text-sm font-semibold mb-2">🤖 AI Summary</h4>
-                    <p className="text-sm">{selectedJob.ai_summary}</p>
-                  </div>
-                )}
-
-                {/* Contact Information */}
-                <div>
-                  <h4 className="text-sm font-semibold mb-3">Contact Information</h4>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-muted-foreground">Name:</span>
-                      <p className="font-medium">{selectedJob.name}</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Role:</span>
-                      <p className="font-medium">{selectedJob.role}</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Company:</span>
-                      <p className="font-medium">{selectedJob.company}</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Email:</span>
-                      <p className="font-medium">{selectedJob.email}</p>
-                    </div>
-                    {selectedJob.phone && (
-                      <div>
-                        <span className="text-muted-foreground">Phone:</span>
-                        <p className="font-medium">{selectedJob.phone}</p>
-                      </div>
-                    )}
-                    <div>
-                      <span className="text-muted-foreground">Location:</span>
-                      <p className="font-medium">{selectedJob.site_location}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Issue Details */}
-                <div>
-                  <h4 className="text-sm font-semibold mb-3">Issue Details</h4>
-                  <div className="space-y-3 text-sm">
-                    <div>
-                      <span className="text-muted-foreground">Category:</span>
-                      <p className="font-medium">{selectedJob.category}</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Asset/Area Reference:</span>
-                      <p className="font-medium">{selectedJob.asset_reference}</p>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Description:</span>
-                      <p className="font-medium whitespace-pre-wrap mt-1">{selectedJob.description}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {selectedJob.source_page && (
-                  <div className="text-xs text-muted-foreground">
-                    Submitted from: {selectedJob.source_page}
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
+      )}
     </div>
   );
 }
