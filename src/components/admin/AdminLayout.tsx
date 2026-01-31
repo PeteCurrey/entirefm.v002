@@ -16,6 +16,7 @@ import {
   Link,
   Megaphone,
   Layout,
+  Image,
   ChevronDown,
   ChevronRight
 } from "lucide-react";
@@ -116,6 +117,7 @@ export default function AdminLayout() {
       ]
     },
     { icon: Layout, label: "Pages", path: "/admin/pages" },
+    { icon: Image, label: "Client Logos", path: "/admin/client-logos" },
     { icon: BarChart3, label: "Search Analytics", path: "/admin/search-analytics" },
     { icon: Link, label: "Link Health", path: "/admin/link-health" },
     { icon: Map, label: "Site Map", path: "/admin/site-map" },
