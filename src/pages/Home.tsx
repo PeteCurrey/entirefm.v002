@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, Clock, Shield, Smartphone } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import ServiceCard from "@/components/shared/ServiceCard";
 import SectorCard from "@/components/shared/SectorCard";
 import MetricCard from "@/components/shared/MetricCard";
@@ -62,6 +63,14 @@ const getTimeGreeting = () => {
 
 const Home = () => {
   const greeting = getTimeGreeting();
+  
+  // Parallax effect for Proof in Action section
+  const proofSectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: proofSectionRef,
+    offset: ["start end", "end start"]
+  });
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <div className="min-h-screen">
@@ -349,10 +358,13 @@ const Home = () => {
       </section>
 
       {/* Case Studies Preview */}
-      <section className="py-24 relative text-white overflow-hidden">
-        <div 
+      <section ref={proofSectionRef} className="py-24 relative text-white overflow-hidden">
+        <motion.div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${industrialImage})` }}
+          style={{ 
+            backgroundImage: `url(${industrialImage})`,
+            y: backgroundY
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/85 to-charcoal/90" />
         <div className="container mx-auto px-6 relative z-10">
