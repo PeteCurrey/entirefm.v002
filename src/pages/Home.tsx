@@ -146,8 +146,16 @@ const Home = () => {
       <ClientLogosSection />
 
       {/* FM Partner Section */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-6">
+      <section className="py-24 relative overflow-hidden">
+        {/* Premium gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-muted/40 via-background to-muted/30" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
+        
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             className="text-center max-w-3xl mx-auto mb-16"
             initial="hidden"
@@ -156,6 +164,15 @@ const Home = () => {
             variants={fadeInUp}
             transition={{ duration: 0.6 }}
           >
+            <motion.span 
+              className="inline-block text-primary text-sm tracking-widest uppercase mb-4 font-light"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              Why Choose Us
+            </motion.span>
             <h2 className="text-4xl md:text-5xl mb-6 underline-accent inline-block font-extralight">
               Your Space, Our Expertise.     
             </h2>
@@ -165,7 +182,7 @@ const Home = () => {
           </motion.div>
 
           <motion.div 
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -195,21 +212,29 @@ const Home = () => {
             ].map((feature, index) => (
               <motion.div 
                 key={index} 
-                className="text-center group"
+                className="relative text-center group p-8 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/80 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-500"
                 variants={staggerItem}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
-                <motion.div 
-                  className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors duration-300"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <feature.icon className="w-8 h-8 text-primary" />
-                </motion.div>
-                <h3 className="text-lg font-light mb-3">{feature.title}</h3>
-                <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                  {feature.description}
-                </p>
+                {/* Gradient border accent on hover */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Top accent line */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10">
+                  <motion.div 
+                    className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 mb-6 group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-300 shadow-sm"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <feature.icon className="w-7 h-7 text-primary" />
+                  </motion.div>
+                  <h3 className="text-lg font-light mb-3 group-hover:text-primary transition-colors duration-300">{feature.title}</h3>
+                  <p className="text-sm text-muted-foreground font-light leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
