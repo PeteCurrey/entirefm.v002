@@ -70,7 +70,7 @@ const Home = () => {
     target: proofSectionRef,
     offset: ["start end", "end start"]
   });
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
     <div className="min-h-screen">
