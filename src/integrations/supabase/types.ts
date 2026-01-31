@@ -47,6 +47,7 @@ export type Database = {
       client_logos: {
         Row: {
           active: boolean | null
+          alt_text: string | null
           created_at: string
           display_order: number | null
           id: string
@@ -56,6 +57,7 @@ export type Database = {
         }
         Insert: {
           active?: boolean | null
+          alt_text?: string | null
           created_at?: string
           display_order?: number | null
           id?: string
@@ -65,6 +67,7 @@ export type Database = {
         }
         Update: {
           active?: boolean | null
+          alt_text?: string | null
           created_at?: string
           display_order?: number | null
           id?: string

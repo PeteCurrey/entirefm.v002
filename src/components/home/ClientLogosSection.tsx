@@ -24,6 +24,7 @@ interface ClientLogo {
   id: string;
   name: string;
   logo_url: string;
+  alt_text: string | null;
   display_order: number;
 }
 
@@ -33,7 +34,7 @@ export const ClientLogosSection = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("client_logos")
-        .select("id, name, logo_url, display_order")
+        .select("id, name, logo_url, alt_text, display_order")
         .eq("active", true)
         .order("display_order", { ascending: true });
       
@@ -87,7 +88,7 @@ export const ClientLogosSection = () => {
               >
                 <img
                   src={logo.logo_url}
-                  alt={logo.name}
+                  alt={logo.alt_text || `${logo.name} company logo`}
                   className="h-10 md:h-12 w-auto max-w-[120px] md:max-w-[150px] object-contain"
                   loading="lazy"
                 />

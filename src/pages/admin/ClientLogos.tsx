@@ -30,6 +30,7 @@ interface ClientLogo {
   id: string;
   name: string;
   logo_url: string;
+  alt_text: string | null;
   display_order: number;
   active: boolean;
   created_at: string;
@@ -120,6 +121,7 @@ export default function ClientLogos() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [newLogoName, setNewLogoName] = useState("");
+  const [newLogoAltText, setNewLogoAltText] = useState("");
   const [uploading, setUploading] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -145,7 +147,7 @@ export default function ClientLogos() {
   });
 
   const uploadMutation = useMutation({
-    mutationFn: async ({ file, name }: { file: File; name: string }) => {
+    mutationFn: async ({ file, name, altText }: { file: File; name: string; altText: string }) => {
       const fileExt = file.name.split(".").pop();
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
 
@@ -165,6 +167,7 @@ export default function ClientLogos() {
       const { error: insertError } = await supabase.from("client_logos").insert({
         name,
         logo_url: publicUrl,
+        alt_text: altText || `${name} company logo`,
         display_order: maxOrder + 1,
         active: true,
       });
@@ -175,6 +178,7 @@ export default function ClientLogos() {
       queryClient.invalidateQueries({ queryKey: ["client-logos-admin"] });
       toast({ title: "Logo uploaded successfully" });
       setNewLogoName("");
+      setNewLogoAltText("");
       setSelectedFile(null);
       setPreviewUrl(null);
     },
@@ -278,7 +282,7 @@ export default function ClientLogos() {
       return;
     }
     setUploading(true);
-    await uploadMutation.mutateAsync({ file: selectedFile, name: newLogoName });
+    await uploadMutation.mutateAsync({ file: selectedFile, name: newLogoName, altText: newLogoAltText });
     setUploading(false);
   };
 
@@ -365,6 +369,20 @@ export default function ClientLogos() {
                   placeholder="e.g., Acme Corporation"
                   className="mt-1"
                 />
+              </div>
+
+              <div>
+                <Label htmlFor="logo-alt-text">Alt Text (SEO)</Label>
+                <Input
+                  id="logo-alt-text"
+                  value={newLogoAltText}
+                  onChange={(e) => setNewLogoAltText(e.target.value)}
+                  placeholder="e.g., Acme Corporation logistics partner logo"
+                  className="mt-1"
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Descriptive text for accessibility & SEO. Auto-generated if left blank.
+                </p>
               </div>
 
               <Button onClick={handleUpload} disabled={uploading || !selectedFile}>
