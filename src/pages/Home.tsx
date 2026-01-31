@@ -77,9 +77,13 @@ const Home = () => {
           transition={{ duration: 0.6 }}
         >
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
+            initial={{ opacity: 0, x: -20, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ 
+              delay: 0.3, 
+              duration: 0.7, 
+              ease: [0.25, 0.1, 0.25, 1]
+            }}
             className="text-primary mb-4 font-extralight tracking-wider md:text-lg text-base"
           >
             {greeting}
@@ -87,7 +91,7 @@ const Home = () => {
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 0.7, duration: 0.8, ease: "easeOut" }}
             className="text-white mb-6 leading-tight font-extralight md:text-4xl text-3xl"
           >
             Facilities Management &amp; FM Support Services
@@ -95,7 +99,7 @@ const Home = () => {
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }}
             className="text-gray-200 mb-8 leading-relaxed max-w-2xl font-extralight md:text-xl text-left tracking-wider text-lg"
           >
             EntireFM. Your Dedicated Facilities Management Company
@@ -103,7 +107,7 @@ const Home = () => {
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+            transition={{ delay: 1.1, duration: 0.8, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4"
           >
             <Button size="lg" asChild className="hover-scale">
@@ -119,7 +123,7 @@ const Home = () => {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
+          transition={{ delay: 1.3, duration: 0.8, ease: "easeOut" }}
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl"
         >
           <MetricCard value="41" label="Avg response time (mins)" className="opacity-75" />
