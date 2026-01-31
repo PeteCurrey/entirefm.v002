@@ -165,7 +165,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
           >
             <motion.span 
-              className="inline-block text-primary text-sm tracking-widest uppercase mb-4 font-light"
+              className="block text-primary text-sm tracking-widest uppercase mb-4 font-light"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -173,8 +173,8 @@ const Home = () => {
             >
               Why Choose Us
             </motion.span>
-            <h2 className="text-4xl md:text-5xl mb-6 underline-accent inline-block font-extralight">
-              Your Space, Our Expertise.     
+            <h2 className="text-4xl md:text-5xl mb-6 font-extralight">
+              <span className="underline-accent">Your Space, Our Expertise.</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed text-xl font-extralight">
               Complete Facilities Management &amp; FM Support Services
