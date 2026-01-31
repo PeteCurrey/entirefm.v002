@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
@@ -11,8 +13,9 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
-import { ArrowLeft, Save, Loader2, Phone, Mail, MapPin, Building2, User, FileText, Clock, AlertTriangle, History } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Phone, Mail, MapPin, Building2, User, FileText, Clock, AlertTriangle, History, Download } from "lucide-react";
 import JobActivityLog from "./JobActivityLog";
+import { exportCAFMJobToPdf } from "@/lib/exportJobPdf";
 
 interface JobDetailPanelProps {
   job: {
@@ -54,6 +57,21 @@ export default function JobDetailPanel({ job, onBack, onSave, isSaving }: JobDet
   const [notes, setNotes] = useState(job.admin_notes || "");
   const [hasChanges, setHasChanges] = useState(false);
 
+  const { data: activities } = useQuery({
+    queryKey: ['job-activity-logs', job.id, 'cafm'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('job_activity_logs')
+        .select('*')
+        .eq('job_id', job.id)
+        .eq('job_type', 'cafm')
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      return data;
+    }
+  });
+
   const handleStatusChange = (value: string) => {
     setStatus(value);
     setHasChanges(true);
@@ -67,6 +85,10 @@ export default function JobDetailPanel({ job, onBack, onSave, isSaving }: JobDet
   const handleSave = async () => {
     await onSave({ status, admin_notes: notes });
     setHasChanges(false);
+  };
+
+  const handleExportPdf = () => {
+    exportCAFMJobToPdf(job, activities || []);
   };
 
   const getPriorityBadge = (priority: string) => {
@@ -113,18 +135,28 @@ export default function JobDetailPanel({ job, onBack, onSave, isSaving }: JobDet
             Back to Jobs
           </Button>
         </div>
-        <Button 
-          onClick={handleSave} 
-          disabled={!hasChanges || isSaving}
-          className="gap-2"
-        >
-          {isSaving ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            <Save className="h-4 w-4" />
-          )}
-          Save Changes
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="outline"
+            onClick={handleExportPdf}
+            className="gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Export PDF
+          </Button>
+          <Button 
+            onClick={handleSave} 
+            disabled={!hasChanges || isSaving}
+            className="gap-2"
+          >
+            {isSaving ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Save className="h-4 w-4" />
+            )}
+            Save Changes
+          </Button>
+        </div>
       </div>
 
       {/* Job Header Card */}
