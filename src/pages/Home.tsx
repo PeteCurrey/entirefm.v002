@@ -165,7 +165,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
           >
             <motion.span 
-              className="block text-primary text-sm tracking-widest uppercase mb-4 font-light"
+              className="block text-primary text-sm tracking-widest uppercase mb-3 font-light"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -173,6 +173,17 @@ const Home = () => {
             >
               Why Choose Us
             </motion.span>
+            <motion.div 
+              className="flex items-center justify-center gap-2 mb-4"
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary/60" />
+              <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary/60" />
+            </motion.div>
             <h2 className="text-4xl md:text-5xl mb-6 font-extralight">
               <span className="underline-accent">Your Space, Our Expertise.</span>
             </h2>
