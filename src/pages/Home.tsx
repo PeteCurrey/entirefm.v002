@@ -395,21 +395,24 @@ const Home = () => {
               <CaseStudyCard 
                 sector="Logistics" 
                 title="Reducing reactive call-outs by 32% for regional logistics hub" 
-                metrics={["Response time cut from 2hrs to 41 mins", "£47k annual cost savings", "98% SLA compliance achieved"]} 
+                metrics={["Response time cut from 2hrs to 41 mins", "£47k annual cost savings", "98% SLA compliance achieved"]}
+                image={industrialImage}
               />
             </motion.div>
             <motion.div variants={staggerItem}>
               <CaseStudyCard 
                 sector="Aviation" 
                 title="Delivering compliant FM across 3 UK airports" 
-                metrics={["Zero compliance breaches in 18 months", "24/7 helpdesk response maintained", "Security-cleared engineer network"]} 
+                metrics={["Zero compliance breaches in 18 months", "24/7 helpdesk response maintained", "Security-cleared engineer network"]}
+                image={heroImage}
               />
             </motion.div>
             <motion.div variants={staggerItem}>
               <CaseStudyCard 
                 sector="Mixed-Use" 
                 title="Integrated FM for 12-building commercial estate" 
-                metrics={["Single point of contact for all trades", "Tenant satisfaction up 34%", "Digital asset register deployed"]} 
+                metrics={["Single point of contact for all trades", "Tenant satisfaction up 34%", "Digital asset register deployed"]}
+                image={officeImage}
               />
             </motion.div>
           </motion.div>
