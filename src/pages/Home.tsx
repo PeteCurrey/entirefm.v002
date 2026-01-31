@@ -157,7 +157,7 @@ const Home = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <motion.div 
-            className="text-center max-w-3xl mx-auto mb-16"
+            className="max-w-3xl mb-16"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -165,7 +165,7 @@ const Home = () => {
             transition={{ duration: 0.6 }}
           >
             <motion.span 
-              className="block text-primary text-sm tracking-widest uppercase mb-4 font-light text-left"
+              className="block text-primary text-sm tracking-widest uppercase mb-4 font-light"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
