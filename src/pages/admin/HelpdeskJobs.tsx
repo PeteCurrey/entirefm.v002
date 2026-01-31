@@ -90,9 +90,54 @@ export default function HelpdeskJobs() {
     }
   });
 
+  const sendStatusEmail = async (job: HelpdeskJob, newStatus: string) => {
+    // Only send email if status actually changed
+    if (job.status === newStatus) return;
+    
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-job-status-email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            jobType: 'helpdesk',
+            recipientEmail: job.email,
+            recipientName: job.name,
+            oldStatus: job.status,
+            newStatus: newStatus,
+            siteLocation: job.site_location,
+            category: job.category,
+            description: job.description,
+          }),
+        }
+      );
+      
+      if (response.ok) {
+        toast({
+          title: "Email Sent",
+          description: `Status update notification sent to ${job.email}`,
+        });
+      }
+    } catch (error) {
+      console.error('Failed to send status email:', error);
+      // Don't show error toast - email is secondary to the status update
+    }
+  };
+
   const handleSave = async (updates: { status: string; ai_summary: string }) => {
     if (!selectedJob) return;
+    const statusChanged = selectedJob.status !== updates.status;
     await updateMutation.mutateAsync({ id: selectedJob.id, updates });
+    
+    // Send email notification if status changed
+    if (statusChanged) {
+      await sendStatusEmail(selectedJob, updates.status);
+    }
+    
     setSelectedJob({ ...selectedJob, ...updates });
   };
 

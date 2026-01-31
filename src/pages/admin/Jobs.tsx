@@ -91,9 +91,55 @@ const Jobs = () => {
     }
   });
 
+  const sendStatusEmail = async (job: Job, newStatus: string) => {
+    // Only send email if we have contact email and status actually changed
+    if (!job.contact_email || job.status === newStatus) return;
+    
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-job-status-email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            jobType: 'cafm',
+            jobRef: job.job_ref,
+            recipientEmail: job.contact_email,
+            recipientName: job.contact_name,
+            oldStatus: job.status,
+            newStatus: newStatus,
+            siteName: job.site_name,
+            siteLocation: job.site_location,
+            description: job.description,
+          }),
+        }
+      );
+      
+      if (response.ok) {
+        toast({
+          title: "Email Sent",
+          description: `Status update notification sent to ${job.contact_email}`,
+        });
+      }
+    } catch (error) {
+      console.error('Failed to send status email:', error);
+      // Don't show error toast - email is secondary to the status update
+    }
+  };
+
   const handleSave = async (updates: { status: string; admin_notes: string }) => {
     if (!selectedJob) return;
+    const statusChanged = selectedJob.status !== updates.status;
     await updateMutation.mutateAsync({ id: selectedJob.id, updates });
+    
+    // Send email notification if status changed and contact has email
+    if (statusChanged && selectedJob.contact_email) {
+      await sendStatusEmail(selectedJob, updates.status);
+    }
+    
     setSelectedJob({ ...selectedJob, ...updates });
   };
 
