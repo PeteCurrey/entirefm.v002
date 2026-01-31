@@ -349,8 +349,13 @@ const Home = () => {
       </section>
 
       {/* Case Studies Preview */}
-      <section className="py-24 bg-charcoal text-white overflow-hidden">
-        <div className="container mx-auto px-6">
+      <section className="py-24 relative text-white overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${industrialImage})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/85 to-charcoal/90" />
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div 
             className="mb-16"
             initial="hidden"
