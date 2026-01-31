@@ -128,15 +128,63 @@ export default function HelpdeskJobs() {
     }
   };
 
+  const logActivity = async (
+    jobId: string, 
+    action: string, 
+    fieldName?: string, 
+    oldValue?: string | null, 
+    newValue?: string | null
+  ) => {
+    try {
+      await supabase.from('job_activity_logs').insert({
+        job_id: jobId,
+        job_type: 'helpdesk',
+        action,
+        field_name: fieldName || null,
+        old_value: oldValue || null,
+        new_value: newValue || null,
+        created_by: 'Admin',
+      });
+    } catch (error) {
+      console.error('Failed to log activity:', error);
+    }
+  };
+
   const handleSave = async (updates: { status: string; ai_summary: string }) => {
     if (!selectedJob) return;
     const statusChanged = selectedJob.status !== updates.status;
+    const notesChanged = selectedJob.ai_summary !== updates.ai_summary;
+    
     await updateMutation.mutateAsync({ id: selectedJob.id, updates });
     
-    // Send email notification if status changed
+    // Log status change activity
     if (statusChanged) {
+      await logActivity(
+        selectedJob.id,
+        'status_change',
+        'status',
+        selectedJob.status,
+        updates.status
+      );
+      
+      // Send email notification
       await sendStatusEmail(selectedJob, updates.status);
+      await logActivity(selectedJob.id, 'email_sent', undefined, undefined, selectedJob.email);
     }
+    
+    // Log notes change activity
+    if (notesChanged) {
+      await logActivity(
+        selectedJob.id,
+        'notes_updated',
+        'ai_summary',
+        selectedJob.ai_summary,
+        updates.ai_summary
+      );
+    }
+    
+    // Invalidate activity logs query
+    queryClient.invalidateQueries({ queryKey: ['job-activity-logs', selectedJob.id, 'helpdesk'] });
     
     setSelectedJob({ ...selectedJob, ...updates });
   };

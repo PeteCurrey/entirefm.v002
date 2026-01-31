@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
-import { ArrowLeft, Save, Loader2, Phone, Mail, MapPin, Building2, User, FileText, Clock, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Phone, Mail, MapPin, Building2, User, FileText, Clock, AlertTriangle, History } from "lucide-react";
+import JobActivityLog from "./JobActivityLog";
 
 interface JobDetailPanelProps {
   job: {
@@ -269,6 +270,15 @@ export default function JobDetailPanel({ job, onBack, onSave, isSaving }: JobDet
             These notes are for internal use only and not visible to the reporter.
           </p>
         </div>
+      </div>
+
+      {/* Activity Log */}
+      <div className="bg-card border rounded-lg p-6">
+        <h3 className="font-semibold flex items-center gap-2 mb-4">
+          <History className="h-4 w-4" />
+          Activity Log
+        </h3>
+        <JobActivityLog jobId={job.id} jobType="cafm" />
       </div>
     </div>
   );

@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
-import { ArrowLeft, Save, Loader2, Phone, Mail, MapPin, Building2, User, FileText, Clock, Bot } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Phone, Mail, MapPin, Building2, User, FileText, Clock, Bot, History } from "lucide-react";
+import JobActivityLog from "./JobActivityLog";
 
 interface HelpdeskJob {
   id: string;
@@ -263,6 +264,15 @@ export default function HelpdeskJobDetailPanel({ job, onBack, onSave, isSaving }
             Internal notes for engineering team. Originally populated by AI triage if applicable.
           </p>
         </div>
+      </div>
+
+      {/* Activity Log */}
+      <div className="bg-card border rounded-lg p-6">
+        <h3 className="font-semibold flex items-center gap-2 mb-4">
+          <History className="h-4 w-4" />
+          Activity Log
+        </h3>
+        <JobActivityLog jobId={job.id} jobType="helpdesk" />
       </div>
     </div>
   );

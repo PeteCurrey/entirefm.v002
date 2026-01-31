@@ -465,6 +465,45 @@ export type Database = {
         }
         Relationships: []
       }
+      job_activity_logs: {
+        Row: {
+          action: string
+          created_at: string
+          created_by: string | null
+          field_name: string | null
+          id: string
+          job_id: string
+          job_type: string
+          new_value: string | null
+          notes: string | null
+          old_value: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          created_by?: string | null
+          field_name?: string | null
+          id?: string
+          job_id: string
+          job_type: string
+          new_value?: string | null
+          notes?: string | null
+          old_value?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          created_by?: string | null
+          field_name?: string | null
+          id?: string
+          job_id?: string
+          job_type?: string
+          new_value?: string | null
+          notes?: string | null
+          old_value?: string | null
+        }
+        Relationships: []
+      }
       jobs: {
         Row: {
           access_requirements: string | null
