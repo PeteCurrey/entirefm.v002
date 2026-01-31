@@ -179,12 +179,12 @@ const About = () => {
 
       <div className="min-h-screen bg-background pt-20">
         {/* Hero Section */}
-        <section ref={heroRef} className="relative min-h-[70vh] py-32 px-4 bg-gradient-to-br from-primary/10 via-background to-background overflow-hidden flex items-center">
+        <section ref={heroRef} className="relative min-h-[70vh] py-32 px-4 overflow-hidden flex items-center">
           {/* Background Image with Parallax */}
           <motion.div 
             className="absolute inset-0 bg-cover bg-center" 
             style={{ 
-              backgroundImage: 'url(/images/about-hero.jpg)',
+              backgroundImage: 'url(/images/what-we-deliver-bg.jpg)',
               y,
               opacity,
               filter: blur.get() !== undefined ? `blur(${blur.get()}px)` : 'none'
