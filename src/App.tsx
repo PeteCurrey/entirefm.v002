@@ -289,6 +289,7 @@ import SupplierApplications from "./pages/admin/SupplierApplications";
 import PageBuilder from "./pages/admin/PageBuilder";
 import PageEditor from "./pages/admin/PageEditor";
 import MediaLibrary from "./pages/admin/MediaLibrary";
+import CMSPreviewPage from "./pages/admin/CMSPreviewPage";
 import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
 import EmergencyResponse from "./pages/services/EmergencyResponse";
 import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
@@ -468,11 +469,17 @@ const App = () => <QueryClientProvider client={queryClient}>
         <ScrollToTop />
         <LegacyRedirects />
         <CriticalInfrastructureRedirects />
-        <div className="flex flex-col min-h-screen">
-          <Header className="opacity-95" />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
+        <Routes>
+          {/* CMS Preview Route - No header/footer for iframe embedding */}
+          <Route path="/cms-preview" element={<CMSPreviewPage />} />
+          
+          {/* Main site with header/footer */}
+          <Route path="/*" element={
+            <div className="flex flex-col min-h-screen">
+              <Header className="opacity-95" />
+              <main className="flex-grow">
+                <Routes>
+                  <Route path="/" element={<Home />} />
               
               {/* Geographical FM Landing Pages */}
               <Route path="/fm-london" element={<FMLondon />} />
@@ -957,6 +964,8 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Footer />
           <FloatingCTA />
         </div>
+          } />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>;
