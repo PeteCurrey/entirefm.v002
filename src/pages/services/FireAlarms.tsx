@@ -181,24 +181,58 @@ const FireAlarms = () => {
                 <div className="flex items-center gap-3 mb-6">
                   <Shield className="w-8 h-8 text-primary" />
                   <h2 className="text-3xl font-light underline-accent inline-block">
-                    BS 5839: Full Compliance, No Grey Areas
+                    Statutory Testing Frequency Table
                   </h2>
                 </div>
                 <p className="text-muted-foreground font-light mb-6">
-                  We inspect, test and maintain to BS 5839-1 for commercial buildings, including:
+                  UK fire alarm compliance requirements under BS 5839-1 — all managed through our digital compliance platform.
                 </p>
-                <div className="grid md:grid-cols-2 gap-4 mb-6">
-                  {[
-                    "Weekly user tests (supported & scheduled reminders)",
-                    "Quarterly & biannual inspections",
-                    "Annual full-system test",
-                    "Zone testing with recorded traceability"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 border rounded-lg hover:border-primary transition-colors">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="font-light">{item}</span>
-                    </div>
-                  ))}
+                <div className="overflow-hidden rounded-2xl border border-border bg-card mb-6">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="bg-charcoal text-white">
+                        <th className="text-left p-4 font-medium">System / Component</th>
+                        <th className="text-left p-4 font-medium">Frequency</th>
+                        <th className="text-left p-4 font-medium">Regulation</th>
+                        <th className="text-left p-4 font-medium">Scope</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { system: "Fire Alarm System", frequency: "Weekly", regulation: "BS 5839-1", scope: "Manual call point test (different zone each week)" },
+                        { system: "Fire Alarm System", frequency: "Quarterly", regulation: "BS 5839-1", scope: "25% of detectors tested, visual inspection, battery checks" },
+                        { system: "Fire Alarm System", frequency: "Annually", regulation: "BS 5839-1", scope: "100% detector test, cause & effect verification, full system check" },
+                        { system: "Emergency Lighting", frequency: "Monthly", regulation: "BS 5266-1", scope: "Functional test (flick test) of all luminaires" },
+                        { system: "Emergency Lighting", frequency: "Annually", regulation: "BS 5266-1", scope: "Full 3-hour duration test with battery discharge" },
+                        { system: "Fire Doors", frequency: "Quarterly", regulation: "RRO Article 17", scope: "Visual inspection, gap checks, ironmongery, intumescent seals" },
+                        { system: "Fire Doors", frequency: "Annually", regulation: "BS 8214", scope: "Comprehensive inspection by competent person" },
+                        { system: "Sprinkler Systems", frequency: "Weekly", regulation: "BS EN 12845", scope: "Visual check, pump test, pressure readings" },
+                        { system: "Sprinkler Systems", frequency: "Annually", regulation: "LPC Rules", scope: "Full flow test, valve inspection, comprehensive service" },
+                        { system: "Dry Risers", frequency: "6-Monthly", regulation: "BS 9990", scope: "Visual inspection, inlet/outlet checks" },
+                        { system: "Dry Risers", frequency: "Annually", regulation: "BS 9990", scope: "Wet pressure test to 10 bar for 15 minutes" },
+                        { system: "Fire Extinguishers", frequency: "Annually", regulation: "BS 5306-3", scope: "Service & certification by competent technician" },
+                        { system: "Smoke Control / AOVs", frequency: "Weekly", regulation: "BS EN 12101-2", scope: "Functional test of automatic vents" },
+                        { system: "Smoke Control / AOVs", frequency: "Annually", regulation: "BS 7346-8", scope: "Full system test and certification" }
+                      ].map((item, index) => (
+                        <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-muted/30' : 'bg-background'}`}>
+                          <td className="p-4 font-medium text-foreground">{item.system}</td>
+                          <td className="p-4">
+                            <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
+                              item.frequency === 'Weekly' ? 'bg-destructive/10 text-destructive' :
+                              item.frequency === 'Monthly' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
+                              item.frequency === 'Quarterly' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400' :
+                              item.frequency === '6-Monthly' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
+                              'bg-primary/10 text-primary'
+                            }`}>
+                              {item.frequency}
+                            </span>
+                          </td>
+                          <td className="p-4 font-light text-muted-foreground">{item.regulation}</td>
+                          <td className="p-4 font-light text-muted-foreground">{item.scope}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
                 <p className="text-lg font-medium bg-primary/10 p-4 rounded-lg">
                   All visits logged. All records stored. Easily retrievable for audits or HSE.
