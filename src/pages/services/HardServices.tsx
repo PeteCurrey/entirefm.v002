@@ -1,13 +1,72 @@
 import { Helmet } from "react-helmet";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
+import { Link } from "react-router-dom";
+import { CheckCircle2, Shield, ArrowRight, Phone, Wrench, Zap, Droplets, Flame, Building, Lightbulb } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { CheckCircle2, AlertTriangle, Shield } from "lucide-react";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import FeatureCardGrid from "@/components/shared/FeatureCardGrid";
+import StatsBanner from "@/components/shared/StatsBanner";
+import CTASection from "@/components/shared/CTASection";
+import ContentSection from "@/components/shared/ContentSection";
+import { TrustBar } from "@/components/shared/TrustBar";
 
 const HardServices = () => {
+  const breadcrumbItems = [
+    { label: "Services", href: "/services" },
+    { label: "Hard Services & M&E" }
+  ];
+
+  const heroStats = [
+    { value: "99.5", suffix: "%", label: "Uptime SLA" },
+    { value: "2", suffix: "hr", label: "Emergency Response" },
+    { value: "100", suffix: "%", label: "Compliance" },
+    { value: "24/7", label: "Helpdesk" }
+  ];
+
+  const features = [
+    {
+      icon: Zap,
+      title: "Electrical Services",
+      description: "EICR testing, distribution boards, fault-finding, and emergency systems."
+    },
+    {
+      icon: Wrench,
+      title: "Mechanical Services", 
+      description: "Pumps, motors, conveyors, HVAC machinery, and pressurisation systems."
+    },
+    {
+      icon: Droplets,
+      title: "Plumbing & Drainage",
+      description: "Pipework, leaks, booster sets, hot & cold water systems."
+    },
+    {
+      icon: Flame,
+      title: "Gas & Heating",
+      description: "Commercial gas safety, boiler PPM, and plant room optimisation."
+    },
+    {
+      icon: Building,
+      title: "Building Fabric",
+      description: "Joinery, locks, roof repairs, glazing, and fire doors."
+    },
+    {
+      icon: Lightbulb,
+      title: "Lighting Systems",
+      description: "LED upgrades, emergency lighting, and control gear maintenance."
+    }
+  ];
+
+  const stats = [
+    { value: "500", suffix: "+", label: "Sites Managed" },
+    { value: "2", suffix: "hr", label: "Response Time" },
+    { value: "98", suffix: "%", label: "First-Time Fix" },
+    { value: "40", suffix: "%", label: "Cost Savings" }
+  ];
+
   const faqs = [
     {
       question: "What is included in hard services FM?",
@@ -30,49 +89,53 @@ const HardServices = () => {
   return (
     <>
       <Helmet>
-        <title>Facilities Management & M&E Services UK</title>
+        <title>Hard Services & M&E Maintenance | Facilities Management UK | EntireFM</title>
         <meta 
           name="description" 
-          content="Full hard FM solutions: HVAC, electrical, safety systems. Reliability & compliance, 24/7."
+          content="Full hard FM solutions: HVAC, electrical, plumbing, gas, and building fabric. Guaranteed uptime, 24/7 support, and full compliance across the UK."
         />
         <link rel="canonical" href="https://entirefm.com/services/hard-fm" />
       </Helmet>
 
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema 
         name="Hard Services & M&E Maintenance"
-        description="Comprehensive mechanical, electrical, and building fabric maintenance services"
+        description="Comprehensive mechanical, electrical, and building fabric maintenance services for commercial buildings across the UK."
         provider="EntireFM"
         areaServed="United Kingdom"
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen pt-20">
-        <div className="container mx-auto px-6 py-8">
-          <Breadcrumb items={[
-            { label: "Services", href: "/services" },
-            { label: "Hard Services & M&E" }
-          ]} />
+      {/* Hero Section */}
+      <ServiceHeroSection
+        breadcrumbItems={breadcrumbItems}
+        title="Hard Services & M&E"
+        description="Guaranteed uptime. Full compliance. Zero excuses. Mission-critical maintenance for buildings that cannot afford downtime."
+        stats={heroStats}
+        primaryCTA={{ label: "Request Proposal", href: "/request-proposal", icon: ArrowRight }}
+        secondaryCTA={{ label: "24/7 Support", href: "tel:08000248550", icon: Phone }}
+        backgroundImage="/images/services/hard-fm-hero.jpg"
+      />
 
-          <div className="grid lg:grid-cols-3 gap-12 mt-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2 space-y-12">
-              {/* Hero Section */}
-              <header>
-                <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Hard Services & M&E — Guaranteed Uptime. Full Compliance. Zero Excuses.
-                </h1>
-                <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  Mission-critical maintenance for buildings that cannot afford downtime.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request a Proposal</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <a href="tel:+448001234567">24/7 Reactive Support</a>
-                  </Button>
-                </div>
-              </header>
+      {/* Trust Bar */}
+      <TrustBar variant="compact" />
+
+      {/* Features Grid */}
+      <ContentSection
+        title="Complete Hard FM Coverage"
+        subtitle="All mechanical, electrical, and building fabric services delivered by qualified UK specialists with trade-specific accreditations."
+        centered
+      >
+        <FeatureCardGrid features={features} columns={3} variant="gradient" />
+      </ContentSection>
+
+      {/* Stats Banner */}
+      <StatsBanner stats={stats} variant="gradient" />
+
+      <div className="container mx-auto px-6 py-8">
+        <div className="grid lg:grid-cols-3 gap-12">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-12">
 
               {/* Why It Matters */}
               <section className="bg-charcoal text-white p-8 rounded-lg">
@@ -252,15 +315,14 @@ const HardServices = () => {
                   </Button>
                 </div>
               </section>
-            </div>
-
-            {/* Sidebar */}
-            <aside className="lg:col-span-1">
-              <div className="sticky top-24">
-                <SidebarCTA />
-              </div>
-            </aside>
           </div>
+
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <div className="sticky top-24">
+              <SidebarCTA />
+            </div>
+          </aside>
         </div>
       </div>
     </>
