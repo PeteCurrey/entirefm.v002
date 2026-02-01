@@ -143,6 +143,57 @@ export type Database = {
         }
         Relationships: []
       }
+      cms_media: {
+        Row: {
+          alt_text: string | null
+          created_at: string | null
+          file_path: string
+          file_size: number
+          file_url: string
+          filename: string
+          folder: string | null
+          height: number | null
+          id: string
+          mime_type: string
+          original_filename: string
+          tags: string[] | null
+          uploaded_by: string | null
+          width: number | null
+        }
+        Insert: {
+          alt_text?: string | null
+          created_at?: string | null
+          file_path: string
+          file_size: number
+          file_url: string
+          filename: string
+          folder?: string | null
+          height?: number | null
+          id?: string
+          mime_type: string
+          original_filename: string
+          tags?: string[] | null
+          uploaded_by?: string | null
+          width?: number | null
+        }
+        Update: {
+          alt_text?: string | null
+          created_at?: string | null
+          file_path?: string
+          file_size?: number
+          file_url?: string
+          filename?: string
+          folder?: string | null
+          height?: number | null
+          id?: string
+          mime_type?: string
+          original_filename?: string
+          tags?: string[] | null
+          uploaded_by?: string | null
+          width?: number | null
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           admin_notes: string | null
@@ -785,6 +836,95 @@ export type Database = {
           },
         ]
       }
+      page_content: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          is_published: boolean | null
+          meta_description: string | null
+          meta_title: string | null
+          page_path: string
+          page_title: string
+          published_at: string | null
+          sections: Json
+          updated_at: string | null
+          updated_by: string | null
+          version: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          is_published?: boolean | null
+          meta_description?: string | null
+          meta_title?: string | null
+          page_path: string
+          page_title: string
+          published_at?: string | null
+          sections?: Json
+          updated_at?: string | null
+          updated_by?: string | null
+          version?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          is_published?: boolean | null
+          meta_description?: string | null
+          meta_title?: string | null
+          page_path?: string
+          page_title?: string
+          published_at?: string | null
+          sections?: Json
+          updated_at?: string | null
+          updated_by?: string | null
+          version?: number | null
+        }
+        Relationships: []
+      }
+      page_content_versions: {
+        Row: {
+          created_at: string | null
+          created_by: string | null
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          page_content_id: string
+          sections: Json
+          version: number
+        }
+        Insert: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          page_content_id: string
+          sections: Json
+          version: number
+        }
+        Update: {
+          created_at?: string | null
+          created_by?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          page_content_id?: string
+          sections?: Json
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "page_content_versions_page_content_id_fkey"
+            columns: ["page_content_id"]
+            isOneToOne: false
+            referencedRelation: "page_content"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       page_templates: {
         Row: {
           created_at: string | null
@@ -1101,6 +1241,21 @@ export type Database = {
         | "quoted"
         | "won"
         | "lost"
+      section_type:
+        | "hero"
+        | "text"
+        | "image"
+        | "two_column"
+        | "three_column"
+        | "cards_grid"
+        | "features"
+        | "testimonials"
+        | "cta"
+        | "faq"
+        | "stats"
+        | "gallery"
+        | "video"
+        | "custom"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1236,6 +1391,22 @@ export const Constants = {
         "quoted",
         "won",
         "lost",
+      ],
+      section_type: [
+        "hero",
+        "text",
+        "image",
+        "two_column",
+        "three_column",
+        "cards_grid",
+        "features",
+        "testimonials",
+        "cta",
+        "faq",
+        "stats",
+        "gallery",
+        "video",
+        "custom",
       ],
     },
   },
