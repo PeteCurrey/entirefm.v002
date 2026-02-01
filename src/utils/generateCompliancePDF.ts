@@ -1,4 +1,5 @@
 import { jsPDF } from "jspdf";
+import logoImage from "@/assets/logo.png";
 
 interface ComplianceItem {
   system: string;
@@ -15,7 +16,29 @@ interface PDFOptions {
   footerNote?: string;
 }
 
-export function generateCompliancePDF(options: PDFOptions): void {
+// Helper to load image as base64
+async function loadImageAsBase64(src: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL("image/png"));
+      } else {
+        reject(new Error("Could not get canvas context"));
+      }
+    };
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+export async function generateCompliancePDF(options: PDFOptions): Promise<void> {
   const { title, subtitle, companyName = "EntireFM", items, footerNote } = options;
   
   const doc = new jsPDF();
@@ -30,22 +53,30 @@ export function generateCompliancePDF(options: PDFOptions): void {
   doc.setFillColor(30, 30, 30); // charcoal
   doc.rect(0, 0, pageWidth, 45, "F");
 
-  // Company name
+  // Add logo
+  try {
+    const logoBase64 = await loadImageAsBase64(logoImage);
+    doc.addImage(logoBase64, "PNG", margin, 8, 30, 30);
+  } catch (error) {
+    console.warn("Could not load logo for PDF:", error);
+  }
+
+  // Company name (positioned after logo)
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(12);
   doc.setFont("helvetica", "normal");
-  doc.text(companyName, margin, 15);
+  doc.text(companyName, margin + 35, 18);
 
-  // Title
-  doc.setFontSize(20);
+  // Title (positioned after logo)
+  doc.setFontSize(18);
   doc.setFont("helvetica", "bold");
-  doc.text(title, margin, 30);
+  doc.text(title, margin + 35, 30);
 
   // Subtitle
   if (subtitle) {
-    doc.setFontSize(10);
+    doc.setFontSize(9);
     doc.setFont("helvetica", "normal");
-    doc.text(subtitle, margin, 38);
+    doc.text(subtitle, margin + 35, 38);
   }
 
   yPos = 55;
@@ -246,8 +277,8 @@ export const electricalComplianceItems: ComplianceItem[] = [
   { system: "Generator Testing", frequency: "Monthly", regulation: "BS 7698", scope: "Load test and operational verification" }
 ];
 
-export function downloadFireAlarmChecklist() {
-  generateCompliancePDF({
+export async function downloadFireAlarmChecklist() {
+  await generateCompliancePDF({
     title: "Fire Safety Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — BS 5839, BS 5266, RRO",
     items: fireAlarmComplianceItems,
@@ -255,8 +286,8 @@ export function downloadFireAlarmChecklist() {
   });
 }
 
-export function downloadEmergencyLightingChecklist() {
-  generateCompliancePDF({
+export async function downloadEmergencyLightingChecklist() {
+  await generateCompliancePDF({
     title: "Emergency Lighting Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — BS 5266",
     items: emergencyLightingComplianceItems,
@@ -264,8 +295,8 @@ export function downloadEmergencyLightingChecklist() {
   });
 }
 
-export function downloadWaterHygieneChecklist() {
-  generateCompliancePDF({
+export async function downloadWaterHygieneChecklist() {
+  await generateCompliancePDF({
     title: "Water Hygiene Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — ACOP L8, HSG274",
     items: waterHygieneComplianceItems,
@@ -273,8 +304,8 @@ export function downloadWaterHygieneChecklist() {
   });
 }
 
-export function downloadHVACChecklist() {
-  generateCompliancePDF({
+export async function downloadHVACChecklist() {
+  await generateCompliancePDF({
     title: "HVAC Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — F-Gas, SFG20, TM44",
     items: hvacComplianceItems,
@@ -282,11 +313,12 @@ export function downloadHVACChecklist() {
   });
 }
 
-export function downloadElectricalChecklist() {
-  generateCompliancePDF({
+export async function downloadElectricalChecklist() {
+  await generateCompliancePDF({
     title: "Electrical Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — BS 7671, IET",
     items: electricalComplianceItems,
     footerNote: "NICEIC or equivalent certification required for all electrical testing."
   });
 }
+
