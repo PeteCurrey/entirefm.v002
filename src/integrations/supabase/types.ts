@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_settings: {
+        Row: {
+          category: string
+          description: string | null
+          id: string
+          setting_key: string
+          setting_value: Json
+          updated_at: string | null
+          updated_by: string | null
+        }
+        Insert: {
+          category?: string
+          description?: string | null
+          id?: string
+          setting_key: string
+          setting_value: Json
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Update: {
+          category?: string
+          description?: string | null
+          id?: string
+          setting_key?: string
+          setting_value?: Json
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
       ai_sessions: {
         Row: {
           created_at: string
@@ -41,6 +71,42 @@ export type Database = {
           source_page?: string | null
           transcript?: Json
           user_identifier?: string | null
+        }
+        Relationships: []
+      }
+      api_integrations: {
+        Row: {
+          created_at: string | null
+          credentials: Json | null
+          id: string
+          is_active: boolean | null
+          last_tested: string | null
+          name: string
+          service_type: string
+          test_status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          credentials?: Json | null
+          id?: string
+          is_active?: boolean | null
+          last_tested?: string | null
+          name: string
+          service_type: string
+          test_status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          credentials?: Json | null
+          id?: string
+          is_active?: boolean | null
+          last_tested?: string | null
+          name?: string
+          service_type?: string
+          test_status?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -84,6 +150,7 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          lead_score: number | null
           location: string | null
           message: string
           name: string
@@ -92,6 +159,7 @@ export type Database = {
           source_page: string | null
           status: string | null
           subject: string | null
+          tags: string[] | null
           updated_at: string
         }
         Insert: {
@@ -100,6 +168,7 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          lead_score?: number | null
           location?: string | null
           message: string
           name: string
@@ -108,6 +177,7 @@ export type Database = {
           source_page?: string | null
           status?: string | null
           subject?: string | null
+          tags?: string[] | null
           updated_at?: string
         }
         Update: {
@@ -116,6 +186,7 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          lead_score?: number | null
           location?: string | null
           message?: string
           name?: string
@@ -124,6 +195,7 @@ export type Database = {
           source_page?: string | null
           status?: string | null
           subject?: string | null
+          tags?: string[] | null
           updated_at?: string
         }
         Relationships: []
@@ -234,6 +306,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      email_templates: {
+        Row: {
+          body_html: string
+          body_text: string | null
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          subject: string
+          template_type: string
+          updated_at: string | null
+        }
+        Insert: {
+          body_html: string
+          body_text?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          subject: string
+          template_type: string
+          updated_at?: string | null
+        }
+        Update: {
+          body_html?: string
+          body_text?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          subject?: string
+          template_type?: string
+          updated_at?: string | null
+        }
+        Relationships: []
       }
       error_404_logs: {
         Row: {
@@ -509,6 +617,7 @@ export type Database = {
           access_requirements: string | null
           admin_notes: string | null
           asset_or_area: string
+          assigned_to: string | null
           attachment_url: string | null
           contact_email: string | null
           contact_name: string
@@ -528,6 +637,7 @@ export type Database = {
           access_requirements?: string | null
           admin_notes?: string | null
           asset_or_area: string
+          assigned_to?: string | null
           attachment_url?: string | null
           contact_email?: string | null
           contact_name: string
@@ -547,6 +657,7 @@ export type Database = {
           access_requirements?: string | null
           admin_notes?: string | null
           asset_or_area?: string
+          assigned_to?: string | null
           attachment_url?: string | null
           contact_email?: string | null
           contact_name?: string
@@ -709,6 +820,8 @@ export type Database = {
           created_at: string
           documents: Json | null
           email: string
+          estimated_value: number | null
+          follow_up_date: string | null
           has_existing_provider: boolean | null
           id: string
           phone: string | null
@@ -728,6 +841,8 @@ export type Database = {
           created_at?: string
           documents?: Json | null
           email: string
+          estimated_value?: number | null
+          follow_up_date?: string | null
           has_existing_provider?: boolean | null
           id?: string
           phone?: string | null
@@ -747,6 +862,8 @@ export type Database = {
           created_at?: string
           documents?: Json | null
           email?: string
+          estimated_value?: number | null
+          follow_up_date?: string | null
           has_existing_provider?: boolean | null
           id?: string
           phone?: string | null

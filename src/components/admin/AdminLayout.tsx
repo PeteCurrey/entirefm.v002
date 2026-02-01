@@ -18,7 +18,9 @@ import {
   Layout,
   Image,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  Building2,
+  Settings
 } from "lucide-react";
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
@@ -104,6 +106,7 @@ export default function AdminLayout() {
     { icon: Mail, label: "Contacts", path: "/admin/contacts" },
     { icon: Wrench, label: "Helpdesk Jobs", path: "/admin/helpdesk-jobs" },
     { icon: Wrench, label: "CAFM Jobs", path: "/admin/jobs" },
+    { icon: Building2, label: "Suppliers", path: "/admin/suppliers" },
     { 
       icon: Megaphone, 
       label: "Marketing", 
@@ -118,9 +121,17 @@ export default function AdminLayout() {
     },
     { icon: Layout, label: "Pages", path: "/admin/pages" },
     { icon: Image, label: "Client Logos", path: "/admin/client-logos" },
-    { icon: BarChart3, label: "Search Analytics", path: "/admin/search-analytics" },
-    { icon: Link, label: "Link Health", path: "/admin/link-health" },
+    { 
+      icon: BarChart3, 
+      label: "Analytics", 
+      path: "/admin/search-analytics",
+      children: [
+        { label: "Search Analytics", path: "/admin/search-analytics" },
+        { label: "Link Health", path: "/admin/link-health" },
+      ]
+    },
     { icon: Map, label: "Site Map", path: "/admin/site-map" },
+    { icon: Settings, label: "Settings", path: "/admin/settings" },
   ];
 
   const toggleSection = (label: string) => {
