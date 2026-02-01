@@ -14,9 +14,10 @@ interface HeroStat {
 
 interface HeroCTA {
   label: string;
-  href: string;
+  href?: string;
   icon?: LucideIcon;
   variant?: "default" | "outline";
+  onClick?: () => void;
 }
 
 interface ServiceHeroSectionProps {
@@ -108,17 +109,29 @@ const ServiceHeroSection = ({
                   </Button>
                 )}
                 {secondaryCTA && (
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white hover:text-charcoal hover-scale" 
-                    asChild
-                  >
-                    <Link to={secondaryCTA.href}>
+                  secondaryCTA.onClick ? (
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white hover:text-charcoal hover-scale"
+                      onClick={secondaryCTA.onClick}
+                    >
                       {secondaryCTA.icon && <secondaryCTA.icon className="w-5 h-5 mr-2" />}
                       {secondaryCTA.label}
-                    </Link>
-                  </Button>
+                    </Button>
+                  ) : (
+                    <Button 
+                      size="lg" 
+                      variant="outline" 
+                      className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white hover:text-charcoal hover-scale" 
+                      asChild
+                    >
+                      <Link to={secondaryCTA.href || "#"}>
+                        {secondaryCTA.icon && <secondaryCTA.icon className="w-5 h-5 mr-2" />}
+                        {secondaryCTA.label}
+                      </Link>
+                    </Button>
+                  )
                 )}
               </motion.div>
             )}

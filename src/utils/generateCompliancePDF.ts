@@ -322,3 +322,176 @@ export async function downloadElectricalChecklist() {
   });
 }
 
+// Capability Pack PDF Generator
+export async function downloadCapabilityPack(): Promise<void> {
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 20;
+  const contentWidth = pageWidth - (margin * 2);
+  
+  let yPos = margin;
+
+  // Header background
+  doc.setFillColor(30, 30, 30);
+  doc.rect(0, 0, pageWidth, 50, "F");
+
+  // Add logo
+  try {
+    const logoBase64 = await loadImageAsBase64(logoImage);
+    doc.addImage(logoBase64, "PNG", margin, 8, 35, 35);
+  } catch (error) {
+    console.warn("Could not load logo for PDF:", error);
+  }
+
+  // Company name
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "normal");
+  doc.text("EntireFM", margin + 42, 18);
+
+  // Title
+  doc.setFontSize(22);
+  doc.setFont("helvetica", "bold");
+  doc.text("Capability Pack", margin + 42, 32);
+
+  // Subtitle
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "normal");
+  doc.text("Comprehensive FM Services for UK Commercial & Public Estates", margin + 42, 42);
+
+  yPos = 60;
+  doc.setTextColor(0, 0, 0);
+
+  // Introduction
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("About EntireFM", margin, yPos);
+  yPos += 8;
+
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "normal");
+  const intro = "EntireFM is a leading facilities management provider delivering compliance-first solutions across the UK. We serve commercial offices, retail estates, healthcare facilities, education campuses, and industrial sites with end-to-end maintenance and safety services.";
+  const introLines = doc.splitTextToSize(intro, contentWidth);
+  doc.text(introLines, margin, yPos);
+  yPos += introLines.length * 5 + 10;
+
+  // Services Section
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("Our Core Services", margin, yPos);
+  yPos += 10;
+
+  const services = [
+    { name: "Fire Safety Systems", desc: "Fire alarms, suppression, extinguishers, emergency lighting — BS 5839, BS 5266 compliant" },
+    { name: "M&E Maintenance", desc: "Electrical, HVAC, plumbing, and building fabric maintenance — SFG20 scheduled" },
+    { name: "Water Hygiene", desc: "Legionella risk assessment, temperature monitoring, TMV servicing — ACOP L8 certified" },
+    { name: "Statutory Compliance", desc: "EICR, PAT testing, gas safety, lift servicing — full regulatory coverage" },
+    { name: "Reactive Repairs", desc: "24/7 helpdesk, rapid response, nationwide engineer coverage" },
+    { name: "Planned Preventive Maintenance", desc: "Asset lifecycle management, condition surveys, PPM scheduling" }
+  ];
+
+  doc.setFontSize(10);
+  services.forEach((service) => {
+    if (yPos > pageHeight - 40) {
+      doc.addPage();
+      yPos = margin;
+    }
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(236, 72, 153);
+    doc.text("•", margin, yPos);
+    doc.text(service.name, margin + 5, yPos);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(80, 80, 80);
+    doc.text(" — " + service.desc, margin + 5 + doc.getTextWidth(service.name), yPos);
+    yPos += 8;
+  });
+
+  yPos += 10;
+
+  // Accreditations
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(0, 0, 0);
+  doc.text("Accreditations & Certifications", margin, yPos);
+  yPos += 10;
+
+  const accreditations = [
+    "ISO 9001:2015 — Quality Management",
+    "ISO 14001:2015 — Environmental Management",
+    "ISO 45001:2018 — Occupational Health & Safety",
+    "SafeContractor Approved",
+    "CHAS Accredited",
+    "NICEIC Approved Contractor",
+    "Gas Safe Registered",
+    "F-Gas Certified Engineers"
+  ];
+
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "normal");
+  accreditations.forEach((acc) => {
+    if (yPos > pageHeight - 40) {
+      doc.addPage();
+      yPos = margin;
+    }
+    doc.setTextColor(37, 99, 235);
+    doc.text("✓", margin, yPos);
+    doc.setTextColor(60, 60, 60);
+    doc.text(acc, margin + 6, yPos);
+    yPos += 7;
+  });
+
+  yPos += 10;
+
+  // Why Choose Us
+  if (yPos > pageHeight - 60) {
+    doc.addPage();
+    yPos = margin;
+  }
+
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(0, 0, 0);
+  doc.text("Why Choose EntireFM", margin, yPos);
+  yPos += 10;
+
+  const benefits = [
+    "Single point of contact for all FM needs",
+    "48-hour proposal turnaround",
+    "Transparent pricing with no hidden fees",
+    "Real-time compliance dashboard access",
+    "Dedicated account management",
+    "Nationwide engineer network with local expertise"
+  ];
+
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "normal");
+  benefits.forEach((benefit) => {
+    doc.setTextColor(236, 72, 153);
+    doc.text("→", margin, yPos);
+    doc.setTextColor(60, 60, 60);
+    doc.text(benefit, margin + 8, yPos);
+    yPos += 7;
+  });
+
+  // Footer
+  yPos = pageHeight - 25;
+  doc.setDrawColor(236, 72, 153);
+  doc.setLineWidth(0.5);
+  doc.line(margin, yPos, margin + contentWidth, yPos);
+
+  yPos += 8;
+  doc.setFontSize(9);
+  doc.setTextColor(100, 100, 100);
+  doc.text("EntireFM | 0800 024 8550 | info@entirefm.com | www.entirefm.com", margin, yPos);
+  
+  const today = new Date().toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+  doc.text(`Generated: ${today}`, pageWidth - margin - 40, yPos);
+
+  doc.save("entirefm-capability-pack.pdf");
+}
+

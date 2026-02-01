@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
 import { TrustBar } from "@/components/shared/TrustBar";
 import ContentSection from "@/components/shared/ContentSection";
+import { downloadCapabilityPack } from "@/utils/generateCompliancePDF";
 
 // Form validation schema
 const proposalSchema = z.object({
@@ -340,7 +341,8 @@ const RequestProposal = () => {
         }}
         secondaryCTA={{
           label: "Download Capability Pack",
-          href: "/resources/tender-support"
+          icon: Download,
+          onClick: () => downloadCapabilityPack()
         }}
       />
 
@@ -840,11 +842,9 @@ const RequestProposal = () => {
                         Schedule Intro Call
                       </a>
                     </Button>
-                    <Button asChild variant="secondary" className="w-full">
-                      <a href="/resources/tender-support" target="_blank">
-                        <Download className="w-4 h-4 mr-2" />
-                        Download Capability Pack
-                      </a>
+                    <Button variant="secondary" className="w-full" onClick={() => downloadCapabilityPack()}>
+                      <Download className="w-4 h-4 mr-2" />
+                      Download Capability Pack
                     </Button>
                   </div>
                 </Card>
