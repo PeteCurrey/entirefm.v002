@@ -1,15 +1,30 @@
 import { Helmet } from "react-helmet";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { Link } from "react-router-dom";
+import { 
+  CheckCircle2, 
+  AlertTriangle, 
+  ArrowRight, 
+  Phone,
+  Thermometer,
+  Wind,
+  Snowflake,
+  Gauge,
+  Leaf,
+  Settings,
+  FileCheck,
+  Clock
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { CheckCircle2, AlertTriangle, ArrowRight, FileText } from "lucide-react";
-import { RelatedServices } from "@/components/shared/RelatedServices";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import FeatureCardGrid from "@/components/shared/FeatureCardGrid";
+import StatsBanner from "@/components/shared/StatsBanner";
+import CTASection from "@/components/shared/CTASection";
+import ContentSection from "@/components/shared/ContentSection";
+import { TrustBar } from "@/components/shared/TrustBar";
 
 const HVAC = () => {
   const breadcrumbItems = [
@@ -17,27 +32,73 @@ const HVAC = () => {
     { label: "HVAC Maintenance" }
   ];
 
-  const keyFeatures = [
+  const heroStats = [
+    { value: "F-Gas", label: "Certified" },
+    { value: "2", suffix: "hr", label: "Emergency Response" },
+    { value: "SFG20", label: "Compliant" },
+    { value: "24/7", label: "Support" }
+  ];
+
+  const features = [
     {
-      icon: CheckCircle2,
-      title: "F-Gas Certified",
-      description: "Category 1 certified engineers for refrigerant handling and compliance"
+      icon: Snowflake,
+      title: "Air Conditioning",
+      description: "Split systems, VRV/VRF, and ducted AC maintenance across all major brands."
     },
     {
-      icon: CheckCircle2,
-      title: "All Major Brands",
-      description: "Daikin, Mitsubishi, Toshiba, Carrier, Trane, York and more"
+      icon: Thermometer,
+      title: "Heating Systems",
+      description: "Boilers, heat pumps, and underfloor heating servicing and repairs."
     },
     {
-      icon: CheckCircle2,
-      title: "Energy Optimisation",
-      description: "Seasonal commissioning and efficiency improvements"
+      icon: Wind,
+      title: "Ventilation",
+      description: "AHUs, extract systems, and indoor air quality management."
     },
     {
-      icon: CheckCircle2,
-      title: "24/7 Emergency",
-      description: "2-hour emergency response for critical HVAC failures"
+      icon: Gauge,
+      title: "Chillers & Cooling",
+      description: "Chilled water systems, close control, and server room cooling."
+    },
+    {
+      icon: Settings,
+      title: "BMS Integration",
+      description: "Building management system optimisation and control calibration."
+    },
+    {
+      icon: Leaf,
+      title: "Energy Efficiency",
+      description: "Seasonal commissioning, performance tuning, and carbon reduction."
     }
+  ];
+
+  const stats = [
+    { value: "500", suffix: "+", label: "HVAC Sites" },
+    { value: "2", suffix: "hr", label: "Response Time" },
+    { value: "30", suffix: "%", label: "Energy Savings" },
+    { value: "99", suffix: "%", label: "Uptime" }
+  ];
+
+  const hvacServices = [
+    "Split system air conditioning",
+    "VRF / VRV multi-split systems",
+    "Chilled water systems",
+    "AHU (air handling units)",
+    "FCU (fan coil units)",
+    "Rooftop packaged units",
+    "Close control / server room cooling",
+    "Heat pumps (air source & ground source)",
+    "Ventilation & extract systems",
+    "BMS-integrated climate control",
+    "Refrigerant leak detection",
+    "Energy performance optimization"
+  ];
+
+  const complianceItems = [
+    { regulation: "F-Gas Regulations", frequency: "Annual", scope: "Leak detection, refrigerant logs, system certification" },
+    { regulation: "TM44 Inspections", frequency: "Every 5 years", scope: "Air conditioning energy assessment (>12kW)" },
+    { regulation: "SFG20 Standards", frequency: "Quarterly", scope: "PPM task scheduling and verification" },
+    { regulation: "Building Regs Part L", frequency: "On install/change", scope: "Energy efficiency compliance" }
   ];
 
   const faqs = [
@@ -62,226 +123,273 @@ const HVAC = () => {
   return (
     <>
       <Helmet>
-        <title>Commercial HVAC Maintenance & Air Quality UK</title>
+        <title>Commercial HVAC Maintenance & Air Conditioning UK | EntireFM</title>
         <meta 
           name="description" 
-          content="Heating & cooling optimised for comfort, cost & compliance. Rapid response."
+          content="F-Gas certified HVAC maintenance for commercial buildings. Air conditioning, heating, ventilation, and climate control with 24/7 emergency response across the UK."
         />
         <link rel="canonical" href="https://entirefm.com/services/hvac" />
       </Helmet>
 
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema 
         name="HVAC Maintenance & Servicing"
-        description="Commercial HVAC maintenance, air conditioning servicing, and climate control systems"
+        description="Commercial HVAC maintenance, air conditioning servicing, and climate control systems across the UK."
         provider="EntireFM"
         areaServed="United Kingdom"
       />
       <FAQSchema faqs={faqs} />
-      <BreadcrumbSchema items={breadcrumbItems} />
 
-      <div className="min-h-screen bg-background">
-        <ServiceHeroSection
-          breadcrumbItems={breadcrumbItems}
-          title="HVAC That Doesn't Let You Down"
-          description="Comfort, safety, and operational continuity — engineered into your air handling. F-Gas compliant servicing across all major brands."
-          stats={[
-            { value: "F-Gas", label: "Certified" },
-            { value: "2hr", label: "Emergency Response" },
-            { value: "SFG20", label: "Compliant" },
-            { value: "24/7", label: "Support" }
-          ]}
-          primaryCTA={{
-            label: "Request HVAC Proposal",
-            href: "/request-proposal",
-            icon: ArrowRight
-          }}
-          secondaryCTA={{
-            label: "Book Site Survey",
-            href: "/contact",
-            icon: FileText
-          }}
-          backgroundImage="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&q=80"
-        />
+      {/* Hero Section */}
+      <ServiceHeroSection
+        breadcrumbItems={breadcrumbItems}
+        title="HVAC That Doesn't Let You Down"
+        description="Comfort, safety, and operational continuity — engineered into your air handling. F-Gas compliant servicing across all major brands with 24/7 emergency response."
+        stats={heroStats}
+        primaryCTA={{ label: "Request HVAC Proposal", href: "/request-proposal", icon: ArrowRight }}
+        secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
+        backgroundImage="/images/services/hvac-hero.jpg"
+      />
 
-        {/* Key Features */}
-        <section className="py-16 bg-background">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {keyFeatures.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Card className="p-6 h-full hover:border-primary/50 transition-colors hover-lift">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-4">
-                      <feature.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="text-lg font-medium mb-2">{feature.title}</h3>
-                    <p className="text-sm text-muted-foreground">{feature.description}</p>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+      {/* Trust Bar */}
+      <TrustBar variant="compact" />
 
-        {/* Main Content */}
-        <section className="py-16 bg-muted/30">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-12">
-                
-                {/* Operational Impact */}
-                <div className="bg-muted/50 p-8 rounded-lg">
-                  <h2 className="text-3xl font-light mb-6">
-                    Operational Impact
-                  </h2>
-                  <p className="text-lg font-light mb-6">When HVAC fails:</p>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                      "Occupants complain",
-                      "Productivity crashes",
-                      "Energy waste skyrockets",
-                      "Compliance failures stack up"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
-                        <span className="font-light">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-lg font-medium mt-6">
-                    We prevent every single one of those.
-                  </p>
-                </div>
+      {/* Features Grid */}
+      <ContentSection
+        title="Complete HVAC Coverage"
+        subtitle="All heating, ventilation, and air conditioning systems maintained by F-Gas certified engineers with manufacturer training."
+        centered
+      >
+        <FeatureCardGrid features={features} columns={3} variant="gradient" />
+      </ContentSection>
 
-                <div>
-                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                    HVAC Services We Deliver
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {[
-                      "Split system air conditioning",
-                      "VRF / VRV multi-split systems",
-                      "Chilled water systems",
-                      "AHU (air handling units)",
-                      "FCU (fan coil units)",
-                      "Rooftop packaged units",
-                      "Close control / server room cooling",
-                      "Heat pumps (air source & ground source)",
-                      "Ventilation & extract systems",
-                      "BMS-integrated climate control",
-                      "Refrigerant leak detection",
-                      "Energy performance optimization"
-                    ].map((service, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                        <span className="font-light">{service}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+      {/* Stats Banner */}
+      <StatsBanner stats={stats} variant="gradient" />
 
-                {/* Energy & Performance */}
-                <div>
-                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                    Energy & Performance Optimisation
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="border-l-4 border-accent pl-6">
-                      <h3 className="font-medium mb-2">Smart Seasonal Commissioning</h3>
-                      <p className="text-sm font-light text-muted-foreground">
-                        Pre-season system optimisation ensures readiness before peak demand periods.
-                      </p>
-                    </div>
-                    <div className="border-l-4 border-accent pl-6">
-                      <h3 className="font-medium mb-2">Filter Management for Air Quality</h3>
-                      <p className="text-sm font-light text-muted-foreground">
-                        Proactive filter replacement schedules maintain indoor air quality compliance.
-                      </p>
-                    </div>
-                    <div className="border-l-4 border-accent pl-6">
-                      <h3 className="font-medium mb-2">Thermographic & Vibration Analysis</h3>
-                      <p className="text-sm font-light text-muted-foreground">
-                        Advanced diagnostics on critical assets identify failures before they occur.
-                      </p>
-                    </div>
-                    <div className="border-l-4 border-accent pl-6">
-                      <h3 className="font-medium mb-2">Energy-Saving Technology Upgrades</h3>
-                      <p className="text-sm font-light text-muted-foreground">
-                        ROI projections included for LED retrofits, VSD installations, and BMS upgrades.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-8 p-6 bg-charcoal text-white rounded-lg">
-                    <p className="text-lg font-light">
-                      <strong>Result:</strong> Lower OpEx, improved wellness, stronger ESG results.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Statutory Requirements */}
-                <div>
-                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                    Statutory Requirements Covered
-                  </h2>
-                  <p className="text-muted-foreground font-light mb-6">
-                    We manage legal obligations end-to-end:
-                  </p>
-                  <div className="grid md:grid-cols-3 gap-4">
-                    {[
-                      "F-Gas regulation compliance, leak logs & certifications",
-                      "TM44 inspections & energy efficiency audits",
-                      "Indoor Air Quality monitoring & reporting (business-critical in 2025)"
-                    ].map((item, index) => (
-                      <div key={index} className="p-4 border border-border rounded-lg">
-                        <CheckCircle2 className="w-5 h-5 text-accent mb-2" />
-                        <p className="text-sm font-light">{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-8">
-                    <Button variant="outline" asChild>
-                      <Link to="/resources">Download HVAC Compliance Guide</Link>
-                    </Button>
-                  </div>
-                </div>
-
-                <RelatedServices 
-                  services={[
-                    {
-                      title: "PPM Delivery",
-                      description: "Scheduled HVAC maintenance and filter replacement programs",
-                      link: "/fm-operations/ppm-delivery"
-                    },
-                    {
-                      title: "Reactive Maintenance",
-                      description: "Emergency HVAC repairs and 24/7 climate control response",
-                      link: "/fm-operations/reactive-maintenance"
-                    },
-                    {
-                      title: "Asset Lifecycle Planning",
-                      description: "HVAC system condition surveys and replacement forecasting",
-                      link: "/fm-operations/asset-lifecycle"
-                    }
-                  ]}
-                />
-
-                <FAQSection faqs={faqs} />
+      {/* Operational Impact */}
+      <ContentSection
+        title="When HVAC Fails, Everything Fails"
+        subtitle="Climate control isn't a nice-to-have — it's operational infrastructure. Failures cascade across your entire operation."
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {[
+            { icon: AlertTriangle, text: "Occupant complaints escalate" },
+            { icon: AlertTriangle, text: "Productivity crashes" },
+            { icon: AlertTriangle, text: "Energy waste skyrockets" },
+            { icon: AlertTriangle, text: "Compliance failures stack up" }
+          ].map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="flex items-center gap-4 p-6 bg-card border border-border rounded-xl">
+                <item.icon className="w-6 h-6 text-destructive flex-shrink-0" />
+                <span className="font-light text-foreground">{item.text}</span>
               </div>
-
-              <aside className="lg:col-span-1">
-                <div className="sticky top-24">
-                  <SidebarCTA />
-                </div>
-              </aside>
-            </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <AnimatedSection delay={0.4}>
+          <div className="mt-8 p-6 bg-charcoal text-white rounded-xl max-w-2xl mx-auto text-center">
+            <p className="text-lg font-medium">We prevent every single one of those.</p>
           </div>
-        </section>
-      </div>
+        </AnimatedSection>
+      </ContentSection>
+
+      {/* HVAC Services List */}
+      <ContentSection
+        title="HVAC Services We Deliver"
+        subtitle="Comprehensive climate control maintenance across all system types and manufacturers."
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {hvacServices.map((service, index) => (
+            <AnimatedSection key={index} delay={index * 0.03}>
+              <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-muted/50 to-background border border-border rounded-xl hover:border-primary/30 transition-all">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="font-light">{service}</span>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* Compliance Table */}
+      <ContentSection
+        title="HVAC Compliance Requirements"
+        subtitle="UK regulatory requirements for commercial HVAC systems — all managed through our digital compliance platform."
+        variant="gradient"
+      >
+        <div className="max-w-4xl mx-auto">
+          <AnimatedSection>
+            <div className="overflow-hidden rounded-2xl border border-border bg-card">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-charcoal text-white">
+                    <th className="text-left p-5 font-medium">Regulation</th>
+                    <th className="text-left p-5 font-medium">Frequency</th>
+                    <th className="text-left p-5 font-medium">Scope</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {complianceItems.map((item, index) => (
+                    <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-muted/30' : 'bg-background'}`}>
+                      <td className="p-5 font-medium text-foreground">{item.regulation}</td>
+                      <td className="p-5 font-light text-muted-foreground">{item.frequency}</td>
+                      <td className="p-5 font-light text-muted-foreground">{item.scope}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </AnimatedSection>
+        </div>
+      </ContentSection>
+
+      {/* Energy & Performance */}
+      <ContentSection
+        title="Energy & Performance Optimisation"
+        subtitle="Reduce operational costs while improving comfort and meeting ESG targets."
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {[
+            {
+              title: "Smart Seasonal Commissioning",
+              description: "Pre-season system optimisation ensures readiness before peak demand periods, preventing failures when you need cooling or heating most."
+            },
+            {
+              title: "Filter Management for Air Quality",
+              description: "Proactive filter replacement schedules maintain indoor air quality compliance and system efficiency — critical for occupant wellness."
+            },
+            {
+              title: "Thermographic & Vibration Analysis",
+              description: "Advanced diagnostics on critical assets identify bearing wear, electrical faults, and refrigerant issues before they cause failures."
+            },
+            {
+              title: "Energy-Saving Technology Upgrades",
+              description: "ROI projections included for VSD installations, EC fan retrofits, and BMS optimisation — typically delivering 20-30% energy savings."
+            }
+          ].map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="p-8 bg-card border border-border rounded-2xl hover:border-primary/30 transition-all h-full">
+                <h3 className="text-xl font-medium mb-4 text-foreground">{item.title}</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">{item.description}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <AnimatedSection delay={0.4}>
+          <div className="mt-8 p-6 bg-primary/10 border border-primary/20 rounded-xl max-w-2xl mx-auto text-center">
+            <p className="text-lg font-medium text-foreground">
+              Result: Lower OpEx, improved wellness, stronger ESG results.
+            </p>
+          </div>
+        </AnimatedSection>
+      </ContentSection>
+
+      {/* How We Deliver */}
+      <ContentSection
+        title="How We Deliver HVAC Services"
+        subtitle="F-Gas certified engineers, integrated scheduling, and 24/7 emergency response."
+      >
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <AnimatedSection delay={0}>
+            <div className="p-8 bg-card border border-border rounded-2xl h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <FileCheck className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium">Qualified Engineers</h3>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  "F-Gas Category 1 certified",
+                  "Manufacturer-trained (Daikin, Mitsubishi, etc.)",
+                  "City & Guilds qualified",
+                  "DBS checked for sensitive sites"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground font-light">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="p-8 bg-card border border-border rounded-2xl h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium">Responsive Service</h3>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  "2-hour emergency response SLA",
+                  "Quarterly PPM scheduling",
+                  "Real-time job tracking",
+                  "Digital compliance certificates"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground font-light">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+        </div>
+      </ContentSection>
+
+      {/* Related Services */}
+      <ContentSection
+        title="Related Services"
+        subtitle="Comprehensive M&E solutions beyond HVAC."
+        centered
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            { title: "Hard FM Services", href: "/services/hard-fm", description: "Complete mechanical and electrical maintenance" },
+            { title: "Electrical Compliance", href: "/services/electrical", description: "EICR testing and electrical safety" },
+            { title: "PPM Contracts", href: "/services/ppm", description: "Scheduled maintenance programmes" }
+          ].map((service, idx) => (
+            <AnimatedSection key={idx} delay={idx * 0.1}>
+              <Link 
+                to={service.href}
+                className="block p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all group h-full"
+              >
+                <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="text-sm text-muted-foreground font-light mb-4">{service.description}</p>
+                <span className="text-sm text-primary flex items-center gap-1">
+                  Learn more
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* FAQ Section */}
+      <ContentSection
+        title="Frequently Asked Questions"
+        centered
+      >
+        <div className="max-w-3xl mx-auto">
+          <FAQSection faqs={faqs} />
+        </div>
+      </ContentSection>
+
+      {/* CTA Section */}
+      <CTASection
+        title="Keep Your Climate Control Running"
+        description="Request an HVAC maintenance proposal tailored to your building portfolio. Expert advice, transparent pricing, no obligation."
+        primaryLabel="Request HVAC Proposal"
+        primaryHref="/request-proposal"
+        secondaryLabel="Call 0800 024 8550"
+        secondaryHref="tel:08000248550"
+        variant="dark"
+      />
     </>
   );
 };
