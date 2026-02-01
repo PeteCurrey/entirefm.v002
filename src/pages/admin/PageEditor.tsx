@@ -35,7 +35,8 @@ import {
   RefreshCw,
   Monitor,
   Tablet,
-  Smartphone
+  Smartphone,
+  MousePointer
 } from "lucide-react";
 import {
   Sheet,
@@ -63,6 +64,7 @@ import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, us
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Json } from "@/integrations/supabase/types";
+import { MediaPicker } from "@/components/cms/MediaPicker";
 
 interface Section {
   id: string;
@@ -198,14 +200,12 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
               rows={2}
             />
           </div>
-          <div>
-            <Label>Background Image URL</Label>
-            <Input 
-              value={(content.backgroundImage as string) || ''} 
-              onChange={(e) => updateContent('backgroundImage', e.target.value)}
-              placeholder="https://..."
-            />
-          </div>
+          <MediaPicker
+            label="Background Image"
+            value={(content.backgroundImage as string) || ''}
+            onChange={(url) => updateContent('backgroundImage', url)}
+            placeholder="Select or enter background image URL..."
+          />
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label>Primary CTA Text</Label>
@@ -221,6 +221,24 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                 value={(content.ctaLink as string) || ''} 
                 onChange={(e) => updateContent('ctaLink', e.target.value)}
                 placeholder="/contact"
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label>Secondary CTA Text</Label>
+              <Input 
+                value={(content.secondaryCtaText as string) || ''} 
+                onChange={(e) => updateContent('secondaryCtaText', e.target.value)}
+                placeholder="Learn More"
+              />
+            </div>
+            <div>
+              <Label>Secondary CTA Link</Label>
+              <Input 
+                value={(content.secondaryCtaLink as string) || ''} 
+                onChange={(e) => updateContent('secondaryCtaLink', e.target.value)}
+                placeholder="/about"
               />
             </div>
           </div>
@@ -253,14 +271,12 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
     case 'image':
       return (
         <div className="space-y-4 pt-4">
-          <div>
-            <Label>Image URL</Label>
-            <Input 
-              value={(content.src as string) || ''} 
-              onChange={(e) => updateContent('src', e.target.value)}
-              placeholder="https://..."
-            />
-          </div>
+          <MediaPicker
+            label="Image"
+            value={(content.src as string) || ''}
+            onChange={(url) => updateContent('src', url)}
+            placeholder="Select or enter image URL..."
+          />
           <div>
             <Label>Alt Text</Label>
             <Input 
@@ -298,6 +314,12 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                 placeholder="Left content..."
                 rows={4}
               />
+              <MediaPicker
+                label="Left Column Image"
+                value={(content.leftImage as string) || ''}
+                onChange={(url) => updateContent('leftImage', url)}
+                showPreview={true}
+              />
             </div>
             <div className="space-y-3">
               <Label>Right Column Heading</Label>
@@ -312,6 +334,12 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                 onChange={(e) => updateContent('rightContent', e.target.value)}
                 placeholder="Right content..."
                 rows={4}
+              />
+              <MediaPicker
+                label="Right Column Image"
+                value={(content.rightImage as string) || ''}
+                onChange={(url) => updateContent('rightImage', url)}
+                showPreview={true}
               />
             </div>
           </div>
@@ -336,6 +364,12 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                   onChange={(e) => updateContent(`col${col}Content`, e.target.value)}
                   placeholder={`Column ${col} content...`}
                   rows={3}
+                />
+                <MediaPicker
+                  label={`Column ${col} Image`}
+                  value={(content[`col${col}Image`] as string) || ''}
+                  onChange={(url) => updateContent(`col${col}Image`, url)}
+                  showPreview={true}
                 />
               </div>
             ))}
@@ -366,11 +400,14 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                   // Invalid JSON, ignore
                 }
               }}
-              placeholder='[{"title": "Card 1", "description": "Description...", "link": "/page"}]'
-              rows={6}
+              placeholder='[{"title": "Card 1", "description": "Description...", "image": "https://...", "link": "/page"}]'
+              rows={8}
               className="font-mono text-sm"
             />
           </div>
+          <p className="text-xs text-muted-foreground">
+            Tip: Each card can have title, description, image, and link properties
+          </p>
         </div>
       );
 
@@ -397,7 +434,7 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                   // Invalid JSON, ignore
                 }
               }}
-              placeholder='[{"title": "Feature 1", "description": "Description..."}]'
+              placeholder='[{"title": "Feature 1", "description": "Description...", "icon": "check"}]'
               rows={6}
               className="font-mono text-sm"
             />
@@ -428,7 +465,7 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                   // Invalid JSON, ignore
                 }
               }}
-              placeholder='[{"quote": "Great service!", "author": "John Doe", "role": "CEO", "company": "Acme Inc"}]'
+              placeholder='[{"quote": "Great service!", "author": "John Doe", "role": "CEO", "company": "Acme Inc", "avatar": "https://..."}]'
               rows={6}
               className="font-mono text-sm"
             />
@@ -456,6 +493,11 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
               rows={2}
             />
           </div>
+          <MediaPicker
+            label="Background Image (optional)"
+            value={(content.backgroundImage as string) || ''}
+            onChange={(url) => updateContent('backgroundImage', url)}
+          />
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label>Button Text</Label>
@@ -501,7 +543,7 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                 }
               }}
               placeholder='[{"question": "What is...?", "answer": "It is..."}]'
-              rows={6}
+              rows={8}
               className="font-mono text-sm"
             />
           </div>
@@ -516,11 +558,11 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
             <Input 
               value={(content.heading as string) || ''} 
               onChange={(e) => updateContent('heading', e.target.value)}
-              placeholder="By the numbers..."
+              placeholder="Our Impact"
             />
           </div>
           <div>
-            <Label>Stats (JSON format)</Label>
+            <Label>Statistics (JSON format)</Label>
             <Textarea 
               value={JSON.stringify(content.stats || [], null, 2)} 
               onChange={(e) => {
@@ -531,8 +573,8 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                   // Invalid JSON, ignore
                 }
               }}
-              placeholder='[{"value": "100+", "label": "Clients"}]'
-              rows={4}
+              placeholder='[{"value": "500+", "label": "Clients Served"}]'
+              rows={6}
               className="font-mono text-sm"
             />
           </div>
@@ -562,25 +604,20 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
                   // Invalid JSON, ignore
                 }
               }}
-              placeholder='[{"src": "https://...", "alt": "Description"}]'
+              placeholder='[{"src": "https://...", "alt": "Image description"}]'
               rows={6}
               className="font-mono text-sm"
             />
           </div>
+          <p className="text-xs text-muted-foreground">
+            Tip: Add images as objects with src and alt properties
+          </p>
         </div>
       );
 
     case 'video':
       return (
         <div className="space-y-4 pt-4">
-          <div>
-            <Label>Video URL (YouTube or Vimeo)</Label>
-            <Input 
-              value={(content.url as string) || ''} 
-              onChange={(e) => updateContent('url', e.target.value)}
-              placeholder="https://youtube.com/watch?v=..."
-            />
-          </div>
           <div>
             <Label>Title (optional)</Label>
             <Input 
@@ -589,6 +626,19 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
               placeholder="Video title..."
             />
           </div>
+          <div>
+            <Label>Video URL (YouTube or Vimeo)</Label>
+            <Input 
+              value={(content.url as string) || ''} 
+              onChange={(e) => updateContent('url', e.target.value)}
+              placeholder="https://www.youtube.com/watch?v=..."
+            />
+          </div>
+          <MediaPicker
+            label="Thumbnail Image (optional)"
+            value={(content.thumbnail as string) || ''}
+            onChange={(url) => updateContent('thumbnail', url)}
+          />
         </div>
       );
 
@@ -596,7 +646,7 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
       return (
         <div className="space-y-4 pt-4">
           <div>
-            <Label>Custom HTML/Code</Label>
+            <Label>Custom HTML</Label>
             <Textarea 
               value={(content.html as string) || ''} 
               onChange={(e) => updateContent('html', e.target.value)}
@@ -605,6 +655,9 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
               className="font-mono text-sm"
             />
           </div>
+          <p className="text-xs text-muted-foreground">
+            ⚠️ Custom HTML is rendered directly. Ensure code is safe and valid.
+          </p>
         </div>
       );
       
@@ -631,6 +684,7 @@ export default function PageEditor() {
   const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
   const [viewportSize, setViewportSize] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [iframeKey, setIframeKey] = useState(0);
+  const [editModeEnabled, setEditModeEnabled] = useState(true);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -665,22 +719,46 @@ export default function PageEditor() {
           });
         }
       }
+      
+      // Handle iframe ready message
+      if (event.data?.type === 'CMS_IFRAME_READY') {
+        // Send initial content and edit mode
+        sendContentToIframe();
+        sendEditModeToIframe(editModeEnabled);
+      }
     };
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [page]);
+  }, [page, editModeEnabled]);
 
   // Update iframe when sections change
   useEffect(() => {
+    sendContentToIframe();
+  }, [page?.sections]);
+
+  // Send edit mode changes to iframe
+  useEffect(() => {
+    sendEditModeToIframe(editModeEnabled);
+  }, [editModeEnabled]);
+
+  const sendContentToIframe = () => {
     if (iframeRef.current?.contentWindow && page) {
-      // Send updated content to iframe
       iframeRef.current.contentWindow.postMessage({
         type: 'CMS_CONTENT_UPDATE',
         sections: page.sections.map(({ isOpen, ...rest }) => rest)
       }, '*');
     }
-  }, [page?.sections]);
+  };
+
+  const sendEditModeToIframe = (enabled: boolean) => {
+    if (iframeRef.current?.contentWindow) {
+      iframeRef.current.contentWindow.postMessage({
+        type: 'CMS_EDIT_MODE',
+        enabled
+      }, '*');
+    }
+  };
 
   const fetchPage = async () => {
     try {
@@ -866,8 +944,8 @@ export default function PageEditor() {
     );
   }
 
-  // Build the preview URL
-  const previewUrl = `/cms-preview?id=${page.id}&t=${iframeKey}`;
+  // Build the preview URL - use the actual page path with edit mode
+  const previewUrl = `/cms-preview?id=${page.id}&path=${encodeURIComponent(page.page_path)}&t=${iframeKey}`;
 
   return (
     <div className="h-[calc(100vh-5rem)] flex flex-col">
@@ -1055,11 +1133,19 @@ export default function PageEditor() {
         {/* Preview Panel */}
         <div className="flex-1 overflow-hidden bg-muted/20 flex flex-col">
           <div className="p-3 border-b bg-background flex items-center justify-between flex-shrink-0">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <h2 className="font-medium text-sm">Live Preview</h2>
-              <span className="text-xs text-muted-foreground">
-                Click on any section to edit
-              </span>
+              <div className="flex items-center gap-2">
+                <Switch 
+                  id="edit-mode"
+                  checked={editModeEnabled}
+                  onCheckedChange={setEditModeEnabled}
+                />
+                <Label htmlFor="edit-mode" className="text-xs text-muted-foreground cursor-pointer flex items-center gap-1">
+                  <MousePointer className="w-3 h-3" />
+                  Click to edit
+                </Label>
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <ToggleGroup type="single" value={viewportSize} onValueChange={(value) => value && setViewportSize(value as typeof viewportSize)}>
@@ -1081,7 +1167,7 @@ export default function PageEditor() {
           
           <div className="flex-1 p-4 overflow-auto flex justify-center">
             <div 
-              className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300"
+              className="bg-white dark:bg-background rounded-lg shadow-lg overflow-hidden transition-all duration-300"
               style={{ 
                 width: viewportWidths[viewportSize],
                 maxWidth: '100%',
