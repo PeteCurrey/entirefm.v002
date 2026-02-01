@@ -10,10 +10,13 @@ import {
   FileCheck,
   Clock,
   Battery,
-  Eye
+  Eye,
+  Download
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
+import { downloadEmergencyLightingChecklist } from "@/utils/generateCompliancePDF";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -248,6 +251,15 @@ const EmergencyLighting = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.2}>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-primary/10 border border-primary/20 rounded-xl">
+              <p className="font-medium text-foreground">Monthly functional tests and annual 3-hour duration tests required.</p>
+              <Button onClick={downloadEmergencyLightingChecklist} variant="default" size="sm">
+                <Download className="w-4 h-4 mr-2" />
+                Download Checklist
+              </Button>
             </div>
           </AnimatedSection>
         </div>
