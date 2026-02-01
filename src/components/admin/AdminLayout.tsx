@@ -131,6 +131,7 @@ export default function AdminLayout() {
     },
     { icon: Layout, label: "Pages", path: "/admin/pages" },
     { icon: Image, label: "Client Logos", path: "/admin/client-logos" },
+    { icon: FileText, label: "PDF Templates", path: "/admin/pdf-templates" },
     { 
       icon: BarChart3, 
       label: "Analytics", 

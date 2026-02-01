@@ -1,0 +1,48 @@
+-- Create table for editable PDF templates
+CREATE TABLE public.pdf_templates (
+  id uuid NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
+  template_key text NOT NULL UNIQUE,
+  title text NOT NULL,
+  subtitle text,
+  company_name text DEFAULT 'EntireFM',
+  footer_note text,
+  items jsonb NOT NULL DEFAULT '[]'::jsonb,
+  is_active boolean DEFAULT true,
+  created_at timestamp with time zone DEFAULT now(),
+  updated_at timestamp with time zone DEFAULT now()
+);
+
+-- Enable RLS
+ALTER TABLE public.pdf_templates ENABLE ROW LEVEL SECURITY;
+
+-- Admins can manage PDF templates
+CREATE POLICY "Admins can manage PDF templates"
+  ON public.pdf_templates
+  FOR ALL
+  USING (has_role(auth.uid(), 'admin'::app_role));
+
+-- Public can view active templates (for PDF generation)
+CREATE POLICY "Public can view active PDF templates"
+  ON public.pdf_templates
+  FOR SELECT
+  USING (is_active = true);
+
+-- Create trigger for updated_at
+CREATE TRIGGER update_pdf_templates_updated_at
+  BEFORE UPDATE ON public.pdf_templates
+  FOR EACH ROW
+  EXECUTE FUNCTION public.update_updated_at_column();
+
+-- Insert default templates
+INSERT INTO public.pdf_templates (template_key, title, subtitle, footer_note, items) VALUES
+('fire-alarm', 'Fire Safety Compliance Checklist', 'UK Statutory Testing Requirements — BS 5839, BS 5266, RRO', 'All visits logged. All records stored. Easily retrievable for audits or HSE.', '[{"system":"Fire Alarm System","frequency":"Weekly","regulation":"BS 5839-1","scope":"Manual call point test (different zone each week)"},{"system":"Fire Alarm System","frequency":"Quarterly","regulation":"BS 5839-1","scope":"25% of detectors tested, visual inspection, battery checks"},{"system":"Fire Alarm System","frequency":"Annually","regulation":"BS 5839-1","scope":"100% detector test, cause & effect verification, full system check"},{"system":"Emergency Lighting","frequency":"Monthly","regulation":"BS 5266-1","scope":"Functional test (flick test) of all luminaires"},{"system":"Emergency Lighting","frequency":"Annually","regulation":"BS 5266-1","scope":"Full 3-hour duration test with battery discharge"},{"system":"Fire Doors","frequency":"Quarterly","regulation":"RRO Article 17","scope":"Visual inspection, gap checks, ironmongery, intumescent seals"},{"system":"Fire Doors","frequency":"Annually","regulation":"BS 8214","scope":"Comprehensive inspection by competent person"},{"system":"Sprinkler Systems","frequency":"Weekly","regulation":"BS EN 12845","scope":"Visual check, pump test, pressure readings"},{"system":"Sprinkler Systems","frequency":"Annually","regulation":"LPC Rules","scope":"Full flow test, valve inspection, comprehensive service"},{"system":"Dry Risers","frequency":"6-Monthly","regulation":"BS 9990","scope":"Visual inspection, inlet/outlet checks"},{"system":"Dry Risers","frequency":"Annually","regulation":"BS 9990","scope":"Wet pressure test to 10 bar for 15 minutes"},{"system":"Fire Extinguishers","frequency":"Annually","regulation":"BS 5306-3","scope":"Service & certification by competent technician"},{"system":"Smoke Control / AOVs","frequency":"Weekly","regulation":"BS EN 12101-2","scope":"Functional test of automatic vents"},{"system":"Smoke Control / AOVs","frequency":"Annually","regulation":"BS 7346-8","scope":"Full system test and certification"}]'),
+
+('emergency-lighting', 'Emergency Lighting Compliance Checklist', 'UK Statutory Testing Requirements — BS 5266', 'Monthly functional tests and annual 3-hour duration tests required.', '[{"system":"Emergency Lighting","frequency":"Monthly","regulation":"BS 5266-1","scope":"Functional test (flick test) of all luminaires"},{"system":"Emergency Lighting","frequency":"Annually","regulation":"BS 5266-1","scope":"Full 3-hour duration test with battery discharge"},{"system":"Exit Signage","frequency":"Monthly","regulation":"BS 5266-1","scope":"Illumination verification and condition check"},{"system":"Central Battery","frequency":"Monthly","regulation":"BS 5266-1","scope":"Charger output, battery condition, alarm tests"},{"system":"Central Battery","frequency":"Annually","regulation":"BS 5266-1","scope":"Full load duration test with capacity verification"},{"system":"Maintained Fittings","frequency":"Monthly","regulation":"BS 5266-1","scope":"Lamp condition and mains switching test"},{"system":"Non-Maintained","frequency":"Monthly","regulation":"BS 5266-1","scope":"Activation on mains failure simulation"}]'),
+
+('water-hygiene', 'Water Hygiene Compliance Checklist', 'UK Statutory Testing Requirements — ACOP L8, HSG274', 'Legionella control requires ongoing monitoring and risk assessment refresh.', '[{"system":"Legionella Risk Assessment","frequency":"Every 2 Years","regulation":"ACOP L8","scope":"Full system survey, risk scoring, remedial recommendations"},{"system":"Hot Water Temperature","frequency":"Monthly","regulation":"HSG274","scope":"Sentinel outlets — must reach 50°C within 1 minute"},{"system":"Cold Water Temperature","frequency":"Monthly","regulation":"HSG274","scope":"Sentinel outlets — must be below 20°C within 2 minutes"},{"system":"Water Sampling","frequency":"As Risk Dictates","regulation":"ACOP L8","scope":"Legionella bacteria testing via UKAS laboratory"},{"system":"Tank Inspection","frequency":"Annually","regulation":"ACOP L8","scope":"Visual inspection, lid integrity, insulation, chlorination"},{"system":"TMV Servicing","frequency":"Annually","regulation":"HSG274","scope":"Fail-safe verification, temperature calibration"},{"system":"Dead Leg Removal","frequency":"On Identification","regulation":"ACOP L8","scope":"Elimination of stagnation risk points"},{"system":"Flushing Regime","frequency":"Weekly","regulation":"HSG274","scope":"Little-used outlets flushed to prevent stagnation"}]'),
+
+('hvac', 'HVAC Compliance Checklist', 'UK Statutory Testing Requirements — F-Gas, SFG20, TM44', 'F-Gas certified engineers required for refrigerant handling.', '[{"system":"F-Gas Systems","frequency":"Annually","regulation":"F-Gas Regulations","scope":"Leak detection, refrigerant logs, system certification"},{"system":"Air Conditioning (>12kW)","frequency":"Every 5 Years","regulation":"TM44","scope":"Air conditioning energy assessment"},{"system":"HVAC PPM","frequency":"Quarterly","regulation":"SFG20","scope":"PPM task scheduling and verification"},{"system":"Building Regs Compliance","frequency":"On Install/Change","regulation":"Part L","scope":"Energy efficiency compliance"},{"system":"Filter Changes","frequency":"Monthly","regulation":"SFG20","scope":"Air handling unit filter replacement"},{"system":"Coil Cleaning","frequency":"Annually","regulation":"SFG20","scope":"Evaporator and condenser coil cleaning"},{"system":"Belt & Drive Inspection","frequency":"Quarterly","regulation":"SFG20","scope":"Fan belt tension, pulley alignment, drive condition"},{"system":"Refrigerant Checks","frequency":"6-Monthly","regulation":"F-Gas","scope":"Pressure readings, leak detection, oil levels"}]'),
+
+('electrical', 'Electrical Compliance Checklist', 'UK Statutory Testing Requirements — BS 7671, IET', 'NICEIC or equivalent certification required for all electrical testing.', '[{"system":"EICR Testing","frequency":"Every 5 Years","regulation":"BS 7671","scope":"Electrical Installation Condition Report"},{"system":"PAT Testing","frequency":"Annually","regulation":"IET Code of Practice","scope":"Portable appliance testing and labelling"},{"system":"Emergency Lighting","frequency":"Monthly","regulation":"BS 5266-1","scope":"Functional test of all emergency luminaires"},{"system":"Emergency Lighting","frequency":"Annually","regulation":"BS 5266-1","scope":"Full 3-hour duration test"},{"system":"RCD Testing","frequency":"Quarterly","regulation":"BS 7671","scope":"Residual current device trip testing"},{"system":"Thermographic Survey","frequency":"Annually","regulation":"BS 7671","scope":"Infrared inspection of electrical infrastructure"},{"system":"Lightning Protection","frequency":"Annually","regulation":"BS EN 62305","scope":"Earth resistance and bonding verification"},{"system":"Generator Testing","frequency":"Monthly","regulation":"BS 7698","scope":"Load test and operational verification"}]'),
+
+('capability-pack', 'Capability Pack', 'Comprehensive FM Services for UK Commercial & Public Estates', 'Contact us today for a tailored FM solution.', '[{"type":"intro","content":"EntireFM is a leading facilities management provider delivering compliance-first solutions across the UK. We serve commercial offices, retail estates, healthcare facilities, education campuses, and industrial sites with end-to-end maintenance and safety services."},{"type":"services","items":[{"name":"Fire Safety Systems","desc":"Fire alarms, suppression, extinguishers, emergency lighting — BS 5839, BS 5266 compliant"},{"name":"M&E Maintenance","desc":"Electrical, HVAC, plumbing, and building fabric maintenance — SFG20 scheduled"},{"name":"Water Hygiene","desc":"Legionella risk assessment, temperature monitoring, TMV servicing — ACOP L8 certified"},{"name":"Statutory Compliance","desc":"EICR, PAT testing, gas safety, lift servicing — full regulatory coverage"},{"name":"Reactive Repairs","desc":"24/7 helpdesk, rapid response, nationwide engineer coverage"},{"name":"Planned Preventive Maintenance","desc":"Asset lifecycle management, condition surveys, PPM scheduling"}]},{"type":"accreditations","items":["ISO 9001:2015 — Quality Management","ISO 14001:2015 — Environmental Management","ISO 45001:2018 — Occupational Health & Safety","SafeContractor Approved","CHAS Accredited","NICEIC Approved Contractor","Gas Safe Registered","F-Gas Certified Engineers"]},{"type":"contact","phone":"0800 024 8550","email":"info@entirefm.com","website":"www.entirefm.com"}]');

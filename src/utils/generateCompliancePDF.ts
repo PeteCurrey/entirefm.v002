@@ -1,4 +1,5 @@
 import { jsPDF } from "jspdf";
+import { supabase } from "@/integrations/supabase/client";
 import logoImage from "@/assets/logo.png";
 
 interface ComplianceItem {
@@ -277,53 +278,113 @@ export const electricalComplianceItems: ComplianceItem[] = [
   { system: "Generator Testing", frequency: "Monthly", regulation: "BS 7698", scope: "Load test and operational verification" }
 ];
 
+// Fetch template from database with fallback to defaults
+async function fetchTemplate(templateKey: string, fallbackItems: ComplianceItem[], fallbackOptions: { title: string; subtitle: string; footerNote: string }) {
+  try {
+    const { data, error } = await supabase
+      .from("pdf_templates")
+      .select("*")
+      .eq("template_key", templateKey)
+      .eq("is_active", true)
+      .single();
+    
+    if (error || !data) {
+      return {
+        title: fallbackOptions.title,
+        subtitle: fallbackOptions.subtitle,
+        items: fallbackItems,
+        footerNote: fallbackOptions.footerNote,
+        companyName: "EntireFM"
+      };
+    }
+    
+    return {
+      title: data.title,
+      subtitle: data.subtitle || fallbackOptions.subtitle,
+      items: (Array.isArray(data.items) ? data.items : fallbackItems) as ComplianceItem[],
+      footerNote: data.footer_note || fallbackOptions.footerNote,
+      companyName: data.company_name || "EntireFM"
+    };
+  } catch {
+    return {
+      title: fallbackOptions.title,
+      subtitle: fallbackOptions.subtitle,
+      items: fallbackItems,
+      footerNote: fallbackOptions.footerNote,
+      companyName: "EntireFM"
+    };
+  }
+}
+
 export async function downloadFireAlarmChecklist() {
-  await generateCompliancePDF({
+  const template = await fetchTemplate("fire-alarm", fireAlarmComplianceItems, {
     title: "Fire Safety Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — BS 5839, BS 5266, RRO",
-    items: fireAlarmComplianceItems,
     footerNote: "All visits logged. All records stored. Easily retrievable for audits or HSE."
   });
+  await generateCompliancePDF(template);
 }
 
 export async function downloadEmergencyLightingChecklist() {
-  await generateCompliancePDF({
+  const template = await fetchTemplate("emergency-lighting", emergencyLightingComplianceItems, {
     title: "Emergency Lighting Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — BS 5266",
-    items: emergencyLightingComplianceItems,
     footerNote: "Monthly functional tests and annual 3-hour duration tests required."
   });
+  await generateCompliancePDF(template);
 }
 
 export async function downloadWaterHygieneChecklist() {
-  await generateCompliancePDF({
+  const template = await fetchTemplate("water-hygiene", waterHygieneComplianceItems, {
     title: "Water Hygiene Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — ACOP L8, HSG274",
-    items: waterHygieneComplianceItems,
     footerNote: "Legionella control requires ongoing monitoring and risk assessment refresh."
   });
+  await generateCompliancePDF(template);
 }
 
 export async function downloadHVACChecklist() {
-  await generateCompliancePDF({
+  const template = await fetchTemplate("hvac", hvacComplianceItems, {
     title: "HVAC Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — F-Gas, SFG20, TM44",
-    items: hvacComplianceItems,
     footerNote: "F-Gas certified engineers required for refrigerant handling."
   });
+  await generateCompliancePDF(template);
 }
 
 export async function downloadElectricalChecklist() {
-  await generateCompliancePDF({
+  const template = await fetchTemplate("electrical", electricalComplianceItems, {
     title: "Electrical Compliance Checklist",
     subtitle: "UK Statutory Testing Requirements — BS 7671, IET",
-    items: electricalComplianceItems,
     footerNote: "NICEIC or equivalent certification required for all electrical testing."
   });
+  await generateCompliancePDF(template);
 }
 
 // Capability Pack PDF Generator
 export async function downloadCapabilityPack(): Promise<void> {
+  // Fetch template from database for metadata
+  let title = "Capability Pack";
+  let subtitle = "Comprehensive FM Services for UK Commercial & Public Estates";
+  let companyName = "EntireFM";
+  
+  try {
+    const { data } = await supabase
+      .from("pdf_templates")
+      .select("*")
+      .eq("template_key", "capability-pack")
+      .eq("is_active", true)
+      .single();
+    
+    if (data) {
+      title = data.title || title;
+      subtitle = data.subtitle || subtitle;
+      companyName = data.company_name || companyName;
+    }
+  } catch {
+    // Use defaults
+  }
+  
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
@@ -348,17 +409,17 @@ export async function downloadCapabilityPack(): Promise<void> {
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(12);
   doc.setFont("helvetica", "normal");
-  doc.text("EntireFM", margin + 42, 18);
+  doc.text(companyName, margin + 42, 18);
 
   // Title
   doc.setFontSize(22);
   doc.setFont("helvetica", "bold");
-  doc.text("Capability Pack", margin + 42, 32);
+  doc.text(title, margin + 42, 32);
 
   // Subtitle
   doc.setFontSize(10);
   doc.setFont("helvetica", "normal");
-  doc.text("Comprehensive FM Services for UK Commercial & Public Estates", margin + 42, 42);
+  doc.text(subtitle, margin + 42, 42);
 
   yPos = 60;
   doc.setTextColor(0, 0, 0);

@@ -290,6 +290,7 @@ import PageBuilder from "./pages/admin/PageBuilder";
 import PageEditor from "./pages/admin/PageEditor";
 import MediaLibrary from "./pages/admin/MediaLibrary";
 import CMSPreviewPage from "./pages/admin/CMSPreviewPage";
+import PDFTemplatesAdmin from "./pages/admin/PDFTemplatesAdmin";
 import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
 import EmergencyResponse from "./pages/services/EmergencyResponse";
 import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
@@ -953,6 +954,8 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="site-map" element={<SiteMap />} />
                 <Route path="link-health" element={<LinkHealthDashboard />} />
                 <Route path="search-analytics" element={<SearchAnalyticsDashboard />} />
+                {/* PDF Templates */}
+                <Route path="pdf-templates" element={<PDFTemplatesAdmin />} />
                 {/* Settings */}
                 <Route path="settings" element={<AdminSettings />} />
               </Route>
