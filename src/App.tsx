@@ -284,6 +284,8 @@ import PageManager from "./pages/admin/PageManager";
 import PageCreator from "./pages/admin/PageCreator";
 import SEOTools from "./pages/admin/SEOTools";
 import ClientLogos from "./pages/admin/ClientLogos";
+import AdminSettings from "./pages/admin/Settings";
+import SupplierApplications from "./pages/admin/SupplierApplications";
 import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
 import EmergencyResponse from "./pages/services/EmergencyResponse";
 import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
@@ -918,6 +920,7 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="contacts" element={<ContactSubmissions />} />
                 <Route path="helpdesk-jobs" element={<HelpdeskJobs />} />
                 <Route path="jobs" element={<Jobs />} />
+                <Route path="suppliers" element={<SupplierApplications />} />
                 {/* Marketing Routes */}
                 <Route path="marketing" element={<MarketingDashboard />} />
                 <Route path="marketing/content" element={<ContentList />} />
@@ -936,6 +939,8 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="site-map" element={<SiteMap />} />
                 <Route path="link-health" element={<LinkHealthDashboard />} />
                 <Route path="search-analytics" element={<SearchAnalyticsDashboard />} />
+                {/* Settings */}
+                <Route path="settings" element={<AdminSettings />} />
               </Route>
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
