@@ -7,7 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
-import { Loader2, Mail, Phone, Building2, Calendar, FileText, ChevronDown, ChevronUp } from "lucide-react";
+import { Loader2, Mail, Phone, Building2, Calendar, FileText, ChevronDown, ChevronUp, LayoutGrid, List } from "lucide-react";
+import ProposalKanban from "@/components/admin/proposals/ProposalKanban";
 
 type ProposalStatus = 'new' | 'reviewing' | 'contacted' | 'quoted' | 'won' | 'lost';
 
@@ -29,6 +30,8 @@ interface ProposalRequest {
   urgency_level: string | null;
   documents: string[];
   admin_notes: string | null;
+  estimated_value: number | null;
+  follow_up_date: string | null;
 }
 
 const statusColors = {
@@ -44,6 +47,7 @@ export default function ProposalsDashboard() {
   const [proposals, setProposals] = useState<ProposalRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'list' | 'kanban'>('kanban');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -135,14 +139,55 @@ export default function ProposalsDashboard() {
     );
   }
 
+  const handleStatusChange = (id: string, status: ProposalStatus) => {
+    setProposals(proposals.map(p => 
+      p.id === id ? { ...p, status } : p
+    ));
+  };
+
+  const handleProposalClick = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+    if (viewMode === 'kanban') {
+      setViewMode('list');
+      setTimeout(() => setExpandedId(id), 100);
+    }
+  };
+
   return (
     <div className="p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Proposal Requests Dashboard</h1>
-          <p className="text-muted-foreground">Manage and track incoming proposal requests</p>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-4xl font-bold mb-2">Proposal Requests Dashboard</h1>
+            <p className="text-muted-foreground">Manage and track incoming proposal requests</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant={viewMode === 'list' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setViewMode('list')}
+            >
+              <List className="h-4 w-4 mr-1" />
+              List
+            </Button>
+            <Button
+              variant={viewMode === 'kanban' ? 'default' : 'outline'}
+              size="sm"
+              onClick={() => setViewMode('kanban')}
+            >
+              <LayoutGrid className="h-4 w-4 mr-1" />
+              Kanban
+            </Button>
+          </div>
         </div>
 
+        {viewMode === 'kanban' ? (
+          <ProposalKanban
+            proposals={proposals}
+            onStatusChange={handleStatusChange}
+            onProposalClick={handleProposalClick}
+          />
+        ) : (
         <div className="grid gap-4 mb-8">
           {proposals.map((proposal) => (
             <Card key={proposal.id} className="p-6">
@@ -266,6 +311,7 @@ export default function ProposalsDashboard() {
             </Card>
           ))}
         </div>
+        )}
 
         {proposals.length === 0 && (
           <Card className="p-12 text-center">
