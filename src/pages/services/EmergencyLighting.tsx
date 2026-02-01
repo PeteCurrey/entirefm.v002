@@ -1,49 +1,100 @@
 import { Helmet } from "react-helmet";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { 
+  CheckCircle2, 
+  AlertTriangle, 
+  Lightbulb, 
+  Shield, 
+  ArrowRight, 
+  Phone, 
+  FileCheck,
+  Clock,
+  Battery,
+  Eye
+} from "lucide-react";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
-import { useConversionTracking } from "@/hooks/useConversionTracking";
-import { RelatedServices } from "@/components/shared/RelatedServices";
-import { RegionalServiceIndex } from "@/components/shared/RegionalServiceIndex";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { ArrowRight, FileText, Lightbulb, Shield, CheckCircle2, FileCheck, AlertTriangle } from "lucide-react";
 import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import ContentSection from "@/components/shared/ContentSection";
 import FeatureCardGrid from "@/components/shared/FeatureCardGrid";
+import StatsBanner from "@/components/shared/StatsBanner";
+import CTASection from "@/components/shared/CTASection";
+import ContentSection from "@/components/shared/ContentSection";
+import { TrustBar } from "@/components/shared/TrustBar";
 
 const EmergencyLighting = () => {
-  useConversionTracking();
-
   const breadcrumbItems = [
     { label: "Services", href: "/services" },
     { label: "Emergency Lighting Compliance" }
   ];
 
-  const keyFeatures = [
+  const heroStats = [
+    { value: "BS 5266", label: "Certified" },
+    { value: "3hr", label: "Duration Testing" },
+    { value: "Monthly", label: "Function Tests" },
+    { value: "24/7", label: "Support" }
+  ];
+
+  const features = [
     {
       icon: Lightbulb,
       title: "Monthly Function Tests",
-      description: "Regular verification that all emergency lighting units operate correctly"
+      description: "Regular verification that all emergency lighting units operate correctly."
     },
     {
-      icon: Shield,
+      icon: Clock,
       title: "Annual 3-Hour Duration",
-      description: "Full battery capacity testing to BS 5266 requirements"
+      description: "Full battery capacity testing to BS 5266 requirements with certification."
     },
     {
-      icon: CheckCircle2,
+      icon: Battery,
       title: "Battery Replacements",
-      description: "Proactive battery management before failure occurs"
+      description: "Proactive battery management and replacement before failure occurs."
+    },
+    {
+      icon: Eye,
+      title: "Escape Route Mapping",
+      description: "Lux level verification ensuring adequate illumination on all escape routes."
     },
     {
       icon: FileCheck,
       title: "Digital Certification",
-      description: "Instant downloadable certificates with photo evidence"
+      description: "Instant downloadable certificates with photo evidence and audit trails."
+    },
+    {
+      icon: Shield,
+      title: "Rapid Remedials",
+      description: "Same-visit repairs where possible, priority scheduling for failures."
     }
+  ];
+
+  const stats = [
+    { value: "100", suffix: "%", label: "Compliance Rate" },
+    { value: "3", suffix: "hr", label: "Duration Tested" },
+    { value: "<48", suffix: "hr", label: "Remedial Response" },
+    { value: "Zero", label: "Test Failures" }
+  ];
+
+  const complianceItems = [
+    { system: "Emergency Lighting", frequency: "Monthly", regulation: "BS 5266-1", scope: "Functional test (flick test) of all luminaires" },
+    { system: "Emergency Lighting", frequency: "Annually", regulation: "BS 5266-1", scope: "Full 3-hour duration test with battery discharge" },
+    { system: "Exit Signage", frequency: "Monthly", regulation: "BS 5266-1", scope: "Illumination verification and condition check" },
+    { system: "Central Battery", frequency: "Monthly", regulation: "BS 5266-1", scope: "Charger output, battery condition, alarm tests" },
+    { system: "Central Battery", frequency: "Annually", regulation: "BS 5266-1", scope: "Full load duration test with capacity verification" },
+    { system: "Maintained Fittings", frequency: "Monthly", regulation: "BS 5266-1", scope: "Lamp condition and mains switching test" },
+    { system: "Non-Maintained", frequency: "Monthly", regulation: "BS 5266-1", scope: "Activation on mains failure simulation" }
+  ];
+
+  const testingServices = [
+    "Monthly functional testing",
+    "Annual 3-hour duration testing",
+    "Signage illumination performance",
+    "Escape route coverage mapping",
+    "Battery and fitting replacements",
+    "Logbooks & digital certification",
+    "Lux level measurements",
+    "Central battery system testing"
   ];
 
   const faqs = [
@@ -58,342 +109,260 @@ const EmergencyLighting = () => {
     {
       question: "Can tests be carried out after hours?",
       answer: "Absolutely. We schedule disruptive works responsibly to minimize operational impact, including evening and weekend testing when required."
+    },
+    {
+      question: "How often should emergency lighting be tested?",
+      answer: "Monthly functional tests (brief activation) and annual 3-hour duration tests are required under BS 5266-1. Central battery systems require additional monthly charger and alarm checks."
     }
   ];
 
   return (
     <>
       <Helmet>
-        <title>Emergency Lighting & Evacuation Safety Compliance | BS 5266 Testing | Entire FM</title>
-        <meta name="description" content="BS 5266 certified emergency lighting testing, 3-hour duration verification and remedials for compliant evacuation safety across UK commercial estates." />
+        <title>Emergency Lighting & BS 5266 Compliance UK | EntireFM</title>
+        <meta 
+          name="description" 
+          content="BS 5266 certified emergency lighting testing, 3-hour duration verification and rapid remedials. Evacuation safety compliance across UK commercial estates."
+        />
         <link rel="canonical" href="https://entirefm.com/services/emergency-lighting" />
-        <meta property="og:title" content="Emergency Lighting & Evacuation Safety Compliance | Entire FM" />
-        <meta property="og:description" content="BS 5266 testing, duration verification and remedials for safe evacuation systems." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://entirefm.com/services/emergency-lighting" />
       </Helmet>
 
       <BreadcrumbSchema items={breadcrumbItems} />
-      <ServiceSchema
+      <ServiceSchema 
         name="Emergency Lighting & Evacuation Safety Compliance"
-        description="BS 5266 certified emergency lighting testing, 3-hour duration verification and remedials for compliant and safe evacuation across commercial estates."
-        provider="Entire FM"
+        description="BS 5266 certified emergency lighting testing, 3-hour duration verification and remedials for compliant and safe evacuation."
+        provider="EntireFM"
         areaServed="United Kingdom"
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen bg-background">
-        <ServiceHeroSection
-          breadcrumbItems={breadcrumbItems}
-          title="Emergency Lighting & Evacuation Safety"
-          description="BS 5266 testing, 3-hour duration verification and remedials for compliant and safe evacuation across commercial estates."
-          stats={[
-            { value: "BS 5266", label: "Certified" },
-            { value: "3hr", label: "Duration Testing" },
-            { value: "Monthly", label: "Function Tests" },
-            { value: "24/7", label: "Support" }
-          ]}
-          primaryCTA={{
-            label: "Request 3-Hour Duration Test",
-            href: "/request-proposal",
-            icon: ArrowRight
-          }}
-          secondaryCTA={{
-            label: "Download BS 5266 Checklist",
-            href: "/resources",
-            icon: FileText
-          }}
-          backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
-        />
+      {/* Hero Section */}
+      <ServiceHeroSection
+        breadcrumbItems={breadcrumbItems}
+        title="Evacuation Safety When Visibility Fails"
+        description="BS 5266 certified testing and 3-hour duration verification. When power fails, your escape routes stay illuminated — guaranteed."
+        stats={heroStats}
+        primaryCTA={{ label: "Request Duration Test", href: "/request-proposal", icon: ArrowRight }}
+        secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
+        backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
+      />
 
-        {/* Key Features Grid */}
-        <section className="py-16 bg-background">
-          <div className="max-w-6xl mx-auto px-4">
-            <FeatureCardGrid features={keyFeatures} columns={4} variant="gradient" />
-          </div>
-        </section>
+      {/* Trust Bar */}
+      <TrustBar variant="compact" />
 
-        {/* Evacuation Safety Section */}
-        <ContentSection variant="muted" title="Evacuation Safety When Visibility Fails" subtitle="In an emergency, people don't panic because of fire — they panic because they can't see." centered>
-          <div className="max-w-4xl mx-auto">
-            <AnimatedSection delay={0.1}>
-              <div className="grid md:grid-cols-2 gap-6 text-left mt-8">
-                <div className="bg-card p-6 rounded-lg border border-border">
-                  <h3 className="text-xl font-light mb-4 text-foreground">When Emergency Lighting Fails:</h3>
-                  <ul className="space-y-3 text-muted-foreground">
-                    {[
-                      "Evacuation slows",
-                      "Injury & liability rise",
-                      "Insurers reject claims",
-                      "Fire safety enforcement escalates"
-                    ].map((item, index) => (
-                      <motion.li
-                        key={index}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-2"
-                      >
-                        <AlertTriangle className="w-4 h-4 text-destructive mt-1 flex-shrink-0" />
-                        <span className="font-light">{item}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="bg-primary/5 p-6 rounded-lg border border-primary/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-xl font-light">
-                      Compliance isn't optional —<br />
-                      <span className="text-primary text-2xl font-medium">it's life preservation.</span>
-                    </p>
-                  </div>
-                </div>
+      {/* Features Grid */}
+      <ContentSection
+        title="Complete Emergency Lighting Coverage"
+        subtitle="From monthly function tests to annual duration verification — ensuring your evacuation routes are always safe."
+        centered
+      >
+        <FeatureCardGrid features={features} columns={3} variant="gradient" />
+      </ContentSection>
+
+      {/* Stats Banner */}
+      <StatsBanner stats={stats} variant="gradient" />
+
+      {/* Risk Section */}
+      <ContentSection
+        title="When Emergency Lighting Fails, Evacuation Fails"
+        subtitle="In an emergency, people don't panic because of fire — they panic because they can't see."
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {[
+            { icon: AlertTriangle, text: "Evacuation slows" },
+            { icon: AlertTriangle, text: "Injury & liability rise" },
+            { icon: AlertTriangle, text: "Insurers reject claims" },
+            { icon: AlertTriangle, text: "Enforcement escalates" }
+          ].map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="flex items-center gap-4 p-6 bg-card border border-destructive/20 rounded-xl">
+                <item.icon className="w-6 h-6 text-destructive flex-shrink-0" />
+                <span className="font-light text-foreground">{item.text}</span>
               </div>
             </AnimatedSection>
+          ))}
+        </div>
+        <AnimatedSection delay={0.4}>
+          <div className="mt-8 p-6 bg-charcoal text-white rounded-xl max-w-2xl mx-auto text-center">
+            <p className="text-lg font-medium">Compliance isn't optional — it's life preservation.</p>
           </div>
-        </ContentSection>
+        </AnimatedSection>
+      </ContentSection>
 
-        {/* Main Content Grid */}
-        <section className="py-16 bg-background">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2 space-y-12">
-                
-                {/* Full BS 5266 Compliance */}
-                <AnimatedSection>
-                  <h2 className="text-3xl font-light mb-6">
-                    <span className="underline-accent">Full BS 5266 Compliance Delivery</span>
-                  </h2>
-                  <p className="text-xl text-muted-foreground font-light mb-8">We maintain and certify:</p>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                      "Monthly functional testing",
-                      "Annual 3-hour duration testing",
-                      "Signage illumination performance",
-                      "Escape route coverage mapping",
-                      "Battery and fitting replacements",
-                      "Logbooks & digital certification"
-                    ].map((service, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                        className="bg-card p-5 rounded-lg border border-border hover:border-primary/50 transition-colors"
-                      >
-                        <div className="flex items-start gap-3">
-                          <Lightbulb className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="font-light text-foreground">{service}</span>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <p className="text-lg text-center mt-8 text-foreground font-medium">
-                    Your evacuation stays safe — even when power fails.
-                  </p>
-                </AnimatedSection>
-
-                {/* Live Remedials */}
-                <AnimatedSection delay={0.1} className="bg-muted/30 p-8 rounded-xl">
-                  <h2 className="text-3xl font-light mb-6">
-                    Live Remedials — Zero Exposure
-                  </h2>
-                  <p className="text-muted-foreground font-light mb-8">
-                    Any failure identified during testing triggers our <Link to="/fm-operations/reactive-maintenance" className="text-primary hover:underline">reactive maintenance</Link> process, ensuring it:
-                  </p>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    {[
-                      { title: "Risk-coded", desc: "Severity categorized" },
-                      { title: "Costed", desc: "Transparent pricing" },
-                      { title: "Resolved rapidly", desc: "Fast deployment" }
-                    ].map((item, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        className="bg-card p-6 rounded-lg border border-border text-center"
-                      >
-                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                          <CheckCircle2 className="w-6 h-6 text-primary" />
-                        </div>
-                        <h3 className="text-lg font-medium mb-2 text-foreground">{item.title}</h3>
-                        <p className="text-muted-foreground font-light text-sm">{item.desc}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <p className="text-lg text-center mt-8 text-foreground font-medium">
-                    We don't leave evacuation safety to chance.
-                  </p>
-                </AnimatedSection>
-
-                {/* Digital Compliance Governance */}
-                <AnimatedSection delay={0.2}>
-                  <h2 className="text-3xl font-light mb-6">
-                    <span className="underline-accent">Digital Compliance Governance</span>
-                  </h2>
-                  <p className="text-muted-foreground font-light mb-8">
-                    Every test. Every asset. Every result. Stored electronically with:
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4 mb-8">
-                    {[
-                      "Photo evidence",
-                      "Remedial lifecycle logs",
-                      "Downloadable certificates",
-                      "Automatic re-test alerts"
-                    ].map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                        className="flex items-center gap-3 bg-card p-5 rounded-lg border border-border"
-                      >
-                        <FileCheck className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="font-light text-foreground">{feature}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                  <div className="bg-primary/5 p-6 rounded-lg border border-primary/20 text-center">
-                    <p className="text-lg font-light">
-                      Auditors love this. <span className="text-primary font-medium">Insurers expect it.</span>
-                    </p>
-                  </div>
-                </AnimatedSection>
-
-                {/* Sectors We Protect */}
-                <AnimatedSection delay={0.1}>
-                  <h2 className="text-3xl font-light mb-6">
-                    <span className="underline-accent">Sectors We Protect</span>
-                  </h2>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {[
-                      { name: "PBSA & residential", link: "/sectors/residential-pbsa" },
-                      { name: "Retail & hospitality", link: "/sectors/retail-service-stations" },
-                      { name: "Corporate offices", link: "/sectors/offices-corporate" },
-                      { name: "Public buildings & venues", link: "/sectors" },
-                      { name: "Logistics & industrial", link: "/sectors/industrial-logistics" }
-                    ].map((sector, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                      >
-                        <Link 
-                          to={sector.link}
-                          className="block bg-card p-5 rounded-lg border border-border hover:border-primary transition-colors text-center"
-                        >
-                          <span className="font-light text-foreground">{sector.name}</span>
-                        </Link>
-                      </motion.div>
-                    ))}
-                  </div>
-                </AnimatedSection>
-
-                {/* Case Study Highlights */}
-                <AnimatedSection delay={0.2}>
-                  <h2 className="text-3xl font-light mb-6">
-                    <span className="underline-accent">Case Study Highlights</span>
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      className="bg-card p-6 rounded-xl border border-border hover:border-primary/30 transition-colors"
-                    >
-                      <h3 className="text-xl font-medium mb-3 text-foreground">City Retail Centre</h3>
-                      <p className="text-muted-foreground font-light leading-relaxed">
-                        Compliance restored within 48 hours of audit deadline.
-                      </p>
-                    </motion.div>
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.1 }}
-                      className="bg-card p-6 rounded-xl border border-border hover:border-primary/30 transition-colors"
-                    >
-                      <h3 className="text-xl font-medium mb-3 text-foreground">PBSA Building</h3>
-                      <p className="text-muted-foreground font-light leading-relaxed">
-                        Duration failures eliminated across full site.
-                      </p>
-                    </motion.div>
-                  </div>
-                  <p className="text-sm text-muted-foreground text-center mt-6">
-                    Detailed case studies coming soon
-                  </p>
-                </AnimatedSection>
-
-                {/* Related Services */}
-                <RelatedServices 
-                  services={[
-                    {
-                      title: "PPM Delivery",
-                      description: "Monthly functional testing and annual emergency lighting certification",
-                      link: "/fm-operations/ppm-delivery"
-                    },
-                    {
-                      title: "Fire Safety",
-                      description: "Comprehensive fire safety system testing and maintenance",
-                      link: "/services/fire-safety"
-                    },
-                    {
-                      title: "Reactive Maintenance",
-                      description: "Emergency lighting fault diagnosis and rapid repairs",
-                      link: "/fm-operations/reactive-maintenance"
-                    },
-                    {
-                      title: "Emergency Response",
-                      description: "Critical life-safety system emergency attendance",
-                      link: "/services/emergency-response"
-                    }
-                  ]}
-                />
-
-                <RegionalServiceIndex 
-                  serviceName="Emergency Lighting"
-                  serviceSlug="emergency-lighting"
-                />
-
-                <FAQSection faqs={faqs} />
+      {/* Testing Services */}
+      <ContentSection
+        title="Full BS 5266 Compliance Delivery"
+        subtitle="Everything you need for emergency lighting compliance, delivered by certified engineers."
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {testingServices.map((service, index) => (
+            <AnimatedSection key={index} delay={index * 0.03}>
+              <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-muted/50 to-background border border-border rounded-xl hover:border-primary/30 transition-all">
+                <Lightbulb className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="font-light">{service}</span>
               </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <AnimatedSection delay={0.3}>
+          <p className="text-lg font-medium text-primary text-center mt-8">
+            Your evacuation stays safe — even when power fails.
+          </p>
+        </AnimatedSection>
+      </ContentSection>
 
-              {/* Sidebar */}
-              <aside className="lg:col-span-1">
-                <div className="sticky top-24">
-                  <SidebarCTA />
-                </div>
-              </aside>
+      {/* Compliance Table */}
+      <ContentSection
+        title="Emergency Lighting Testing Requirements"
+        subtitle="UK regulatory requirements under BS 5266 — all managed through our digital compliance platform."
+        variant="gradient"
+      >
+        <div className="max-w-4xl mx-auto">
+          <AnimatedSection>
+            <div className="overflow-hidden rounded-2xl border border-border bg-card">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-charcoal text-white">
+                    <th className="text-left p-5 font-medium">System Type</th>
+                    <th className="text-left p-5 font-medium">Frequency</th>
+                    <th className="text-left p-5 font-medium">Regulation</th>
+                    <th className="text-left p-5 font-medium">Scope</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {complianceItems.map((item, index) => (
+                    <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-muted/30' : 'bg-background'}`}>
+                      <td className="p-5 font-medium text-foreground">{item.system}</td>
+                      <td className="p-5">
+                        <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
+                          item.frequency === 'Monthly' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' :
+                          'bg-primary/10 text-primary'
+                        }`}>
+                          {item.frequency}
+                        </span>
+                      </td>
+                      <td className="p-5 font-light text-muted-foreground">{item.regulation}</td>
+                      <td className="p-5 font-light text-muted-foreground">{item.scope}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <ContentSection variant="gradient" centered>
-          <AnimatedSection className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-light mb-4">
-              Evacuation readiness = life safety.
-            </h2>
-            <p className="text-lg text-muted-foreground mb-2">
-              Don't leave it unclear.
-            </p>
-            <p className="text-muted-foreground mb-8">📩 hello@entirefm.com</p>
-            <Button size="lg" asChild>
-              <Link to="/request-proposal">
-                <ArrowRight className="w-5 h-5 mr-2" />
-                Request 3-Hour Test
-              </Link>
-            </Button>
           </AnimatedSection>
-        </ContentSection>
-      </div>
+        </div>
+      </ContentSection>
+
+      {/* Live Remedials */}
+      <ContentSection
+        title="Live Remedials — Zero Exposure"
+        subtitle="Any failure identified during testing triggers immediate action."
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          {[
+            { title: "Risk-Coded", description: "Severity categorized for prioritization" },
+            { title: "Costed", description: "Transparent pricing with no surprises" },
+            { title: "Resolved Rapidly", description: "Fast deployment, minimal downtime" }
+          ].map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="p-8 bg-card border border-border rounded-2xl text-center h-full">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle2 className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium mb-3">{item.title}</h3>
+                <p className="text-muted-foreground font-light">{item.description}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <AnimatedSection delay={0.4}>
+          <p className="text-lg font-medium text-primary text-center mt-8">
+            We don't leave evacuation safety to chance.
+          </p>
+        </AnimatedSection>
+      </ContentSection>
+
+      {/* Digital Governance */}
+      <ContentSection
+        title="Digital Compliance Governance"
+        subtitle="Every test. Every asset. Every result. Stored electronically with full audit trails."
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {[
+            { icon: FileCheck, title: "Photo Evidence", desc: "Visual proof of every test and condition" },
+            { icon: Clock, title: "Remedial Logs", desc: "Complete lifecycle tracking" },
+            { icon: Shield, title: "Digital Certificates", desc: "Downloadable compliance proof" },
+            { icon: AlertTriangle, title: "Re-test Alerts", desc: "Automatic scheduling reminders" }
+          ].map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="p-6 bg-card border border-border rounded-xl text-center h-full">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-medium mb-2">{item.title}</h3>
+                <p className="text-sm text-muted-foreground font-light">{item.desc}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <AnimatedSection delay={0.4}>
+          <div className="mt-8 p-6 bg-primary/10 border border-primary/20 rounded-xl max-w-2xl mx-auto text-center">
+            <p className="text-lg font-medium">Auditors love this. Insurers expect it.</p>
+          </div>
+        </AnimatedSection>
+      </ContentSection>
+
+      {/* Related Services */}
+      <ContentSection
+        title="Related Services"
+        subtitle="Comprehensive fire and life safety solutions."
+        centered
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            { title: "Fire Alarm Systems", href: "/services/fire-alarms", description: "BS 5839 detection and alarm testing" },
+            { title: "Fire Extinguishers", href: "/services/fire-extinguishers", description: "Annual servicing and certification" },
+            { title: "Fire Doors", href: "/services/fire-doors", description: "Quarterly inspection and remedials" }
+          ].map((service, idx) => (
+            <AnimatedSection key={idx} delay={idx * 0.1}>
+              <Link 
+                to={service.href}
+                className="block p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all group h-full"
+              >
+                <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="text-sm text-muted-foreground font-light mb-4">{service.description}</p>
+                <span className="text-sm text-primary flex items-center gap-1">
+                  Learn more
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* FAQ Section */}
+      <ContentSection
+        title="Frequently Asked Questions"
+        centered
+      >
+        <div className="max-w-3xl mx-auto">
+          <FAQSection faqs={faqs} />
+        </div>
+      </ContentSection>
+
+      {/* CTA Section */}
+      <CTASection
+        title="Keep Your Escape Routes Illuminated"
+        description="Request an emergency lighting compliance proposal. Expert testing, rapid remedials, complete certification."
+        primaryLabel="Request Duration Test"
+        primaryHref="/request-proposal"
+        secondaryLabel="Call 0800 024 8550"
+        secondaryHref="tel:08000248550"
+        variant="dark"
+      />
     </>
   );
 };
