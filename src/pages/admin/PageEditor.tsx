@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -29,11 +29,13 @@ import {
   Video,
   Code,
   Loader2,
-  Check,
-  X,
   ChevronDown,
   ChevronUp,
-  ExternalLink
+  ExternalLink,
+  RefreshCw,
+  Monitor,
+  Tablet,
+  Smartphone
 } from "lucide-react";
 import {
   Sheet,
@@ -56,6 +58,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Switch } from "@/components/ui/switch";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -97,11 +100,12 @@ const sectionTypes = [
   { type: 'custom', label: 'Custom HTML', icon: Code, description: 'Custom code block' },
 ];
 
-function SortableSection({ section, onUpdate, onDelete, onToggle }: { 
+function SortableSection({ section, onUpdate, onDelete, onToggle, isActive }: { 
   section: Section; 
   onUpdate: (id: string, data: Partial<Section>) => void;
   onDelete: (id: string) => void;
   onToggle: (id: string) => void;
+  isActive?: boolean;
 }) {
   const {
     attributes,
@@ -122,14 +126,14 @@ function SortableSection({ section, onUpdate, onDelete, onToggle }: {
   return (
     <div ref={setNodeRef} style={style} className="mb-3">
       <Collapsible open={section.isOpen}>
-        <Card className="border-border/50">
+        <Card className={`border-border/50 transition-all ${isActive ? 'ring-2 ring-primary shadow-lg' : ''}`}>
           <div className="p-4 flex items-center gap-3">
             <button {...attributes} {...listeners} className="cursor-grab hover:text-primary">
               <GripVertical className="w-5 h-5 text-muted-foreground" />
             </button>
             
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Icon className="w-4 h-4 text-primary" />
+            <div className={`p-2 rounded-lg ${isActive ? 'bg-primary text-primary-foreground' : 'bg-primary/10'}`}>
+              <Icon className={`w-4 h-4 ${isActive ? 'text-primary-foreground' : 'text-primary'}`} />
             </div>
             
             <div className="flex-1">
@@ -276,6 +280,162 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
         </div>
       );
 
+    case 'two_column':
+      return (
+        <div className="space-y-4 pt-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <Label>Left Column Heading</Label>
+              <Input 
+                value={(content.leftHeading as string) || ''} 
+                onChange={(e) => updateContent('leftHeading', e.target.value)}
+                placeholder="Left heading..."
+              />
+              <Label>Left Column Content</Label>
+              <Textarea 
+                value={(content.leftContent as string) || ''} 
+                onChange={(e) => updateContent('leftContent', e.target.value)}
+                placeholder="Left content..."
+                rows={4}
+              />
+            </div>
+            <div className="space-y-3">
+              <Label>Right Column Heading</Label>
+              <Input 
+                value={(content.rightHeading as string) || ''} 
+                onChange={(e) => updateContent('rightHeading', e.target.value)}
+                placeholder="Right heading..."
+              />
+              <Label>Right Column Content</Label>
+              <Textarea 
+                value={(content.rightContent as string) || ''} 
+                onChange={(e) => updateContent('rightContent', e.target.value)}
+                placeholder="Right content..."
+                rows={4}
+              />
+            </div>
+          </div>
+        </div>
+      );
+
+    case 'three_column':
+      return (
+        <div className="space-y-4 pt-4">
+          <div className="grid grid-cols-3 gap-4">
+            {[1, 2, 3].map(col => (
+              <div key={col} className="space-y-3">
+                <Label>Column {col} Heading</Label>
+                <Input 
+                  value={(content[`col${col}Heading`] as string) || ''} 
+                  onChange={(e) => updateContent(`col${col}Heading`, e.target.value)}
+                  placeholder={`Column ${col} heading...`}
+                />
+                <Label>Column {col} Content</Label>
+                <Textarea 
+                  value={(content[`col${col}Content`] as string) || ''} 
+                  onChange={(e) => updateContent(`col${col}Content`, e.target.value)}
+                  placeholder={`Column ${col} content...`}
+                  rows={3}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+    case 'cards_grid':
+      return (
+        <div className="space-y-4 pt-4">
+          <div>
+            <Label>Heading (optional)</Label>
+            <Input 
+              value={(content.heading as string) || ''} 
+              onChange={(e) => updateContent('heading', e.target.value)}
+              placeholder="Section heading..."
+            />
+          </div>
+          <div>
+            <Label>Cards (JSON format)</Label>
+            <Textarea 
+              value={JSON.stringify(content.cards || [], null, 2)} 
+              onChange={(e) => {
+                try {
+                  const parsed = JSON.parse(e.target.value);
+                  updateContent('cards', parsed);
+                } catch (err) {
+                  // Invalid JSON, ignore
+                }
+              }}
+              placeholder='[{"title": "Card 1", "description": "Description...", "link": "/page"}]'
+              rows={6}
+              className="font-mono text-sm"
+            />
+          </div>
+        </div>
+      );
+
+    case 'features':
+      return (
+        <div className="space-y-4 pt-4">
+          <div>
+            <Label>Heading (optional)</Label>
+            <Input 
+              value={(content.heading as string) || ''} 
+              onChange={(e) => updateContent('heading', e.target.value)}
+              placeholder="Section heading..."
+            />
+          </div>
+          <div>
+            <Label>Features (JSON format)</Label>
+            <Textarea 
+              value={JSON.stringify(content.features || [], null, 2)} 
+              onChange={(e) => {
+                try {
+                  const parsed = JSON.parse(e.target.value);
+                  updateContent('features', parsed);
+                } catch (err) {
+                  // Invalid JSON, ignore
+                }
+              }}
+              placeholder='[{"title": "Feature 1", "description": "Description..."}]'
+              rows={6}
+              className="font-mono text-sm"
+            />
+          </div>
+        </div>
+      );
+
+    case 'testimonials':
+      return (
+        <div className="space-y-4 pt-4">
+          <div>
+            <Label>Heading (optional)</Label>
+            <Input 
+              value={(content.heading as string) || ''} 
+              onChange={(e) => updateContent('heading', e.target.value)}
+              placeholder="Section heading..."
+            />
+          </div>
+          <div>
+            <Label>Testimonials (JSON format)</Label>
+            <Textarea 
+              value={JSON.stringify(content.testimonials || [], null, 2)} 
+              onChange={(e) => {
+                try {
+                  const parsed = JSON.parse(e.target.value);
+                  updateContent('testimonials', parsed);
+                } catch (err) {
+                  // Invalid JSON, ignore
+                }
+              }}
+              placeholder='[{"quote": "Great service!", "author": "John Doe", "role": "CEO", "company": "Acme Inc"}]'
+              rows={6}
+              className="font-mono text-sm"
+            />
+          </div>
+        </div>
+      );
+
     case 'cta':
       return (
         <div className="space-y-4 pt-4">
@@ -317,6 +477,37 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
         </div>
       );
 
+    case 'faq':
+      return (
+        <div className="space-y-4 pt-4">
+          <div>
+            <Label>Heading (optional)</Label>
+            <Input 
+              value={(content.heading as string) || ''} 
+              onChange={(e) => updateContent('heading', e.target.value)}
+              placeholder="Frequently Asked Questions"
+            />
+          </div>
+          <div>
+            <Label>FAQs (JSON format)</Label>
+            <Textarea 
+              value={JSON.stringify(content.faqs || [], null, 2)} 
+              onChange={(e) => {
+                try {
+                  const parsed = JSON.parse(e.target.value);
+                  updateContent('faqs', parsed);
+                } catch (err) {
+                  // Invalid JSON, ignore
+                }
+              }}
+              placeholder='[{"question": "What is...?", "answer": "It is..."}]'
+              rows={6}
+              className="font-mono text-sm"
+            />
+          </div>
+        </div>
+      );
+
     case 'stats':
       return (
         <div className="space-y-4 pt-4">
@@ -342,6 +533,37 @@ function SectionEditor({ section, onUpdate }: { section: Section; onUpdate: (id:
               }}
               placeholder='[{"value": "100+", "label": "Clients"}]'
               rows={4}
+              className="font-mono text-sm"
+            />
+          </div>
+        </div>
+      );
+
+    case 'gallery':
+      return (
+        <div className="space-y-4 pt-4">
+          <div>
+            <Label>Heading (optional)</Label>
+            <Input 
+              value={(content.heading as string) || ''} 
+              onChange={(e) => updateContent('heading', e.target.value)}
+              placeholder="Gallery"
+            />
+          </div>
+          <div>
+            <Label>Images (JSON format)</Label>
+            <Textarea 
+              value={JSON.stringify(content.images || [], null, 2)} 
+              onChange={(e) => {
+                try {
+                  const parsed = JSON.parse(e.target.value);
+                  updateContent('images', parsed);
+                } catch (err) {
+                  // Invalid JSON, ignore
+                }
+              }}
+              placeholder='[{"src": "https://...", "alt": "Description"}]'
+              rows={6}
               className="font-mono text-sm"
             />
           </div>
@@ -399,22 +621,66 @@ export default function PageEditor() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   
   const [page, setPage] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [hasChanges, setHasChanges] = useState(false);
-  const [showPreview, setShowPreview] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [activeSectionId, setActiveSectionId] = useState<string | null>(null);
+  const [viewportSize, setViewportSize] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
+  const [iframeKey, setIframeKey] = useState(0);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
 
+  const viewportWidths = {
+    desktop: '100%',
+    tablet: '768px',
+    mobile: '375px'
+  };
+
   useEffect(() => {
     if (id) fetchPage();
   }, [id]);
+
+  // Listen for messages from iframe
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data?.type === 'CMS_SECTION_CLICKED') {
+        const sectionId = event.data.sectionId;
+        setActiveSectionId(sectionId);
+        
+        // Open the section in the editor
+        if (page) {
+          setPage({
+            ...page,
+            sections: page.sections.map(s => ({
+              ...s,
+              isOpen: s.id === sectionId
+            }))
+          });
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [page]);
+
+  // Update iframe when sections change
+  useEffect(() => {
+    if (iframeRef.current?.contentWindow && page) {
+      // Send updated content to iframe
+      iframeRef.current.contentWindow.postMessage({
+        type: 'CMS_CONTENT_UPDATE',
+        sections: page.sections.map(({ isOpen, ...rest }) => rest)
+      }, '*');
+    }
+  }, [page?.sections]);
 
   const fetchPage = async () => {
     try {
@@ -485,6 +751,9 @@ export default function PageEditor() {
       setPage(prev => prev ? { ...prev, version: prev.version + 1, is_published: publish || prev.is_published } : null);
       setHasChanges(false);
       
+      // Refresh iframe to show updated content
+      setIframeKey(prev => prev + 1);
+      
       toast({
         title: publish ? "Page published" : "Changes saved",
         description: publish ? "Your page is now live" : "Draft saved successfully",
@@ -514,6 +783,7 @@ export default function PageEditor() {
     
     setPage({ ...page, sections: [...page.sections, newSection] });
     setHasChanges(true);
+    setActiveSectionId(newSection.id);
   };
 
   const updateSection = (id: string, data: Partial<Section>) => {
@@ -534,6 +804,9 @@ export default function PageEditor() {
       sections: page.sections.filter(s => s.id !== id)
     });
     setHasChanges(true);
+    if (activeSectionId === id) {
+      setActiveSectionId(null);
+    }
   };
 
   const toggleSection = (id: string) => {
@@ -543,6 +816,15 @@ export default function PageEditor() {
       ...page,
       sections: page.sections.map(s => s.id === id ? { ...s, isOpen: !s.isOpen } : s)
     });
+    setActiveSectionId(id);
+    
+    // Highlight section in iframe
+    if (iframeRef.current?.contentWindow) {
+      iframeRef.current.contentWindow.postMessage({
+        type: 'CMS_HIGHLIGHT_SECTION',
+        sectionId: id
+      }, '*');
+    }
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -559,6 +841,10 @@ export default function PageEditor() {
       });
       setHasChanges(true);
     }
+  };
+
+  const refreshPreview = () => {
+    setIframeKey(prev => prev + 1);
   };
 
   if (loading) {
@@ -580,10 +866,13 @@ export default function PageEditor() {
     );
   }
 
+  // Build the preview URL
+  const previewUrl = `/cms-preview?id=${page.id}&t=${iframeKey}`;
+
   return (
     <div className="h-[calc(100vh-5rem)] flex flex-col">
       {/* Header */}
-      <div className="border-b bg-card px-4 py-3 flex items-center justify-between">
+      <div className="border-b bg-card px-4 py-3 flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="sm" asChild>
             <Link to="/admin/page-builder">
@@ -700,11 +989,11 @@ export default function PageEditor() {
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Sections Panel */}
-        <div className="w-1/2 border-r overflow-y-auto p-4 bg-muted/30">
+        <div className="w-[400px] border-r overflow-y-auto p-4 bg-muted/30 flex-shrink-0">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-medium">Page Sections</h2>
             <Select onValueChange={addSection}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-[160px]">
                 <Plus className="w-4 h-4 mr-2" />
                 <SelectValue placeholder="Add section" />
               </SelectTrigger>
@@ -755,6 +1044,7 @@ export default function PageEditor() {
                     onUpdate={updateSection}
                     onDelete={deleteSection}
                     onToggle={toggleSection}
+                    isActive={activeSectionId === section.id}
                   />
                 ))}
               </SortableContext>
@@ -763,166 +1053,52 @@ export default function PageEditor() {
         </div>
 
         {/* Preview Panel */}
-        <div className="w-1/2 overflow-y-auto bg-background">
-          <div className="p-4 border-b bg-muted/30 flex items-center justify-between">
-            <h2 className="font-medium">Live Preview</h2>
-            <Button 
-              variant="outline" 
-              size="sm"
-              onClick={() => setShowPreview(!showPreview)}
-            >
-              <Eye className="w-4 h-4 mr-2" />
-              {showPreview ? 'Hide' : 'Show'} Preview
-            </Button>
+        <div className="flex-1 overflow-hidden bg-muted/20 flex flex-col">
+          <div className="p-3 border-b bg-background flex items-center justify-between flex-shrink-0">
+            <div className="flex items-center gap-2">
+              <h2 className="font-medium text-sm">Live Preview</h2>
+              <span className="text-xs text-muted-foreground">
+                Click on any section to edit
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ToggleGroup type="single" value={viewportSize} onValueChange={(value) => value && setViewportSize(value as typeof viewportSize)}>
+                <ToggleGroupItem value="desktop" size="sm" aria-label="Desktop view">
+                  <Monitor className="w-4 h-4" />
+                </ToggleGroupItem>
+                <ToggleGroupItem value="tablet" size="sm" aria-label="Tablet view">
+                  <Tablet className="w-4 h-4" />
+                </ToggleGroupItem>
+                <ToggleGroupItem value="mobile" size="sm" aria-label="Mobile view">
+                  <Smartphone className="w-4 h-4" />
+                </ToggleGroupItem>
+              </ToggleGroup>
+              <Button variant="outline" size="sm" onClick={refreshPreview}>
+                <RefreshCw className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
           
-          {showPreview && (
-            <div className="p-4">
-              <Card className="overflow-hidden">
-                <div className="bg-muted/50 px-4 py-2 border-b flex items-center gap-2">
-                  <div className="flex gap-1">
-                    <div className="w-3 h-3 rounded-full bg-red-400" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                    <div className="w-3 h-3 rounded-full bg-green-400" />
-                  </div>
-                  <span className="text-xs text-muted-foreground flex-1 text-center">
-                    {page.page_path}
-                  </span>
-                </div>
-                
-                <div className="min-h-[400px] p-4">
-                  {page.sections.length === 0 ? (
-                    <div className="text-center text-muted-foreground py-12">
-                      <p>Add sections to see preview</p>
-                    </div>
-                  ) : (
-                    <div className="space-y-6">
-                      {page.sections.map(section => (
-                        <PreviewSection key={section.id} section={section} />
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </Card>
+          <div className="flex-1 p-4 overflow-auto flex justify-center">
+            <div 
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300"
+              style={{ 
+                width: viewportWidths[viewportSize],
+                maxWidth: '100%',
+                height: '100%'
+              }}
+            >
+              <iframe
+                ref={iframeRef}
+                key={iframeKey}
+                src={previewUrl}
+                className="w-full h-full border-0"
+                title="Page Preview"
+              />
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
   );
-}
-
-function PreviewSection({ section }: { section: Section }) {
-  const content = section.content || {};
-  
-  switch (section.type) {
-    case 'hero':
-      return (
-        <div 
-          className="relative bg-charcoal text-white p-8 rounded-lg min-h-[200px] flex items-center"
-          style={{ 
-            backgroundImage: content.backgroundImage ? `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${content.backgroundImage})` : undefined,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        >
-          <div>
-            <h1 className="text-2xl font-light mb-2">{(content.headline as string) || 'Hero Headline'}</h1>
-            <p className="text-white/80 mb-4">{(content.subtitle as string) || 'Add a subtitle...'}</p>
-            {content.ctaText && (
-              <button className="bg-primary text-primary-foreground px-4 py-2 rounded text-sm">
-                {content.ctaText as string}
-              </button>
-            )}
-          </div>
-        </div>
-      );
-      
-    case 'text':
-      return (
-        <div className="prose prose-sm max-w-none">
-          {content.heading && <h2 className="text-xl font-medium mb-2">{content.heading as string}</h2>}
-          <p className="text-muted-foreground whitespace-pre-wrap">
-            {(content.body as string) || 'Add text content...'}
-          </p>
-        </div>
-      );
-      
-    case 'image':
-      return (
-        <div className="text-center">
-          {content.src ? (
-            <img 
-              src={content.src as string} 
-              alt={(content.alt as string) || ''} 
-              className="max-w-full h-auto rounded-lg mx-auto"
-            />
-          ) : (
-            <div className="bg-muted h-32 rounded-lg flex items-center justify-center">
-              <Image className="w-8 h-8 text-muted-foreground" />
-            </div>
-          )}
-          {content.caption && (
-            <p className="text-sm text-muted-foreground mt-2">{content.caption as string}</p>
-          )}
-        </div>
-      );
-      
-    case 'cta':
-      return (
-        <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 text-center">
-          <h3 className="text-xl font-medium mb-2">{(content.headline as string) || 'Call to Action'}</h3>
-          <p className="text-muted-foreground mb-4">{(content.description as string) || 'Add description...'}</p>
-          <button className="bg-primary text-primary-foreground px-6 py-2 rounded">
-            {(content.buttonText as string) || 'Button'}
-          </button>
-        </div>
-      );
-      
-    case 'stats':
-      const stats = (content.stats as Array<{value: string; label: string}>) || [];
-      return (
-        <div>
-          {content.heading && <h3 className="text-xl font-medium mb-4 text-center">{content.heading as string}</h3>}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {stats.length > 0 ? stats.map((stat, i) => (
-              <div key={i} className="text-center p-4 bg-muted/50 rounded-lg">
-                <div className="text-2xl font-bold text-primary">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            )) : (
-              <div className="col-span-4 text-center text-muted-foreground py-4">
-                Add stats data...
-              </div>
-            )}
-          </div>
-        </div>
-      );
-
-    case 'video':
-      return (
-        <div>
-          {content.title && <h3 className="text-lg font-medium mb-2">{content.title as string}</h3>}
-          {content.url ? (
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-              <Video className="w-12 h-12 text-muted-foreground" />
-              <span className="ml-2 text-sm text-muted-foreground">Video: {content.url as string}</span>
-            </div>
-          ) : (
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-              <Video className="w-8 h-8 text-muted-foreground" />
-            </div>
-          )}
-        </div>
-      );
-      
-    default:
-      return (
-        <div className="bg-muted/50 rounded-lg p-4 text-center">
-          <p className="text-sm text-muted-foreground">
-            {section.title || section.type} section
-          </p>
-        </div>
-      );
-  }
 }
