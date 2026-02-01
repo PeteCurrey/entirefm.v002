@@ -1,8 +1,22 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-import { CheckCircle2, Shield, ArrowRight, Phone, Wrench, Zap, Droplets, Flame, Building, Lightbulb } from "lucide-react";
+import { 
+  CheckCircle2, 
+  Shield, 
+  ArrowRight, 
+  Phone, 
+  Wrench, 
+  Zap, 
+  Droplets, 
+  Flame, 
+  Building, 
+  Lightbulb,
+  Clock,
+  FileCheck,
+  AlertTriangle,
+  TrendingUp
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
@@ -31,32 +45,32 @@ const HardServices = () => {
     {
       icon: Zap,
       title: "Electrical Services",
-      description: "EICR testing, distribution boards, fault-finding, and emergency systems."
+      description: "EICR testing, distribution boards, fault-finding, emergency systems, and power infrastructure."
     },
     {
       icon: Wrench,
       title: "Mechanical Services", 
-      description: "Pumps, motors, conveyors, HVAC machinery, and pressurisation systems."
+      description: "Pumps, motors, conveyors, HVAC machinery, pressurisation, and mechanical plant."
     },
     {
       icon: Droplets,
       title: "Plumbing & Drainage",
-      description: "Pipework, leaks, booster sets, hot & cold water systems."
+      description: "Pipework, leak detection, booster sets, hot & cold water systems, and drainage."
     },
     {
       icon: Flame,
       title: "Gas & Heating",
-      description: "Commercial gas safety, boiler PPM, and plant room optimisation."
+      description: "Commercial gas safety, boiler PPM, plant room optimisation, and heating systems."
     },
     {
       icon: Building,
       title: "Building Fabric",
-      description: "Joinery, locks, roof repairs, glazing, and fire doors."
+      description: "Joinery, locks, roof repairs, glazing, fire doors, and structural maintenance."
     },
     {
       icon: Lightbulb,
       title: "Lighting Systems",
-      description: "LED upgrades, emergency lighting, and control gear maintenance."
+      description: "LED upgrades, emergency lighting, control gear, and energy-efficient solutions."
     }
   ];
 
@@ -65,6 +79,39 @@ const HardServices = () => {
     { value: "2", suffix: "hr", label: "Response Time" },
     { value: "98", suffix: "%", label: "First-Time Fix" },
     { value: "40", suffix: "%", label: "Cost Savings" }
+  ];
+
+  const whyHardFM = [
+    {
+      title: "Planned Preventative Maintenance",
+      description: "SFG20-aligned PPM schedules prevent failures before they occur, extending asset life and reducing emergency callouts."
+    },
+    {
+      title: "Rapid Reactive Response",
+      description: "2-hour emergency response SLA with real-time engineer tracking and direct communication throughout."
+    },
+    {
+      title: "Asset Lifecycle Planning",
+      description: "Condition monitoring, risk forecasting, and capital planning to optimise replacement timing and budgets."
+    }
+  ];
+
+  const complianceItems = [
+    { regulation: "SFG20", description: "Maintenance task scheduling" },
+    { regulation: "BS 7671", description: "Electrical installations (18th Edition)" },
+    { regulation: "Gas Safety Regulations", description: "Commercial gas appliances" },
+    { regulation: "BS 5839-1", description: "Fire detection and alarm systems" },
+    { regulation: "BS 5266-1", description: "Emergency lighting" },
+    { regulation: "F-Gas Regulations", description: "Refrigerant handling & leak detection" }
+  ];
+
+  const deliverables = [
+    "SLA-driven response times proven in KPIs",
+    "Before & after photographic & video reports",
+    "Full statutory compliance dashboard",
+    "Director-level communication — no corporate scripts",
+    "Lifecycle risk forecasting for asset investment planning",
+    "Transparent fixed pricing or T&M — your call"
   ];
 
   const faqs = [
@@ -132,199 +179,199 @@ const HardServices = () => {
       {/* Stats Banner */}
       <StatsBanner stats={stats} variant="gradient" />
 
-      <div className="container mx-auto px-6 py-8">
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-12">
-
-              {/* Why It Matters */}
-              <section className="bg-charcoal text-white p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  Why Hard FM Matters
-                </h2>
-                <p className="text-lg font-light mb-6">
-                  If your assets fail, productivity stops. Customers leave. Revenue leaks.
-                  We keep your environment operational — always.
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                    <span className="font-light">Planned Preventative Maintenance (PPM) aligned to SFG20</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                    <span className="font-light">Fast-response Reactive Maintenance</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                    <span className="font-light">M&E Asset Lifecycle Planning</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                    <span className="font-light">Real-time job tracking + engineer ETA visibility</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                    <span className="font-light">Compliance reporting senior leadership can trust</span>
-                  </div>
+      {/* Why Hard FM Matters */}
+      <ContentSection
+        title="Why Hard FM Matters"
+        subtitle="If your assets fail, productivity stops. Customers leave. Revenue leaks. We keep your environment operational — always."
+        variant="muted"
+      >
+        <div className="grid lg:grid-cols-3 gap-8">
+          {whyHardFM.map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="h-full p-8 bg-card border border-border rounded-2xl hover:border-primary/30 transition-all group">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                  {index === 0 && <Clock className="w-6 h-6 text-primary" />}
+                  {index === 1 && <AlertTriangle className="w-6 h-6 text-primary" />}
+                  {index === 2 && <TrendingUp className="w-6 h-6 text-primary" />}
                 </div>
-              </section>
-
-              {/* What We Cover - Table Format */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  What We Cover
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  Hard FM service delivery through qualified UK specialists:
-                </p>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-muted/50">
-                        <th className="text-left p-4 font-medium border border-border">Service Category</th>
-                        <th className="text-left p-4 font-medium border border-border">Includes</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="p-4 border border-border font-medium">Electrical Services</td>
-                        <td className="p-4 border border-border font-light text-muted-foreground">Testing (EICR), maintenance, fault-finding, distribution boards</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 border border-border font-medium">Mechanical Services</td>
-                        <td className="p-4 border border-border font-light text-muted-foreground">Pumps, motors, conveyors, HVAC machinery, pressurisation</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 border border-border font-medium">Plumbing & Drainage</td>
-                        <td className="p-4 border border-border font-light text-muted-foreground">Pipework, leaks, booster sets, hot & cold water</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 border border-border font-medium">Gas & Heating</td>
-                        <td className="p-4 border border-border font-light text-muted-foreground">Commercial gas safety, boiler PPM, plant room optimisation</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 border border-border font-medium">Building Fabric</td>
-                        <td className="p-4 border border-border font-light text-muted-foreground">Joinery, locks, roof repairs, glazing, fire doors</td>
-                      </tr>
-                      <tr>
-                        <td className="p-4 border border-border font-medium">Lighting</td>
-                        <td className="p-4 border border-border font-light text-muted-foreground">LED upgrades, emergency lighting, control gear</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
-
-              {/* What You Get */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  What You Get as Standard
-                </h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {[
-                    "SLA-driven response times proven in KPIs",
-                    "Before & after photographic & video reports",
-                    "Full statutory compliance dashboard",
-                    "Director-level communication — no corporate scripts",
-                    "Lifecycle risk forecasting for asset investment planning",
-                    "Transparent fixed pricing or T&M — your call"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* Compliance Framework */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Compliance & Statutory Considerations
-                </h2>
-                <p className="text-muted-foreground font-light mb-6">
-                  We help you hit every regulatory requirement with zero admin burden:
-                </p>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {[
-                    "SFG20 maintenance guidance",
-                    "Electricity at Work Regulations",
-                    "Gas Safety (Installation & Use) Regulations",
-                    "Building Regulations Part L",
-                    "FRA / PAS 79 support for fire strategy",
-                    "F-Gas compliance for refrigerants"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3 p-4 border border-border rounded-lg">
-                      <Shield className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-8">
-                  <Button variant="outline" asChild>
-                    <Link to="/contact">Book a Compliance Audit</Link>
-                  </Button>
-                </div>
-              </section>
-
-              {/* FAQs */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6">
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">How often should M&E systems be serviced?</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Typically quarterly or biannual for most commercial assets, aligned to SFG20. Critical systems may require monthly inspection.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Do you manage multi-site portfolios?</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Yes — our CAFM platform manages grouped PPM plans and reporting across your entire UK estate.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Do you provide 24/7 emergency call-outs?</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Absolutely. If critical systems fail, we roll immediately. 2-hour response time as standard.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">What is included in hard services FM?</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      All mechanical, electrical, and building fabric maintenance including HVAC, electrical installations, plumbing, gas systems, BMS controls, emergency systems, and structural repairs with PPM and reactive support.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Final CTA */}
-              <section className="border-t border-border pt-12">
-                <div className="text-center bg-muted/30 p-12 rounded-lg">
-                  <h2 className="text-3xl font-light mb-4">
-                    Don't wait for a system failure to expose the cracks.
-                  </h2>
-                  <p className="text-lg text-muted-foreground font-light mb-8 max-w-2xl mx-auto">
-                    Request a proposal tailored to your assets and operational risk profile.
-                  </p>
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request Hard Services Proposal</Link>
-                  </Button>
-                </div>
-              </section>
-          </div>
-
-          {/* Sidebar */}
-          <aside className="lg:col-span-1">
-            <div className="sticky top-24">
-              <SidebarCTA />
-            </div>
-          </aside>
+                <h3 className="text-xl font-medium mb-4 text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">{item.description}</p>
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
-      </div>
+      </ContentSection>
+
+      {/* What You Get as Standard */}
+      <ContentSection
+        title="What You Get as Standard"
+        subtitle="Every hard FM contract includes comprehensive service delivery, transparent reporting, and proactive asset management."
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {deliverables.map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.05}>
+              <div className="flex items-start gap-4 p-6 bg-gradient-to-br from-muted/50 to-background border border-border rounded-xl hover:border-primary/30 transition-all">
+                <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
+                <span className="font-light text-foreground">{item}</span>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* Statutory Testing Frequency Table */}
+      <ContentSection
+        title="Statutory Testing Frequency"
+        subtitle="UK regulatory compliance requirements mapped to testing frequencies. All certificates managed through our digital compliance platform."
+        variant="gradient"
+      >
+        <div className="max-w-4xl mx-auto">
+          <AnimatedSection>
+            <div className="overflow-hidden rounded-2xl border border-border bg-card">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-charcoal text-white">
+                    <th className="text-left p-5 font-medium">Regulation / Standard</th>
+                    <th className="text-left p-5 font-medium">Scope</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {complianceItems.map((item, index) => (
+                    <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-muted/30' : 'bg-background'}`}>
+                      <td className="p-5 font-medium text-foreground">{item.regulation}</td>
+                      <td className="p-5 font-light text-muted-foreground">{item.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </AnimatedSection>
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="outline" asChild className="hover-lift">
+              <Link to="/services/compliance">
+                <Shield className="w-4 h-4 mr-2" />
+                View Compliance Services
+              </Link>
+            </Button>
+            <Button asChild className="hover-lift">
+              <Link to="/request-proposal">
+                Book a Compliance Audit
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </ContentSection>
+
+      {/* Service Delivery Model */}
+      <ContentSection
+        title="How We Deliver"
+        subtitle="Multi-skilled engineers, integrated PPM schedules, and 24/7 reactive response ensure your buildings operate without interruption."
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <AnimatedSection delay={0}>
+            <div className="p-8 bg-card border border-border rounded-2xl h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium">Qualified Engineers</h3>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  "18th Edition electricians",
+                  "F-Gas certified HVAC technicians",
+                  "Gas Safe registered engineers",
+                  "Manufacturer-trained specialists"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground font-light">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="p-8 bg-card border border-border rounded-2xl h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium">24/7 Response</h3>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  "2-hour emergency response SLA",
+                  "National helpdesk with engineer dispatch",
+                  "Real-time job tracking",
+                  "Escalation protocols for critical failures"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground font-light">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+        </div>
+      </ContentSection>
+
+      {/* Related Services */}
+      <ContentSection
+        title="Explore Related Services"
+        subtitle="Comprehensive hard FM solutions across all mechanical, electrical, and building services disciplines."
+        centered
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { title: "HVAC Services", href: "/services/hvac", icon: Flame },
+            { title: "Electrical", href: "/services/electrical", icon: Zap },
+            { title: "Plumbing", href: "/services/plumbing", icon: Droplets },
+            { title: "PPM Contracts", href: "/services/ppm", icon: FileCheck }
+          ].map((service, idx) => (
+            <AnimatedSection key={idx} delay={idx * 0.1}>
+              <Link 
+                to={service.href}
+                className="block p-6 bg-gradient-to-br from-muted/50 to-background border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                  <service.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                <span className="text-sm text-primary flex items-center gap-1">
+                  Learn more
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* FAQ Section */}
+      <ContentSection
+        title="Frequently Asked Questions"
+        centered
+        variant="muted"
+      >
+        <div className="max-w-3xl mx-auto">
+          <FAQSection faqs={faqs} />
+        </div>
+      </ContentSection>
+
+      {/* CTA Section */}
+      <CTASection
+        title="Don't Wait for a System Failure"
+        description="Request a proposal tailored to your assets and operational risk profile. Expert advice, transparent pricing, no obligation."
+        primaryLabel="Request Hard FM Proposal"
+        primaryHref="/request-proposal"
+        secondaryLabel="Call 0800 024 8550"
+        secondaryHref="tel:08000248550"
+        variant="dark"
+      />
     </>
   );
 };
