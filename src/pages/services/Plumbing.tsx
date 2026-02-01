@@ -1,29 +1,141 @@
 import { Helmet } from "react-helmet";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { Link } from "react-router-dom";
+import { 
+  CheckCircle2, 
+  AlertTriangle, 
+  ArrowRight, 
+  Phone,
+  Droplets,
+  Flame,
+  ThermometerSun,
+  Wrench,
+  Shield,
+  Clock,
+  FileCheck,
+  BadgeCheck
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { CheckCircle2, AlertTriangle } from "lucide-react";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import FeatureCardGrid from "@/components/shared/FeatureCardGrid";
+import StatsBanner from "@/components/shared/StatsBanner";
+import CTASection from "@/components/shared/CTASection";
+import ContentSection from "@/components/shared/ContentSection";
+import { TrustBar } from "@/components/shared/TrustBar";
 
 const Plumbing = () => {
+  const breadcrumbItems = [
+    { label: "Services", href: "/services" },
+    { label: "Plumbing & Gas Safety" }
+  ];
+
+  const heroStats = [
+    { value: "Gas Safe", label: "Registered" },
+    { value: "2", suffix: "hr", label: "Emergency Response" },
+    { value: "CP42", label: "Certified" },
+    { value: "24/7", label: "Support" }
+  ];
+
+  const features = [
+    {
+      icon: Flame,
+      title: "Gas Safety",
+      description: "CP42 inspections, commercial gas appliances, and annual safety certification."
+    },
+    {
+      icon: ThermometerSun,
+      title: "Boiler Services",
+      description: "Commercial boiler servicing, repairs, and efficiency optimisation."
+    },
+    {
+      icon: Droplets,
+      title: "Water Systems",
+      description: "Hot & cold water, TMV servicing, and water hygiene compliance."
+    },
+    {
+      icon: Wrench,
+      title: "Pipework & Drainage",
+      description: "Leak detection, repairs, CCTV surveys, and drainage maintenance."
+    },
+    {
+      icon: Shield,
+      title: "Emergency Response",
+      description: "24/7 call-outs for burst pipes, gas leaks, and boiler failures."
+    },
+    {
+      icon: FileCheck,
+      title: "Compliance Management",
+      description: "Certificate tracking, renewal reminders, and portfolio reporting."
+    }
+  ];
+
+  const stats = [
+    { value: "500", suffix: "+", label: "Sites Covered" },
+    { value: "2", suffix: "hr", label: "Emergency Response" },
+    { value: "100", suffix: "%", label: "Gas Safe" },
+    { value: "24/7", label: "Availability" }
+  ];
+
+  const plumbingServices = [
+    "Commercial gas safety inspections (CP42)",
+    "Boiler servicing & repairs",
+    "Gas appliance installation & commissioning",
+    "Pipework installation, repair & upgrades",
+    "Leak detection (water & gas)",
+    "Hot & cold water system maintenance",
+    "TMV (thermostatic mixing valve) servicing",
+    "Drainage repairs & CCTV surveys",
+    "Commercial catering gas equipment",
+    "Emergency plumbing & gas call-outs",
+    "Water pressure optimisation",
+    "Backflow prevention & testing"
+  ];
+
+  const complianceTable = [
+    { regulation: "Gas Safety (Installation & Use) Regulations", frequency: "Annual (CP42)", scope: "Gas appliances, pipework, ventilation, flue integrity" },
+    { regulation: "Commercial Boiler Servicing", frequency: "Annual minimum", scope: "Burner efficiency, controls, safety devices, combustion analysis" },
+    { regulation: "TMV Servicing (Healthcare & Care Homes)", frequency: "Annual (HTM 04-01)", scope: "Temperature verification, scald risk prevention" },
+    { regulation: "Gas Interlock Systems", frequency: "Annual testing", scope: "Ventilation failure detection & gas shut-off verification" }
+  ];
+
+  const deliverables = [
+    {
+      title: "CP42 Certificate Management",
+      description: "All gas safety certificates tracked digitally with renewal reminders before expiry."
+    },
+    {
+      title: "Emergency Response",
+      description: "24/7 call-out for burst pipes, gas leaks, boiler failures, and drainage emergencies."
+    },
+    {
+      title: "Multi-Site Gas Safety",
+      description: "Portfolio-wide gas safety compliance reporting for directors and asset managers."
+    },
+    {
+      title: "Leak Detection Technology",
+      description: "Thermal imaging and acoustic leak detection to find hidden water and gas leaks fast."
+    }
+  ];
+
   const faqs = [
     {
       question: "How often should commercial gas appliances be serviced?",
-      answer: "Annually as a legal minimum under Gas Safety (Installation & Use) Regulations. High-use commercial catering equipment may require more frequent inspections."
+      answer: "Annually as a legal minimum under Gas Safety (Installation & Use) Regulations. High-use commercial catering equipment may require more frequent inspections based on manufacturer recommendations and usage intensity."
     },
     {
       question: "What is a CP42 gas safety certificate?",
-      answer: "CP42 is the commercial equivalent of a CP12 (domestic gas safety certificate). It certifies all gas appliances and pipework are safe and compliant."
+      answer: "CP42 is the commercial equivalent of a CP12 (domestic gas safety certificate). It certifies all gas appliances and pipework are safe and compliant with Gas Safety Regulations, and is required annually for commercial premises."
     },
     {
       question: "Do you handle emergency plumbing call-outs?",
-      answer: "Yes. 24/7 emergency response for burst pipes, water leaks, boiler failures, and gas emergencies across UK portfolios."
+      answer: "Yes. 24/7 emergency response for burst pipes, water leaks, boiler failures, and gas emergencies across UK portfolios. 2-hour response SLA as standard for critical failures."
     },
     {
       question: "Are your engineers Gas Safe registered?",
-      answer: "All our gas engineers hold valid Gas Safe registration and commercial gas qualifications (CODNCO1, CIGA1, CORT1, etc.)."
+      answer: "All our gas engineers hold valid Gas Safe registration and commercial gas qualifications (CODNCO1, CIGA1, CORT1, etc.). Registration can be verified on the Gas Safe Register website."
     }
   ];
 
@@ -33,199 +145,254 @@ const Plumbing = () => {
         <title>Commercial Plumbing & Gas Safety UK | CP42 Certification | EntireFM</title>
         <meta 
           name="description" 
-          content="Commercial plumbing maintenance, gas safety inspections, and CP42 certification across UK sites. Emergency call-outs and compliance management."
+          content="Gas Safe registered plumbing and gas safety services. CP42 certification, boiler servicing, emergency call-outs, and compliance management for commercial buildings."
         />
+        <link rel="canonical" href="https://entirefm.com/services/plumbing" />
       </Helmet>
 
+      <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema 
         name="Plumbing & Gas Safety"
-        description="Commercial plumbing maintenance, gas safety inspections, and compliance management"
+        description="Commercial plumbing maintenance, gas safety inspections, and compliance management across the UK."
         provider="EntireFM"
         areaServed="United Kingdom"
       />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen pt-20">
-        <div className="container mx-auto px-6 py-8">
-          <Breadcrumb items={[
-            { label: "Services", href: "/services" },
-            { label: "Plumbing & Gas Safety" }
-          ]} />
+      {/* Hero Section */}
+      <ServiceHeroSection
+        breadcrumbItems={breadcrumbItems}
+        title="Plumbing & Gas That Works. Every Single Time."
+        description="Commercial plumbing, gas safety, and compliance management — delivered by Gas Safe registered engineers with 24/7 emergency support."
+        stats={heroStats}
+        primaryCTA={{ label: "Request Plumbing Proposal", href: "/request-proposal", icon: ArrowRight }}
+        secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
+        backgroundImage="/images/services/plumbing-hero.jpg"
+      />
 
-          <div className="grid lg:grid-cols-3 gap-12 mt-8">
-            <div className="lg:col-span-2 space-y-12">
-              <header>
-                <h1 className="text-4xl md:text-5xl font-light mb-4 underline-accent inline-block">
-                  Plumbing & Gas That Works. Every Single Time.
-                </h1>
-                <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  Commercial plumbing, gas safety, and compliance management — delivered by Gas Safe engineers.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button size="lg" asChild>
-                    <Link to="/contact">Request Plumbing Service</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <Link to="/contact">Book Gas Safety Audit</Link>
-                  </Button>
-                </div>
-              </header>
+      {/* Trust Bar */}
+      <TrustBar variant="compact" />
 
-              {/* Risk Impact */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  The Cost of Plumbing & Gas Failures
-                </h2>
-                <p className="text-lg font-light mb-6">When plumbing and gas systems fail:</p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {[
-                    "Water damage escalates into six-figure claims",
-                    "Gas leaks create immediate life safety risk",
-                    "Operations grind to a halt",
-                    "HSE prosecution exposure becomes real"
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-lg font-medium mt-6">
-                  We engineer reliability into every tap, pipe, and appliance.
-                </p>
-              </section>
+      {/* Features Grid */}
+      <ContentSection
+        title="Complete Plumbing & Gas Coverage"
+        subtitle="All plumbing, gas, and water systems maintained by Gas Safe registered engineers with commercial qualifications."
+        centered
+      >
+        <FeatureCardGrid features={features} columns={3} variant="gradient" />
+      </ContentSection>
 
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Plumbing & Gas Services
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {[
-                    "Commercial gas safety inspections (CP42)",
-                    "Boiler servicing & repairs",
-                    "Gas appliance installation & commissioning",
-                    "Pipework installation, repair & upgrades",
-                    "Leak detection (water & gas)",
-                    "Hot & cold water system maintenance",
-                    "TMV (thermostatic mixing valve) servicing",
-                    "Drainage repairs & CCTV surveys",
-                    "Commercial catering gas equipment",
-                    "Emergency plumbing & gas call-outs",
-                    "Water pressure optimisation",
-                    "Backflow prevention & testing"
-                  ].map((service, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">{service}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
+      {/* Stats Banner */}
+      <StatsBanner stats={stats} variant="gradient" />
 
-              {/* Gas Safety Compliance */}
-              <section>
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Gas Safety Statutory Requirements
-                </h2>
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <thead>
-                      <tr className="bg-charcoal text-white">
-                        <th className="p-4 text-left font-medium">Regulation</th>
-                        <th className="p-4 text-left font-medium">Frequency</th>
-                        <th className="p-4 text-left font-medium">What's Checked</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Gas Safety (Installation & Use) Regulations</td>
-                        <td className="p-4 font-light text-sm">Annual (CP42)</td>
-                        <td className="p-4 font-light text-sm">Gas appliances, pipework, ventilation, flue integrity</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Commercial Boiler Servicing</td>
-                        <td className="p-4 font-light text-sm">Annual minimum</td>
-                        <td className="p-4 font-light text-sm">Burner efficiency, controls, safety devices, combustion analysis</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">TMV Servicing (Healthcare & Care Homes)</td>
-                        <td className="p-4 font-light text-sm">Annual (HTM 04-01)</td>
-                        <td className="p-4 font-light text-sm">Temperature verification, scald risk prevention</td>
-                      </tr>
-                      <tr className="border-b border-border">
-                        <td className="p-4 font-light">Gas Interlock Systems</td>
-                        <td className="p-4 font-light text-sm">Annual testing</td>
-                        <td className="p-4 font-light text-sm">Ventilation failure detection & gas shut-off verification</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="mt-8">
-                  <Button variant="outline" asChild>
-                    <Link to="/resources">Download Gas Safety Compliance Guide</Link>
-                  </Button>
-                </div>
-              </section>
-
-              {/* What You Get */}
-              <section className="bg-muted/30 p-8 rounded-lg">
-                <h2 className="text-3xl font-light mb-6">
-                  What You Get as Standard
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">CP42 Certificate Management</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      All gas safety certificates tracked digitally with renewal reminders before expiry.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Emergency Response</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      24/7 call-out for burst pipes, gas leaks, boiler failures, and drainage emergencies.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Multi-Site Gas Safety</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Portfolio-wide gas safety compliance reporting for directors and asset managers.
-                    </p>
-                  </div>
-                  <div className="border-l-4 border-accent pl-6">
-                    <h3 className="font-medium mb-2">Leak Detection Technology</h3>
-                    <p className="text-sm font-light text-muted-foreground">
-                      Thermal imaging and acoustic leak detection to find hidden water and gas leaks fast.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <FAQSection faqs={faqs} />
-
-              {/* Final CTA */}
-              <section className="border-t border-border pt-12">
-                <div className="text-center bg-charcoal text-white p-12 rounded-lg">
-                  <h2 className="text-3xl font-light mb-4">
-                    Don't wait for a gas emergency or catastrophic leak.
-                  </h2>
-                  <p className="text-lg text-gray-300 font-light mb-8 max-w-2xl mx-auto">
-                    Request a plumbing and gas safety audit across your portfolio today.
-                  </p>
-                  <Button size="lg" variant="secondary" className="bg-white text-charcoal hover:bg-gray-100" asChild>
-                    <Link to="/contact">Get Your Gas Safety Plan</Link>
-                  </Button>
-                </div>
-              </section>
-            </div>
-
-            <aside className="lg:col-span-1">
-              <div className="sticky top-24">
-                <SidebarCTA />
+      {/* Risk Impact */}
+      <ContentSection
+        title="The Cost of Plumbing & Gas Failures"
+        subtitle="When plumbing and gas systems fail, the consequences are immediate and severe."
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {[
+            { icon: AlertTriangle, text: "Water damage escalates into six-figure claims" },
+            { icon: AlertTriangle, text: "Gas leaks create immediate life safety risk" },
+            { icon: AlertTriangle, text: "Operations grind to a halt" },
+            { icon: AlertTriangle, text: "HSE prosecution exposure becomes real" }
+          ].map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="flex flex-col items-center text-center gap-4 p-6 bg-card border border-border rounded-xl">
+                <item.icon className="w-8 h-8 text-destructive" />
+                <span className="font-light text-foreground text-sm">{item.text}</span>
               </div>
-            </aside>
+            </AnimatedSection>
+          ))}
+        </div>
+        <AnimatedSection delay={0.4}>
+          <div className="mt-8 p-6 bg-charcoal text-white rounded-xl max-w-2xl mx-auto text-center">
+            <p className="text-lg font-medium">We engineer reliability into every tap, pipe, and appliance.</p>
+          </div>
+        </AnimatedSection>
+      </ContentSection>
+
+      {/* Services List */}
+      <ContentSection
+        title="Plumbing & Gas Services"
+        subtitle="Comprehensive commercial plumbing and gas safety services across all system types."
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {plumbingServices.map((service, index) => (
+            <AnimatedSection key={index} delay={index * 0.03}>
+              <div className="flex items-start gap-3 p-4 bg-gradient-to-br from-muted/50 to-background border border-border rounded-xl hover:border-primary/30 transition-all">
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <span className="font-light">{service}</span>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* Compliance Table */}
+      <ContentSection
+        title="Gas Safety Statutory Requirements"
+        subtitle="UK gas safety regulations and testing frequencies — all managed through our digital compliance platform."
+        variant="gradient"
+      >
+        <div className="max-w-5xl mx-auto">
+          <AnimatedSection>
+            <div className="overflow-hidden rounded-2xl border border-border bg-card">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-charcoal text-white">
+                    <th className="text-left p-5 font-medium">Regulation</th>
+                    <th className="text-left p-5 font-medium">Frequency</th>
+                    <th className="text-left p-5 font-medium">What's Checked</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {complianceTable.map((item, index) => (
+                    <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-muted/30' : 'bg-background'}`}>
+                      <td className="p-5 font-medium text-foreground">{item.regulation}</td>
+                      <td className="p-5 font-light text-muted-foreground">{item.frequency}</td>
+                      <td className="p-5 font-light text-muted-foreground">{item.scope}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </AnimatedSection>
+          <div className="mt-8 flex justify-center">
+            <Button variant="outline" asChild className="hover-lift">
+              <Link to="/resources">
+                <FileCheck className="w-4 h-4 mr-2" />
+                Download Gas Safety Compliance Guide
+              </Link>
+            </Button>
           </div>
         </div>
-      </div>
+      </ContentSection>
+
+      {/* What You Get */}
+      <ContentSection
+        title="What You Get as Standard"
+        subtitle="Every plumbing and gas contract includes comprehensive service delivery and proactive compliance management."
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {deliverables.map((item, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="p-8 bg-card border border-border rounded-2xl hover:border-primary/30 transition-all h-full">
+                <h3 className="text-xl font-medium mb-4 text-foreground">{item.title}</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">{item.description}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* How We Deliver */}
+      <ContentSection
+        title="How We Deliver"
+        subtitle="Gas Safe registered engineers, transparent pricing, and 24/7 emergency response."
+      >
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <AnimatedSection delay={0}>
+            <div className="p-8 bg-card border border-border rounded-2xl h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <BadgeCheck className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium">Gas Safe Engineers</h3>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  "Gas Safe registered (verifiable)",
+                  "Commercial gas qualifications",
+                  "CODNCO1, CIGA1, CORT1 certified",
+                  "DBS checked for sensitive sites"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground font-light">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="p-8 bg-card border border-border rounded-2xl h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium">Emergency Response</h3>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  "24/7 emergency call-out",
+                  "2-hour response SLA",
+                  "Burst pipes & gas leaks prioritised",
+                  "National coverage"
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span className="text-muted-foreground font-light">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </AnimatedSection>
+        </div>
+      </ContentSection>
+
+      {/* Related Services */}
+      <ContentSection
+        title="Related Services"
+        subtitle="Comprehensive M&E solutions beyond plumbing and gas."
+        centered
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            { title: "HVAC Services", href: "/services/hvac", description: "Heating, ventilation, and air conditioning" },
+            { title: "Hard FM Services", href: "/services/hard-fm", description: "Complete M&E maintenance" },
+            { title: "Water Hygiene", href: "/services/water-hygiene", description: "Legionella compliance (L8)" }
+          ].map((service, idx) => (
+            <AnimatedSection key={idx} delay={idx * 0.1}>
+              <Link 
+                to={service.href}
+                className="block p-6 bg-card border border-border rounded-xl hover:border-primary/50 hover:shadow-lg transition-all group h-full"
+              >
+                <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="text-sm text-muted-foreground font-light mb-4">{service.description}</p>
+                <span className="text-sm text-primary flex items-center gap-1">
+                  Learn more
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* FAQ Section */}
+      <ContentSection
+        title="Frequently Asked Questions"
+        centered
+      >
+        <div className="max-w-3xl mx-auto">
+          <FAQSection faqs={faqs} />
+        </div>
+      </ContentSection>
+
+      {/* CTA Section */}
+      <CTASection
+        title="Don't Wait for a Gas Emergency or Catastrophic Leak"
+        description="Request a plumbing and gas safety audit across your portfolio today. Expert advice, transparent pricing, no obligation."
+        primaryLabel="Get Your Gas Safety Plan"
+        primaryHref="/request-proposal"
+        secondaryLabel="Call 0800 024 8550"
+        secondaryHref="tel:08000248550"
+        variant="dark"
+      />
     </>
   );
 };
