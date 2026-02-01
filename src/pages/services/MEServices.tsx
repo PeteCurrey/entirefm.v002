@@ -1,22 +1,114 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { 
+  Thermometer, 
+  Zap, 
+  Droplets, 
+  Flame, 
+  Fan, 
+  Settings,
+  ArrowRight,
+  Phone,
+  CheckCircle2,
+  Shield,
+  Clock,
+  FileCheck
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { SchemaMarkup, FAQSchema } from "@/components/shared/SchemaMarkup";
+import { SchemaMarkup, FAQSchema, ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { FAQSection } from "@/components/shared/FAQSection";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
+import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
+import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import AnimatedSection from "@/components/shared/AnimatedSection";
+import FeatureCardGrid from "@/components/shared/FeatureCardGrid";
+import StatsBanner from "@/components/shared/StatsBanner";
+import CTASection from "@/components/shared/CTASection";
+import ContentSection from "@/components/shared/ContentSection";
+import ServiceFeatureList from "@/components/shared/ServiceFeatureList";
+import { TrustBar } from "@/components/shared/TrustBar";
 
 const MEServices = () => {
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "Mechanical & Electrical Services",
-    "provider": {
-      "@type": "Organization",
-      "name": "EntireFM"
+  const breadcrumbItems = [
+    { label: "Services", href: "/services" },
+    { label: "Mechanical & Electrical Services" }
+  ];
+
+  const heroStats = [
+    { value: "99.5", suffix: "%", label: "Uptime Achieved" },
+    { value: "24/7", label: "Emergency Response" },
+    { value: "100", suffix: "%", label: "Compliance Rate" },
+    { value: "4", suffix: "hr", label: "SLA Response" }
+  ];
+
+  const features = [
+    {
+      icon: Thermometer,
+      title: "HVAC Systems",
+      description: "Air conditioning, ventilation, heating, chillers, AHUs, FCUs, and BMS-integrated climate control."
     },
-    "description": "Planned and reactive M&E services across commercial estates covering HVAC, electrical, and mechanical systems."
-  };
+    {
+      icon: Zap,
+      title: "Electrical Services",
+      description: "Power distribution, testing (EICRs), emergency lighting, fire alarms, and standby systems."
+    },
+    {
+      icon: Flame,
+      title: "Gas & Heating",
+      description: "Commercial boilers, Gas Safe compliance, hot water systems, and combustion efficiency testing."
+    },
+    {
+      icon: Droplets,
+      title: "Plumbing & Water",
+      description: "Pipework, drainage, sanitary ware, pumps, and water hygiene compliance (L8)."
+    },
+    {
+      icon: Fan,
+      title: "Ventilation Systems",
+      description: "Extract fans, LEV systems, kitchen extraction, and indoor air quality management."
+    },
+    {
+      icon: Settings,
+      title: "BMS & Controls",
+      description: "Building management systems, control integration, optimization, and energy monitoring."
+    }
+  ];
+
+  const mechanicalServices = [
+    {
+      title: "HVAC Maintenance",
+      description: "Complete heating, ventilation, and air conditioning services including chillers, AHUs, FCUs, VRV/VRF systems, and ducted distribution. F-Gas compliance and energy efficiency optimization for commercial environments."
+    },
+    {
+      title: "Boiler & Heating Systems",
+      description: "Commercial boiler servicing, radiator systems, underfloor heating, and hot water generation. Annual Gas Safe inspections, combustion analysis, and thermostatic control calibration."
+    },
+    {
+      title: "Pumps, Motors & Mechanical Plant",
+      description: "Circulation pumps, booster sets, sump pumps, and motor-driven equipment. Vibration analysis, bearing replacement, variable speed drive servicing, and performance monitoring."
+    }
+  ];
+
+  const electricalServices = [
+    {
+      title: "Power Distribution & Testing",
+      description: "EICR compliance testing, fixed wire testing, distribution board maintenance, circuit breaker testing, thermal imaging, and earth loop impedance verification under BS 7671."
+    },
+    {
+      title: "Emergency & Safety Systems",
+      description: "Emergency lighting (BS 5266-1), fire alarm systems (BS 5839-1), and standby power. Monthly testing, annual duration tests, panel maintenance, and battery replacements."
+    },
+    {
+      title: "Lighting & Control Systems",
+      description: "General lighting maintenance, LED retrofits, PIR sensor calibration, high-bay lighting, and intelligent lighting control systems for energy optimization."
+    }
+  ];
+
+  const stats = [
+    { value: "500", suffix: "+", label: "Sites Under Management" },
+    { value: "2", suffix: "hr", label: "Emergency Response" },
+    { value: "99.5", suffix: "%", label: "First-Time Fix Rate" },
+    { value: "100", suffix: "%", label: "Compliance Achieved" }
+  ];
 
   const faqs = [
     {
@@ -40,309 +132,217 @@ const MEServices = () => {
   return (
     <>
       <Helmet>
-        <title>Mechanical & Electrical Services | M&E Maintenance | EntireFM</title>
-        <meta name="description" content="Mechanical and electrical services for commercial buildings. M&E maintenance, PPM programmes, and compliance testing for HVAC, electrical, and building systems." />
+        <title>Mechanical & Electrical Services | M&E Maintenance UK | EntireFM</title>
+        <meta name="description" content="Comprehensive M&E maintenance for commercial buildings. HVAC, electrical, plumbing, and compliance services with 24/7 emergency response across the UK." />
         <link rel="canonical" href="https://entirefm.com/services/m-and-e" />
       </Helmet>
 
-      <SchemaMarkup schema={serviceSchema} />
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <ServiceSchema 
+        name="Mechanical & Electrical Services"
+        description="Comprehensive M&E maintenance for commercial buildings including HVAC, electrical, plumbing, and compliance services."
+        provider="EntireFM"
+        areaServed="United Kingdom"
+      />
       <FAQSchema faqs={faqs} />
 
-      <div className="min-h-screen bg-background pt-20">
-        <div className="container mx-auto px-4 py-12 lg:py-20">
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-            <div className="lg:col-span-2">
-              {/* Hero Section */}
-              <section className="mb-16">
-                <h1 className="text-4xl lg:text-5xl font-light mb-6 tracking-tight">
-                  Mechanical & Electrical (M&E) Services
-                </h1>
-                <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
-                  Planned & reactive M&E services across commercial estates.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <Link to="/request-proposal">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90">
-                      Request Proposal
-                    </Button>
-                  </Link>
-                  <Link to="/contact">
-                    <Button size="lg" variant="outline">
-                      Contact Us
-                    </Button>
-                  </Link>
-                </div>
-              </section>
+      {/* Hero Section */}
+      <ServiceHeroSection
+        breadcrumbItems={breadcrumbItems}
+        title="Mechanical & Electrical Services"
+        description="Complete M&E maintenance for mission-critical buildings. Planned preventative maintenance, rapid reactive response, and full statutory compliance across your commercial estate."
+        stats={heroStats}
+        primaryCTA={{ label: "Request Proposal", href: "/request-proposal", icon: ArrowRight }}
+        secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
+        backgroundImage="/images/services/me-services-hero.jpg"
+      />
 
-              {/* Service Coverage */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  M&E Service Coverage
-                </h2>
-                <Card className="p-8 bg-card/50 backdrop-blur">
-                  <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                    Mechanical and electrical services form the operational backbone of commercial buildings. These engineered systems provide heating, cooling, power, lighting, ventilation, and safety infrastructure. Without functional M&E, buildings cannot operate.
-                  </p>
-                  <p className="text-muted-foreground font-light leading-relaxed">
-                    Our M&E delivery combines planned preventative maintenance with rapid reactive response. All works are delivered by qualified engineers and documented to manufacturer and regulatory standards.
-                  </p>
-                </Card>
-              </section>
+      {/* Trust Bar */}
+      <TrustBar variant="compact" />
 
-              {/* Mechanical Services */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Mechanical Services
-                </h2>
-                <div className="space-y-4">
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">
-                      <Link to="/services/hvac" className="hover:text-primary transition-colors">
-                        HVAC Systems
-                      </Link>
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      Air conditioning, ventilation, and heating maintenance including chillers, AHUs, FCUs, VRV/VRF systems, and ducted distribution. F-Gas compliance and energy efficiency optimization.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Chiller servicing and refrigerant management</li>
-                      <li>• Air handling unit filter replacement and belt checks</li>
-                      <li>• Fan coil unit cleaning and sensor calibration</li>
-                      <li>• BMS integration and control system maintenance</li>
-                    </ul>
-                  </Card>
+      {/* Features Grid */}
+      <ContentSection
+        title="Complete M&E Coverage"
+        subtitle="All mechanical, electrical, and building services systems maintained by qualified engineers with trade-specific accreditations."
+        centered
+      >
+        <FeatureCardGrid features={features} columns={3} variant="gradient" />
+      </ContentSection>
 
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">Boiler & Heating Systems</h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      Commercial boiler servicing, radiator systems, underfloor heating, and hot water generation. Gas safety compliance and combustion efficiency testing.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Annual boiler servicing and flue gas analysis</li>
-                      <li>• Heating system balancing and radiator repairs</li>
-                      <li>• Pump replacement and circulation monitoring</li>
-                      <li>• Thermostatic control calibration</li>
-                    </ul>
-                  </Card>
+      {/* Stats Banner */}
+      <StatsBanner stats={stats} variant="gradient" />
 
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">Pumps & Motors</h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      Circulation pumps, booster sets, sump pumps, and motor-driven equipment maintenance. Vibration analysis and bearing replacement.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Pump performance testing and impeller inspection</li>
-                      <li>• Motor bearing lubrication and temperature monitoring</li>
-                      <li>• Variable speed drive servicing</li>
-                      <li>• Mechanical seal replacement</li>
-                    </ul>
-                  </Card>
-
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">
-                      <Link to="/services/plumbing" className="hover:text-primary transition-colors">
-                        Plumbing Systems
-                      </Link>
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      Commercial plumbing infrastructure including pipework, drainage, sanitary ware, and pressure vessels. Leak detection and water conservation.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Pipework inspection and leak repairs</li>
-                      <li>• Drainage unblocking and CCTV surveys</li>
-                      <li>• Sanitary ware replacement and tap servicing</li>
-                      <li>• Hot water cylinder maintenance</li>
-                    </ul>
-                  </Card>
-                </div>
-              </section>
-
-              {/* Electrical Services */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  Electrical Services
-                </h2>
-                <div className="space-y-4">
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">
-                      <Link to="/services/electrical" className="hover:text-primary transition-colors">
-                        Power Distribution & Testing
-                      </Link>
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      Electrical installation condition reports (EICRs), fixed wire testing, distribution board maintenance, and power system monitoring.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Five-yearly EICR compliance testing</li>
-                      <li>• Distribution board thermal imaging</li>
-                      <li>• Circuit breaker testing and replacement</li>
-                      <li>• Earth loop impedance verification</li>
-                    </ul>
-                  </Card>
-
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">
-                      <Link to="/services/emergency-lighting" className="hover:text-primary transition-colors">
-                        Emergency Lighting Systems
-                      </Link>
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      Monthly function testing, annual duration tests, and emergency lighting battery replacement to BS 5266-1 standards.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Monthly flick test and log book updates</li>
-                      <li>• Three-hour annual duration test</li>
-                      <li>• Battery replacement and lamp upgrades</li>
-                      <li>• New fitting installation where required</li>
-                    </ul>
-                  </Card>
-
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">
-                      <Link to="/services/fire-alarms" className="hover:text-primary transition-colors">
-                        Fire Alarm Systems
-                      </Link>
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      Weekly testing, quarterly servicing, and annual commissioning of fire detection and alarm systems to BS 5839-1.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Weekly call point activation test</li>
-                      <li>• Quarterly system service and detector cleaning</li>
-                      <li>• Panel battery replacement</li>
-                      <li>• Zone testing and sounders verification</li>
-                    </ul>
-                  </Card>
-
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">Lighting Systems</h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      General lighting maintenance, LED upgrades, lighting control systems, and energy optimization.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Lamp and ballast replacement</li>
-                      <li>• LED retrofit and energy saving upgrades</li>
-                      <li>• PIR sensor calibration</li>
-                      <li>• High-bay lighting maintenance</li>
-                    </ul>
-                  </Card>
-
-                  <Card className="p-6 bg-card/50 backdrop-blur">
-                    <h3 className="font-medium mb-3">
-                      <Link to="/services/generator-maintenance" className="hover:text-primary transition-colors">
-                        Standby Power Systems
-                      </Link>
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-light leading-relaxed mb-3">
-                      Generator servicing, UPS maintenance, and backup power testing. Load bank testing and automatic transfer switch inspection.
-                    </p>
-                    <ul className="text-sm text-muted-foreground font-light space-y-1">
-                      <li>• Monthly generator load testing</li>
-                      <li>• UPS battery testing and replacement</li>
-                      <li>• ATS mechanical and electrical inspection</li>
-                      <li>• Fuel quality testing and polishing</li>
-                    </ul>
-                  </Card>
-                </div>
-              </section>
-
-              {/* Compliance & Testing */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  M&E Compliance Requirements
-                </h2>
-                <Card className="p-8 bg-card/50 backdrop-blur">
-                  <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                    M&E systems are subject to extensive statutory testing requirements. Building owners must maintain current compliance certificates for insurance, safety, and legal purposes.
-                  </p>
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="font-medium mb-2">Electrical Testing Requirements</h3>
-                      <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                        Commercial electrical installations require five-yearly EICRs under BS 7671 (18th Edition). Emergency lighting needs monthly testing and annual duration tests. Fire alarms require weekly testing and quarterly servicing.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="font-medium mb-2">Mechanical Compliance</h3>
-                      <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                        F-Gas regulations require annual leak detection for refrigeration systems. Gas boilers need annual safety inspections. Lift and pressure systems require six-monthly thorough examinations under LOLER and PSSR.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="font-medium mb-2">Documentation Standards</h3>
-                      <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                        All M&E testing generates certificates, test reports, and log book entries. These must be retained for audit purposes and provided to insurers, building control, and fire authorities on request.
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              </section>
-
-              {/* How EntireFM Delivers */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                  How EntireFM Delivers M&E Services
-                </h2>
-                <Card className="p-8 bg-card/50 backdrop-blur">
-                  <ul className="space-y-3 text-muted-foreground font-light">
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Multi-skilled M&E engineers with trade-specific qualifications</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Integrated PPM schedules covering mechanical and electrical systems</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>24/7 reactive response for M&E emergencies</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Digital compliance tracking and certificate management</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Condition monitoring and predictive maintenance</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Energy optimization and cost reduction initiatives</span>
-                    </li>
-                  </ul>
-                </Card>
-              </section>
-
-              {/* FAQ Section */}
-              <FAQSection faqs={faqs} />
-
-              {/* Final CTA */}
-              <section className="mt-16">
-                <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-                  <h2 className="text-2xl font-light mb-4">
-                    Discuss M&E Requirements
-                  </h2>
-                  <p className="text-muted-foreground font-light leading-relaxed mb-6">
-                    Talk to our team about mechanical and electrical services for your estate.
-                  </p>
-                  <Link to="/request-proposal">
-                    <Button size="lg" className="bg-primary hover:bg-primary/90">
-                      Request Proposal
-                    </Button>
-                  </Link>
-                </Card>
-              </section>
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-8">
-                <SidebarCTA />
+      {/* Mechanical Services */}
+      <ContentSection
+        title="Mechanical Services"
+        subtitle="HVAC, heating, plumbing, and mechanical plant maintained to manufacturer specifications and SFG20 standards."
+        variant="muted"
+      >
+        <div className="grid lg:grid-cols-3 gap-8">
+          {mechanicalServices.map((service, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="h-full p-8 bg-card border border-border rounded-2xl hover:border-primary/30 transition-all group">
+                <h3 className="text-xl font-medium mb-4 text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">{service.description}</p>
               </div>
-            </div>
-          </div>
+            </AnimatedSection>
+          ))}
         </div>
-      </div>
+        <div className="mt-8 flex justify-center">
+          <Button variant="outline" asChild className="hover-lift">
+            <Link to="/services/hvac">
+              Explore HVAC Services
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
+          </Button>
+        </div>
+      </ContentSection>
+
+      {/* Electrical Services */}
+      <ContentSection
+        title="Electrical Services"
+        subtitle="Power systems, emergency lighting, fire alarms, and standby generation maintained to BS 7671 and statutory requirements."
+      >
+        <div className="grid lg:grid-cols-3 gap-8">
+          {electricalServices.map((service, index) => (
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="h-full p-8 bg-gradient-to-br from-muted/50 to-background border border-border rounded-2xl hover:border-primary/30 transition-all group">
+                <h3 className="text-xl font-medium mb-4 text-foreground group-hover:text-primary transition-colors">{service.title}</h3>
+                <p className="text-muted-foreground font-light leading-relaxed">{service.description}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+        <div className="mt-8 flex justify-center">
+          <Button variant="outline" asChild className="hover-lift">
+            <Link to="/services/electrical">
+              Explore Electrical Services
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
+          </Button>
+        </div>
+      </ContentSection>
+
+      {/* Compliance Section */}
+      <ContentSection
+        title="M&E Compliance & Testing"
+        subtitle="All statutory testing requirements managed, documented, and tracked through our digital compliance platform."
+        variant="gradient"
+      >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              title: "Electrical Testing",
+              items: [
+                "5-yearly EICR compliance (BS 7671)",
+                "PAT testing for portable appliances",
+                "Thermal imaging surveys",
+                "Earth loop impedance verification"
+              ]
+            },
+            {
+              title: "Fire & Life Safety",
+              items: [
+                "Weekly fire alarm call point tests",
+                "Quarterly system servicing",
+                "Monthly emergency lighting tests",
+                "Annual 3-hour duration tests"
+              ]
+            },
+            {
+              title: "Mechanical Compliance",
+              items: [
+                "Annual F-Gas leak detection",
+                "Gas Safe boiler inspections",
+                "LOLER lift examinations",
+                "PSSR pressure system inspections"
+              ]
+            }
+          ].map((section, idx) => (
+            <AnimatedSection key={idx} delay={idx * 0.1}>
+              <div className="p-8 bg-card border border-border rounded-2xl h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <FileCheck className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-medium">{section.title}</h3>
+                </div>
+                <ul className="space-y-3">
+                  {section.items.map((item, itemIdx) => (
+                    <li key={itemIdx} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-muted-foreground font-light">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
+      </ContentSection>
+
+      {/* Delivery Model */}
+      <ContentSection
+        title="How We Deliver M&E Services"
+        subtitle="Multi-skilled engineers, integrated PPM schedules, and 24/7 reactive response ensure your buildings operate without interruption."
+        variant="muted"
+      >
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <AnimatedSection delay={0}>
+            <div className="p-8 bg-card border border-border rounded-2xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium">Qualified Engineers</h3>
+              </div>
+              <ul className="space-y-2 text-muted-foreground font-light">
+                <li>• 18th Edition electricians</li>
+                <li>• F-Gas certified HVAC technicians</li>
+                <li>• Gas Safe registered engineers</li>
+                <li>• Manufacturer-trained specialists</li>
+              </ul>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.1}>
+            <div className="p-8 bg-card border border-border rounded-2xl">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-xl font-medium">24/7 Response</h3>
+              </div>
+              <ul className="space-y-2 text-muted-foreground font-light">
+                <li>• 2-hour emergency response SLA</li>
+                <li>• National helpdesk with engineer dispatch</li>
+                <li>• Real-time job tracking</li>
+                <li>• Escalation protocols for critical failures</li>
+              </ul>
+            </div>
+          </AnimatedSection>
+        </div>
+      </ContentSection>
+
+      {/* FAQ Section */}
+      <ContentSection
+        title="Frequently Asked Questions"
+        centered
+      >
+        <div className="max-w-3xl mx-auto">
+          <FAQSection faqs={faqs} />
+        </div>
+      </ContentSection>
+
+      {/* CTA Section */}
+      <CTASection
+        title="Ready to Discuss M&E Requirements?"
+        description="Talk to our team about mechanical and electrical services for your commercial estate. Expert advice, transparent pricing, no obligation."
+        primaryLabel="Request Proposal"
+        primaryHref="/request-proposal"
+        secondaryLabel="Call 0800 024 8550"
+        secondaryHref="tel:08000248550"
+        variant="dark"
+      />
     </>
   );
 };
