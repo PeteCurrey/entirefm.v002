@@ -286,6 +286,9 @@ import SEOTools from "./pages/admin/SEOTools";
 import ClientLogos from "./pages/admin/ClientLogos";
 import AdminSettings from "./pages/admin/Settings";
 import SupplierApplications from "./pages/admin/SupplierApplications";
+import PageBuilder from "./pages/admin/PageBuilder";
+import PageEditor from "./pages/admin/PageEditor";
+import MediaLibrary from "./pages/admin/MediaLibrary";
 import AssetLifecycle from "./pages/fm-operations/AssetLifecycle";
 import EmergencyResponse from "./pages/services/EmergencyResponse";
 import BusinessContinuity from "./pages/fm-operations/BusinessContinuity";
@@ -931,6 +934,10 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="marketing/seo-tools" element={<SEOTools />} />
                 {/* Client Logos */}
                 <Route path="client-logos" element={<ClientLogos />} />
+                {/* Page Builder Routes */}
+                <Route path="page-builder" element={<PageBuilder />} />
+                <Route path="page-builder/edit/:id" element={<PageEditor />} />
+                <Route path="page-builder/media" element={<MediaLibrary />} />
                 {/* Page Management Routes */}
                 <Route path="pages" element={<PageManager />} />
                 <Route path="pages/new" element={<PageCreator />} />

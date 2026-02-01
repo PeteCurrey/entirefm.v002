@@ -20,7 +20,8 @@ import {
   ChevronDown,
   ChevronRight,
   Building2,
-  Settings
+  Settings,
+  PenTool
 } from "lucide-react";
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
@@ -107,6 +108,15 @@ export default function AdminLayout() {
     { icon: Wrench, label: "Helpdesk Jobs", path: "/admin/helpdesk-jobs" },
     { icon: Wrench, label: "CAFM Jobs", path: "/admin/jobs" },
     { icon: Building2, label: "Suppliers", path: "/admin/suppliers" },
+    { 
+      icon: PenTool, 
+      label: "Page Builder", 
+      path: "/admin/page-builder",
+      children: [
+        { label: "All Pages", path: "/admin/page-builder" },
+        { label: "Media Library", path: "/admin/page-builder/media" },
+      ]
+    },
     { 
       icon: Megaphone, 
       label: "Marketing", 
