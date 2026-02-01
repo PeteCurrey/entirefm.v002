@@ -12,8 +12,10 @@ import {
   Leaf,
   Settings,
   FileCheck,
-  Clock
+  Clock,
+  Download
 } from "lucide-react";
+import { downloadHVACChecklist } from "@/utils/generateCompliancePDF";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
@@ -95,11 +97,23 @@ const HVAC = () => {
   ];
 
   const complianceItems = [
-    { regulation: "F-Gas Regulations", frequency: "Annual", scope: "Leak detection, refrigerant logs, system certification" },
-    { regulation: "TM44 Inspections", frequency: "Every 5 years", scope: "Air conditioning energy assessment (>12kW)" },
-    { regulation: "SFG20 Standards", frequency: "Quarterly", scope: "PPM task scheduling and verification" },
-    { regulation: "Building Regs Part L", frequency: "On install/change", scope: "Energy efficiency compliance" }
+    { system: "F-Gas Systems", frequency: "Annually", regulation: "F-Gas Regulations", scope: "Leak detection, refrigerant logs, system certification" },
+    { system: "Air Conditioning (>12kW)", frequency: "Every 5 Years", regulation: "TM44", scope: "Air conditioning energy assessment" },
+    { system: "HVAC PPM", frequency: "Quarterly", regulation: "SFG20", scope: "PPM task scheduling and verification" },
+    { system: "Building Regs Compliance", frequency: "On Install", regulation: "Part L", scope: "Energy efficiency compliance" },
+    { system: "Filter Changes", frequency: "Monthly", regulation: "SFG20", scope: "Air handling unit filter replacement" },
+    { system: "Coil Cleaning", frequency: "Annually", regulation: "SFG20", scope: "Evaporator and condenser coil cleaning" },
+    { system: "Belt & Drive Inspection", frequency: "Quarterly", regulation: "SFG20", scope: "Fan belt tension, pulley alignment, drive condition" },
+    { system: "Refrigerant Checks", frequency: "6-Monthly", regulation: "F-Gas", scope: "Pressure readings, leak detection, oil levels" }
   ];
+
+  const getFrequencyBadgeColor = (frequency: string) => {
+    if (frequency === "Monthly") return "bg-orange-500/20 text-orange-600 border-orange-500/30";
+    if (frequency === "Quarterly") return "bg-yellow-500/20 text-yellow-600 border-yellow-500/30";
+    if (frequency === "6-Monthly") return "bg-blue-500/20 text-blue-600 border-blue-500/30";
+    if (frequency === "Annually") return "bg-primary/20 text-primary border-primary/30";
+    return "bg-purple-500/20 text-purple-600 border-purple-500/30";
+  };
 
   const faqs = [
     {
@@ -213,31 +227,46 @@ const HVAC = () => {
 
       {/* Compliance Table */}
       <ContentSection
-        title="HVAC Compliance Requirements"
+        title="Statutory Testing Frequency Table"
         subtitle="UK regulatory requirements for commercial HVAC systems — all managed through our digital compliance platform."
         variant="gradient"
       >
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <AnimatedSection>
-            <div className="overflow-hidden rounded-2xl border border-border bg-card">
-              <table className="w-full">
+            <div className="overflow-x-auto rounded-2xl border border-border bg-card">
+              <table className="w-full min-w-[700px]">
                 <thead>
                   <tr className="bg-charcoal text-white">
-                    <th className="text-left p-5 font-medium">Regulation</th>
+                    <th className="text-left p-5 font-medium">System / Component</th>
                     <th className="text-left p-5 font-medium">Frequency</th>
+                    <th className="text-left p-5 font-medium">Regulation</th>
                     <th className="text-left p-5 font-medium">Scope</th>
                   </tr>
                 </thead>
                 <tbody>
                   {complianceItems.map((item, index) => (
                     <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-muted/30' : 'bg-background'}`}>
-                      <td className="p-5 font-medium text-foreground">{item.regulation}</td>
-                      <td className="p-5 font-light text-muted-foreground">{item.frequency}</td>
+                      <td className="p-5 font-medium text-foreground">{item.system}</td>
+                      <td className="p-5">
+                        <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium border ${getFrequencyBadgeColor(item.frequency)}`}>
+                          {item.frequency}
+                        </span>
+                      </td>
+                      <td className="p-5 font-light text-muted-foreground">{item.regulation}</td>
                       <td className="p-5 font-light text-muted-foreground">{item.scope}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+          </AnimatedSection>
+          <AnimatedSection delay={0.2}>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-primary/10 border border-primary/20 rounded-xl">
+              <p className="font-medium text-foreground">F-Gas certified engineers required for refrigerant handling.</p>
+              <Button onClick={downloadHVACChecklist} variant="default" size="sm">
+                <Download className="w-4 h-4 mr-2" />
+                Download Checklist
+              </Button>
             </div>
           </AnimatedSection>
         </div>

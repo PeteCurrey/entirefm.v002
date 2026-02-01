@@ -12,8 +12,10 @@ import {
   Shield,
   Clock,
   FileCheck,
-  BadgeCheck
+  BadgeCheck,
+  Download
 } from "lucide-react";
+import { generateCompliancePDF } from "@/utils/generateCompliancePDF";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
@@ -95,11 +97,41 @@ const Plumbing = () => {
   ];
 
   const complianceTable = [
-    { regulation: "Gas Safety (Installation & Use) Regulations", frequency: "Annual (CP42)", scope: "Gas appliances, pipework, ventilation, flue integrity" },
-    { regulation: "Commercial Boiler Servicing", frequency: "Annual minimum", scope: "Burner efficiency, controls, safety devices, combustion analysis" },
-    { regulation: "TMV Servicing (Healthcare & Care Homes)", frequency: "Annual (HTM 04-01)", scope: "Temperature verification, scald risk prevention" },
-    { regulation: "Gas Interlock Systems", frequency: "Annual testing", scope: "Ventilation failure detection & gas shut-off verification" }
+    { system: "Gas Appliances", frequency: "Annually", regulation: "Gas Safety Regs", scope: "Gas appliances, pipework, ventilation, flue integrity" },
+    { system: "Commercial Boilers", frequency: "Annually", regulation: "Manufacturer Spec", scope: "Burner efficiency, controls, safety devices, combustion analysis" },
+    { system: "TMV Servicing", frequency: "Annually", regulation: "HTM 04-01", scope: "Temperature verification, scald risk prevention" },
+    { system: "Gas Interlock Systems", frequency: "Annually", regulation: "BS 6173", scope: "Ventilation failure detection & gas shut-off verification" },
+    { system: "Backflow Prevention", frequency: "Annually", regulation: "Water Regs", scope: "RPZ valve testing and certification" },
+    { system: "Gas Tightness Testing", frequency: "On Install", regulation: "IGEM/UP/1B", scope: "Pipework integrity and leak detection" },
+    { system: "Combustion Analysis", frequency: "Annually", regulation: "Gas Safe", scope: "CO/CO2 readings, flue gas analysis, efficiency" }
   ];
+
+  const getFrequencyBadgeColor = (frequency: string) => {
+    if (frequency === "Monthly") return "bg-orange-500/20 text-orange-600 border-orange-500/30";
+    if (frequency === "Quarterly") return "bg-yellow-500/20 text-yellow-600 border-yellow-500/30";
+    if (frequency === "6-Monthly") return "bg-blue-500/20 text-blue-600 border-blue-500/30";
+    if (frequency === "Annually") return "bg-primary/20 text-primary border-primary/30";
+    return "bg-purple-500/20 text-purple-600 border-purple-500/30";
+  };
+
+  const plumbingComplianceItems = [
+    { system: "Gas Appliances", frequency: "Annually", regulation: "Gas Safety Regs", scope: "Gas appliances, pipework, ventilation, flue integrity" },
+    { system: "Commercial Boilers", frequency: "Annually", regulation: "Manufacturer Spec", scope: "Burner efficiency, controls, safety devices, combustion analysis" },
+    { system: "TMV Servicing", frequency: "Annually", regulation: "HTM 04-01", scope: "Temperature verification, scald risk prevention" },
+    { system: "Gas Interlock Systems", frequency: "Annually", regulation: "BS 6173", scope: "Ventilation failure detection & gas shut-off verification" },
+    { system: "Backflow Prevention", frequency: "Annually", regulation: "Water Regs", scope: "RPZ valve testing and certification" },
+    { system: "Gas Tightness Testing", frequency: "On Install", regulation: "IGEM/UP/1B", scope: "Pipework integrity and leak detection" },
+    { system: "Combustion Analysis", frequency: "Annually", regulation: "Gas Safe", scope: "CO/CO2 readings, flue gas analysis, efficiency" }
+  ];
+
+  const handleDownloadPlumbingChecklist = () => {
+    generateCompliancePDF({
+      title: "Plumbing & Gas Safety Compliance Checklist",
+      subtitle: "UK Statutory Testing Requirements — Gas Safety Regulations, HTM 04-01",
+      items: plumbingComplianceItems,
+      footerNote: "All Gas Safe registered engineers. All certificates tracked digitally."
+    });
+  };
 
   const deliverables = [
     {
@@ -232,26 +264,32 @@ const Plumbing = () => {
 
       {/* Compliance Table */}
       <ContentSection
-        title="Gas Safety Statutory Requirements"
+        title="Statutory Testing Frequency Table"
         subtitle="UK gas safety regulations and testing frequencies — all managed through our digital compliance platform."
         variant="gradient"
       >
         <div className="max-w-5xl mx-auto">
           <AnimatedSection>
-            <div className="overflow-hidden rounded-2xl border border-border bg-card">
-              <table className="w-full">
+            <div className="overflow-x-auto rounded-2xl border border-border bg-card">
+              <table className="w-full min-w-[700px]">
                 <thead>
                   <tr className="bg-charcoal text-white">
-                    <th className="text-left p-5 font-medium">Regulation</th>
+                    <th className="text-left p-5 font-medium">System / Component</th>
                     <th className="text-left p-5 font-medium">Frequency</th>
-                    <th className="text-left p-5 font-medium">What's Checked</th>
+                    <th className="text-left p-5 font-medium">Regulation</th>
+                    <th className="text-left p-5 font-medium">Scope</th>
                   </tr>
                 </thead>
                 <tbody>
                   {complianceTable.map((item, index) => (
                     <tr key={index} className={`border-t border-border ${index % 2 === 0 ? 'bg-muted/30' : 'bg-background'}`}>
-                      <td className="p-5 font-medium text-foreground">{item.regulation}</td>
-                      <td className="p-5 font-light text-muted-foreground">{item.frequency}</td>
+                      <td className="p-5 font-medium text-foreground">{item.system}</td>
+                      <td className="p-5">
+                        <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium border ${getFrequencyBadgeColor(item.frequency)}`}>
+                          {item.frequency}
+                        </span>
+                      </td>
+                      <td className="p-5 font-light text-muted-foreground">{item.regulation}</td>
                       <td className="p-5 font-light text-muted-foreground">{item.scope}</td>
                     </tr>
                   ))}
@@ -259,14 +297,15 @@ const Plumbing = () => {
               </table>
             </div>
           </AnimatedSection>
-          <div className="mt-8 flex justify-center">
-            <Button variant="outline" asChild className="hover-lift">
-              <Link to="/resources">
-                <FileCheck className="w-4 h-4 mr-2" />
-                Download Gas Safety Compliance Guide
-              </Link>
-            </Button>
-          </div>
+          <AnimatedSection delay={0.2}>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-primary/10 border border-primary/20 rounded-xl">
+              <p className="font-medium text-foreground">All Gas Safe registered engineers. Certificates tracked digitally.</p>
+              <Button onClick={handleDownloadPlumbingChecklist} variant="default" size="sm">
+                <Download className="w-4 h-4 mr-2" />
+                Download Checklist
+              </Button>
+            </div>
+          </AnimatedSection>
         </div>
       </ContentSection>
 
