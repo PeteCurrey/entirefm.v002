@@ -949,6 +949,45 @@ export type Database = {
         }
         Relationships: []
       }
+      pdf_templates: {
+        Row: {
+          company_name: string | null
+          created_at: string | null
+          footer_note: string | null
+          id: string
+          is_active: boolean | null
+          items: Json
+          subtitle: string | null
+          template_key: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string | null
+          footer_note?: string | null
+          id?: string
+          is_active?: boolean | null
+          items?: Json
+          subtitle?: string | null
+          template_key: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string | null
+          footer_note?: string | null
+          id?: string
+          is_active?: boolean | null
+          items?: Json
+          subtitle?: string | null
+          template_key?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       proposal_requests: {
         Row: {
           admin_notes: string | null
