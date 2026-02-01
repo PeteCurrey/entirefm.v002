@@ -10,10 +10,12 @@ import {
   Zap,
   FileCheck,
   Clock,
-  Users
+  Users,
+  Download
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
+import { downloadFireAlarmChecklist } from "@/utils/generateCompliancePDF";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
@@ -264,8 +266,12 @@ const FireAlarms = () => {
             </div>
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
-            <div className="mt-6 p-4 bg-primary/10 border border-primary/20 rounded-xl text-center">
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-primary/10 border border-primary/20 rounded-xl">
               <p className="font-medium text-foreground">All visits logged. All records stored. Easily retrievable for audits or HSE.</p>
+              <Button onClick={downloadFireAlarmChecklist} variant="default" size="sm">
+                <Download className="w-4 h-4 mr-2" />
+                Download Checklist
+              </Button>
             </div>
           </AnimatedSection>
         </div>
