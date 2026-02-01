@@ -963,11 +963,11 @@ const App = () => <QueryClientProvider client={queryClient}>
           </main>
           <Footer />
           <FloatingCTA />
-            </div>
-          } />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>;
+        </div>
+      } />
+      </Routes>
+    </BrowserRouter>
+  </TooltipProvider>
+</QueryClientProvider>;
 
 export default App;
