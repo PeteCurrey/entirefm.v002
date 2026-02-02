@@ -9,9 +9,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { FileText, Pencil, Plus, Trash2, Save } from "lucide-react";
+import { FileText, Pencil, Plus, Trash2, Save, Eye, X } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import type { Json } from "@/integrations/supabase/types";
+import { generatePreviewPDF } from "@/utils/pdfPreviewGenerator";
 
 interface ComplianceItem {
   system: string;
@@ -39,6 +40,9 @@ export default function PDFTemplatesAdmin() {
   const [editingTemplate, setEditingTemplate] = useState<PDFTemplate | null>(null);
   const [editingItems, setEditingItems] = useState<ComplianceItem[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [isGeneratingPreview, setIsGeneratingPreview] = useState(false);
 
   const { data: templates, isLoading } = useQuery({
     queryKey: ["pdf-templates"],
@@ -119,6 +123,49 @@ export default function PDFTemplatesAdmin() {
     const updated = [...editingItems];
     updated[index] = { ...updated[index], [field]: value };
     setEditingItems(updated);
+  };
+
+  const handlePreview = async () => {
+    if (!editingTemplate) return;
+    
+    setIsGeneratingPreview(true);
+    try {
+      const isCapabilityPack = editingTemplate.template_key === "capability-pack";
+      const itemsForPreview = isCapabilityPack ? editingTemplate.items : editingItems;
+      
+      const blobUrl = await generatePreviewPDF(
+        editingTemplate.template_key,
+        editingTemplate.title,
+        editingTemplate.subtitle,
+        editingTemplate.company_name,
+        editingTemplate.footer_note,
+        itemsForPreview as unknown as ComplianceItem[]
+      );
+      
+      // Clean up previous URL
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+      
+      setPreviewUrl(blobUrl);
+      setIsPreviewOpen(true);
+    } catch (error) {
+      toast({ 
+        title: "Preview Error", 
+        description: "Failed to generate PDF preview", 
+        variant: "destructive" 
+      });
+    } finally {
+      setIsGeneratingPreview(false);
+    }
+  };
+
+  const closePreview = () => {
+    setIsPreviewOpen(false);
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      setPreviewUrl(null);
+    }
   };
 
   const handleToggleActive = async (template: PDFTemplate) => {
@@ -384,15 +431,52 @@ export default function PDFTemplatesAdmin() {
             </div>
           )}
 
-          <DialogFooter>
+          <DialogFooter className="gap-2 sm:gap-0">
             <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
               Cancel
+            </Button>
+            <Button 
+              variant="secondary" 
+              onClick={handlePreview} 
+              disabled={isGeneratingPreview}
+            >
+              <Eye className="h-4 w-4 mr-1" />
+              {isGeneratingPreview ? "Generating..." : "Preview PDF"}
             </Button>
             <Button onClick={handleSave} disabled={updateMutation.isPending}>
               <Save className="h-4 w-4 mr-1" />
               {updateMutation.isPending ? "Saving..." : "Save Changes"}
             </Button>
           </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* PDF Preview Modal */}
+      <Dialog open={isPreviewOpen} onOpenChange={closePreview}>
+        <DialogContent className="max-w-5xl h-[90vh] p-0">
+          <DialogHeader className="p-4 pb-0">
+            <div className="flex items-center justify-between">
+              <DialogTitle className="flex items-center gap-2">
+                <Eye className="h-5 w-5" />
+                PDF Preview
+              </DialogTitle>
+              <Button variant="ghost" size="icon" onClick={closePreview}>
+                <X className="h-4 w-4" />
+              </Button>
+            </div>
+            <DialogDescription>
+              Preview of how the PDF will appear when downloaded
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex-1 p-4 pt-2 h-full">
+            {previewUrl && (
+              <iframe
+                src={previewUrl}
+                className="w-full h-[calc(90vh-120px)] border rounded-lg"
+                title="PDF Preview"
+              />
+            )}
+          </div>
         </DialogContent>
       </Dialog>
     </div>
