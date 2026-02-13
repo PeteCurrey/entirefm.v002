@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -45,6 +46,14 @@ interface LocationPageData {
 }
 
 const LocationPageTemplate = ({ data }: { data: LocationPageData }) => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -96,10 +105,13 @@ const LocationPageTemplate = ({ data }: { data: LocationPageData }) => {
 
       <div className="min-h-screen">
         {/* Full-screen Hero */}
-        <section className="relative min-h-[85vh] flex items-center">
+        <section className="relative min-h-[85vh] flex items-center overflow-hidden">
           <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${data.heroImage})` }}
+            className="absolute inset-0 bg-cover bg-center will-change-transform"
+            style={{ 
+              backgroundImage: `url(${data.heroImage})`,
+              transform: `translateY(${scrollY * 0.3}px) scale(1.1)`,
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/90 to-charcoal/60" />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-charcoal/30" />
