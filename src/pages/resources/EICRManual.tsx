@@ -60,8 +60,8 @@ const EICRManual = () => {
   };
 
   const handleDownload = async () => {
-    const { downloadEICRManual } = await import("@/utils/generateCompliancePDF");
-    await downloadEICRManual();
+    const { downloadEICRManualComprehensive } = await import("@/utils/generateEICRManualPDF");
+    await downloadEICRManualComprehensive();
   };
 
   const scrollToForm = () => {
