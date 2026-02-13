@@ -59,8 +59,9 @@ const EICRManual = () => {
     console.log("EICR Manual download:", data);
   };
 
-  const handleDownload = () => {
-    toast({ title: "Download Started", description: "Your manual will begin downloading shortly." });
+  const handleDownload = async () => {
+    const { downloadEICRManual } = await import("@/utils/generateCompliancePDF");
+    await downloadEICRManual();
   };
 
   const scrollToForm = () => {

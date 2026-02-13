@@ -59,8 +59,9 @@ const FGasTracker = () => {
     console.log("F-Gas Tracker download:", data);
   };
 
-  const handleDownload = () => {
-    toast({ title: "Download Started", description: "Your tracker will begin downloading shortly." });
+  const handleDownload = async () => {
+    const { downloadHVACChecklist } = await import("@/utils/generateCompliancePDF");
+    await downloadHVACChecklist();
   };
 
   const scrollToForm = () => {

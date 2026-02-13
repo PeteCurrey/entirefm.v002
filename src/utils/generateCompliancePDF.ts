@@ -361,6 +361,26 @@ export async function downloadElectricalChecklist() {
   await generateCompliancePDF(template);
 }
 
+export const eicrManualItems: ComplianceItem[] = [
+  { system: "EICR Testing Cycle", frequency: "Every 5 years", regulation: "BS 7671", scope: "All fixed electrical installations" },
+  { system: "C1 (Danger Present) Remedials", frequency: "Immediate", regulation: "EAW 1989", scope: "Defects posing immediate risk of injury" },
+  { system: "C2 (Potentially Dangerous)", frequency: "Within 28 days", regulation: "BS 7671", scope: "Defects likely to become dangerous" },
+  { system: "C3 (Improvement Recommended)", frequency: "Next inspection", regulation: "BS 7671", scope: "Non-compliant but not immediately dangerous" },
+  { system: "FI (Further Investigation)", frequency: "As required", regulation: "BS 7671", scope: "Areas requiring additional testing or access" },
+  { system: "Contractor Accreditation", frequency: "Annual", regulation: "NICEIC/NAPIT", scope: "Verify contractor competent person scheme membership" },
+  { system: "Distribution Board Inspection", frequency: "Every 5 years", regulation: "BS 7671", scope: "Consumer units, RCDs, MCBs, labelling" },
+  { system: "Emergency Lighting Circuit", frequency: "Monthly/Annual", regulation: "BS 5266", scope: "Emergency lighting on electrical circuits" },
+];
+
+export async function downloadEICRManual() {
+  const template = await fetchTemplate("eicr-manual", eicrManualItems, {
+    title: "EICR Survival Manual",
+    subtitle: "Electrical Installation Condition Report — Compliance Checklist",
+    footerNote: "Based on BS 7671 (IET Wiring Regulations) and Electricity at Work Regulations 1989. For guidance only."
+  });
+  await generateCompliancePDF(template);
+}
+
 // Capability Pack PDF Generator
 export async function downloadCapabilityPack(): Promise<void> {
   // Fetch template from database for metadata
