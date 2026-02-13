@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Plane } from "lucide-react";
+import heroImage from "@/assets/sector-airports-hero.jpg";
 
 const AviationTravelHub = () => {
   return (
     <SectorPageTemplate
-      title="Aviation & Travel Hub Facilities Management | Airside FM Services"
-      metaDescription="Airside compliance & landside experience — no downtime. Mission-critical maintenance for airports and travel hubs with CAA-grade compliance."
-      canonicalUrl="https://entirefm.com/sectors/aviation"
+      title="Aviation & Travel Hub FM | Mission-Critical Maintenance"
+      metaDescription="Mission-critical maintenance for environments where safety, security, and passenger flow are non-negotiable. Airside reliability meets landside excellence."
+      canonicalUrl="https://entirefm.com/sectors/aviation-travel-hub"
       heroTitle="Aviation & Travel Hub FM"
       heroSubtitle="Mission-critical maintenance for environments where safety, security, and passenger flow are non-negotiable. Airside reliability meets landside excellence."
-      heroImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Plane}
       stats={[
         { value: "24/7", label: "Operational Support" },

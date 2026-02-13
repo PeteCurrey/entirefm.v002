@@ -1,5 +1,6 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Hospital } from "lucide-react";
+import heroImage from "@/assets/sector-healthcare-hero.jpg";
 
 const HealthcarePublic = () => {
   return (
@@ -9,7 +10,7 @@ const HealthcarePublic = () => {
       canonicalUrl="https://entirefm.com/sectors/healthcare-public"
       heroTitle="Healthcare & Public Sector Facilities Management"
       heroSubtitle="Zero tolerance on compliance — risk removed, governance proven."
-      heroImage="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Hospital}
       stats={[
         { value: "100%", label: "CQC Compliance" },

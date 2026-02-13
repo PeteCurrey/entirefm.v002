@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Plane } from "lucide-react";
+import heroImage from "@/assets/sector-airports-hero.jpg";
 
 const Airports = () => {
   return (
     <SectorPageTemplate
-      title="Airport Facilities Management | Aviation FM Services | EntireFM"
-      metaDescription="Specialist facilities management for airports. Terminal buildings, airside assets, critical systems, and high-footfall infrastructure with 24/7 operational support."
+      title="Airport Facilities Management | Terminal & Airside FM"
+      metaDescription="FM for terminals, airside/landside assets, critical systems and high-footfall infrastructure with 24/7 operational support."
       canonicalUrl="https://entirefm.com/sectors/airports"
       heroTitle="Airport Facilities Management"
       heroSubtitle="FM for terminals, airside/landside assets, critical systems and high-footfall infrastructure with 24/7 operational support."
-      heroImage="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Plane}
       stats={[
         { value: "24/7", label: "Operational Support" },

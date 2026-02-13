@@ -1,5 +1,6 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Building2 } from "lucide-react";
+import heroImage from "@/assets/sector-corporate-hero.jpg";
 
 const OfficesCorporate = () => {
   return (
@@ -9,7 +10,7 @@ const OfficesCorporate = () => {
       canonicalUrl="https://entirefm.com/sectors/offices-corporate"
       heroTitle="Offices & Corporate FM"
       heroSubtitle="Smart, compliant, and reliable environments that protect productivity, wellbeing, and brand reputation. A workplace that performs — so your people can too."
-      heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Building2}
       stats={[
         { value: "40%", label: "Comfort Improvement" },

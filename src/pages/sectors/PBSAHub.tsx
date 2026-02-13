@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { GraduationCap } from "lucide-react";
+import heroImage from "@/assets/sector-pbsa-hero.jpg";
 
 const PBSAHub = () => {
   return (
     <SectorPageTemplate
-      title="PBSA Facilities Management | Student Accommodation Compliance"
-      metaDescription="High-density estates demand strict governance — we keep them compliant and incident-free. PBSA facilities management with rapid response."
+      title="PBSA Facilities Management | Student Accommodation FM"
+      metaDescription="High-density estates demand strict governance — we keep them compliant and incident-free."
       canonicalUrl="https://entirefm.com/sectors/pbsa"
       heroTitle="PBSA Facilities Management"
       heroSubtitle="High-density estates demand strict governance — we keep them compliant and incident-free."
-      heroImage="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={GraduationCap}
       stats={[
         { value: "30+", label: "PBSA Buildings" },

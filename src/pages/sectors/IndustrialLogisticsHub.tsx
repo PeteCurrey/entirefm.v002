@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Factory } from "lucide-react";
+import heroImage from "@/assets/sector-industrial-hero.jpg";
 
 const IndustrialLogisticsHub = () => {
   return (
     <SectorPageTemplate
-      title="Industrial & Logistics Facilities Management | Uptime Protection"
-      metaDescription="Downtime eliminated — safety engineered into every process-critical asset. Industrial and logistics FM with zero tolerance for failure."
-      canonicalUrl="https://entirefm.com/sectors/industrial-logistics"
+      title="Industrial & Logistics Estates FM | Safety Engineered"
+      metaDescription="Downtime eliminated — safety engineered into every process-critical asset."
+      canonicalUrl="https://entirefm.com/sectors/industrial-logistics-hub"
       heroTitle="Facilities Management for Industrial & Logistics Estates"
       heroSubtitle="Downtime eliminated — safety engineered into every process-critical asset."
-      heroImage="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Factory}
       stats={[
         { value: "47", label: "Remedials Closed" },

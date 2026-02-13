@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Warehouse } from "lucide-react";
+import heroImage from "@/assets/sector-logistics-hero.jpg";
 
 const IndustrialLogistics = () => {
   return (
     <SectorPageTemplate
-      title="FM for Logistics & Industrial Sites UK | Warehouse Facilities Management"
-      metaDescription="Uptime-critical FM for warehouses & logistics. SLA excellence. FM for logistics environments where downtime costs thousands per minute."
-      canonicalUrl="https://entirefm.com/sectors/logistics-industrial"
+      title="Industrial & Logistics FM | Operational Continuity"
+      metaDescription="Operational continuity, delivered. FM for logistics environments where downtime costs thousands per minute — and excuses aren't tolerated."
+      canonicalUrl="https://entirefm.com/sectors/industrial-logistics"
       heroTitle="Industrial & Logistics FM"
       heroSubtitle="Operational continuity, delivered. FM for logistics environments where downtime costs thousands per minute — and excuses aren't tolerated."
-      heroImage="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Warehouse}
       stats={[
         { value: "32%", label: "Reactive Reduction" },

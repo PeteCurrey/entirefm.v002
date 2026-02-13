@@ -1,5 +1,6 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Home } from "lucide-react";
+import heroImage from "@/assets/sector-residential-hero.jpg";
 
 const Residential = () => {
   return (
@@ -9,7 +10,7 @@ const Residential = () => {
       canonicalUrl="https://entirefm.com/sectors/residential"
       heroTitle="Residential & Estate FM"
       heroSubtitle="High-density residential buildings, apartment blocks and PRS/BTR asset management."
-      heroImage="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Home}
       stats={[
         { value: "500+", label: "Apartments Managed" },

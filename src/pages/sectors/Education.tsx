@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { GraduationCap } from "lucide-react";
+import heroImage from "@/assets/sector-education-hero.jpg";
 
 const Education = () => {
   return (
     <SectorPageTemplate
-      title="Universities & Education Facilities Management | Campus Compliance"
-      metaDescription="Safe learning environments — full compliance across complex, multi-building estates. University and education FM with digital governance."
+      title="Universities & Education FM | Campus Compliance & Safety"
+      metaDescription="Safe learning environments — full compliance across complex, multi-building campus estates with digital governance and asset lifecycle management."
       canonicalUrl="https://entirefm.com/sectors/education"
       heroTitle="Universities & Education FM"
       heroSubtitle="Safe learning environments — full compliance across complex, multi-building campus estates with digital governance and asset lifecycle management."
-      heroImage="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={GraduationCap}
       stats={[
         { value: "64%", label: "IAQ Improvement" },

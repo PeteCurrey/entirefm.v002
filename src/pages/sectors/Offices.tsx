@@ -1,5 +1,6 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Building2 } from "lucide-react";
+import heroImage from "@/assets/sector-offices-hero.jpg";
 
 const Offices = () => {
   return (
@@ -9,7 +10,7 @@ const Offices = () => {
       canonicalUrl="https://entirefm.com/sectors/offices"
       heroTitle="Facilities Management for Corporate Workplaces"
       heroSubtitle="Compliance-driven FM that protects productivity, reputation and operational continuity for the corporate environment."
-      heroImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Building2}
       stats={[
         { value: "500+", label: "Office Buildings" },
