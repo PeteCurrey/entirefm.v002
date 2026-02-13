@@ -1,95 +1,80 @@
 
 
-## Enhance All Tool Pages with Premium Design and Informative Content
+## Add Introduction Sections and Remove Unrealistic Metrics from Core Service Pages
 
-### Current State
-All 6 tool pages (PPM Calculator, Cost Savings Calculator, SLA Benchmark, TM44 Checker, Water Risk Grader, Risk Diagnostic) share a similar pattern: a `ToolHero` at the top, then immediately into a form/results layout with plain white backgrounds. None have a proper introduction section explaining what the tool is and why it matters. Some use overly assertive language (e.g., "No Vendor Survives This Comparison").
+### Overview
 
-### What's Changing
+All 7 core service pages need two changes: (1) a proper introduction section explaining the service, and (2) removal of specific metrics that cannot be substantiated.
 
-**For all 6 tools**, the following enhancements will be applied:
+### Unrealistic Metrics to Remove or Replace
 
-1. **Introduction Section** -- Add a `ContentSection` below the hero with a clear explanation of what the tool does, who it's for, and why it matters. Written informatively, not as guarantees.
+| Page | Current Metric | Issue | Replacement |
+|---|---|---|---|
+| **HVAC** | "500+ HVAC Sites" | Unverifiable claim | Remove stat |
+| **HVAC** | "30% Energy Savings" | Guarantee-like | "Energy Optimisation" (qualitative) |
+| **HVAC** | "99% Uptime" | Unrealistic absolute | Remove stat |
+| **Electrical** | "1000+ EICRs Completed" | Unverifiable | Remove stat |
+| **Electrical** | "100% Compliance Rate" | Unrealistic absolute | Remove stat |
+| **Fire Safety** | "10000+ Fire Assets Maintained" | Unverifiable | Remove stat |
+| **Fire Safety** | "100% Audit Pass Rate" | Unrealistic absolute | Remove stat |
+| **Fire Safety** | "500+ Sites Covered" | Unverifiable | Remove stat |
+| **Water Hygiene** | "Zero Outbreaks" | Dangerous guarantee | Remove stat |
+| **Water Hygiene** | "100% Audit Pass Rate" | Unrealistic absolute | Remove stat |
+| **Emergency Lighting** | "100% Compliance Rate" | Unrealistic absolute | Remove stat |
+| **Emergency Lighting** | "Zero Test Failures" | Impossible claim | Remove stat |
+| **PPM** (FAQ) | "reducing costs by up to 40%" | Unsubstantiated | Soften to "significantly" |
 
-2. **Visual Upgrades** -- Wrap calculator/form sections in alternating `ContentSection` variants (muted, gradient) to break up the page visually, matching the premium pattern used across service and location pages.
+For pages with StatsBanner, the remaining stats will be replaced with qualitative, verifiable facts (e.g., certification types, response SLAs, coverage descriptions) rather than numerical claims.
 
-3. **Language Audit** -- Remove any guarantees or overly aggressive claims. Replace with softer, professional language:
-   - "No Vendor Survives This Comparison" becomes "How Does Your Provider Compare?"
-   - Results framed as "estimates" and "indicative" rather than definitive
-   - Add small disclaimers where appropriate (e.g., "Results are indicative and based on industry benchmarks")
+### Replacement Stats (per page)
 
-4. **Bottom CTA** -- Replace inline CTAs with the shared `CTASection` component for consistency.
+**HVAC**: F-Gas Certified | SFG20 Compliant | 24/7 Emergency Cover | UK Wide Coverage
 
-5. **Animation** -- Wrap key content blocks in `motion.div` with scroll-triggered fade-in animations.
+**Electrical**: NICEIC Approved | Same-Day Remedials | 24/7 Emergency Cover | BS 7671 Compliant
 
-### Per-Tool Changes
+**Fire Safety**: BS 5839 Certified | 24/7 Emergency Response | UK Wide Coverage | Digital Certification
 
-| Tool | Introduction Focus | Language Changes |
+**Water Hygiene**: ACOP L8 Compliant | UKAS Accredited Labs | Rapid Remedials | Digital Audit Trail
+
+**Emergency Lighting**: BS 5266 Certified | 3hr Duration Tested | Rapid Remedials | Digital Certificates
+
+### Introduction Sections to Add
+
+Each page gets a new `ContentSection` inserted between the TrustBar and the FeatureCardGrid (or equivalent). Content will be 2-3 paragraphs explaining:
+- What the service is
+- Who needs it and why
+- How EntireFM delivers it
+
+| Page | Intro Title | Focus |
 |---|---|---|
-| **PPM Calculator** | Explains what PPM is, why reactive costs escalate, and how this tool helps estimate ROI | Remove toast saying "report sent to email" (it doesn't actually send). Add "estimates are indicative" note |
-| **Cost Savings Calculator** | Explains the reactive vs preventive maintenance cost difference and who benefits from calculating | Add "indicative estimates" disclaimer to results |
-| **SLA Benchmark** | Explains what SLA benchmarking is, what metrics matter, and how comparing helps decision-making | Change "No Vendor Survives This Comparison" to "How Does Your Provider Compare?" and soften "Performance Gap Identified" messaging |
-| **TM44 Checker** | Already has good "What is TM44?" content -- enhance with fuller intro section above the form | Review penalty language for accuracy |
-| **Water Risk Grader** | Explains ACOP L8 obligations, what legionella risk means, and why regular assessment matters | Already good -- add "indicative assessment" note |
-| **Risk Diagnostic** | Explains what a compliance diagnostic is, who the Responsible Person is, and what risks exist | Soften "Is Your FM Provider Putting You at Risk?" to be less accusatory. Add disclaimer that results are indicative |
+| **HVAC** | "What Is Commercial HVAC Maintenance?" | Explains heating, ventilation, and AC servicing obligations for commercial buildings |
+| **Electrical** | "What Is Electrical Compliance Testing?" | Explains EICR, PAT, and electrical safety obligations under UK law |
+| **Fire Safety** | "What Is Fire Safety Compliance?" | Explains the Responsible Person's duties under the Fire Safety Order 2005 |
+| **Water Hygiene** | "What Is Water Hygiene Compliance?" | Explains Legionella risk, ACOP L8, and the duty holder's obligations |
+| **Gas Safety** | "What Is Commercial Gas Safety?" | Explains Gas Safe registration requirements and CP certification |
+| **Emergency Lighting** | "What Is Emergency Lighting Compliance?" | Explains BS 5266, escape route illumination, and testing obligations |
+| **PPM** | "What Is Planned Preventive Maintenance?" | Explains PPM strategy, compliance integration, and lifecycle benefits |
 
-### Detailed File Changes
+### Additional Language Softening
 
-**`src/pages/tools/PPMCalculator.tsx`**
-- Add `ContentSection` import and intro section below hero with 2-3 paragraphs about PPM
-- Add "How It Works" mini-section with 3 icon steps
-- Wrap form area in `ContentSection` variant="muted"
-- Replace bottom area with `CTASection`
-- Add disclaimer text below results: "These figures are indicative estimates based on industry benchmarks"
-- Remove misleading toast about emailing a report
+- **HVAC** line 299: "typically delivering 20-30% energy savings" changed to "with potential for meaningful energy savings depending on site conditions"
+- **PPM** FAQ: "reducing costs by up to 40%" changed to "significantly reducing costs over time"
+- **Fire Safety** case study metric "99.8% uptime" removed -- replaced with qualitative description
 
-**`src/pages/tools/CostSavingsCalculator.tsx`**
-- Add intro `ContentSection` explaining reactive vs preventive cost dynamics
-- Add "How It Works" steps section
-- Wrap calculator in `ContentSection` variant="muted"
-- Add disclaimer to results card
-- Replace bottom CTA section with shared `CTASection`
+### PPM Page Structure Note
 
-**`src/pages/tools/SLABenchmark.tsx`**
-- Add intro `ContentSection` explaining SLA benchmarking and why it matters
-- Change "No Vendor Survives This Comparison" to "How Does Your Provider Compare?"
-- Soften "Performance Gap Identified" to "Areas for Improvement"
-- Add disclaimer: "Benchmarks are based on industry standards and may vary"
-- Wrap form in `ContentSection` variant="muted"
-- Replace bottom CTA with shared `CTASection`
+The PPM page uses the old sidebar layout (with `SidebarCTA`). It will not be fully restructured in this change -- only the introduction section and metric softening will be applied. A full layout upgrade would be a separate task.
 
-**`src/pages/tools/TM44Checker.tsx`**
-- Move and expand the "What is TM44?" content into a full intro `ContentSection` above the form
-- Add "How It Works" steps
-- Wrap form in `ContentSection` variant="muted"
-- Add `CTASection` at bottom
-- Add disclaimer on results
+### Technical Summary
 
-**`src/pages/tools/WaterRiskGrader.tsx`**
-- Expand "Why Assess Water Risk?" into a full intro `ContentSection`
-- Add "How It Works" steps
-- Wrap form in `ContentSection` variant="muted"
-- Add `CTASection` at bottom
-- Add disclaimer: "This is an indicative assessment and does not replace a formal ACOP L8 risk assessment"
+| Change | Files |
+|---|---|
+| Add intro ContentSection + replace stats | `src/pages/services/HVAC.tsx` |
+| Add intro ContentSection + replace stats | `src/pages/services/Electrical.tsx` |
+| Add intro ContentSection + replace stats | `src/pages/services/FireSafety.tsx` |
+| Add intro ContentSection + replace stats | `src/pages/services/WaterHygiene.tsx` |
+| Add intro ContentSection | `src/pages/services/GasSafety.tsx` |
+| Add intro ContentSection + replace stats | `src/pages/services/EmergencyLighting.tsx` |
+| Add intro section + soften language | `src/pages/services/PPM.tsx` |
 
-**`src/pages/ComplianceDiagnostic.tsx`**
-- Add intro `ContentSection` explaining compliance diagnostics and Responsible Person obligations
-- Soften hero title from "Is Your FM Provider Putting You at Risk?" to something like "How Compliant Is Your Estate?"
-- Change `bg-white` on the diagnostic flow section to use `ContentSection` variant="muted"
-- Replace bottom CTA with shared `CTASection`
-- Add disclaimer to results: "This is an indicative risk assessment and does not constitute formal compliance advice"
-
-### Components Reused
-- `ContentSection` (existing) for intro sections and visual wrapping
-- `CTASection` (existing) for consistent bottom calls-to-action
-- `motion.div` from framer-motion for scroll animations
-- All existing form components remain unchanged
-
-### What's NOT Changing
-- Calculator logic and form fields stay the same
-- ToolHero component stays as-is (already premium)
-- Schema markup and SEO meta remain
-- Breadcrumb positioning stays
-
-### No database changes. No new dependencies.
-
+**No new files. No new dependencies. No database changes.**
