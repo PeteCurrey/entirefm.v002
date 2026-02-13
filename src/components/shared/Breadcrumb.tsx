@@ -14,7 +14,7 @@ export interface BreadcrumbProps {
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
   return (
-    <nav aria-label="Breadcrumb" className={cn("py-4", className)}>
+    <nav aria-label="Breadcrumb" className={cn("py-4 container mx-auto px-6", className)}>
       <ol className="flex items-center gap-2 text-sm">
         <li>
           <Link 
