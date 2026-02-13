@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import leedsSkyline from "@/assets/locations/leeds-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Leeds",
   region: "West Yorkshire",
-  heroImage: "https://images.unsplash.com/photo-1590079168573-5ee822a56e8e?w=1920&q=80",
+  heroImage: leedsSkyline,
   heroHeadline: "Leeds Depends on Reliability. Your FM Partner Must Deliver It.",
   heroSubtext: "Comprehensive facilities management across Leeds & West Yorkshire — rapid response, full compliance, local presence, scalable for multi-site.",
   metaTitle: "Facilities Management Leeds | FM Services West Yorkshire | EntireFM",

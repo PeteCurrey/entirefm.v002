@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import sheffieldSkyline from "@/assets/locations/sheffield-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Sheffield",
   region: "South Yorkshire",
-  heroImage: "https://images.unsplash.com/photo-1595880500386-4b33c4e7d0c5?w=1920&q=80",
+  heroImage: sheffieldSkyline,
   heroHeadline: "Sheffield Runs on Reliability. We Deliver It.",
   heroSubtext: "FM built for industrial strength and commercial pace — across the Steel City.",
   metaTitle: "Facilities Management Sheffield | Industrial FM | EntireFM",

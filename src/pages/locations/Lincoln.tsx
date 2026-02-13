@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import lincolnSkyline from "@/assets/locations/lincoln-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Lincoln",
   region: "Lincolnshire",
-  heroImage: "https://images.unsplash.com/photo-1590079168573-5ee822a56e8e?w=1920&q=80",
+  heroImage: lincolnSkyline,
   heroHeadline: "Facilities Management in Lincoln. Heritage Meets Modern FM.",
   heroSubtext: "Hard FM, compliance, and engineered asset management for estates across Lincoln and Lincolnshire.",
   metaTitle: "Facilities Management Lincoln | Hard FM & Compliance | EntireFM",

@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import leicesterSkyline from "@/assets/locations/leicester-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Leicester",
   region: "East Midlands",
-  heroImage: "https://images.unsplash.com/photo-1590084871842-b5b3c1ad1a8a?w=1920&q=80",
+  heroImage: leicesterSkyline,
   heroHeadline: "Where Manufacturers Scale, We Keep Them Moving.",
   heroSubtext: "FM built for Leicester's industrial heart and fast-moving commercial scene.",
   metaTitle: "Facilities Management Leicester | Industrial FM | EntireFM",

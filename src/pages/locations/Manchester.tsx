@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import manchesterSkyline from "@/assets/locations/manchester-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Manchester",
   region: "Greater Manchester",
-  heroImage: "https://images.unsplash.com/photo-1549042428-b4209b05aa1f?w=1920&q=80",
+  heroImage: manchesterSkyline,
   heroHeadline: "Manchester Moves. Your FM Should Run at the Same Speed.",
   heroSubtext: "Comprehensive facilities management across Greater Manchester — fast response, full compliance, local presence.",
   metaTitle: "Facilities Management Manchester | FM Services | EntireFM",

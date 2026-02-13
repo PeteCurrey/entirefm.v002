@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import liverpoolSkyline from "@/assets/locations/liverpool-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Liverpool",
   region: "Merseyside",
-  heroImage: "https://images.unsplash.com/photo-1571504211935-1c936b327411?w=1920&q=80",
+  heroImage: liverpoolSkyline,
   heroHeadline: "Port-City Performance. No Delays.",
   heroSubtext: "We keep commercial, logistics, and waterfront estates operating at full capacity across Merseyside.",
   metaTitle: "Facilities Management Liverpool | FM Services Merseyside | EntireFM",
