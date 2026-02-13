@@ -1,80 +1,120 @@
 
 
-## Add Introduction Sections and Remove Unrealistic Metrics from Core Service Pages
+## Build Out Routine Service Pages and Upgrade Helpdesk/Support Pages
 
 ### Overview
 
-All 7 core service pages need two changes: (1) a proper introduction section explaining the service, and (2) removal of specific metrics that cannot be substantiated.
+This plan covers two workstreams: (1) upgrading existing pages that use the old sidebar layout to the premium full-width design, and (2) creating new pages for routine/day-to-day services that are currently missing.
 
-### Unrealistic Metrics to Remove or Replace
+### Workstream 1: Upgrade Existing Pages to Premium Layout
 
-| Page | Current Metric | Issue | Replacement |
-|---|---|---|---|
-| **HVAC** | "500+ HVAC Sites" | Unverifiable claim | Remove stat |
-| **HVAC** | "30% Energy Savings" | Guarantee-like | "Energy Optimisation" (qualitative) |
-| **HVAC** | "99% Uptime" | Unrealistic absolute | Remove stat |
-| **Electrical** | "1000+ EICRs Completed" | Unverifiable | Remove stat |
-| **Electrical** | "100% Compliance Rate" | Unrealistic absolute | Remove stat |
-| **Fire Safety** | "10000+ Fire Assets Maintained" | Unverifiable | Remove stat |
-| **Fire Safety** | "100% Audit Pass Rate" | Unrealistic absolute | Remove stat |
-| **Fire Safety** | "500+ Sites Covered" | Unverifiable | Remove stat |
-| **Water Hygiene** | "Zero Outbreaks" | Dangerous guarantee | Remove stat |
-| **Water Hygiene** | "100% Audit Pass Rate" | Unrealistic absolute | Remove stat |
-| **Emergency Lighting** | "100% Compliance Rate" | Unrealistic absolute | Remove stat |
-| **Emergency Lighting** | "Zero Test Failures" | Impossible claim | Remove stat |
-| **PPM** (FAQ) | "reducing costs by up to 40%" | Unsubstantiated | Soften to "significantly" |
+These 3 pages currently use the old sidebar layout (with `SidebarCTA`) and need upgrading to the full-width premium pattern (ServiceHeroSection, ContentSection, TrustBar, FeatureCardGrid, CTASection, FAQSection):
 
-For pages with StatsBanner, the remaining stats will be replaced with qualitative, verifiable facts (e.g., certification types, response SLAs, coverage descriptions) rather than numerical claims.
+**`src/pages/services/BuildingFabric.tsx`** (currently old sidebar layout)
+- Replace sidebar layout with full-width ServiceHeroSection
+- Add intro ContentSection explaining what building fabric maintenance covers
+- Add FeatureCardGrid for sub-services (internal repairs, external structure, fire doors, joinery, paint/decor, accessibility)
+- Add StatsBanner with qualitative stats (Multi-Trade, Same-Day Response, UK Wide, Digital Reporting)
+- Replace inline CTA with shared CTASection
+- Remove unrealistic FAQ claim "reduce reactive requests by 30-50%"
 
-### Replacement Stats (per page)
+**`src/pages/services/EmergencyResponse.tsx`** (currently old sidebar layout)
+- Replace sidebar layout with full-width ServiceHeroSection
+- Add intro ContentSection explaining what emergency response covers
+- Add FeatureCardGrid for emergency categories (fire, water, electrical, HVAC, lift)
+- Add StatsBanner with qualitative stats (24/7/365, Multi-Trade, Immediate Dispatch, UK Wide)
+- Replace inline CTA with shared CTASection
 
-**HVAC**: F-Gas Certified | SFG20 Compliant | 24/7 Emergency Cover | UK Wide Coverage
+**`src/pages/services/CommercialPlumbing.tsx`** (currently old sidebar layout)
+- Replace sidebar layout with full-width ServiceHeroSection
+- Add intro ContentSection
+- Add FeatureCardGrid and StatsBanner
+- Replace inline CTA with shared CTASection
 
-**Electrical**: NICEIC Approved | Same-Day Remedials | 24/7 Emergency Cover | BS 7671 Compliant
+### Workstream 2: Unrealistic Metrics Cleanup on Existing Premium Pages
 
-**Fire Safety**: BS 5839 Certified | 24/7 Emergency Response | UK Wide Coverage | Digital Certification
+**`src/pages/fm-operations/Helpdesk.tsx`**
+- Remove stat "41 min Avg Response" (unverifiable)
+- Remove stat "80% First-Time Fix" (unverifiable)
+- Remove stat "98% SLA Compliance" (unrealistic absolute)
+- Replace with qualitative: 24/7/365 | Multi-Channel | Real-Time Tracking | UK Wide
+- Remove "80%+ First-Time Fix" from keyFeatures description -- soften to "High first-time fix rates"
+- Add intro ContentSection between hero and key features
 
-**Water Hygiene**: ACOP L8 Compliant | UKAS Accredited Labs | Rapid Remedials | Digital Audit Trail
+**`src/pages/fm-operations/ReactiveMaintenance.tsx`**
+- Remove stat "80% First-Time Fix" and "95% SLA Compliance"
+- Replace with qualitative: P1 Priority | Data-Led | Transparent SLAs | UK Wide
+- Add intro ContentSection
+- Soften "P1 emergencies attended within 1 hour" to "P1 emergencies prioritised for immediate dispatch"
 
-**Emergency Lighting**: BS 5266 Certified | 3hr Duration Tested | Rapid Remedials | Digital Certificates
+### Workstream 3: New Routine Service Pages
 
-### Introduction Sections to Add
+Create 4 new pages using the premium full-width layout pattern (matching HVAC, Electrical, etc.):
 
-Each page gets a new `ContentSection` inserted between the TrustBar and the FeatureCardGrid (or equivalent). Content will be 2-3 paragraphs explaining:
-- What the service is
-- Who needs it and why
-- How EntireFM delivers it
+**`src/pages/services/LeakDetectionRepair.tsx`** -- `/services/leak-detection-repair`
+- ServiceHeroSection: "Leak Detection and Repair Services"
+- Intro ContentSection: Explains water damage risks, hidden leaks, and why rapid response matters
+- FeatureCardGrid: Burst pipes, roof leaks, internal leaks, thermal imaging, trace-and-access, temporary containment
+- StatsBanner: Rapid Response | Trace & Access | Thermal Imaging | 24/7 Cover
+- Testing frequency table for water system inspections
+- FAQSection and CTASection
 
-| Page | Intro Title | Focus |
-|---|---|---|
-| **HVAC** | "What Is Commercial HVAC Maintenance?" | Explains heating, ventilation, and AC servicing obligations for commercial buildings |
-| **Electrical** | "What Is Electrical Compliance Testing?" | Explains EICR, PAT, and electrical safety obligations under UK law |
-| **Fire Safety** | "What Is Fire Safety Compliance?" | Explains the Responsible Person's duties under the Fire Safety Order 2005 |
-| **Water Hygiene** | "What Is Water Hygiene Compliance?" | Explains Legionella risk, ACOP L8, and the duty holder's obligations |
-| **Gas Safety** | "What Is Commercial Gas Safety?" | Explains Gas Safe registration requirements and CP certification |
-| **Emergency Lighting** | "What Is Emergency Lighting Compliance?" | Explains BS 5266, escape route illumination, and testing obligations |
-| **PPM** | "What Is Planned Preventive Maintenance?" | Explains PPM strategy, compliance integration, and lifecycle benefits |
+**`src/pages/services/ElectricalDefects.tsx`** -- `/services/electrical-defects`
+- ServiceHeroSection: "Electrical Fault Finding and Remedial Works"
+- Intro ContentSection: Explains common electrical defects (tripping circuits, faulty sockets, lighting failures), safety obligations, and when remedials are needed
+- FeatureCardGrid: Circuit faults, lighting repairs, socket/switch replacement, distribution board work, emergency power loss, minor installations
+- StatsBanner: NICEIC Approved | Same-Day Remedials | BS 7671 Compliant | 24/7 Cover
+- FAQSection and CTASection
 
-### Additional Language Softening
+**`src/pages/services/GeneralMaintenance.tsx`** -- `/services/general-maintenance`
+- ServiceHeroSection: "General Maintenance and Handyman Services"
+- Intro ContentSection: Explains the role of multi-skilled maintenance in commercial buildings -- furniture assembly, signage, notice boards, shelving, minor adjustments, snagging works
+- FeatureCardGrid: Fixtures and fittings, furniture assembly, signage installation, snagging and defects, minor carpentry, general repairs
+- StatsBanner: Multi-Skilled | Same-Day Service | UK Wide | No Job Too Small
+- FAQSection and CTASection
 
-- **HVAC** line 299: "typically delivering 20-30% energy savings" changed to "with potential for meaningful energy savings depending on site conditions"
-- **PPM** FAQ: "reducing costs by up to 40%" changed to "significantly reducing costs over time"
-- **Fire Safety** case study metric "99.8% uptime" removed -- replaced with qualitative description
+**`src/pages/services/OutOfHoursSupport.tsx`** -- `/services/out-of-hours-support`
+- ServiceHeroSection: "Out of Hours Support and Emergency Attendance"
+- Intro ContentSection: Explains why 24/7 coverage matters for commercial estates -- tenant obligations, insurance requirements, building security, critical system failures outside business hours
+- FeatureCardGrid: Emergency callouts, security attendance, alarm response, engineer dispatch, BMS monitoring, site lockdown
+- StatsBanner: 24/7/365 | Multi-Trade | Immediate Triage | UK Wide
+- How it works section (call receipt, triage, dispatch, resolution)
+- FAQSection and CTASection
 
-### PPM Page Structure Note
+### Routing
 
-The PPM page uses the old sidebar layout (with `SidebarCTA`). It will not be fully restructured in this change -- only the introduction section and metric softening will be applied. A full layout upgrade would be a separate task.
+Add 4 new routes to `src/App.tsx`:
+- `/services/leak-detection-repair` -> LeakDetectionRepair
+- `/services/electrical-defects` -> ElectricalDefects
+- `/services/general-maintenance` -> GeneralMaintenance
+- `/services/out-of-hours-support` -> OutOfHoursSupport
 
-### Technical Summary
+### Per-Page Components Used
 
-| Change | Files |
+All pages follow the same premium pattern:
+- ServiceHeroSection (hero with breadcrumbs, stats, CTAs)
+- TrustBar (accreditation logos)
+- ContentSection (intro, how-it-works, compliance sections)
+- FeatureCardGrid (sub-service cards)
+- StatsBanner (qualitative stats only -- no unverifiable numbers)
+- CTASection (shared bottom CTA)
+- FAQSection (4-5 relevant FAQs per page)
+- ServiceSchema, FAQSchema, BreadcrumbSchema (SEO structured data)
+
+### Files Summary
+
+| Action | File |
 |---|---|
-| Add intro ContentSection + replace stats | `src/pages/services/HVAC.tsx` |
-| Add intro ContentSection + replace stats | `src/pages/services/Electrical.tsx` |
-| Add intro ContentSection + replace stats | `src/pages/services/FireSafety.tsx` |
-| Add intro ContentSection + replace stats | `src/pages/services/WaterHygiene.tsx` |
-| Add intro ContentSection | `src/pages/services/GasSafety.tsx` |
-| Add intro ContentSection + replace stats | `src/pages/services/EmergencyLighting.tsx` |
-| Add intro section + soften language | `src/pages/services/PPM.tsx` |
+| Rewrite (upgrade layout) | `src/pages/services/BuildingFabric.tsx` |
+| Rewrite (upgrade layout) | `src/pages/services/EmergencyResponse.tsx` |
+| Rewrite (upgrade layout) | `src/pages/services/CommercialPlumbing.tsx` |
+| Edit (metrics + intro) | `src/pages/fm-operations/Helpdesk.tsx` |
+| Edit (metrics + intro) | `src/pages/fm-operations/ReactiveMaintenance.tsx` |
+| Create | `src/pages/services/LeakDetectionRepair.tsx` |
+| Create | `src/pages/services/ElectricalDefects.tsx` |
+| Create | `src/pages/services/GeneralMaintenance.tsx` |
+| Create | `src/pages/services/OutOfHoursSupport.tsx` |
+| Edit (add routes) | `src/App.tsx` |
 
-**No new files. No new dependencies. No database changes.**
+### No database changes. No new dependencies.
+
