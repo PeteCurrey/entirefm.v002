@@ -7,6 +7,7 @@ import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { CheckCircle2, AlertTriangle, Flame, Shield, Database, Zap, ArrowRight, FileText } from "lucide-react";
+import heroImage from "@/assets/gas-safety-hero.jpg";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
@@ -116,7 +117,7 @@ const GasSafety = () => {
             href: "/resources",
             icon: FileText
           }}
-          backgroundImage="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&q=80"
+          backgroundImage={heroImage}
         />
 
         {/* Key Features Grid */}

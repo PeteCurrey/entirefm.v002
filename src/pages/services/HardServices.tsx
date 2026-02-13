@@ -16,6 +16,7 @@ import {
   AlertTriangle,
   TrendingUp
 } from "lucide-react";
+import heroImage from "@/assets/hard-services-hero.jpg";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
@@ -161,7 +162,7 @@ const HardServices = () => {
         stats={heroStats}
         primaryCTA={{ label: "Request Proposal", href: "/request-proposal", icon: ArrowRight }}
         secondaryCTA={{ label: "24/7 Support", href: "tel:08000248550", icon: Phone }}
-        backgroundImage="/images/services/hard-fm-hero.jpg"
+        backgroundImage={heroImage}
       />
 
       {/* Trust Bar */}

@@ -13,6 +13,7 @@ import {
   Users,
   Download
 } from "lucide-react";
+import heroImage from "@/assets/fire-alarms-hero.jpg";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { downloadFireAlarmChecklist } from "@/utils/generateCompliancePDF";
@@ -154,7 +155,7 @@ const FireAlarms = () => {
         stats={heroStats}
         primaryCTA={{ label: "Request Fire Alarm Proposal", href: "/request-proposal", icon: ArrowRight }}
         secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
-        backgroundImage="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop"
+        backgroundImage={heroImage}
       />
 
       {/* Trust Bar */}
