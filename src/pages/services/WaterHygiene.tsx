@@ -25,6 +25,7 @@ import StatsBanner from "@/components/shared/StatsBanner";
 import CTASection from "@/components/shared/CTASection";
 import ContentSection from "@/components/shared/ContentSection";
 import { TrustBar } from "@/components/shared/TrustBar";
+import heroImage from "@/assets/water-hygiene-hero.jpg";
 
 const WaterHygiene = () => {
   const breadcrumbItems = [
@@ -148,7 +149,7 @@ const WaterHygiene = () => {
         stats={heroStats}
         primaryCTA={{ label: "Request Risk Assessment", href: "/request-proposal", icon: ArrowRight }}
         secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
-        backgroundImage="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80"
+        backgroundImage={heroImage}
       />
 
       {/* Trust Bar */}
