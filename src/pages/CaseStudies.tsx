@@ -6,6 +6,18 @@ import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { motion } from "framer-motion";
 
+import sectorLogistics from "@/assets/sector-logistics-hero.jpg";
+import sectorAirports from "@/assets/sector-airports-hero.jpg";
+import sectorCorporate from "@/assets/sector-corporate-hero.jpg";
+import sectorServiceStations from "@/assets/sector-service-stations-hero.jpg";
+import sectorRetail from "@/assets/sector-retail-hero.jpg";
+import sectorPBSA from "@/assets/sector-pbsa-hero.jpg";
+import sectorIndustrial from "@/assets/sector-industrial-hero.jpg";
+import sectorHospitality from "@/assets/sector-hospitality-hero.jpg";
+import sectorHealthcare from "@/assets/sector-healthcare-hero.jpg";
+import sectorOffices from "@/assets/sector-offices-hero.jpg";
+import sectorResidential from "@/assets/sector-residential-hero.jpg";
+
 const CaseStudies = () => {
   const [activeFilter, setActiveFilter] = useState("All");
 
@@ -20,6 +32,7 @@ const CaseStudies = () => {
     {
       sector: "Logistics",
       title: "Reducing reactive call-outs by 32% for regional logistics hub",
+      image: sectorLogistics,
       metrics: [
         "Response time cut from 2hrs to 41 mins",
         "£47k annual cost savings identified",
@@ -31,6 +44,7 @@ const CaseStudies = () => {
     {
       sector: "Aviation",
       title: "Delivering compliant FM across 3 UK airports",
+      image: sectorAirports,
       metrics: [
         "Zero compliance breaches in 18 months",
         "24/7 helpdesk response maintained",
@@ -42,6 +56,7 @@ const CaseStudies = () => {
     {
       sector: "Mixed-Use",
       title: "Integrated FM for 12-building commercial estate",
+      image: sectorCorporate,
       metrics: [
         "Single point of contact for all trades",
         "Tenant satisfaction up 34%",
@@ -52,6 +67,7 @@ const CaseStudies = () => {
     {
       sector: "Retail",
       title: "42-site service station network standardisation",
+      image: sectorServiceStations,
       metrics: [
         "Standardised service delivery across all sites",
         "Out-of-hours works as standard",
@@ -63,6 +79,7 @@ const CaseStudies = () => {
     {
       sector: "Corporate",
       title: "Grade A office tower – workplace excellence",
+      image: sectorOffices,
       metrics: [
         "Desk-side support implemented",
         "Tenant retention improved",
@@ -74,6 +91,7 @@ const CaseStudies = () => {
     {
       sector: "Residential",
       title: "250-unit residential scheme transformation",
+      image: sectorPBSA,
       metrics: [
         "Resident satisfaction up 41%",
         "Transparent reporting introduced",
@@ -85,6 +103,7 @@ const CaseStudies = () => {
     {
       sector: "Industrial",
       title: "24/7 manufacturing facility support",
+      image: sectorIndustrial,
       metrics: [
         "Zero production downtime from FM failures",
         "Critical spares inventory maintained",
@@ -95,6 +114,7 @@ const CaseStudies = () => {
     {
       sector: "Hospitality",
       title: "Hotel and leisure complex guest experience focus",
+      image: sectorHospitality,
       metrics: [
         "Guest complaints reduced 68%",
         "Discreet service delivery protocols",
@@ -106,6 +126,7 @@ const CaseStudies = () => {
     {
       sector: "Education",
       title: "Multi-academy trust safeguarding-compliant FM",
+      image: sectorOffices,
       metrics: [
         "DBS-checked engineers across all sites",
         "Holiday works programme delivered",
@@ -116,6 +137,7 @@ const CaseStudies = () => {
     {
       sector: "Retail",
       title: "Instant Response FM for a High-Footfall Service Station Estate",
+      image: sectorRetail,
       metrics: [
         "Fire & life safety compliance back to 100%",
         "Reactive response time cut by 42%",
@@ -127,6 +149,7 @@ const CaseStudies = () => {
     {
       sector: "Industrial",
       title: "Operational Uptime & Safety Retention for a Critical Production Site",
+      image: sectorIndustrial,
       metrics: [
         "Production-impacting downtime cut by 53%",
         "0 H&S enforcement actions",
@@ -138,6 +161,7 @@ const CaseStudies = () => {
     {
       sector: "Healthcare",
       title: "Life-Critical Compliance & Environment Improvement in a Healthcare Facility",
+      image: sectorHealthcare,
       metrics: [
         "100% statutory compliance restored and verified",
         "IAQ performance up 41%",
