@@ -8,6 +8,7 @@ import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import ContentSection from "@/components/shared/ContentSection";
 import { Card } from "@/components/ui/card";
 import { 
   Clock, 
@@ -28,12 +29,12 @@ const ReactiveMaintenance = () => {
     {
       icon: Clock,
       title: "Rapid Response",
-      description: "P1 emergencies attended within 1 hour, P2 urgent within 4 hours"
+      description: "P1 emergencies prioritised for immediate dispatch, P2 urgent within 4 hours"
     },
     {
       icon: Wrench,
-      title: "First-Time Fix",
-      description: "80%+ resolution on first visit through competent engineers"
+      title: "First-Time Fix Focus",
+      description: "High resolution rates on first visit through competent engineers"
     },
     {
       icon: TrendingDown,
@@ -92,10 +93,10 @@ const ReactiveMaintenance = () => {
           title="Reactive Maintenance & SLA Management"
           description="Controlled response, real-time monitoring, and performance-led fault resolution. First-time fix focus with transparent SLA tracking."
           stats={[
-            { value: "1hr", label: "P1 Response" },
-            { value: "80", label: "First-Time Fix", suffix: "%" },
-            { value: "95", label: "SLA Compliance", suffix: "%" },
-            { value: "24/7", label: "Availability" }
+            { value: "P1 Priority", label: "Response" },
+            { value: "Data-Led", label: "Approach" },
+            { value: "Transparent", label: "SLAs" },
+            { value: "UK Wide", label: "Coverage" }
           ]}
           primaryCTA={{
             label: "Request Proposal",
@@ -109,6 +110,24 @@ const ReactiveMaintenance = () => {
           }}
           backgroundImage="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&q=80"
         />
+
+        {/* Introduction */}
+        <ContentSection
+          title="What Is Reactive Maintenance?"
+          subtitle="Controlled response to unexpected building failures"
+        >
+          <div className="prose prose-lg max-w-none">
+            <p className="text-muted-foreground font-light leading-relaxed mb-4">
+              Reactive maintenance addresses unexpected equipment failures and faults reported by building users — responding to breakdowns rather than preventing them. This includes fixing broken boilers, repairing lighting failures, clearing blocked drains, and attending fire alarm faults.
+            </p>
+            <p className="text-muted-foreground font-light leading-relaxed mb-4">
+              While some reactive work is unavoidable, excessive reactive maintenance indicates asset deterioration, inadequate preventative maintenance, or poor asset management. Best-practice FM targets a 70-80% planned / 20-30% reactive workload split.
+            </p>
+            <p className="text-muted-foreground font-light leading-relaxed">
+              EntireFM delivers controlled reactive maintenance with defined SLA frameworks, transparent performance reporting, and data-driven fault analysis to reduce call volumes over time. Every job is logged, tracked, and reported through our CAFM system.
+            </p>
+          </div>
+        </ContentSection>
 
         {/* Key Features */}
         <section className="py-16 bg-background">

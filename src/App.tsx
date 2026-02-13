@@ -135,6 +135,10 @@ import EnergyOptimisation from "./pages/services/EnergyOptimisation";
 import EnvironmentalNoiseSurveys from "./pages/services/EnvironmentalNoiseSurveys";
 import AirFiltrationHEPA from "./pages/services/AirFiltrationHEPA";
 import DilapidationCompliance from "./pages/services/DilapidationCompliance";
+import LeakDetectionRepair from "./pages/services/LeakDetectionRepair";
+import ElectricalDefects from "./pages/services/ElectricalDefects";
+import GeneralMaintenance from "./pages/services/GeneralMaintenance";
+import OutOfHoursSupport from "./pages/services/OutOfHoursSupport";
 import London from "./pages/locations/London";
 import Manchester from "./pages/locations/Manchester";
 import Birmingham from "./pages/locations/Birmingham";
@@ -621,6 +625,10 @@ const App = () => <QueryClientProvider client={queryClient}>
           <Route path="/services/water-hygiene" element={<WaterHygiene />} />
           <Route path="/services/building-fabric" element={<BuildingFabric />} />
           <Route path="/services/gas-safety" element={<GasSafety />} />
+          <Route path="/services/leak-detection-repair" element={<LeakDetectionRepair />} />
+          <Route path="/services/electrical-defects" element={<ElectricalDefects />} />
+          <Route path="/services/general-maintenance" element={<GeneralMaintenance />} />
+          <Route path="/services/out-of-hours-support" element={<OutOfHoursSupport />} />
           <Route path="/services/dry-riser-testing" element={<DryRiserTesting />} />
           <Route path="/services/lifting-equipment" element={<LiftingEquipment />} />
           <Route path="/services/height-safety" element={<HeightSafety />} />
