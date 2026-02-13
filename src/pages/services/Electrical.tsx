@@ -14,6 +14,7 @@ import {
   Camera,
   BadgeCheck
 } from "lucide-react";
+import heroImage from "@/assets/electrical-hero.jpg";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
@@ -142,7 +143,7 @@ const Electrical = () => {
         stats={heroStats}
         primaryCTA={{ label: "Request Electrical Proposal", href: "/request-proposal", icon: ArrowRight }}
         secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
-        backgroundImage="/images/services/electrical-hero.jpg"
+        backgroundImage={heroImage}
       />
 
       {/* Trust Bar */}

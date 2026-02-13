@@ -15,6 +15,7 @@ import {
   Clock,
   Download
 } from "lucide-react";
+import heroImage from "@/assets/hvac-hero.jpg";
 import { downloadHVACChecklist } from "@/utils/generateCompliancePDF";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
@@ -162,7 +163,7 @@ const HVAC = () => {
         stats={heroStats}
         primaryCTA={{ label: "Request HVAC Proposal", href: "/request-proposal", icon: ArrowRight }}
         secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
-        backgroundImage="/images/services/hvac-hero.jpg"
+        backgroundImage={heroImage}
       />
 
       {/* Trust Bar */}

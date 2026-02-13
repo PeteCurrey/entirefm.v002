@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { Zap, Shield, Activity, Server, ArrowRight } from "lucide-react";
+import criticalHero from "@/assets/critical-infrastructure-hero.jpg";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { ServiceSchema } from "@/components/shared/SchemaMarkup";
 import { Button } from "@/components/ui/button";
@@ -102,7 +103,7 @@ export default function CriticalInfrastructure() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/placeholder.svg)',
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${criticalHero})`,
             }}
           />
           <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">

@@ -13,6 +13,7 @@ import {
   Eye,
   Download
 } from "lucide-react";
+import heroImage from "@/assets/emergency-lighting-hero.jpg";
 import { Button } from "@/components/ui/button";
 import { FAQSection } from "@/components/shared/FAQSection";
 import { ServiceSchema, FAQSchema } from "@/components/shared/SchemaMarkup";
@@ -147,7 +148,7 @@ const EmergencyLighting = () => {
         stats={heroStats}
         primaryCTA={{ label: "Request Duration Test", href: "/request-proposal", icon: ArrowRight }}
         secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
-        backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
+        backgroundImage={heroImage}
       />
 
       {/* Trust Bar */}

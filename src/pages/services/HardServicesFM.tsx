@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import hardServicesHero from "@/assets/hard-services-hero.jpg";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -184,7 +185,7 @@ const HardServicesFM = () => {
           >
             <div 
               className="absolute inset-0 bg-cover bg-center h-[120%] w-full"
-              style={{ backgroundImage: `url(https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80)` }}
+              style={{ backgroundImage: `url(${hardServicesHero})` }}
             />
           </motion.div>
           
