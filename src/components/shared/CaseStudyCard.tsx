@@ -19,7 +19,7 @@ const CaseStudyCard = ({ sector, title, metrics, slug = "/case-studies", image }
       {image && (
         <>
           <div 
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+            className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-110"
             style={{ backgroundImage: `url(${image})` }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/95 to-charcoal/70 group-hover:from-charcoal group-hover:via-charcoal/90 group-hover:to-charcoal/60 transition-all duration-500" />
