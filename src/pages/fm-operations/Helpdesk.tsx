@@ -8,6 +8,7 @@ import { FAQSchema } from "@/components/shared/SchemaMarkup";
 import { SidebarCTA } from "@/components/shared/SidebarCTA";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import ServiceHeroSection from "@/components/shared/ServiceHeroSection";
+import ContentSection from "@/components/shared/ContentSection";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
@@ -42,7 +43,7 @@ const Helpdesk = () => {
     },
     {
       icon: CheckCircle2,
-      title: "80%+ First-Time Fix",
+      title: "High First-Time Fix",
       description: "Competent engineers, optimised van stock, and diagnostic discipline"
     },
     {
@@ -97,10 +98,10 @@ const Helpdesk = () => {
           title="Technical Helpdesk & 24/7 FM Support"
           description="Helpdesk engineered around first-time fix, SLA control, and proactive performance reporting. Your single point of contact for all reactive maintenance."
           stats={[
-            { value: "24/7", label: "Availability" },
-            { value: "41", label: "Avg Response", suffix: "min" },
-            { value: "80", label: "First-Time Fix", suffix: "%" },
-            { value: "98", label: "SLA Compliance", suffix: "%" }
+            { value: "24/7/365", label: "Availability" },
+            { value: "Multi-Channel", label: "Access" },
+            { value: "Real-Time", label: "Tracking" },
+            { value: "UK Wide", label: "Coverage" }
           ]}
           primaryCTA={{
             label: "Report an Issue",
@@ -114,6 +115,24 @@ const Helpdesk = () => {
           }}
           backgroundImage="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80"
         />
+
+        {/* Introduction */}
+        <ContentSection
+          title="What Is an FM Helpdesk?"
+          subtitle="The operational nerve centre of your facilities management"
+        >
+          <div className="prose prose-lg max-w-none">
+            <p className="text-muted-foreground font-light leading-relaxed mb-4">
+              An FM helpdesk is the single point of contact for all building-related service requests, faults, and emergencies. It receives calls and emails from building users, logs requests into CAFM systems, prioritises by urgency and SLA, dispatches appropriate engineers, monitors job progress, and provides status updates to customers.
+            </p>
+            <p className="text-muted-foreground font-light leading-relaxed mb-4">
+              Effective helpdesks operate 24/7/365, triage issues intelligently between emergency and routine categories, and escalate critical failures immediately. The helpdesk is the operational nerve centre — poor helpdesk performance causes service delays, missed SLAs, and user frustration.
+            </p>
+            <p className="text-muted-foreground font-light leading-relaxed">
+              EntireFM's helpdesk is staffed by trained FM coordinators with access to integrated CAFM systems, real-time engineer tracking, and comprehensive asset data. We focus on high first-time fix rates through competent engineers, optimised van stock, and diagnostic discipline.
+            </p>
+          </div>
+        </ContentSection>
 
         {/* Key Features */}
         <section className="py-16 bg-background">
