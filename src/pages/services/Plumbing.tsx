@@ -27,6 +27,7 @@ import StatsBanner from "@/components/shared/StatsBanner";
 import CTASection from "@/components/shared/CTASection";
 import ContentSection from "@/components/shared/ContentSection";
 import { TrustBar } from "@/components/shared/TrustBar";
+import heroImage from "@/assets/plumbing-hero.jpg";
 
 const Plumbing = () => {
   const breadcrumbItems = [
@@ -199,7 +200,7 @@ const Plumbing = () => {
         stats={heroStats}
         primaryCTA={{ label: "Request Plumbing Proposal", href: "/request-proposal", icon: ArrowRight }}
         secondaryCTA={{ label: "0800 024 8550", href: "tel:08000248550", icon: Phone }}
-        backgroundImage="/images/services/plumbing-hero.jpg"
+        backgroundImage={heroImage}
       />
 
       {/* Trust Bar */}
