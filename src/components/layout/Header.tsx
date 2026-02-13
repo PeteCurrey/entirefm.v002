@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight, Zap, Battery, Cog, Activity, Server, TrendingUp, Scan, Database, Calculator, PoundSterling, Target, Thermometer, Droplets, ShieldAlert, FileText, Flame, Droplet, Calendar, ClipboardCheck, Lightbulb, BookOpen, Building2, Info, Mail, MapPin, Monitor } from "lucide-react";
+import { Menu, X, ArrowRight, Zap, Battery, Cog, Activity, Server, TrendingUp, Scan, Database, Calculator, PoundSterling, Target, Thermometer, Droplets, ShieldAlert, FileText, Flame, Droplet, Calendar, ClipboardCheck, Lightbulb, BookOpen, Building2, Info, Mail, MapPin, Monitor, Siren, Cable, BatteryCharging, Shield, Wrench, Building, ShoppingBag, Factory, HeartPulse, Hotel, GraduationCap, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
@@ -25,31 +25,38 @@ const Header = ({
   const servicesItems = [{
     label: "Fire Safety & Life Protection",
     to: "/services/fire-safety",
-    description: "Fire alarms, emergency lighting, sprinklers"
+    description: "Fire alarms, emergency lighting, sprinklers",
+    icon: Siren
   }, {
     label: "Electrical Compliance",
     to: "/services/electrical-compliance",
-    description: "EICR testing, BS 7671 compliance"
+    description: "EICR testing, BS 7671 compliance",
+    icon: Cable
   }, {
     label: "Emergency Lighting",
     to: "/services/emergency-lighting",
-    description: "BS 5266 testing and certification"
+    description: "BS 5266 testing and certification",
+    icon: Lightbulb
   }, {
     label: "Water Hygiene & Legionella",
     to: "/services/water-hygiene",
-    description: "ACOP L8 compliance and testing"
+    description: "ACOP L8 compliance and testing",
+    icon: Droplets
   }, {
     label: "Gas Safety",
     to: "/services/gas-safety",
-    description: "Gas Safe registered engineers"
+    description: "Gas Safe registered engineers",
+    icon: Flame
   }, {
     label: "HVAC & F-Gas",
     to: "/services/hvac-compliance",
-    description: "TM44, F-Gas, air conditioning"
+    description: "TM44, F-Gas, air conditioning",
+    icon: Thermometer
   }, {
     label: "PPM & Asset Lifecycle",
     to: "/services/ppm-compliance",
-    description: "Planned preventative maintenance"
+    description: "Planned preventative maintenance",
+    icon: Wrench
   }];
 
   const criticalInfrastructureItems = [{
@@ -91,25 +98,32 @@ const Header = ({
   }];
   const sectorsItems = [{
     label: "Corporate Offices",
-    to: "/sectors/offices"
+    to: "/sectors/offices",
+    icon: Building
   }, {
     label: "Retail & Hospitality",
-    to: "/sectors/retail-hospitality"
+    to: "/sectors/retail-hospitality",
+    icon: ShoppingBag
   }, {
     label: "Industrial & Logistics",
-    to: "/sectors/industrial-logistics"
+    to: "/sectors/industrial-logistics",
+    icon: Factory
   }, {
     label: "Healthcare & Public Buildings",
-    to: "/sectors/healthcare-public"
+    to: "/sectors/healthcare-public",
+    icon: HeartPulse
   }, {
     label: "Hotels & Leisure",
-    to: "/sectors/hotels-leisure"
+    to: "/sectors/hotels-leisure",
+    icon: Hotel
   }, {
     label: "PBSA & Student Housing",
-    to: "/sectors/pbsa"
+    to: "/sectors/pbsa",
+    icon: Home
   }, {
     label: "Universities & Education",
-    to: "/sectors/education"
+    to: "/sectors/education",
+    icon: GraduationCap
   }];
   const locationsItems = [{
     label: "London",
@@ -278,7 +292,8 @@ const Header = ({
                             delay: index * 0.03,
                             duration: 0.2
                           }}>
-                                <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                                <Link to={item.to} className="flex items-center gap-2 group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                                  <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                                   <div className="flex-1">
                                     <div className="text-sm font-medium leading-none mb-1">{item.label}</div>
                                     {item.description && <div className="text-xs text-muted-foreground">{item.description}</div>}
@@ -377,8 +392,9 @@ const Header = ({
                       delay: index * 0.03,
                       duration: 0.2
                     }}>
-                          <Link to={item.to} className="flex items-center justify-between group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
-                            <div className="text-sm font-medium">{item.label}</div>
+                          <Link to={item.to} className="flex items-center gap-2 group rounded-md p-3 leading-none no-underline outline-none transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:scale-[1.02]">
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
+                            <div className="text-sm font-medium flex-1">{item.label}</div>
                             <motion.div initial={{
                           x: -5,
                           opacity: 0
