@@ -12,11 +12,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { useToolAnalytics, useToolPageView } from "@/hooks/useToolAnalytics";
 import { ToolHero } from "@/components/shared/ToolHero";
-import { toast } from "@/hooks/use-toast";
-import { Droplets, AlertTriangle, CheckCircle2, Mail } from "lucide-react";
+import { Droplets, AlertTriangle, CheckCircle2, Mail, ClipboardList, Settings, BarChart3 } from "lucide-react";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import ContentSection from "@/components/shared/ContentSection";
+import CTASection from "@/components/shared/CTASection";
 
 const waterRiskSchema = z.object({
   buildingType: z.string().min(1, "Please select building type"),
@@ -64,12 +66,8 @@ const WaterRiskGrader = () => {
     resolver: zodResolver(waterRiskSchema),
     defaultValues: {
       waterSystems: {
-        coldWaterStorage: false,
-        hotWaterCylinders: false,
-        coolingTowers: false,
-        showers: false,
-        deadLegs: false,
-        littleUsedOutlets: false,
+        coldWaterStorage: false, hotWaterCylinders: false, coolingTowers: false,
+        showers: false, deadLegs: false, littleUsedOutlets: false,
       },
     },
   });
@@ -81,110 +79,51 @@ const WaterRiskGrader = () => {
     let score = 0;
     const actions: string[] = [];
 
-    // Building type risk factor (0-30 points)
     const buildingRisk: Record<string, number> = {
-      healthcare: 30,
-      residential: 25,
-      hotel: 20,
-      office: 15,
-      retail: 10,
-      industrial: 15,
+      healthcare: 30, residential: 25, hotel: 20, office: 15, retail: 10, industrial: 15,
     };
     score += buildingRisk[data.buildingType] || 15;
 
-    // Water system complexity (0-30 points)
     const systemCount = Object.values(data.waterSystems).filter(v => v).length;
     score += systemCount * 5;
-    
-    if (data.waterSystems.coolingTowers) {
-      score += 10; // High-risk system
-      actions.push("Cooling tower requires monthly bacteriological sampling");
-    }
-    if (data.waterSystems.deadLegs || data.waterSystems.littleUsedOutlets) {
-      score += 8;
-      actions.push("Dead legs and little-used outlets require regular flushing");
-    }
-    if (data.waterSystems.showers) {
-      score += 5;
-      actions.push("Showerheads require quarterly descaling and disinfection");
-    }
+    if (data.waterSystems.coolingTowers) { score += 10; actions.push("Cooling tower requires monthly bacteriological sampling"); }
+    if (data.waterSystems.deadLegs || data.waterSystems.littleUsedOutlets) { score += 8; actions.push("Dead legs and little-used outlets require regular flushing"); }
+    if (data.waterSystems.showers) { score += 5; actions.push("Showerheads require quarterly descaling and disinfection"); }
 
-    // Last risk assessment (0-20 points)
     if (!data.lastRiskAssessment) {
       score += 20;
       actions.push("URGENT: ACOP L8 risk assessment never conducted - legal requirement");
     } else {
       const lastDate = new Date(data.lastRiskAssessment);
-      const monthsSince = Math.floor(
-        (new Date().getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24 * 30)
-      );
-      if (monthsSince > 24) {
-        score += 15;
-        actions.push("Risk assessment overdue - required every 2 years minimum");
-      } else if (monthsSince > 12) {
-        score += 5;
-        actions.push("Risk assessment approaching review deadline");
-      }
+      const monthsSince = Math.floor((new Date().getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24 * 30));
+      if (monthsSince > 24) { score += 15; actions.push("Risk assessment overdue - required every 2 years minimum"); }
+      else if (monthsSince > 12) { score += 5; actions.push("Risk assessment approaching review deadline"); }
     }
 
-    // Temperature monitoring (0-20 points)
-    const monitoringRisk: Record<string, number> = {
-      none: 20,
-      annual: 15,
-      quarterly: 10,
-      monthly: 5,
-      weekly: 0,
-    };
+    const monitoringRisk: Record<string, number> = { none: 20, annual: 15, quarterly: 10, monthly: 5, weekly: 0 };
     score += monitoringRisk[data.temperatureMonitoring] || 15;
-    
     if (data.temperatureMonitoring === "none" || data.temperatureMonitoring === "annual") {
       actions.push("Temperature monitoring must be conducted monthly minimum (ACOP L8)");
     }
 
-    // Vulnerable occupants (0-10 points)
-    if (data.occupantType === "vulnerable") {
-      score += 10;
-      actions.push("Vulnerable occupants require enhanced monitoring protocols");
-    } else if (data.occupantType === "high-density") {
-      score += 5;
-    }
+    if (data.occupantType === "vulnerable") { score += 10; actions.push("Vulnerable occupants require enhanced monitoring protocols"); }
+    else if (data.occupantType === "high-density") { score += 5; }
 
-    // Determine risk level
     let riskLevel: "low" | "medium" | "high" | "critical";
     let riskDescription: string;
     let acop8Compliance: string;
 
-    if (score >= 70) {
-      riskLevel = "critical";
-      riskDescription = "Immediate legionella control measures required";
-      acop8Compliance = "NON-COMPLIANT - Legal breach identified";
-    } else if (score >= 50) {
-      riskLevel = "high";
-      riskDescription = "Significant legionella risk - urgent action needed";
-      acop8Compliance = "AT RISK - Immediate review recommended";
-    } else if (score >= 30) {
-      riskLevel = "medium";
-      riskDescription = "Moderate risk - control measures require review";
-      acop8Compliance = "PARTIAL COMPLIANCE - Improvements required";
-    } else {
-      riskLevel = "low";
-      riskDescription = "Low legionella risk with adequate controls";
-      acop8Compliance = "LIKELY COMPLIANT - Maintain current protocols";
-    }
+    if (score >= 70) { riskLevel = "critical"; riskDescription = "Immediate legionella control measures indicated"; acop8Compliance = "NON-COMPLIANT - Formal assessment recommended"; }
+    else if (score >= 50) { riskLevel = "high"; riskDescription = "Significant legionella risk indicators - review recommended"; acop8Compliance = "AT RISK - Immediate review recommended"; }
+    else if (score >= 30) { riskLevel = "medium"; riskDescription = "Moderate risk indicators - control measures may need review"; acop8Compliance = "PARTIAL COMPLIANCE - Improvements may be required"; }
+    else { riskLevel = "low"; riskDescription = "Low legionella risk indicators with adequate controls"; acop8Compliance = "LIKELY COMPLIANT - Maintain current protocols"; }
 
-    // Add general actions
     if (riskLevel === "critical" || riskLevel === "high") {
-      actions.unshift("Immediate water sampling and bacteriological testing");
-      actions.push("Emergency review of written control scheme");
+      actions.unshift("Immediate water sampling and bacteriological testing recommended");
+      actions.push("Emergency review of written control scheme recommended");
     }
 
-    setResults({
-      riskScore: score,
-      riskLevel,
-      riskDescription,
-      requiredActions: actions,
-      acop8Compliance,
-    });
+    setResults({ riskScore: score, riskLevel, riskDescription, requiredActions: actions, acop8Compliance });
   };
 
   const onSubmit = (data: WaterRiskFormData) => {
@@ -192,18 +131,8 @@ const WaterRiskGrader = () => {
     calculateRisk(data);
     setShowResults(true);
     trackToolCompletion("Water Hygiene Risk Grader");
-    trackToolComplete("Water Hygiene Risk Grader", { 
-      riskLevel: results.riskLevel,
-      riskScore: results.riskScore 
-    });
-    
-    toast({
-      title: "Risk Assessment Complete",
-      description: "Your water hygiene risk report has been generated and sent to your email.",
-    });
-
+    trackToolComplete("Water Hygiene Risk Grader", { riskLevel: results.riskLevel, riskScore: results.riskScore });
     console.log("Water Risk Grader submission:", data);
-    // In production: Send comprehensive PDF report with ACOP L8 guidance
   };
 
   const breadcrumbItems = [
@@ -225,10 +154,7 @@ const WaterRiskGrader = () => {
     <>
       <Helmet>
         <title>Water Hygiene & Legionella Risk Grader | EntireFM</title>
-        <meta
-          name="description"
-          content="Free water hygiene risk assessment tool. Grade your legionella risk, check ACOP L8 compliance, and identify urgent actions required for your water systems."
-        />
+        <meta name="description" content="Free water hygiene risk assessment tool. Grade your legionella risk, check ACOP L8 compliance, and identify urgent actions required for your water systems." />
         <link rel="canonical" href="https://entirefm.co.uk/tools/water-risk-grader" />
       </Helmet>
 
@@ -246,27 +172,79 @@ const WaterRiskGrader = () => {
         ]}
       />
 
-      <div className="bg-background">
-        <div className="container mx-auto px-4 py-8">
-          <Breadcrumb items={breadcrumbItems} />
+      <main>
+        {/* Introduction */}
+        <ContentSection
+          title="Why Assess Water Hygiene Risk?"
+          subtitle="Under ACOP L8, duty holders have a legal obligation to assess and control the risk of legionella in their water systems."
+          centered
+        >
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="grid md:grid-cols-2 gap-8 text-muted-foreground font-light leading-relaxed"
+            >
+              <div>
+                <p className="mb-4">
+                  Legionella bacteria thrive in building water systems where temperatures are between 20–45°C, water is stagnant, or systems are poorly maintained. ACOP L8 — the Approved Code of Practice — sets out the legal duties for managing these risks in all workplaces and public buildings.
+                </p>
+                <p>
+                  The Responsible Person (typically the employer, building owner, or facilities manager) must ensure a suitable and sufficient risk assessment is carried out and appropriate control measures are maintained.
+                </p>
+              </div>
+              <div>
+                <p className="mb-4">
+                  This indicative assessment tool helps you understand your current risk profile by evaluating your building type, water systems, monitoring frequency, and occupant vulnerability. It is not a substitute for a formal ACOP L8 risk assessment.
+                </p>
+                <p>
+                  Complete the assessment below for an instant indicative risk grade and recommended actions. For a comprehensive formal assessment, contact our water hygiene specialists.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </ContentSection>
 
-          <div className="max-w-5xl mx-auto mt-8">
+        {/* How It Works */}
+        <ContentSection variant="muted">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center"
+          >
+            {[
+              { icon: ClipboardList, title: "1. Describe Your Systems", desc: "Tell us about your building type, water systems, and monitoring practices" },
+              { icon: Settings, title: "2. We Assess Risk", desc: "Your inputs are scored against ACOP L8 risk factors" },
+              { icon: BarChart3, title: "3. Get Your Grade", desc: "Receive an indicative risk grade with recommended actions" },
+            ].map((step) => (
+              <div key={step.title} className="space-y-3">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                  <step.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="font-medium text-foreground">{step.title}</h3>
+                <p className="text-sm text-muted-foreground font-light">{step.desc}</p>
+              </div>
+            ))}
+          </motion.div>
+        </ContentSection>
 
+        {/* Assessment Form */}
+        <ContentSection variant="gradient">
+          <Breadcrumb items={breadcrumbItems} className="mb-8" />
+
+          <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Assessment Form */}
               <Card className="p-6">
                 <h2 className="text-2xl font-light mb-6">Water System Assessment</h2>
-                
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   <div>
                     <Label htmlFor="buildingType">Building Type *</Label>
-                    <Select
-                      value={buildingType}
-                      onValueChange={(value) => setValue("buildingType", value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select building type" />
-                      </SelectTrigger>
+                    <Select value={buildingType} onValueChange={(value) => setValue("buildingType", value)}>
+                      <SelectTrigger><SelectValue placeholder="Select building type" /></SelectTrigger>
                       <SelectContent>
                         <SelectItem value="healthcare">Healthcare / Hospital</SelectItem>
                         <SelectItem value="residential">Residential / Care Home / PBSA</SelectItem>
@@ -276,120 +254,44 @@ const WaterRiskGrader = () => {
                         <SelectItem value="industrial">Industrial / Warehouse</SelectItem>
                       </SelectContent>
                     </Select>
-                    {errors.buildingType && (
-                      <p className="text-sm text-destructive mt-1">{errors.buildingType.message}</p>
-                    )}
+                    {errors.buildingType && <p className="text-sm text-destructive mt-1">{errors.buildingType.message}</p>}
                   </div>
 
                   <div>
                     <Label>Water Systems Present *</Label>
                     <p className="text-xs text-muted-foreground mb-3">Select all that apply</p>
-                    
                     <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="coldWaterStorage"
-                          checked={waterSystems.coldWaterStorage}
-                          onCheckedChange={(checked) =>
-                            setValue("waterSystems.coldWaterStorage", checked as boolean)
-                          }
-                        />
-                        <Label htmlFor="coldWaterStorage" className="cursor-pointer font-normal">
-                          Cold water storage tanks
-                        </Label>
-                      </div>
-
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="hotWaterCylinders"
-                          checked={waterSystems.hotWaterCylinders}
-                          onCheckedChange={(checked) =>
-                            setValue("waterSystems.hotWaterCylinders", checked as boolean)
-                          }
-                        />
-                        <Label htmlFor="hotWaterCylinders" className="cursor-pointer font-normal">
-                          Hot water cylinders/calorifiers
-                        </Label>
-                      </div>
-
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="coolingTowers"
-                          checked={waterSystems.coolingTowers}
-                          onCheckedChange={(checked) =>
-                            setValue("waterSystems.coolingTowers", checked as boolean)
-                          }
-                        />
-                        <Label htmlFor="coolingTowers" className="cursor-pointer font-normal">
-                          Cooling towers / evaporative condensers
-                        </Label>
-                      </div>
-
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="showers"
-                          checked={waterSystems.showers}
-                          onCheckedChange={(checked) =>
-                            setValue("waterSystems.showers", checked as boolean)
-                          }
-                        />
-                        <Label htmlFor="showers" className="cursor-pointer font-normal">
-                          Showers and spray taps
-                        </Label>
-                      </div>
-
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="deadLegs"
-                          checked={waterSystems.deadLegs}
-                          onCheckedChange={(checked) =>
-                            setValue("waterSystems.deadLegs", checked as boolean)
-                          }
-                        />
-                        <Label htmlFor="deadLegs" className="cursor-pointer font-normal">
-                          Dead legs (&gt;2m pipe runs)
-                        </Label>
-                      </div>
-
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="littleUsedOutlets"
-                          checked={waterSystems.littleUsedOutlets}
-                          onCheckedChange={(checked) =>
-                            setValue("waterSystems.littleUsedOutlets", checked as boolean)
-                          }
-                        />
-                        <Label htmlFor="littleUsedOutlets" className="cursor-pointer font-normal">
-                          Little-used outlets
-                        </Label>
-                      </div>
+                      {[
+                        { id: "coldWaterStorage", label: "Cold water storage tanks" },
+                        { id: "hotWaterCylinders", label: "Hot water cylinders/calorifiers" },
+                        { id: "coolingTowers", label: "Cooling towers / evaporative condensers" },
+                        { id: "showers", label: "Showers and spray taps" },
+                        { id: "deadLegs", label: "Dead legs (>2m pipe runs)" },
+                        { id: "littleUsedOutlets", label: "Little-used outlets" },
+                      ].map((system) => (
+                        <div key={system.id} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={system.id}
+                            checked={waterSystems[system.id as keyof typeof waterSystems]}
+                            onCheckedChange={(checked) => setValue(`waterSystems.${system.id}` as any, checked as boolean)}
+                          />
+                          <Label htmlFor={system.id} className="cursor-pointer font-normal">{system.label}</Label>
+                        </div>
+                      ))}
                     </div>
-                    {errors.waterSystems && (
-                      <p className="text-sm text-destructive mt-2">{errors.waterSystems.message}</p>
-                    )}
+                    {errors.waterSystems && <p className="text-sm text-destructive mt-2">{errors.waterSystems.message}</p>}
                   </div>
 
                   <div>
                     <Label htmlFor="lastRiskAssessment">Last ACOP L8 Risk Assessment (Optional)</Label>
-                    <Input
-                      id="lastRiskAssessment"
-                      type="date"
-                      {...register("lastRiskAssessment")}
-                    />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Leave blank if never conducted
-                    </p>
+                    <Input id="lastRiskAssessment" type="date" {...register("lastRiskAssessment")} />
+                    <p className="text-xs text-muted-foreground mt-1">Leave blank if never conducted</p>
                   </div>
 
                   <div>
                     <Label htmlFor="temperatureMonitoring">Temperature Monitoring Frequency *</Label>
-                    <Select
-                      value={watch("temperatureMonitoring")}
-                      onValueChange={(value) => setValue("temperatureMonitoring", value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select frequency" />
-                      </SelectTrigger>
+                    <Select value={watch("temperatureMonitoring")} onValueChange={(value) => setValue("temperatureMonitoring", value)}>
+                      <SelectTrigger><SelectValue placeholder="Select frequency" /></SelectTrigger>
                       <SelectContent>
                         <SelectItem value="weekly">Weekly</SelectItem>
                         <SelectItem value="monthly">Monthly (minimum ACOP L8)</SelectItem>
@@ -398,29 +300,20 @@ const WaterRiskGrader = () => {
                         <SelectItem value="none">No monitoring in place</SelectItem>
                       </SelectContent>
                     </Select>
-                    {errors.temperatureMonitoring && (
-                      <p className="text-sm text-destructive mt-1">{errors.temperatureMonitoring.message}</p>
-                    )}
+                    {errors.temperatureMonitoring && <p className="text-sm text-destructive mt-1">{errors.temperatureMonitoring.message}</p>}
                   </div>
 
                   <div>
                     <Label htmlFor="occupantType">Occupant Type *</Label>
-                    <Select
-                      value={watch("occupantType")}
-                      onValueChange={(value) => setValue("occupantType", value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select occupant type" />
-                      </SelectTrigger>
+                    <Select value={watch("occupantType")} onValueChange={(value) => setValue("occupantType", value)}>
+                      <SelectTrigger><SelectValue placeholder="Select occupant type" /></SelectTrigger>
                       <SelectContent>
                         <SelectItem value="general">General public / staff</SelectItem>
                         <SelectItem value="high-density">High-density occupancy</SelectItem>
                         <SelectItem value="vulnerable">Vulnerable persons (elderly, immunocompromised)</SelectItem>
                       </SelectContent>
                     </Select>
-                    {errors.occupantType && (
-                      <p className="text-sm text-destructive mt-1">{errors.occupantType.message}</p>
-                    )}
+                    {errors.occupantType && <p className="text-sm text-destructive mt-1">{errors.occupantType.message}</p>}
                   </div>
 
                   <div className="border-t pt-4">
@@ -428,58 +321,32 @@ const WaterRiskGrader = () => {
                       <Mail className="w-4 h-4" />
                       Receive Your Risk Report
                     </h3>
-                    
                     <div className="space-y-3">
                       <div>
                         <Label htmlFor="name">Your Name *</Label>
-                        <Input
-                          id="name"
-                          placeholder="John Smith"
-                          {...register("name")}
-                        />
-                        {errors.name && (
-                          <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
-                        )}
+                        <Input id="name" placeholder="John Smith" {...register("name")} />
+                        {errors.name && <p className="text-sm text-destructive mt-1">{errors.name.message}</p>}
                       </div>
-
                       <div>
                         <Label htmlFor="companyName">Company Name (Optional)</Label>
-                        <Input
-                          id="companyName"
-                          placeholder="Your Company Ltd"
-                          {...register("companyName")}
-                        />
+                        <Input id="companyName" placeholder="Your Company Ltd" {...register("companyName")} />
                       </div>
-
                       <div>
                         <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@company.com"
-                          {...register("email")}
-                        />
-                        <p className="text-xs text-muted-foreground mt-1">
-                          Detailed risk report and ACOP L8 guidance emailed instantly
-                        </p>
-                        {errors.email && (
-                          <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
-                        )}
+                        <Input id="email" type="email" placeholder="john@company.com" {...register("email")} />
+                        {errors.email && <p className="text-sm text-destructive mt-1">{errors.email.message}</p>}
                       </div>
                     </div>
                   </div>
 
-                  <Button type="submit" className="w-full" size="lg">
-                    Grade My Water Risk
-                  </Button>
+                  <Button type="submit" className="w-full" size="lg">Grade My Water Risk</Button>
                 </form>
               </Card>
 
-              {/* Results Panel */}
               <div className="space-y-6">
                 {!showResults ? (
                   <Card className="p-6 bg-muted">
-                    <h3 className="text-xl font-light mb-4">Why Assess Water Risk?</h3>
+                    <h3 className="text-xl font-light mb-4">ACOP L8 Key Obligations</h3>
                     <ul className="space-y-3 text-sm">
                       <li className="flex items-start gap-2">
                         <AlertTriangle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
@@ -495,48 +362,43 @@ const WaterRiskGrader = () => {
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <span><strong>Insurance compliance</strong> - required for liability cover</span>
+                        <span><strong>Insurance compliance</strong> - often required for liability cover</span>
                       </li>
                     </ul>
                   </Card>
                 ) : (
                   <>
-                    <Card 
-                      className={`p-6 ${
-                        results.riskLevel === "critical" 
-                          ? "bg-destructive text-destructive-foreground" 
-                          : results.riskLevel === "high"
-                          ? "bg-orange-500 text-white"
-                          : results.riskLevel === "medium"
-                          ? "bg-yellow-500 text-black"
-                          : "bg-green-600 text-white"
-                      }`}
-                    >
-                      <h3 className="text-2xl font-light mb-4">Your Risk Assessment</h3>
-                      
+                    <Card className={`p-6 ${
+                      results.riskLevel === "critical" ? "bg-destructive text-destructive-foreground"
+                        : results.riskLevel === "high" ? "bg-orange-500 text-white"
+                        : results.riskLevel === "medium" ? "bg-yellow-500 text-black"
+                        : "bg-green-600 text-white"
+                    }`}>
+                      <h3 className="text-2xl font-light mb-4">Your Indicative Risk Assessment</h3>
                       <div className="space-y-4">
                         <div className="border-b border-white/20 pb-3">
                           <div className="text-sm opacity-90">Risk Score</div>
                           <div className="text-5xl font-light">{results.riskScore}<span className="text-2xl">/100</span></div>
                         </div>
-
                         <div className="border-b border-white/20 pb-3">
                           <div className="text-sm opacity-90">Risk Level</div>
                           <div className="text-2xl font-light uppercase">{results.riskLevel}</div>
                           <div className="text-sm mt-1">{results.riskDescription}</div>
                         </div>
-
                         <div>
-                          <div className="text-sm opacity-90">ACOP L8 Status</div>
+                          <div className="text-sm opacity-90">Indicative ACOP L8 Status</div>
                           <div className="text-lg font-medium">{results.acop8Compliance}</div>
                         </div>
                       </div>
+                      <p className="text-xs opacity-75 mt-4 border-t border-white/20 pt-3">
+                        This is an indicative assessment and does not replace a formal ACOP L8 risk assessment conducted by a competent person.
+                      </p>
                     </Card>
 
                     <Card className="p-6">
                       <h3 className="font-medium mb-3 flex items-center gap-2">
                         <AlertTriangle className="w-5 h-5 text-destructive" />
-                        Required Actions
+                        Recommended Actions
                       </h3>
                       <ul className="space-y-2 text-sm">
                         {results.requiredActions.map((action, index) => (
@@ -549,14 +411,14 @@ const WaterRiskGrader = () => {
                     </Card>
 
                     <Card className="p-6">
-                      <h3 className="font-medium mb-3">Complete Compliance Audit</h3>
+                      <h3 className="font-medium mb-3">Get a Formal Assessment</h3>
                       <p className="text-sm text-muted-foreground mb-4">
                         {results.riskLevel === "critical" || results.riskLevel === "high"
-                          ? "Urgent action required. Get a full compliance audit covering all water systems and building services."
-                          : "Maintain compliance across all building systems with a comprehensive audit."}
+                          ? "Based on these indicators, a formal ACOP L8 risk assessment is strongly recommended."
+                          : "Maintain compliance across all building systems with a comprehensive water hygiene audit."}
                       </p>
                       <Button asChild className="w-full">
-                        <Link to="/request-proposal">Request Full Audit</Link>
+                        <Link to="/request-proposal">Request Formal Assessment</Link>
                       </Button>
                     </Card>
                   </>
@@ -577,8 +439,18 @@ const WaterRiskGrader = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </ContentSection>
+
+        <CTASection
+          title="Need a Formal ACOP L8 Assessment?"
+          description="Our water hygiene specialists can conduct a comprehensive legionella risk assessment and provide a full written control scheme for your building."
+          primaryLabel="Request Assessment"
+          primaryHref="/contact"
+          secondaryLabel="Learn About Water Hygiene"
+          secondaryHref="/services/water-hygiene"
+          variant="gradient"
+        />
+      </main>
     </>
   );
 };
