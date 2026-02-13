@@ -1,217 +1,59 @@
-import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import MetricCard from "@/components/shared/MetricCard";
-import { ArrowRight, Heart, Shield, Wind, Droplets } from "lucide-react";
+import CaseStudyTemplate from "@/components/shared/CaseStudyTemplate";
+import { Heart, Shield, Wind, Droplets } from "lucide-react";
+import sectorImage from "@/assets/sector-healthcare-hero.jpg";
 
 const Healthcare = () => {
   return (
-    <div className="min-h-screen pt-20">
-      <Helmet>
-        <title>Healthcare FM Case Study</title>
-        <meta 
-          name="description" 
-          content="Zero shutdown remediation & IAQ uplift for care site." 
-        />
-        <link rel="canonical" href="https://entirefm.com/case-studies/healthcare" />
-      </Helmet>
-
-      <Breadcrumb 
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Case Studies", href: "/case-studies" },
-          { label: "Healthcare Compliance & Environment" }
-        ]} 
-      />
-
-      {/* Hero */}
-      <section className="py-16 bg-gradient-to-b from-charcoal to-charcoal-light text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <div className="flex items-center gap-2 mb-4">
-              <Heart className="w-6 h-6 text-primary" />
-              <span className="text-primary font-light uppercase tracking-wider text-sm">Healthcare / Clinical</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-light mb-6 underline-accent inline-block">
-              Life-Critical Compliance & Environment Improvement in a Healthcare Facility
-            </h1>
-            <p className="text-xl text-gray-300 font-light leading-relaxed">
-              A healthcare facility achieving 100% statutory compliance and 41% IAQ improvement through zero-contamination protocols and phased remediation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* The Challenge */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-light mb-8 underline-accent inline-block">
-              The Client Challenge
-            </h2>
-            <p className="text-lg text-muted-foreground font-light mb-6 leading-relaxed">
-              A healthcare facility was facing severe compliance risk and environmental quality concerns affecting patient safety and regulatory standing.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="p-6 border border-border rounded-lg">
-                <h3 className="font-medium mb-3 flex items-center gap-2">
-                  <span className="text-destructive">✗</span>
-                  Severe compliance risk from legacy systems
-                </h3>
-                <p className="text-sm text-muted-foreground font-light">
-                  Outdated fire, emergency, and life-safety infrastructure threatening continuity.
-                </p>
-              </div>
-              <div className="p-6 border border-border rounded-lg">
-                <h3 className="font-medium mb-3 flex items-center gap-2">
-                  <span className="text-destructive">✗</span>
-                  Patient comfort & infection control concerns
-                </h3>
-                <p className="text-sm text-muted-foreground font-light">
-                  Environmental quality impacting clinical outcomes and patient wellbeing.
-                </p>
-              </div>
-              <div className="p-6 border border-border rounded-lg">
-                <h3 className="font-medium mb-3 flex items-center gap-2">
-                  <span className="text-destructive">✗</span>
-                  Mounting audit findings & insurer scrutiny
-                </h3>
-                <p className="text-sm text-muted-foreground font-light">
-                  Regulatory pressure from accumulating compliance failures.
-                </p>
-              </div>
-              <div className="p-6 border border-border rounded-lg">
-                <h3 className="font-medium mb-3 flex items-center gap-2">
-                  <span className="text-destructive">✗</span>
-                  Sensitive environment with vulnerable occupancy
-                </h3>
-                <p className="text-sm text-muted-foreground font-light">
-                  Works requiring highest standards of care and contamination control.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Solution */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-light mb-8 underline-accent inline-block">
-              Our Solution
-            </h2>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-primary" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Fire safety and emergency lighting uplift in phased sections</h3>
-                  <p className="text-muted-foreground font-light">
-                    Strategic sequencing maintaining full operational continuity throughout works.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Wind className="w-5 h-5 text-primary" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">HVAC clean-air performance recovery (filter upgrade + airflow balance)</h3>
-                  <p className="text-muted-foreground font-light">
-                    Environmental system optimization protecting patient comfort and clinical standards.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Droplets className="w-5 h-5 text-primary" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Water hygiene programme re-engineered to HSG274</h3>
-                  <p className="text-muted-foreground font-light">
-                    Complete Legionella control strategy meeting healthcare regulatory standards.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Heart className="w-5 h-5 text-primary" />
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium mb-2">Zero-contamination work protocols enforced</h3>
-                  <p className="text-muted-foreground font-light">
-                    Infection prevention and control embedded throughout delivery methodology.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Measurable Wins */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-light mb-8 underline-accent inline-block">
-              Measurable Wins
-            </h2>
-            
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              <MetricCard value="100" label="Statutory compliance restored and verified" suffix="%" />
-              <MetricCard value="41" label="IAQ performance improvement" prefix="+" suffix="%" />
-              <MetricCard value="0" label="Infection-risk observations returned" />
-              <MetricCard value="0" label="Operational shutdowns during works" />
-            </div>
-
-            <div className="bg-secondary/5 border-l-4 border-primary p-8 rounded-lg">
-              <p className="text-xl font-light italic text-foreground mb-4 leading-relaxed">
-                "They treated the environment like lives depended on it — because they do."
-              </p>
-              <p className="text-sm text-muted-foreground font-medium">
-                — Clinical Facilities Lead
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-secondary text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            Ready to secure healthcare-grade compliance?
-          </h2>
-          <p className="text-lg text-gray-200 font-light max-w-2xl mx-auto mb-8">
-            Get life-critical facilities management for your healthcare environment.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" variant="secondary" className="bg-white text-secondary hover:bg-gray-100">
-                Secure Healthcare-Grade Compliance
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-            <Link to="/case-studies">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                View More Case Studies
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
+    <CaseStudyTemplate
+      seo={{
+        title: "Healthcare FM Case Study | EntireFM",
+        description: "Zero shutdown remediation & IAQ uplift for a healthcare facility achieving 100% statutory compliance.",
+        canonical: "https://entirefm.com/case-studies/healthcare",
+      }}
+      heroImage={sectorImage}
+      sector="Healthcare / Clinical"
+      sectorIcon={Heart}
+      title="Life-Critical Compliance & Environment Improvement in a Healthcare Facility"
+      subtitle="A healthcare facility achieving 100% statutory compliance and 41% IAQ improvement through zero-contamination protocols and phased remediation."
+      breadcrumbLabel="Healthcare Compliance & Environment"
+      stats={[
+        { value: "100", label: "Statutory compliance restored", suffix: "%" },
+        { value: "41", label: "IAQ performance improvement", suffix: "%" },
+        { value: "0", label: "Infection-risk observations" },
+        { value: "0", label: "Operational shutdowns" },
+      ]}
+      challengeIntro="A healthcare facility was facing severe compliance risk and environmental quality concerns affecting patient safety and regulatory standing."
+      challenges={[
+        { title: "Severe compliance risk from legacy systems", description: "Outdated fire, emergency, and life-safety infrastructure threatening continuity." },
+        { title: "Patient comfort & infection control concerns", description: "Environmental quality impacting clinical outcomes and patient wellbeing." },
+        { title: "Mounting audit findings & insurer scrutiny", description: "Regulatory pressure from accumulating compliance failures." },
+        { title: "Sensitive environment with vulnerable occupancy", description: "Works requiring highest standards of care and contamination control." },
+      ]}
+      solutions={[
+        { icon: Shield, title: "Fire safety and emergency lighting uplift in phased sections", description: "Strategic sequencing maintaining full operational continuity throughout works." },
+        { icon: Wind, title: "HVAC clean-air performance recovery (filter upgrade + airflow balance)", description: "Environmental system optimization protecting patient comfort and clinical standards." },
+        { icon: Droplets, title: "Water hygiene programme re-engineered to HSG274", description: "Complete Legionella control strategy meeting healthcare regulatory standards." },
+        { icon: Heart, title: "Zero-contamination work protocols enforced", description: "Infection prevention and control embedded throughout delivery methodology." },
+      ]}
+      metrics={[
+        { value: "100", label: "Statutory compliance restored and verified", suffix: "%" },
+        { value: "41", label: "IAQ performance improvement", prefix: "+", suffix: "%" },
+        { value: "0", label: "Infection-risk observations returned" },
+        { value: "0", label: "Operational shutdowns during works" },
+      ]}
+      testimonial={{
+        quote: "They treated the environment like lives depended on it — because they do.",
+        author: "Clinical Facilities Lead",
+        role: "Healthcare Facility",
+      }}
+      relatedStudies={[
+        { sector: "Aviation", title: "Zero-Disruption Life Safety Overhaul in a Live Terminal", metrics: ["100% BS 5839 compliance", "Zero passenger disruption"], slug: "/case-studies/aviation" },
+        { sector: "Residential", title: "FRA Recovery & Resident Satisfaction Uplift", metrics: ["100% FRA actions cleared in 8 weeks", "Resident satisfaction +22%"], slug: "/case-studies/residential-pbsa" },
+      ]}
+      ctaTitle="Ready to secure healthcare-grade compliance?"
+      ctaDescription="Get life-critical facilities management for your healthcare environment."
+      ctaPrimaryLabel="Secure Healthcare-Grade Compliance"
+    />
   );
 };
 

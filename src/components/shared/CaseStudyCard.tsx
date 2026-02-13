@@ -14,7 +14,7 @@ interface CaseStudyCardProps {
 
 const CaseStudyCard = ({ sector, title, metrics, slug = "/case-studies", image }: CaseStudyCardProps) => {
   return (
-    <Card className="relative p-6 bg-white/5 backdrop-blur-sm border-white/10 hover:border-primary/50 transition-all duration-500 group cursor-pointer h-full flex flex-col overflow-hidden">
+    <Card className="relative p-6 bg-white/10 backdrop-blur-sm border-white/10 hover:border-primary/50 transition-all duration-500 group cursor-pointer h-full flex flex-col overflow-hidden">
       {/* Background image */}
       {image && (
         <>
