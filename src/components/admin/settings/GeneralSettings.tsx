@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Building2, Hash, FileText, Save } from "lucide-react";
+import TeamMembersSettings from "./TeamMembersSettings";
 
 type AdminSetting = {
   id: string;
@@ -270,6 +271,9 @@ export default function GeneralSettings() {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Team Members */}
+      <TeamMembersSettings settings={settings} />
     </div>
   );
 }
