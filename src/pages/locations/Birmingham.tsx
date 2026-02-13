@@ -1,304 +1,61 @@
-import { Helmet } from "react-helmet";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { Phone, MapPin, CheckCircle2, ArrowRight } from "lucide-react";
-import { SidebarCTA } from "@/components/shared/SidebarCTA";
-import { FAQSection } from "@/components/shared/FAQSection";
-import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
 
-const Birmingham = () => {
-  const faqs = [
-    {
-      question: "Do you provide FM services across the West Midlands?",
-      answer: "Yes — full region coverage including Birmingham, Solihull, Walsall, Wolverhampton."
-    },
-    {
-      question: "Can you manage multi-site portfolios in Birmingham?",
-      answer: "Absolutely — we integrate multiple sites under one portal with real-time dashboards."
-    },
-    {
-      question: "Do you offer same-day reactive services?",
-      answer: "Yes — local engineers and spares mean faster response time and less downtime."
-    },
-    {
-      question: "Do you handle full life-safety compliance?",
-      answer: "Yes — fire, water, fabric, electrical compliance included under our integrated FM model."
-    }
-  ];
-
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Facilities Management Birmingham",
-    "provider": {
-      "@type": "Organization",
-      "name": "EntireFM"
-    },
-    "areaServed": {
-      "@type": "City",
-      "name": "Birmingham"
-    },
-    "description": "Hard & soft facilities management across the West Midlands — tailored responsiveness, full compliance, rapid mobilisation."
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
-  const LocalBusinessSchema = () => (
-    <SchemaMarkup
-      schema={{
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "EntireFM Birmingham",
-        "description": "Facilities Management Birmingham - Hard & soft FM services across the West Midlands",
-        "areaServed": "Birmingham, West Midlands",
-        "telephone": "+448001234567"
-      }}
-    />
-  );
-
-  return (
-    <>
-      <Helmet>
-        <title>Facilities Management Birmingham</title>
-        <meta 
-          name="description" 
-          content="Hard & soft FM across the West Midlands. Rapid response & full compliance." 
-        />
-        <link rel="canonical" href="https://entirefm.com/locations/birmingham" />
-      </Helmet>
-
-      <SchemaMarkup schema={serviceSchema} />
-      <SchemaMarkup schema={faqSchema} />
-      <LocalBusinessSchema />
-
-      <div className="min-h-screen pt-20">
-        {/* Hero */}
-        <section className="relative py-24 bg-gradient-to-b from-charcoal to-charcoal/95">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvZz48L3N2Zz4=')] opacity-30" />
-          <div className="container mx-auto px-6 relative">
-            <div className="max-w-3xl">
-              <div className="flex items-center gap-2 mb-4">
-                <MapPin className="w-5 h-5 text-accent" />
-                <span className="text-sm font-light text-gray-300">Birmingham & West Midlands</span>
-              </div>
-              <h1 className="text-5xl md:text-6xl font-light mb-6 text-white">
-                Birmingham Demands Reliability. Your FM Partner Must Deliver It.
-              </h1>
-              <p className="text-xl text-gray-300 font-light leading-relaxed mb-8">
-                Hard & soft facilities management across the West Midlands — tailored responsiveness, full compliance, rapid mobilisation.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" asChild>
-                  <Link to="/contact">
-                    Request Proposal
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild className="bg-transparent border-white text-white hover:bg-white hover:text-charcoal">
-                  <a href="tel:+448001234567">
-                    <Phone className="w-5 h-5 mr-2" />
-                    24/7 Helpdesk – Speak Now
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Main Content */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-3 gap-12">
-              {/* Main Content Column */}
-              <div className="lg:col-span-2 space-y-16">
-                {/* Why Birmingham Needs Specialist FM */}
-                <div>
-                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                    Why Birmingham Needs a Specialist FM Partner
-                  </h2>
-                  <p className="text-lg text-muted-foreground font-light leading-relaxed mb-4">
-                    Greater Birmingham is a hub for manufacturing, logistics, offices, and service operations — with complex estates and high-density sites.
-                  </p>
-                  <p className="text-lg text-muted-foreground font-light leading-relaxed">
-                    If your FM provider doesn't move fast, you risk disruption, cost-blowouts, and compliance failures.
-                  </p>
-                </div>
-
-                {/* Coverage & Capability */}
-                <div>
-                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                    Our Birmingham Coverage & Capability
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Card className="p-6">
-                      <div className="flex items-start gap-3 mb-3">
-                        <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                        <p className="font-light">Full West Midlands footprint: city centre, Solihull, Walsall, Wolverhampton</p>
-                      </div>
-                    </Card>
-                    <Card className="p-6">
-                      <div className="flex items-start gap-3 mb-3">
-                        <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                        <p className="font-light">Local engineer bases, strategic stock of spares, rapid response network</p>
-                      </div>
-                    </Card>
-                    <Card className="p-6">
-                      <div className="flex items-start gap-3 mb-3">
-                        <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                        <p className="font-light">Scalable for single site through multi-estate portfolios</p>
-                      </div>
-                    </Card>
-                    <Card className="p-6">
-                      <div className="flex items-start gap-3 mb-3">
-                        <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                        <p className="font-light">Purpose-built for regional sector demands: logistics, industrial, offices, retail</p>
-                      </div>
-                    </Card>
-                  </div>
-                </div>
-
-                {/* Integrated FM Services */}
-                <div>
-                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                    Integrated FM Services for Birmingham Estates
-                  </h2>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">M&E hard services (electrical, mechanical, HVAC)</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Compliance management (fire systems, life safety, water hygiene)</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Building fabric & exterior maintenance</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">24/7 reactive support, national escalation model</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Unified portal: asset registers, job tracking, KPI dashboards</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Sectors */}
-                <div>
-                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                    Sector Fit: What We Cover Locally
-                  </h2>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Card className="p-6 hover:shadow-lg transition-shadow">
-                      <h3 className="font-medium mb-2">Industrial & Logistics</h3>
-                      <p className="text-sm text-muted-foreground font-light">
-                        Estates around Birmingham
-                      </p>
-                    </Card>
-                    <Card className="p-6 hover:shadow-lg transition-shadow">
-                      <h3 className="font-medium mb-2">Retail Parks</h3>
-                      <p className="text-sm text-muted-foreground font-light">
-                        Service stations across the region
-                      </p>
-                    </Card>
-                    <Card className="p-6 hover:shadow-lg transition-shadow">
-                      <h3 className="font-medium mb-2">Office Campuses</h3>
-                      <p className="text-sm text-muted-foreground font-light">
-                        Multi-tenant blocks
-                      </p>
-                    </Card>
-                    <Card className="p-6 hover:shadow-lg transition-shadow">
-                      <h3 className="font-medium mb-2">Residential</h3>
-                      <p className="text-sm text-muted-foreground font-light">
-                        High-rise blocks & PBSA conversions
-                      </p>
-                    </Card>
-                    <Card className="p-6 hover:shadow-lg transition-shadow">
-                      <h3 className="font-medium mb-2">Hospitality</h3>
-                      <p className="text-sm text-muted-foreground font-light">
-                        Venues and leisure complexes
-                      </p>
-                    </Card>
-                  </div>
-                </div>
-
-                {/* Why Choose Us */}
-                <div>
-                  <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
-                    Why Our Birmingham Clients Stay with Us
-                  </h2>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Localised knowledge + national support</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Clear SLAs, transparent pricing, high-visibility results</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Avoiding the "big-bureaucracy" provider—just direct ownership</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-1" />
-                      <span className="font-light">Digital data, faster decisions, better outcomes</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* FAQs */}
-                <FAQSection faqs={faqs} />
-
-                {/* Final CTA */}
-                <Card className="p-8 bg-charcoal text-white">
-                  <h2 className="text-3xl font-light mb-4">
-                    Get FM that fits Birmingham's pace — not delays.
-                  </h2>
-                  <p className="text-lg text-gray-300 font-light mb-6">
-                    Don't settle for generic service. Work with a partner built for your region.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button size="lg" variant="secondary" asChild>
-                      <Link to="/contact">Request FM Support in Birmingham</Link>
-                    </Button>
-                    <Button size="lg" variant="outline" asChild className="bg-transparent border-white text-white hover:bg-white hover:text-charcoal">
-                      <a href="tel:+448001234567">
-                        <Phone className="w-4 h-4 mr-2" />
-                        Speak to a Specialist – 24/7
-                      </a>
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-
-              {/* Sidebar */}
-              <div className="lg:col-span-1">
-                <div className="sticky top-24">
-                  <SidebarCTA />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </>
-  );
+const data: LocationPageData = {
+  city: "Birmingham",
+  region: "West Midlands",
+  heroImage: "https://images.unsplash.com/photo-1567605974523-7af4c0c42fbc?w=1920&q=80",
+  heroHeadline: "Birmingham Demands Reliability. Your FM Partner Must Deliver It.",
+  heroSubtext: "Hard & soft facilities management across the West Midlands — tailored responsiveness, full compliance, rapid mobilisation.",
+  metaTitle: "Facilities Management Birmingham | FM Services West Midlands | EntireFM",
+  metaDescription: "Hard & soft FM across the West Midlands. Rapid response & full compliance for commercial and industrial estates.",
+  canonicalUrl: "https://entirefm.com/locations/birmingham",
+  stats: [
+    { value: "41", label: "Avg Response Time (mins)", suffix: "min" },
+    { value: "100", label: "Compliance Rate", suffix: "%" },
+    { value: "32", label: "Reactive Call-Out Reduction", suffix: "%" },
+    { value: "24", label: "Hour Helpdesk", suffix: "/7" }
+  ],
+  whyTitle: "Why Birmingham Needs a Specialist FM Partner",
+  whyIntro: "Greater Birmingham is a hub for manufacturing, logistics, offices, and service operations — with complex estates and high-density sites. If your FM provider doesn't move fast, you risk disruption, cost-blowouts, and compliance failures.",
+  whyPoints: [
+    "Full West Midlands footprint: city centre, Solihull, Walsall, Wolverhampton",
+    "Local engineer bases, strategic stock of spares, rapid response network",
+    "Scalable for single site through multi-estate portfolios",
+    "Purpose-built for regional sector demands: logistics, industrial, offices, retail"
+  ],
+  coverageAreas: [
+    "Birmingham City Centre", "Solihull", "Walsall", "Wolverhampton",
+    "Dudley", "Sutton Coldfield", "West Bromwich", "Coventry corridor"
+  ],
+  services: [
+    "M&E hard services (electrical, mechanical, HVAC)",
+    "Compliance management (fire systems, life safety, water hygiene)",
+    "Building fabric & exterior maintenance",
+    "24/7 reactive support, national escalation model",
+    "Unified portal: asset registers, job tracking, KPI dashboards"
+  ],
+  sectors: [
+    { title: "Industrial & Logistics", description: "Estates around Birmingham and the M6 corridor" },
+    { title: "Retail Parks", description: "Service stations and retail complexes across the region" },
+    { title: "Office Campuses", description: "Multi-tenant blocks and business parks" },
+    { title: "Residential", description: "High-rise blocks & PBSA conversions" },
+    { title: "Hospitality", description: "Venues and leisure complexes" }
+  ],
+  whyChoosePoints: [
+    "Localised knowledge + national support",
+    "Clear SLAs, transparent pricing, high-visibility results",
+    "Avoiding the 'big-bureaucracy' provider — just direct ownership",
+    "Digital data, faster decisions, better outcomes"
+  ],
+  faqs: [
+    { question: "Do you provide FM services across the West Midlands?", answer: "Yes — full region coverage including Birmingham, Solihull, Walsall, Wolverhampton." },
+    { question: "Can you manage multi-site portfolios in Birmingham?", answer: "Absolutely — we integrate multiple sites under one portal with real-time dashboards." },
+    { question: "Do you offer same-day reactive services?", answer: "Yes — local engineers and spares mean faster response time and less downtime." },
+    { question: "Do you handle full life-safety compliance?", answer: "Yes — fire, water, fabric, electrical compliance included under our integrated FM model." }
+  ],
+  ctaHeadline: "Get FM that fits Birmingham's pace — not delays.",
+  ctaSubtext: "Don't settle for generic service. Work with a partner built for your region."
 };
 
+const Birmingham = () => <LocationPageTemplate data={data} />;
 export default Birmingham;
