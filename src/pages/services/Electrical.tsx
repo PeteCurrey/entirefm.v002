@@ -74,10 +74,10 @@ const Electrical = () => {
   ];
 
   const stats = [
-    { value: "1000", suffix: "+", label: "EICRs Completed" },
-    { value: "Same", label: "Day Remedials" },
-    { value: "100", suffix: "%", label: "Compliance Rate" },
-    { value: "24/7", label: "Emergency Cover" }
+    { value: "NICEIC", label: "Approved" },
+    { value: "Same Day", label: "Remedials" },
+    { value: "24/7", label: "Emergency Cover" },
+    { value: "BS 7671", label: "Compliant" }
   ];
 
   const serviceTable = [
@@ -148,6 +148,24 @@ const Electrical = () => {
 
       {/* Trust Bar */}
       <TrustBar variant="compact" />
+
+      {/* Introduction Section */}
+      <ContentSection
+        title="What Is Electrical Compliance Testing?"
+        variant="muted"
+      >
+        <div className="max-w-4xl mx-auto space-y-4">
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Electrical compliance testing ensures that a building's fixed wiring, portable appliances, and distribution systems meet the safety standards required under UK law. The Electricity at Work Regulations 1989 place a duty on employers and building owners to maintain electrical systems in a safe condition — failure to comply can result in criminal prosecution, insurance invalidation, and significant fire risk.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Key obligations include Electrical Installation Condition Reports (EICRs) every five years for commercial premises, Portable Appliance Testing (PAT) at intervals determined by risk assessment, and ongoing maintenance of distribution boards, switchgear, and emergency systems. Buildings with higher occupancy or risk profiles may require more frequent testing.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            EntireFM delivers electrical compliance through NICEIC-approved contractors qualified to BS 7671 (18th Edition). Every inspection includes clear C1–C3 coding, photographic evidence, costed remedial recommendations, and digital certification — giving duty holders a complete audit trail and actionable compliance data.
+          </p>
+        </div>
+      </ContentSection>
 
       {/* Features Grid */}
       <ContentSection

@@ -120,6 +120,24 @@ const GasSafety = () => {
           backgroundImage={heroImage}
         />
 
+        {/* Introduction Section */}
+        <ContentSection
+          title="What Is Commercial Gas Safety?"
+          variant="muted"
+        >
+          <div className="max-w-4xl mx-auto space-y-4">
+            <p className="text-muted-foreground font-light leading-relaxed">
+              Commercial gas safety covers the inspection, testing, certification, and maintenance of gas installations in non-domestic premises. Under the Gas Safety (Installation and Use) Regulations 1998, all commercial gas work must be carried out by Gas Safe registered engineers holding the relevant commercial competencies — including CP1 for pipework, CP15 for boilers, and CP42 for catering equipment.
+            </p>
+            <p className="text-muted-foreground font-light leading-relaxed">
+              Any business operating gas-fired heating, hot water systems, or commercial kitchen equipment has a legal duty to ensure those installations are inspected and certified annually. Carbon monoxide risk, flue integrity, ventilation adequacy, and combustion performance must all be verified. Non-compliance can lead to HSE prosecution, building closure, and — in the worst cases — fatalities.
+            </p>
+            <p className="text-muted-foreground font-light leading-relaxed">
+              EntireFM delivers commercial gas safety through Gas Safe registered engineers with CP1, CP15, and CP42 competencies. Every inspection includes combustion analysis, CO risk assessment, flue integrity testing, and digital certification — giving duty holders a defensible compliance record for regulators and insurers.
+            </p>
+          </div>
+        </ContentSection>
+
         {/* Key Features Grid */}
         <section className="py-16 bg-background">
           <div className="max-w-6xl mx-auto px-4">

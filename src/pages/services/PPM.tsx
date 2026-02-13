@@ -30,7 +30,7 @@ const PPM = () => {
     },
     {
       question: "What is the difference between reactive and preventive maintenance?",
-      answer: "Reactive fixes things after they break. Preventive maintenance stops failures before they happen, reducing costs by up to 40%."
+      answer: "Reactive fixes things after they break. Preventive maintenance stops failures before they happen, significantly reducing costs over time."
     }
   ];
 
@@ -84,24 +84,44 @@ const PPM = () => {
                 <p className="text-xl text-muted-foreground font-light leading-relaxed mb-8">
                   Proactive maintenance programmes integrating fire, electrical, HVAC, water and gas compliance — eliminating downtime, reducing cost, and safeguarding operational continuity.
                 </p>
-                <div className="flex flex-wrap gap-4">
-                  <Button 
-                    size="lg" 
-                    onClick={() => trackProposalRequest('ppm_hero')}
-                    asChild
-                  >
-                    <Link to="/contact">Build My PPM Programme</Link>
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    onClick={() => trackDownload('ppm_compliance_calendar')}
-                    asChild
-                  >
-                    <Link to="/contact">Download PPM Compliance Calendar</Link>
-                  </Button>
-                </div>
               </header>
+
+              {/* Introduction Section */}
+              <section className="bg-muted/30 p-8 rounded-xl">
+                <h2 className="text-3xl font-light mb-6 underline-accent inline-block">
+                  What Is Planned Preventive Maintenance?
+                </h2>
+                <div className="space-y-4">
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Planned Preventive Maintenance (PPM) is a structured approach to building maintenance where servicing, inspection, and testing are scheduled in advance rather than carried out reactively after equipment fails. A well-designed PPM programme ensures that all critical building systems — from fire alarms and electrical installations to HVAC and water hygiene — are maintained in compliance with UK regulations on a predictable, auditable schedule.
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    Without PPM, organisations face escalating reactive repair costs, compliance gaps, unplanned downtime, and accelerated asset deterioration. PPM transforms maintenance from an unpredictable cost centre into a strategic function that extends asset lifecycles, reduces emergency callouts, and provides the governance evidence that regulators, insurers, and auditors require.
+                  </p>
+                  <p className="text-muted-foreground font-light leading-relaxed">
+                    EntireFM delivers PPM programmes that integrate all hard services compliance under a single contract with unified digital governance. From SFG20-aligned task scheduling to real-time portfolio dashboards, we give facilities managers and procurement teams complete visibility and control over their maintenance obligations.
+                  </p>
+                </div>
+              </section>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4">
+                <Button 
+                  size="lg" 
+                  onClick={() => trackProposalRequest('ppm_hero')}
+                  asChild
+                >
+                  <Link to="/contact">Build My PPM Programme</Link>
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  onClick={() => trackDownload('ppm_compliance_calendar')}
+                  asChild
+                >
+                  <Link to="/contact">Download PPM Compliance Calendar</Link>
+                </Button>
+              </div>
 
               {/* PPM = Predictability */}
               <section>

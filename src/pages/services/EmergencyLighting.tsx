@@ -74,10 +74,10 @@ const EmergencyLighting = () => {
   ];
 
   const stats = [
-    { value: "100", suffix: "%", label: "Compliance Rate" },
+    { value: "BS 5266", label: "Certified" },
     { value: "3", suffix: "hr", label: "Duration Tested" },
-    { value: "<48", suffix: "hr", label: "Remedial Response" },
-    { value: "Zero", label: "Test Failures" }
+    { value: "Rapid", label: "Remedials" },
+    { value: "Digital", label: "Certificates" }
   ];
 
   const complianceItems = [
@@ -153,6 +153,24 @@ const EmergencyLighting = () => {
 
       {/* Trust Bar */}
       <TrustBar variant="compact" />
+
+      {/* Introduction Section */}
+      <ContentSection
+        title="What Is Emergency Lighting Compliance?"
+        variant="muted"
+      >
+        <div className="max-w-4xl mx-auto space-y-4">
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Emergency lighting compliance ensures that building escape routes remain illuminated during a power failure, enabling safe evacuation. Under BS 5266 and the Regulatory Reform (Fire Safety) Order 2005, the Responsible Person must ensure that emergency lighting systems are installed, tested, and maintained to provide adequate illumination along all escape routes, at exit points, and in areas of heightened risk.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Compliance requires monthly functional tests (brief activation to confirm operation) and annual 3-hour duration tests (full battery discharge under load). Central battery systems, maintained fittings, and non-maintained luminaires each have specific testing protocols. Failure to maintain emergency lighting can result in enforcement action, insurance refusal, and — in the event of an incident — criminal liability.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            EntireFM delivers BS 5266 compliant emergency lighting services including monthly testing, annual duration verification, battery replacements, escape route lux level mapping, and digital certification. Every test is photographically documented and stored digitally, providing a complete audit trail for fire officers and insurers.
+          </p>
+        </div>
+      </ContentSection>
 
       {/* Features Grid */}
       <ContentSection

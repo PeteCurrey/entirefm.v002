@@ -74,10 +74,10 @@ const WaterHygiene = () => {
   ];
 
   const stats = [
-    { value: "Zero", label: "Outbreaks" },
+    { value: "ACOP L8", label: "Compliant" },
     { value: "UKAS", label: "Accredited Labs" },
-    { value: "<48", suffix: "hr", label: "Remedial Response" },
-    { value: "100", suffix: "%", label: "Audit Pass Rate" }
+    { value: "Rapid", label: "Remedials" },
+    { value: "Digital", label: "Audit Trail" }
   ];
 
   const complianceItems = [
@@ -154,6 +154,24 @@ const WaterHygiene = () => {
 
       {/* Trust Bar */}
       <TrustBar variant="compact" />
+
+      {/* Introduction Section */}
+      <ContentSection
+        title="What Is Water Hygiene Compliance?"
+        variant="muted"
+      >
+        <div className="max-w-4xl mx-auto space-y-4">
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Water hygiene compliance is the legal obligation to control the risk of Legionella and other waterborne pathogens in building water systems. Under the Health and Safety at Work Act 1974 and the Approved Code of Practice L8 (ACOP L8), duty holders — typically building owners, employers, or managing agents — must assess and manage risks from hot and cold water systems, cooling towers, and other water sources.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Legionella bacteria thrive in stagnant water between 20–45°C. Without proper temperature control, flushing regimes, and water quality monitoring, building occupants and visitors face serious health risks. A single Legionella outbreak can result in fatalities, criminal prosecution, building closure, and significant reputational damage.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            EntireFM delivers ACOP L8 and HSG274 compliant water hygiene services including risk assessments, temperature monitoring, UKAS-accredited sampling, tank cleaning, TMV servicing, and rapid remedials. Every action is digitally recorded with a complete audit trail, giving duty holders the evidence they need for inspectors, insurers, and regulators.
+          </p>
+        </div>
+      </ContentSection>
 
       {/* Features Grid */}
       <ContentSection

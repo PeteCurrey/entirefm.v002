@@ -76,10 +76,10 @@ const HVAC = () => {
   ];
 
   const stats = [
-    { value: "500", suffix: "+", label: "HVAC Sites" },
-    { value: "2", suffix: "hr", label: "Response Time" },
-    { value: "30", suffix: "%", label: "Energy Savings" },
-    { value: "99", suffix: "%", label: "Uptime" }
+    { value: "F-Gas", label: "Certified" },
+    { value: "SFG20", label: "Compliant" },
+    { value: "24/7", label: "Emergency Cover" },
+    { value: "UK Wide", label: "Coverage" }
   ];
 
   const hvacServices = [
@@ -168,6 +168,24 @@ const HVAC = () => {
 
       {/* Trust Bar */}
       <TrustBar variant="compact" />
+
+      {/* Introduction Section */}
+      <ContentSection
+        title="What Is Commercial HVAC Maintenance?"
+        variant="muted"
+      >
+        <div className="max-w-4xl mx-auto space-y-4">
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Commercial HVAC maintenance covers the scheduled servicing, inspection, and repair of heating, ventilation, and air conditioning systems in commercial buildings. These systems are essential for occupant comfort, indoor air quality, and regulatory compliance — particularly under F-Gas Regulations and Building Regulations Part L.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Any commercial building with refrigerant-based cooling, centralised heating, or mechanical ventilation has a legal and operational obligation to maintain those systems to recognised standards such as SFG20. Failure to do so risks energy waste, occupant complaints, equipment failure, and non-compliance with environmental legislation.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            EntireFM delivers HVAC maintenance through F-Gas certified, manufacturer-trained engineers with real-time digital compliance tracking. From quarterly PPM visits to 24/7 emergency response, we ensure your climate control systems operate efficiently, legally, and without interruption.
+          </p>
+        </div>
+      </ContentSection>
 
       {/* Features Grid */}
       <ContentSection
@@ -295,7 +313,7 @@ const HVAC = () => {
             },
             {
               title: "Energy-Saving Technology Upgrades",
-              description: "ROI projections included for VSD installations, EC fan retrofits, and BMS optimisation — typically delivering 20-30% energy savings."
+              description: "ROI projections included for VSD installations, EC fan retrofits, and BMS optimisation — with potential for meaningful energy savings depending on site conditions."
             }
           ].map((item, index) => (
             <AnimatedSection key={index} delay={index * 0.1}>
