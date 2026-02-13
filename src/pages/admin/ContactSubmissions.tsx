@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -71,16 +72,25 @@ const DEFAULT_FOLDERS = [
   { id: "archived", label: "Archived", icon: Archive },
 ];
 
-const TEAM_MEMBERS = [
-  "Unassigned",
-  "John",
-  "Sarah",
-  "Mike",
-  "Emma",
-  "David",
-];
 
 export default function ContactSubmissions() {
+  const { data: teamMembersSetting } = useQuery({
+    queryKey: ["admin-settings", "team_members"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("admin_settings")
+        .select("setting_value")
+        .eq("setting_key", "team_members")
+        .maybeSingle();
+      if (error) throw error;
+      if (!data) return ["Unassigned"];
+      const val = data.setting_value;
+      const parsed = Array.isArray(val) ? val : typeof val === "string" ? JSON.parse(val) : [];
+      return ["Unassigned", ...parsed] as string[];
+    },
+  });
+  const TEAM_MEMBERS = teamMembersSetting || ["Unassigned"];
+
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedSubmission, setSelectedSubmission] = useState<ContactSubmission | null>(null);
