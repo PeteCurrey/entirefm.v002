@@ -145,6 +145,86 @@ const Home = () => {
       {/* Client Logos Section */}
       <ClientLogosSection />
 
+      {/* Who We Are Introduction Section */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-background to-muted/20" />
+        <div className="container mx-auto px-6 relative z-10">
+          {/* Block 1: Who We Are — text left, image right */}
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={fadeInUp}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="block text-primary text-sm tracking-widest uppercase mb-4 font-light">Who We Are</span>
+              <h2 className="text-3xl md:text-4xl font-extralight mb-6">
+                <span className="underline-accent">Tailored Facilities Management</span>
+              </h2>
+              <p className="text-muted-foreground leading-relaxed font-light mb-4">
+                At EntireFM, we specialise in delivering tailored facilities management solutions that cater to the distinct requirements of your business. Our services encompass maintenance, compliance, sustainability and safety, ensuring your facilities operate seamlessly.
+              </p>
+              <p className="text-muted-foreground leading-relaxed font-light mb-4">
+                Leveraging our industry expertise and a personalised approach, we provide 24/7 support to help you reduce costs, enhance efficiency and create optimal environments for both employees and customers.
+              </p>
+              <p className="text-muted-foreground leading-relaxed font-light italic">
+                Entrust EntireFM with your facilities management needs, allowing you to concentrate on what truly matters: your business.
+              </p>
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={fadeInLeft}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img src={officeImage} alt="Modern UK office managed by EntireFM" className="w-full h-80 md:h-96 object-cover" loading="lazy" />
+              </div>
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-primary/10 rounded-2xl blur-2xl" />
+            </motion.div>
+          </div>
+
+          {/* Block 2: What We Cover — image left, text right */}
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={fadeInLeft}
+              transition={{ duration: 0.7 }}
+              className="relative order-2 md:order-1"
+            >
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img src={industrialImage} alt="UK industrial facility managed by EntireFM" className="w-full h-80 md:h-96 object-cover" loading="lazy" />
+              </div>
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-2xl blur-2xl" />
+            </motion.div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={fadeInUp}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="order-1 md:order-2"
+            >
+              <span className="block text-primary text-sm tracking-widest uppercase mb-4 font-light">What We Cover</span>
+              <h2 className="text-3xl md:text-4xl font-extralight mb-6">
+                <span className="underline-accent">Comprehensive, Multi-Site Solutions</span>
+              </h2>
+              <p className="text-muted-foreground leading-relaxed font-light mb-4">
+                Whether overseeing a single location or multiple sites, EntireFM offers a holistic suite of facilities management services designed to keep your operations running efficiently and effectively.
+              </p>
+              <p className="text-muted-foreground leading-relaxed font-light">
+                Our customised solutions address the unique challenges of your industry — from preventive maintenance and risk management to sustainable initiatives that minimise environmental footprints. We cover every aspect necessary for optimising your spaces.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* FM Partner Section */}
       <section className="py-24 relative overflow-hidden">
         {/* Premium gradient background */}
