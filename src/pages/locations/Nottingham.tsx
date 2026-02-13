@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import nottinghamSkyline from "@/assets/locations/nottingham-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Nottingham",
   region: "Nottinghamshire",
-  heroImage: "https://images.unsplash.com/photo-1584463699033-0f0bea1ec75b?w=1920&q=80",
+  heroImage: nottinghamSkyline,
   heroHeadline: "Facilities Management in Nottingham. Engineered for Performance.",
   heroSubtext: "Hard FM, compliance, and engineered asset management for estates across Nottingham and Nottinghamshire.",
   metaTitle: "Facilities Management Nottingham | Hard FM & Compliance | EntireFM",

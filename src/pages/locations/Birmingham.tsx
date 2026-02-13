@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import birminghamSkyline from "@/assets/locations/birmingham-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Birmingham",
   region: "West Midlands",
-  heroImage: "https://images.unsplash.com/photo-1567605974523-7af4c0c42fbc?w=1920&q=80",
+  heroImage: birminghamSkyline,
   heroHeadline: "Birmingham Demands Reliability. Your FM Partner Must Deliver It.",
   heroSubtext: "Hard & soft facilities management across the West Midlands — tailored responsiveness, full compliance, rapid mobilisation.",
   metaTitle: "Facilities Management Birmingham | FM Services West Midlands | EntireFM",

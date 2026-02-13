@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import londonSkyline from "@/assets/locations/london-skyline.jpg";
 
 const data: LocationPageData = {
   city: "London",
   region: "Greater London",
-  heroImage: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80",
+  heroImage: londonSkyline,
   heroHeadline: "London Moves Fast. Your FM Partner Should Move Faster.",
   heroSubtext: "Hard & soft FM services across the capital — with rapid response, full compliance, and zero excuses.",
   metaTitle: "Facilities Management London | 24/7 FM Services | EntireFM",

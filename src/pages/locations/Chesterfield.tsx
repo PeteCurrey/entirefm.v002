@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import chesterfieldSkyline from "@/assets/locations/chesterfield-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Chesterfield",
   region: "North Derbyshire",
-  heroImage: "https://images.unsplash.com/photo-1582407947092-405442958a5e?w=1920&q=80",
+  heroImage: chesterfieldSkyline,
   heroHeadline: "Facilities Management in Chesterfield. Locally Embedded.",
   heroSubtext: "Hard FM, compliance, and engineered asset management for estates across Chesterfield and North Derbyshire.",
   metaTitle: "Facilities Management Chesterfield | Hard FM & Compliance | EntireFM",

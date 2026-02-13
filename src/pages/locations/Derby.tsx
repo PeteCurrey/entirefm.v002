@@ -1,9 +1,10 @@
 import LocationPageTemplate, { type LocationPageData } from "@/components/shared/LocationPageTemplate";
+import derbySkyline from "@/assets/locations/derby-skyline.jpg";
 
 const data: LocationPageData = {
   city: "Derby",
   region: "Derbyshire",
-  heroImage: "https://images.unsplash.com/photo-1590079059869-2b5e4e7c1f44?w=1920&q=80",
+  heroImage: derbySkyline,
   heroHeadline: "Facilities Management in Derby. Built for Precision.",
   heroSubtext: "Hard FM, compliance, and engineered asset management for estates across Derby and Derbyshire.",
   metaTitle: "Facilities Management Derby | Hard FM & Compliance | EntireFM",

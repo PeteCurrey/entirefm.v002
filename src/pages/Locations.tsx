@@ -4,75 +4,31 @@ import { Link } from "react-router-dom";
 import { MapPin, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import CTASection from "@/components/shared/CTASection";
+import londonSkyline from "@/assets/locations/london-skyline.jpg";
+import manchesterSkyline from "@/assets/locations/manchester-skyline.jpg";
+import birminghamSkyline from "@/assets/locations/birmingham-skyline.jpg";
+import leedsSkyline from "@/assets/locations/leeds-skyline.jpg";
+import sheffieldSkyline from "@/assets/locations/sheffield-skyline.jpg";
+import liverpoolSkyline from "@/assets/locations/liverpool-skyline.jpg";
+import leicesterSkyline from "@/assets/locations/leicester-skyline.jpg";
+import nottinghamSkyline from "@/assets/locations/nottingham-skyline.jpg";
+import derbySkyline from "@/assets/locations/derby-skyline.jpg";
+import chesterfieldSkyline from "@/assets/locations/chesterfield-skyline.jpg";
+import lincolnSkyline from "@/assets/locations/lincoln-skyline.jpg";
 
 const Locations = () => {
   const locations = [
-    { 
-      city: "London", 
-      region: "Greater London & M25", 
-      slug: "london",
-      image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80"
-    },
-    { 
-      city: "Manchester", 
-      region: "North West", 
-      slug: "manchester",
-      image: "https://images.unsplash.com/photo-1549042428-b4209b05aa1f?w=800&q=80"
-    },
-    { 
-      city: "Birmingham", 
-      region: "West Midlands", 
-      slug: "birmingham",
-      image: "https://images.unsplash.com/photo-1567605974523-7af4c0c42fbc?w=800&q=80"
-    },
-    { 
-      city: "Leeds", 
-      region: "Yorkshire", 
-      slug: "leeds",
-      image: "https://images.unsplash.com/photo-1590079168573-5ee822a56e8e?w=800&q=80"
-    },
-    { 
-      city: "Sheffield", 
-      region: "South Yorkshire", 
-      slug: "sheffield",
-      image: "https://images.unsplash.com/photo-1595880500386-4b33c4e7d0c5?w=800&q=80"
-    },
-    { 
-      city: "Liverpool", 
-      region: "Merseyside", 
-      slug: "liverpool",
-      image: "https://images.unsplash.com/photo-1571504211935-1c936b327411?w=800&q=80"
-    },
-    { 
-      city: "Leicester", 
-      region: "East Midlands", 
-      slug: "leicester",
-      image: "https://images.unsplash.com/photo-1590084871842-b5b3c1ad1a8a?w=800&q=80"
-    },
-    { 
-      city: "Nottingham", 
-      region: "Nottinghamshire", 
-      slug: "nottingham",
-      image: "https://images.unsplash.com/photo-1584463699033-0f0bea1ec75b?w=800&q=80"
-    },
-    { 
-      city: "Derby", 
-      region: "Derbyshire", 
-      slug: "derby",
-      image: "https://images.unsplash.com/photo-1590079059869-2b5e4e7c1f44?w=800&q=80"
-    },
-    { 
-      city: "Chesterfield", 
-      region: "North Derbyshire", 
-      slug: "chesterfield",
-      image: "https://images.unsplash.com/photo-1582407947092-405442958a5e?w=800&q=80"
-    },
-    { 
-      city: "Lincoln", 
-      region: "Lincolnshire", 
-      slug: "lincoln",
-      image: "https://images.unsplash.com/photo-1590079168573-5ee822a56e8e?w=800&q=80"
-    }
+    { city: "London", region: "Greater London & M25", slug: "london", image: londonSkyline },
+    { city: "Manchester", region: "North West", slug: "manchester", image: manchesterSkyline },
+    { city: "Birmingham", region: "West Midlands", slug: "birmingham", image: birminghamSkyline },
+    { city: "Leeds", region: "Yorkshire", slug: "leeds", image: leedsSkyline },
+    { city: "Sheffield", region: "South Yorkshire", slug: "sheffield", image: sheffieldSkyline },
+    { city: "Liverpool", region: "Merseyside", slug: "liverpool", image: liverpoolSkyline },
+    { city: "Leicester", region: "East Midlands", slug: "leicester", image: leicesterSkyline },
+    { city: "Nottingham", region: "Nottinghamshire", slug: "nottingham", image: nottinghamSkyline },
+    { city: "Derby", region: "Derbyshire", slug: "derby", image: derbySkyline },
+    { city: "Chesterfield", region: "North Derbyshire", slug: "chesterfield", image: chesterfieldSkyline },
+    { city: "Lincoln", region: "Lincolnshire", slug: "lincoln", image: lincolnSkyline },
   ];
 
   return (
