@@ -1,89 +1,95 @@
 
 
-## Enhance Locations Listing Page and Individual Location Pages
+## Enhance All Tool Pages with Premium Design and Informative Content
 
-### Part 1: Locations Listing Page (`src/pages/Locations.tsx`)
+### Current State
+All 6 tool pages (PPM Calculator, Cost Savings Calculator, SLA Benchmark, TM44 Checker, Water Risk Grader, Risk Diagnostic) share a similar pattern: a `ToolHero` at the top, then immediately into a form/results layout with plain white backgrounds. None have a proper introduction section explaining what the tool is and why it matters. Some use overly assertive language (e.g., "No Vendor Survives This Comparison").
 
-**Dark grid background with hover-reveal image cards** (same pattern as Case Studies)
-- Change the grid section background from `bg-white` to `bg-charcoal`
-- Replace the plain white `Card` components with glassmorphism-style cards (`bg-white/10 backdrop-blur-sm`) featuring white text
-- Each card gets a city-relevant background image that starts at `opacity-0` and fades in on hover with `group-hover:opacity-100` and `group-hover:scale-110`, with a heavy dark gradient overlay to keep text readable
-- City images will be sourced from Unsplash via URL (e.g., Birmingham skyline, London cityscape, Manchester, etc.) since no city-specific assets exist in the project yet
+### What's Changing
 
-**Add intro section below hero**
-- Brief paragraph about national coverage with local accountability
-- Same centered layout pattern used on Case Studies listing page
+**For all 6 tools**, the following enhancements will be applied:
 
-**Upgrade hero section**
-- Make it more visually engaging with the charcoal gradient and a subtle background pattern, matching other premium hero sections
+1. **Introduction Section** -- Add a `ContentSection` below the hero with a clear explanation of what the tool does, who it's for, and why it matters. Written informatively, not as guarantees.
 
-**Replace basic CTA with shared `CTASection` component**
+2. **Visual Upgrades** -- Wrap calculator/form sections in alternating `ContentSection` variants (muted, gradient) to break up the page visually, matching the premium pattern used across service and location pages.
 
-### Part 2: New Shared Template -- `LocationPageTemplate.tsx`
+3. **Language Audit** -- Remove any guarantees or overly aggressive claims. Replace with softer, professional language:
+   - "No Vendor Survives This Comparison" becomes "How Does Your Provider Compare?"
+   - Results framed as "estimates" and "indicative" rather than definitive
+   - Add small disclaimers where appropriate (e.g., "Results are indicative and based on industry benchmarks")
 
-All 11 individual location pages currently have duplicated structure (hero, sidebar layout, lists, FAQs, CTA card). A new reusable template will standardise them, similar to how `CaseStudyTemplate` works.
+4. **Bottom CTA** -- Replace inline CTAs with the shared `CTASection` component for consistency.
 
-**Template sections:**
+5. **Animation** -- Wrap key content blocks in `motion.div` with scroll-triggered fade-in animations.
 
-| Section | Current | Upgraded |
+### Per-Tool Changes
+
+| Tool | Introduction Focus | Language Changes |
 |---|---|---|
-| Hero | Plain charcoal gradient, `py-24`, no image | Full-screen hero with city background image, gradient overlay, breadcrumb integrated |
-| Stats | None | `StatsBanner` strip below hero with city-relevant metrics (e.g., response times, sites managed) |
-| Why EntireFM | Basic bullet list | Cards with icons in a grid layout |
-| Coverage | Plain text chips | Map-style visual with coverage area cards |
-| Services | Plain checklist | Icon-enhanced grid cards (matching sector pages) |
-| Sectors | Basic cards (some pages) | Glassmorphism cards linking to sector pages |
-| FAQs | Already using `FAQSection` | Keep as-is |
-| CTA | Inline charcoal card | Shared `CTASection` component |
-| Sidebar | `SidebarCTA` in right column | Remove sidebar, go full-width stacked layout (matching the premium pattern across the site) |
+| **PPM Calculator** | Explains what PPM is, why reactive costs escalate, and how this tool helps estimate ROI | Remove toast saying "report sent to email" (it doesn't actually send). Add "estimates are indicative" note |
+| **Cost Savings Calculator** | Explains the reactive vs preventive maintenance cost difference and who benefits from calculating | Add "indicative estimates" disclaimer to results |
+| **SLA Benchmark** | Explains what SLA benchmarking is, what metrics matter, and how comparing helps decision-making | Change "No Vendor Survives This Comparison" to "How Does Your Provider Compare?" and soften "Performance Gap Identified" messaging |
+| **TM44 Checker** | Already has good "What is TM44?" content -- enhance with fuller intro section above the form | Review penalty language for accuracy |
+| **Water Risk Grader** | Explains ACOP L8 obligations, what legionella risk means, and why regular assessment matters | Already good -- add "indicative assessment" note |
+| **Risk Diagnostic** | Explains what a compliance diagnostic is, who the Responsible Person is, and what risks exist | Soften "Is Your FM Provider Putting You at Risk?" to be less accusatory. Add disclaimer that results are indicative |
 
-**Template props interface:**
+### Detailed File Changes
 
-```text
-city: string
-region: string
-heroImage: string (URL)
-heroHeadline: string
-heroSubtext: string
-stats: array of { value, label, suffix/prefix }
-whyPoints: array of { icon, title, description }
-coverageAreas: string[]
-services: array of { icon, title }
-sectors: array of { title, description, link }
-faqs: array of { question, answer }
-ctaHeadline: string
-ctaSubtext: string
-```
+**`src/pages/tools/PPMCalculator.tsx`**
+- Add `ContentSection` import and intro section below hero with 2-3 paragraphs about PPM
+- Add "How It Works" mini-section with 3 icon steps
+- Wrap form area in `ContentSection` variant="muted"
+- Replace bottom area with `CTASection`
+- Add disclaimer text below results: "These figures are indicative estimates based on industry benchmarks"
+- Remove misleading toast about emailing a report
 
-### Part 3: Refactor All 11 Location Pages
+**`src/pages/tools/CostSavingsCalculator.tsx`**
+- Add intro `ContentSection` explaining reactive vs preventive cost dynamics
+- Add "How It Works" steps section
+- Wrap calculator in `ContentSection` variant="muted"
+- Add disclaimer to results card
+- Replace bottom CTA section with shared `CTASection`
 
-Each page file will be simplified to import `LocationPageTemplate` and pass its city-specific data as props. Existing content (FAQs, services, coverage areas, sector links) will be preserved -- just restructured into the template format.
+**`src/pages/tools/SLABenchmark.tsx`**
+- Add intro `ContentSection` explaining SLA benchmarking and why it matters
+- Change "No Vendor Survives This Comparison" to "How Does Your Provider Compare?"
+- Soften "Performance Gap Identified" to "Areas for Improvement"
+- Add disclaimer: "Benchmarks are based on industry standards and may vary"
+- Wrap form in `ContentSection` variant="muted"
+- Replace bottom CTA with shared `CTASection`
 
-| Page | Hero Image Subject |
-|---|---|
-| London | London skyline / financial district |
-| Birmingham | Birmingham city centre / Bull Ring |
-| Manchester | Manchester skyline / Beetham Tower |
-| Leeds | Leeds city centre / commercial district |
-| Sheffield | Sheffield cityscape / steel heritage |
-| Liverpool | Liverpool waterfront / Albert Dock |
-| Leicester | Leicester urban / industrial |
-| Nottingham | Nottingham city centre |
-| Derby | Derby cityscape |
-| Chesterfield | Chesterfield town / crooked spire |
-| Lincoln | Lincoln Cathedral / historic centre |
+**`src/pages/tools/TM44Checker.tsx`**
+- Move and expand the "What is TM44?" content into a full intro `ContentSection` above the form
+- Add "How It Works" steps
+- Wrap form in `ContentSection` variant="muted"
+- Add `CTASection` at bottom
+- Add disclaimer on results
 
-Images will use high-quality Unsplash URLs with the `w=1920` parameter for appropriate hero resolution.
+**`src/pages/tools/WaterRiskGrader.tsx`**
+- Expand "Why Assess Water Risk?" into a full intro `ContentSection`
+- Add "How It Works" steps
+- Wrap form in `ContentSection` variant="muted"
+- Add `CTASection` at bottom
+- Add disclaimer: "This is an indicative assessment and does not replace a formal ACOP L8 risk assessment"
 
-### Technical Summary
+**`src/pages/ComplianceDiagnostic.tsx`**
+- Add intro `ContentSection` explaining compliance diagnostics and Responsible Person obligations
+- Soften hero title from "Is Your FM Provider Putting You at Risk?" to something like "How Compliant Is Your Estate?"
+- Change `bg-white` on the diagnostic flow section to use `ContentSection` variant="muted"
+- Replace bottom CTA with shared `CTASection`
+- Add disclaimer to results: "This is an indicative risk assessment and does not constitute formal compliance advice"
 
-| Change | Files |
-|---|---|
-| Enhance listing page with dark grid, hover images, intro section | `src/pages/Locations.tsx` |
-| New reusable location template | `src/components/shared/LocationPageTemplate.tsx` (new) |
-| Refactor to use template | All 11 files in `src/pages/locations/` |
+### Components Reused
+- `ContentSection` (existing) for intro sections and visual wrapping
+- `CTASection` (existing) for consistent bottom calls-to-action
+- `motion.div` from framer-motion for scroll animations
+- All existing form components remain unchanged
 
-**Components reused**: `StatsBanner`, `CTASection`, `FAQSection`, `Breadcrumb`, `SchemaMarkup`
+### What's NOT Changing
+- Calculator logic and form fields stay the same
+- ToolHero component stays as-is (already premium)
+- Schema markup and SEO meta remain
+- Breadcrumb positioning stays
 
-**No database changes. No new dependencies.**
+### No database changes. No new dependencies.
 
