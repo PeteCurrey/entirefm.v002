@@ -1,48 +1,78 @@
 
+## Elevate All Sector Pages to Premium Visual Experience
 
-## Fix EICR Manual Download and Admin Visibility
+### The Problem
+All 17 sector pages use `SectorPageTemplate`, which has a strong parallax hero section but then drops into a plain two-column sidebar layout. Below the hero, every section is text-only cards on a white background with no imagery, no visual variety, and no depth -- making the pages feel flat and monotonous compared to the recently upgraded service pages.
 
-Two root-cause issues are preventing downloads and admin editing:
-
-### Problem 1: Download button does nothing
-The `handleDownload` function on the EICR Manual page (and all 4 other resource download pages) only shows a toast message -- it never calls any PDF generation function. The existing `downloadElectricalChecklist()` function in `generateCompliancePDF.ts` already generates the right type of PDF, but it's never wired up.
-
-### Problem 2: No dedicated EICR Manual template in the database
-The `pdf_templates` table has an `electrical` template (a general electrical checklist), but no `eicr-manual` template. This means it doesn't appear in the admin PDF Templates panel, and there's nothing specific to the EICR Survival Manual content to edit.
+### The Solution
+Redesign the `SectorPageTemplate` component itself rather than rewriting each individual page. This means all 17 sector pages benefit from the upgrade automatically without touching their data/content files.
 
 ---
 
-### Changes
+### Design Changes to `SectorPageTemplate`
 
-**1. Create a new `eicr-manual` PDF template in the database**
-- Insert a new row in `pdf_templates` with `template_key: "eicr-manual"` containing EICR-specific checklist items (EICR requirements, C1/C2/C3 codes, testing cycles, remedial priorities, contractor accreditation, BS 7671 compliance)
-- This makes it appear in the admin PDF Templates panel for editing
+**1. Remove the sidebar layout, go full-width**
+- Drop the 2-column grid with `SidebarCTA` sidebar
+- Move to full-width stacked sections (matching the service page pattern)
+- Add a floating CTA bar or inline CTA block instead
 
-**2. Add a `downloadEICRManual()` function to `generateCompliancePDF.ts`**
-- New exported function that calls `fetchTemplate("eicr-manual", ...)` with EICR-specific fallback items, then calls `generateCompliancePDF()` to produce the PDF
+**2. Add a TrustBar after the hero**
+- Insert accreditation strip (NICEIC, Gas Safe, etc.) for credibility
+- Consistent with service pages
 
-**3. Wire up `handleDownload` in `EICRManual.tsx`**
-- Import and call `downloadEICRManual()` so clicking "Download EICR Survival Manual" actually generates and downloads the PDF
+**3. Add a StatsBanner for the KPI stats**
+- Move the hero stats into a dedicated animated `StatsBanner` component below the hero transition zone
+- Adds visual punch with count-up animations
 
-**4. Fix the same broken download on the other 4 resource pages**
-- `FireRiskGuide.tsx` -- wire to `downloadFireAlarmChecklist()`
-- `EmergencyLightingChecklist.tsx` -- wire to `downloadEmergencyLightingChecklist()`
-- `FGasTracker.tsx` -- wire to `downloadHVACChecklist()`
-- `LegionellaGuide.tsx` -- wire to `downloadWaterHygieneChecklist()`
+**4. Add sector-relevant imagery sections**
+- New "Sector Visual" image panel between content sections using relevant Unsplash images (the `heroImage` already passed in, plus a new optional `sectionImages` prop)
+- Create an alternating left-image/right-text and right-image/left-text layout for the Sector Summary and Operational Challenges sections
+- Uses real UK imagery already provided via `heroImage`
 
-**5. Add "EICR Manual" to the admin display name map in `PDFTemplatesAdmin.tsx`**
-- Add `"eicr-manual": "⚡ EICR Survival Manual"` to the `getTemplateDisplayName` mapping so it shows a friendly name in the admin table
+**5. Enhance Compliance Risks with icon cards in a grid**
+- Replace the vertical list of plain cards with a responsive grid of icon-enhanced cards (similar to `FeatureCardGrid`)
+- Use colour-coded severity indicators
+
+**6. Key Systems as visual icon grid**
+- Replace the plain bulleted lists inside a single card with two side-by-side feature card grids with icons and glassmorphism styling
+
+**7. "Why EntireFM" as feature highlight strip**
+- Full-width gradient background section
+- Checkmark items displayed in a 2 or 3-column responsive grid instead of a single-column list
+
+**8. Case Studies with glassmorphism cards**
+- Add subtle background imagery/gradients behind case study cards
+- Include metric highlights with larger typography
+
+**9. Related Services as hover-interactive cards**
+- Enhanced card design with icons, gradient borders, and arrow indicators
+
+**10. FAQ section -- keep as-is**
+- The accordion FAQ already works well
+
+**11. Enhanced CTA section at the bottom**
+- Replace the plain card CTA with the shared `CTASection` component for consistency with service pages
 
 ---
 
-### Technical Details
+### New Optional Props on `SectorPageTemplate`
 
-- **Database**: One `INSERT` into `pdf_templates` for the `eicr-manual` template with ~8 EICR-specific checklist items
-- **`src/utils/generateCompliancePDF.ts`**: Add `eicrManualItems` array and `downloadEICRManual()` export function (same pattern as the other 5 download functions)
-- **`src/pages/resources/EICRManual.tsx`**: Import `downloadEICRManual`, call it in `handleDownload`
-- **`src/pages/resources/FireRiskGuide.tsx`**: Import `downloadFireAlarmChecklist`, call it in `handleDownload`
-- **`src/pages/resources/EmergencyLightingChecklist.tsx`**: Import `downloadEmergencyLightingChecklist`, call it in `handleDownload`
-- **`src/pages/resources/FGasTracker.tsx`**: Import `downloadHVACChecklist`, call it in `handleDownload`
-- **`src/pages/resources/LegionellaGuide.tsx`**: Import `downloadWaterHygieneChecklist`, call it in `handleDownload`
-- **`src/pages/admin/PDFTemplatesAdmin.tsx`**: Add one line to the display name map
-- No new tables, no schema changes, no RLS changes needed
+To support imagery without changing existing page files, the template will:
+- Reuse the existing `heroImage` as a section background in alternating content blocks
+- Add an optional `sectionImage` prop for pages that want a second image
+- Default to the hero image when no section image is provided
+
+---
+
+### Technical Summary
+
+| Change | File |
+|---|---|
+| Full redesign of template layout, sections, and visual treatment | `src/components/shared/SectorPageTemplate.tsx` |
+| No changes required to any of the 17 individual sector page files | All pages auto-inherit the upgrade |
+
+**Components reused from service pages**: `TrustBar`, `StatsBanner`, `ContentSection`, `CTASection`, `FeatureCardGrid`
+
+**Preserved**: All existing hover animations, parallax hero, scroll indicator, transition zone, SEO schema markup, and FAQ accordion
+
+**No database changes, no new dependencies, no breaking changes to the props interface.**
