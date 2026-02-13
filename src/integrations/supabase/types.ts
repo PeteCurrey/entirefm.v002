@@ -197,9 +197,11 @@ export type Database = {
       contact_submissions: {
         Row: {
           admin_notes: string | null
+          assigned_to: string | null
           company: string | null
           created_at: string
           email: string
+          folder: string | null
           id: string
           lead_score: number | null
           location: string | null
@@ -215,9 +217,11 @@ export type Database = {
         }
         Insert: {
           admin_notes?: string | null
+          assigned_to?: string | null
           company?: string | null
           created_at?: string
           email: string
+          folder?: string | null
           id?: string
           lead_score?: number | null
           location?: string | null
@@ -233,9 +237,11 @@ export type Database = {
         }
         Update: {
           admin_notes?: string | null
+          assigned_to?: string | null
           company?: string | null
           created_at?: string
           email?: string
+          folder?: string | null
           id?: string
           lead_score?: number | null
           location?: string | null
