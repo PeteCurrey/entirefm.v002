@@ -1,8 +1,10 @@
 import { useState } from "react";
 import CaseStudyCard from "@/components/shared/CaseStudyCard";
+import CTASection from "@/components/shared/CTASection";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
+import { motion } from "framer-motion";
 
 const CaseStudies = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -162,7 +164,7 @@ const CaseStudies = () => {
       </Helmet>
 
       <div className="min-h-screen pt-20">
-        {/* Hero Section with Half-Page Image */}
+        {/* Hero Section */}
         <section className="relative h-[50vh] min-h-[400px] flex items-end">
           <div 
             className="absolute inset-0 bg-cover bg-center"
@@ -182,8 +184,30 @@ const CaseStudies = () => {
           </div>
         </section>
 
+        {/* Intro Section */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <h2 className="text-3xl font-light mb-6">
+                Every outcome is <span className="text-primary">measured</span>
+              </h2>
+              <p className="text-lg text-muted-foreground font-light leading-relaxed mb-4">
+                We don't publish vague testimonials. Every case study below features verified KPIs — from compliance scores and response times to cost savings and satisfaction uplifts.
+              </p>
+              <p className="text-lg text-muted-foreground font-light leading-relaxed">
+                Across logistics hubs, aviation terminals, healthcare facilities, and corporate estates, we consistently deliver FM outcomes our clients can prove to their boards.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Filters */}
-        <section className="py-8 bg-white border-b border-border sticky top-20 z-30">
+        <section className="py-8 bg-muted border-b border-border sticky top-20 z-30">
           <div className="container mx-auto px-6">
             <div className="flex flex-wrap gap-3">
               {filters.map((filter) => (
@@ -200,12 +224,12 @@ const CaseStudies = () => {
           </div>
         </section>
 
-        {/* Case Studies Grid */}
-        <section className="py-16 bg-muted/30">
+        {/* Case Studies Grid - dark background for card contrast */}
+        <section className="py-16 bg-charcoal">
           <div className="container mx-auto px-6">
             {filteredCaseStudies.length === 0 ? (
               <div className="text-center py-16">
-                <p className="text-lg text-muted-foreground font-light">
+                <p className="text-lg text-gray-400 font-light">
                   No case studies found for this filter.
                 </p>
               </div>
@@ -220,19 +244,12 @@ const CaseStudies = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-secondary text-white">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-light mb-6">
-              Want results like these?
-            </h2>
-            <p className="text-lg text-gray-200 font-light max-w-2xl mx-auto mb-8">
-              Every case study starts with understanding your current challenges. Share yours with us.
-            </p>
-            <Button size="lg" variant="secondary" className="bg-white text-secondary hover:bg-gray-100">
-              Request Similar Solution
-            </Button>
-          </div>
-        </section>
+        <CTASection
+          title="Want results like these?"
+          description="Every case study starts with understanding your current challenges. Share yours with us."
+          primaryLabel="Request Similar Solution"
+          variant="dark"
+        />
       </div>
     </>
   );
