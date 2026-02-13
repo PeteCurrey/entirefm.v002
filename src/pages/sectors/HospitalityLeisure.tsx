@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { UtensilsCrossed } from "lucide-react";
+import heroImage from "@/assets/sector-hospitality-hero.jpg";
 
 const HospitalityLeisure = () => {
   return (
     <SectorPageTemplate
-      title="Hospitality Facilities Management UK"
-      metaDescription="Protect guest satisfaction & brand reviews with flawless FM. Seamless FM that protects service continuity, brand perception, hygiene standards, and guest satisfaction."
+      title="Hospitality & Leisure Facilities Management | Guest Experience Protection"
+      metaDescription="Seamless FM that protects service continuity, brand perception, hygiene standards, and guest satisfaction."
       canonicalUrl="https://entirefm.com/sectors/hospitality-leisure"
       heroTitle="When the Experience Fails, the Guest Doesn't Return"
       heroSubtitle="Seamless FM that protects service continuity, brand perception, hygiene standards, and guest satisfaction."
-      heroImage="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={UtensilsCrossed}
       stats={[
         { value: "28", label: "Rooms Returned to Revenue" },

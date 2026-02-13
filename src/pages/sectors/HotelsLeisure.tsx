@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Hotel } from "lucide-react";
+import heroImage from "@/assets/sector-hotels-hero.jpg";
 
 const HotelsLeisure = () => {
   return (
     <SectorPageTemplate
-      title="Hotels & Leisure Facilities Management | Guest Experience Protection"
-      metaDescription="Comfort, safety and uptime — guests never notice the work behind the luxury. Hotels and leisure FM with proactive maintenance."
+      title="Hotels & Leisure Facilities Management | Comfort, Safety & Uptime"
+      metaDescription="Comfort, safety and uptime — guests never notice the work behind the luxury."
       canonicalUrl="https://entirefm.com/sectors/hotels-leisure"
       heroTitle="Facilities Management for Hotels & Leisure"
       heroSubtitle="Comfort, safety and uptime — guests never notice the work behind the luxury."
-      heroImage="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Hotel}
       stats={[
         { value: "17%", label: "Fuel Savings" },

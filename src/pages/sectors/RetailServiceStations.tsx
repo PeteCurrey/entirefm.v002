@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Store } from "lucide-react";
+import heroImage from "@/assets/sector-service-stations-hero.jpg";
 
 const RetailServiceStations = () => {
   return (
     <SectorPageTemplate
-      title="Retail & Forecourt FM UK | Service Station Facilities Management"
-      metaDescription="Brand protection, safety & rapid responsive support for retail. FM that keeps retail and service stations fully operational, clean, compliant, and customer-ready."
+      title="Retail & Service Stations FM"
+      metaDescription="If the customer experience fails, revenue fails. FM that keeps retail and service stations fully operational, clean, compliant, and customer-ready — every minute of the day."
       canonicalUrl="https://entirefm.com/sectors/retail-service-stations"
       heroTitle="Retail & Service Stations FM"
       heroSubtitle="If the customer experience fails, revenue fails. FM that keeps retail and service stations fully operational, clean, compliant, and customer-ready — every minute of the day."
-      heroImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Store}
       stats={[
         { value: "Fast", label: "SLA Response" },

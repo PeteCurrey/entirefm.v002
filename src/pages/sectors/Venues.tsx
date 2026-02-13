@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Ticket } from "lucide-react";
+import heroImage from "@/assets/sector-venues-hero.jpg";
 
 const Venues = () => {
   return (
     <SectorPageTemplate
-      title="Venue & Arena Facilities Management | Event Space FM"
-      metaDescription="Specialist facilities management for venues, arenas, and stadiums. High-capacity public buildings with complex safety systems and event-focused service delivery."
+      title="Venue, Arena & Stadium Facilities Management | Safety & Compliance"
+      metaDescription="High-capacity public buildings with complex safety and compliance systems."
       canonicalUrl="https://entirefm.com/sectors/venues"
       heroTitle="Venue, Arena & Stadium Facilities Management"
       heroSubtitle="High-capacity public buildings with complex safety and compliance systems."
-      heroImage="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Ticket}
       stats={[
         { value: "50k+", label: "Capacity Venues" },

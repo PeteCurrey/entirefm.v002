@@ -1,15 +1,16 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Truck } from "lucide-react";
+import heroImage from "@/assets/sector-logistics-parks-hero.jpg";
 
 const LogisticsParks = () => {
   return (
     <SectorPageTemplate
-      title="Logistics Parks Facilities Management | Distribution Centre FM"
-      metaDescription="Specialist facilities management for logistics parks and distribution centres. High-volume industrial estates with 24/7 operations and specialist handling systems."
+      title="Logistics Parks & Distribution Centres FM | Compliance & Maintenance"
+      metaDescription="Compliance and maintenance for high-volume industrial estates."
       canonicalUrl="https://entirefm.com/sectors/logistics-parks"
       heroTitle="Logistics Parks & Distribution Centres"
       heroSubtitle="Compliance and maintenance for high-volume industrial estates."
-      heroImage="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Truck}
       stats={[
         { value: "500k", label: "Sq Ft Managed" },

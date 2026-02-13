@@ -1,5 +1,6 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { ShoppingBag } from "lucide-react";
+import heroImage from "@/assets/sector-retail-hero.jpg";
 
 const RetailHospitality = () => {
   return (
@@ -9,7 +10,7 @@ const RetailHospitality = () => {
       canonicalUrl="https://entirefm.com/sectors/retail-hospitality"
       heroTitle="Facilities Management for Retail & Hospitality"
       heroSubtitle="Protect brand experience, safety and trading uptime — no disruption, no closed doors."
-      heroImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={ShoppingBag}
       stats={[
         { value: "24/7", label: "Response Coverage" },

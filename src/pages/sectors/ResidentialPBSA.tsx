@@ -1,5 +1,6 @@
 import SectorPageTemplate from "@/components/shared/SectorPageTemplate";
 import { Home } from "lucide-react";
+import heroImage from "@/assets/sector-residential-hero.jpg";
 
 const ResidentialPBSA = () => {
   return (
@@ -9,7 +10,7 @@ const ResidentialPBSA = () => {
       canonicalUrl="https://entirefm.com/sectors/residential-pbsa"
       heroTitle="Residential Blocks & PBSA FM"
       heroSubtitle="Happy residents. Zero complaints. Full compliance. FM that protects living standards, life safety, asset value — and the reputation of those responsible."
-      heroImage="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80"
+      heroImage={heroImage}
       heroIcon={Home}
       stats={[
         { value: "100%", label: "FRA Resolution" },
