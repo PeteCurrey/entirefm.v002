@@ -59,8 +59,9 @@ const LegionellaGuide = () => {
     console.log("Legionella Guide download:", data);
   };
 
-  const handleDownload = () => {
-    toast({ title: "Download Started", description: "Your guide will begin downloading shortly." });
+  const handleDownload = async () => {
+    const { downloadWaterHygieneChecklist } = await import("@/utils/generateCompliancePDF");
+    await downloadWaterHygieneChecklist();
   };
 
   const scrollToForm = () => {

@@ -59,8 +59,9 @@ const EmergencyLightingChecklist = () => {
     console.log("Emergency Lighting Checklist download:", data);
   };
 
-  const handleDownload = () => {
-    toast({ title: "Download Started", description: "Your checklist will begin downloading shortly." });
+  const handleDownload = async () => {
+    const { downloadEmergencyLightingChecklist } = await import("@/utils/generateCompliancePDF");
+    await downloadEmergencyLightingChecklist();
   };
 
   const scrollToForm = () => {

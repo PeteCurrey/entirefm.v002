@@ -182,6 +182,7 @@ export default function PDFTemplatesAdmin() {
       "water-hygiene": "💧 Water Hygiene Checklist",
       "hvac": "❄️ HVAC Checklist",
       "electrical": "⚡ Electrical Checklist",
+      "eicr-manual": "⚡ EICR Survival Manual",
       "capability-pack": "📋 Capability Pack",
     };
     return names[key] || key;

@@ -74,11 +74,9 @@ const FireRiskGuide = () => {
     console.log("Fire Risk Guide download:", data);
   };
 
-  const handleDownload = () => {
-    toast({
-      title: "Download Started",
-      description: "Your guide will begin downloading shortly.",
-    });
+  const handleDownload = async () => {
+    const { downloadFireAlarmChecklist } = await import("@/utils/generateCompliancePDF");
+    await downloadFireAlarmChecklist();
   };
 
   const scrollToForm = () => {
