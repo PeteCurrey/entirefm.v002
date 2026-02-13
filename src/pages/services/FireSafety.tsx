@@ -49,10 +49,10 @@ const FireSafety = () => {
   ];
 
   const kpiStats = [
-    { value: "10000", suffix: "+", label: "Fire Assets Maintained" },
-    { value: "100", suffix: "%", label: "Audit Pass Rate" },
-    { value: "4", suffix: "hr", label: "Emergency Attendance" },
-    { value: "500", suffix: "+", label: "Sites Covered" },
+    { value: "BS 5839", label: "Certified" },
+    { value: "24/7", label: "Emergency Response" },
+    { value: "UK Wide", label: "Coverage" },
+    { value: "Digital", label: "Certification" },
   ];
 
   const coreServices = [
@@ -121,8 +121,8 @@ const FireSafety = () => {
     },
     {
       title: "Industrial Compliance",
-      metric: "99.8% uptime",
-      result: "Fire system availability maintained across logistics portfolio",
+      metric: "Multi-site",
+      result: "Consistent fire system availability maintained across logistics portfolio",
     },
   ];
 
@@ -186,6 +186,24 @@ const FireSafety = () => {
       />
 
       <TrustBar variant="compact" />
+
+      {/* ─── Introduction Section ─── */}
+      <ContentSection
+        title="What Is Fire Safety Compliance?"
+        variant="muted"
+      >
+        <div className="max-w-4xl mx-auto space-y-4">
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Fire safety compliance is the legal obligation placed on the Responsible Person — typically the building owner, employer, or managing agent — under the Regulatory Reform (Fire Safety) Order 2005. It requires the identification, assessment, and management of fire risks across all non-domestic premises, including the maintenance and testing of fire detection, alarm, suppression, and evacuation systems.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            Compliance covers a wide range of systems including fire alarms (BS 5839), emergency lighting (BS 5266), fire extinguishers (BS 5306), sprinkler systems (BS EN 12845), passive fire protection such as fire doors and compartmentation, and the completion of regular fire risk assessments. Failure to maintain these systems can result in criminal prosecution, unlimited fines, building closure notices, and invalidated insurance.
+          </p>
+          <p className="text-muted-foreground font-light leading-relaxed">
+            EntireFM delivers multi-system fire compliance under a single contract, with certified engineers, digital certification, and 24/7 emergency response. Every defect is risk-coded, costed, and resolved — not just recorded — giving Responsible Persons confidence that their legal duties are fully discharged.
+          </p>
+        </div>
+      </ContentSection>
 
       {/* ─── KPI Stats ─── */}
       <StatsBanner stats={kpiStats} variant="gradient" />
