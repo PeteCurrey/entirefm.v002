@@ -249,10 +249,10 @@ const Contact = () => {
                   <p className="text-primary font-semibold mb-3">{method.subtitle}</p>
                   
                   <Button variant="outline" asChild>
-                    <a 
-                      href={method.href}
-                      {...((method as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    >
+                    <a
+                  href={method.href}
+                  {...(method as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {}}>
+
                       {method.action}
                     </a>
                   </Button>
@@ -291,8 +291,8 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
                       <h3 className="text-lg font-bold mb-1">Email</h3>
-                      <a href="mailto:hello@entirefm.co.uk" className="text-primary hover:underline">
-                        hello@entirefm.co.uk
+                      <a className="text-primary hover:underline" href="mailto:hello@entirefm.com">
+                        hello@entirefm.co.u
                       </a>
                     </div>
                   </div>
@@ -343,7 +343,7 @@ const Contact = () => {
                     <label htmlFor="name" className="block text-sm font-semibold mb-2">
                       Name *
                     </label>
-                    <Input id="name" value={formData.name} onChange={e => setFormData({
+                    <Input id="name" value={formData.name} onChange={(e) => setFormData({
                     ...formData,
                     name: e.target.value
                   })} placeholder="Your name" required maxLength={100} />
@@ -353,7 +353,7 @@ const Contact = () => {
                     <label htmlFor="email" className="block text-sm font-semibold mb-2">
                       Email *
                     </label>
-                    <Input id="email" type="email" value={formData.email} onChange={e => setFormData({
+                    <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData({
                     ...formData,
                     email: e.target.value
                   })} placeholder="your@email.com" required maxLength={255} />
@@ -363,7 +363,7 @@ const Contact = () => {
                     <label htmlFor="phone" className="block text-sm font-semibold mb-2">
                       Phone
                     </label>
-                    <Input id="phone" type="tel" value={formData.phone} onChange={e => setFormData({
+                    <Input id="phone" type="tel" value={formData.phone} onChange={(e) => setFormData({
                     ...formData,
                     phone: e.target.value
                   })} placeholder="Your phone number" maxLength={20} />
@@ -373,7 +373,7 @@ const Contact = () => {
                     <label htmlFor="company" className="block text-sm font-semibold mb-2">
                       Company
                     </label>
-                    <Input id="company" value={formData.company} onChange={e => setFormData({
+                    <Input id="company" value={formData.company} onChange={(e) => setFormData({
                     ...formData,
                     company: e.target.value
                   })} placeholder="Your company name" maxLength={100} />
@@ -384,7 +384,7 @@ const Contact = () => {
                   <label htmlFor="message" className="block text-sm font-semibold mb-2">
                     Message *
                   </label>
-                  <Textarea id="message" value={formData.message} onChange={e => setFormData({
+                  <Textarea id="message" value={formData.message} onChange={(e) => setFormData({
                   ...formData,
                   message: e.target.value
                 })} placeholder="Tell us how we can help..." required className="min-h-[150px]" maxLength={2000} />
