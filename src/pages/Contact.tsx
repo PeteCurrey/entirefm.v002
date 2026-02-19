@@ -417,7 +417,7 @@ const Contact = () => {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="gap-2" asChild>
-                  <a href="mailto:hello@entirefm.co.uk">
+                  <a href="mailto:hello@entirefm.com">
                     <Mail className="w-5 h-5" />
                     Email Us
                   </a>
