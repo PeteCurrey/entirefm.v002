@@ -292,7 +292,7 @@ const Contact = () => {
                     <div>
                       <h3 className="text-lg font-bold mb-1">Email</h3>
                       <a className="text-primary hover:underline" href="mailto:hello@entirefm.com">
-                        hello@entirefm.co.u
+                        hello@entirefm.com
                       </a>
                     </div>
                   </div>
