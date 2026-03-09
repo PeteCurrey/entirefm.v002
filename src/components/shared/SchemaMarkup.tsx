@@ -140,8 +140,8 @@ export const OrganizationSchema = ({
     "description": description,
     "url": "https://entirefm.com",
     "logo": "https://entirefm.com/logo.png",
-    "telephone": "+44-800-123-4567",
-    "email": "hello@entirefm.co.uk",
+    "telephone": "+44-204-586-5422",
+    "email": "hello@entirefm.com",
     "sameAs": sameAs,
     "address": {
       "@type": "PostalAddress",
