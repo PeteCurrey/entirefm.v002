@@ -86,7 +86,7 @@ export const LocalBusinessSchema = ({ name, address, email, serviceType }: Local
       "postalCode": address.postalCode,
       "addressCountry": address.country
     },
-    "telephone": "+44-800-XXX-XXXX",
+    "telephone": "+44-204-586-5422",
     ...(email && { "email": email }),
     ...(serviceType && { "department": {
       "@type": "Service",
