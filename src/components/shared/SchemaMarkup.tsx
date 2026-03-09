@@ -16,7 +16,7 @@ export const ServiceSchema = ({ name, description, provider, areaServed }: Servi
     "provider": {
       "@type": "Organization",
       "name": provider,
-      "telephone": "+44-800-XXX-XXXX",
+      "telephone": "+44-204-586-5422",
       "url": "https://entirefm.com"
     },
     "areaServed": areaServed,
