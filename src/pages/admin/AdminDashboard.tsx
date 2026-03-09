@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Users, FileText, BarChart3, Settings, TrendingUp, Clock, CheckCircle2, AlertCircle, Mail, MessageSquare, Link2 } from "lucide-react";
+import { Users, FileText, BarChart3, Settings, TrendingUp, Clock, CheckCircle2, AlertCircle, Mail, MessageSquare, Link2, Target } from "lucide-react";
 import { SitemapPing } from "@/components/admin/SitemapPing";
 import { LinkHealthDashboard } from "@/components/admin/LinkHealthDashboard";
 import { Error404Dashboard } from "@/components/admin/Error404Dashboard";
