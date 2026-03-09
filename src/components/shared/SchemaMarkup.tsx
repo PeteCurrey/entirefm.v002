@@ -164,8 +164,8 @@ export const ContactPointSchema = () => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ContactPoint",
-    "telephone": "+44-800-123-4567",
-    "email": "hello@entirefm.co.uk",
+    "telephone": "+44-204-586-5422",
+    "email": "hello@entirefm.com",
     "contactType": "Customer Service",
     "areaServed": "GB",
     "availableLanguage": "English",
