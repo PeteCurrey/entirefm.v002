@@ -134,7 +134,7 @@ const FMInsights = () => {
           name="description"
           content="Expert FM insights, compliance guides, and best practice resources for facilities managers and property professionals."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/fm-insights" />
+        <link rel="canonical" href="https://entirefm.com/fm-insights" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">

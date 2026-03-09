@@ -57,7 +57,7 @@ const Integrations = () => {
           name="description"
           content="Seamless FM delivery into your existing compliance and job management platforms including eLogbooks, Dwellant, Verisae, MRI/Qube, Planon and more."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/integrations" />
+        <link rel="canonical" href="https://entirefm.com/integrations" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">

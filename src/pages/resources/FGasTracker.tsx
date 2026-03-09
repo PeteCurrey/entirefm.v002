@@ -93,7 +93,7 @@ const FGasTracker = () => {
       <Helmet>
         <title>F-Gas Compliance Tracker | Free Download | EntireFM</title>
         <meta name="description" content="Download our F-Gas Leak Detection Compliance Tracker. Excel tool for managing refrigerant leak inspections and EU 517/2014 compliance." />
-        <link rel="canonical" href="https://entirefm.co.uk/resources/fgas-tracker" />
+        <link rel="canonical" href="https://entirefm.com/resources/fgas-tracker" />
       </Helmet>
       <SchemaMarkup schema={schema} />
 

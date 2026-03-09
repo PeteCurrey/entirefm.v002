@@ -51,7 +51,7 @@ const EnergyESG = () => {
       <Helmet>
         <title>Energy Efficiency & ESG Strategy | FM Sustainability Solutions | EntireFM</title>
         <meta name="description" content="Turn FM actions into OpEx savings. Energy efficiency upgrades, ESG strategy, and sustainability improvements that deliver measurable board-level value." />
-        <link rel="canonical" href="https://entirefm.co.uk/resources/energy-esg" />
+        <link rel="canonical" href="https://entirefm.com/resources/energy-esg" />
       </Helmet>
       <SchemaMarkup schema={schemaData} />
       <BreadcrumbSchema items={breadcrumbItems} />

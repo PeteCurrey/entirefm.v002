@@ -155,7 +155,7 @@ const WaterRiskGrader = () => {
       <Helmet>
         <title>Water Hygiene & Legionella Risk Grader | EntireFM</title>
         <meta name="description" content="Free water hygiene risk assessment tool. Grade your legionella risk, check ACOP L8 compliance, and identify urgent actions required for your water systems." />
-        <link rel="canonical" href="https://entirefm.co.uk/tools/water-risk-grader" />
+        <link rel="canonical" href="https://entirefm.com/tools/water-risk-grader" />
       </Helmet>
 
       <SchemaMarkup schema={schema} />

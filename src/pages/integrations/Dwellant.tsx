@@ -37,7 +37,7 @@ const Dwellant = () => {
           name="description"
           content="Delivering fast, compliant FM directly within your Dwellant workflows — no operational disruption. Strong in residential & PRS."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/integrations/dwellant" />
+        <link rel="canonical" href="https://entirefm.com/integrations/dwellant" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">
