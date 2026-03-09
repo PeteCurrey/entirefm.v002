@@ -147,7 +147,7 @@ const WaterRiskGrader = () => {
     name: "Water Hygiene & Legionella Risk Grader | EntireFM",
     description: "Assess your facility's legionella risk and ACOP L8 compliance status. Free instant water hygiene risk assessment tool.",
     applicationCategory: "BusinessApplication",
-    url: "https://entirefm.co.uk/tools/water-risk-grader",
+    url: "https://entirefm.com/tools/water-risk-grader",
   };
 
   return (
