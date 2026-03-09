@@ -105,6 +105,7 @@ const FMOperations = () => {
           content="Expert FM operations including PPM delivery, 24/7 helpdesk, reactive maintenance, asset lifecycle management & mobilisation. Proven service excellence across UK portfolios." 
         />
         <meta name="keywords" content="FM operations, PPM delivery, facilities helpdesk, reactive maintenance, asset lifecycle management, mobilisation, business continuity, occupier experience" />
+        <link rel="canonical" href="https://entirefm.com/fm-operations" />
       </Helmet>
 
       <div className="min-h-screen bg-background pt-20">

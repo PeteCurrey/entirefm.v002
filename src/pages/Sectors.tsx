@@ -77,6 +77,7 @@ const Sectors = () => {
       <Helmet>
         <title>Sectors We Serve | EntireFM</title>
         <meta name="description" content="Sector-specific facilities management for offices, industrial, retail, aviation, hospitality, residential, education and healthcare environments." />
+        <link rel="canonical" href="https://entirefm.com/sectors" />
       </Helmet>
       
       <Breadcrumb items={breadcrumbItems} />

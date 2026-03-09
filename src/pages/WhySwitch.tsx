@@ -9,6 +9,7 @@ const WhySwitch = () => {
       <Helmet>
         <title>Why Switch to EntireFM | Stop Chasing, Start Executing</title>
         <meta name="description" content="Tired of excuses? Switch to EntireFM for FM that performs. Fast response times, clear communication, compliance visibility, and genuine accountability." />
+        <link rel="canonical" href="https://entirefm.com/why-switch" />
       </Helmet>
       
       <div className="min-h-screen pt-20">

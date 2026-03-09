@@ -449,6 +449,7 @@ const SiteMap = () => {
       <Helmet>
         <title>Sitemap | EntireFM - All Pages & Services</title>
         <meta name="description" content="Complete sitemap of EntireFM facilities management services, locations, sectors, and resources. Find all pages across our comprehensive FM services platform." />
+        <link rel="canonical" href="https://entirefm.com/sitemap" />
       </Helmet>
 
       <div className="min-h-screen bg-background py-12 pt-24">
