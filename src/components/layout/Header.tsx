@@ -697,9 +697,9 @@ const Header = ({
 
                 {/* Sectors Section */}
                 <div className="border-b border-border">
-                  <button className="w-full text-left px-6 py-3 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors" onClick={() => setOpenDropdown(openDropdown === 'sectors' ? null : 'sectors')}>
+                  <button className="w-full text-left px-6 py-4 font-medium text-sm flex items-center justify-between hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setOpenDropdown(openDropdown === 'sectors' ? null : 'sectors')}>
                     Sectors
-                    <ArrowRight className={cn("w-4 h-4 transition-transform", openDropdown === 'sectors' && "rotate-90")} />
+                    <ArrowRight className={cn("w-4 h-4 transition-transform duration-200", openDropdown === 'sectors' && "rotate-90")} />
                   </button>
                   <AnimatePresence>
                     {openDropdown === 'sectors' && <motion.div className="bg-muted/50" initial={{
