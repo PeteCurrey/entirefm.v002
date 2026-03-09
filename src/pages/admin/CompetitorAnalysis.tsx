@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import {
   Plus, Pencil, Trash2, ExternalLink, Shield, ShieldAlert, ShieldCheck,
-  TrendingUp, Globe, Target, BarChart3, Search, RefreshCw
+  TrendingUp, Globe, Target, BarChart3, Search, RefreshCw, Lightbulb, Sparkles, AlertTriangle
 } from "lucide-react";
 
 interface Competitor {
