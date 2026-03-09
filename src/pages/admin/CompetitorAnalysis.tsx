@@ -285,6 +285,7 @@ export default function CompetitorAnalysis() {
           <TabsList>
             <TabsTrigger value="profiles">Competitor Profiles</TabsTrigger>
             <TabsTrigger value="seo">SEO Comparison</TabsTrigger>
+            <TabsTrigger value="content-gaps">Content Gaps</TabsTrigger>
             <TabsTrigger value="swot">SWOT Overview</TabsTrigger>
           </TabsList>
 
