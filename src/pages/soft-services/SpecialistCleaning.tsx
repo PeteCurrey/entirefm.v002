@@ -138,6 +138,7 @@ const SpecialistCleaning = () => {
       <Helmet>
         <title>Specialist Cleaning Services | High-Level Plant Cleaning | EntireFM</title>
         <meta name="description" content="Specialist cleaning services for high-level, critical environment and technical plant cleaning. Car park exhaust cleaning, plant room degreasing and IAQ-focused cleaning." />
+        <link rel="canonical" href="https://entirefm.com/soft-services/specialist-cleaning" />
       </Helmet>
 
       <BreadcrumbSchema items={breadcrumbItems} />

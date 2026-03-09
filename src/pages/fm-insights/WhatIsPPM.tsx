@@ -48,6 +48,7 @@ const WhatIsPPM = () => {
       <Helmet>
         <title>What is PPM? | Planned Preventative Maintenance Guide | EntireFM</title>
         <meta name="description" content="Understanding PPM: reducing breakdowns, costs and risk through strategic engineering maintenance. Essential guide to planned preventative maintenance programmes." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-ppm" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

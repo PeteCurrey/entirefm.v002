@@ -48,6 +48,7 @@ const WhatIsSoftFM = () => {
       <Helmet>
         <title>What is Soft FM? | Support Services Guide | EntireFM</title>
         <meta name="description" content="Understanding soft facilities management: the services that shape daily user experience, cleanliness, security, and operational efficiency in buildings." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-soft-fm" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

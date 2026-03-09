@@ -145,6 +145,7 @@ const GroundsMaintenance = () => {
       <Helmet>
         <title>Grounds Maintenance with Compliance Oversight | Safe Access & Drainage | EntireFM</title>
         <meta name="description" content="Grounds maintenance with compliance oversight for water management, slip-risk reduction and safe-access maintenance. Drainage coordination and tree safety management." />
+        <link rel="canonical" href="https://entirefm.com/soft-services/grounds-maintenance" />
       </Helmet>
 
       <BreadcrumbSchema items={breadcrumbItems} />

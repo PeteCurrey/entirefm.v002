@@ -48,6 +48,7 @@ const HowOftenFireAlarmsTested = () => {
       <Helmet>
         <title>How Often Should Fire Alarms Be Tested? | UK Legal Requirements | EntireFM</title>
         <meta name="description" content="Fire alarm testing schedule required for UK workplaces: weekly tests, 6-monthly servicing, annual inspections. Complete guide to BS 5839-1 compliance." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/how-often-fire-alarms-tested" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

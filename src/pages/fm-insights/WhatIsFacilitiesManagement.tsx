@@ -49,6 +49,7 @@ const WhatIsFacilitiesManagement = () => {
       <Helmet>
         <title>What is Facilities Management? | Complete Guide | EntireFM</title>
         <meta name="description" content="Comprehensive guide to facilities management for estate managers and duty holders. Understand responsibilities, compliance requirements, and best practices." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-facilities-management" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />
