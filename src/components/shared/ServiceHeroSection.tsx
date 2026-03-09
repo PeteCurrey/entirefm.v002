@@ -52,7 +52,7 @@ const ServiceHeroSection = ({
   return (
     <section 
       ref={heroRef} 
-      className="relative min-h-[60vh] py-32 px-4 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal overflow-hidden flex items-center"
+      className="relative min-h-[50vh] md:min-h-[60vh] py-20 md:py-32 px-4 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal overflow-hidden flex items-center"
     >
       <motion.div 
         className="absolute inset-0 bg-cover bg-center opacity-20" 
