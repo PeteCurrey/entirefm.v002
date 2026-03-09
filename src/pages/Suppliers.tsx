@@ -242,7 +242,7 @@ const Suppliers = () => {
           name="description"
           content="We partner with qualified engineers, specialists and contractors who meet our governance standards — delivering compliant, reliable outcomes across UK estates."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/suppliers" />
+        <link rel="canonical" href="https://entirefm.com/suppliers" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">

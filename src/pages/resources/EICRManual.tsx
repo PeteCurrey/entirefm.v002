@@ -93,7 +93,7 @@ const EICRManual = () => {
       <Helmet>
         <title>EICR Survival Manual | Free Download | EntireFM</title>
         <meta name="description" content="Download our Electrical EICR Survival Manual. Essential guide for property managers to understand EICR requirements and electrical compliance." />
-        <link rel="canonical" href="https://entirefm.co.uk/resources/eicr-manual" />
+        <link rel="canonical" href="https://entirefm.com/resources/eicr-manual" />
       </Helmet>
       <SchemaMarkup schema={schema} />
 

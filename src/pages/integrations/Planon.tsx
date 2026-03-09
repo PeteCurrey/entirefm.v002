@@ -37,7 +37,7 @@ const Planon = () => {
           name="description"
           content="Delivering fast, compliant FM directly within your Planon workflows — no operational disruption. Public sector + large campuses."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/integrations/planon" />
+        <link rel="canonical" href="https://entirefm.com/integrations/planon" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">

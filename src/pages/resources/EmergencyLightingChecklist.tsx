@@ -93,7 +93,7 @@ const EmergencyLightingChecklist = () => {
       <Helmet>
         <title>Emergency Lighting Test Checklist | Free Download | EntireFM</title>
         <meta name="description" content="Download our 3-Hour Emergency Lighting Test Checklist. BS 5266 compliant guide for annual testing and record-keeping." />
-        <link rel="canonical" href="https://entirefm.co.uk/resources/emergency-lighting-checklist" />
+        <link rel="canonical" href="https://entirefm.com/resources/emergency-lighting-checklist" />
       </Helmet>
       <SchemaMarkup schema={schema} />
 
