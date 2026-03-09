@@ -124,6 +124,7 @@ const Services = () => {
       <Helmet>
         <title>Facilities Management Services | EntireFM</title>
         <meta name="description" content="Comprehensive facilities management services including hard services, compliance, soft services, projects and emergency response." />
+        <link rel="canonical" href="https://entirefm.com/services" />
       </Helmet>
       
       <Breadcrumb items={breadcrumbItems} />

@@ -41,7 +41,7 @@ const LightningProtection = () => {
       <Helmet>
         <title>Lightning Protection Testing & Earthing Compliance | EntireFM</title>
         <meta name="description" content="Lightning protection testing for critical infrastructure. Annual testing, earth resistance measurement, continuity testing and BS EN 62305 compliance for commercial buildings." />
-        <link rel="canonical" href="https://www.entirefm.com/services/critical/lightning-protection" />
+        <link rel="canonical" href="https://entirefm.com/services/critical/lightning-protection-testing" />
       </Helmet>
 
       <BreadcrumbSchema items={breadcrumbItems} />

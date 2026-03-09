@@ -39,6 +39,7 @@ const Locations = () => {
           name="description" 
           content="National facilities management coverage across the UK. FM services in London, Manchester, Birmingham, Leeds, and major cities. 24/7 support and local engineers."
         />
+        <link rel="canonical" href="https://entirefm.com/locations" />
       </Helmet>
 
       <div className="min-h-screen">
