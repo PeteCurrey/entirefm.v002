@@ -275,6 +275,7 @@ import SearchAnalyticsDashboard from "./pages/SearchAnalyticsDashboard";
 import LinkHealthDashboard from "./pages/LinkHealthDashboard";
 import ProposalsDashboard from "./pages/admin/ProposalsDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import CompetitorAnalysis from "./pages/admin/CompetitorAnalysis";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
 import ContactSubmissions from "./pages/admin/ContactSubmissions";
@@ -966,6 +967,7 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="pdf-templates" element={<PDFTemplatesAdmin />} />
                 {/* Settings */}
                 <Route path="settings" element={<AdminSettings />} />
+                <Route path="competitors" element={<CompetitorAnalysis />} />
               </Route>
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

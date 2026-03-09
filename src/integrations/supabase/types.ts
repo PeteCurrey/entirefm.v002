@@ -194,6 +194,81 @@ export type Database = {
         }
         Relationships: []
       }
+      competitors: {
+        Row: {
+          content_gaps: string[] | null
+          created_at: string
+          description: string | null
+          domain_authority: number | null
+          employee_count: string | null
+          estimated_revenue: string | null
+          headquarters: string | null
+          id: string
+          key_services: string[] | null
+          last_reviewed_at: string | null
+          logo_url: string | null
+          monthly_traffic: string | null
+          name: string
+          notes: string | null
+          organic_keywords: number | null
+          strengths: string[] | null
+          target_sectors: string[] | null
+          threat_level: string | null
+          top_keywords: Json | null
+          updated_at: string
+          weaknesses: string[] | null
+          website: string | null
+        }
+        Insert: {
+          content_gaps?: string[] | null
+          created_at?: string
+          description?: string | null
+          domain_authority?: number | null
+          employee_count?: string | null
+          estimated_revenue?: string | null
+          headquarters?: string | null
+          id?: string
+          key_services?: string[] | null
+          last_reviewed_at?: string | null
+          logo_url?: string | null
+          monthly_traffic?: string | null
+          name: string
+          notes?: string | null
+          organic_keywords?: number | null
+          strengths?: string[] | null
+          target_sectors?: string[] | null
+          threat_level?: string | null
+          top_keywords?: Json | null
+          updated_at?: string
+          weaknesses?: string[] | null
+          website?: string | null
+        }
+        Update: {
+          content_gaps?: string[] | null
+          created_at?: string
+          description?: string | null
+          domain_authority?: number | null
+          employee_count?: string | null
+          estimated_revenue?: string | null
+          headquarters?: string | null
+          id?: string
+          key_services?: string[] | null
+          last_reviewed_at?: string | null
+          logo_url?: string | null
+          monthly_traffic?: string | null
+          name?: string
+          notes?: string | null
+          organic_keywords?: number | null
+          strengths?: string[] | null
+          target_sectors?: string[] | null
+          threat_level?: string | null
+          top_keywords?: Json | null
+          updated_at?: string
+          weaknesses?: string[] | null
+          website?: string | null
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           admin_notes: string | null
