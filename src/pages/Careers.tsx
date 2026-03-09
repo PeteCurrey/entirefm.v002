@@ -223,6 +223,7 @@ const Careers = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
