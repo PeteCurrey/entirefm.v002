@@ -652,12 +652,17 @@ const Header = ({
           duration: 0.3,
           ease: "easeInOut"
         }}>
-              <nav className="flex flex-col max-h-[calc(100vh-5rem)] overflow-y-auto bg-background opacity-95">
+              <nav className="flex flex-col max-h-[calc(100vh-5rem)] overflow-y-auto bg-background">
+                {/* Mobile Search */}
+                <div className="px-4 py-3 border-b border-border">
+                  <EnhancedGlobalSearch />
+                </div>
+                
                 {/* Services Section */}
                 <div className="border-b border-border">
-                  <button className="w-full text-left px-6 py-3 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors" onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}>
+                  <button className="w-full text-left px-6 py-4 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors active:bg-accent/80" onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}>
                     Services
-                    <ArrowRight className={cn("w-4 h-4 transition-transform", openDropdown === 'services' && "rotate-90")} />
+                    <ArrowRight className={cn("w-4 h-4 transition-transform duration-200", openDropdown === 'services' && "rotate-90")} />
                   </button>
                   <AnimatePresence>
                     {openDropdown === 'services' && <motion.div className="bg-muted/50" initial={{
