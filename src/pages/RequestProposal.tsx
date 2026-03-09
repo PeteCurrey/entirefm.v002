@@ -251,7 +251,7 @@ const RequestProposal = () => {
     "@type": "WebPage",
     name: "Request Proposal / Tender Pack | EntireFM",
     description: "Fast, compliant, and transparent procurement support — tailored to your estate.",
-    url: "https://entirefm.co.uk/request-proposal"
+    url: "https://entirefm.com/request-proposal"
   };
 
   const heroStats = [
