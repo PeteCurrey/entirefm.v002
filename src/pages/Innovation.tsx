@@ -36,7 +36,7 @@ const Innovation = () => {
       <Helmet>
         <title>Innovation & Technology in FM | EntireFM</title>
         <meta name="description" content="Cutting-edge facilities management technology: AI, IoT, predictive maintenance, and digital platforms transforming how we manage UK commercial buildings." />
-        <link rel="canonical" href="https://www.entirefm.com/innovation" />
+        <link rel="canonical" href="https://entirefm.com/innovation" />
       </Helmet>
 
       <SchemaMarkup

@@ -36,7 +36,7 @@ const Sustainability = () => {
       <Helmet>
         <title>Sustainability & Net Zero FM Services | EntireFM</title>
         <meta name="description" content="Drive your net-zero targets with EntireFM's sustainable facilities management. Energy optimization, carbon reduction, and environmental compliance across UK portfolios." />
-        <link rel="canonical" href="https://www.entirefm.com/sustainability" />
+        <link rel="canonical" href="https://entirefm.com/sustainability" />
       </Helmet>
 
       <SchemaMarkup

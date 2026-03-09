@@ -36,7 +36,7 @@ const Partnerships = () => {
       <Helmet>
         <title>Partnerships & Collaboration | EntireFM</title>
         <meta name="description" content="Partner with EntireFM: supplier network opportunities, strategic collaborations, technology integration, and referral programs for UK facilities management." />
-        <link rel="canonical" href="https://www.entirefm.com/partnerships" />
+        <link rel="canonical" href="https://entirefm.com/partnerships" />
       </Helmet>
 
       <SchemaMarkup

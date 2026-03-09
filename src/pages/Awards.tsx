@@ -12,7 +12,7 @@ const Awards = () => {
       <Helmet>
         <title>Awards & Recognition | EntireFM</title>
         <meta name="description" content="EntireFM's industry recognition, awards, and certifications demonstrating our commitment to excellence in UK facilities management services." />
-        <link rel="canonical" href="https://www.entirefm.com/awards" />
+        <link rel="canonical" href="https://entirefm.com/awards" />
       </Helmet>
 
       <SchemaMarkup
