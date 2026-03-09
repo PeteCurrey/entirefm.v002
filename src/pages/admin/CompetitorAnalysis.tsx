@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import {
   Plus, Pencil, Trash2, ExternalLink, Shield, ShieldAlert, ShieldCheck,
-  TrendingUp, Globe, Target, BarChart3, Search, RefreshCw
+  TrendingUp, Globe, Target, BarChart3, Search, RefreshCw, Lightbulb, Sparkles, AlertTriangle
 } from "lucide-react";
 
 interface Competitor {
@@ -60,6 +60,61 @@ export default function CompetitorAnalysis() {
   const [form, setForm] = useState<Partial<Competitor>>(emptyForm);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [arrayInputs, setArrayInputs] = useState<Record<string, string>>({});
+  const [gapAnalysisLoading, setGapAnalysisLoading] = useState(false);
+  const [aiGapSuggestions, setAiGapSuggestions] = useState<string | null>(null);
+  const [gapFilter, setGapFilter] = useState<string>("all");
+
+  // Aggregate content gaps across all competitors
+  const contentGapMap = useMemo(() => {
+    const map: Record<string, { topic: string; competitors: string[]; threatLevels: string[] }> = {};
+    competitors.forEach(c => {
+      (c.content_gaps || []).forEach(gap => {
+        const key = gap.toLowerCase().trim();
+        if (!map[key]) {
+          map[key] = { topic: gap, competitors: [], threatLevels: [] };
+        }
+        map[key].competitors.push(c.name);
+        map[key].threatLevels.push(c.threat_level);
+      });
+    });
+    return Object.values(map).sort((a, b) => b.competitors.length - a.competitors.length);
+  }, [competitors]);
+
+  const filteredGaps = useMemo(() => {
+    if (gapFilter === "all") return contentGapMap;
+    return contentGapMap.filter(g => g.competitors.some((_, i) => g.threatLevels[i] === gapFilter));
+  }, [contentGapMap, gapFilter]);
+
+  const runAiGapAnalysis = async () => {
+    setGapAnalysisLoading(true);
+    setAiGapSuggestions(null);
+    try {
+      const competitorContext = competitors.map(c =>
+        `${c.name}: Services=[${c.key_services?.join(', ')}], Sectors=[${c.target_sectors?.join(', ')}], Content Gaps=[${c.content_gaps?.join(', ')}], DA=${c.domain_authority}, Keywords=${c.organic_keywords}`
+      ).join('\n');
+
+      const { data, error } = await supabase.functions.invoke('generate-content', {
+        body: {
+          type: 'seo-improve',
+          topic: `Analyze these FM competitors and identify content topics they rank for that EntireFM (a UK facilities management company) likely doesn't cover yet. Focus on high-value SEO opportunities.\n\nCompetitor Data:\n${competitorContext}\n\nEntireFM covers: fire safety, electrical, HVAC, water hygiene, gas safety, PPM, height safety, industrial services, cleaning, grounds maintenance.\n\nReturn as JSON:\n{\n  "priority_gaps": [{"topic": "...", "reason": "...", "competitors_covering": ["..."], "estimated_difficulty": "easy|medium|hard", "potential_impact": "high|medium|low"}],\n  "quick_wins": ["topic1", "topic2"],\n  "long_term_opportunities": ["topic1", "topic2"],\n  "summary": "Brief overall analysis"\n}`
+        }
+      });
+
+      if (error) throw error;
+      const content = data?.content;
+      if (content?.raw_content) {
+        setAiGapSuggestions(content.raw_content);
+      } else {
+        setAiGapSuggestions(JSON.stringify(content, null, 2));
+      }
+      toast.success("AI gap analysis complete");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to run AI analysis");
+    } finally {
+      setGapAnalysisLoading(false);
+    }
+  };
 
   useEffect(() => { fetchCompetitors(); }, []);
 
@@ -230,6 +285,7 @@ export default function CompetitorAnalysis() {
           <TabsList>
             <TabsTrigger value="profiles">Competitor Profiles</TabsTrigger>
             <TabsTrigger value="seo">SEO Comparison</TabsTrigger>
+            <TabsTrigger value="content-gaps">Content Gaps</TabsTrigger>
             <TabsTrigger value="swot">SWOT Overview</TabsTrigger>
           </TabsList>
 
@@ -369,7 +425,139 @@ export default function CompetitorAnalysis() {
             </Card>
           </TabsContent>
 
-          {/* SWOT Overview Tab */}
+          {/* Content Gaps Tab */}
+          <TabsContent value="content-gaps">
+            <div className="space-y-6">
+              {/* Gap Overview */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <Card className="p-4">
+                  <div className="flex items-center gap-3">
+                    <AlertTriangle className="h-8 w-8 text-destructive" />
+                    <div>
+                      <p className="text-2xl font-bold">{contentGapMap.length}</p>
+                      <p className="text-sm text-muted-foreground">Unique Content Gaps</p>
+                    </div>
+                  </div>
+                </Card>
+                <Card className="p-4">
+                  <div className="flex items-center gap-3">
+                    <Target className="h-8 w-8 text-primary" />
+                    <div>
+                      <p className="text-2xl font-bold">
+                        {contentGapMap.filter(g => g.competitors.length >= 2).length}
+                      </p>
+                      <p className="text-sm text-muted-foreground">Multi-Competitor Gaps</p>
+                    </div>
+                  </div>
+                </Card>
+                <Card className="p-4">
+                  <div className="flex items-center gap-3">
+                    <Lightbulb className="h-8 w-8 text-primary" />
+                    <div>
+                      <p className="text-2xl font-bold">
+                        {contentGapMap.filter(g => g.threatLevels.includes('high')).length}
+                      </p>
+                      <p className="text-sm text-muted-foreground">From High-Threat Competitors</p>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              {/* AI Analysis */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-semibold flex items-center gap-2">
+                    <Sparkles className="h-5 w-5 text-primary" /> AI Content Gap Analysis
+                  </h2>
+                  <Button onClick={runAiGapAnalysis} disabled={gapAnalysisLoading || competitors.length === 0}>
+                    <Sparkles className={`h-4 w-4 mr-2 ${gapAnalysisLoading ? 'animate-spin' : ''}`} />
+                    {gapAnalysisLoading ? 'Analyzing...' : 'Run AI Analysis'}
+                  </Button>
+                </div>
+                {!aiGapSuggestions && !gapAnalysisLoading && (
+                  <p className="text-muted-foreground text-sm">
+                    Click "Run AI Analysis" to get AI-powered recommendations on content topics your competitors cover that EntireFM doesn't.
+                  </p>
+                )}
+                {aiGapSuggestions && (
+                  <div className="bg-muted rounded-lg p-4 text-sm whitespace-pre-wrap max-h-96 overflow-y-auto">
+                    {aiGapSuggestions}
+                  </div>
+                )}
+              </Card>
+
+              {/* Gap Table */}
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-semibold flex items-center gap-2">
+                    <Search className="h-5 w-5 text-primary" /> All Content Gaps
+                  </h2>
+                  <Select value={gapFilter} onValueChange={setGapFilter}>
+                    <SelectTrigger className="w-40">
+                      <SelectValue placeholder="Filter" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All Gaps</SelectItem>
+                      <SelectItem value="high">High Threat Only</SelectItem>
+                      <SelectItem value="medium">Medium Threat</SelectItem>
+                      <SelectItem value="low">Low Threat</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                {filteredGaps.length > 0 ? (
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Topic / Keyword Gap</TableHead>
+                        <TableHead>Competitors Covering</TableHead>
+                        <TableHead className="text-center">Coverage Count</TableHead>
+                        <TableHead>Priority</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {filteredGaps.map((gap, i) => {
+                        const hasHigh = gap.threatLevels.includes('high');
+                        const priority = gap.competitors.length >= 3 ? 'critical' : gap.competitors.length >= 2 || hasHigh ? 'high' : 'normal';
+                        return (
+                          <TableRow key={i}>
+                            <TableCell className="font-medium">{gap.topic}</TableCell>
+                            <TableCell>
+                              <div className="flex flex-wrap gap-1">
+                                {gap.competitors.map((name, j) => (
+                                  <Badge key={j} variant="outline" className="text-xs">
+                                    {name}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-center font-semibold">{gap.competitors.length}</TableCell>
+                            <TableCell>
+                              <Badge className={
+                                priority === 'critical' ? 'bg-destructive text-destructive-foreground' :
+                                priority === 'high' ? 'bg-accent text-accent-foreground' :
+                                'bg-muted text-muted-foreground'
+                              }>
+                                {priority === 'critical' ? '🔴 Critical' : priority === 'high' ? '🟡 High' : '🟢 Normal'}
+                              </Badge>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                    </TableBody>
+                  </Table>
+                ) : (
+                  <div className="text-center py-8 text-muted-foreground">
+                    <Lightbulb className="h-10 w-10 mx-auto mb-3 opacity-50" />
+                    <p>No content gaps recorded yet. Edit competitors to add content gaps they rank for.</p>
+                  </div>
+                )}
+                <p className="text-xs text-muted-foreground mt-4">
+                  💡 Topics appearing across multiple competitors represent the highest-priority content opportunities for EntireFM.
+                </p>
+              </Card>
+            </div>
+          </TabsContent>
+
           <TabsContent value="swot">
             <div className="grid gap-6">
               {competitors.map(c => (
