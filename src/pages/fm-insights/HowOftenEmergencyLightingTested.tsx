@@ -48,6 +48,7 @@ const HowOftenEmergencyLightingTested = () => {
       <Helmet>
         <title>How Often Should Emergency Lighting Be Tested? | UK Requirements | EntireFM</title>
         <meta name="description" content="Emergency lighting testing requirements: monthly function tests, annual 3-hour duration tests. Complete guide to BS 5266-1 and safe evacuation compliance." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/how-often-emergency-lighting-tested" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

@@ -48,6 +48,7 @@ const WhoIsTheResponsiblePerson = () => {
       <Helmet>
         <title>Who is the Responsible Person? | Fire Safety Law Accountability | EntireFM</title>
         <meta name="description" content="Understanding legal accountability under fire safety law: duties, responsibilities, and liabilities of the responsible person under the Regulatory Reform Order 2005." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/who-is-the-responsible-person" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

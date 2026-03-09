@@ -48,6 +48,7 @@ const WhatIsHardFM = () => {
       <Helmet>
         <title>What is Hard FM? | Technical Building Services Guide | EntireFM</title>
         <meta name="description" content="Understanding hard facilities management: critical technical maintenance that keeps buildings safe, compliant, and operational. Essential guide for estate managers." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-hard-fm" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

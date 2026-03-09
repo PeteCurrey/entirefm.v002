@@ -138,6 +138,7 @@ const WasteRecycling = () => {
       <Helmet>
         <title>Waste & Recycling Management | Duty of Care & ESG | EntireFM</title>
         <meta name="description" content="Waste and recycling management aligned with duty of care and ESG objectives. Sustainable waste handling, segregation, and compliance documentation for commercial estates." />
+        <link rel="canonical" href="https://entirefm.com/soft-services/waste-recycling" />
       </Helmet>
 
       <BreadcrumbSchema items={breadcrumbItems} />

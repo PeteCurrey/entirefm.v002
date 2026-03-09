@@ -138,6 +138,7 @@ const Concierge = () => {
       <Helmet>
         <title>Building Concierge & Front-of-House Services | Commercial Estates | EntireFM</title>
         <meta name="description" content="Building concierge and front-of-house services for commercial and residential estates. First-impression management, visitor reception and occupier support." />
+        <link rel="canonical" href="https://entirefm.com/soft-services/concierge" />
       </Helmet>
 
       <BreadcrumbSchema items={breadcrumbItems} />

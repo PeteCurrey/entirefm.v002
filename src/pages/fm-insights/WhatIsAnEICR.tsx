@@ -48,6 +48,7 @@ const WhatIsAnEICR = () => {
       <Helmet>
         <title>What is an EICR? | Electrical Inspection Guide | EntireFM</title>
         <meta name="description" content="Understanding EICR electrical inspections: requirements, frequencies, and compliance obligations for safe, legal workplaces. Essential guide to fixed wire testing." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-an-eicr" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

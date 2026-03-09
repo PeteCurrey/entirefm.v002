@@ -48,6 +48,7 @@ const WhatIsFGasCompliance = () => {
       <Helmet>
         <title>What is F-Gas Compliance? | Refrigerant Regulations Guide | EntireFM</title>
         <meta name="description" content="Understanding F-Gas compliance: environmental and legal responsibility for refrigerant systems. Essential guide to fluorinated gas regulations for building owners." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-f-gas-compliance" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

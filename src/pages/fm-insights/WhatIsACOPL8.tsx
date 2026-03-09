@@ -48,6 +48,7 @@ const WhatIsACOPL8 = () => {
       <Helmet>
         <title>What is ACOP L8? | Legionella Control Guide | EntireFM</title>
         <meta name="description" content="Understanding ACOP L8 legionella compliance: water system safety obligations, risk assessments, and monitoring requirements for building owners and duty holders." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-acop-l8" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

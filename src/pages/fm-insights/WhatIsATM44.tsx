@@ -48,6 +48,7 @@ const WhatIsATM44 = () => {
       <Helmet>
         <title>What is a TM44 Air Conditioning Inspection? | Energy Compliance | EntireFM</title>
         <meta name="description" content="Understanding TM44 inspections: energy compliance obligations for large AC systems. Essential guide to air conditioning efficiency assessments." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-a-tm44" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />

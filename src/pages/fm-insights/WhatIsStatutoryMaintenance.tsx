@@ -48,6 +48,7 @@ const WhatIsStatutoryMaintenance = () => {
       <Helmet>
         <title>What is Statutory Maintenance? | Legal Compliance Guide | EntireFM</title>
         <meta name="description" content="Understanding statutory maintenance obligations: legal compliance requirements every responsible person must uphold to avoid prosecution, fines, and safety breaches." />
+        <link rel="canonical" href="https://entirefm.com/fm-insights/what-is-statutory-maintenance" />
       </Helmet>
       <BreadcrumbSchema items={breadcrumbItems} />
       <FAQSchema faqs={faqs} />
