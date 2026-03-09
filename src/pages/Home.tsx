@@ -75,6 +75,22 @@ const Home = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
+    <>
+      <Helmet>
+        <title>EntireFM | UK Facilities Management & Compliance Services</title>
+        <meta name="description" content="UK facilities management company delivering compliance-focused hard FM, PPM, and reactive maintenance. 24/7 helpdesk, BS certified engineers, and real-time compliance tracking." />
+        <link rel="canonical" href="https://entirefm.com/" />
+      </Helmet>
+      
+      <HomepageOrganizationSchema 
+        aggregateRating={{
+          ratingValue: 4.9,
+          reviewCount: 47,
+          bestRating: 5,
+          worstRating: 1
+        }}
+      />
+      
     <div className="min-h-screen">
       {/* Hero Section */}
       <VideoHero 
