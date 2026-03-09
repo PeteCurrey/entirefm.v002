@@ -60,6 +60,61 @@ export default function CompetitorAnalysis() {
   const [form, setForm] = useState<Partial<Competitor>>(emptyForm);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [arrayInputs, setArrayInputs] = useState<Record<string, string>>({});
+  const [gapAnalysisLoading, setGapAnalysisLoading] = useState(false);
+  const [aiGapSuggestions, setAiGapSuggestions] = useState<string | null>(null);
+  const [gapFilter, setGapFilter] = useState<string>("all");
+
+  // Aggregate content gaps across all competitors
+  const contentGapMap = useMemo(() => {
+    const map: Record<string, { topic: string; competitors: string[]; threatLevels: string[] }> = {};
+    competitors.forEach(c => {
+      (c.content_gaps || []).forEach(gap => {
+        const key = gap.toLowerCase().trim();
+        if (!map[key]) {
+          map[key] = { topic: gap, competitors: [], threatLevels: [] };
+        }
+        map[key].competitors.push(c.name);
+        map[key].threatLevels.push(c.threat_level);
+      });
+    });
+    return Object.values(map).sort((a, b) => b.competitors.length - a.competitors.length);
+  }, [competitors]);
+
+  const filteredGaps = useMemo(() => {
+    if (gapFilter === "all") return contentGapMap;
+    return contentGapMap.filter(g => g.competitors.some((_, i) => g.threatLevels[i] === gapFilter));
+  }, [contentGapMap, gapFilter]);
+
+  const runAiGapAnalysis = async () => {
+    setGapAnalysisLoading(true);
+    setAiGapSuggestions(null);
+    try {
+      const competitorContext = competitors.map(c =>
+        `${c.name}: Services=[${c.key_services?.join(', ')}], Sectors=[${c.target_sectors?.join(', ')}], Content Gaps=[${c.content_gaps?.join(', ')}], DA=${c.domain_authority}, Keywords=${c.organic_keywords}`
+      ).join('\n');
+
+      const { data, error } = await supabase.functions.invoke('generate-content', {
+        body: {
+          type: 'seo-improve',
+          topic: `Analyze these FM competitors and identify content topics they rank for that EntireFM (a UK facilities management company) likely doesn't cover yet. Focus on high-value SEO opportunities.\n\nCompetitor Data:\n${competitorContext}\n\nEntireFM covers: fire safety, electrical, HVAC, water hygiene, gas safety, PPM, height safety, industrial services, cleaning, grounds maintenance.\n\nReturn as JSON:\n{\n  "priority_gaps": [{"topic": "...", "reason": "...", "competitors_covering": ["..."], "estimated_difficulty": "easy|medium|hard", "potential_impact": "high|medium|low"}],\n  "quick_wins": ["topic1", "topic2"],\n  "long_term_opportunities": ["topic1", "topic2"],\n  "summary": "Brief overall analysis"\n}`
+        }
+      });
+
+      if (error) throw error;
+      const content = data?.content;
+      if (content?.raw_content) {
+        setAiGapSuggestions(content.raw_content);
+      } else {
+        setAiGapSuggestions(JSON.stringify(content, null, 2));
+      }
+      toast.success("AI gap analysis complete");
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to run AI analysis");
+    } finally {
+      setGapAnalysisLoading(false);
+    }
+  };
 
   useEffect(() => { fetchCompetitors(); }, []);
 
