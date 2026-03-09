@@ -103,8 +103,9 @@ export default function AdminDashboard() {
               <QuickAction icon={FileText} label="View All Proposals" onClick={() => navigate('/admin/proposals')} />
               <QuickAction icon={Mail} label="Contact Submissions" onClick={() => navigate('/admin/contacts')} />
               <QuickAction icon={BarChart3} label="Analytics Dashboard" onClick={() => navigate('/admin/search-analytics')} />
+              <QuickAction icon={Target} label="Competitor Analysis" onClick={() => navigate('/admin/competitors')} />
               <QuickAction icon={Users} label="User Management" onClick={() => {/* TODO */}} />
-              <QuickAction icon={Settings} label="System Settings" onClick={() => {/* TODO */}} />
+              <QuickAction icon={Settings} label="System Settings" onClick={() => navigate('/admin/settings')} />
             </div>
           </Card>
 

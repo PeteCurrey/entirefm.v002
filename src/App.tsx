@@ -967,6 +967,7 @@ const App = () => <QueryClientProvider client={queryClient}>
                 <Route path="pdf-templates" element={<PDFTemplatesAdmin />} />
                 {/* Settings */}
                 <Route path="settings" element={<AdminSettings />} />
+                <Route path="competitors" element={<CompetitorAnalysis />} />
               </Route>
               
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
