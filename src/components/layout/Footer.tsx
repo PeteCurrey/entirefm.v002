@@ -8,7 +8,7 @@ export const Footer = () => {
       {/* CTA Bar */}
       <div className="bg-primary/5 border-b border-border py-12">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-light mb-4">Ready to Elevate Your Facilities Management?</h3>
+          <h3 className="text-xl md:text-2xl font-light mb-4">Ready to Elevate Your Facilities Management?</h3>
           <p className="text-muted-foreground font-light mb-6 max-w-2xl mx-auto">
             Speak to our FM experts about your compliance, maintenance, and operational requirements
           </p>

@@ -761,14 +761,14 @@ const Header = ({
                 </div>
 
                 {/* Quick Links */}
-                <div className="px-6 py-4 space-y-2">
-                  <Link to="/case-studies" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="px-6 py-3 space-y-1 border-b border-border">
+                  <Link to="/case-studies" className="block py-3 text-sm font-light hover:text-primary active:text-primary/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                     Case Studies
                   </Link>
-                  <Link to="/about" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link to="/about" className="block py-3 text-sm font-light hover:text-primary active:text-primary/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                     About
                   </Link>
-                  <Link to="/contact" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link to="/contact" className="block py-3 text-sm font-light hover:text-primary active:text-primary/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                     Contact
                   </Link>
                 </div>

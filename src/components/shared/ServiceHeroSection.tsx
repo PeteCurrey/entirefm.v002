@@ -149,7 +149,7 @@ const ServiceHeroSection = ({
                   key={index} 
                   className="p-4 md:p-6 bg-white/10 backdrop-blur-sm border-white/20 text-center"
                 >
-                  <div className="text-3xl md:text-4xl font-light text-white mb-1">
+                  <div className="text-2xl md:text-4xl font-light text-white mb-1">
                     {stat.value}{stat.suffix && <span className="text-primary">{stat.suffix}</span>}
                   </div>
                   <div className="text-sm text-gray-400">{stat.label}</div>
