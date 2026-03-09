@@ -52,7 +52,7 @@ const ServiceHeroSection = ({
   return (
     <section 
       ref={heroRef} 
-      className="relative min-h-[60vh] py-32 px-4 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal overflow-hidden flex items-center"
+      className="relative min-h-[50vh] md:min-h-[60vh] py-20 md:py-32 px-4 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal overflow-hidden flex items-center"
     >
       <motion.div 
         className="absolute inset-0 bg-cover bg-center opacity-20" 
@@ -81,7 +81,7 @@ const ServiceHeroSection = ({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-              className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-white leading-tight"
+              className="text-3xl md:text-5xl lg:text-6xl font-light mb-4 md:mb-6 text-white leading-tight"
             >
               {title}
             </motion.h1>
@@ -89,7 +89,7 @@ const ServiceHeroSection = ({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-              className="text-xl text-gray-300 mb-8 leading-relaxed"
+              className="text-base md:text-xl text-gray-300 mb-6 md:mb-8 leading-relaxed"
             >
               {description}
             </motion.p>
@@ -147,9 +147,9 @@ const ServiceHeroSection = ({
               {stats.map((stat, index) => (
                 <Card 
                   key={index} 
-                  className="p-6 bg-white/10 backdrop-blur-sm border-white/20 text-center"
+                  className="p-4 md:p-6 bg-white/10 backdrop-blur-sm border-white/20 text-center"
                 >
-                  <div className="text-3xl md:text-4xl font-light text-white mb-1">
+                  <div className="text-2xl md:text-4xl font-light text-white mb-1">
                     {stat.value}{stat.suffix && <span className="text-primary">{stat.suffix}</span>}
                   </div>
                   <div className="text-sm text-gray-400">{stat.label}</div>

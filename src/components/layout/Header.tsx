@@ -632,8 +632,8 @@ const Header = ({
 
 
           {/* Mobile Menu Button */}
-          <button className="lg:hidden" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X /> : <Menu />}
+          <button className="lg:hidden p-2 -mr-2 rounded-md hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
@@ -652,12 +652,17 @@ const Header = ({
           duration: 0.3,
           ease: "easeInOut"
         }}>
-              <nav className="flex flex-col max-h-[calc(100vh-5rem)] overflow-y-auto bg-background opacity-95">
+              <nav className="flex flex-col max-h-[calc(100vh-5rem)] overflow-y-auto bg-background">
+                {/* Mobile Search */}
+                <div className="px-4 py-3 border-b border-border">
+                  <EnhancedGlobalSearch />
+                </div>
+                
                 {/* Services Section */}
                 <div className="border-b border-border">
-                  <button className="w-full text-left px-6 py-3 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors" onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}>
+                  <button className="w-full text-left px-6 py-4 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors active:bg-accent/80" onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}>
                     Services
-                    <ArrowRight className={cn("w-4 h-4 transition-transform", openDropdown === 'services' && "rotate-90")} />
+                    <ArrowRight className={cn("w-4 h-4 transition-transform duration-200", openDropdown === 'services' && "rotate-90")} />
                   </button>
                   <AnimatePresence>
                     {openDropdown === 'services' && <motion.div className="bg-muted/50" initial={{
@@ -672,17 +677,18 @@ const Header = ({
                 }} transition={{
                   duration: 0.2
                 }}>
-                        {servicesItems.map(item => <Link key={item.to} to={item.to} className="block px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                        {servicesItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-3 text-sm font-light hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                             {item.label}
                           </Link>)}
                         <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Reactive & Day-to-Day</div>
-                        {reactiveItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                            <item.icon className="w-3 h-3 text-primary" />
+                        {reactiveItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-3 text-sm font-light hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                             {item.label}
                           </Link>)}
                         <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Critical Infrastructure</div>
-                        {criticalInfrastructureItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                            <item.icon className="w-3 h-3 text-primary" />
+                        {criticalInfrastructureItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-3 text-sm font-light hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                             {item.label}
                           </Link>)}
                       </motion.div>}
@@ -691,9 +697,9 @@ const Header = ({
 
                 {/* Sectors Section */}
                 <div className="border-b border-border">
-                  <button className="w-full text-left px-6 py-3 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors" onClick={() => setOpenDropdown(openDropdown === 'sectors' ? null : 'sectors')}>
+                  <button className="w-full text-left px-6 py-4 font-medium text-sm flex items-center justify-between hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setOpenDropdown(openDropdown === 'sectors' ? null : 'sectors')}>
                     Sectors
-                    <ArrowRight className={cn("w-4 h-4 transition-transform", openDropdown === 'sectors' && "rotate-90")} />
+                    <ArrowRight className={cn("w-4 h-4 transition-transform duration-200", openDropdown === 'sectors' && "rotate-90")} />
                   </button>
                   <AnimatePresence>
                     {openDropdown === 'sectors' && <motion.div className="bg-muted/50" initial={{
@@ -708,7 +714,8 @@ const Header = ({
                 }} transition={{
                   duration: 0.2
                 }}>
-                        {sectorsItems.map(item => <Link key={item.to} to={item.to} className="block px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                        {sectorsItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-3 text-sm font-light hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                             {item.label}
                           </Link>)}
                       </motion.div>}
@@ -717,9 +724,9 @@ const Header = ({
 
                 {/* Resources Section */}
                 <div className="border-b border-border">
-                  <button className="w-full text-left px-6 py-3 font-medium text-sm flex items-center justify-between hover:bg-accent transition-colors" onClick={() => setOpenDropdown(openDropdown === 'resources' ? null : 'resources')}>
+                  <button className="w-full text-left px-6 py-4 font-medium text-sm flex items-center justify-between hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setOpenDropdown(openDropdown === 'resources' ? null : 'resources')}>
                     Resources
-                    <ArrowRight className={cn("w-4 h-4 transition-transform", openDropdown === 'resources' && "rotate-90")} />
+                    <ArrowRight className={cn("w-4 h-4 transition-transform duration-200", openDropdown === 'resources' && "rotate-90")} />
                   </button>
                   <AnimatePresence>
                     {openDropdown === 'resources' && <motion.div className="bg-muted/50" initial={{
@@ -735,18 +742,18 @@ const Header = ({
                   duration: 0.2
                 }}>
                         <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Interactive Tools</div>
-                        {toolsItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                            <item.icon className="w-3 h-3 text-primary" />
+                        {toolsItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-3 text-sm font-light hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                             {item.label}
                           </Link>)}
                         <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Guides & Compliance</div>
-                        {guidesItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                            <item.icon className="w-3 h-3 text-primary" />
+                        {guidesItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-3 text-sm font-light hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                             {item.label}
                           </Link>)}
                         <div className="px-8 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide mt-2">Knowledge & Company</div>
-                        {knowledgeItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                            <item.icon className="w-3 h-3 text-primary" />
+                        {knowledgeItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-3 text-sm font-light hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                             {item.label}
                           </Link>)}
                       </motion.div>}
@@ -754,14 +761,14 @@ const Header = ({
                 </div>
 
                 {/* Quick Links */}
-                <div className="px-6 py-4 space-y-2">
-                  <Link to="/case-studies" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="px-6 py-3 space-y-1 border-b border-border">
+                  <Link to="/case-studies" className="block py-3 text-sm font-light hover:text-primary active:text-primary/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                     Case Studies
                   </Link>
-                  <Link to="/about" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link to="/about" className="block py-3 text-sm font-light hover:text-primary active:text-primary/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                     About
                   </Link>
-                  <Link to="/contact" className="block py-2 text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link to="/contact" className="block py-3 text-sm font-light hover:text-primary active:text-primary/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                     Contact
                   </Link>
                 </div>

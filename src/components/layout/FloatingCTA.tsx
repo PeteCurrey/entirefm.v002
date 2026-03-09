@@ -32,7 +32,7 @@ const FloatingCTA = () => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50"
           >
             <div className="relative">
               <Button
@@ -62,7 +62,7 @@ const FloatingCTA = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50 w-80"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-[calc(100vw-2rem)] max-w-80"
           >
             <div className="bg-card border border-border rounded-lg shadow-2xl overflow-hidden">
               {/* Header */}
@@ -139,7 +139,7 @@ const FloatingCTA = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50 w-full max-w-md"
+            className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 w-[calc(100vw-2rem)] max-w-md"
           >
             <div className="bg-background border border-border rounded-lg shadow-2xl overflow-hidden">
               {/* Header */}

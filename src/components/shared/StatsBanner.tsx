@@ -92,7 +92,7 @@ const StatsBanner = ({
               transition={{ delay: index * 0.15, duration: 0.5 }}
               className="text-center"
             >
-              <div className={`text-4xl md:text-5xl font-light mb-2 ${variant === "dark" ? "text-white" : "text-primary"}`}>
+              <div className={`text-3xl md:text-5xl font-light mb-2 ${variant === "dark" ? "text-white" : "text-primary"}`}>
                 <AnimatedNumber 
                   value={stat.value} 
                   prefix={stat.prefix} 
