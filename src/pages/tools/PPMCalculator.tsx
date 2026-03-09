@@ -95,7 +95,7 @@ const PPMCalculator = () => {
     name: "PPM Cost & Risk Calculator | EntireFM",
     description: "Calculate the financial risk of equipment downtime and ROI of planned preventative maintenance for your facility.",
     applicationCategory: "FinanceApplication",
-    url: "https://entirefm.co.uk/tools/ppm-calculator"
+    url: "https://entirefm.com/tools/ppm-calculator"
   };
 
   return (
