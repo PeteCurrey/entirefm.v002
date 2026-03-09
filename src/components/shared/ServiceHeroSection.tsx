@@ -89,7 +89,7 @@ const ServiceHeroSection = ({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-              className="text-xl text-gray-300 mb-8 leading-relaxed"
+              className="text-base md:text-xl text-gray-300 mb-6 md:mb-8 leading-relaxed"
             >
               {description}
             </motion.p>
