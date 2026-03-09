@@ -38,7 +38,7 @@ export const VideoHero = ({ videoSrc, posterImage, children }: VideoHeroProps) =
   const shouldShowVideo = !isMobile && !prefersReducedMotion;
 
   return (
-    <section ref={sectionRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-[85vh] md:h-screen flex items-center justify-center overflow-hidden">
       {/* Background Video (Desktop) or Image (Mobile) with Parallax */}
       {shouldShowVideo ? (
         <motion.video
