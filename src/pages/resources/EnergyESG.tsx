@@ -23,7 +23,7 @@ const EnergyESG = () => {
     headline: "Energy & ESG Improvement — Operating Cost Advantage",
     description: "Turn FM actions into OpEx savings with energy efficiency upgrades and ESG facilities strategy",
     author: { "@type": "Organization", name: "EntireFM" },
-    publisher: { "@type": "Organization", name: "EntireFM", logo: { "@type": "ImageObject", url: "https://entirefm.co.uk/logo.png" } },
+    publisher: { "@type": "Organization", name: "EntireFM", logo: { "@type": "ImageObject", url: "https://entirefm.com/logo.png" } },
   };
 
   const heroStats = [
