@@ -714,7 +714,8 @@ const Header = ({
                 }} transition={{
                   duration: 0.2
                 }}>
-                        {sectorsItems.map(item => <Link key={item.to} to={item.to} className="block px-8 py-2 text-sm font-light hover:bg-accent transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                        {sectorsItems.map(item => <Link key={item.to} to={item.to} className="flex items-center gap-2 px-8 py-3 text-sm font-light hover:bg-accent active:bg-accent/80 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                            <item.icon className="w-4 h-4 text-primary flex-shrink-0" />
                             {item.label}
                           </Link>)}
                       </motion.div>}
