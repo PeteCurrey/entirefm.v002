@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, Clock, Shield, Smartphone } from "lucide-react";
@@ -9,6 +10,7 @@ import MetricCard from "@/components/shared/MetricCard";
 import CaseStudyCard from "@/components/shared/CaseStudyCard";
 import { VideoHero } from "@/components/shared/VideoHero";
 import { ClientLogosSection } from "@/components/home/ClientLogosSection";
+import { HomepageOrganizationSchema } from "@/components/shared/SchemaMarkup";
 import heroImage from "@/assets/hero-london.jpg";
 import industrialImage from "@/assets/industrial-facility.jpg";
 import officeImage from "@/assets/office-interior.jpg";
@@ -73,6 +75,22 @@ const Home = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
+    <>
+      <Helmet>
+        <title>EntireFM | UK Facilities Management & Compliance Services</title>
+        <meta name="description" content="UK facilities management company delivering compliance-focused hard FM, PPM, and reactive maintenance. 24/7 helpdesk, BS certified engineers, and real-time compliance tracking." />
+        <link rel="canonical" href="https://entirefm.com/" />
+      </Helmet>
+      
+      <HomepageOrganizationSchema 
+        aggregateRating={{
+          ratingValue: 4.9,
+          reviewCount: 47,
+          bestRating: 5,
+          worstRating: 1
+        }}
+      />
+      
     <div className="min-h-screen">
       {/* Hero Section */}
       <VideoHero 
@@ -576,6 +594,7 @@ const Home = () => {
         </div>
       </motion.section>
     </div>
+    </>
   );
 };
 

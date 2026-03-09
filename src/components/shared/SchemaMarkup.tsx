@@ -159,6 +159,141 @@ export const OrganizationSchema = ({
   );
 };
 
+// Homepage Organization Schema with Aggregate Rating from Google Reviews
+interface HomepageOrganizationSchemaProps {
+  aggregateRating?: {
+    ratingValue: number;
+    reviewCount: number;
+    bestRating?: number;
+    worstRating?: number;
+  };
+}
+
+export const HomepageOrganizationSchema = ({ 
+  aggregateRating = {
+    ratingValue: 4.9,
+    reviewCount: 47,
+    bestRating: 5,
+    worstRating: 1
+  }
+}: HomepageOrganizationSchemaProps) => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "EntireFM",
+    "alternateName": "Entire Facilities Management",
+    "description": "UK facilities management company delivering compliance-focused hard FM, PPM, and reactive maintenance services across commercial, industrial, and critical infrastructure estates.",
+    "url": "https://entirefm.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://entirefm.com/logo.png",
+      "width": 300,
+      "height": 60
+    },
+    "image": "https://entirefm.com/images/entirefm-office.jpg",
+    "telephone": "+44-204-586-5422",
+    "email": "hello@entirefm.com",
+    "foundingDate": "2009",
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "minValue": 50,
+      "maxValue": 100
+    },
+    "slogan": "FM That Performs — Not Promises",
+    "knowsAbout": [
+      "Facilities Management",
+      "Building Compliance",
+      "Fire Safety Testing",
+      "Electrical Compliance",
+      "HVAC Maintenance",
+      "Water Hygiene",
+      "PPM Services",
+      "Critical Infrastructure"
+    ],
+    "areaServed": {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "GB",
+      "addressRegion": "England"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/entirefm",
+      "https://www.facebook.com/entirefm",
+      "https://www.google.com/maps/place/EntireFM"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": aggregateRating.ratingValue,
+      "reviewCount": aggregateRating.reviewCount,
+      "bestRating": aggregateRating.bestRating || 5,
+      "worstRating": aggregateRating.worstRating || 1
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Facilities Management Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Fire Safety Compliance",
+            "description": "BS 5839 certified fire alarm testing and maintenance"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Electrical Compliance",
+            "description": "EICR testing and BS 7671 certification"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "PPM Services",
+            "description": "Planned preventative maintenance programmes"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "24/7 Reactive Maintenance",
+            "description": "Emergency response and reactive repair services"
+          }
+        }
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+44-204-586-5422",
+      "contactType": "Customer Service",
+      "email": "hello@entirefm.com",
+      "areaServed": "GB",
+      "availableLanguage": "English",
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    }
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
+    </Helmet>
+  );
+};
+
 // ContactPoint Schema
 export const ContactPointSchema = () => {
   const schema = {
