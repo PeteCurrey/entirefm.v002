@@ -80,6 +80,12 @@ const Careers = () => {
   ];
 
   return (
+    <>
+      <Helmet>
+        <title>Careers at EntireFM | FM Engineering Jobs UK</title>
+        <meta name="description" content="Join EntireFM — an owner-led FM company investing in its engineers. Competitive salaries, modern tools, training, and career progression across the UK." />
+        <link rel="canonical" href="https://entirefm.com/careers" />
+      </Helmet>
     <div className="min-h-screen pt-20">
       {/* Hero */}
       <section className="py-24 bg-gradient-to-b from-charcoal to-charcoal-light text-white">
