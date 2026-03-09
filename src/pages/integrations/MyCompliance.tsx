@@ -37,7 +37,7 @@ const MyCompliance = () => {
           name="description"
           content="Delivering fast, compliant FM directly within your MyCompliance workflows — no operational disruption. Safety-driven organisations."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/integrations/mycompliance" />
+        <link rel="canonical" href="https://entirefm.com/integrations/mycompliance" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">

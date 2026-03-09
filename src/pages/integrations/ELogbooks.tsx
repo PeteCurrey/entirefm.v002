@@ -37,7 +37,7 @@ const ELogbooks = () => {
           name="description"
           content="Delivering fast, compliant FM directly within your eLogbooks workflows — no operational disruption. Used widely by large property managers."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/integrations/elogbooks" />
+        <link rel="canonical" href="https://entirefm.com/integrations/elogbooks" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">

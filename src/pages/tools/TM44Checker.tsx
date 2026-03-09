@@ -126,7 +126,7 @@ const TM44Checker = () => {
     name: "TM44 Air Conditioning Renewal Checker | EntireFM",
     description: "Check your TM44 air conditioning inspection deadline and compliance risk score. Free instant assessment.",
     applicationCategory: "BusinessApplication",
-    url: "https://entirefm.co.uk/tools/tm44-checker",
+    url: "https://entirefm.com/tools/tm44-checker",
   };
 
   return (
@@ -134,7 +134,7 @@ const TM44Checker = () => {
       <Helmet>
         <title>TM44 Air Conditioning Renewal Checker | EntireFM</title>
         <meta name="description" content="Check when your TM44 air conditioning inspection is due and calculate your compliance risk. Free tool with instant results and penalty warnings." />
-        <link rel="canonical" href="https://entirefm.co.uk/tools/tm44-checker" />
+        <link rel="canonical" href="https://entirefm.com/tools/tm44-checker" />
       </Helmet>
 
       <SchemaMarkup schema={schema} />

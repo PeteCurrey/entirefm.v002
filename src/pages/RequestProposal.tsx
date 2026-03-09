@@ -251,7 +251,7 @@ const RequestProposal = () => {
     "@type": "WebPage",
     name: "Request Proposal / Tender Pack | EntireFM",
     description: "Fast, compliant, and transparent procurement support — tailored to your estate.",
-    url: "https://entirefm.co.uk/request-proposal"
+    url: "https://entirefm.com/request-proposal"
   };
 
   const heroStats = [
@@ -323,7 +323,7 @@ const RequestProposal = () => {
       <Helmet>
         <title>Request Proposal / Tender Pack | EntireFM</title>
         <meta name="description" content="Fast, compliant, and transparent procurement support — tailored to your estate. Submit your requirements and receive a detailed proposal." />
-        <link rel="canonical" href="https://entirefm.co.uk/request-proposal" />
+        <link rel="canonical" href="https://entirefm.com/request-proposal" />
       </Helmet>
 
       <SchemaMarkup schema={schema} />

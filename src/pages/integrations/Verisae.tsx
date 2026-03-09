@@ -37,7 +37,7 @@ const Verisae = () => {
           name="description"
           content="Delivering fast, compliant FM directly within your Verisae workflows — no operational disruption. Retail + foodservice estates."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/integrations/verisae" />
+        <link rel="canonical" href="https://entirefm.com/integrations/verisae" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">

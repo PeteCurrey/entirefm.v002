@@ -93,7 +93,7 @@ const LegionellaGuide = () => {
       <Helmet>
         <title>Legionella Governance Guide | Free Download | EntireFM</title>
         <meta name="description" content="Download our Legionella Governance Guide. Essential ACOP L8 compliance resource for property managers and duty holders." />
-        <link rel="canonical" href="https://entirefm.co.uk/resources/legionella-guide" />
+        <link rel="canonical" href="https://entirefm.com/resources/legionella-guide" />
       </Helmet>
       <SchemaMarkup schema={schema} />
 

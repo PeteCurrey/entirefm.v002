@@ -95,7 +95,7 @@ const PPMCalculator = () => {
     name: "PPM Cost & Risk Calculator | EntireFM",
     description: "Calculate the financial risk of equipment downtime and ROI of planned preventative maintenance for your facility.",
     applicationCategory: "FinanceApplication",
-    url: "https://entirefm.co.uk/tools/ppm-calculator"
+    url: "https://entirefm.com/tools/ppm-calculator"
   };
 
   return (
@@ -103,7 +103,7 @@ const PPMCalculator = () => {
       <Helmet>
         <title>PPM Cost & Risk Calculator | EntireFM</title>
         <meta name="description" content="Calculate the financial risk of equipment downtime and the ROI of implementing a planned preventative maintenance program. Free tool with instant results." />
-        <link rel="canonical" href="https://entirefm.co.uk/tools/ppm-calculator" />
+        <link rel="canonical" href="https://entirefm.com/tools/ppm-calculator" />
       </Helmet>
 
       <SchemaMarkup schema={schema} />

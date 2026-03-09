@@ -112,7 +112,7 @@ const FireRiskGuide = () => {
           name="description"
           content="Download our comprehensive Fire Risk Assessment guide. Essential checklist for property managers to ensure compliance with UK fire safety regulations."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/resources/fire-risk-guide" />
+        <link rel="canonical" href="https://entirefm.com/resources/fire-risk-guide" />
       </Helmet>
 
       <SchemaMarkup schema={schema} />

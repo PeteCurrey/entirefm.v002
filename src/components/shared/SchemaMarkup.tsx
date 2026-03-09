@@ -16,7 +16,7 @@ export const ServiceSchema = ({ name, description, provider, areaServed }: Servi
     "provider": {
       "@type": "Organization",
       "name": provider,
-      "telephone": "+44-800-XXX-XXXX",
+      "telephone": "+44-204-586-5422",
       "url": "https://entirefm.com"
     },
     "areaServed": areaServed,
@@ -86,7 +86,7 @@ export const LocalBusinessSchema = ({ name, address, email, serviceType }: Local
       "postalCode": address.postalCode,
       "addressCountry": address.country
     },
-    "telephone": "+44-800-XXX-XXXX",
+    "telephone": "+44-204-586-5422",
     ...(email && { "email": email }),
     ...(serviceType && { "department": {
       "@type": "Service",
@@ -140,8 +140,8 @@ export const OrganizationSchema = ({
     "description": description,
     "url": "https://entirefm.com",
     "logo": "https://entirefm.com/logo.png",
-    "telephone": "+44-800-123-4567",
-    "email": "hello@entirefm.co.uk",
+    "telephone": "+44-204-586-5422",
+    "email": "hello@entirefm.com",
     "sameAs": sameAs,
     "address": {
       "@type": "PostalAddress",
@@ -164,8 +164,8 @@ export const ContactPointSchema = () => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ContactPoint",
-    "telephone": "+44-800-123-4567",
-    "email": "hello@entirefm.co.uk",
+    "telephone": "+44-204-586-5422",
+    "email": "hello@entirefm.com",
     "contactType": "Customer Service",
     "areaServed": "GB",
     "availableLanguage": "English",

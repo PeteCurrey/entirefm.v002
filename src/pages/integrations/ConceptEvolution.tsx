@@ -37,7 +37,7 @@ const ConceptEvolution = () => {
           name="description"
           content="Delivering fast, compliant FM directly within your Concept Evolution workflows — no operational disruption. High-complexity estates."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/integrations/concept-evolution" />
+        <link rel="canonical" href="https://entirefm.com/integrations/concept-evolution" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">

@@ -37,7 +37,7 @@ const MriQube = () => {
           name="description"
           content="Delivering fast, compliant FM directly within your MRI/Qube workflows — no operational disruption. Diverse commercial estates."
         />
-        <link rel="canonical" href="https://entirefm.co.uk/integrations/mri-qube" />
+        <link rel="canonical" href="https://entirefm.com/integrations/mri-qube" />
       </Helmet>
 
       <div className="bg-background min-h-screen pt-20">
