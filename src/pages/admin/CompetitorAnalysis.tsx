@@ -61,7 +61,7 @@ export default function CompetitorAnalysis() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [arrayInputs, setArrayInputs] = useState<Record<string, string>>({});
   const [gapAnalysisLoading, setGapAnalysisLoading] = useState(false);
-  const [aiGapSuggestions, setAiGapSuggestions] = useState<string | null>(null);
+  const [aiGapSuggestions, setAiGapSuggestions] = useState<any>(null);
   const [gapFilter, setGapFilter] = useState<string>("all");
 
   // Aggregate content gaps across all competitors
