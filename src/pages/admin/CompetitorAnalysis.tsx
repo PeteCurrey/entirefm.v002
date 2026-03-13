@@ -61,7 +61,7 @@ export default function CompetitorAnalysis() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [arrayInputs, setArrayInputs] = useState<Record<string, string>>({});
   const [gapAnalysisLoading, setGapAnalysisLoading] = useState(false);
-  const [aiGapSuggestions, setAiGapSuggestions] = useState<string | null>(null);
+  const [aiGapSuggestions, setAiGapSuggestions] = useState<any>(null);
   const [gapFilter, setGapFilter] = useState<string>("all");
 
   // Aggregate content gaps across all competitors
@@ -102,10 +102,20 @@ export default function CompetitorAnalysis() {
 
       if (error) throw error;
       const content = data?.content;
-      if (content?.raw_content) {
-        setAiGapSuggestions(content.raw_content);
+      // Try to extract structured data
+      if (content && typeof content === 'object' && !content.raw_content) {
+        setAiGapSuggestions(content);
+      } else if (content?.raw_content) {
+        // Try parsing raw_content as JSON
+        try {
+          const jsonMatch = content.raw_content.match(/```json\n?([\s\S]*?)\n?```/) || content.raw_content.match(/\{[\s\S]*\}/);
+          const parsed = JSON.parse(jsonMatch ? (jsonMatch[1] || jsonMatch[0]) : content.raw_content);
+          setAiGapSuggestions(parsed);
+        } catch {
+          setAiGapSuggestions({ summary: content.raw_content });
+        }
       } else {
-        setAiGapSuggestions(JSON.stringify(content, null, 2));
+        setAiGapSuggestions(content);
       }
       toast.success("AI gap analysis complete");
     } catch (err) {
@@ -480,8 +490,68 @@ export default function CompetitorAnalysis() {
                   </p>
                 )}
                 {aiGapSuggestions && (
-                  <div className="bg-muted rounded-lg p-4 text-sm whitespace-pre-wrap max-h-96 overflow-y-auto">
-                    {aiGapSuggestions}
+                  <div className="space-y-4">
+                    {aiGapSuggestions.summary && (
+                      <div className="bg-muted rounded-lg p-4">
+                        <h3 className="font-semibold mb-1">Summary</h3>
+                        <p className="text-sm text-muted-foreground">{aiGapSuggestions.summary}</p>
+                      </div>
+                    )}
+                    {aiGapSuggestions.priority_gaps?.length > 0 && (
+                      <div>
+                        <h3 className="font-semibold mb-2 flex items-center gap-2"><Target className="h-4 w-4 text-primary" /> Priority Gaps</h3>
+                        <div className="space-y-2">
+                          {aiGapSuggestions.priority_gaps.map((g: any, i: number) => (
+                            <div key={i} className="border rounded-lg p-3 flex items-start justify-between gap-4">
+                              <div className="flex-1">
+                                <p className="font-medium text-sm">{g.topic}</p>
+                                <p className="text-xs text-muted-foreground mt-1">{g.reason}</p>
+                                {g.competitors_covering?.length > 0 && (
+                                  <div className="flex gap-1 mt-1 flex-wrap">
+                                    {g.competitors_covering.map((c: string, j: number) => (
+                                      <Badge key={j} variant="outline" className="text-xs">{c}</Badge>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                              <div className="flex gap-2 shrink-0">
+                                <Badge className={
+                                  g.potential_impact === 'high' ? 'bg-destructive text-destructive-foreground' :
+                                  g.potential_impact === 'medium' ? 'bg-accent text-accent-foreground' :
+                                  'bg-muted text-muted-foreground'
+                                }>
+                                  {g.potential_impact} impact
+                                </Badge>
+                                <Badge variant="outline">{g.estimated_difficulty}</Badge>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {aiGapSuggestions.quick_wins?.length > 0 && (
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+                          <h3 className="font-semibold mb-2 text-sm">⚡ Quick Wins</h3>
+                          <ul className="text-sm space-y-1 list-disc list-inside text-muted-foreground">
+                            {aiGapSuggestions.quick_wins.map((t: string, i: number) => <li key={i}>{t}</li>)}
+                          </ul>
+                        </div>
+                        {aiGapSuggestions.long_term_opportunities?.length > 0 && (
+                          <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
+                            <h3 className="font-semibold mb-2 text-sm">🎯 Long-Term Opportunities</h3>
+                            <ul className="text-sm space-y-1 list-disc list-inside text-muted-foreground">
+                              {aiGapSuggestions.long_term_opportunities.map((t: string, i: number) => <li key={i}>{t}</li>)}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    {!aiGapSuggestions.priority_gaps && !aiGapSuggestions.quick_wins && !aiGapSuggestions.summary && (
+                      <div className="bg-muted rounded-lg p-4 text-sm whitespace-pre-wrap max-h-96 overflow-y-auto">
+                        {typeof aiGapSuggestions === 'string' ? aiGapSuggestions : JSON.stringify(aiGapSuggestions, null, 2)}
+                      </div>
+                    )}
                   </div>
                 )}
               </Card>
