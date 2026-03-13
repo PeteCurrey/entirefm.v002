@@ -33,7 +33,7 @@ export const useSearchAnalytics = () => {
     }
 
     // Log to console in development
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.log('🔍 Search Tracked:', analyticsData);
     }
 
@@ -91,7 +91,7 @@ export const useSearchAnalytics = () => {
     }
 
     // Log to console in development
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.log('🎯 Search Click Tracked:', clickData);
     }
 
