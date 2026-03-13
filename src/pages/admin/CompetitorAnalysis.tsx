@@ -102,10 +102,20 @@ export default function CompetitorAnalysis() {
 
       if (error) throw error;
       const content = data?.content;
-      if (content?.raw_content) {
-        setAiGapSuggestions(content.raw_content);
+      // Try to extract structured data
+      if (content && typeof content === 'object' && !content.raw_content) {
+        setAiGapSuggestions(content);
+      } else if (content?.raw_content) {
+        // Try parsing raw_content as JSON
+        try {
+          const jsonMatch = content.raw_content.match(/```json\n?([\s\S]*?)\n?```/) || content.raw_content.match(/\{[\s\S]*\}/);
+          const parsed = JSON.parse(jsonMatch ? (jsonMatch[1] || jsonMatch[0]) : content.raw_content);
+          setAiGapSuggestions(parsed);
+        } catch {
+          setAiGapSuggestions({ summary: content.raw_content });
+        }
       } else {
-        setAiGapSuggestions(JSON.stringify(content, null, 2));
+        setAiGapSuggestions(content);
       }
       toast.success("AI gap analysis complete");
     } catch (err) {
