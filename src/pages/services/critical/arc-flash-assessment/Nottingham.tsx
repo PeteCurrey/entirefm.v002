@@ -8,7 +8,7 @@ export default function ArcFlashAssessmentNottingham() {
     <>
       <Helmet>
         <title>Arc Flash Assessment & Risk Evaluation in Nottingham | EntireFM</title>
-        <meta name="description" content="Arc flash assessment and electrical safety analysis in Nottingham. Comprehensive risk evaluation for Nottinghamshire commercial and industrial facilities." />
+        <meta name="description" content="Arc flash risk assessment for Nottingham pharmaceutical, PBSA and retail estates. Incident energy calculations and switchgear labelling to IEEE 1584 standards." />
         <link rel="canonical" href="https://entirefm.com/services/critical/arc-flash-assessment" />
       </Helmet>
 

@@ -8,7 +8,7 @@ export default function ArcFlashAssessmentManchester() {
     <>
       <Helmet>
         <title>Arc Flash Assessment & Risk Evaluation in Manchester | EntireFM</title>
-        <meta name="description" content="Arc flash assessment and electrical safety analysis in Manchester. Comprehensive risk evaluation for Greater Manchester commercial and industrial facilities." />
+        <meta name="description" content="Arc flash assessment for Manchester data centres, media facilities and PBSA estates. Incident energy analysis, PPE selection and switchgear labelling across Greater Manchester." />
         <link rel="canonical" href="https://entirefm.com/services/critical/arc-flash-assessment" />
       </Helmet>
 

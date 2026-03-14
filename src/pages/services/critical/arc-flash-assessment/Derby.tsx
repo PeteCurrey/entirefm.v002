@@ -8,7 +8,7 @@ export default function ArcFlashAssessmentDerby() {
     <>
       <Helmet>
         <title>Arc Flash Assessment & Risk Evaluation in Derby | EntireFM</title>
-        <meta name="description" content="Arc flash assessment and electrical safety analysis in Derby. Comprehensive risk evaluation for Derbyshire commercial and industrial facilities." />
+        <meta name="description" content="Arc flash assessment for Derby's rail, aerospace and precision manufacturing. IEEE 1584 incident energy analysis protecting engineers working on HV and LV switchgear." />
         <link rel="canonical" href="https://entirefm.com/services/critical/arc-flash-assessment" />
       </Helmet>
 

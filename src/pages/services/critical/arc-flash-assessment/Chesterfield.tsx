@@ -8,7 +8,7 @@ export default function ArcFlashAssessmentChesterfield() {
     <>
       <Helmet>
         <title>Arc Flash Assessment & Risk Evaluation in Chesterfield | EntireFM</title>
-        <meta name="description" content="Arc flash assessment and electrical safety analysis in Chesterfield. Comprehensive risk evaluation for North Derbyshire commercial and industrial facilities." />
+        <meta name="description" content="Arc flash risk assessment for Chesterfield logistics and distribution centres. Incident energy calculations, PPE boundary mapping and switchgear labelling for M1 corridor operations." />
         <link rel="canonical" href="https://entirefm.com/services/critical/arc-flash-assessment" />
       </Helmet>
 
