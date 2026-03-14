@@ -40,7 +40,7 @@ https://www.entirefm.com/* https://entirefm.com/:splat      301!
 # Legacy sector pages to new structure
 # ============================================
 /retail-facilities-management           /sectors/retail-hospitality              301
-/commercial-facilities-management       /sectors/offices                         301
+
 /industrial-facilities-management       /sectors/industrial-logistics            301
 /airport-facilities-management          /sectors/airports                        301
 /hotel-facilities-management            /sectors/hotels-leisure                  301

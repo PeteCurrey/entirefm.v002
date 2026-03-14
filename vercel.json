@@ -66,11 +66,6 @@
       "permanent": true
     },
     {
-      "source": "/commercial-facilities-management",
-      "destination": "/sectors/offices",
-      "permanent": true
-    },
-    {
       "source": "/industrial-facilities-management",
       "destination": "/sectors/industrial-logistics",
       "permanent": true

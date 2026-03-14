@@ -157,6 +157,7 @@ import AviationTravelHub from "./pages/sectors/AviationTravelHub";
 import HospitalityLeisure from "./pages/sectors/HospitalityLeisure";
 import ResidentialPBSA from "./pages/sectors/ResidentialPBSA";
 import Offices from "./pages/sectors/Offices";
+import CommercialFacilitiesManagement from "./pages/CommercialFacilitiesManagement";
 import RetailHospitality from "./pages/sectors/RetailHospitality";
 import IndustrialLogisticsHub from "./pages/sectors/IndustrialLogisticsHub";
 import Airports from "./pages/sectors/Airports";
@@ -801,6 +802,7 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/sectors/hospitality-leisure" element={<HospitalityLeisure />} />
               <Route path="/sectors/residential-pbsa" element={<ResidentialPBSA />} />
               <Route path="/sectors/offices" element={<Offices />} />
+              <Route path="/commercial-facilities-management" element={<CommercialFacilitiesManagement />} />
               <Route path="/sectors/retail-hospitality" element={<RetailHospitality />} />
               <Route path="/sectors/healthcare-public" element={<HealthcarePublic />} />
               <Route path="/sectors/hotels-leisure" element={<HotelsLeisure />} />

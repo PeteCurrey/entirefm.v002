@@ -20,7 +20,7 @@ const redirectRules: RedirectRule[] = [
 
   // SECTOR MATCH REDIRECTS
   { from: '/retail-facilities-management', to: '/sectors/retail-hospitality', permanent: true },
-  { from: '/commercial-facilities-management', to: '/sectors/offices', permanent: true },
+  
   { from: '/industrial-facilities-management', to: '/sectors/industrial-logistics', permanent: true },
   { from: '/airport-facilities-management', to: '/sectors/airports', permanent: true },
   { from: '/hotel-facilities-management', to: '/sectors/hotels-leisure', permanent: true },
