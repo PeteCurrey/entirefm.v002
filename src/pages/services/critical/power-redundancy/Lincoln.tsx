@@ -8,7 +8,7 @@ export default function PowerRedundancyLincoln() {
     <>
       <Helmet>
         <title>Power Redundancy Testing & N+1 Validation in Lincoln | EntireFM</title>
-        <meta name="description" content="Power redundancy testing in Lincoln. Critical power resilience for Lincolnshire facilities." />
+        <meta name="description" content="Power redundancy testing for Lincoln healthcare and food processing facilities. N+1 validation and emergency supply verification for critical Lincolnshire operations." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-redundancy" />
       </Helmet>
 

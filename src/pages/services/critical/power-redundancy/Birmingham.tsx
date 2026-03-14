@@ -8,7 +8,7 @@ export default function PowerRedundancyBirmingham() {
     <>
       <Helmet>
         <title>Power Redundancy Testing & N+1 Validation in Birmingham | EntireFM</title>
-        <meta name="description" content="Power redundancy testing and validation in Birmingham. Critical power resilience assurance for West Midlands commercial and data centre facilities." />
+        <meta name="description" content="Power redundancy and N+1 validation for Birmingham data centres and manufacturing plants. Failover testing, ATS verification and resilience audits across the West Midlands." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-redundancy" />
       </Helmet>
 
