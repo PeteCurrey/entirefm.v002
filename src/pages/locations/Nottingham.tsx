@@ -8,7 +8,7 @@ const data: LocationPageData = {
   heroHeadline: "Facilities Management in Nottingham. Engineered for Performance.",
   heroSubtext: "Hard FM, compliance, and engineered asset management for estates across Nottingham and Nottinghamshire.",
   metaTitle: "Facilities Management Nottingham | Hard FM & Compliance | EntireFM",
-  metaDescription: "Expert facilities management in Nottingham. Hard FM, compliance, and engineered asset management for estates across Nottinghamshire.",
+  metaDescription: "Facilities management in Nottingham for PBSA, retail and pharmaceutical estates. Statutory compliance, planned maintenance and 24/7 reactive support across Nottinghamshire.",
   canonicalUrl: "https://entirefm.com/locations/nottingham",
   stats: [
     { value: "100", label: "Compliance Rate", suffix: "%" },

@@ -8,7 +8,7 @@ const data: LocationPageData = {
   heroHeadline: "Facilities Management in Chesterfield. Locally Embedded.",
   heroSubtext: "Hard FM, compliance, and engineered asset management for estates across Chesterfield and North Derbyshire.",
   metaTitle: "Facilities Management Chesterfield | Hard FM & Compliance | EntireFM",
-  metaDescription: "Expert facilities management in Chesterfield. Hard FM, compliance, and engineered asset management for estates across North Derbyshire.",
+  metaDescription: "FM services in Chesterfield for logistics parks, warehouses and commercial estates along the M1 corridor. Fire, electrical and HVAC compliance with rapid reactive support.",
   canonicalUrl: "https://entirefm.com/locations/chesterfield",
   stats: [
     { value: "100", label: "Compliance Rate", suffix: "%" },

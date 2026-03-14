@@ -8,7 +8,7 @@ export default function PowerQualityLincoln() {
     <>
       <Helmet>
         <title>Power Quality Analysis in Lincoln | EntireFM</title>
-        <meta name="description" content="Power quality analysis in Lincoln. Electrical disturbance investigation for Lincolnshire facilities." />
+        <meta name="description" content="Power quality analysis for Lincoln healthcare and food processing facilities. Voltage monitoring and harmonic testing protecting sensitive medical and production equipment." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-quality" />
       </Helmet>
 

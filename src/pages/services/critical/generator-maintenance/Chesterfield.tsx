@@ -8,7 +8,7 @@ export default function GeneratorMaintenanceChesterfield() {
     <>
       <Helmet>
         <title>Generator Maintenance & Load Bank Testing in Chesterfield | EntireFM</title>
-        <meta name="description" content="Generator servicing and load bank testing in Chesterfield. Emergency power protection for North Derbyshire commercial and critical facilities." />
+        <meta name="description" content="Generator maintenance for Chesterfield logistics and distribution centres along the M1 corridor. Load bank testing and ATS validation with minimal operational disruption." />
         <link rel="canonical" href="https://entirefm.com/services/critical/generator-maintenance" />
       </Helmet>
 

@@ -8,7 +8,7 @@ export default function HVSwitchingNottingham() {
     <>
       <Helmet>
         <title>HV Switching & Isolation Services in Nottingham | EntireFM</title>
-        <meta name="description" content="High voltage switching and isolation services in Nottingham. Safe HV operations for Nottinghamshire commercial and critical facilities." />
+        <meta name="description" content="HV switching and isolation for Nottingham pharmaceutical, PBSA and logistics estates. Safe high-voltage operations with full permit-to-work governance." />
         <link rel="canonical" href="https://entirefm.com/services/critical/hv-switching" />
       </Helmet>
 

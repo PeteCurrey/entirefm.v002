@@ -8,7 +8,7 @@ export default function PowerQualityChesterfield() {
     <>
       <Helmet>
         <title>Power Quality Analysis in Chesterfield | EntireFM</title>
-        <meta name="description" content="Power quality analysis in Chesterfield. Electrical disturbance investigation for North Derbyshire facilities." />
+        <meta name="description" content="Power quality monitoring for Chesterfield distribution centres and logistics parks. Voltage disturbance diagnostics protecting automated warehouse systems along the M1." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-quality" />
       </Helmet>
 

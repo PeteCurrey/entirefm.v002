@@ -8,7 +8,7 @@ export default function PowerQualityDerby() {
     <>
       <Helmet>
         <title>Power Quality Analysis in Derby | EntireFM</title>
-        <meta name="description" content="Power quality analysis in Derby. Electrical disturbance investigation for Derbyshire facilities." />
+        <meta name="description" content="Power quality monitoring for Derby's rail and aerospace manufacturing. Harmonic analysis and voltage regulation testing protecting precision production equipment." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-quality" />
       </Helmet>
 

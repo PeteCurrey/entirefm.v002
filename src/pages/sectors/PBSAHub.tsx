@@ -6,7 +6,7 @@ const PBSAHub = () => {
   return (
     <SectorPageTemplate
       title="PBSA Facilities Management | Student Accommodation FM"
-      metaDescription="High-density estates demand strict governance — we keep them compliant and incident-free."
+      metaDescription="PBSA facilities management for student accommodation. Fire safety, Legionella compliance, emergency lighting and planned maintenance protecting residents and university estates year-round."
       canonicalUrl="https://entirefm.com/sectors/pbsa"
       heroTitle="PBSA Facilities Management"
       heroSubtitle="High-density estates demand strict governance — we keep them compliant and incident-free."

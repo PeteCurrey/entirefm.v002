@@ -8,7 +8,7 @@ export default function ArcFlashAssessmentLincoln() {
     <>
       <Helmet>
         <title>Arc Flash Assessment & Risk Evaluation in Lincoln | EntireFM</title>
-        <meta name="description" content="Arc flash assessment and electrical safety analysis in Lincoln. Comprehensive risk evaluation for Lincolnshire commercial and industrial facilities." />
+        <meta name="description" content="Arc flash assessment for Lincoln healthcare, food processing and agricultural estates. IEEE 1584 incident energy analysis for HV and LV electrical systems across Lincolnshire." />
         <link rel="canonical" href="https://entirefm.com/services/critical/arc-flash-assessment" />
       </Helmet>
 

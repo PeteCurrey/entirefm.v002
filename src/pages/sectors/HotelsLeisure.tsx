@@ -6,7 +6,7 @@ const HotelsLeisure = () => {
   return (
     <SectorPageTemplate
       title="Hotels & Leisure Facilities Management | Comfort, Safety & Uptime"
-      metaDescription="Comfort, safety and uptime — guests never notice the work behind the luxury."
+      metaDescription="Hotel and leisure facilities management. Fire safety, HVAC, water hygiene, electrical compliance and reactive maintenance delivering seamless guest experiences across UK hospitality estates."
       canonicalUrl="https://entirefm.com/sectors/hotels-leisure"
       heroTitle="Facilities Management for Hotels & Leisure"
       heroSubtitle="Comfort, safety and uptime — guests never notice the work behind the luxury."

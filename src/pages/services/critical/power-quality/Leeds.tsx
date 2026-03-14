@@ -8,7 +8,7 @@ export default function PowerQualityLeeds() {
     <>
       <Helmet>
         <title>Power Quality Analysis in Leeds | EntireFM</title>
-        <meta name="description" content="Power quality analysis in Leeds. Electrical disturbance investigation for West Yorkshire facilities." />
+        <meta name="description" content="Power quality analysis and harmonic testing for Leeds financial, corporate and healthcare estates. Voltage sag, transient and THD investigation across West Yorkshire." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-quality" />
       </Helmet>
 

@@ -8,7 +8,7 @@ export default function PowerQualityBirmingham() {
     <>
       <Helmet>
         <title>Power Quality Analysis & Harmonic Testing in Birmingham | EntireFM</title>
-        <meta name="description" content="Power quality analysis in Birmingham. Electrical disturbance investigation for West Midlands facilities." />
+        <meta name="description" content="Power quality and harmonic analysis for Birmingham manufacturing, logistics and data centre operations. Voltage disturbance diagnostics protecting sensitive equipment." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-quality" />
       </Helmet>
 

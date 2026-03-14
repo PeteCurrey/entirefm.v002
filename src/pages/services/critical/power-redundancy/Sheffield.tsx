@@ -8,7 +8,7 @@ export default function PowerRedundancySheffield() {
     <>
       <Helmet>
         <title>Power Redundancy Testing & N+1 Validation in Sheffield | EntireFM</title>
-        <meta name="description" content="Power redundancy testing in Sheffield. Critical power resilience for South Yorkshire facilities." />
+        <meta name="description" content="Power redundancy testing for Sheffield steel, manufacturing and industrial estates. Failover simulation and N+1 verification protecting continuous production operations." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-redundancy" />
       </Helmet>
 

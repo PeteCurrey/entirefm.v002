@@ -8,7 +8,7 @@ export default function UPSMaintenanceLincoln() {
     <>
       <Helmet>
         <title>UPS Maintenance & Battery Replacement in Lincoln | EntireFM</title>
-        <meta name="description" content="UPS maintenance and battery services in Lincoln. Critical power protection for Lincolnshire commercial buildings and data facilities." />
+        <meta name="description" content="UPS maintenance for Lincoln healthcare IT and public sector server rooms. Battery testing, capacitor checks and preventive servicing for Lincolnshire critical infrastructure." />
         <link rel="canonical" href="https://entirefm.com/services/critical/ups-maintenance" />
       </Helmet>
 

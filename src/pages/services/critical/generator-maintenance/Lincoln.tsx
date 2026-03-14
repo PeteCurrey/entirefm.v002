@@ -8,7 +8,7 @@ export default function GeneratorMaintenanceLincoln() {
     <>
       <Helmet>
         <title>Generator Maintenance & Load Bank Testing in Lincoln | EntireFM</title>
-        <meta name="description" content="Generator servicing and load bank testing in Lincoln. Emergency power protection for Lincolnshire commercial and critical facilities." />
+        <meta name="description" content="Generator maintenance for Lincoln healthcare, food processing and agricultural estates. Emergency power servicing and load testing for rural and remote Lincolnshire facilities." />
         <link rel="canonical" href="https://entirefm.com/services/critical/generator-maintenance" />
       </Helmet>
 

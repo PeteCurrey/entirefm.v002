@@ -8,7 +8,7 @@ export default function ArcFlashAssessmentSheffield() {
     <>
       <Helmet>
         <title>Arc Flash Assessment & Risk Evaluation in Sheffield | EntireFM</title>
-        <meta name="description" content="Arc flash assessment and electrical safety analysis in Sheffield. Comprehensive risk evaluation for South Yorkshire commercial and industrial facilities." />
+        <meta name="description" content="Arc flash assessment for Sheffield steel works, heavy industry and manufacturing. Incident energy calculations and PPE boundary mapping for high-power electrical systems." />
         <link rel="canonical" href="https://entirefm.com/services/critical/arc-flash-assessment" />
       </Helmet>
 

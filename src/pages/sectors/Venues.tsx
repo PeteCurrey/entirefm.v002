@@ -6,7 +6,7 @@ const Venues = () => {
   return (
     <SectorPageTemplate
       title="Venue, Arena & Stadium Facilities Management | Safety & Compliance"
-      metaDescription="High-capacity public buildings with complex safety and compliance systems."
+      metaDescription="FM for arenas, stadiums and large venues. Fire safety, emergency systems, HVAC and electrical compliance for high-capacity public buildings with 24/7 event support."
       canonicalUrl="https://entirefm.com/sectors/venues"
       heroTitle="Venue, Arena & Stadium Facilities Management"
       heroSubtitle="High-capacity public buildings with complex safety and compliance systems."

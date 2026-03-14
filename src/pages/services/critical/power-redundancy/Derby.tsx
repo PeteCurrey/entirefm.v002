@@ -8,7 +8,7 @@ export default function PowerRedundancyDerby() {
     <>
       <Helmet>
         <title>Power Redundancy Testing & N+1 Validation in Derby | EntireFM</title>
-        <meta name="description" content="Power redundancy testing in Derby. Critical power resilience for Derbyshire facilities." />
+        <meta name="description" content="Power redundancy validation for Derby aerospace and rail manufacturing. N+1 testing, ATS changeover and UPS failover verification protecting precision production lines." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-redundancy" />
       </Helmet>
 
