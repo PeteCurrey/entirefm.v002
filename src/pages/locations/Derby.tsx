@@ -8,7 +8,7 @@ const data: LocationPageData = {
   heroHeadline: "Facilities Management in Derby. Built for Precision.",
   heroSubtext: "Hard FM, compliance, and engineered asset management for estates across Derby and Derbyshire.",
   metaTitle: "Facilities Management Derby | Hard FM & Compliance | EntireFM",
-  metaDescription: "Expert facilities management in Derby. Hard FM, compliance, and engineered asset management for estates across Derbyshire.",
+  metaDescription: "Facilities management in Derby covering fire safety, HVAC, electrical testing and planned maintenance for rail, aerospace and manufacturing estates across Derbyshire.",
   canonicalUrl: "https://entirefm.com/locations/derby",
   stats: [
     { value: "100", label: "Compliance Rate", suffix: "%" },

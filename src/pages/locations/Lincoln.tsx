@@ -8,7 +8,7 @@ const data: LocationPageData = {
   heroHeadline: "Facilities Management in Lincoln. Heritage Meets Modern FM.",
   heroSubtext: "Hard FM, compliance, and engineered asset management for estates across Lincoln and Lincolnshire.",
   metaTitle: "Facilities Management Lincoln | Hard FM & Compliance | EntireFM",
-  metaDescription: "Expert facilities management in Lincoln. Hard FM, compliance, and engineered asset management for estates across Lincolnshire.",
+  metaDescription: "Facilities management in Lincoln for healthcare, heritage and agricultural estates. Fire safety, water hygiene and electrical compliance across Lincolnshire.",
   canonicalUrl: "https://entirefm.com/locations/lincoln",
   stats: [
     { value: "100", label: "Compliance Rate", suffix: "%" },
