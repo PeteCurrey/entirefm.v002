@@ -8,7 +8,7 @@ export default function PowerQualitySheffield() {
     <>
       <Helmet>
         <title>Power Quality Analysis in Sheffield | EntireFM</title>
-        <meta name="description" content="Power quality analysis in Sheffield. Electrical disturbance investigation for South Yorkshire facilities." />
+        <meta name="description" content="Power quality testing for Sheffield steel, manufacturing and industrial estates. THD analysis, voltage sag detection and power factor correction across South Yorkshire." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-quality" />
       </Helmet>
 

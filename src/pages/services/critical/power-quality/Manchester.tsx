@@ -8,7 +8,7 @@ export default function PowerQualityManchester() {
     <>
       <Helmet>
         <title>Power Quality Analysis in Manchester | EntireFM</title>
-        <meta name="description" content="Power quality analysis in Manchester. Electrical disturbance investigation for Greater Manchester facilities." />
+        <meta name="description" content="Power quality analysis for Manchester media, PBSA and data centre estates. Harmonic distortion testing and voltage regulation across Greater Manchester." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-quality" />
       </Helmet>
 

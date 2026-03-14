@@ -8,7 +8,7 @@ export default function PowerQualityNottingham() {
     <>
       <Helmet>
         <title>Power Quality Analysis in Nottingham | EntireFM</title>
-        <meta name="description" content="Power quality analysis in Nottingham. Electrical disturbance investigation for Nottinghamshire facilities." />
+        <meta name="description" content="Power quality analysis for Nottingham pharmaceutical, logistics and commercial estates. Harmonic filtering and voltage regulation diagnostics across Nottinghamshire." />
         <link rel="canonical" href="https://entirefm.com/services/critical/power-quality" />
       </Helmet>
 
