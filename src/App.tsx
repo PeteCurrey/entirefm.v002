@@ -157,6 +157,7 @@ import AviationTravelHub from "./pages/sectors/AviationTravelHub";
 import HospitalityLeisure from "./pages/sectors/HospitalityLeisure";
 import ResidentialPBSA from "./pages/sectors/ResidentialPBSA";
 import Offices from "./pages/sectors/Offices";
+import CommercialFacilitiesManagement from "./pages/CommercialFacilitiesManagement";
 import RetailHospitality from "./pages/sectors/RetailHospitality";
 import IndustrialLogisticsHub from "./pages/sectors/IndustrialLogisticsHub";
 import Airports from "./pages/sectors/Airports";
