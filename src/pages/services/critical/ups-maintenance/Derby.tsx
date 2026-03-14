@@ -8,7 +8,7 @@ export default function UPSMaintenanceDerby() {
     <>
       <Helmet>
         <title>UPS Maintenance & Battery Replacement in Derby | EntireFM</title>
-        <meta name="description" content="UPS maintenance and battery services in Derby. Critical power protection for Derbyshire manufacturing and commercial facilities." />
+        <meta name="description" content="UPS maintenance for Derby's rail, aerospace and precision manufacturing sector. Battery replacement, impedance testing and static UPS servicing across Derbyshire." />
         <link rel="canonical" href="https://entirefm.com/services/critical/ups-maintenance" />
       </Helmet>
 

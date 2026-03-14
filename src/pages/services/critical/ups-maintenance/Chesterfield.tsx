@@ -8,7 +8,7 @@ export default function UPSMaintenanceChesterfield() {
     <>
       <Helmet>
         <title>UPS Maintenance & Battery Replacement in Chesterfield | EntireFM</title>
-        <meta name="description" content="UPS maintenance and battery services in Chesterfield. Critical power protection for North Derbyshire industrial and commercial facilities." />
+        <meta name="description" content="UPS servicing for Chesterfield distribution centres and logistics IT rooms. Battery replacement, impedance testing and preventive maintenance along the M1 corridor." />
         <link rel="canonical" href="https://entirefm.com/services/critical/ups-maintenance" />
       </Helmet>
 

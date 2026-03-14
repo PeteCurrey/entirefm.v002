@@ -8,7 +8,7 @@ export default function UPSMaintenanceLondon() {
     <>
       <Helmet>
         <title>UPS Maintenance & Battery Replacement in London | EntireFM</title>
-        <meta name="description" content="UPS maintenance, battery impedance testing, and replacement services in London. Critical power protection for data centres and commercial buildings across the capital." />
+        <meta name="description" content="UPS servicing for London data centres, trading floors and corporate headquarters. Battery impedance testing, capacitor replacement and modular UPS maintenance across the capital." />
         <link rel="canonical" href="https://entirefm.com/services/critical/ups-maintenance" />
       </Helmet>
 
