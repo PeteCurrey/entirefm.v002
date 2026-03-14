@@ -8,7 +8,7 @@ export default function DataRoomAuditsLondon() {
     <>
       <Helmet>
         <title>Data Room Audits in London | EntireFM</title>
-        <meta name="description" content="Data room audits in London. Comprehensive infrastructure assessments for critical data centre facilities." />
+        <meta name="description" content="Data room and server room audits across London. Power redundancy, precision cooling and environmental monitoring for financial services and corporate data centres." />
         <link rel="canonical" href="https://entirefm.com/services/critical/data-room-audits" />
       </Helmet>
 

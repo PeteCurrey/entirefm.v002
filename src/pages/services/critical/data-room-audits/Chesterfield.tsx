@@ -8,7 +8,7 @@ export default function DataRoomAuditsChesterfield() {
     <>
       <Helmet>
         <title>Data Room Audits in Chesterfield | EntireFM</title>
-        <meta name="description" content="Data room audits in Chesterfield. Infrastructure assessments for North Derbyshire data centre facilities." />
+        <meta name="description" content="Data room audits for Chesterfield logistics and distribution centre IT rooms. Cooling, power and connectivity assessments for M1 corridor operations." />
         <link rel="canonical" href="https://entirefm.com/services/critical/data-room-audits" />
       </Helmet>
 
