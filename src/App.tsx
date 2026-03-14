@@ -802,6 +802,7 @@ const App = () => <QueryClientProvider client={queryClient}>
               <Route path="/sectors/hospitality-leisure" element={<HospitalityLeisure />} />
               <Route path="/sectors/residential-pbsa" element={<ResidentialPBSA />} />
               <Route path="/sectors/offices" element={<Offices />} />
+              <Route path="/commercial-facilities-management" element={<CommercialFacilitiesManagement />} />
               <Route path="/sectors/retail-hospitality" element={<RetailHospitality />} />
               <Route path="/sectors/healthcare-public" element={<HealthcarePublic />} />
               <Route path="/sectors/hotels-leisure" element={<HotelsLeisure />} />
