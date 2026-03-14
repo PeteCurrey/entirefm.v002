@@ -8,7 +8,7 @@ export default function HVSwitchingDerby() {
     <>
       <Helmet>
         <title>HV Switching & Isolation Services in Derby | EntireFM</title>
-        <meta name="description" content="High voltage switching and isolation services in Derby. Safe HV operations for Derbyshire commercial and critical facilities." />
+        <meta name="description" content="Authorised Person HV switching for Derby's rail, aerospace and manufacturing estates. Planned isolation, load transfers and emergency HV response across Derbyshire." />
         <link rel="canonical" href="https://entirefm.com/services/critical/hv-switching" />
       </Helmet>
 

@@ -8,7 +8,7 @@ export default function HVSwitchingLeeds() {
     <>
       <Helmet>
         <title>HV Switching & Isolation Services in Leeds | EntireFM</title>
-        <meta name="description" content="High voltage switching and isolation services in Leeds. Safe HV operations for West Yorkshire commercial and critical facilities." />
+        <meta name="description" content="HV switching for Leeds financial services, university campuses and corporate offices. Planned isolations and load transfers by qualified Authorised Persons." />
         <link rel="canonical" href="https://entirefm.com/services/critical/hv-switching" />
       </Helmet>
 
