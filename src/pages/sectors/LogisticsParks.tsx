@@ -6,7 +6,7 @@ const LogisticsParks = () => {
   return (
     <SectorPageTemplate
       title="Logistics Parks & Distribution Centres FM | Compliance & Maintenance"
-      metaDescription="Compliance and maintenance for high-volume industrial estates."
+      metaDescription="FM for logistics parks and distribution centres. Fire suppression, electrical testing, dock leveller maintenance and PPM programmes keeping supply chain operations compliant and uninterrupted."
       canonicalUrl="https://entirefm.com/sectors/logistics-parks"
       heroTitle="Logistics Parks & Distribution Centres"
       heroSubtitle="Compliance and maintenance for high-volume industrial estates."

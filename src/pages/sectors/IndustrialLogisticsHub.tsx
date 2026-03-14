@@ -6,7 +6,7 @@ const IndustrialLogisticsHub = () => {
   return (
     <SectorPageTemplate
       title="Industrial & Logistics Estates FM | Safety Engineered"
-      metaDescription="Downtime eliminated — safety engineered into every process-critical asset."
+      metaDescription="Industrial facilities management for manufacturing, warehousing and process-critical environments. Fire, electrical, HVAC and mechanical compliance engineered around production uptime."
       canonicalUrl="https://entirefm.com/sectors/industrial-logistics-hub"
       heroTitle="Facilities Management for Industrial & Logistics Estates"
       heroSubtitle="Downtime eliminated — safety engineered into every process-critical asset."
