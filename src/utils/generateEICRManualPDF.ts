@@ -46,7 +46,7 @@ export async function downloadEICRManualComprehensive(): Promise<void> {
   let logoBase64: string | null = null;
 
   try {
-    logoBase64 = await loadImageAsBase64(logoImage);
+    logoBase64 = await loadImageAsBase64((logoImage as any).src || logoImage);
   } catch {
     // continue without logo
   }

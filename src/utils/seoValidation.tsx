@@ -1,10 +1,12 @@
+"use client";
+
 /**
  * SEO Validation and Internal Linking Enforcement
  * Console warnings for missing required links, orphan pages, and SEO violations
  */
 
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from "next/navigation";
 import { getCanonicalUrl, isRegionalServicePage, getRequiredLinksForPageType } from './seoGovernance';
 
 interface SEOValidationConfig {
@@ -18,12 +20,12 @@ interface SEOValidationConfig {
  * Hook to validate SEO compliance on page load
  */
 export const useSEOValidation = (config: SEOValidationConfig) => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (!config.enabled || !import.meta.env.DEV) return;
+    if (!config.enabled || process.env.NODE_ENV !== 'development') return;
 
-    const currentUrl = location.pathname;
+    const currentUrl = pathname;
     
     // Validate canonical URL
     const expectedCanonical = getCanonicalUrl(currentUrl);
@@ -90,17 +92,17 @@ export const useSEOValidation = (config: SEOValidationConfig) => {
       console.warn('🟡 [SEO] Missing proposal/contact CTA link on:', currentUrl);
     }
 
-  }, [location.pathname, config]);
+  }, [pathname, config]);
 };
 
 /**
  * Component to display SEO health in dev mode
  */
 export const SEOHealthIndicator = ({ pageType }: { pageType: SEOValidationConfig['pageType'] }) => {
-  if (!import.meta.env.DEV) return null;
+  if (process.env.NODE_ENV !== 'development') return null;
 
-  const location = useLocation();
-  const canonicalUrl = getCanonicalUrl(location.pathname);
+  const pathname = usePathname();
+  const canonicalUrl = getCanonicalUrl(pathname);
   const requiredLinks = getRequiredLinksForPageType(pageType);
 
   return (
@@ -158,7 +160,7 @@ export const detectOrphanPages = async (): Promise<string[]> => {
  * Validates all internal links are not broken
  */
 export const validateInternalLinks = (): void => {
-  if (!import.meta.env.DEV) return;
+  if (process.env.NODE_ENV !== 'development') return;
 
   const allLinks = Array.from(document.querySelectorAll('a[href^="/"]')) as HTMLAnchorElement[];
   const brokenLinks: string[] = [];

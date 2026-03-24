@@ -6,10 +6,10 @@ const GSC_SCOPES = [
 
 export const getGoogleAuthUrl = () => {
   const redirectUri = `${window.location.origin}/link-health`;
-  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
   
   const params = new URLSearchParams({
-    client_id: clientId,
+    client_id: clientId || '',
     redirect_uri: redirectUri,
     response_type: 'code',
     scope: GSC_SCOPES.join(' '),
@@ -23,7 +23,7 @@ export const getGoogleAuthUrl = () => {
 export const exchangeCodeForTokens = async (code: string) => {
   const redirectUri = `${window.location.origin}/link-health`;
   const session = await supabase.auth.getSession();
-  const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/gsc-api?action=exchange-code`;
+  const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/gsc-api?action=exchange-code`;
   
   const response = await fetch(url, {
     method: 'POST',
@@ -40,7 +40,7 @@ export const exchangeCodeForTokens = async (code: string) => {
 
 export const getGSCConnection = async () => {
   const session = await supabase.auth.getSession();
-  const url = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/gsc-api?action=get-connection`;
+  const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/gsc-api?action=get-connection`;
   
   const response = await fetch(url, {
     headers: {
@@ -54,7 +54,7 @@ export const getGSCConnection = async () => {
 
 export const inspectUrl = async (url: string) => {
   const session = await supabase.auth.getSession();
-  const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/gsc-api?action=inspect-url&url=${encodeURIComponent(url)}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/gsc-api?action=inspect-url&url=${encodeURIComponent(url)}`;
   
   const response = await fetch(apiUrl, {
     headers: {
@@ -68,7 +68,7 @@ export const inspectUrl = async (url: string) => {
 
 export const getSearchAnalytics = async (startDate: string, endDate: string) => {
   const session = await supabase.auth.getSession();
-  const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/gsc-api?action=search-analytics`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/gsc-api?action=search-analytics`;
   
   const response = await fetch(apiUrl, {
     method: 'POST',
@@ -89,7 +89,7 @@ export const getSearchAnalytics = async (startDate: string, endDate: string) => 
 
 export const getCrawlStats = async () => {
   const session = await supabase.auth.getSession();
-  const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/gsc-api?action=crawl-stats`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/gsc-api?action=crawl-stats`;
   
   const response = await fetch(apiUrl, {
     headers: {

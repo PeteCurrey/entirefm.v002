@@ -1,6 +1,7 @@
+"use client";
+
 import { ReactNode, useRef } from "react";
-import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { SchemaMarkup, FAQSchema } from "@/components/shared/SchemaMarkup";
@@ -71,7 +72,8 @@ interface SectorPageTemplateProps {
     title: string;
     paragraphs: string[];
   };
-  complianceRisks: ComplianceRisk[];
+  complianceRisks?: ComplianceRisk[];
+  risks?: ComplianceRisk[];
   keySystems?: KeySystem[];
   operationalChallenges?: OperationalChallenge[];
   whyEntireFM: string[];
@@ -100,11 +102,12 @@ const SectorPageTemplate = ({
   canonicalUrl,
   heroTitle,
   heroSubtitle,
-  heroImage = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80",
+  heroImage = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auhref=format&fit=crop&q=80",
   stats,
   heroIcon: HeroIcon = Building2,
   sectorSummary,
   complianceRisks,
+  risks,
   keySystems,
   operationalChallenges,
   whyEntireFM,
@@ -114,6 +117,7 @@ const SectorPageTemplate = ({
   customSections,
   sectionImage,
 }: SectorPageTemplateProps) => {
+  const displayRisks = complianceRisks || risks || [];
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -161,11 +165,7 @@ const SectorPageTemplate = ({
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
-        <link rel="canonical" href={canonicalUrl} />
-      </Helmet>
+
 
       <SchemaMarkup schema={serviceSchema} />
       <FAQSchema faqs={faqs} />
@@ -221,12 +221,12 @@ const SectorPageTemplate = ({
               <motion.div className="flex flex-wrap gap-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7 }}>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   <Button size="lg" asChild className="hover-lift shadow-lg shadow-primary/25">
-                    <Link to="/request-proposal">Request Proposal <ArrowRight className="w-5 h-5 ml-2" /></Link>
+                    <Link href="/request-proposal">Request Proposal <ArrowRight className="w-5 h-5 ml-2" /></Link>
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   <Button size="lg" variant="outline" asChild className="hover-lift bg-white/10 border-white/30 text-white hover:bg-white hover:text-charcoal backdrop-blur-sm">
-                    <Link to="/contact"><Phone className="w-5 h-5 mr-2" />Contact Us</Link>
+                    <Link href="/contact"><Phone className="w-5 h-5 mr-2" />Contact Us</Link>
                   </Button>
                 </motion.div>
               </motion.div>
@@ -337,7 +337,7 @@ const SectorPageTemplate = ({
           {/* --- Compliance Risks as icon card grid --- */}
           <ContentSection title="Core Compliance Risks" variant="default">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {complianceRisks.map((risk, index) => {
+              {displayRisks.map((risk, index) => {
                 const RiskIcon = riskIcons[index % riskIcons.length];
                 return (
                   <motion.div
@@ -358,7 +358,7 @@ const SectorPageTemplate = ({
                       {risk.link && (
                         <>
                           {" "}
-                          <Link to={risk.link} className="text-primary hover:underline font-medium">
+                          <Link href={risk.link} className="text-primary hover:underline font-medium">
                             {risk.linkText || "Learn more"}
                           </Link>
                         </>
@@ -464,14 +464,14 @@ const SectorPageTemplate = ({
                     </div>
                     <div className="relative p-8 bg-card/70 backdrop-blur-sm">
                       <h3 className="text-xl font-medium mb-3 text-foreground">
-                        <Link to={study.link} className="hover:text-primary transition-colors">
+                        <Link href={study.link} className="hover:text-primary transition-colors">
                           {study.title}
                         </Link>
                       </h3>
                       <p className="text-muted-foreground font-light leading-relaxed mb-5">
                         {study.description}
                       </p>
-                      <Link to={study.link} className="text-sm text-primary hover:underline inline-flex items-center gap-1.5 font-medium group/link">
+                      <Link href={study.link} className="text-sm text-primary hover:underline inline-flex items-center gap-1.5 font-medium group/link">
                         {study.linkText}
                         <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                       </Link>
@@ -495,7 +495,7 @@ const SectorPageTemplate = ({
                     viewport={{ once: true }}
                     transition={{ delay: idx * 0.08, type: "spring", stiffness: 300 }}
                   >
-                    <Link to={service.href} className="block h-full">
+                    <Link href={service.href} className="block h-full">
                       <div className="h-full p-6 bg-card/60 backdrop-blur rounded-xl border border-border/50 hover:border-primary/50 hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="relative">

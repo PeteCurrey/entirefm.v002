@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { LucideIcon, ArrowRight, Phone } from "lucide-react";
@@ -57,7 +59,7 @@ const CTASection = ({
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" asChild className="hover-lift">
-              <Link to={primaryHref}>
+              <Link href={primaryHref}>
                 {primaryLabel}
                 <PrimaryIcon className="w-5 h-5 ml-2" />
               </Link>
@@ -68,7 +70,7 @@ const CTASection = ({
               asChild 
               className={`hover-lift ${variant === "dark" ? "bg-white/10 border-white/30 text-white hover:bg-white hover:text-charcoal" : ""}`}
             >
-              <Link to={secondaryHref}>
+              <Link href={secondaryHref}>
                 <SecondaryIcon className="w-5 h-5 mr-2" />
                 {secondaryLabel}
               </Link>

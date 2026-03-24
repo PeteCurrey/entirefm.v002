@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { MapPin } from "lucide-react";
 import { motion } from "framer-motion";
@@ -63,7 +65,7 @@ export const RegionalServiceIndex = ({
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
-              <Link to={`/services/${serviceSlug}/${location.url}`}>
+              <Link href={`/services/${serviceSlug}/${location.url}`}>
                 <Card className="p-4 hover:shadow-lg transition-all hover:border-primary/50 group">
                   <div className="flex items-center gap-3">
                     <MapPin className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />

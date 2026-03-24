@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+"use client";
+
+import Link from "next/link";
 import { ArrowRight, Zap, Shield, Wrench, Activity, Server, Battery, Cog, Thermometer, Flame } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
@@ -262,7 +264,7 @@ export const DynamicYouMayAlsoNeed = ({
                   transition={{ delay: idx * 0.05 }}
                   viewport={{ once: true }}
                 >
-                  <Link to={service.url}>
+                  <Link href={service.url}>
                     <Card className="p-6 h-full hover:border-primary/50 transition-all hover-lift group bg-card/50 backdrop-blur-sm">
                       <div className="flex items-start gap-4">
                         <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">

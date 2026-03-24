@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -35,11 +37,11 @@ const MetricCard: React.FC<MetricCardProps> = ({ value, label, prefix = "", suff
   }, [numericValue]);
 
   return (
-    <div className={cn("bg-card border border-border rounded-lg p-6 shadow-sm", className)}>
-      <div className="text-3xl font-light text-primary mb-2">
+    <div className={cn("bg-white/5 backdrop-blur-md border border-white/10 rounded-none p-6 shadow-2xl", className)}>
+      <div className="text-3xl font-extralight text-primary mb-2">
         {prefix}{isNaN(numericValue) ? value : count}{suffix}
       </div>
-      <div className="text-sm text-muted-foreground font-light">{label}</div>
+      <div className="text-[11px] text-white/60 font-medium uppercase tracking-widest">{label}</div>
     </div>
   );
 };

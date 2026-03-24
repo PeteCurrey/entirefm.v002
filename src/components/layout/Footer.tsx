@@ -1,143 +1,144 @@
-import { Link } from 'react-router-dom';
+"use client";
+
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Shield, Clock, MapPin } from 'lucide-react';
+import { ArrowRight, Shield, Clock, MapPin, Mail, Phone, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { cn } from "@/lib/utils";
+
+const ButterflyLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 40 40" className={cn("w-10 h-10", className)} xmlns="http://www.w3.org/2000/svg">
+    <path 
+      d="M20 20 L5 5 L20 15 L35 5 L20 20 Z" 
+      fill="currentColor" 
+      className="text-primary"
+    />
+    <path 
+      d="M20 20 L5 35 L20 25 L35 35 L20 20 Z" 
+      fill="currentColor" 
+      className="text-primary/70"
+    />
+    <rect x="19" y="10" width="2" height="20" fill="currentColor" className="text-white/20" />
+  </svg>
+);
 
 export const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-muted/50 to-background border-t border-border">
-      {/* CTA Bar */}
-      <div className="bg-primary/5 border-b border-border py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-xl md:text-2xl font-light mb-4">Ready to Elevate Your Facilities Management?</h3>
-          <p className="text-muted-foreground font-light mb-6 max-w-2xl mx-auto">
-            Speak to our FM experts about your compliance, maintenance, and operational requirements
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link to="/request-proposal">
-              <Button size="lg" className="hover-lift">
-                Request a Proposal
-                <ArrowRight className="ml-2 w-5 h-5" />
+    <footer className="bg-[#0a0a0b] text-white border-t border-white/5 font-inter">
+      {/* Premium CTA Strip */}
+      <div className="bg-primary py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="footerDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r="1" fill="white" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#footerDots)" />
+          </svg>
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="text-center lg:text-left">
+              <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">Ready to Elevate Your FM?</h3>
+              <p className="text-xl text-white/80 font-light">Speak to our specialists about your building's requirements.</p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-6">
+              <Button asChild size="lg" className="bg-black hover:bg-gray-900 text-white px-10 h-16 rounded-none border-none uppercase tracking-widest font-black text-xs shadow-2xl">
+                <Link href="/contact">Request Proposal</Link>
               </Button>
-            </Link>
-            <Link to="/fm-operations/report-issue">
-              <Button size="lg" variant="default" className="hover-lift">
-                Report an Issue
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary px-10 h-16 rounded-none uppercase tracking-widest font-black text-xs">
+                <Link href="/contact">Talk to the Team</Link>
               </Button>
-            </Link>
-            <Link to="/fm-operations/helpdesk">
-              <Button size="lg" variant="outline" className="hover-lift">
-                Speak to Our FM Team
-              </Button>
-            </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Main Footer */}
-      <div className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 mb-12">
-            {/* Key Services */}
+      {/* Main Footer Content */}
+      <div className="py-24">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+            {/* Brand Info */}
+            <div className="space-y-10">
+              <Link href="/" className="flex items-center gap-3">
+                <ButterflyLogo />
+                <div className="flex flex-col">
+                  <span className="text-2xl font-black tracking-tighter leading-none">EntireFM</span>
+                  <span className="text-[10px] font-black tracking-[0.3em] uppercase text-primary mt-1">Facilities Management</span>
+                </div>
+              </Link>
+              <p className="text-gray-400 font-light leading-relaxed max-w-xs">
+                Nationwide facilities management specialists delivering technical excellence, 
+                statutory compliance, and integrated service solutions since 2009.
+              </p>
+              <div className="flex gap-4">
+                {[Linkedin, Twitter, Facebook].map((Icon, i) => (
+                  <button key={i} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary hover:text-primary transition-all">
+                    <Icon className="w-4 h-4" />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Core Services */}
             <div>
-              <h3 className="font-medium mb-6 text-lg">Key Services</h3>
-              <ul className="space-y-3">
-                <li><Link to="/services/fire-safety" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Fire Safety</Link></li>
-                <li><Link to="/services/electrical-compliance" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Electrical Compliance</Link></li>
-                <li><Link to="/services/hvac-compliance" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">HVAC</Link></li>
-                <li><Link to="/services/gas-safety" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Gas Safety</Link></li>
-                <li><Link to="/services/water-hygiene" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Water Hygiene</Link></li>
-                <li><Link to="/services/ppm" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">PPM</Link></li>
-                <li><Link to="/services/hard-services-fm" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Hard Services</Link></li>
+              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">Core Services</h4>
+              <ul className="space-y-4">
+                {["Hard FM Services", "Soft FM Services", "PPM Maintenance", "Compliance Audits", "M&E Engineering", "Fire Safety Systems"].map((item) => (
+                  <li key={item}>
+                    <Link href={`/services/${item.toLowerCase().replace(/ /g, '-')}`} className="text-sm text-gray-400 hover:text-white transition-colors font-medium">{item}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Critical Services */}
+            {/* Quick Links */}
             <div>
-              <h3 className="font-medium mb-6 text-lg">Critical Services</h3>
-              <ul className="space-y-3">
-                <li><Link to="/services/critical/lightning-protection" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Lightning Protection</Link></li>
-                <li><Link to="/services/critical/ups-maintenance" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">UPS Maintenance</Link></li>
-                <li><Link to="/services/critical/generator-maintenance" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Generator Maintenance</Link></li>
-                <li><Link to="/services/critical/arc-flash-assessment" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Arc Flash Assessment</Link></li>
-                <li><Link to="/services/critical/hv-switching" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">HV Switching</Link></li>
-                <li><Link to="/services/critical/power-redundancy" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Power Redundancy</Link></li>
-                <li><Link to="/services/critical/thermal-imaging" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Thermal Imaging</Link></li>
+              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">Company</h4>
+              <ul className="space-y-4">
+                {["About EntireFM", "Case Studies", "Knowledge Hub", "Sectors We Serve", "Contact Us", "Careers"].map((item) => (
+                  <li key={item}>
+                    <Link href={`/${item.toLowerCase().replace(/ /g, '-')}`} className="text-sm text-gray-400 hover:text-white transition-colors font-medium">{item}</Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
+            {/* Contact Details */}
             <div>
-              <h3 className="font-medium mb-6 text-lg">FM Operations</h3>
-              <ul className="space-y-3">
-                <li><Link to="/fm-operations/helpdesk" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Helpdesk</Link></li>
-                <li><Link to="/fm-operations/report-issue" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Report an Issue</Link></li>
-                <li><Link to="/fm-operations/mobilisation" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Mobilisation</Link></li>
-                <li><Link to="/fm-operations/ppm-delivery" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">PPM Delivery</Link></li>
-                <li><Link to="/fm-operations/reactive-maintenance" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Reactive Maintenance</Link></li>
-                <li><Link to="/fm-operations/asset-lifecycle" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Asset Lifecycle</Link></li>
-                <li><Link to="/fm-operations/business-continuity" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Business Continuity</Link></li>
-              </ul>
-            </div>
-
-            {/* Sectors */}
-            <div>
-              <h3 className="font-medium mb-6 text-lg">Sectors</h3>
-              <ul className="space-y-3">
-                <li><Link to="/sectors/offices" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Offices</Link></li>
-                <li><Link to="/sectors/retail-service-stations" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Retail & Service Stations</Link></li>
-                <li><Link to="/sectors/industrial-logistics" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Industrial & Logistics</Link></li>
-                <li><Link to="/sectors/healthcare-public" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Healthcare</Link></li>
-                <li><Link to="/sectors/hospitality-leisure" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Hospitality & Leisure</Link></li>
-                <li><Link to="/sectors/pbsa" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">PBSA</Link></li>
-                <li><Link to="/sectors/education" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Education</Link></li>
-                <li><Link to="/sectors/airports" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Airports</Link></li>
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h3 className="font-medium mb-6 text-lg">Resources</h3>
-              <ul className="space-y-3">
-                <li><Link to="/resources" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Knowledge Centre</Link></li>
-                <li><Link to="/case-studies" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Case Studies</Link></li>
-                <li><Link to="/fm-insights" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">FM Insights</Link></li>
-                <li><Link to="/compliance-diagnostic" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Compliance Diagnostic</Link></li>
-              </ul>
-            </div>
-
-            {/* Connect */}
-            <div>
-              <h3 className="font-medium mb-6 text-lg">Connect</h3>
-              <ul className="space-y-3">
-                <li><Link to="/why-entirefm" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Why EntireFM</Link></li>
-                <li><Link to="/compare" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Compare Providers</Link></li>
-                <li><Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Contact</Link></li>
-                <li><Link to="/request-proposal" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Request a Proposal</Link></li>
-                <li><Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">About Us</Link></li>
-                <li><Link to="/careers" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Careers</Link></li>
-                <li><Link to="/locations" className="text-sm text-muted-foreground hover:text-primary transition-colors font-light">Our Locations</Link></li>
-              </ul>
+              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">Get in Touch</h4>
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <MapPin className="w-5 h-5 text-primary shrink-0" />
+                  <p className="text-sm text-gray-400 font-light leading-relaxed">
+                    Nationwide Coverage <br />
+                    Central Support Office <br />
+                    United Kingdom
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Phone className="w-5 h-5 text-primary shrink-0" />
+                  <p className="text-sm text-gray-400 font-medium tracking-tight">0800 000 0000</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <Mail className="w-5 h-5 text-primary shrink-0" />
+                  <p className="text-sm text-gray-400 font-medium tracking-tight">info@entirefm.com</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="border-t border-border pt-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-sm text-muted-foreground font-light">
-                &copy; {new Date().getFullYear()} EntireFM. All rights reserved.
-              </p>
-              <div className="flex items-center gap-6 text-sm text-muted-foreground font-light">
-                <span className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-primary" />
-                  Fully Accredited
-                </span>
-                <span className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
-                  24/7 Support
-                </span>
-                <span className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  Nationwide
-                </span>
-              </div>
+          {/* Bottom Bar */}
+          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
+            <p>&copy; {new Date().getFullYear()} EntireFM. All rights reserved.</p>
+            <div className="flex gap-8">
+              <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
+              <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
+            </div>
+            <div className="flex items-center gap-6">
+              <Shield className="w-4 h-4 text-primary" />
+              <span className="text-white">Fully Accredited Partner</span>
             </div>
           </div>
         </div>
@@ -147,3 +148,4 @@ export const Footer = () => {
 };
 
 export default Footer;
+

@@ -170,7 +170,7 @@ export const logSEOViolation = (
   type: 'missing-canonical' | 'orphan-page' | 'missing-required-link' | 'keyword-conflict',
   details: Record<string, any>
 ) => {
-  if (import.meta.env.DEV) {
+  if (process.env.NODE_ENV === 'development') {
     console.warn(`[SEO Governance] ${type}:`, details);
   }
 };

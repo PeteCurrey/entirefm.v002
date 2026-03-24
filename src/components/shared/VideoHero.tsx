@@ -1,3 +1,5 @@
+"use client";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ReactNode, useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";

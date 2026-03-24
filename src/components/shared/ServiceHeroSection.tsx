@@ -1,5 +1,7 @@
+"use client";
+
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -27,7 +29,7 @@ interface ServiceHeroSectionProps {
   stats?: HeroStat[];
   primaryCTA?: HeroCTA;
   secondaryCTA?: HeroCTA;
-  backgroundImage?: string;
+  backgroundImage?: string | any;
 }
 
 const ServiceHeroSection = ({
@@ -39,6 +41,7 @@ const ServiceHeroSection = ({
   secondaryCTA,
   backgroundImage
 }: ServiceHeroSectionProps) => {
+  const imageUrl = typeof backgroundImage === 'object' ? (backgroundImage as any).src : backgroundImage;
   const heroRef = useRef<HTMLElement>(null);
   
   const { scrollYProgress } = useScroll({
@@ -57,7 +60,7 @@ const ServiceHeroSection = ({
       <motion.div 
         className="absolute inset-0 bg-cover bg-center opacity-20" 
         style={{ 
-          backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
+          backgroundImage: imageUrl ? `url(${imageUrl})` : undefined,
           y,
           opacity
         }}
@@ -102,7 +105,7 @@ const ServiceHeroSection = ({
               >
                 {primaryCTA && (
                   <Button size="lg" asChild className="hover-scale">
-                    <Link to={primaryCTA.href}>
+                    <Link href={primaryCTA.href || "#"}>
                       {primaryCTA.icon && <primaryCTA.icon className="w-5 h-5 mr-2" />}
                       {primaryCTA.label}
                     </Link>
@@ -126,7 +129,7 @@ const ServiceHeroSection = ({
                       className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white hover:text-charcoal hover-scale" 
                       asChild
                     >
-                      <Link to={secondaryCTA.href || "#"}>
+                      <Link href={secondaryCTA.href || "#"}>
                         {secondaryCTA.icon && <secondaryCTA.icon className="w-5 h-5 mr-2" />}
                         {secondaryCTA.label}
                       </Link>

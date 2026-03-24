@@ -1,8 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2, Clock, Shield, Smartphone, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet";
 import ServiceCard from "@/components/shared/ServiceCard";
 import SectorCard from "@/components/shared/SectorCard";
 import MetricCard from "@/components/shared/MetricCard";
@@ -39,21 +40,7 @@ const GeoLandingPage = ({ cityData, customSlug }: GeoLandingPageProps) => {
 
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>{metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta name="keywords" content={`facilities management ${name}, FM services ${name}, commercial maintenance ${region}, M&E services ${name}, building management ${name}`} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={heroImage} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metaTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-      </Helmet>
-
+      
       <LocalBusinessSchema
         name={`EntireFM - Facilities Management ${name}`}
         address={{
@@ -141,10 +128,10 @@ const GeoLandingPage = ({ cityData, customSlug }: GeoLandingPageProps) => {
               className="flex flex-col sm:flex-row gap-4"
             >
               <Button size="lg" asChild className="hover-scale">
-                <Link to="/contact">Request a Proposal</Link>
+                <Link href="/contact">Request a Proposal</Link>
               </Button>
               <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white hover:text-charcoal hover-scale" asChild>
-                <Link to="/case-studies">View Case Studies</Link>
+                <Link href="/case-studies">View Case Studies</Link>
               </Button>
             </motion.div>
           </motion.div>
@@ -364,7 +351,7 @@ const GeoLandingPage = ({ cityData, customSlug }: GeoLandingPageProps) => {
 
           <div className="text-center mt-12">
             <Button size="lg" asChild>
-              <Link to="/services">
+              <Link href="/services">
                 Explore All Services
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
@@ -389,44 +376,44 @@ const GeoLandingPage = ({ cityData, customSlug }: GeoLandingPageProps) => {
             <SectorCard 
               title="Offices & Corporate" 
               description="Grade A to multi-let schemes. Workplace services that support productivity." 
-              image={officeImage} 
+              image={officeImage.src} 
               link="/sectors/offices" 
             />
             <SectorCard 
               title="Industrial & Logistics" 
               description="24/7 operations. Critical infrastructure. Minimal disruption to workflow." 
-              image={industrialImage} 
+              image={industrialImage.src} 
               link="/sectors/industrial-logistics" 
             />
             <SectorCard 
               title="Retail & Service Stations" 
               description="Customer-facing environments. Out-of-hours works. Brand standards maintained." 
-              image={officeImage} 
+              image={officeImage.src} 
               link="/sectors/retail-hospitality" 
             />
             <SectorCard 
               title="Aviation & Transport" 
               description="Regulated environments. Security clearances. Complex operational interfaces." 
-              image={industrialImage} 
+              image={industrialImage.src} 
               link="/sectors/healthcare-public" 
             />
             <SectorCard 
               title="Residential & PBSA" 
               description="Resident satisfaction. Common areas. Estate management." 
-              image={officeImage} 
+              image={officeImage.src} 
               link="/sectors/pbsa" 
             />
             <SectorCard 
               title="Construction & Developments" 
               description="Site progression support. Handover coordination. Defects management." 
-              image={industrialImage} 
+              image={industrialImage.src} 
               link="/sectors" 
             />
           </div>
 
           <div className="text-center mt-12">
             <Button size="lg" variant="outline" asChild>
-              <Link to="/sectors">
+              <Link href="/sectors">
                 View All Sectors
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
@@ -460,7 +447,7 @@ const GeoLandingPage = ({ cityData, customSlug }: GeoLandingPageProps) => {
 
           <div className="text-center mt-12">
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-charcoal" asChild>
-              <Link to="/case-studies" className="bg-primary">
+              <Link href="/case-studies" className="bg-primary">
                 View All Case Studies
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
@@ -500,7 +487,7 @@ const GeoLandingPage = ({ cityData, customSlug }: GeoLandingPageProps) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="bg-white text-secondary hover:bg-gray-100" asChild>
-              <Link to="/contact">Request a Proposal</Link>
+              <Link href="/contact">Request a Proposal</Link>
             </Button>
             <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-secondary" asChild>
               <a href="tel:08001234567" className="bg-primary">

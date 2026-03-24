@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -52,6 +54,7 @@ export function usePageContent(pagePath: string): UsePageContentResult {
           
           setPageContent({
             ...data,
+            is_published: data.is_published ?? false,
             sections
           });
         } else {

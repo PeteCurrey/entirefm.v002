@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+"use client";
+
+import Link from "next/link";
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
@@ -40,7 +42,7 @@ export const YouMayAlsoNeed = ({
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Link to={service.url}>
+                <Link href={service.url}>
                   <Card className="p-6 h-full hover:border-primary/50 transition-all hover-lift group">
                     <h3 className="text-lg font-medium mb-3 group-hover:text-primary transition-colors">
                       {service.title}

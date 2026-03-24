@@ -1,0 +1,254 @@
+"use client";
+
+import { useState } from "react";
+;
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
+import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { toast } from "@/hooks/use-toast";
+import { FileText, Download, CheckCircle2, Droplets } from "lucide-react";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+
+const downloadSchema = z.object({
+  name: z.string().min(2, "Name required").max(100),
+  email: z.string().email("Valid email required"),
+  companyName: z.string().min(2, "Company name required").max(100),
+  role: z.string().optional(),
+});
+
+type DownloadFormData = z.infer<typeof downloadSchema>;
+
+const LegionellaGuide = () => {
+  const [downloadReady, setDownloadReady] = useState(false);
+  const { trackDownload } = useConversionTracking();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<DownloadFormData>({
+    resolver: zodResolver(downloadSchema),
+  });
+
+  const onSubmit = (data: DownloadFormData) => {
+    setDownloadReady(true);
+    trackDownload("Legionella Governance Guide");
+    
+    toast({
+      title: "Download Ready",
+      description: "Your Legionella Governance Guide is ready to download.",
+    });
+
+    console.log("Legionella Guide download:", data);
+  };
+
+  const handleDownload = () => {
+    toast({
+      title: "Download Started",
+      description: "Your guide will begin downloading shortly.",
+    });
+  };
+
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Resources", href: "/resources" },
+    { label: "Legionella Governance Guide" },
+  ];
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "DownloadAction",
+    name: "Legionella Governance & ACOP L8 Compliance Guide",
+    description: "Comprehensive guide to legionella control, ACOP L8 compliance, and water hygiene management for UK properties.",
+  };
+
+  return (
+    <>
+      
+
+      <SchemaMarkup schema={schema} />
+
+      <div className="bg-background">
+        <div className="container mx-auto px-4 py-8">
+          <Breadcrumb items={breadcrumbItems} />
+
+          <div className="max-w-5xl mx-auto mt-8">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <div className="mb-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-3 bg-primary/10 rounded-lg">
+                      <Droplets className="w-8 h-8 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-sm text-muted-foreground">Free Resource</div>
+                      <h1 className="text-3xl font-light">Legionella Governance Guide</h1>
+                    </div>
+                  </div>
+                  <p className="text-lg text-muted-foreground font-light">
+                    Complete guide to legionella control, ACOP L8 compliance, and water hygiene management responsibilities.
+                  </p>
+                </div>
+
+                <Card className="p-6 mb-6">
+                  <h2 className="text-xl font-light mb-4">What's Inside</h2>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm">ACOP L8 legal requirements and duty holder responsibilities</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm">Legionella risk assessment methodology and scoring</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm">Written control scheme development and implementation</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm">Temperature monitoring, sampling, and testing protocols</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm">Emergency response procedures for legionella outbreaks</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm">Record-keeping and audit trail requirements</span>
+                    </li>
+                  </ul>
+                </Card>
+
+                <Card className="p-6 bg-muted">
+                  <div className="flex items-start gap-3">
+                    <FileText className="w-6 h-6 text-primary shrink-0" />
+                    <div>
+                      <div className="font-medium mb-1">36-page compliance guide</div>
+                      <div className="text-sm text-muted-foreground">
+                        Instant access • ACOP L8 aligned • HSE guidance included
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              <div>
+                {!downloadReady ? (
+                  <Card className="p-6">
+                    <h2 className="text-2xl font-light mb-2">Download Your Free Guide</h2>
+                    <p className="text-sm text-muted-foreground mb-6">
+                      Enter your details to receive instant access to the Legionella Governance Guide.
+                    </p>
+
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                      <div>
+                        <Label htmlFor="name">Your Name *</Label>
+                        <Input
+                          id="name"
+                          placeholder="John Smith"
+                          {...register("name")}
+                        />
+                        {errors.name && (
+                          <p className="text-sm text-destructive mt-1">{errors.name.message}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Label htmlFor="email">Work Email *</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="john@company.com"
+                          {...register("email")}
+                        />
+                        {errors.email && (
+                          <p className="text-sm text-destructive mt-1">{errors.email.message}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Label htmlFor="companyName">Company Name *</Label>
+                        <Input
+                          id="companyName"
+                          placeholder="Your Company Ltd"
+                          {...register("companyName")}
+                        />
+                        {errors.companyName && (
+                          <p className="text-sm text-destructive mt-1">{errors.companyName.message}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Label htmlFor="role">Your Role (Optional)</Label>
+                        <Input
+                          id="role"
+                          placeholder="Facilities Manager"
+                          {...register("role")}
+                        />
+                      </div>
+
+                      <Button type="submit" className="w-full" size="lg">
+                        <Download className="w-4 h-4 mr-2" />
+                        Get Free Guide
+                      </Button>
+
+                      <p className="text-xs text-muted-foreground text-center">
+                        We'll also send you occasional FM insights. Unsubscribe anytime.
+                      </p>
+                    </form>
+                  </Card>
+                ) : (
+                  <Card className="p-6">
+                    <div className="text-center mb-6">
+                      <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                        <CheckCircle2 className="w-8 h-8 text-green-600" />
+                      </div>
+                      <h2 className="text-2xl font-light mb-2">Your Guide is Ready!</h2>
+                      <p className="text-muted-foreground">
+                        We've also sent a copy to your email.
+                      </p>
+                    </div>
+
+                    <Button onClick={handleDownload} className="w-full mb-4" size="lg">
+                      <Download className="w-4 h-4 mr-2" />
+                      Download Legionella Governance Guide
+                    </Button>
+
+                    <div className="border-t pt-4">
+                      <p className="text-sm text-muted-foreground mb-3">
+                        Need help with legionella control and compliance?
+                      </p>
+                      <Button asChild variant="outline" className="w-full">
+                        <a href="/services/water-hygiene">View Water Hygiene Services</a>
+                      </Button>
+                    </div>
+                  </Card>
+                )}
+
+                <Card className="p-6 mt-6">
+                  <h3 className="font-medium mb-3">Why EntireFM?</h3>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li>✓ ACOP L8 risk assessments and written schemes</li>
+                    <li>✓ UKAS-accredited bacteriological testing</li>
+                    <li>✓ Monthly temperature monitoring programs</li>
+                    <li>✓ Tank cleaning and disinfection services</li>
+                    <li>✓ Emergency legionella outbreak response</li>
+                  </ul>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default LegionellaGuide;

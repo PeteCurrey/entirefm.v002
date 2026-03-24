@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
 interface ServiceCardProps {
@@ -24,7 +24,7 @@ const ServiceCard = ({
             {item}
           </li>)}
       </ul>
-      <Link to={link} className="inline-flex items-center text-sm text-primary hover:text-primary/80 transition-colors group-hover:translate-x-1 duration-300">
+      <Link href={link} className="inline-flex items-center text-sm text-primary hover:text-primary/80 transition-colors group-hover:translate-x-1 duration-300">
         Explore service
         <ArrowRight className="w-4 h-4 ml-2" />
       </Link>

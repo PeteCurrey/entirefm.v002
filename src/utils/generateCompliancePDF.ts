@@ -56,7 +56,7 @@ export async function generateCompliancePDF(options: PDFOptions): Promise<void> 
 
   // Add logo
   try {
-    const logoBase64 = await loadImageAsBase64(logoImage);
+    const logoBase64 = await loadImageAsBase64((logoImage as any).src || logoImage);
     doc.addImage(logoBase64, "PNG", margin, 8, 30, 30);
   } catch (error) {
     console.warn("Could not load logo for PDF:", error);
@@ -419,7 +419,7 @@ export async function downloadCapabilityPack(): Promise<void> {
 
   // Add logo
   try {
-    const logoBase64 = await loadImageAsBase64(logoImage);
+    const logoBase64 = await loadImageAsBase64((logoImage as any).src || logoImage);
     doc.addImage(logoBase64, "PNG", margin, 8, 35, 35);
   } catch (error) {
     console.warn("Could not load logo for PDF:", error);

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 import { Building2, ArrowRight } from 'lucide-react';
 
 interface CaseStudy {
@@ -60,7 +60,7 @@ export const LocationCaseStudies = ({ location, title = "Proven Results in Your 
         {caseStudies.map((study, index) => (
           <Link 
             key={index}
-            to={study.link} 
+            href={study.link} 
             className="group p-6 bg-muted/30 rounded-lg hover:bg-muted/50 transition-all duration-300 hover-lift border border-transparent hover:border-primary/20"
           >
             <div className="flex items-start gap-4">
@@ -79,8 +79,7 @@ export const LocationCaseStudies = ({ location, title = "Proven Results in Your 
             </div>
           </Link>
         ))}
-        <Link 
-          to="/case-studies"
+        <Link href="/case-studies"
           className="group p-6 bg-primary/5 rounded-lg hover:bg-primary/10 transition-all duration-300 border border-primary/20 flex items-center justify-center"
         >
           <span className="font-medium group-hover:text-primary transition-colors">

@@ -1,6 +1,7 @@
+"use client";
+
 import { ReactNode, useRef } from "react";
-import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -143,12 +144,7 @@ const ServicePageTemplate = ({
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={metaDescription} />
-        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-      </Helmet>
-
+      
       <BreadcrumbSchema items={breadcrumbItems} />
       <ServiceSchema 
         name={heroTitle}
@@ -265,7 +261,7 @@ const ServicePageTemplate = ({
               >
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   <Button size="lg" asChild className="hover-lift shadow-lg shadow-primary/25">
-                    <Link to="/request-proposal">
+                    <Link href="/request-proposal">
                       Request Proposal
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </Link>
@@ -273,7 +269,7 @@ const ServicePageTemplate = ({
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   <Button size="lg" variant="outline" asChild className="hover-lift bg-white/10 border-white/30 text-white hover:bg-white hover:text-charcoal backdrop-blur-sm">
-                    <Link to="/contact">
+                    <Link href="/contact">
                       <Phone className="w-5 h-5 mr-2" />
                       Contact Us
                     </Link>
@@ -570,7 +566,7 @@ const ServicePageTemplate = ({
                           viewport={{ once: true }}
                           transition={{ delay: idx * 0.08, type: "spring", stiffness: 300 }}
                         >
-                          <Link to={service.href}>
+                          <Link href={service.href}>
                             <Card className="p-6 h-full cursor-pointer bg-card/50 backdrop-blur hover:border-primary/50 hover:shadow-xl transition-all duration-300">
                               <h3 className="font-medium mb-2">{service.title}</h3>
                               <p className="text-sm text-muted-foreground font-light">{service.description}</p>
@@ -601,7 +597,7 @@ const ServicePageTemplate = ({
                       <div className="flex flex-wrap gap-4">
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                           <Button size="lg" asChild className="shadow-lg shadow-primary/25">
-                            <Link to="/request-proposal">
+                            <Link href="/request-proposal">
                               Request Proposal
                               <ArrowRight className="w-5 h-5 ml-2" />
                             </Link>
@@ -609,7 +605,7 @@ const ServicePageTemplate = ({
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                           <Button size="lg" variant="outline" asChild>
-                            <Link to="/contact">Contact Support</Link>
+                            <Link href="/contact">Contact Support</Link>
                           </Button>
                         </motion.div>
                       </div>

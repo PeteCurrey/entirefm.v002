@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
@@ -14,7 +16,7 @@ interface LinkValidationResult {
   broken_links: number;
   health_score: number;
   results_data: any; // JSON type from database
-  scan_duration_ms: number;
+  scan_duration_ms: number | null;
 }
 
 export const LinkHealthDashboard = () => {
@@ -176,7 +178,7 @@ export const LinkHealthDashboard = () => {
           </h3>
           <ScrollArea className="h-[400px]">
             <div className="space-y-2">
-              {latestResult.results_data.brokenLinks.map((link, idx) => (
+              {latestResult.results_data.brokenLinks.map((link: any, idx: number) => (
                 <Card key={idx} className="p-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Badge variant="destructive">{link.status === 0 ? 'ERROR' : link.status}</Badge>

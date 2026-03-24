@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 
 interface SectorCardProps {
   title: string;
   description: string;
-  image: string;
+  image: string | any;
   link?: string;
 }
 
@@ -14,12 +14,14 @@ const SectorCard = ({
   image,
   link = "/sectors"
 }: SectorCardProps) => {
+  const imageUrl = typeof image === 'object' ? (image as any).src : image;
+
   return (
-    <Link to={link}>
+    <Link href={link}>
       <Card className="overflow-hidden hover-lift group cursor-pointer h-full">
         <div className="relative h-48 overflow-hidden">
           <img 
-            src={image} 
+            src={imageUrl} 
             alt={title} 
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
           />

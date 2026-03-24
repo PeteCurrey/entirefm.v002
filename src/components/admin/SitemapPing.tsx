@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -37,7 +39,7 @@ export const SitemapPing = () => {
     } catch (error) {
       console.error('Error pinging sitemap:', error);
       toast.error('Failed to ping sitemap', {
-        description: error.message,
+        description: (error as Error).message,
       });
     } finally {
       setIsLoading(false);

@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -9,18 +11,20 @@ interface CaseStudyCardProps {
   title: string;
   metrics: string[];
   slug?: string;
-  image?: string;
+  image?: string | any;
 }
 
 const CaseStudyCard = ({ sector, title, metrics, slug = "/case-studies", image }: CaseStudyCardProps) => {
+  const imageUrl = typeof image === 'object' ? (image as any).src : image;
+
   return (
     <Card className="relative p-6 bg-white/10 backdrop-blur-sm border-white/10 hover:border-primary/50 transition-all duration-500 group cursor-pointer h-full flex flex-col overflow-hidden">
       {/* Background image */}
-      {image && (
+      {imageUrl && (
         <>
           <div 
             className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-110"
-            style={{ backgroundImage: `url(${image})` }}
+            style={{ backgroundImage: `url(${imageUrl})` }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/95 to-charcoal/70 group-hover:from-charcoal group-hover:via-charcoal/90 group-hover:to-charcoal/60 transition-all duration-500" />
         </>
@@ -59,8 +63,7 @@ const CaseStudyCard = ({ sector, title, metrics, slug = "/case-studies", image }
           ))}
         </ul>
         
-        <Link
-          to={slug}
+        <Link href={slug}
           className="inline-flex items-center text-sm font-medium text-primary hover:text-white transition-colors duration-300 group/link"
         >
           <span className="relative">

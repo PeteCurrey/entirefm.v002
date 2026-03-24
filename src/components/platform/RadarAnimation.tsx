@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Activity, Shield, Zap, TrendingUp, AlertTriangle, Eye, FileText, Database } from "lucide-react";

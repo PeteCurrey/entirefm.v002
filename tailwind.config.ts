@@ -58,11 +58,11 @@ export default {
   			medium: '500',
   			semibold: '600'
   		},
-  		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
-  		},
+    		borderRadius: {
+    			lg: '2px',
+    			md: '1px',
+    			sm: '0px'
+    		},
   		keyframes: {
   			'accordion-down': {
   				from: {
@@ -85,16 +85,15 @@ export default {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
-  		fontFamily: {
-  			sans: [
-  				'ui-sans-serif',
-  				'system-ui',
-  				'sans-serif',
-  				'Apple Color Emoji',
-  				'Segoe UI Emoji',
-  				'Segoe UI Symbol',
-  				'Noto Color Emoji'
-  			],
+    		fontFamily: {
+    			sans: [
+    				'Inter',
+    				'ui-sans-serif',
+    				'system-ui',
+    				'-apple-system',
+    				'BlinkMacSystemFont',
+    				'sans-serif'
+    			],
   			serif: [
   				'ui-serif',
   				'Georgia',

@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { usePathname, useRouter } from "next/navigation";
 
 /**
  * Client-side redirect handler for legacy URLs
@@ -51,30 +53,30 @@ const redirectRules: RedirectRule[] = [
 ];
 
 export const LegacyRedirects = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    const currentPath = location.pathname;
+    const currentPath = pathname;
     
     // Check for exact match
     const exactMatch = redirectRules.find(rule => rule.from === currentPath);
     if (exactMatch) {
-      navigate(exactMatch.to, { replace: exactMatch.permanent });
+      router.replace(exactMatch.to);
       return;
     }
 
     // Check for blog/* pattern
     if (currentPath.startsWith('/blog/')) {
-      navigate('/resources', { replace: true });
+      router.replace('/resources');
       return;
     }
 
     // Remove trailing slash if present (except for root)
     if (currentPath.length > 1 && currentPath.endsWith('/')) {
-      navigate(currentPath.slice(0, -1), { replace: true });
+      router.replace(currentPath.slice(0, -1));
     }
-  }, [location.pathname, navigate]);
+  }, [pathname, router]);
 
   return null;
 };

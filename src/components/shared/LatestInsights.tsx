@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+"use client";
+
+import Link from "next/link";
 import { ArrowRight, BookOpen } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
@@ -68,7 +70,7 @@ export const LatestInsights = () => {
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
             >
-              <Link to={insight.url}>
+              <Link href={insight.url}>
                 <Card className="p-6 h-full hover:border-primary/50 transition-all hover-lift group">
                   <Badge className="mb-4">{insight.category}</Badge>
                   <h3 className="text-lg font-medium mb-3 group-hover:text-primary transition-colors line-clamp-2">
@@ -99,8 +101,7 @@ export const LatestInsights = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <Link 
-            to="/resources"
+          <Link href="/resources"
             className="inline-flex items-center gap-2 text-primary hover:underline font-light"
           >
             View all resources

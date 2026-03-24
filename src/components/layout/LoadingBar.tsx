@@ -1,8 +1,10 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 
 const LoadingBar = () => {
-  const location = useLocation();
+  const pathname = usePathname();
   const [progress, setProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,7 +27,7 @@ const LoadingBar = () => {
       clearTimeout(timer2);
       clearTimeout(timer3);
     };
-  }, [location.pathname]);
+  }, [pathname]);
 
   if (!isLoading) return null;
 

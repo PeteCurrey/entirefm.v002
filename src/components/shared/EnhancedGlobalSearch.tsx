@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -43,7 +45,7 @@ export const EnhancedGlobalSearch = () => {
   const [showPopular, setShowPopular] = useState(false);
   const [isAILoading, setIsAILoading] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   const {
     trackSearch,
     trackSearchClick,
@@ -145,7 +147,7 @@ export const EnhancedGlobalSearch = () => {
   const orderedCategories = ["Services", "Sectors", "FM Operations", "Soft Services", "Insights / Resources", "Case Studies"];
   const handleResultClick = (url: string, position: number) => {
     trackSearchClick(query, url, position);
-    navigate(url);
+    router.push(url);
     setQuery("");
     setIsOpen(false);
     setShowPopular(false);
@@ -230,7 +232,7 @@ export const EnhancedGlobalSearch = () => {
             {/* Sticky CTA */}
             <div className="border-t pt-3 mt-3 space-y-2 sticky bottom-0 bg-card">
               <Button onClick={() => {
-            navigate('/request-proposal');
+            router.push('/request-proposal');
             setQuery("");
             setIsOpen(false);
           }} size="sm" className="w-full">
@@ -250,7 +252,7 @@ export const EnhancedGlobalSearch = () => {
               We can help — request a proposal for a tailored service
             </p>
             <Button onClick={() => {
-          navigate('/request-proposal');
+            router.push('/request-proposal');
           setQuery("");
           setIsOpen(false);
         }} className="w-full mb-4">
@@ -260,28 +262,28 @@ export const EnhancedGlobalSearch = () => {
             <div className="text-xs text-muted-foreground mb-2">Browse by category:</div>
             <div className="grid grid-cols-2 gap-2">
               <Button variant="outline" size="sm" onClick={() => {
-            navigate('/services');
+            router.push('/services');
             setQuery("");
             setIsOpen(false);
           }}>
                 Services
               </Button>
               <Button variant="outline" size="sm" onClick={() => {
-            navigate('/sectors');
+            router.push('/sectors');
             setQuery("");
             setIsOpen(false);
           }}>
                 Sectors
               </Button>
               <Button variant="outline" size="sm" onClick={() => {
-            navigate('/fm-operations');
+            router.push('/fm-operations');
             setQuery("");
             setIsOpen(false);
           }}>
                 FM Operations
               </Button>
               <Button variant="outline" size="sm" onClick={() => {
-            navigate('/resources');
+            router.push('/resources');
             setQuery("");
             setIsOpen(false);
           }}>

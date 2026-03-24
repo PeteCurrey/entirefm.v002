@@ -1,5 +1,6 @@
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+"use client";
+
+import Link from "next/link";
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, AlertTriangle, CheckCircle2, FileText, Clock, Calendar } from 'lucide-react';
 import { Card } from '@/components/ui/card';
@@ -115,13 +116,7 @@ export const ResourceArticleTemplate = ({
 
   return (
     <>
-      <Helmet>
-        <title>{title} | EntireFM Resources</title>
-        <meta name="description" content={metaDescription} />
-        <meta name="keywords" content={keywords.join(', ')} />
-        <link rel="canonical" href={`https://entirefm.com${window.location.pathname}`} />
-      </Helmet>
-
+      
       <SchemaMarkup
         schema={{
           "@context": "https://schema.org",
@@ -326,7 +321,7 @@ export const ResourceArticleTemplate = ({
                       ))}
                     </ul>
                     <Button size="lg" asChild className="hover-lift">
-                      <Link to="/request-proposal">
+                      <Link href="/request-proposal">
                         Request a Proposal
                         <ArrowRight className="ml-2 w-5 h-5" />
                       </Link>
@@ -348,7 +343,7 @@ export const ResourceArticleTemplate = ({
                       {groupedLinks.service.map((link, idx) => (
                         <Link
                           key={idx}
-                          to={link.url}
+                          href={link.url}
                           className="group p-4 bg-card/50 backdrop-blur rounded-lg border border-border/50 hover:border-primary/50 hover:bg-muted/50 transition-all duration-300 hover-lift"
                         >
                           <div className="flex items-center justify-between">
@@ -368,7 +363,7 @@ export const ResourceArticleTemplate = ({
                     {groupedLinks.sector.map((link, idx) => (
                       <Link
                         key={idx}
-                        to={link.url}
+                        href={link.url}
                         className="text-sm text-primary hover:underline font-light flex items-center gap-1"
                       >
                         {link.title}
@@ -378,7 +373,7 @@ export const ResourceArticleTemplate = ({
                     {groupedLinks.operation.map((link, idx) => (
                       <Link
                         key={idx}
-                        to={link.url}
+                        href={link.url}
                         className="text-sm text-primary hover:underline font-light flex items-center gap-1"
                       >
                         {link.title}
@@ -388,7 +383,7 @@ export const ResourceArticleTemplate = ({
                     {groupedLinks['case-study'].map((link, idx) => (
                       <Link
                         key={idx}
-                        to={link.url}
+                        href={link.url}
                         className="text-sm text-primary hover:underline font-light flex items-center gap-1"
                       >
                         {link.title}
@@ -413,13 +408,13 @@ export const ResourceArticleTemplate = ({
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center">
                     <Button size="lg" asChild className="hover-lift">
-                      <Link to="/request-proposal">
+                      <Link href="/request-proposal">
                         Request a Proposal
                         <ArrowRight className="ml-2 w-5 h-5" />
                       </Link>
                     </Button>
                     <Button size="lg" variant="outline" asChild className="hover-lift bg-white/10 border-white/30 text-white hover:bg-white hover:text-charcoal">
-                      <Link to="/contact">Contact Us</Link>
+                      <Link href="/contact">Contact Us</Link>
                     </Button>
                   </div>
                 </Card>

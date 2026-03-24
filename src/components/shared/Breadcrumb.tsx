@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,7 +18,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
       <ol className="flex items-center gap-2 text-sm">
         <li>
           <Link 
-            to="/" 
+            href="/" 
             className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
           >
             <Home className="w-4 h-4" />
@@ -30,7 +30,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className }) => {
             <ChevronRight className="w-4 h-4 text-muted-foreground" />
             {item.href ? (
               <Link 
-                to={item.href}
+                href={item.href}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.label}

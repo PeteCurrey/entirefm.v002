@@ -1,4 +1,7 @@
+"use client";
+
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Loader2, Paperclip, X, Image as ImageIcon } from "lucide-react";
@@ -59,6 +62,7 @@ const defaultMessages: Message[] = [{
 export default function AIChatPanel({
   onClose
 }: AIChatPanelProps) {
+  const pathname = usePathname();
   const [sessionId] = useState(() => {
     const stored = getStoredSession();
     return stored?.sessionId || crypto.randomUUID();
@@ -129,17 +133,17 @@ export default function AIChatPanel({
   };
   const streamChat = async (userMessage: Message) => {
     try {
-      const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-assistant`;
+      const CHAT_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/ai-assistant`;
       const response = await fetch(CHAT_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
         },
         body: JSON.stringify({
           messages: [...messages, userMessage],
           sessionId,
-          sourcePage: window.location.pathname,
+          sourcePage: pathname,
           attachmentUrl: userMessage.attachmentUrl
         })
       });
@@ -223,7 +227,7 @@ export default function AIChatPanel({
           id: sessionId,
           last_activity_at: new Date().toISOString(),
           transcript: transcriptData as any,
-          source_page: window.location.pathname
+          source_page: pathname
         });
       } catch (error) {
         console.error('Failed to save session:', error);

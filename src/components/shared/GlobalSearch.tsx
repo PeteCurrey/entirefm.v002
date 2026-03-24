@@ -1,5 +1,8 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -176,7 +179,7 @@ export const GlobalSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showPopular, setShowPopular] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   const {
     trackSearch,
     trackSearchClick,
@@ -272,7 +275,7 @@ export const GlobalSearch = () => {
   }, {} as Record<string, SearchResult[]>);
   const handleResultClick = (url: string, position: number) => {
     trackSearchClick(query, url, position);
-    navigate(url);
+    router.push(url);
     setQuery("");
     setIsOpen(false);
     setShowPopular(false);
@@ -349,12 +352,12 @@ export const GlobalSearch = () => {
             
             <div className="border-t pt-3 mt-3 space-y-2">
               {results.some(r => r.category === "Services") && <Button asChild size="sm" className="w-full">
-                  <Link to="/request-proposal">
+                  <Link href="/request-proposal">
                     Request Inspection <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 </Button>}
               <Button asChild size="sm" variant="outline" className="w-full">
-                <Link to={`/search?q=${encodeURIComponent(query)}`}>
+                <Link href={`/search?q=${encodeURIComponent(query)}`}>
                   View All Results ({results.length})
                 </Link>
               </Button>

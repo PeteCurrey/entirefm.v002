@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback } from 'react';
 
 // Conversion event types
@@ -55,7 +57,7 @@ export const useConversionTracking = () => {
     }
 
     // Console log for development
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV === 'development') {
       console.log('🎯 Conversion Tracked:', eventData);
     }
 

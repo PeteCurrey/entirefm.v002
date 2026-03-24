@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 import { FileText, Phone } from 'lucide-react';
 
 interface DualCTAProps {
@@ -12,13 +12,13 @@ export const DualCTA = ({ variant = 'default', className = '' }: DualCTAProps) =
     return (
       <div className={`flex flex-col sm:flex-row gap-3 ${className}`}>
         <Button asChild size="lg" className="flex-1">
-          <Link to="/request-proposal">
+          <Link href="/request-proposal">
             <FileText className="mr-2 h-5 w-5" />
             Request a Proposal
           </Link>
         </Button>
         <Button asChild size="lg" variant="outline" className="flex-1">
-          <Link to="/fm-operations/helpdesk">
+          <Link href="/fm-operations/helpdesk">
             <Phone className="mr-2 h-5 w-5" />
             Contact FM Team
           </Link>
@@ -35,13 +35,13 @@ export const DualCTA = ({ variant = 'default', className = '' }: DualCTAProps) =
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Button asChild size="lg">
-          <Link to="/request-proposal">
+          <Link href="/request-proposal">
             <FileText className="mr-2 h-5 w-5" />
             Request a Proposal
           </Link>
         </Button>
         <Button asChild size="lg" variant="outline">
-          <Link to="/fm-operations/helpdesk">
+          <Link href="/fm-operations/helpdesk">
             <Phone className="mr-2 h-5 w-5" />
             Contact FM Team
           </Link>

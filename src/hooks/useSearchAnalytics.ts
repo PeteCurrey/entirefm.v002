@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -33,7 +35,7 @@ export const useSearchAnalytics = () => {
     }
 
     // Log to console in development
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV === 'development') {
       console.log('🔍 Search Tracked:', analyticsData);
     }
 
@@ -91,7 +93,7 @@ export const useSearchAnalytics = () => {
     }
 
     // Log to console in development
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV === 'development') {
       console.log('🎯 Search Click Tracked:', clickData);
     }
 

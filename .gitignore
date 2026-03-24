@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Next.js
+.next/
+out/
+.env
+.env.local
+.env.*.local
+tsconfig.tsbuildinfo
+
+# Misc Python Scripts
+*.py

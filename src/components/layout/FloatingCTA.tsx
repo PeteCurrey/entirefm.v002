@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { HelpCircle, X, MessageSquare, Phone, FileText } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import AIChatPanel from "@/components/ai-assistant/AIChatPanel";
 
@@ -117,7 +119,7 @@ const FloatingCTA = () => {
                   asChild
                   className="w-full justify-start gap-3"
                 >
-                  <Link to="/contact">
+                  <Link href="/contact">
                     <FileText className="h-5 w-5" />
                     <div className="text-left">
                       <div className="font-medium">Request a Proposal</div>

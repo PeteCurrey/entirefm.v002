@@ -1,4 +1,5 @@
-import { Helmet } from "react-helmet";
+"use client";
+
 import { motion } from "framer-motion";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import StatsBanner from "@/components/shared/StatsBanner";
@@ -93,12 +94,7 @@ const CaseStudyTemplate = ({
 
   return (
     <>
-      <Helmet>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        <link rel="canonical" href={seo.canonical} />
-      </Helmet>
-
+      
       <div className="min-h-screen pt-20">
         {/* Hero with parallax image */}
         <section className="relative h-[60vh] min-h-[450px] flex items-end">

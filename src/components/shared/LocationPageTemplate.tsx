@@ -1,6 +1,7 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -26,7 +27,7 @@ interface LocationFAQ {
 interface LocationPageData {
   city: string;
   region: string;
-  heroImage: string;
+  heroImage: string | any;
   heroHeadline: string;
   heroSubtext: string;
   metaTitle: string;
@@ -47,6 +48,7 @@ interface LocationPageData {
 
 const LocationPageTemplate = ({ data }: { data: LocationPageData }) => {
   const [scrollY, setScrollY] = useState(0);
+  const imageUrl = typeof data.heroImage === 'object' ? (data.heroImage as any).src : data.heroImage;
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -93,12 +95,7 @@ const LocationPageTemplate = ({ data }: { data: LocationPageData }) => {
 
   return (
     <>
-      <Helmet>
-        <title>{data.metaTitle}</title>
-        <meta name="description" content={data.metaDescription} />
-        <link rel="canonical" href={data.canonicalUrl} />
-      </Helmet>
-
+      
       <SchemaMarkup schema={serviceSchema} />
       <SchemaMarkup schema={faqSchema} />
       <SchemaMarkup schema={localBusinessSchema} />
@@ -109,7 +106,7 @@ const LocationPageTemplate = ({ data }: { data: LocationPageData }) => {
           <div 
             className="absolute inset-0 bg-cover bg-center will-change-transform"
             style={{ 
-              backgroundImage: `url(${data.heroImage})`,
+              backgroundImage: `url(${imageUrl})`,
               transform: `translateY(${scrollY * 0.3}px) scale(1.1)`,
             }}
           />
@@ -143,7 +140,7 @@ const LocationPageTemplate = ({ data }: { data: LocationPageData }) => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild className="hover-lift">
-                  <Link to="/contact">
+                  <Link href="/contact">
                     Request Proposal
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>

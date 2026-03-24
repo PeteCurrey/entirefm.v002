@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 import { ArrowRight } from 'lucide-react';
 
 interface RelatedService {
@@ -22,7 +22,7 @@ export const RelatedServices = ({ services, title = "Related Services" }: Relate
         {services.map((service, index) => (
           <Link 
             key={index}
-            to={service.link} 
+            href={service.link} 
             className="group p-6 bg-muted/30 rounded-lg hover:bg-muted/50 transition-all duration-300 hover-lift border border-transparent hover:border-primary/20"
           >
             <div className="flex items-start justify-between mb-2">

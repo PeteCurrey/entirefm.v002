@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+"use client";
+
+import Link from "next/link";
 import { ArrowRight, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -37,13 +39,13 @@ export const EnhancedDualCTA = ({
             {description}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to={primaryUrl}>
+            <Link href={primaryUrl}>
               <Button size="lg" className="hover-lift w-full sm:w-auto">
                 {primaryText}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <Link to={secondaryUrl}>
+            <Link href={secondaryUrl}>
               <Button size="lg" variant="outline" className="hover-lift w-full sm:w-auto">
                 <MessageSquare className="mr-2 w-5 h-5" />
                 {secondaryText}

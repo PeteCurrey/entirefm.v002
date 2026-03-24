@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 import { BookOpen, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -13,7 +13,7 @@ export const KnowledgeCentreCTA = () => {
             Access expert guidance, checklists, and frameworks to strengthen your facilities management compliance.
           </p>
           <Button asChild variant="outline">
-            <Link to="/resources" className="group">
+            <Link href="/resources" className="group">
               Explore Compliance Guidance
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>

@@ -1,6 +1,7 @@
+"use client";
+
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { usePathname } from "next/navigation";
 import { usePageContent } from "@/hooks/usePageContent";
 import { CMSSectionRenderer } from "./CMSSectionRenderer";
 
@@ -11,8 +12,8 @@ interface CMSPageWrapperProps {
 }
 
 export function CMSPageWrapper({ children, fallbackTitle, fallbackDescription }: CMSPageWrapperProps) {
-  const location = useLocation();
-  const { pageContent, isLoading, isUsingCMS } = usePageContent(location.pathname);
+  const pathname = usePathname();
+  const { pageContent, isLoading, isUsingCMS } = usePageContent(pathname);
 
   // Listen for edit mode messages from parent iframe
   useEffect(() => {
@@ -53,13 +54,7 @@ export function CMSPageWrapper({ children, fallbackTitle, fallbackDescription }:
   if (!isLoading && isUsingCMS && pageContent) {
     return (
       <>
-        <Helmet>
-          <title>{pageContent.meta_title || pageContent.page_title}</title>
-          {pageContent.meta_description && (
-            <meta name="description" content={pageContent.meta_description} />
-          )}
-        </Helmet>
-        
+                
         <div className="cms-content">
           {pageContent.sections.map(section => (
             <CMSSectionRenderer 
@@ -77,12 +72,6 @@ export function CMSPageWrapper({ children, fallbackTitle, fallbackDescription }:
   // Otherwise render the hardcoded fallback
   return (
     <>
-      {(fallbackTitle || fallbackDescription) && (
-        <Helmet>
-          {fallbackTitle && <title>{fallbackTitle}</title>}
-          {fallbackDescription && <meta name="description" content={fallbackDescription} />}
-        </Helmet>
-      )}
       {children}
     </>
   );

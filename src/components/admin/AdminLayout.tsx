@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
@@ -26,15 +28,15 @@ import {
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
 
-export default function AdminLayout() {
+export default function AdminLayout({ children }: { children?: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [expandedSections, setExpandedSections] = useState<string[]>(['marketing']);
   const { toast } = useToast();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     // Check session
@@ -82,7 +84,7 @@ export default function AdminLayout() {
       title: "Signed out",
       description: "You have been signed out successfully.",
     });
-    navigate('/admin/login');
+    router.push('/admin/login');
   };
 
   if (loading) {
@@ -97,7 +99,7 @@ export default function AdminLayout() {
   }
 
   if (!session) {
-    return <Navigate to="/admin/login" replace />;
+    router.push("/admin/login"); return null;
   }
 
 
@@ -177,8 +179,8 @@ export default function AdminLayout() {
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
-            const isActive = location.pathname === item.path || 
-              (item.children && item.children.some(c => location.pathname === c.path));
+            const isActive = pathname === item.path || 
+              (item.children && item.children.some(c => pathname === c.path));
             const isExpanded = expandedSections.includes(item.label);
             
             if (item.children) {
@@ -205,7 +207,7 @@ export default function AdminLayout() {
                           key={child.path}
                           to={child.path}
                           className={`block px-3 py-1.5 rounded-lg text-sm transition-colors ${
-                            location.pathname === child.path
+                            pathname === child.path
                               ? 'bg-primary text-primary-foreground'
                               : 'hover:bg-muted text-muted-foreground'
                           }`}
@@ -249,7 +251,7 @@ export default function AdminLayout() {
 
       {/* Main Content */}
       <main className={`flex-1 overflow-auto ${sidebarOpen ? 'ml-64' : 'ml-16'} transition-all duration-300`}>
-        <Outlet />
+        {children}
       </main>
     </div>
   );

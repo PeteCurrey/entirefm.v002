@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { CMSSection } from "@/hooks/usePageContent";
@@ -21,7 +23,7 @@ const fadeInUp = {
 };
 
 export function CMSSectionRenderer({ section, isEditable, onSectionClick }: CMSSectionRendererProps) {
-  const content = section.content || {};
+  const content = (section.content as Record<string, any>) || {};
   
   const handleClick = (e: React.MouseEvent) => {
     if (isEditable && onSectionClick) {
@@ -53,10 +55,10 @@ export function CMSSectionRenderer({ section, isEditable, onSectionClick }: CMSS
         >
           <EditOverlay />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-background/90 z-10" />
-          {content.backgroundImage && (
+          {Boolean((content as any).backgroundImage) && (
             <div 
               className="absolute inset-0 bg-cover bg-center" 
-              style={{ backgroundImage: `url('${content.backgroundImage}')` }} 
+              style={{ backgroundImage: `url('${(content as any).backgroundImage}')` }} 
             />
           )}
           
@@ -89,7 +91,7 @@ export function CMSSectionRenderer({ section, isEditable, onSectionClick }: CMSS
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <Button size="lg" asChild>
-                  <Link to={(content.ctaLink as string) || '#'}>
+                  <Link href={(content.ctaLink as string) || '#'}>
                     {content.ctaText as string}
                   </Link>
                 </Button>
@@ -237,7 +239,7 @@ export function CMSSectionRenderer({ section, isEditable, onSectionClick }: CMSS
                   <h3 className="text-xl font-medium mb-3">{card.title}</h3>
                   <p className="text-muted-foreground">{card.description}</p>
                   {card.link && (
-                    <Link to={card.link} className="text-primary hover:underline mt-4 inline-block">
+                    <Link href={card.link} className="text-primary hover:underline mt-4 inline-block">
                       Learn more →
                     </Link>
                   )}
@@ -330,7 +332,7 @@ export function CMSSectionRenderer({ section, isEditable, onSectionClick }: CMSS
                 </p>
               )}
               <Button size="lg" asChild>
-                <Link to={(content.buttonLink as string) || '/contact'}>
+                <Link href={(content.buttonLink as string) || '/contact'}>
                   {(content.buttonText as string) || 'Contact Us'}
                 </Link>
               </Button>

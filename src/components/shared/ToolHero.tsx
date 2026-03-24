@@ -1,7 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 interface ToolHeroProps {
   icon: LucideIcon;
@@ -145,7 +147,7 @@ export const ToolHero = ({
             transition={{ delay: 0.5, duration: 0.6 }}
           >
             <Button asChild size="lg" className="hover-scale">
-              <Link to={ctaLink}>{ctaText}</Link>
+              <Link href={ctaLink}>{ctaText}</Link>
             </Button>
           </motion.div>
         </div>

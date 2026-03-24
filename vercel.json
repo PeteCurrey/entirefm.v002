@@ -160,16 +160,20 @@
       "destination": "/resources",
       "permanent": true
     },
-    {
-      "source": "/facilities-management-glossary",
-      "destination": "/resources",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/facilities-management-glossary", "destination": "/resources", "permanent": true },
+    { "source": "/services/lightning-protection", "destination": "/services/critical/lightning-protection", "permanent": true },
+    { "source": "/services/lightning-protection-testing", "destination": "/services/critical/lightning-protection", "permanent": true },
+    { "source": "/services/ups-maintenance", "destination": "/services/critical/ups-maintenance", "permanent": true },
+    { "source": "/services/generator-maintenance", "destination": "/services/critical/generator-maintenance", "permanent": true },
+    { "source": "/services/load-bank-testing", "destination": "/services/critical/power-redundancy", "permanent": true },
+    { "source": "/services/thermal-imaging-surveys", "destination": "/services/critical/thermal-imaging", "permanent": true },
+    { "source": "/services/data-room", "destination": "/services/critical/data-room-audits", "permanent": true },
+    { "source": "/services/data-room-audits", "destination": "/services/critical/data-room-audits", "permanent": true },
+    { "source": "/services/arc-flash", "destination": "/services/critical/arc-flash-assessment", "permanent": true },
+    { "source": "/services/arc-flash-assessment", "destination": "/services/critical/arc-flash-assessment", "permanent": true },
+    { "source": "/services/hv-switching-services", "destination": "/services/critical/hv-switching", "permanent": true },
+    { "source": "/services/hv-switching", "destination": "/services/critical/hv-switching", "permanent": true },
+    { "source": "/services/power-quality-analysis", "destination": "/services/critical/power-quality", "permanent": true },
+    { "source": "/services/power-quality", "destination": "/services/critical/power-quality", "permanent": true }
   ]
 }

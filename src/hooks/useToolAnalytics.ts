@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useEffect } from 'react';
 
 interface ToolAnalyticsData {
@@ -30,7 +32,7 @@ export const useToolAnalytics = () => {
     }
 
     // Log to console in development
-    if (import.meta.env.DEV) {
+    if (process.env.NODE_ENV === 'development') {
       console.log('🔧 Tool Analytics:', analyticsData);
     }
 

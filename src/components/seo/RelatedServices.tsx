@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { getRelatedPages } from "@/data/siloArchitecture";
 
@@ -30,7 +30,7 @@ export const RelatedServices = ({
         <div className="flex flex-wrap gap-2">
           {relatedPages.map((page) => (
             <Button key={page.url} asChild variant="outline" size="sm">
-              <Link to={page.url}>
+              <Link href={page.url}>
                 {page.title}
                 <ArrowRight className="w-3 h-3 ml-2" />
               </Link>
@@ -65,7 +65,7 @@ export const RelatedServices = ({
                 </div>
               </div>
               <Button asChild variant="outline" className="w-full group">
-                <Link to={page.url}>
+                <Link href={page.url}>
                   Learn More
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>

@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { usePathname, useRouter } from "next/navigation";
 
 // 301 redirects for critical infrastructure pages moved to /services/critical/
 const REDIRECT_MAP: Record<string, string> = {
@@ -20,16 +22,16 @@ const REDIRECT_MAP: Record<string, string> = {
 };
 
 export const CriticalInfrastructureRedirects = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
-    const newPath = REDIRECT_MAP[location.pathname];
+    const newPath = REDIRECT_MAP[pathname];
     if (newPath) {
       // 301 permanent redirect
-      navigate(newPath, { replace: true });
+      router.replace(newPath);
     }
-  }, [location.pathname, navigate]);
+  }, [pathname, router]);
 
   return null;
 };

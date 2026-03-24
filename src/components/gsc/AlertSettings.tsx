@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -46,9 +48,9 @@ export const AlertSettings = () => {
           : ['indexation_issues', 'crawl_errors', 'performance_drops'];
           
         setSettings({
-          email: data.email,
-          enabled: data.enabled,
-          alert_frequency: data.alert_frequency,
+          email: data.email || "",
+          enabled: data.enabled ?? false,
+          alert_frequency: data.alert_frequency || "daily",
           alert_types: alertTypes,
         });
       } else {

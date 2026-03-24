@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+
 
 interface ServiceSchemaProps {
   name: string;
@@ -24,11 +24,10 @@ export const ServiceSchema = ({ name, description, provider, areaServed }: Servi
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -54,11 +53,10 @@ export const FAQSchema = ({ faqs }: FAQSchemaProps) => {
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -95,11 +93,10 @@ export const LocalBusinessSchema = ({ name, address, email, serviceType }: Local
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -109,11 +106,10 @@ interface SchemaMarkupProps {
 
 export const SchemaMarkup = ({ schema }: SchemaMarkupProps) => {
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -151,11 +147,10 @@ export const OrganizationSchema = ({
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -286,11 +281,10 @@ export const HomepageOrganizationSchema = ({
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -313,11 +307,10 @@ export const ContactPointSchema = () => {
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -345,11 +338,10 @@ export const PersonSchema = ({ name, jobTitle, description, image }: PersonSchem
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -388,11 +380,10 @@ export const ReviewSchema = ({ name, reviewBody, author, rating = 5, datePublish
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -423,11 +414,10 @@ export const WebApplicationSchema = ({ name, description, applicationCategory }:
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
 
@@ -458,10 +448,9 @@ export const SpeakableFAQSchema = ({ faqs }: SpeakableFAQSchemaProps) => {
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(schema)}
-      </script>
-    </Helmet>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };
