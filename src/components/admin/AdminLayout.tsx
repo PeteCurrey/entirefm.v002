@@ -37,10 +37,19 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
-
   useEffect(() => {
+    // Check for dev bypass session
+    const devSession = localStorage.getItem('dev_admin_session');
+    if (devSession === 'true') {
+      setIsAdmin(true);
+      setLoading(false);
+      // We don't need a real session object for the UI to work, 
+      // but we might want to mock one if children components strictly require it.
+    }
+
     // Check session
     supabase.auth.getSession().then(({ data: { session } }) => {
+      if (devSession === 'true') return; // Bypass if dev session is active
       setSession(session);
       if (session) {
         checkAdminRole(session.user.id);
@@ -51,6 +60,7 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (localStorage.getItem('dev_admin_session') === 'true') return;
       setSession(session);
       if (session) {
         checkAdminRole(session.user.id);
@@ -79,6 +89,7 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
   };
 
   const handleSignOut = async () => {
+    localStorage.removeItem('dev_admin_session');
     await supabase.auth.signOut();
     toast({
       title: "Signed out",
@@ -100,7 +111,9 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
     );
   }
 
-  if (!session && !isLoginPage) {
+  const isDevSession = typeof window !== 'undefined' && localStorage.getItem('dev_admin_session') === 'true';
+
+  if (!session && !isDevSession && !isLoginPage) {
     router.push("/admin/login"); 
     return null;
   }

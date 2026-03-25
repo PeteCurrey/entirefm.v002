@@ -60,6 +60,19 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
 
+    // DEV BYPASS for specific credentials
+    if (email === 'pete@entirefm.com' && password === 'Vivaro2104!!') {
+      console.log("Dev bypass active for:", email);
+      localStorage.setItem('dev_admin_session', 'true');
+      toast({
+        title: "Welcome back!",
+        description: "Logged in via dev bypass.",
+      });
+      router.push('/admin');
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
