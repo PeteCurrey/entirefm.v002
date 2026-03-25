@@ -35,7 +35,7 @@ const Home = () => {
       {/* Hero Section */}
       <VideoHero
         videoSrc="/videos/hero-video.mp4"
-        posterImage="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop"
+        posterImage="/images/hero-background.jpg"
       >
         <motion.div
           className="max-w-4xl relative z-10"
@@ -51,7 +51,7 @@ const Home = () => {
             )}
             <h1 className="text-white mb-6 leading-tight font-extralight md:text-6xl text-4xl tracking-tighter">
               Facilities Management & <br />
-              <span className="font-light text-white/90">FM Support Services</span>
+              FM Support Services
             </h1>
           </motion.div>
 
@@ -274,7 +274,7 @@ const Home = () => {
           </motion.div>
 
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-charcoal hover-lift" asChild>
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-charcoal hover-lift" asChild>
               <Link href="/case-studies">
                 View All Case Studies
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -301,10 +301,10 @@ const Home = () => {
             Send us your current issues and incumbent contract details – we'll give you a clear, no-nonsense action plan.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-secondary hover:bg-gray-100 shadow-xl" asChild>
+            <Button size="lg" className="bg-white text-secondary hover:bg-gray-100 hover:text-secondary/90 shadow-xl border-none" asChild>
               <Link href="/contact">Request a Proposal</Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-secondary" asChild>
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-secondary" asChild>
               <a href="tel:08001234567">Call 24/7 Helpdesk</a>
             </Button>
           </div>

@@ -13,6 +13,7 @@ const Sectors = () => {
   const sectors = [
     {
       title: "Offices & Corporate",
+      href: "/sectors/offices-corporate",
       image: officeImage,
       challenges: "Grade A to multi-let schemes. Managing diverse tenant needs. Minimising disruption to business operations.",
       approach: "Out-of-hours works where required. Tenant liaison protocols. Professional appearance standards. Desk-side support available.",
@@ -20,6 +21,7 @@ const Sectors = () => {
     },
     {
       title: "Industrial & Logistics",
+      href: "/sectors/industrial-logistics",
       image: industrialImage,
       challenges: "24/7 operations. Critical infrastructure. High-bay environments. Minimal tolerance for downtime.",
       approach: "Rapid response times. Mobile engineer network. Planned works scheduled around operations. Critical spares holding.",
@@ -27,6 +29,7 @@ const Sectors = () => {
     },
     {
       title: "Retail & Service Stations",
+      href: "/sectors/retail-service-stations",
       image: officeImage,
       challenges: "Customer-facing environments. Brand standards. Out-of-hours maintenance. Multiple site coordination.",
       approach: "Night works as standard. Brand compliance built-in. Multi-site scheduling. Fast turnaround on customer impact issues.",
@@ -34,6 +37,7 @@ const Sectors = () => {
     },
     {
       title: "Aviation & Transport",
+      href: "/sectors/aviation",
       image: industrialImage,
       challenges: "Regulated environments. Security clearances. Complex operational interfaces. Safety-critical systems.",
       approach: "Security-vetted engineers. Airside access protocols. Coordination with operations teams. CAA/DfT compliance built-in.",
@@ -41,6 +45,7 @@ const Sectors = () => {
     },
     {
       title: "Hospitality & Leisure",
+      href: "/sectors/hospitality-leisure",
       image: officeImage,
       challenges: "Guest experience impact. Varied opening hours. Seasonal peaks. Front-of-house and back-of-house requirements.",
       approach: "Discreet service delivery. Rapid response to guest-facing issues. Preventative approach to avoid disruption.",
@@ -48,6 +53,7 @@ const Sectors = () => {
     },
     {
       title: "Residential Blocks & PBSA",
+      href: "/sectors/residential-pbsa",
       image: industrialImage,
       challenges: "Resident satisfaction. Out-of-hours emergencies. Common areas. Estate management. Leaseholder interfaces.",
       approach: "Resident communication protocols. Emergency response structure. Regular inspections. Section 20 consultation support.",
@@ -55,6 +61,7 @@ const Sectors = () => {
     },
     {
       title: "Education & Healthcare",
+      href: "/sectors/healthcare-public",
       image: officeImage,
       challenges: "Safeguarding requirements. Term-time constraints. Critical environments. Regulatory compliance.",
       approach: "DBS-checked engineers. Holiday scheduling. HTM compliance for healthcare. Documented procedures.",
@@ -62,6 +69,7 @@ const Sectors = () => {
     },
     {
       title: "Construction & Developments",
+      href: "/sectors/construction-developments",
       image: industrialImage,
       challenges: "Handover coordination. Defects management. Site progression support. Landlord readiness.",
       approach: "Mobilisation planning. Defects period support. Integration with construction teams. Final mile readiness.",
@@ -108,16 +116,16 @@ const Sectors = () => {
             {sectors.map((sector, index) => (
               <Card key={index} className="overflow-hidden">
                 <div className="grid md:grid-cols-2">
-                  <div className={`relative h-64 md:h-auto ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+                  <Link href={sector.href} className={`block relative flex flex-col justify-end p-8 min-h-[300px] group overflow-hidden ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
                     <img src={(sector.image as any).src || sector.image}
                       alt={sector.title}
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover z-0 group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
-                    <h2 className="absolute bottom-6 left-6 text-3xl font-light text-white underline-accent">
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent z-10" />
+                    <h2 className="relative z-20 text-3xl md:text-4xl font-light text-white border-b border-primary/40 group-hover:border-primary pb-3 inline-block self-start transition-colors">
                       {sector.title}
                     </h2>
-                  </div>
+                  </Link>
                   <div className={`p-8 space-y-6 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
                     <div>
                       <h3 className="text-lg font-medium mb-3">Key Challenges</h3>

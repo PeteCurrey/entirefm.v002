@@ -119,7 +119,7 @@ export default function ContentList() {
             </p>
           </div>
         </div>
-        <Button onClick={() => router.push('/admin/content/new')} className="gap-2">
+        <Button onClick={() => router.push('/admin/marketing/content/new')} className="gap-2">
           <Plus className="h-4 w-4" />
           New Content
         </Button>
@@ -174,7 +174,7 @@ export default function ContentList() {
             <div className="text-center py-16 text-muted-foreground">
               <FileText className="h-12 w-12 mx-auto mb-4 opacity-20" />
               <p>No content found</p>
-              <Button variant="outline" className="mt-4" onClick={() => router.push('/admin/content/new')}>
+              <Button variant="outline" className="mt-4" onClick={() => router.push('/admin/marketing/content/new')}>
                 Create First Post
               </Button>
             </div>
@@ -192,7 +192,7 @@ export default function ContentList() {
               <TableBody>
                 {filteredContent.map((item) => (
                   <TableRow key={item.id} className="cursor-pointer hover:bg-muted/50">
-                    <TableCell onClick={() => router.push(`/admin/content/edit/${item.id}`)}>
+                    <TableCell onClick={() => router.push(`/admin/marketing/content/edit/${item.id}`)}>
                       <div>
                         <p className="font-medium">{item.title}</p>
                         <p className="text-sm text-muted-foreground">/{item.slug}</p>
@@ -214,7 +214,7 @@ export default function ContentList() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          onClick={() => router.push(`/admin/content/edit/${item.id}`)}
+                          onClick={() => router.push(`/admin/marketing/content/edit/${item.id}`)}
                         >
                           <Edit className="h-4 w-4" />
                         </Button>

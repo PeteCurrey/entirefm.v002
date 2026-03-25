@@ -52,10 +52,10 @@ export default function AdminDashboard() {
         <Card className="p-6 border-l-4 border-l-primary">
           <h3 className="font-semibold mb-2">Content Quick Actions</h3>
           <div className="space-y-2">
-            <Link href="/admin/content/new" className="block text-sm text-blue-600 hover:underline">
+            <Link href="/admin/marketing/content/new" className="block text-sm text-blue-600 hover:underline">
               + Write new article
             </Link>
-            <Link href="/admin/content" className="block text-sm text-muted-foreground hover:text-foreground">
+            <Link href="/admin/marketing/content" className="block text-sm text-muted-foreground hover:text-foreground">
               Manage existing posts
             </Link>
           </div>

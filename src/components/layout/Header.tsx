@@ -49,7 +49,11 @@ const Header = ({ className }: { className?: string }) => {
     { label: "Commercial Offices", to: "/sectors/offices", icon: Building, image: "/images/sector-offices.jpg" },
     { label: "Logistics Hubs", to: "/sectors/industrial-logistics", icon: Factory, image: "/images/sector-industrial.png" },
     { label: "Retail Parks", to: "/sectors/retail-hospitality", icon: ShoppingBag, image: "/images/sector-retail.jpg" },
-    { label: "Aviation Sites", to: "/sectors/healthcare-public", icon: Factory, image: "/images/sector-aviation.jpg" }
+    { label: "Aviation Sites", to: "/sectors/aviation", icon: Factory, image: "/images/sector-aviation.jpg" },
+    { label: "Education", to: "/sectors/education", icon: BookOpen, image: "/images/sector-education.jpg" },
+    { label: "Healthcare", to: "/sectors/healthcare", icon: ShieldAlert, image: "/images/sector-healthcare.jpg" },
+    { label: "Hospitality & Leisure", to: "/sectors/hospitality", icon: Building2, image: "/images/sector-hospitality.jpg" },
+    { label: "Residential & PBSA", to: "/sectors/residential", icon: Building, image: "/images/sector-residential.jpg" }
   ];
 
   const toolsItems = [
@@ -186,9 +190,9 @@ const Header = ({ className }: { className?: string }) => {
                          <h4 className="text-[10px] font-medium text-primary uppercase tracking-[0.2em]">Industry Sectors</h4>
                          <Link href="/sectors" className="text-[11px] text-white/60 hover:text-white transition-colors flex items-center gap-1">View All <ArrowRight className="w-3 h-3" /></Link>
                       </div>
-                      <div className="grid grid-cols-4 gap-4">
+                      <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                         {sectorsItems.map((item, idx) => (
-                          <Link key={idx} href={item.to} className="group/sector relative aspect-square overflow-hidden bg-slate-900 border border-white/10 hover:border-primary/50 transition-all">
+                          <Link key={idx} href={item.to} className="group/sector shrink-0 w-[200px] relative aspect-square overflow-hidden bg-slate-900 border border-white/10 hover:border-primary/50 transition-all snap-start shadow-xl">
                             <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/90 to-slate-950/20 group-hover/sector:from-slate-950/70 transition-all duration-500" />
                             {item.image && <img src={item.image} alt={item.label} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/sector:scale-110 group-hover/sector:opacity-90 transition-all duration-700" />}
                             <div className="absolute inset-0 z-20 p-4 flex flex-col justify-end">

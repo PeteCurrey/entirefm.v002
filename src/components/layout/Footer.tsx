@@ -6,19 +6,9 @@ import { ArrowRight, Shield, Clock, MapPin, Mail, Phone, Linkedin, Twitter, Face
 import { cn } from "@/lib/utils";
 
 const ButterflyLogo = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 40 40" className={cn("w-10 h-10", className)} xmlns="http://www.w3.org/2000/svg">
-    <path 
-      d="M20 20 L5 5 L20 15 L35 5 L20 20 Z" 
-      fill="currentColor" 
-      className="text-primary"
-    />
-    <path 
-      d="M20 20 L5 35 L20 25 L35 35 L20 20 Z" 
-      fill="currentColor" 
-      className="text-primary/70"
-    />
-    <rect x="19" y="10" width="2" height="20" fill="currentColor" className="text-white/20" />
-  </svg>
+  <div className={cn("relative w-16 h-16 flex items-center justify-center", className)}>
+    <img src="/logo.png" alt="EntireFM Logo" className="w-full h-full object-contain" />
+  </div>
 );
 
 export const Footer = () => {
@@ -60,12 +50,8 @@ export const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
             {/* Brand Info */}
             <div className="space-y-10">
-              <Link href="/" className="flex items-center gap-3">
+              <Link href="/" className="flex items-center group mb-4">
                 <ButterflyLogo />
-                <div className="flex flex-col">
-                  <span className="text-2xl font-black tracking-tighter leading-none">EntireFM</span>
-                  <span className="text-[10px] font-black tracking-[0.3em] uppercase text-primary mt-1">Facilities Management</span>
-                </div>
               </Link>
               <p className="text-gray-400 font-light leading-relaxed max-w-xs">
                 Nationwide facilities management specialists delivering technical excellence, 

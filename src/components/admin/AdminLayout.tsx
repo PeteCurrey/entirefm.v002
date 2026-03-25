@@ -87,6 +87,8 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
     router.push('/admin/login');
   };
 
+  const isLoginPage = pathname === "/admin/login";
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -98,8 +100,13 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
     );
   }
 
-  if (!session) {
-    router.push("/admin/login"); return null;
+  if (!session && !isLoginPage) {
+    router.push("/admin/login"); 
+    return null;
+  }
+
+  if (isLoginPage) {
+    return <>{children}</>;
   }
 
 
