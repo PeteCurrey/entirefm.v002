@@ -11,6 +11,15 @@ const nextConfig = {
   },
   // Turbopack is enabled by default in Next.js 16, but if we need custom config:
   // turbopack: { ... },
+  async redirects() {
+    return [
+      {
+        source: '/contact-us',
+        destination: '/contact',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

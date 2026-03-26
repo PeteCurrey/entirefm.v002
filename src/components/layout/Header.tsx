@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight, Zap, Siren, Cable, Thermometer, Droplets, Flame, Wrench, HardHat, Droplet, Hammer, Phone, Building, Factory, ShoppingBag, Info, Mail, MapPin, Monitor, BookOpen, Building2, Calculator, PoundSterling, Target, ShieldAlert, FileText, Calendar, ClipboardCheck, Lightbulb } from "lucide-react";
+import { Menu, X, ArrowRight, Zap, Siren, Cable, Thermometer, Droplets, Flame, Wrench, HardHat, Droplet, Hammer, Phone, Building, Factory, ShoppingBag, Info, Mail, MapPin, Monitor, BookOpen, Building2, Calculator, PoundSterling, Target, ShieldAlert, FileText, Calendar, ClipboardCheck, Lightbulb, ChevronLeft, ChevronRight, Landmark, Briefcase, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
@@ -19,6 +19,17 @@ const Header = ({ className }: { className?: string }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const sectorsScrollRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollSectors = (direction: 'left' | 'right') => {
+    if (sectorsScrollRef.current) {
+      const scrollAmount = 400;
+      sectorsScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,12 +68,12 @@ const Header = ({ className }: { className?: string }) => {
   ];
 
   const toolsItems = [
-    { label: "PPM Calculator", to: "/tools/ppm-calculator", description: "Calculate PPM ROI & risk exposure", icon: Calculator },
-    { label: "Cost Savings Calculator", to: "/tools/cost-savings-calculator", description: "Estimate savings from improved FM", icon: PoundSterling },
-    { label: "SLA Benchmark", to: "/tools/sla-benchmark", description: "Compare your SLA performance", icon: Target },
-    { label: "TM44 Checker", to: "/tools/tm44-checker", description: "AC inspection compliance checker", icon: Thermometer },
-    { label: "Water Risk Grader", to: "/tools/water-risk-grader", description: "Assess your L8 compliance risk", icon: Droplets },
-    { label: "Risk Diagnostic", to: "/tools/risk-diagnostic", description: "Identify compliance gaps", icon: ShieldAlert }
+    { label: "FM Health Check", to: "/tools/fm-health-check", description: "Audit your building compliance in 2 mins", icon: ShieldAlert },
+    { label: "TCO/ROI Calculator", to: "/tools/fm-roi-calculator", description: "Calculate total FM cost of ownership", icon: PoundSterling },
+    { label: "PPM Schedule Builder", to: "/tools/ppm-schedule-builder", description: "Build an SFG20 aligned schedule", icon: Calendar },
+    { label: "Compliance Checker", to: "/tools/compliance-checker", description: "AI-powered compliance risk audit", icon: ClipboardCheck },
+    { label: "PPM Cost Estimator", to: "/tools/ppm-estimator", description: "Instant PPM pricing estimation", icon: Calculator },
+    { label: "RFP/Tender Assistant", to: "/tools/tender-brief", description: "AI builder for tender documents", icon: FileText }
   ];
 
   const guidesItems = [
@@ -75,11 +86,13 @@ const Header = ({ className }: { className?: string }) => {
   ];
 
   const knowledgeItems = [
-    { label: "FM Insights", to: "/fm-insights", icon: BookOpen },
-    { label: "Case Studies", to: "/case-studies", icon: Building2 },
+    { label: "FM Intelligence Hub", to: "/fm-intelligence", icon: Target },
+    { label: "EntireFM Academy", to: "/academy", icon: BookOpen },
+    { label: "The Building Walk", to: "/building-walk", icon: Landmark },
+    { label: "Market Report 2025", to: "/fm-market-report", icon: FileText },
+    { label: "Contractor Marketplace", to: "/marketplace", icon: Briefcase },
     { label: "About EntireFM", to: "/about", icon: Info },
-    { label: "Contact", to: "/contact", icon: Mail },
-    { label: "Locations", to: "/locations", icon: MapPin }
+    { label: "Partner Network", to: "/partners", icon: Users }
   ];
 
   return (
@@ -190,17 +203,39 @@ const Header = ({ className }: { className?: string }) => {
                          <h4 className="text-[10px] font-medium text-primary uppercase tracking-[0.2em]">Industry Sectors</h4>
                          <Link href="/sectors" className="text-[11px] text-white/60 hover:text-white transition-colors flex items-center gap-1">View All <ArrowRight className="w-3 h-3" /></Link>
                       </div>
-                      <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                        {sectorsItems.map((item, idx) => (
-                          <Link key={idx} href={item.to} className="group/sector shrink-0 w-[200px] relative aspect-square overflow-hidden bg-slate-900 border border-white/10 hover:border-primary/50 transition-all snap-start shadow-xl">
-                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/90 to-slate-950/20 group-hover/sector:from-slate-950/70 transition-all duration-500" />
-                            {item.image && <img src={item.image} alt={item.label} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/sector:scale-110 group-hover/sector:opacity-90 transition-all duration-700" />}
-                            <div className="absolute inset-0 z-20 p-4 flex flex-col justify-end">
-                              <item.icon className="w-6 h-6 text-primary mb-3 opacity-90 group-hover/sector:scale-110 transition-transform duration-300" />
-                              <span className="text-sm font-medium text-white group-hover/sector:text-primary transition-colors">{item.label}</span>
-                            </div>
-                          </Link>
-                        ))}
+                      <div className="relative group/scroll">
+                        <div 
+                          ref={sectorsScrollRef}
+                          className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none [&::-webkit-scrollbar]:hidden" 
+                          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        >
+                          {sectorsItems.map((item, idx) => (
+                            <Link key={idx} href={item.to} className="group/sector shrink-0 w-[200px] relative aspect-square overflow-hidden bg-slate-900 border border-white/10 hover:border-primary/50 transition-all snap-start shadow-xl">
+                              <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950/90 to-slate-950/20 group-hover/sector:from-slate-950/70 transition-all duration-500" />
+                              {item.image && <img src={item.image} alt={item.label} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/sector:scale-110 group-hover/sector:opacity-90 transition-all duration-700" />}
+                              <div className="absolute inset-0 z-20 p-4 flex flex-col justify-end">
+                                <item.icon className="w-6 h-6 text-primary mb-3 opacity-90 group-hover/sector:scale-110 transition-transform duration-300" />
+                                <span className="text-sm font-medium text-white group-hover/sector:text-primary transition-colors">{item.label}</span>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                        
+                        {/* Scroll Arrows */}
+                        <button 
+                          onClick={() => scrollSectors('left')}
+                          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-30 w-10 h-10 bg-slate-900/90 border border-white/10 rounded-full flex items-center justify-center text-white opacity-0 group-hover/scroll:opacity-100 group-hover/scroll:translate-x-0 transition-all hover:bg-primary hover:border-primary"
+                          aria-label="Scroll left"
+                        >
+                          <ChevronLeft className="w-6 h-6" />
+                        </button>
+                        <button 
+                          onClick={() => scrollSectors('right')}
+                          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-30 w-10 h-10 bg-slate-900/90 border border-white/10 rounded-full flex items-center justify-center text-white opacity-0 group-hover/scroll:opacity-100 group-hover/scroll:translate-x-0 transition-all hover:bg-primary hover:border-primary"
+                          aria-label="Scroll right"
+                        >
+                          <ChevronRight className="w-6 h-6" />
+                        </button>
                       </div>
                     </div>
                   </motion.div>

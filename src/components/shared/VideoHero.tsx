@@ -71,7 +71,7 @@ export const VideoHero = ({ videoSrc, posterImage, children }: VideoHeroProps) =
       )}
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
       
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 relative z-10">

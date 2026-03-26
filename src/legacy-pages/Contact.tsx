@@ -84,7 +84,7 @@ const Contact = () => {
         toast.error(firstError.message);
       } else {
         console.error('Error submitting contact form:', error);
-        toast.error("Something went wrong submitting the form. Please try again or email enquiries@entirefm.com");
+        toast.error("Something went wrong submitting the form. Please try again or email hello@entirefm.com");
       }
     } finally {
       setSubmitting(false);
@@ -102,8 +102,8 @@ const Contact = () => {
     title: "Send us an Email",
     subtitle: "We'll Get Back To You",
     description: "Your email goes straight to the right team. No waiting in queues.",
-    action: "hello@entirefm.co.uk",
-    href: "mailto:hello@entirefm.co.uk"
+    action: "hello@entirefm.com",
+    href: "mailto:hello@entirefm.com"
   }, {
     icon: Globe,
     title: "Portal Access",
@@ -118,7 +118,7 @@ const Contact = () => {
     subtitle: "Real-Time Support",
     description: "Connect with our team instantly for quick questions and support.",
     action: "Start Chat",
-    href: "#live-chat"
+    onClick: () => window.dispatchEvent(new CustomEvent('open-chat'))
   }];
   const coverage = ["Hard services across all disciplines", "Critical compliance work", "Reactive emergencies", "Multi-site portfolios"];
   return <>
@@ -128,7 +128,7 @@ const Contact = () => {
       <ContactPointSchema />
       <OrganizationSchema />
 
-      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 pt-20">
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
         {/* Hero Section */}
         <section ref={heroRef} className="relative py-16 px-4 overflow-hidden">
           {/* Background Image with Parallax */}
@@ -246,14 +246,20 @@ const Contact = () => {
                   <h3 className="text-2xl font-bold mb-1">{method.title}</h3>
                   <p className="text-primary font-semibold mb-3">{method.subtitle}</p>
                   
-                  <Button variant="outline" asChild>
-                    <a 
-                      href={method.href}
-                      {...((method as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    >
+                  {(method as any).onClick ? (
+                    <Button variant="outline" onClick={(method as any).onClick}>
                       {method.action}
-                    </a>
-                  </Button>
+                    </Button>
+                  ) : (
+                    <Button variant="outline" asChild>
+                      <a 
+                        href={(method as any).href}
+                        {...((method as any).external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        {method.action}
+                      </a>
+                    </Button>
+                  )}
                 </Card>)}
             </div>
           </div>
@@ -289,8 +295,8 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                     <div>
                       <h3 className="text-lg font-bold mb-1">Email</h3>
-                      <a href="mailto:hello@entirefm.co.uk" className="text-primary hover:underline">
-                        hello@entirefm.co.uk
+                      <a href="mailto:hello@entirefm.com" className="text-primary hover:underline">
+                        hello@entirefm.com
                       </a>
                     </div>
                   </div>
@@ -415,7 +421,7 @@ const Contact = () => {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="gap-2" asChild>
-                  <a href="mailto:hello@entirefm.co.uk">
+                  <a href="mailto:hello@entirefm.com">
                     <Mail className="w-5 h-5" />
                     Email Us
                   </a>

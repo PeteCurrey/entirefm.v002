@@ -20,7 +20,7 @@ export const Footer = () => {
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="footerDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1" fill="white" />
+                <circle cx="2" cy="2" r="1" fill="#1A1C23" />
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#footerDots)" />
@@ -29,14 +29,14 @@ export const Footer = () => {
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
             <div className="text-center lg:text-left">
-              <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tight">Ready to Elevate Your FM?</h3>
-              <p className="text-xl text-white/80 font-light">Speak to our specialists about your building's requirements.</p>
+              <h3 className="text-3xl md:text-5xl font-black mb-4 tracking-tight text-charcoal">Ready to Elevate Your FM?</h3>
+              <p className="text-xl text-charcoal/80 font-medium">Speak to our specialists about your building's requirements.</p>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              <Button asChild size="lg" className="bg-black hover:bg-gray-900 text-white px-10 h-16 rounded-none border-none uppercase tracking-widest font-black text-xs shadow-2xl">
+              <Button asChild size="lg" className="bg-charcoal hover:bg-black text-white px-10 h-16 rounded-none border-none uppercase tracking-widest font-black text-xs shadow-2xl transition-colors">
                 <Link href="/contact">Request Proposal</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary px-10 h-16 rounded-none uppercase tracking-widest font-black text-xs">
+              <Button asChild size="lg" variant="outline" className="border-2 border-charcoal bg-transparent text-charcoal hover:bg-charcoal hover:text-white px-10 h-16 rounded-none uppercase tracking-widest font-black text-xs transition-colors">
                 <Link href="/contact">Talk to the Team</Link>
               </Button>
             </div>
@@ -66,25 +66,57 @@ export const Footer = () => {
               </div>
             </div>
 
-            {/* Core Services */}
             <div>
-              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">Core Services</h4>
+              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">FM Solutions</h4>
               <ul className="space-y-4">
-                {["Hard FM Services", "Soft FM Services", "PPM Maintenance", "Compliance Audits", "M&E Engineering", "Fire Safety Systems"].map((item) => (
-                  <li key={item}>
-                    <Link href={`/services/${item.toLowerCase().replace(/ /g, '-')}`} className="text-sm text-gray-400 hover:text-white transition-colors font-medium">{item}</Link>
+                {[
+                  { label: "Hard FM Services", to: "/services/hard-fm-services" },
+                  { label: "Soft FM Services", to: "/services/soft-fm-services" },
+                  { label: "PPM Maintenance", to: "/services/ppm-compliance" },
+                  { label: "Compliance Audits", to: "/tools/compliance-checker" },
+                  { label: "Sector FM", to: "/sectors" },
+                  { label: "Contractor Marketplace", to: "/marketplace" }
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.to} className="text-sm text-gray-400 hover:text-white transition-colors font-medium">{item.label}</Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Quick Links */}
+            {/* Hubs & Resources */}
             <div>
-              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">Company</h4>
+              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">Intelligence & Learning</h4>
               <ul className="space-y-4">
-                {["About EntireFM", "Case Studies", "Knowledge Hub", "Sectors We Serve", "Contact Us", "Careers"].map((item) => (
-                  <li key={item}>
-                    <Link href={`/${item.toLowerCase().replace(/ /g, '-')}`} className="text-sm text-gray-400 hover:text-white transition-colors font-medium">{item}</Link>
+                {[
+                  { label: "FM Intelligence Hub", to: "/fm-intelligence" },
+                  { label: "EntireFM Academy", to: "/academy" },
+                  { label: "Document Vault", to: "/resources/document-vault" },
+                  { label: "Building Walk Series", to: "/building-walk" },
+                  { label: "Market Report 2025", to: "/fm-market-report" },
+                  { label: "Partner Network", to: "/partners" },
+                  { label: "About EntireFM", to: "/about" }
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.to} className="text-sm text-gray-400 hover:text-white transition-colors font-medium">{item.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">FM Tools</h4>
+              <ul className="space-y-4">
+                {[
+                  { label: "Health Check Quiz", to: "/tools/fm-health-check" },
+                  { label: "ROI/TCO Calculator", to: "/tools/fm-roi-calculator" },
+                  { label: "PPM Schedule Builder", to: "/tools/ppm-schedule-builder" },
+                  { label: "PPM Cost Estimator", to: "/tools/ppm-estimator" },
+                  { label: "RFP/Tender Assistant", to: "/tools/tender-brief" },
+                  { label: "Compliance Calendar", to: "/tools/compliance-calendar" }
+                ].map((item) => (
+                  <li key={item.label}>
+                    <Link href={item.to} className="text-sm text-gray-400 hover:text-white transition-colors font-medium">{item.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -108,7 +140,7 @@ export const Footer = () => {
                 </div>
                 <div className="flex items-center gap-4">
                   <Mail className="w-5 h-5 text-primary shrink-0" />
-                  <p className="text-sm text-gray-400 font-medium tracking-tight">info@entirefm.com</p>
+                  <p className="text-sm text-gray-400 font-medium tracking-tight">hello@entirefm.com</p>
                 </div>
               </div>
             </div>

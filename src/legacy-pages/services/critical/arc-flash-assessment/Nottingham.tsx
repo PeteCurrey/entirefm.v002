@@ -15,7 +15,7 @@ export default function ArcFlashAssessmentNottingham() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/placeholder.svg)',
+              backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/images/hero-building-engineering.jpg)',
             }}
           />
           <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">

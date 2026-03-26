@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { HelpCircle, X, MessageSquare, Phone, FileText } from "lucide-react";
 import Link from "next/link";
@@ -10,6 +10,15 @@ import AIChatPanel from "@/components/ai-assistant/AIChatPanel";
 const FloatingCTA = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showChat, setShowChat] = useState(false);
+
+  useEffect(() => {
+    const handleOpenChatGlobal = () => {
+      setIsOpen(true);
+      setShowChat(true);
+    };
+    window.addEventListener('open-chat', handleOpenChatGlobal);
+    return () => window.removeEventListener('open-chat', handleOpenChatGlobal);
+  }, []);
 
   const handleOpenChat = () => {
     setShowChat(true);

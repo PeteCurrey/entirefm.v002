@@ -2,10 +2,10 @@ import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { 
-  Settings, Zap, Flame, Lightbulb, HardHat, Building2, 
-  CheckCircle2, Plus, ArrowRight, ShieldCheck, Clock, 
-  Users, FileText, Smartphone 
+  Wrench, Wind, Flame, Zap, Hammer, Camera, 
+  ArrowRight, ShieldCheck, Clock, UserCheck, FileCheck
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/accordion";
 
 export const metadata: Metadata = {
-  title: "Hard FM Services UK | M&E, HVAC & Statutory Compliance | EntireFM",
-  description: "EntireFM delivers expert hard facilities management services across the UK — mechanical and electrical maintenance, HVAC, fire safety, electrical compliance, and building fabric. SFG20-aligned and 24/7 helpdesk supported.",
+  title: "Hard FM Services UK | M&E, HVAC & Building Compliance | EntireFM",
+  description: "EntireFM delivers expert hard facilities management services across the UK — mechanical and electrical maintenance, HVAC, fire safety, electrical compliance, and building fabric. SFG20-aligned with 24/7 helpdesk support.",
   alternates: {
     canonical: "https://www.entirefm.com/services/hard-fm",
   },
@@ -30,306 +30,342 @@ export default function HardFMPage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is included in Hard FM services?",
+        "name": "What does hard FM include?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Hard FM refers to the physical fabric and systems of a building that cannot be removed, such as M&E, HVAC, fire safety systems, plumbing, and electrical compliance."
+          "text": "Hard FM revolves around the physical, structural, and critical systems of a building. It includes mechanical and electrical (M&E) systems, HVAC, fire safety systems, plumbing, electrical compliance testing (like EICR and PAT testing), and general building fabric maintenance. Essentially, if it involves the physical infrastructure of the building, it falls under hard FM."
         }
       },
       {
         "@type": "Question",
-        "name": "Are EntireFM's maintenance schedules SFG20-aligned?",
+        "name": "What is the difference between hard FM and soft FM?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, all of our hard FM maintenance programmes are built using the SFG20 standard to ensure absolute statutory compliance."
+          "text": "Hard FM deals with the physical infrastructure and statutory compliance of a building (e.g., HVAC, electrical, fire safety, plumbing). It requires certified engineers. Soft FM deals with the environment and services that make the building pleasant for its occupants, such as commercial cleaning, security, grounds maintenance, and front-of-house services."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does EntireFM ensure compliance on hard FM contracts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EntireFM uses SFG20, the industry standard for building maintenance, as the foundation for all hard FM programmes. We track all statutory deadlines via our digital compliance calendar. Following every engineer visit, a comprehensive digital compliance report is generated, ensuring an unbroken audit trail for your entire estate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you service multi-site hard FM estates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. EntireFM operates a national network of accredited engineers. We excel at consolidating multi-site portfolios under a single Total Facilities Management (TFM) or Hard FM contract, providing centralized reporting, a single helpdesk escalation point, and standardized SLA compliance across the UK."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What qualifications do EntireFM's engineers hold?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our hard FM teams are highly accredited. Electrical engineers hold valid NICEIC/City & Guilds 2391 qualifications, gas engineers are Gas Safe Registered, fire safety technicians are BAFE certified, and HVAC specialists hold F-Gas certifications. We maintain a stringent vendor and employee vetting process to guarantee competence."
         }
       }
     ]
   };
 
-  const services = [
-    { title: "M&E Services", icon: <Settings className="w-8 h-8" /> },
-    { title: "HVAC Maintenance", icon: <Zap className="w-8 h-8" /> },
-    { title: "Fire Safety", icon: <Flame className="w-8 h-8" /> },
-    { title: "Emergency Lighting", icon: <Lightbulb className="w-8 h-8" /> },
-    { title: "Electrical Compliance", icon: <ShieldCheck className="w-8 h-8" /> },
-    { title: "Building Fabric", icon: <Building2 className="w-8 h-8" /> },
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Hard FM Services",
+    "provider": {
+      "@type": "Organization",
+      "name": "EntireFM"
+    },
+    "description": "Mechanical and electrical maintenance, HVAC, fire safety, electrical compliance, and building fabric services across the UK.",
+    "areaServed": "UK",
+    "serviceType": "Hard Facilities Management"
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.entirefm.com" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.entirefm.com/services" },
+      { "@type": "ListItem", "position": 3, "name": "Hard FM", "item": "https://www.entirefm.com/services/hard-fm" }
+    ]
+  };
+
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Hard FM" },
   ];
 
-  const benefits = [
+  const sectors = [
+    "Retail", "Residential", "Commercial", "Industrial", "Hotel & Hospitality", 
+    "Healthcare", "Education", "Motorway Services", "Aviation", "Arenas"
+  ];
+
+  const servicesList = [
     {
-      title: "SFG20-Compliant Programmes",
-      desc: "Maintenance built to the UK's legal gold standard for total peace of mind.",
-      icon: <FileText className="w-6 h-6" />
+      title: "Mechanical & Electrical (M&E) Services",
+      icon: <Wrench className="w-16 h-16 text-primary" />,
+      desc: "Comprehensive proactive maintenance for all critical M&E infrastructure. Mechanical systems dictate a building's operability. A failure in water pumps, heating plants, or primary distribution boards doesn't just disrupt work—it halts it entirely. We design SFG20-aligned maintenance schedules to ensure your essential mechanical and electrical infrastructure delivers maximum uptime, extending asset life and minimizing catastrophic failures."
     },
     {
-      title: "24/7 Reactive Helpdesk",
-      desc: "Emergency response whenever you need it, managed by our UK-based team.",
-      icon: <Smartphone className="w-6 h-6" />
+      title: "HVAC Maintenance & Servicing",
+      icon: <Wind className="w-16 h-16 text-primary" />,
+      desc: "Maintain precise air quality and temperature control while ensuring F-Gas compliance. HVAC systems account for the largest proportion of an estate's energy consumption. Our certified engineers deliver comprehensive servicing for chillers, AHUs, VRF/VRV systems, and ductwork, drastically improving energy efficiency while ensuring occupants enjoy a comfortable, perfectly regulated environment."
     },
     {
-      title: "Dedicated Account Management",
-      desc: "One single point of contact for every hard FM service line.",
-      icon: <Users className="w-6 h-6" />
+      title: "Fire Safety Systems",
+      icon: <Flame className="w-16 h-16 text-primary" />,
+      desc: "Alarms, detection, emergency lighting, and dry risers. Life safety is non-negotiable. Our BAFE-accredited teams handle weekly tests, quarterly inspections, and complex rectifications for comprehensive fire suppression and detection networks. We ensure you're fully covered under the Regulatory Reform (Fire Safety) Order, preventing enforcement action and protecting lives."
     },
     {
-      title: "Full Compliance Documentation",
-      desc: "Real-time access to every certificate and service record via our portal.",
-      icon: <CheckCircle2 className="w-6 h-6" />
+      title: "Electrical Compliance",
+      icon: <Zap className="w-16 h-16 text-primary" />,
+      desc: "Fixed wire testing (EICR), portable appliance testing (PAT), and load bank testing. Electrical failures form the primary risk for commercial fires. Our NICEIC-registered engineers deliver meticulous electrical safety inspections. From entire 5-year fixed wire condition reports to routine thermal imaging of distribution panels, we guarantee your electrical network is legally defensible and fully safe."
+    },
+    {
+      title: "Building Fabric Maintenance",
+      icon: <Hammer className="w-16 h-16 text-primary" />,
+      desc: "Structural integrity and weatherproofing. From roof void inspections and gutter clearances to door mechanisms, roller shutters, and aesthetic internal repairs. Building fabric is the first line of defense against the elements. Our preventative approach halts minor ingress issues from evolving into massive, disruptive capital repair projects."
+    },
+    {
+      title: "Drone-Assisted Building Inspection",
+      icon: <Camera className="w-16 h-16 text-primary" />,
+      desc: "Safe, rapid, and high-definition aerial surveys of inaccessible assets. Avoid the severe costs and risks of scaffolding just for an inspection. We deploy licensed drone operators to survey expansive roofs, complex facades, and industrial stacks. The resulting 4K imagery perfectly catalogues structural defects, empowering data-driven fabric repair decisions."
     }
   ];
 
-  const sectors = ["Retail", "Residential", "Hotel", "Industrial", "Commercial", "Aviation", "Arenas", "Healthcare", "Education"];
-
   return (
-    <div className="min-h-screen bg-[#0a0a0b] text-white font-inter">
-      <Script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero Section */}
-      <section className="relative pt-48 pb-24 overflow-hidden">
-        {/* Isometric Grid Overlay */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="isoGrid" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                <path d="M100 0L0 50L100 100L200 50Z" fill="none" stroke="currentColor" strokeWidth="1" className="text-primary" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#isoGrid)" />
-          </svg>
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl">
-            <span className="text-primary text-xs font-black uppercase tracking-[0.4em] mb-8 block">TECHNICAL FM EXPERTISE</span>
-            <h1 className="text-5xl md:text-7xl font-black mb-10 leading-tight tracking-tight">
-              Hard FM Services — Critical Systems <span className="text-primary">Safe & Compliant</span>
+      <section className="relative h-[65vh] min-h-[500px] flex items-end overflow-hidden pb-16">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/images/hero-building-engineering.jpg)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
+        
+        <div className="container mx-auto px-6 relative z-10 w-full">
+          <Breadcrumb items={breadcrumbItems} />
+          <div className="max-w-4xl mt-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight tracking-tight">
+              Hard FM Services — <br/>
+              Expert Mechanical, Electrical and Compliance Services Across the UK
             </h1>
-            <p className="text-xl md:text-2xl text-gray-400 font-light leading-relaxed mb-12 max-w-2xl">
-              From nationwide M&E maintenance to statutory fire safety audits, 
-              we keep your building's vital infrastructure performing at its peak.
+            <p className="text-xl text-gray-300 font-light leading-relaxed mb-8 max-w-3xl">
+              From HVAC servicing and fire safety systems to electrical compliance and building fabric maintenance — EntireFM delivers complete hard FM services to keep your building safe, operational, and fully compliant.
             </p>
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white px-10 h-16 rounded-none border-none uppercase tracking-[0.2em] font-black text-sm shadow-2xl">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-10 h-14 uppercase tracking-widest font-bold shadow-xl">
               <Link href="/contact">Get a Hard FM Quote</Link>
             </Button>
           </div>
         </div>
+      </section>
 
-        {/* Stat Strip */}
-        <div className="mt-24 border-y border-white/10 bg-white/5 backdrop-blur-sm">
-          <div className="container mx-auto px-6 py-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-primary text-3xl font-black mb-2">24/7</div>
-                <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Helpdesk Support</div>
-              </div>
-              <div className="text-center">
-                <div className="text-primary text-3xl font-black mb-2">SFG20</div>
-                <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Aligned Schedules</div>
-              </div>
-              <div className="text-center">
-                <div className="text-primary text-3xl font-black mb-2">Nationwide</div>
-                <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest">UK Coverage</div>
-              </div>
-              <div className="text-center">
-                <div className="text-primary text-3xl font-black mb-2">2009</div>
-                <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest">Established</div>
-              </div>
-            </div>
+      {/* What Is Hard FM */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <h2 className="text-3xl md:text-4xl font-light mb-8 underline-accent inline-block">
+            What Is Hard FM?
+          </h2>
+          <div className="prose prose-lg text-muted-foreground font-light leading-relaxed mx-auto">
+            <p>
+              Hard Facilities Management (Hard FM) relates directly to the physical structure and the critical mechanical and electrical (M&E) systems that keep a building alive. In contrast to soft FM (which focuses on improving the working environment through services like cleaning and security), hard FM is anchored in statutory compliance, safety, and operational continuity.
+            </p>
+            <p>
+              It encompasses critical disciplines: fire safety suppression, HVAC temperature control, water hygiene, and extensive electrical compliance. Because of the direct life-safety risks and legal obligations involved, hard FM requires highly technical, certified specialist engineers. Outsourcing your hard FM to a qualified, experienced provider like EntireFM transfers this immense compliance risk, ensuring your assets are maintained to exacting legal directives without overwhelming your internal resources.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* What is Hard FM Section */}
-      <section className="py-32">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <div>
-              <h2 className="text-xs uppercase tracking-[0.4em] font-black text-primary mb-8">What is Hard FM?</h2>
-              <p className="text-3xl font-light text-white mb-10 leading-snug">
-                Hard Facilities Management relates to the physical structure and 
-                critical technical systems that keep your building habitable.
-              </p>
-              <p className="text-lg text-gray-400 font-light leading-relaxed mb-12">
-                Unlike soft services, Hard FM is often statutory. Failure to maintain these 
-                systems doesn't just impact comfort—it creates significant legal and 
-                safety liabilities. EntireFM provides a single point of accountability 
-                for every technical asset in your estate.
-              </p>
-              <div className="flex gap-4">
-                <div className="w-12 h-1 bg-primary" />
-                <span className="text-xs font-black uppercase tracking-widest text-gray-500">Documented Operational Governance</span>
-              </div>
-            </div>
-            {/* Icon Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-              {services.map((service, i) => (
-                <div key={i} className="bg-[#161618] p-8 border border-white/5 hover:border-primary/30 transition-all group text-center">
-                  <div className="text-primary mb-6 flex justify-center group-hover:scale-110 transition-transform">{service.icon}</div>
-                  <div className="text-xs font-black uppercase tracking-widest group-hover:text-primary transition-colors">{service.title}</div>
+      {/* Services (Alternating) */}
+      <section className="py-24 bg-muted/20">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light mb-6 underline-accent inline-block">
+              Our Hard FM Services
+            </h2>
+            <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto mb-16">
+              A comprehensive suite of technical engineering services designed specifically to safeguard your estate.
+            </p>
+          </div>
+
+          <div className="space-y-16">
+            {servicesList.map((service, i) => (
+              <div key={i} className={`flex flex-col md:flex-row items-center gap-12 lg:gap-24 ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                <div className="w-full md:w-1/2 flex justify-center">
+                  <div className="bg-white w-64 h-64 rounded-[2rem] shadow-xl flex items-center justify-center border border-border rotate-3 hover:rotate-0 transition-all duration-500">
+                    <div className="p-8 bg-primary/5 rounded-full">
+                      {service.icon}
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+                <div className="w-full md:w-1/2">
+                  <h3 className="text-2xl font-medium text-charcoal mb-4">{service.title}</h3>
+                  <div className="h-1 w-12 bg-primary rounded-full mb-6"></div>
+                  <p className="text-lg text-muted-foreground font-light leading-relaxed">
+                    {service.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
-
-      {/* Services Breakdown - Alternating Rows */}
-      <section className="py-32 bg-[#0d0d0f]">
-        <div className="container mx-auto px-6 space-y-40">
-          
-          {/* Service 1 */}
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative aspect-video bg-[#161618] border border-white/10 group overflow-hidden">
-               {/* Illustration Placeholder */}
-               <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                  <Settings className="w-40 h-40 text-primary animate-spin-slow" />
-               </div>
-               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-black mb-6 uppercase tracking-tight">Mechanical & Electrical <span className="text-primary">(M&E)</span></h3>
-              <p className="text-lg text-gray-400 font-light leading-relaxed mb-8">
-                The nervous system of your building. Our nationwide M&E team handles 
-                everything from distribution board maintenance to plant room services. 
-                We focus on energy efficiency and preventative Care to avoid critical 
-                power failures that disrupt your business.
-              </p>
-              <CheckCircle2 className="text-primary w-6 h-6 mb-4" />
-              <p className="text-xs font-black uppercase tracking-widest text-gray-500">Reduced Power Failure Risk</p>
-            </div>
-          </div>
-
-          {/* Service 2 */}
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="order-last lg:order-first">
-              <h3 className="text-2xl font-black mb-6 uppercase tracking-tight">HVAC Maintenance & <span className="text-primary">F-Gas</span></h3>
-              <p className="text-lg text-gray-400 font-light leading-relaxed mb-8">
-                Heating, ventilation, and cooling systems are your building's lungs. 
-                EntireFM provides expert HVAC servicing, filter hygiene, and 
-                statutory F-Gas leak testing to ensure temperature control and 
-                indoor air quality meet modern compliance standards.
-              </p>
-              <CheckCircle2 className="text-primary w-6 h-6 mb-4" />
-              <p className="text-xs font-black uppercase tracking-widest text-gray-500">Optimal Air Quality & Efficiency</p>
-            </div>
-            <div className="relative aspect-video bg-[#161618] border border-white/10 group overflow-hidden">
-               <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                  <Zap className="w-40 h-40 text-primary" />
-               </div>
-               <div className="absolute inset-0 bg-gradient-to-tl from-primary/10 to-transparent" />
-            </div>
-          </div>
-
-          {/* Service 3 */}
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="relative aspect-video bg-[#161618] border border-white/10 group overflow-hidden">
-               <div className="absolute inset-0 flex items-center justify-center opacity-20">
-                  <Flame className="w-40 h-40 text-primary" />
-               </div>
-               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-black mb-6 uppercase tracking-tight">Fire Safety <span className="text-primary">Systems</span></h3>
-              <p className="text-lg text-gray-400 font-light leading-relaxed mb-8">
-                The most critical aspect of building life safety. We manage fire 
-                alarm testing, smoke detection, emergency lighting, and dry riser 
-                maintenance. All service records are digitally logged for instant 
-                proof during local authority audits.
-              </p>
-              <CheckCircle2 className="text-primary w-6 h-6 mb-4" />
-              <p className="text-xs font-black uppercase tracking-widest text-gray-500">Statutory Compliance Guaranteed</p>
-            </div>
-          </div>
-
         </div>
       </section>
 
       {/* Why EntireFM Section */}
-      <section className="py-32">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-black mb-16 tracking-tight text-center">Why EntireFM for <span className="text-primary">Hard FM?</span></h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, i) => (
-              <div key={i} className="bg-[#161618] p-10 border border-white/5 relative group">
-                <div className="absolute top-6 right-6 text-primary opacity-20 group-hover:opacity-100 transition-opacity">
-                  {benefit.icon}
-                </div>
-                <h4 className="text-lg font-bold mb-6 text-white uppercase tracking-tight">{benefit.title}</h4>
-                <p className="text-sm text-gray-400 font-light leading-relaxed">{benefit.desc}</p>
+      <section className="py-24 bg-charcoal text-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light mb-6 text-white">
+              Why Choose EntireFM for Hard FM?
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="relative bg-white/5 border border-white/10 p-8 hover:border-primary/50 transition-all duration-500 group overflow-hidden cursor-pointer h-full flex flex-col">
+              {/* Image Reveal */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-110"
+                style={{ backgroundImage: 'url(/images/fm-insights-hero.jpg)' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/90 to-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Hover beam */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Content */}
+              <div className="relative z-10">
+                <ShieldCheck className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-xl font-semibold mb-3">SFG20-Compliant</h3>
+                <p className="text-gray-400 font-light text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
+                  All programmes are built to SFG20 specifications, ensuring completely defensible compliance and preventing over-maintenance.
+                </p>
+              </div>
+            </div>
+            
+            <div className="relative bg-white/5 border border-white/10 p-8 hover:border-primary/50 transition-all duration-500 group overflow-hidden cursor-pointer h-full flex flex-col">
+              {/* Image Reveal */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-110"
+                style={{ backgroundImage: 'url(/images/fm-insights-hero.jpg)' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/90 to-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Hover beam */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Content */}
+              <div className="relative z-10">
+                <Clock className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-xl font-semibold mb-3">24/7 Reactive Helpdesk</h3>
+                <p className="text-gray-400 font-light text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
+                  Round-the-clock emergency support. When critical hard FM systems fail at 3 AM, our national engineers are immediately dispatched.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative bg-white/5 border border-white/10 p-8 hover:border-primary/50 transition-all duration-500 group overflow-hidden cursor-pointer h-full flex flex-col">
+              {/* Image Reveal */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-110"
+                style={{ backgroundImage: 'url(/images/fm-insights-hero.jpg)' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/90 to-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Hover beam */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Content */}
+              <div className="relative z-10">
+                <UserCheck className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-xl font-semibold mb-3">Dedicated Account Management</h3>
+                <p className="text-gray-400 font-light text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
+                  A single, expert point of contact who intrinsically knows the nuances, layout, and operational quirks of your properties.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative bg-white/5 border border-white/10 p-8 hover:border-primary/50 transition-all duration-500 group overflow-hidden cursor-pointer h-full flex flex-col">
+              {/* Image Reveal */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-110"
+                style={{ backgroundImage: 'url(/images/fm-insights-hero.jpg)' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/90 to-charcoal/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Hover beam */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Content */}
+              <div className="relative z-10">
+                <FileCheck className="w-12 h-12 text-primary mb-6" />
+                <h3 className="text-xl font-semibold mb-3">Full Audit Trail</h3>
+                <p className="text-gray-400 font-light text-sm leading-relaxed group-hover:text-gray-200 transition-colors">
+                  Complete compliance documentation uploaded instantly after every engineer visit, keeping your estate fully audit-ready.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sectors Pills */}
+      <section className="py-16 bg-white border-b border-border">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-2xl font-light mb-8 text-charcoal">
+            Hard FM Services Across Every Sector
+          </h2>
+          <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+            {sectors.map((sector, i) => (
+              <div key={i} className="px-5 py-2.5 rounded-full bg-muted/30 border border-border text-sm font-medium text-charcoal shadow-sm hover:border-primary hover:text-primary transition-colors cursor-default">
+                {sector}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Sector Strip */}
-      <section className="py-16 border-y border-white/5 overflow-hidden bg-[#0a0a0b]">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-12 animate-scroll whitespace-nowrap">
-            <span className="text-[10px] font-black tracking-[0.3em] text-gray-500 uppercase">Sectors We Serve:</span>
-            {sectors.map((sector) => (
-              <div key={sector} className="text-white font-bold text-xs uppercase tracking-widest flex items-center">
-                <div className="w-1.5 h-1.5 bg-primary rounded-full mr-4" />
-                {sector}
-              </div>
-            ))}
-            {/* Repeated for scroll effect */}
-            {sectors.map((sector) => (
-              <div key={`${sector}-2`} className="text-white font-bold text-xs uppercase tracking-widest flex items-center">
-                <div className="w-1.5 h-1.5 bg-primary rounded-full mr-4" />
-                {sector}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-32">
+      {/* FAQ */}
+      <section className="py-24 bg-muted/20">
         <div className="container mx-auto px-6 max-w-4xl">
-          <h2 className="text-3xl font-black mb-16 tracking-tight text-center">Hard FM <span className="text-primary">Questions</span></h2>
-          <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="item-1" className="border-white/10 bg-[#161618] px-8">
-              <AccordionTrigger className="text-left font-bold text-lg hover:text-primary hover:no-underline py-6">
-                What is the difference between Hard FM and Soft FM?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400 font-light text-base pb-6">
-                Hard FM refers to the physical systems of a building (M&E, HVAC, Fire Safety) which are often statutory. Soft FM refers to services like cleaning and security that make the building more comfortable and safe.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2" className="border-white/10 bg-[#161618] px-8">
-              <AccordionTrigger className="text-left font-bold text-lg hover:text-primary hover:no-underline py-6">
-                Is Hard FM a legal requirement in the UK?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400 font-light text-base pb-6">
-                Yes, many elements of Hard FM are statutory. This includes gas safety, fire alarm maintenance, fixed wire testing (EICR), and water hygiene (Legionella). Failure to maintain these can lead to criminal liability.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3" className="border-white/10 bg-[#161618] px-8">
-              <AccordionTrigger className="text-left font-bold text-lg hover:text-primary hover:no-underline py-6">
-                How often should my Hard FM assets be serviced?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400 font-light text-base pb-6">
-                Service intervals are determined by SFG20 standards and manufacturer guidelines. For example, some fire safety checks are weekly, while HVAC major servicing is typically annual or bi-annual.
-              </AccordionContent>
-            </AccordionItem>
+          <h2 className="text-3xl md:text-4xl font-light mb-12 text-center">
+            Hard FM Services — <br className="hidden md:block"/>
+            <span className="font-semibold text-charcoal">Frequently Asked Questions</span>
+          </h2>
+          
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqSchema.mainEntity.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-border rounded-lg px-6 shadow-sm">
+                <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary py-6">
+                  {faq.name}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground font-light text-base pb-6 leading-relaxed">
+                  {faq.acceptedAnswer.text}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-white py-32 text-center text-[#0a0a0b]">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black mb-12 tracking-tight">
-            Ready for a Safer, More Compliant Estate?
+      {/* CTA Strip */}
+      <section className="py-24 bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white relative flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-10 mix-blend-overlay"></div>
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-light mb-6">
+            Secure Your Property with Expert Hard FM
           </h2>
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white px-12 h-16 rounded-none border-none uppercase tracking-widest font-black text-sm shadow-2xl">
-            <Link href="/contact">Get a Hard FM Quote Today</Link>
-          </Button>
+          <p className="text-xl text-white/90 font-light max-w-2xl mx-auto mb-10">
+            Ensure total statutory compliance, eliminate reactive costs, and extend the lifespan of your critical building systems today.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button size="lg" className="bg-white text-primary hover:bg-gray-100 shadow-2xl hover:-translate-y-1 transition-transform h-14 px-8 text-lg font-bold uppercase tracking-wider" asChild>
+              <Link href="/contact" className="gap-2">
+                Get a Hard FM Quote <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>

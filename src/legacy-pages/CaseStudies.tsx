@@ -8,6 +8,7 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 
 const CaseStudies = () => {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const breadcrumbItems = [
     { label: "Home", href: "/" },
@@ -148,15 +149,19 @@ const CaseStudies = () => {
     }
   ];
 
-  const filteredCaseStudies = activeFilter === "All" 
-    ? caseStudies 
-    : caseStudies.filter(cs => cs.sector.toLowerCase().includes(activeFilter.toLowerCase()));
+  const filteredCaseStudies = caseStudies.filter(cs => {
+    const matchesFilter = activeFilter === "All" || cs.sector.toLowerCase().includes(activeFilter.toLowerCase());
+    const matchesSearch = searchQuery === "" || 
+      cs.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      cs.sector.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
 
   return (
     <>
       
 
-      <div className="min-h-screen pt-20">
+      <div className="min-h-screen">
         {/* Hero Section with Half-Page Image */}
         <section className="relative h-[50vh] min-h-[400px] flex items-end">
           <div 
@@ -180,17 +185,26 @@ const CaseStudies = () => {
         {/* Filters */}
         <section className="py-8 bg-white border-b border-border sticky top-20 z-30">
           <div className="container mx-auto px-6">
-            <div className="flex flex-wrap gap-3">
-              {filters.map((filter) => (
-                <Button
-                  key={filter}
-                  variant={activeFilter === filter ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setActiveFilter(filter)}
-                >
-                  {filter}
-                </Button>
-              ))}
+            <div className="flex flex-col md:flex-row gap-4">
+              <input
+                type="search"
+                placeholder="Search case studies..."
+                className="max-w-md flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <div className="flex flex-wrap gap-3">
+                {filters.map((filter) => (
+                  <Button
+                    key={filter}
+                    variant={activeFilter === filter ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveFilter(filter)}
+                  >
+                    {filter}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         </section>

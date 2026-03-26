@@ -13,10 +13,10 @@ import Link from "next/link";
 
 export default function AdminDashboard() {
   const stats = [
-    { label: "Active Leads", value: "12", icon: MessageSquare, color: "text-blue-500", trend: "+2 this week" },
-    { label: "Total Articles", value: "24", icon: FileText, color: "text-green-500", trend: "Updated 2h ago" },
-    { label: "Page Views", value: "1.2k", icon: Users, color: "text-purple-500", trend: "+15% vs last week" },
-    { label: "System Status", value: "98%", icon: Activity, color: "text-emerald-500", trend: "All systems operational" },
+    { label: "Active Leads", value: "12", icon: MessageSquare, color: "text-blue-500", trend: "+2 this week", path: "/admin/contacts" },
+    { label: "Total Articles", value: "24", icon: FileText, color: "text-green-500", trend: "Updated 2h ago", path: "/admin/marketing/content" },
+    { label: "Page Views", value: "1.2k", icon: Users, color: "text-purple-500", trend: "+15% vs last week", path: "/admin/search-analytics" },
+    { label: "System Status", value: "98%", icon: Activity, color: "text-emerald-500", trend: "All systems operational", path: "/admin/settings" },
   ];
 
   return (
@@ -29,21 +29,23 @@ export default function AdminDashboard() {
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, index) => (
-          <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-center justify-between mb-4">
-              <div className={`p-2 bg-gray-100 rounded-full ${stat.color}`}>
-                <stat.icon className="w-5 h-5" />
+          <Link key={index} href={stat.path}>
+            <Card className="p-6 hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer group">
+              <div className="flex items-center justify-between mb-4">
+                <div className={`p-2 bg-gray-100 rounded-full ${stat.color} group-hover:scale-110 transition-transform`}>
+                  <stat.icon className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                  {stat.trend.includes("+") ? <TrendingUp className="w-3 h-3 inline mr-1" /> : null}
+                  {stat.trend}
+                </span>
               </div>
-              <span className="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">
-                {stat.trend.includes("+") ? <TrendingUp className="w-3 h-3 inline mr-1" /> : null}
-                {stat.trend}
-              </span>
-            </div>
-            <div className="space-y-1">
-              <h3 className="text-2xl font-bold">{stat.value}</h3>
-              <p className="text-sm text-gray-500">{stat.label}</p>
-            </div>
-          </Card>
+              <div className="space-y-1">
+                <h3 className="text-2xl font-bold">{stat.value}</h3>
+                <p className="text-sm text-gray-500">{stat.label}</p>
+              </div>
+            </Card>
+          </Link>
         ))}
       </div>
 
@@ -64,7 +66,7 @@ export default function AdminDashboard() {
         <Card className="p-6 border-l-4 border-l-blue-500">
           <h3 className="font-semibold mb-2">Lead & Inbox</h3>
           <div className="space-y-2">
-            <Link href="/admin/contact-submissions" className="flex items-center justify-between text-sm text-blue-600 hover:underline">
+            <Link href="/admin/contacts" className="flex items-center justify-between text-sm text-blue-600 hover:underline">
               <span>View unread messages</span>
               <span className="bg-blue-100 text-blue-700 px-2 rounded-full text-xs">3</span>
             </Link>

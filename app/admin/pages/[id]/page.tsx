@@ -1,6 +1,5 @@
-import PageManager from "@/legacy-pages/admin/PageManager";
+import PageEditor from "@/legacy-pages/admin/PageEditor";
 
 export default function Page() {
-  // PageManager itself doesn't handle editing yet in the legacy code but we point here
-  return <PageManager />;
+  return <PageEditor />;
 }

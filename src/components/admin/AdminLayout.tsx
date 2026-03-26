@@ -23,7 +23,8 @@ import {
   ChevronRight,
   Building2,
   Settings,
-  PenTool
+  PenTool,
+  ShieldCheck
 } from "lucide-react";
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
@@ -128,14 +129,13 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
     { icon: FileText, label: "Proposals", path: "/admin/proposals" },
     { icon: Mail, label: "Contacts", path: "/admin/contacts" },
     { icon: Wrench, label: "Helpdesk Jobs", path: "/admin/helpdesk-jobs" },
-    { icon: Wrench, label: "CAFM Jobs", path: "/admin/jobs" },
+    { icon: ShieldCheck, label: "CAFM Jobs", path: "/admin/jobs" },
     { icon: Building2, label: "Suppliers", path: "/admin/suppliers" },
     { 
       icon: PenTool, 
       label: "Page Builder", 
       path: "/admin/page-builder",
       children: [
-        { label: "All Pages", path: "/admin/page-builder" },
         { label: "Media Library", path: "/admin/page-builder/media" },
       ]
     },
@@ -144,7 +144,6 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
       label: "Marketing", 
       path: "/admin/marketing",
       children: [
-        { label: "Dashboard", path: "/admin/marketing" },
         { label: "Content", path: "/admin/marketing/content" },
         { label: "Social Media", path: "/admin/marketing/social" },
         { label: "AI Media", path: "/admin/marketing/media" },
@@ -159,12 +158,19 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
       label: "Analytics", 
       path: "/admin/search-analytics",
       children: [
-        { label: "Search Analytics", path: "/admin/search-analytics" },
         { label: "Link Health", path: "/admin/link-health" },
       ]
     },
     { icon: Map, label: "Site Map", path: "/admin/site-map" },
-    { icon: Settings, label: "Settings", path: "/admin/settings" },
+    { 
+      icon: Settings, 
+      label: "Settings", 
+      path: "/admin/settings",
+      children: [
+        { label: "General", path: "/admin/settings" },
+        { label: "Chat Advisor", path: "/admin/settings/chat" },
+      ]
+    },
   ];
 
   const toggleSection = (label: string) => {

@@ -132,7 +132,7 @@ const FMInsights = () => {
     <>
       
 
-      <div className="bg-background min-h-screen pt-20">
+      <div className="bg-background min-h-screen">
         {/* Hero Section with Half-Page Image */}
         <section className="relative h-[50vh] min-h-[400px] flex items-end">
           <div 
@@ -178,34 +178,53 @@ const FMInsights = () => {
           {/* Insights Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {insights.map((insight, index) => (
-              <Card key={index} className="p-6 hover-lift flex flex-col h-full">
-                <div className="flex items-start justify-between mb-4">
-                  <insight.icon className="w-10 h-10 text-primary" />
-                  <Badge variant="secondary" className="font-light text-xs">
-                    {insight.type}
-                  </Badge>
-                </div>
+              <Card key={index} className="relative p-6 flex flex-col h-full transition-all duration-500 group overflow-hidden cursor-pointer hover:border-primary/50 border-border bg-card">
+                {/* Background image & gradient overlay on hover */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-110"
+                  style={{ backgroundImage: 'url(/images/fm-insights-hero.jpg)' }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <div className="flex-1 mb-4">
-                  <div className="text-xs text-muted-foreground mb-2">
-                    {new Date(insight.date).toLocaleDateString('en-GB', { 
-                      day: 'numeric', 
-                      month: 'long', 
-                      year: 'numeric' 
-                    })}
-                  </div>
-                  <h3 className="text-lg font-light mb-2 leading-snug">
-                    {insight.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground font-light leading-relaxed">
-                    {insight.description}
-                  </p>
-                </div>
+                {/* Hover beam */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Glow effect */}
+                <div className="absolute -inset-px bg-gradient-to-b from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none" />
 
-                <div className="pt-4 border-t border-border">
-                  <Button asChild variant="outline" size="sm" className="w-full">
-                    <Link href={insight.link}>Read More</Link>
-                  </Button>
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-start justify-between mb-4">
+                    <insight.icon className="w-10 h-10 text-primary" />
+                    <Badge variant="secondary" className="font-light text-xs group-hover:bg-primary/20 group-hover:text-primary group-hover:border-primary/30 transition-colors">
+                      {insight.type}
+                    </Badge>
+                  </div>
+                  
+                  <div className="flex-1 mb-4">
+                    <div className="text-xs text-muted-foreground mb-2 group-hover:text-gray-400 transition-colors">
+                      {new Date(insight.date).toLocaleDateString('en-GB', { 
+                        day: 'numeric', 
+                        month: 'long', 
+                        year: 'numeric' 
+                      })}
+                    </div>
+                    <h3 className="text-lg font-light mb-2 leading-snug group-hover:text-white transition-colors duration-300">
+                      {insight.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground font-light leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                      {insight.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-border group-hover:border-white/20 transition-colors duration-300 mt-auto">
+                    <Link href={insight.link} className="inline-flex items-center text-sm font-medium text-primary group-hover:text-white transition-colors duration-300 group/link">
+                      <span className="relative">
+                        Read Insight
+                        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover/link:w-full transition-all duration-300" />
+                      </span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </Link>
+                  </div>
                 </div>
               </Card>
             ))}

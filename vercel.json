@@ -16,6 +16,11 @@
       "permanent": true
     },
     {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
       "source": "/fm-birmingham",
       "destination": "/services/fire/birmingham",
       "permanent": true

@@ -3,9 +3,9 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { 
-  BarChart3, ShieldCheck, Zap, Smartphone, 
-  Settings, Flame, Lightbulb, Droplets, 
-  Wind, Hammer, Trash2, ArrowRight, CheckCircle2, XCircle
+  Wind, Settings, Flame, Lightbulb, Zap, Droplets, Smartphone, FileText,
+  Hammer, CheckCircle2, XCircle, ArrowRight, Building, Factory, ShoppingBag, 
+  Building2, Monitor
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,265 +14,412 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Breadcrumb } from "@/components/shared/Breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Planned Preventative Maintenance (PPM) | SFG20-Aligned UK FM | EntireFM",
-  description: "EntireFM delivers proactive, SFG20-aligned planned preventative maintenance (PPM) across the UK. Reduce reactive costs, ensure compliance, and extend asset lifecycles with our expert M&E services.",
+  title: "Planned Preventative Maintenance (PPM) Services UK | EntireFM",
+  description: "EntireFM delivers SFG20-aligned planned preventative maintenance across the UK — scheduled M&E servicing, HVAC, fire safety, and statutory compliance. Reduce reactive costs. Stay compliant.",
   alternates: {
     canonical: "https://www.entirefm.com/services/ppm",
   },
 };
 
-export default function PPMPage() {
+export default function PPMLandingPage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is PPM in facilities management?",
+        "name": "What is the difference between planned preventative maintenance and reactive maintenance?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "PPM, or Planned Preventative Maintenance, is a proactive approach to building maintenance where tasks are performed at regular intervals to prevent equipment failure."
+          "text": "PPM is a scheduled, proactive approach — maintenance is carried out at set intervals to prevent failures before they happen. Reactive maintenance only occurs after something breaks. PPM reduces long-term costs, extends asset lifespan, and ensures compliance. Reactive maintenance is unpredictable in cost and carries compliance risk."
         }
       },
       {
         "@type": "Question",
-        "name": "How much can PPM reduce maintenance costs?",
+        "name": "How often should PPM visits take place?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Correctly implemented PPM can reduce reactive maintenance call-out costs by up to 34% through early identification of minor issues."
+          "text": "Frequency depends on the asset type and its criticality. Fire alarm systems typically require quarterly testing. HVAC systems may require bi-annual or annual servicing. SFG20 provides the benchmark for most hard FM assets. EntireFM will build a schedule based on your specific asset register and site requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is SFG20 and do I need to comply with it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SFG20 is the industry standard for building services maintenance in the UK. While not all tasks are a legal requirement, many statutory obligations (fire safety, electrical compliance, water safety) sit within the SFG20 framework. Using SFG20-aligned schedules demonstrates reasonable duty of care and protects you in the event of an audit or incident."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can EntireFM take over an existing PPM contract?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We carry out a full site survey and asset register review before building your new PPM programme. We identify any gaps from your previous provider and ensure nothing is missed. Transition is managed to ensure zero lapse in compliance coverage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What documentation does EntireFM provide after each PPM visit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "After every scheduled visit your account manager receives a full compliance report detailing work carried out, asset condition, any identified issues, and recommendations. All records are retained and available on demand for audits or inspections."
         }
       }
     ]
   };
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Planned Preventative Maintenance (PPM)",
+    "provider": {
+      "@type": "Organization",
+      "name": "EntireFM"
+    },
+    "description": "SFG20-aligned planned preventative maintenance across the UK. Covered assets include HVAC, boilers, fire alarms, electrical systems, and building fabric.",
+    "areaServed": "UK",
+    "serviceType": "Facilities Management"
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.entirefm.com" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.entirefm.com/services" },
+      { "@type": "ListItem", "position": 3, "name": "PPM", "item": "https://www.entirefm.com/services/ppm" }
+    ]
+  };
+
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "PPM" },
+  ];
+
   const assets = [
-    { name: "HVAC Systems", icon: <Wind className="w-6 h-6" /> },
-    { name: "Boilers & Chillers", icon: <Settings className="w-6 h-6" /> },
-    { name: "Fire Alarms", icon: <Flame className="w-6 h-6" /> },
-    { name: "Emergency Lighting", icon: <Lightbulb className="w-6 h-6" /> },
-    { name: "Electrical Systems", icon: <Zap className="w-6 h-6" /> },
-    { name: "Dry Risers", icon: <Droplets className="w-6 h-6" /> },
-    { name: "Entry Systems", icon: <Smartphone className="w-6 h-6" /> },
-    { name: "Water Safety", icon: <Droplets className="w-6 h-6" /> },
-    { name: "Generators", icon: <Zap className="w-6 h-6" /> },
-    { name: "Extraction", icon: <Wind className="w-6 h-6" /> },
-    { name: "Building Fabric", icon: <Hammer className="w-6 h-6" /> },
-    { name: "Drainage", icon: <Droplets className="w-6 h-6" /> },
+    { name: "HVAC & Air Conditioning", icon: <Wind className="w-8 h-8" />, desc: "Cooling and ventilation maintenance" },
+    { name: "Boilers & Heating Systems", icon: <Flame className="w-8 h-8" />, desc: "Gas Safe commercial heating" },
+    { name: "Fire Alarm Systems", icon: <Flame className="w-8 h-8" />, desc: "BS 5839 compliant weekly & periodic" },
+    { name: "Emergency Lighting", icon: <Lightbulb className="w-8 h-8" />, desc: "Flick tests and 3-hour drains" },
+    { name: "Fixed Wire Testing (EICR)", icon: <Zap className="w-8 h-8" />, desc: "5-year inspection scheduling" },
+    { name: "PAT Testing", icon: <Monitor className="w-8 h-8" />, desc: "Portable appliance safety" },
+    { name: "Dry Risers & Sprinklers", icon: <Droplets className="w-8 h-8" />, desc: "Pressure testing and flow checks" },
+    { name: "Water Safety (Legionella)", icon: <Droplets className="w-8 h-8" />, desc: "ACOP L8 risk mitigation" },
+    { name: "Generators & UPS", icon: <Zap className="w-8 h-8" />, desc: "Critical backup power tests" },
+    { name: "Extraction & Ventilation", icon: <Wind className="w-8 h-8" />, desc: "TR19 duct cleaning and airflow" },
+    { name: "Building Fabric", icon: <Hammer className="w-8 h-8" />, desc: "Roof, gutter, and structural checks" },
+    { name: "Access Control & Entry", icon: <Smartphone className="w-8 h-8" />, desc: "Gates, barriers, and door entry" },
+  ];
+
+  const sectors = [
+    "Retail", "Residential", "Commercial", "Industrial", "Hotel & Hospitality", 
+    "Healthcare", "Education", "Motorway Services", "Aviation", "Arenas"
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b] text-white font-inter">
-      <Script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+    <div className="min-h-screen bg-background text-foreground font-sans">
+      <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Hero Section */}
-      <section className="relative pt-48 pb-24 overflow-hidden border-b border-white/5">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl">
-            <span className="text-primary text-xs font-black uppercase tracking-[0.4em] mb-8 block">OPERATIONAL GOVERNANCE</span>
-            <h1 className="text-5xl md:text-7xl font-black mb-10 leading-tight tracking-tight">
-              Planned Preventative <span className="text-primary">Maintenance (PPM)</span>
+      <section className="relative h-[65vh] min-h-[500px] flex items-end overflow-hidden pb-16">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/images/hero-building-engineering.jpg)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
+        
+        <div className="container mx-auto px-6 relative z-10 w-full">
+          <Breadcrumb items={breadcrumbItems} />
+          <div className="max-w-4xl mt-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight tracking-tight">
+              Planned Preventative Maintenance — <br/>
+              <span className="font-semibold text-primary">Proactive. Compliant. Cost-Effective.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-400 font-light leading-relaxed mb-12 max-w-2xl">
-              Proactive. Compliant. Cost-Effective. Move away from expensive 
-              reactive repairs with an SFG20-aligned maintenance strategy.
+            <p className="text-xl text-gray-300 font-light leading-relaxed mb-10 max-w-3xl">
+              EntireFM's PPM programmes keep your building's critical systems safe, compliant, and running efficiently — eliminating the cost and disruption of reactive repairs.
             </p>
-            
-            {/* Hero Stat Strip */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-10 border-t border-white/10">
-               <div>
-                  <div className="text-primary text-3xl font-black mb-1">Up to 34%</div>
-                  <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest leading-relaxed">Reactive Cost Reduction</div>
-               </div>
-               <div>
-                  <div className="text-primary text-3xl font-black mb-1">SFG20</div>
-                  <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest leading-relaxed">Aligned Schedules</div>
-               </div>
-               <div>
-                  <div className="text-primary text-3xl font-black mb-1">2,000+</div>
-                  <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest leading-relaxed">Asset Types Covered</div>
-               </div>
-               <div>
-                  <div className="text-primary text-3xl font-black mb-1">24/7</div>
-                  <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest leading-relaxed">Emergency Helpdesk</div>
-               </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stat Strip */}
+      <section className="bg-charcoal text-white py-8 border-b border-primary/20 relative z-20 -mt-10 mx-6 rounded-xl shadow-2xl backdrop-blur-md bg-charcoal/90">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x divide-white/10">
+            <div className="px-4">
+              <div className="text-primary text-2xl md:text-3xl font-bold mb-1">Up to 34%</div>
+              <div className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Reduce reactive spend</div>
+            </div>
+            <div className="px-4">
+              <div className="text-primary text-2xl md:text-3xl font-bold mb-1">SFG20</div>
+              <div className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Aligned schedules</div>
+            </div>
+            <div className="px-4">
+              <div className="text-primary text-2xl md:text-3xl font-bold mb-1">2,000+</div>
+              <div className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Asset types covered</div>
+            </div>
+            <div className="px-4">
+              <div className="text-primary text-2xl md:text-3xl font-bold mb-1">24/7</div>
+              <div className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Emergency helpdesk</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What is PPM & Flow Diagram */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-light mb-6 underline-accent inline-block">
+                What Is Planned Preventative Maintenance?
+              </h2>
+              <div className="prose prose-lg text-muted-foreground font-light leading-relaxed">
+                <p>
+                  Planned Preventative Maintenance (PPM) is a strategic, scheduled approach to building upkeep. Instead of waiting for critical equipment to fail, PPM ensures your assets are serviced, calibrated, and inspected at precise intervals.
+                </p>
+                <p>
+                  By aligning our maintenance schedules with SFG20 industry standards and manufacturer guidelines, we pinpoint potential faults before they escalate. This proactive strategy extends the lifespan of your expensive assets, guarantees statutory compliance (like fire safety and water hygiene), and safeguards your occupants.
+                </p>
+                <p>
+                  Financially, the impact is undeniable. A well-designed PPM programme can <strong>reduce reactive maintenance spend by 12–18%</strong> naturally, eliminating expensive emergency call-out fees and unpredictable operational downtime.
+                </p>
+              </div>
+            </div>
+            <div className="bg-muted/30 p-8 rounded-2xl border border-border">
+              <h3 className="font-semibold text-lg mb-8 text-center text-charcoal">The EntireFM PPM Lifecycle</h3>
+              
+              {/* SVG Flow Diagram */}
+              <div className="relative w-full overflow-hidden">
+                <svg viewBox="0 0 800 120" className="w-full h-auto drop-shadow-sm">
+                  <defs>
+                    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto-start-reverse">
+                      <path d="M 0 0 L 6 3 L 0 6 z" fill="#ec4899" />
+                    </marker>
+                  </defs>
+                  
+                  {/* Connecting Line */}
+                  <line x1="80" y1="50" x2="720" y2="50" stroke="#ec4899" strokeWidth="2" strokeDasharray="6 6" />
+                  
+                  {/* Steps */}
+                  <g className="hover:scale-105 transition-transform origin-center">
+                    <circle cx="80" cy="50" r="24" fill="#1e293b" />
+                    <text x="80" y="55" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">1</text>
+                    <text x="80" y="95" textAnchor="middle" fill="#475569" fontSize="12" fontWeight="600">Asset Register</text>
+                  </g>
+
+                  <g className="hover:scale-105 transition-transform origin-center">
+                    <circle cx="240" cy="50" r="24" fill="#1e293b" />
+                    <text x="240" y="55" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">2</text>
+                    <text x="240" y="95" textAnchor="middle" fill="#475569" fontSize="12" fontWeight="600">Schedule Built</text>
+                  </g>
+
+                  <g className="hover:scale-105 transition-transform origin-center">
+                    <circle cx="400" cy="50" r="24" fill="#ec4899" />
+                    <text x="400" y="55" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">3</text>
+                    <text x="400" y="95" textAnchor="middle" fill="#ec4899" fontSize="13" fontWeight="bold">Engineer Visit</text>
+                  </g>
+
+                  <g className="hover:scale-105 transition-transform origin-center">
+                    <circle cx="560" cy="50" r="24" fill="#1e293b" />
+                    <text x="560" y="55" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">4</text>
+                    <text x="560" y="95" textAnchor="middle" fill="#475569" fontSize="12" fontWeight="600">Compliance Report</text>
+                  </g>
+
+                  <g className="hover:scale-105 transition-transform origin-center">
+                    <circle cx="720" cy="50" r="24" fill="#1e293b" />
+                    <text x="720" y="55" textAnchor="middle" fill="white" fontSize="16" fontWeight="bold">5</text>
+                    <text x="720" y="95" textAnchor="middle" fill="#475569" fontSize="12" fontWeight="600">Review & Repeat</text>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reactive vs PPM Comparison Table */}
+      <section className="py-24 bg-muted/20">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light mb-4">
+              Reactive Maintenance <span className="text-primary font-normal text-2xl mx-3">VS</span> Planned Preventative Maintenance
+            </h2>
+            <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
+              Compare the true impact of adopting a proactive approach.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-border">
+            <div className="grid grid-cols-1 md:grid-cols-3 bg-secondary text-white font-semibold text-lg divide-y md:divide-y-0 md:divide-x divide-white/10">
+              <div className="p-6 hidden md:block"></div>
+              <div className="p-6 text-center bg-secondary/80 text-gray-300">Reactive Maintenance</div>
+              <div className="p-6 text-center bg-primary text-white">PPM with EntireFM</div>
             </div>
             
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white px-10 h-16 rounded-none border-none uppercase tracking-[0.2em] font-black text-sm shadow-2xl mt-8">
-              <Link href="/contact">Build Your PPM Programme</Link>
-            </Button>
+            <div className="divide-y divide-border text-sm md:text-base">
+              {[
+                { label: "Cost", reactive: "Unpredictable, high emergency spend", ppm: "Predictable budget, lower long-term cost" },
+                { label: "Compliance", reactive: "Risk of missed statutory requirements", ppm: "Full SFG20 alignment, audit-ready" },
+                { label: "Disruption", reactive: "Unexpected downtime", ppm: "Scheduled visits, minimal disruption" },
+                { label: "Asset Lifespan", reactive: "Shortened by neglect", ppm: "Extended through regular servicing" },
+                { label: "Reporting", reactive: "Reactive, inconsistent", ppm: "Proactive, full documentation trail" },
+                { label: "Response", reactive: "After failure", ppm: "Before failure" }
+              ].map((row, i) => (
+                <div key={i} className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border hover:bg-muted/30 transition-colors">
+                  <div className="p-5 font-semibold text-charcoal flex items-center">{row.label}</div>
+                  <div className="p-5 flex items-center gap-3 text-muted-foreground text-sm md:text-base">
+                    <XCircle className="w-5 h-5 text-red-500 shrink-0" />
+                    {row.reactive}
+                  </div>
+                  <div className="p-5 flex items-center gap-3 font-medium text-charcoal bg-primary/5 text-sm md:text-base">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                    {row.ppm}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* The PPM Lifecycle - Custom SVG Diagram */}
-      <section className="py-32 bg-[#0d0d0f]">
+      {/* SFG20 Explainer Box Inline */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="bg-gradient-to-r from-secondary to-charcoal text-white rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center gap-8">
+            <div className="absolute -right-10 -top-10 text-white/5 Rotate-12">
+              <FileText className="w-64 h-64" />
+            </div>
+            <div className="md:w-1/3 z-10">
+              <h3 className="text-3xl font-light mb-2">What is SFG20?</h3>
+              <div className="h-1 w-20 bg-primary rounded-full"></div>
+            </div>
+            <div className="md:w-2/3 z-10 text-gray-300 font-light text-lg leading-relaxed">
+              SFG20 is the UK's standard specification for building services maintenance, published by BESA. It sets out the frequency and scope of maintenance tasks for over 2,000 asset types. EntireFM uses SFG20 as the baseline for all PPM programmes, ensuring your maintenance schedules are legislation-aligned and defensible in any audit.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What PPM Covers Grid */}
+      <section className="py-24 bg-muted/20">
         <div className="container mx-auto px-6">
-          <h2 className="text-xs uppercase tracking-[0.4em] font-black text-primary mb-16 text-center">The PPM Lifecycle</h2>
-          <div className="relative w-full max-w-5xl mx-auto py-20 px-10 overflow-x-auto lg:overflow-visible">
-            {/* Inline SVG Diagram */}
-            <svg viewBox="0 0 1000 200" className="w-full min-w-[800px] h-auto overflow-visible">
-              <defs>
-                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-                  <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" className="text-primary" />
-                </marker>
-              </defs>
-              {/* Connector Line */}
-              <line x1="50" y1="100" x2="950" y2="100" stroke="currentColor" strokeWidth="2" strokeDasharray="10 10" className="text-primary/30" />
-              
-              {/* Step 1 */}
-              <g className="group">
-                <circle cx="50" cy="100" r="12" fill="currentColor" className="text-primary" />
-                <text x="50" y="50" textAnchor="middle" fill="white" className="text-[10px] font-black uppercase tracking-widest">Asset Register</text>
-                <text x="50" y="150" textAnchor="middle" fill="#6B7280" className="text-[10px] font-medium max-w-[80px]">Audit of all on-site equipment</text>
-              </g>
-
-              {/* Step 2 */}
-              <g className="group">
-                <circle cx="275" cy="100" r="12" fill="currentColor" className="text-primary" />
-                <text x="275" y="50" textAnchor="middle" fill="white" className="text-[10px] font-black uppercase tracking-widest">PPM Schedule</text>
-                <text x="275" y="150" textAnchor="middle" fill="#6B7280" className="text-[10px] font-medium">Mapped to SFG20 standards</text>
-              </g>
-
-              {/* Step 3 */}
-              <g className="group">
-                <circle cx="500" cy="100" r="12" fill="currentColor" className="text-primary" />
-                <text x="500" y="50" textAnchor="middle" fill="white" className="text-[10px] font-black uppercase tracking-widest">Scheduled Visit</text>
-                <text x="500" y="150" textAnchor="middle" fill="#6B7280" className="text-[10px] font-medium">Engineers attend on date</text>
-              </g>
-
-              {/* Step 4 */}
-              <g className="group">
-                <circle cx="725" cy="100" r="12" fill="currentColor" className="text-primary" />
-                <text x="725" y="50" textAnchor="middle" fill="white" className="text-[10px] font-black uppercase tracking-widest">Digital Report</text>
-                <text x="725" y="150" textAnchor="middle" fill="#6B7280" className="text-[10px] font-medium">Instant compliance certificates</text>
-              </g>
-
-              {/* Step 5 */}
-              <g className="group">
-                <circle cx="950" cy="100" r="12" fill="currentColor" className="text-primary" />
-                <text x="950" y="50" textAnchor="middle" fill="white" className="text-[10px] font-black uppercase tracking-widest">Review & Repeat</text>
-                <text x="950" y="150" textAnchor="middle" fill="#6B7280" className="text-[10px] font-medium">Continuous estate health</text>
-              </g>
-            </svg>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light mb-6 underline-accent inline-block">
+              What Does Our PPM Cover?
+            </h2>
+            <p className="text-lg text-muted-foreground font-light max-w-2xl mx-auto">
+              From critical life safety to environmental control, our scheduled maintenance encompasses all hard FM disciplines.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Asset Grid */}
-      <section className="py-32 border-y border-white/5">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-black mb-16 tracking-tight">2,000+ Asset Types <span className="text-primary">Covered</span></h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-            {assets.map((asset, i) => (
-              <div key={i} className="bg-[#161618] p-8 border border-white/5 flex flex-col items-center group hover:border-primary transition-all">
-                <div className="text-primary mb-4 group-hover:scale-110 transition-transform">{asset.icon}</div>
-                <span className="text-[10px] font-black uppercase tracking-widest opacity-60 group-hover:opacity-100">{asset.name}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {assets.map((item, i) => (
+              <div key={i} className="bg-white border border-border p-6 rounded-xl shadow-sm hover:shadow-lg hover:border-primary/50 transition-all group flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300 mb-5">
+                  {item.icon}
+                </div>
+                <h3 className="font-semibold text-charcoal mb-2">{item.name}</h3>
+                <p className="text-xs text-muted-foreground font-light">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Reactive vs Preventative Table */}
-      <section className="py-32">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-black mb-16 tracking-tight text-center">Reactive vs <span className="text-primary">Preventative</span></h2>
-          <div className="max-w-4xl mx-auto overflow-hidden border border-white/10">
-            <div className="grid grid-cols-2 bg-white/5 font-black uppercase tracking-widest text-xs border-b border-white/10">
-               <div className="p-8 text-center text-gray-500">Reactive Maintenance</div>
-               <div className="p-8 text-center text-primary bg-primary/5">PPM (EntireFM)</div>
-            </div>
-            <div className="grid grid-cols-2 border-b border-white/5">
-               <div className="p-8 flex items-center gap-4 text-gray-400 font-light">
-                 <XCircle className="w-5 h-5 text-red-500 shrink-0" />
-                 High emergency call-out costs
-               </div>
-               <div className="p-8 flex items-center gap-4 text-white font-light bg-primary/5 border-l border-white/5">
-                 <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                 Pre-agreed, lower maintenance rates
-               </div>
-            </div>
-            <div className="grid grid-cols-2 border-b border-white/5">
-               <div className="p-8 flex items-center gap-4 text-gray-400 font-light">
-                 <XCircle className="w-5 h-5 text-red-500 shrink-0" />
-                 Unpredictable operational downtime
-               </div>
-               <div className="p-8 flex items-center gap-4 text-white font-light bg-primary/5 border-l border-white/5">
-                 <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                 Scheduled visits to avoid disruption
-               </div>
-            </div>
-            <div className="grid grid-cols-2 border-b border-white/5">
-               <div className="p-8 flex items-center gap-4 text-gray-400 font-light">
-                 <XCircle className="w-5 h-5 text-red-500 shrink-0" />
-                 Statutory compliance risk & fines
-               </div>
-               <div className="p-8 flex items-center gap-4 text-white font-light bg-primary/5 border-l border-white/5">
-                 <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                 SFG20-aligned for total compliance
-               </div>
-            </div>
-            <div className="grid grid-cols-2">
-               <div className="p-8 flex items-center gap-4 text-gray-400 font-light">
-                 <XCircle className="w-5 h-5 text-red-500 shrink-0" />
-                 Shortened asset lifecycle
-               </div>
-               <div className="p-8 flex items-center gap-4 text-white font-light bg-primary/5 border-l border-white/5">
-                 <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                 Extended asset lifespan (ROI)
-               </div>
-            </div>
+      {/* How We Build Your PPM Programme */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-light mb-6 underline-accent inline-block">
+              How EntireFM Builds Your PPM Programme
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            {/* Connecting line for desktop */}
+            <div className="hidden md:block absolute top-10 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20 z-0"></div>
+            
+            {[
+              { num: "1", title: "Site Survey & Asset Register", desc: "We audit every asset across your site and build a comprehensive register." },
+              { num: "2", title: "Schedule Design", desc: "SFG20-aligned maintenance frequencies set per asset type, tailored to your site's criticality." },
+              { num: "3", title: "Engineer Deployment", desc: "Qualified, accredited engineers carry out scheduled visits and document all work." },
+              { num: "4", title: "Reporting & Review", desc: "Full compliance documentation delivered after every visit, reviewed quarterly." }
+            ].map((step, i) => (
+              <div key={i} className="relative z-10 flex flex-col items-center text-center bg-white">
+                <div className="w-20 h-20 rounded-full bg-charcoal text-white text-3xl font-bold flex items-center justify-center shadow-lg border-4 border-white mb-6">
+                  {step.num}
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-charcoal">{step.title}</h3>
+                <p className="text-muted-foreground font-light text-sm">{step.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-32 bg-[#0d0d0f]">
+      {/* Sectors Pills */}
+      <section className="py-16 bg-muted/30 border-y border-border">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-2xl font-light mb-8 text-charcoal">
+            PPM Services Across Every Sector
+          </h2>
+          <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+            {sectors.map((sector, i) => (
+              <div key={i} className="px-5 py-2.5 rounded-full bg-white border border-border text-sm font-medium text-charcoal shadow-sm hover:border-primary hover:text-primary transition-colors cursor-default">
+                {sector}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-4xl">
-          <h2 className="text-3xl font-black mb-16 tracking-tight text-center uppercase">PPM <span className="text-primary">Questions</span></h2>
-          <Accordion type="single" collapsible className="space-y-4">
-            <AccordionItem value="item-1" className="border-white/10 bg-[#161618] px-8">
-              <AccordionTrigger className="text-left font-bold text-lg hover:text-primary hover:no-underline py-6">
-                How does EntireFM determine maintenance frequency?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400 font-light text-base pb-6 leading-relaxed">
-                We use the SFG20 standard—the UK's benchmark for maintenance scheduling—coupled with manufacturer recommendations and statutory requirements to create the optimal schedule for your specific assets.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2" className="border-white/10 bg-[#161618] px-8">
-              <AccordionTrigger className="text-left font-bold text-lg hover:text-primary hover:no-underline py-6">
-                What is SFG20 and why does it matter?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400 font-light text-base pb-6 leading-relaxed">
-                SFG20 is the industry standard for building maintenance. It defines which tasks are statutory (legally required) vs. preventative. Using SFG20 ensures your estate is legally compliant and not over-maintained.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3" className="border-white/10 bg-[#161618] px-8">
-              <AccordionTrigger className="text-left font-bold text-lg hover:text-primary hover:no-underline py-6">
-                Can I see my compliance records online?
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-400 font-light text-base pb-6 leading-relaxed">
-                Yes. Every EntireFM client has access to a digital reporting portal where certificates, job logs, and compliance dashboards are updated in real-time as jobs are completed.
-              </AccordionContent>
-            </AccordionItem>
+          <h2 className="text-3xl md:text-4xl font-light mb-12 text-center">
+            Planned Preventative Maintenance — <br className="hidden md:block"/>
+            <span className="font-semibold text-charcoal">Frequently Asked Questions</span>
+          </h2>
+          
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqSchema.mainEntity.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="bg-muted/20 border border-border rounded-lg px-6">
+                <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary py-6">
+                  {faq.name}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground font-light text-base pb-6 leading-relaxed">
+                  {faq.acceptedAnswer.text}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="bg-white py-32 text-center text-[#0a0a0b]">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black mb-12 tracking-tight">
-            Stop Reacting. Start Planning.
+      {/* CTA Strip */}
+      <section className="py-24 bg-gradient-to-br from-charcoal to-[#1a1c23] text-white">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-light mb-6">
+            Ready to Build Your PPM Programme?
           </h2>
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white px-12 h-16 rounded-none border-none uppercase tracking-widest font-black text-sm shadow-2xl">
-            <Link href="/contact">Build Your PPM Programme Today</Link>
-          </Button>
+          <p className="text-xl text-gray-300 font-light max-w-2xl mx-auto mb-10">
+            Talk to EntireFM today — we'll survey your site, build your asset register, and deliver a fully SFG20-aligned PPM schedule.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white shadow-xl hover:-translate-y-1 transition-transform" asChild>
+              <Link href="/contact" className="gap-2">
+                Get a PPM Quote <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>

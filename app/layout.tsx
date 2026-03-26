@@ -8,6 +8,7 @@ import { Providers } from "./providers";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingCTA from "@/components/layout/FloatingCTA";
+import ChatWidget from "@/components/ChatWidget";
 import Script from "next/script";
 
 const openSans = Open_Sans({
@@ -112,6 +113,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${openSans.variable}`}>
       <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
@@ -122,12 +125,12 @@ export default function RootLayout({
         <Providers>
           <TooltipProvider>
             <div className="flex flex-col min-h-screen">
-              <Header className="opacity-95" />
+              <Header />
               <main className="flex-grow">
                 {children}
               </main>
               <Footer />
-              <FloatingCTA />
+              <ChatWidget />
             </div>
             <Toaster />
             <Sonner />

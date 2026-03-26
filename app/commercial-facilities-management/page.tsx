@@ -1,11 +1,7 @@
-import CommercialFacilitiesManagement from "@/legacy-pages/CommercialFacilitiesManagement";
-import { Metadata } from "next";
+import SectorPage, { generateSectorMetadata } from "@/components/templates/SectorPage";
 
-export const metadata: Metadata = {
-  title: "Commercial Facilities Management | Office FM Services UK",
-  description: "Commercial facilities management for offices, business parks & corporate estates. Fire, electrical, HVAC, water hygiene & planned maintenance.",
-};
+export const generateMetadata = () => generateSectorMetadata("commercial-facilities-management");
 
-export default function CommercialFMPage() {
-  return <CommercialFacilitiesManagement />;
+export default function Page() {
+  return <SectorPage slug="commercial-facilities-management" />;
 }

@@ -220,7 +220,7 @@ export default function MarketingDashboard() {
             icon={Search}
             title="SEO Tools"
             description="Analyze and optimize page SEO"
-            onClick={() => router.push('/admin/marketing/seo')}
+            onClick={() => router.push('/admin/marketing/seo-tools')}
           />
         </div>
       </div>
@@ -264,7 +264,7 @@ export default function MarketingDashboard() {
                     <div 
                       key={item.id} 
                       className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors cursor-pointer"
-                      onClick={() => router.push(`/admin/marketing/content/${item.id}`)}
+                      onClick={() => router.push(`/admin/marketing/content/edit/${item.id}`)}
                     >
                       <div className="flex-1">
                         <h4 className="font-medium">{item.title}</h4>

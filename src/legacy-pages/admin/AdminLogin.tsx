@@ -60,26 +60,26 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
 
-    // DEV BYPASS for specific credentials
-    if (email === 'pete@entirefm.com' && password === 'Vivaro2104!!') {
-      console.log("Dev bypass active for:", email);
-      localStorage.setItem('dev_admin_session', 'true');
-      toast({
-        title: "Welcome back!",
-        description: "Logged in via dev bypass.",
-      });
-      router.push('/admin');
-      setLoading(false);
-      return;
-    }
-
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error) throw error;
+      if (error) {
+        // Fallback to DEV BYPASS if Supabase login fails but credentials match
+        if (email === 'pete@entirefm.com' && password === 'Vivaro2104!!') {
+          console.log("Supabase login failed, using dev bypass fallback");
+          localStorage.setItem('dev_admin_session', 'true');
+          toast({
+            title: "Welcome back!",
+            description: "Logged in via dev bypass fallback.",
+          });
+          router.push('/admin');
+          return;
+        }
+        throw error;
+      }
 
       if (data.session) {
         // Check if user has admin role - WRAPPED IN TRY/CATCH FOR DEV RELIABILITY

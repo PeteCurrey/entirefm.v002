@@ -14,7 +14,7 @@ export interface ResourceArticle {
   }[];
 }
 
-export const resourceArticles: ResourceArticle[] = [
+export const resources: ResourceArticle[] = [
   {
     slug: "what-is-planned-preventative-maintenance",
     category: "PPM & Maintenance",
@@ -478,3 +478,7 @@ We no longer view drones as a 'novelty'. They are a strategic tool in our PPM pr
     ]
   }
 ];
+
+export function getResourceBySlug(slug: string) {
+  return resources.find(r => r.slug === slug);
+}

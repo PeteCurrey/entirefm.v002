@@ -62,7 +62,7 @@ export async function downloadEICRManualComprehensive(): Promise<void> {
     doc.setFontSize(7);
     doc.setTextColor(...COLORS.gray);
     doc.setFont("helvetica", "normal");
-    doc.text("EntireFM | 0800 024 8550 | info@entirefm.com | www.entirefm.com", margin, pageHeight - 12);
+    doc.text("EntireFM | 0800 024 8550 | hello@entirefm.com | www.entirefm.com", margin, pageHeight - 12);
     doc.text(`Page ${pageNum}`, pageWidth - margin, pageHeight - 12, { align: "right" });
   }
 

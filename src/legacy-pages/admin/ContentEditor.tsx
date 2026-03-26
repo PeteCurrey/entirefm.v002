@@ -142,8 +142,11 @@ export default function ContentEditor() {
 
     setSaving(true);
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      
       const saveData = {
         ...content,
+        author_id: session?.user?.id || null,
         status: status || content.status,
         updated_at: new Date().toISOString()
       };
@@ -162,7 +165,7 @@ export default function ContentEditor() {
           .single();
         if (error) throw error;
         if (data) {
-          router.replace(`/admin/marketing/content/${data.id}`);
+          router.replace(`/admin/marketing/content/edit/${data.id}`);
         }
       }
 

@@ -101,7 +101,7 @@ export default function CriticalInfrastructure() {
           <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/placeholder.svg)',
+              backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/images/hero-building-engineering.jpg)',
             }}
           />
           <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">

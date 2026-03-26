@@ -202,7 +202,7 @@ export async function generateCompliancePDF(options: PDFOptions): Promise<void> 
   doc.setFontSize(8);
   doc.setFont("helvetica", "normal");
   doc.setTextColor(100, 100, 100);
-  doc.text("EntireFM | 0800 024 8550 | info@entirefm.com | www.entirefm.com", margin, yPos + 5);
+  doc.text("EntireFM | 0800 024 8550 | hello@entirefm.com | www.entirefm.com", margin, yPos + 5);
   
   // Generated date
   const today = new Date().toLocaleDateString("en-GB", {
@@ -564,7 +564,7 @@ export async function downloadCapabilityPack(): Promise<void> {
   yPos += 8;
   doc.setFontSize(9);
   doc.setTextColor(100, 100, 100);
-  doc.text("EntireFM | 0800 024 8550 | info@entirefm.com | www.entirefm.com", margin, yPos);
+  doc.text("EntireFM | 0800 024 8550 | hello@entirefm.com | www.entirefm.com", margin, yPos);
   
   const today = new Date().toLocaleDateString("en-GB", {
     day: "numeric",
