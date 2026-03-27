@@ -160,7 +160,7 @@ export function ResourceArticleLayout({
                      {/* Custom bullet styling overrides done above in Tailwind prose via global or specific classes. 
                          For ol styling, we might need some custom CSS to do the navy circle counter perfectly, 
                          but Tailwind prose provides a good baseline. We can add a global style for the counters if needed. */}
-                     <style jsx global>{`
+                     <style dangerouslySetInnerHTML={{ __html: `
                        .prose ul > li::marker { content: '■ '; color: #f5a623; font-size: 0.8em; }
                        .prose ol { counter-reset: item; list-style-type: none; padding-left: 0; }
                        .prose ol > li { position: relative; padding-left: 2rem; }
@@ -181,7 +181,7 @@ export function ResourceArticleLayout({
                          font-size: 0.75rem; 
                          font-weight: bold; 
                        }
-                     `}</style>
+                     `}} />
                      
                      {children}
                   </div>
