@@ -86,12 +86,14 @@ const Header = ({ className }: { className?: string }) => {
   ];
 
   const knowledgeItems = [
-    { label: "FM Intelligence Hub", to: "/fm-intelligence", icon: Target },
+    { label: "FM Insights", to: "/fm-insights", icon: Lightbulb },
+    { label: "Case Studies", to: "/case-studies", icon: Target },
+    { label: "FM Intelligence Hub", to: "/fm-intelligence", icon: Info },
     { label: "EntireFM Academy", to: "/academy", icon: BookOpen },
     { label: "The Building Walk", to: "/building-walk", icon: Landmark },
     { label: "Market Report 2025", to: "/fm-market-report", icon: FileText },
     { label: "Contractor Marketplace", to: "/marketplace", icon: Briefcase },
-    { label: "About EntireFM", to: "/about", icon: Info },
+    { label: "About EntireFM", to: "/about", icon: Building },
     { label: "Partner Network", to: "/partners", icon: Users }
   ];
 
@@ -361,6 +363,7 @@ const Header = ({ className }: { className?: string }) => {
                 </div>
 
                 <div className="px-6 py-4 space-y-4">
+                  <Link href="/fm-insights" className="block text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>FM Insights</Link>
                   <Link href="/case-studies" className="block text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Case Studies</Link>
                   <Link href="/about" className="block text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
                   <Link href="/contact" className="block text-sm font-light hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
