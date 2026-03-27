@@ -75,37 +75,43 @@ export default async function BlogPost({ params }: BlogPostProps) {
     <div className="min-h-screen bg-background text-foreground font-sans">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }} />
 
-      <article className="pt-24 pb-24">
-        {/* Header */}
-        <header className="container mx-auto px-6 max-w-4xl mb-16">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8 font-medium">
+      {/* Premium Hero Section */}
+      <section className="relative pt-40 pb-24 overflow-hidden bg-charcoal border-b border-white/5">
+        <div className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay" style={{ backgroundImage: "url('/images/blog-hero.jpg')" }}></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/80 to-transparent"></div>
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+        
+        <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors mb-8 font-medium">
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
           
-          <Breadcrumb items={breadcrumbItems} className="mb-6" />
+          <Breadcrumb items={breadcrumbItems} className="mb-6 [&_a]:text-gray-400 [&_a:hover]:text-white [&_span]:text-gray-200" />
           
-          <div className="flex items-center gap-4 mb-6 text-sm text-muted-foreground font-medium">
-            <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+          <div className="flex flex-wrap items-center gap-4 mb-6 text-sm text-gray-300 font-medium">
+            <span className="bg-primary/20 text-primary border border-primary/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-sm">
               {post.category}
             </span>
             <span className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" /> {post.date}
+              <Calendar className="w-4 h-4 opacity-70" /> {post.date}
             </span>
             <span className="flex items-center gap-1">
-              <User className="w-4 h-4" /> {post.author}
+              <User className="w-4 h-4 opacity-70" /> {post.author}
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 text-charcoal leading-tight tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-light mb-8 text-white leading-tight tracking-tight drop-shadow-lg">
             {post.title}
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed text-charcoal/80 italic border-l-4 border-primary pl-6">
+          <p className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed italic border-l-2 border-primary pl-6 hover:border-white transition-colors">
             {post.excerpt}
           </p>
-        </header>
+        </div>
+      </section>
 
-        {/* Article Body */}
+      {/* Article Body */}
+      <article className="py-24 bg-background">
         <div className="container mx-auto px-6 max-w-4xl pt-8 border-t border-border">
           <div className="prose prose-lg md:prose-xl max-w-none prose-headings:font-bold prose-headings:text-charcoal prose-h2:mt-16 prose-h2:mb-6 prose-p:text-muted-foreground prose-p:font-light prose-p:leading-relaxed prose-a:text-primary hover:prose-a:text-primary/80 prose-li:text-muted-foreground prose-li:font-light prose-strong:text-charcoal prose-strong:font-bold">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
