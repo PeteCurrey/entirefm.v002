@@ -82,7 +82,7 @@ export default function TenderBriefClient() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          template: 'TenderBrief',
+          templateType: 'tender-brief',
           data: brief,
         }),
       });

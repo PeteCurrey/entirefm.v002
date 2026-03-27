@@ -71,7 +71,7 @@ export default function ROICalculatorClient() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          template: 'ROIReport',
+          templateType: 'roi-report',
           data: {
             inputs,
             results,

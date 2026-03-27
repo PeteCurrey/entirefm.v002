@@ -47,12 +47,11 @@ export default function DocumentVaultClient() {
       if (res.ok) {
         setDownloadSuccess(selectedDoc.id);
 
-        // Map document ID to our server-side PDF templates
         const templateMap: Record<string, string> = {
-          "ppm-schedule-commercial": "VaultPPMScheduleCommercial",
-          "building-compliance-checklist": "VaultBuildingComplianceChecklist",
-          "fm-sla-template": "VaultFMSLATemplate",
-          "reactive-maintenance-log": "VaultReactiveMaintenanceLog",
+          "ppm-schedule-commercial": "vault-ppm-commercial",
+          "building-compliance-checklist": "vault-checklist",
+          "fm-sla-template": "vault-sla",
+          "reactive-maintenance-log": "vault-reactive-log",
         };
 
         const templateName = templateMap[selectedDoc.id];
@@ -63,7 +62,7 @@ export default function DocumentVaultClient() {
                method: 'POST',
                headers: { 'Content-Type': 'application/json' },
                body: JSON.stringify({
-                 template: templateName,
+                 templateType: templateName,
                  data: { documentId: selectedDoc.id } 
                }),
              });

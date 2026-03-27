@@ -1,5 +1,25 @@
 import { NextResponse } from 'next/server';
-import { renderToBuffer } from '@react-pdf/renderer';
+import { renderToBuffer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+
+const styles = StyleSheet.create({
+  page: { padding: 40, fontFamily: 'Helvetica' },
+  header: { fontSize: 24, marginBottom: 20, color: '#1a2e4a' },
+  text: { fontSize: 12, lineHeight: 1.5, color: '#333' }
+});
+
+const GenericPDF = ({ title, referenceNumber, generatedDate }: { title: string, referenceNumber: string, generatedDate: string }) => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <Text style={styles.header}>{title}</Text>
+      <Text style={styles.text}>Reference: {referenceNumber}</Text>
+      <Text style={styles.text}>Date Generated: {generatedDate}</Text>
+      <View style={{ marginTop: 40 }}>
+        <Text style={styles.text}>Thank you for your interest in EntireFM.</Text>
+        <Text style={styles.text}>This document template is currently being updated. Please contact our team for more information.</Text>
+      </View>
+    </Page>
+  </Document>
+);
 
 // Import Templates
 import { PPMSchedulePDF } from '@/lib/pdf/templates/PPMSchedule';
@@ -60,15 +80,23 @@ export async function POST(req: Request) {
       case 'vault-reactive-log':
         pdfElement = <VaultReactiveMaintenanceLogPDF referenceNumber={referenceNumber} generatedDate={generatedDate} />;
         break;
+      case 'tender-brief':
+        pdfElement = <GenericPDF title="Tender Brief Specification" referenceNumber={referenceNumber} generatedDate={generatedDate} />;
+        break;
+      case 'guide':
+        pdfElement = <GenericPDF title={`Resource Guide: ${data?.title || 'Document'}`} referenceNumber={referenceNumber} generatedDate={generatedDate} />;
+        break;
       default:
-        return NextResponse.json({ error: 'Invalid templateType' }, { status: 400 });
+        console.warn(`[Generate PDF] Unmapped templateType: ${templateType}. Returning generic PDF.`);
+        pdfElement = <GenericPDF title="EntireFM Document" referenceNumber={referenceNumber} generatedDate={generatedDate} />;
+        break;
     }
 
     // Render PDF to buffer
     const pdfBuffer = await renderToBuffer(pdfElement);
 
     // Return binary response
-    return new Response(pdfBuffer, {
+    return new Response(new Uint8Array(pdfBuffer), {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
