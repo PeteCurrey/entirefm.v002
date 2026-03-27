@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fmHealthCheckQuestions, getScoreBracket, FMHealthCheckQuestion } from "@/lib/fmHealthCheck";
-import { CheckCircle2, XCircle, HelpCircle, ChevronDown, ChevronUp, Share2, RotateCcw, ArrowRight, AlertTriangle } from "lucide-react";
+import { CheckCircle2, XCircle, HelpCircle, ChevronDown, ChevronUp, Share2, RotateCcw, ArrowRight, AlertTriangle, Flame } from "lucide-react";
 import Link from "next/link";
+import { HealthCheckBenchmark } from "./HealthCheckBenchmark";
+import { cn } from "@/lib/utils";
 
 type Answer = "yes" | "no" | "unsure";
 type State = "intro" | "quiz" | "lead" | "results";
@@ -43,16 +45,34 @@ export default function FMHealthCheckClient() {
   const [copySuccess, setCopySuccess] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // New Momentum State
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
+  const [flashState, setFlashState] = useState<Answer | null>(null);
+
   const handleAnswer = (answer: Answer) => {
     const q = fmHealthCheckQuestions[currentQ];
+    
+    // Streak Physics
+    if (answer === "yes") {
+      const newStreak = currentStreak + 1;
+      setCurrentStreak(newStreak);
+      if (newStreak > longestStreak) setLongestStreak(newStreak);
+    } else {
+      setCurrentStreak(0);
+    }
+
     setAnswers((a) => ({ ...a, [q.id]: answer }));
+    setFlashState(answer);
+
     setTimeout(() => {
+      setFlashState(null);
       if (currentQ < fmHealthCheckQuestions.length - 1) {
         setCurrentQ((i) => i + 1);
       } else {
         setState("lead");
       }
-    }, 300);
+    }, 400); // slightly longer to appreciate the flash
   };
 
   const totalScore = Object.entries(answers).reduce((sum, [id, ans]) => {
@@ -120,6 +140,8 @@ export default function FMHealthCheckClient() {
   const reset = () => {
     setCurrentQ(0);
     setAnswers({});
+    setCurrentStreak(0);
+    setLongestStreak(0);
     setContact({ name: "", email: "", company: "", phone: "" });
     setExpandedIds(new Set());
     setSubmitted(false);
@@ -149,55 +171,80 @@ export default function FMHealthCheckClient() {
   if (state === "quiz") {
     const q = fmHealthCheckQuestions[currentQ];
     const progress = ((currentQ) / fmHealthCheckQuestions.length) * 100;
+    const isFlashing = flashState !== null;
 
     return (
-      <div className="max-w-2xl mx-auto px-6 py-12">
+      <div className="max-w-2xl mx-auto px-6 py-12 relative">
+        {/* Momentum Indicator Container. Absolutely positioned to not shift layout */}
+        <div className="absolute right-6 top-12 md:top-6 z-10 transition-all duration-300">
+          {currentStreak >= 2 && (
+             <div className="flex items-center gap-2 bg-gradient-to-r from-orange-400 to-red-500 text-white px-3 py-1.5 rounded-full shadow-lg transform data-[pulse=true]:scale-110 transition-transform origin-center" data-pulse={isFlashing && flashState === "yes"}>
+                <Flame className="w-4 h-4 animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-widest">{currentStreak} in a row</span>
+             </div>
+          )}
+        </div>
+
         {/* Progress */}
         <div className="mb-10">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+            <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground mt-4 md:mt-0">
               Question {currentQ + 1} of {fmHealthCheckQuestions.length}
             </span>
-            <span className="text-xs font-bold uppercase tracking-widest text-primary">
+            <span className="text-xs font-bold uppercase tracking-widest text-primary mt-4 md:mt-0">
               {Math.round(progress)}%
             </span>
           </div>
           <div className="w-full bg-border rounded-full h-1.5">
             <div
-              className="h-full bg-primary rounded-full transition-all duration-500"
+              className={`h-full rounded-full transition-all duration-500 ${currentStreak >= 3 ? "bg-orange-500" : "bg-primary"}`}
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
-        {/* Category */}
-        <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-3 block">
-          {q.category}
-        </span>
+        {/* Question Card Container */}
+        <div className={cn("bg-white border p-6 md:p-8 rounded-2xl shadow-sm transition-all duration-300", 
+            isFlashing && flashState === "yes" && "border-green-400 bg-green-50 scale-[1.02]",
+            isFlashing && flashState === "no" && "border-red-400 bg-red-50 scale-[0.98]",
+            isFlashing && flashState === "unsure" && "border-amber-400 bg-amber-50 scale-[0.99]",
+            !isFlashing && "border-border"
+        )}>
+           {/* Category */}
+           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-3 block">
+             {q.category}
+           </span>
 
-        {/* Question */}
-        <h2 className="text-2xl md:text-3xl font-light text-charcoal mb-10 leading-snug">
-          {q.question}
-        </h2>
+           {/* Question */}
+           <h2 className="text-2xl md:text-3xl font-light text-charcoal mb-10 leading-snug">
+             {q.question}
+           </h2>
 
-        {/* Answers */}
-        <div className="space-y-3">
-          {(["yes", "no", "unsure"] as Answer[]).map((ans) => {
-            const cfg = ANSWER_CONFIG[ans];
-            const label = ans === "yes" ? q.yesLabel : ans === "no" ? q.noLabel : q.unsureLabel;
-            return (
-              <button
-                key={ans}
-                onClick={() => handleAnswer(ans)}
-                className={`w-full text-left px-6 py-4 rounded-xl border-2 transition-all duration-150 font-medium flex items-center gap-4 hover:shadow-md ${
-                  answers[q.id] === ans ? cfg.color : "border-border hover:border-primary/30"
-                }`}
-              >
-                <span className="text-xl">{cfg.emoji}</span>
-                <span className="text-charcoal">{label}</span>
-              </button>
-            );
-          })}
+           {/* Answers */}
+           <div className="space-y-3">
+             {(["yes", "no", "unsure"] as Answer[]).map((ans) => {
+               const cfg = ANSWER_CONFIG[ans];
+               const label = ans === "yes" ? q.yesLabel : ans === "no" ? q.noLabel : q.unsureLabel;
+               const selected = answers[q.id] === ans;
+               const flashingThis = isFlashing && flashState === ans;
+
+               return (
+                 <button
+                   key={ans}
+                   onClick={() => handleAnswer(ans)}
+                   disabled={isFlashing}
+                   className={cn(
+                     "w-full text-left px-6 py-4 rounded-xl border-2 transition-all duration-300 font-medium flex items-center gap-4 group disabled:cursor-wait",
+                     selected || flashingThis ? cfg.color : "border-border hover:border-primary hover:bg-slate-50",
+                     flashingThis && "scale-105 shadow-md"
+                   )}
+                 >
+                   <span className={cn("text-xl transition-transform duration-300", flashingThis && "scale-125")}>{cfg.emoji}</span>
+                   <span className="text-charcoal">{label}</span>
+                 </button>
+               );
+             })}
+           </div>
         </div>
       </div>
     );
@@ -259,7 +306,7 @@ export default function FMHealthCheckClient() {
       {/* Score Gauge */}
       <div className="flex flex-col items-center mb-10">
         <div className="relative w-36 h-36 mb-4">
-          <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+          <svg className="w-full h-full -rotate-90 origin-center" viewBox="0 0 120 120">
             <circle cx="60" cy="60" r="54" fill="none" stroke="#e5e7eb" strokeWidth="10" />
             <circle
               cx="60" cy="60" r="54" fill="none"
@@ -268,7 +315,7 @@ export default function FMHealthCheckClient() {
               strokeDasharray={circumference}
               strokeDashoffset={offset}
               strokeLinecap="round"
-              style={{ transition: "stroke-dashoffset 1s ease-out" }}
+              style={{ transition: "stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1)" }}
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -282,6 +329,11 @@ export default function FMHealthCheckClient() {
         <p className="text-center text-muted-foreground font-light max-w-lg mt-4 leading-relaxed">
           {bracket.summary}
         </p>
+      </div>
+
+      {/* Benchmark Integration */}
+      <div className="mb-12">
+         <HealthCheckBenchmark score={totalScore} maxScore={maxScore} bracketColor={bracket.colour} />
       </div>
 
       {/* Gaps Summary */}

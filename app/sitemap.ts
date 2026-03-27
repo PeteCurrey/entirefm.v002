@@ -62,6 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/request-proposal',
     '/residential-facilities-management',
     '/resources',
+    '/resources/compliance-calendar',
     '/resources/document-vault',
     '/retail-facilities-management',
     '/search',

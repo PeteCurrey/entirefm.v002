@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import type { PPMEstimate } from "@/lib/toolTypes";
-import { CheckCircle2, ArrowRight, ChevronDown, ChevronUp, Loader2 } from "lucide-react";
+import { calculateLiveEstimate } from "@/lib/estimatorCalc";
+import { CheckCircle2, ArrowRight, ChevronDown, ChevronUp, Loader2, Info } from "lucide-react";
 import Link from "next/link";
+import { LiveCostSidebar } from "./LiveCostSidebar";
 
 type State = "form" | "lead" | "generating" | "results";
 
@@ -53,6 +55,16 @@ export default function PPMEstimatorClient() {
 
   const set = (key: string, val: string) => setProfile((p) => ({ ...p, [key]: val }));
 
+  const liveData = calculateLiveEstimate(profile);
+  const formComplete = liveData.progress === 100;
+
+  const handleLeadCapture = () => {
+    setState("generating");
+    // Pseudo loading state before form or full results if needed.
+    // Spec says to proceed directly to lead capture, which is state="lead"
+    setState("lead");
+  };
+
   const handleGenerate = async () => {
     setState("generating");
     const flat: Record<string, string> = {};
@@ -69,8 +81,9 @@ export default function PPMEstimatorClient() {
       setProgress(100);
       setTimeout(() => setState("results"), 400);
     } catch {
-      setError("Something went wrong. Please try again.");
-      setState("form");
+      // Fallback to client calc if API fails
+      setEstimate(liveData);
+      setTimeout(() => setState("results"), 400);
     }
   };
 
@@ -211,57 +224,66 @@ export default function PPMEstimatorClient() {
   );
 
   // ── FORM ──
-  const formComplete = profile.sector && profile.buildingType && profile.siteCount && profile.size && profile.reactiveSpend && (profile.services as string[])?.length > 0 && profile.compliance;
-
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12">
+    <div className="max-w-6xl mx-auto px-4 md:px-6 py-12 mb-20 lg:mb-0">
       {error && <div className="mb-6 bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700">{error}</div>}
-      <div className="space-y-10">
-        {/* Q1 */}
-        <div>
-          <h3 className="font-semibold text-charcoal mb-4">1. What sector are you in?</h3>
-          <div className="grid sm:grid-cols-2 gap-2">{SECTORS.map((v) => <SelectBtn key={v} k="sector" val={v} />)}</div>
-        </div>
-        {/* Q2 */}
-        <div>
-          <h3 className="font-semibold text-charcoal mb-4">2. What type of building or estate?</h3>
-          <div className="grid sm:grid-cols-2 gap-2">{BUILDING_TYPES.map((v) => <SelectBtn key={v} k="buildingType" val={v} />)}</div>
-        </div>
-        {/* Q3 */}
-        <div>
-          <h3 className="font-semibold text-charcoal mb-4">3. How many sites do you manage?</h3>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">{SITE_COUNTS.map((v) => <SelectBtn key={v} k="siteCount" val={v} />)}</div>
-        </div>
-        {/* Q4 */}
-        <div>
-          <h3 className="font-semibold text-charcoal mb-4">4. Approximate size of your primary site?</h3>
-          <div className="grid sm:grid-cols-2 gap-2">{SIZES.map((v) => <SelectBtn key={v} k="size" val={v} />)}</div>
-        </div>
-        {/* Q5 */}
-        <div>
-          <h3 className="font-semibold text-charcoal mb-4">5. Current annual reactive maintenance spend?</h3>
-          <div className="grid sm:grid-cols-2 gap-2">{REACTIVE_SPENDS.map((v) => <SelectBtn key={v} k="reactiveSpend" val={v} />)}</div>
-        </div>
-        {/* Q6 */}
-        <div>
-          <h3 className="font-semibold text-charcoal mb-4">6. Services to include in your PPM programme?</h3>
-          <div className="grid sm:grid-cols-2 gap-2">{SERVICES.map((v) => <MultiBtn key={v} k="services" val={v} />)}</div>
-        </div>
-        {/* Q7 */}
-        <div>
-          <h3 className="font-semibold text-charcoal mb-4">7. How important is compliance documentation?</h3>
-          <div className="grid gap-2">{COMPLIANCE_OPTS.map((v) => <SelectBtn key={v} k="compliance" val={v} />)}</div>
-        </div>
+      
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+         {/* Form Primary Content */}
+         <div className="lg:w-3/5 space-y-12">
+            <div>
+               <h1 className="text-3xl font-light text-charcoal mb-2">Build Your PPM Estimate</h1>
+               <p className="text-muted-foreground">Select your estate criteria to generate a ballpark baseline for statutory maintenance. The estimate updates dynamically as you complete the form.</p>
+            </div>
 
-        <div className="pt-4 border-t border-border flex justify-end">
-          <button
-            onClick={() => setState("lead")}
-            disabled={!formComplete}
-            className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-primary/90 transition-all shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
-          >
-            Get My Estimate <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
+            {/* Q1 */}
+            <div>
+              <h3 className="font-semibold text-charcoal mb-4 flex gap-2"><span className="text-primary">•</span> What sector are you in?</h3>
+              <div className="grid sm:grid-cols-2 gap-3">{SECTORS.map((v) => <SelectBtn key={v} k="sector" val={v} />)}</div>
+            </div>
+            {/* Q2 */}
+            <div>
+              <h3 className="font-semibold text-charcoal mb-4 flex gap-2"><span className="text-primary">•</span> What type of building or estate?</h3>
+              <div className="grid sm:grid-cols-2 gap-3">{BUILDING_TYPES.map((v) => <SelectBtn key={v} k="buildingType" val={v} />)}</div>
+            </div>
+            {/* Q3 */}
+            <div>
+              <h3 className="font-semibold text-charcoal mb-4 flex gap-2"><span className="text-primary">•</span> How many sites do you manage?</h3>
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">{SITE_COUNTS.map((v) => <SelectBtn key={v} k="siteCount" val={v} />)}</div>
+            </div>
+            {/* Q4 */}
+            <div>
+              <h3 className="font-semibold text-charcoal mb-4 flex gap-2"><span className="text-primary">•</span> Approximate internal footprint (primary site)?</h3>
+              <div className="grid sm:grid-cols-2 gap-3">{SIZES.map((v) => <SelectBtn key={v} k="size" val={v} />)}</div>
+            </div>
+            {/* Q5 */}
+            <div>
+              <h3 className="font-semibold text-charcoal mb-4 flex gap-2"><span className="text-primary">•</span> Current annual reactive maintenance spend?</h3>
+              <div className="grid sm:grid-cols-2 gap-3">{REACTIVE_SPENDS.map((v) => <SelectBtn key={v} k="reactiveSpend" val={v} />)}</div>
+            </div>
+            {/* Q6 */}
+            <div>
+              <h3 className="font-semibold text-charcoal mb-4 flex gap-2"><span className="text-primary">•</span> Which services should we include?</h3>
+              <p className="text-xs text-muted-foreground italic mb-4">You can select multiple services. Basic compliance maintenance is included by default.</p>
+              <div className="grid sm:grid-cols-2 gap-3">{SERVICES.map((v) => <MultiBtn key={v} k="services" val={v} />)}</div>
+            </div>
+            {/* Q7 */}
+            <div>
+              <h3 className="font-semibold text-charcoal mb-4 flex gap-2"><span className="text-primary">•</span> How critical is unified digital compliance?</h3>
+              <div className="grid gap-3">{COMPLIANCE_OPTS.map((v) => <SelectBtn key={v} k="compliance" val={v} />)}</div>
+            </div>
+         </div>
+
+         {/* Sidebar Secondary Content */}
+         <div className="lg:w-2/5 relative">
+            <LiveCostSidebar 
+               progress={liveData.progress} 
+               low={liveData.annualLow} 
+               high={liveData.annualHigh} 
+               isFormComplete={formComplete} 
+               onContinue={handleLeadCapture} 
+            />
+         </div>
       </div>
     </div>
   );

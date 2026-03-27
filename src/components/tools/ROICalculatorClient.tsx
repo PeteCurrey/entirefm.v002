@@ -2,8 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { calculateROI, fmt, type ROIResults, type FMInputs } from "@/lib/roiCalculator";
-import { ArrowRight, Info, TrendingUp, ShieldAlert, Clock, Download, Printer, Loader2 } from "lucide-react";
+import { ArrowRight, Info, TrendingUp, ShieldAlert, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { AnimatedNumber } from "./AnimatedNumber";
+import { SavingsDonut } from "./SavingsDonut";
+import { ROIFiveYearChart } from "./ROIFiveYearChart";
+import { PaybackCountdown } from "./PaybackCountdown";
 
 type State = "form" | "lead" | "calculating" | "results";
 
@@ -31,6 +35,34 @@ export default function ROICalculatorClient() {
   const [summary, setSummary] = useState("");
   const [ticker, setTicker] = useState(0);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [resultsStage, setResultsStage] = useState(0);
+
+  useEffect(() => {
+    if (state === "results") {
+      // Stage timer orchestration
+      // 0ms = stage 0
+      // 200ms = banner slide (stage 1)
+      // 2200ms = target text (stage 2)
+      // 2500ms = badge (stage 3)
+      // 3000ms = summary (stage 4)
+      // 3400ms = columns (stage 5)
+      // 4000ms = donut+payback (stage 6)
+      // 5000ms = chart+CTA (stage 7)
+      const t1 = setTimeout(() => setResultsStage(1), 200);
+      const t2 = setTimeout(() => setResultsStage(2), 2200);
+      const t3 = setTimeout(() => setResultsStage(3), 2500);
+      const t4 = setTimeout(() => setResultsStage(4), 3000);
+      const t5 = setTimeout(() => setResultsStage(5), 3400);
+      const t6 = setTimeout(() => setResultsStage(6), 4000);
+      const t7 = setTimeout(() => setResultsStage(7), 5000);
+
+      return () => {
+        clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+        clearTimeout(t4); clearTimeout(t5); clearTimeout(t6);
+        clearTimeout(t7);
+      };
+    }
+  }, [state]);
 
   const handleDownloadPDF = async () => {
     setIsGeneratingPDF(true);
@@ -107,165 +139,159 @@ export default function ROICalculatorClient() {
   );
 
   if (state === "results" && results) return (
-    <div className="pb-24">
-      {/* ROI Hero Banner */}
-      <div className="bg-amber-400 py-12 px-6">
+    <div className="pb-24 bg-gray-50 min-h-screen">
+      {/* ROI Hero Banner (Stage 1) */}
+      <div className={`bg-amber-400 py-16 px-6 transition-all duration-700 ease-out transform ${resultsStage >= 1 ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"}`}>
         <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           <div>
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-charcoal/60 mb-2 block">Cost Efficiency Analysis</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-charcoal mb-1">
-              You could save <span className="text-white drop-shadow-sm">{fmt(results.annualSaving)}</span> per year
+            <span className={`text-xs font-bold uppercase tracking-[0.2em] text-charcoal/60 mb-2 block transition-opacity duration-500 delay-300 ${resultsStage >= 2 ? "opacity-100" : "opacity-0"}`}>
+              Cost Efficiency Analysis
+            </span>
+            <h2 className="text-4xl md:text-6xl font-bold text-charcoal mb-2 tracking-tight">
+              <span className={`transition-opacity duration-500 block text-lg font-medium text-charcoal/80 mb-2 ${resultsStage >= 2 ? "opacity-100" : "opacity-0"}`}>
+                You could save
+              </span>
+              <span className="text-white drop-shadow-md">
+                £<AnimatedNumber end={results.annualSaving} duration={2000} delayMs={400} />
+              </span>
             </h2>
-            <p className="text-xl text-charcoal/80 font-medium">That's {fmt(results.fiveYearSaving)} over {inputs.desiredContractLength || 5} years</p>
+            <p className={`text-xl text-charcoal/80 font-medium transition-opacity duration-500 delay-500 ${resultsStage >= 2 ? "opacity-100" : "opacity-0"}`}>
+              per year
+            </p>
           </div>
-          <div className="bg-charcoal text-white px-8 py-6 rounded-2xl flex flex-col items-center justify-center shadow-xl border border-white/10">
-            <span className="text-4xl font-bold text-amber-400">{results.roiPercentage}%</span>
-            <span className="text-xs font-bold uppercase tracking-widest opacity-60">Estimated ROI</span>
+          
+          <div className={`transition-all duration-400 transform origin-center ${resultsStage >= 3 ? "scale-100 opacity-100" : "scale-50 opacity-0"}`}>
+            <div className="bg-charcoal text-white px-10 py-8 rounded-2xl flex flex-col items-center justify-center shadow-2xl border border-white/10">
+              <span className="text-5xl font-bold text-amber-400 mb-2">{results.roiPercentage}%</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">Estimated ROI</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto max-w-5xl px-6 pt-12 space-y-12">
-        {/* AI Summary */}
-        <div className="bg-charcoal text-white p-8 rounded-2xl shadow-lg relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl -mr-16 -mt-16" />
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-4 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4" /> Executive Summary
+        {/* AI Summary (Stage 4) */}
+        <div className={`bg-charcoal text-white p-10 rounded-2xl shadow-xl relative overflow-hidden transition-all duration-700 transform ${resultsStage >= 4 ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-3xl rounded-full mix-blend-screen -mr-32 -mt-32" />
+          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-6 flex items-center gap-3">
+            <TrendingUp className="w-5 h-5" /> Executive Summary
           </h3>
-          <p className="text-lg font-light leading-relaxed italic opacity-90">{summary || "Based on your inputs, switching to EntireFM TFM offers significant cost consolidation and risk reduction potential."}</p>
+          <p className="text-xl font-light leading-relaxed opacity-90 relative z-10">{summary || "Based on your inputs, switching to EntireFM TFM offers significant cost consolidation and risk reduction potential."}</p>
         </div>
 
-        {/* Cost Breakdown */}
+        {/* Cost Breakdown (Stage 5) */}
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Current model */}
-          <div className="bg-white border border-border p-8 rounded-2xl shadow-sm">
-            <h3 className="text-lg font-semibold text-charcoal mb-6 border-b border-border pb-2 flex items-center gap-2">
-              <ShieldAlert className="w-5 h-5 text-red-500" /> Your Current True FM Cost
+          <div className={`bg-white border border-border p-10 rounded-2xl shadow-sm transition-all duration-700 transform ${resultsStage >= 5 ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"}`}>
+            <h3 className="text-xl font-semibold text-charcoal mb-8 border-b border-border pb-4 flex items-center gap-3">
+              <ShieldAlert className="w-6 h-6 text-red-500" /> Your Current True FM Cost
             </h3>
-            <div className="space-y-4 mb-8">
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Visible Costs (Contract + Reactive + Staff)</span>
-                <span className="font-semibold text-charcoal">{fmt(results.currentVisibleCosts)}</span>
+            <div className="space-y-5 mb-10">
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-muted-foreground font-medium">Visible Contract Costs</span>
+                <span className="font-bold text-charcoal text-lg">{fmt(results.currentVisibleCosts)}</span>
               </div>
-              <div className="bg-amber-50 border border-amber-100 p-4 rounded-xl">
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="font-semibold text-amber-800 flex items-center gap-2">Hidden Costs <Info className="w-3 h-3" /></span>
-                  <span className="font-bold text-amber-800">{fmt(results.currentHiddenCosts)}</span>
+              <div className="bg-red-50/50 border border-red-100 p-5 rounded-xl">
+                <div className="flex justify-between items-center text-sm mb-3">
+                  <span className="font-bold text-red-800 flex items-center gap-2">Hidden Budget Drain <Info className="w-4 h-4 opacity-50" /></span>
+                  <span className="font-bold text-red-800">{fmt(results.currentHiddenCosts)}</span>
                 </div>
-                <ul className="text-xs text-amber-700/70 space-y-1 pl-2 border-l border-amber-200">
-                  <li>• Management Time: {fmt(results.managementTimeCost)}</li>
-                  <li>• Compliance Risk/Fines: {fmt(inputs.complianceFinesCost)}</li>
-                  <li>• FM-Related Insurance Claims: {fmt(inputs.insuranceClaimsRelatedToFM)}</li>
+                <ul className="text-xs text-red-700/80 space-y-2 pl-3 border-l-2 border-red-200">
+                  <li>• Reactive Spikes: {fmt(inputs.annualReactiveSpend)}</li>
+                  <li>• Management Overhead: {fmt(results.managementTimeCost)}</li>
+                  <li>• Fines / Claims: {fmt(inputs.complianceFinesCost + inputs.insuranceClaimsRelatedToFM)}</li>
                 </ul>
               </div>
             </div>
-            <div className="pt-4 border-t border-border flex justify-between items-center">
-              <span className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Total Annual TCO</span>
-              <span className="text-2xl font-bold text-red-600">{fmt(results.currentAnnualTrueCost)}</span>
+            <div className="pt-6 border-t border-border flex flex-col items-end align-bottom gap-1">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Total Annual Drain</span>
+              <span className="text-4xl font-bold text-red-600 tracking-tighter">{fmt(results.currentAnnualTrueCost)}</span>
             </div>
           </div>
 
           {/* EntireFM model */}
-          <div className="bg-white border border-border p-8 rounded-2xl shadow-sm bg-gradient-to-br from-white to-green-50/30">
-            <h3 className="text-lg font-semibold text-charcoal mb-6 border-b border-border pb-2 flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-green-500" /> Estimated EntireFM TFM Cost
+          <div className={`bg-gradient-to-br from-white to-green-50/50 border border-green-100 p-10 rounded-2xl shadow-sm transition-all duration-700 transform ${resultsStage >= 5 ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"}`} style={{ transitionDelay: '200ms' }}>
+            <h3 className="text-xl font-semibold text-charcoal mb-8 border-b border-green-200 pb-4 flex items-center gap-3">
+              <TrendingUp className="w-6 h-6 text-green-500" /> Estimated EntireFM TFM Target
             </h3>
-            <div className="space-y-4 mb-8">
-              <div className="flex justify-between text-sm">
-                <span className="text-muted-foreground">Estimated Annual Contract</span>
-                <span className="font-semibold text-charcoal">{fmt(results.entireFMEstimatedAnnual)}</span>
+            <div className="space-y-5 mb-10">
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-muted-foreground font-medium">Consolidated TFM Contract</span>
+                <span className="font-bold text-charcoal text-lg">{fmt(results.entireFMEstimatedAnnual)}</span>
               </div>
-              <div className="bg-green-50/50 border border-green-100 p-4 rounded-xl">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-green-700 mb-3 opacity-60">Projected Savings Efficiencies</p>
-                <div className="space-y-2">
+              <div className="bg-green-50/80 border border-green-200 p-5 rounded-xl">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-green-800 mb-4 opacity-70">Projected Efficiency Offsets</p>
+                <div className="space-y-3">
                   <div className="flex justify-between text-sm">
-                    <span className="text-green-800">Reactive Spend Reduction</span>
+                    <span className="text-green-800 font-medium">Supply Chain Consolidation</span>
                     <span className="font-bold text-green-700">-{fmt(results.projectedReactiveSavings)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-green-800">Management Time Reclaimed</span>
+                    <span className="text-green-800 font-medium">Admin Automation</span>
                     <span className="font-bold text-green-700">-{fmt(results.projectedManagementTimeSaving)}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-green-800">Compliance Risk Elimination</span>
-                    <span className="font-bold text-green-700">-{fmt(results.projectedComplianceSaving)}</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="pt-4 border-t border-border flex justify-between items-center text-green-600">
-              <span className="text-sm font-bold uppercase tracking-widest opacity-60">Net Annual Saving</span>
-              <span className="text-2xl font-bold underline decoration-green-400/30 underline-offset-4">{fmt(results.annualSaving)}</span>
+            <div className="pt-6 border-t border-green-200 flex flex-col items-end gap-1 text-green-600">
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-70">New Optimised Baseline</span>
+              <span className="text-4xl font-bold tracking-tighter">{fmt(results.entireFMEstimatedAnnual)}</span>
             </div>
           </div>
         </div>
 
-        {/* 5-Year Projection Chart (CSS Line Chart) */}
-        <div className="bg-white border border-border p-8 rounded-2xl shadow-sm">
-          <div className="flex items-center justify-between mb-10">
-            <h3 className="text-lg font-semibold text-charcoal">5-Year FM Cost Projection</h3>
-            <div className="flex gap-4 text-xs font-bold uppercase tracking-widest">
-              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-red-400" /> Current Model</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-0.5 bg-green-500" /> EntireFM TFM</span>
+        {/* Analytics Core: Donut & Payback (Stage 6) */}
+        <div className={`grid lg:grid-cols-2 gap-8 transition-all duration-700 transform ${resultsStage >= 6 ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
+           <div className="bg-white border border-border p-10 rounded-2xl shadow-sm flex flex-col items-center justify-center">
+             <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground w-full text-center mb-8">Savings Breakdown</h3>
+             <SavingsDonut breakdown={results.savingsBreakdown} delayMs={4500} />
+           </div>
+           
+           <PaybackCountdown months={results.paybackMonths} delayMs={4500} className="h-full flex flex-col justify-center" />
+        </div>
+
+        {/* 5-Year Projection SVG Chart (Stage 7) */}
+        <div className={`bg-white border border-border p-10 rounded-2xl shadow-sm transition-all duration-1000 transform ${resultsStage >= 7 ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+            <h3 className="text-xl font-semibold text-charcoal">5-Year Strategic Projection</h3>
+            <div className="flex gap-6 text-[10px] font-bold uppercase tracking-widest">
+              <span className="flex items-center gap-2"><div className="w-4 h-1 bg-charcoal" /> Current Trajectory</span>
+              <span className="flex items-center gap-2"><div className="w-4 h-1 bg-[#f5a623]" /> EntireFM Model</span>
             </div>
           </div>
-          <div className="h-64 flex items-end gap-2 relative border-l border-b border-border mt-4 mb-8">
-            {/* Legend marker */}
-            <div className="absolute right-0 top-0 bg-amber-400 text-charcoal px-4 py-2 rounded font-bold text-sm shadow-lg z-10 -mr-2 -mt-4">
-              Total Saving: {fmt(results.fiveYearSaving)}
-            </div>
-
-            {results.yearByYear.map((yr, i) => {
-              const maxVal = Math.max(...results.yearByYear.map(y => y.currentCost));
-              const currentH = (yr.currentCost / maxVal) * 100;
-              const efmH = (yr.entireFMCost / maxVal) * 100;
-
-              return (
-                <div key={i} className="flex-1 flex flex-col items-center gap-1 group">
-                  <div className="w-full flex justify-center gap-1 items-end h-full">
-                    {/* Current Model Bar (thin line) */}
-                    <div className="w-1 bg-red-400/30 group-hover:bg-red-400 transition-colors relative" style={{ height: `${currentH}%` }}>
-                      <div className="absolute top-0 transform -translate-y-full mb-1 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-[10px] text-red-600 font-bold">{fmt(yr.currentCost)}</div>
-                    </div>
-                    {/* EntireFM Bar */}
-                    <div className="w-6 bg-green-500/80 group-hover:bg-green-500 transition-colors relative" style={{ height: `${efmH}%` }}>
-                      <div className="absolute top-0 transform -translate-y-full mb-1 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-[10px] text-green-700 font-bold">{fmt(yr.entireFMCost)}</div>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-bold text-muted-foreground">Year {yr.year}</span>
-                </div>
-              );
-            })}
-          </div>
-          <div className="grid grid-cols-5 text-center text-xs font-bold text-muted-foreground uppercase tracking-widest">
-            {results.yearByYear.map(y => <div key={y.year}>Saving: {fmt(y.saving)}</div>)}
+          
+          <div className="w-full mt-4">
+             {resultsStage >= 7 && (
+               <ROIFiveYearChart data={results.yearByYear} fiveYearSaving={results.fiveYearSaving} delayMs={500} />
+             )}
           </div>
         </div>
 
-        {/* Final CTA */}
-        <div className="bg-primary p-12 rounded-2xl text-center text-white">
-          <h2 className="text-3xl font-light mb-4">These Are Your Numbers — Now Let's Make Them Real</h2>
-          <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-            These figures are based on industry benchmarks and the information you provided. To get a precise, fixed-cost proposal for your estate, schedule a professional FM review with our team.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact?source=roi-calculator" className="bg-charcoal text-white px-8 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-charcoal/90 transition-all shadow-xl">
-              Get a Precise FM Proposal
-            </Link>
-            <button onClick={handleDownloadPDF} disabled={isGeneratingPDF} className="bg-white text-primary px-8 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-gray-50 transition-all flex items-center justify-center gap-2">
-              {isGeneratingPDF ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" /> Generating...
-                </>
-              ) : (
-                "Download Full Report (PDF)"
-              )}
-            </button>
+        {/* Final CTA (Stage 7) */}
+        <div className={`transition-all duration-1000 transform delay-300 ${resultsStage >= 7 ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}>
+          <div className="bg-primary p-12 rounded-2xl text-center text-white relative overflow-hidden group">
+            <div className="absolute inset-0 bg-charcoal/20 mix-blend-overlay transition-transform duration-1000 group-hover:scale-105" />
+            <h2 className="text-3xl font-light mb-4 relative z-10">These Are Your Numbers — Now Let's Make Them Real</h2>
+            <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed font-light relative z-10">
+              These figures are based on industry benchmarks and the information you provided. To get a precise, fixed-cost proposal for your estate, schedule a professional FM review with our team.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+              <Link href="/contact?source=roi-calculator" className="bg-charcoal text-white px-8 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-black transition-all shadow-xl">
+                Get a Precise FM Proposal
+              </Link>
+              <button onClick={handleDownloadPDF} disabled={isGeneratingPDF} className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded font-bold uppercase tracking-widest text-sm transition-all flex items-center justify-center gap-2 backdrop-blur-md">
+                {isGeneratingPDF ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" /> Generating...</>
+                ) : (
+                  "Full Report PDF"
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
-        <button onClick={() => setState("form")} className="text-xs font-bold uppercase tracking-widest text-muted-foreground text-center w-full hover:text-primary pt-10">
-          ← Back to input form
+        <button onClick={() => setState("form")} className={`text-xs font-bold uppercase tracking-widest text-muted-foreground text-center w-full hover:text-primary pt-10 transition-opacity duration-1000 ${resultsStage >= 7 ? "opacity-100" : "opacity-0"}`}>
+          ← Adjust parameters and recalculate
         </button>
       </div>
     </div>

@@ -63,11 +63,13 @@ export default function ChatSettings() {
     try {
       setSaving(true);
       
-      const { data: existing } = await supabase
+      const { data: existing, error: fetchError } = await supabase
         .from('api_integrations')
         .select('id')
         .eq('service_type', 'anthropic')
-        .single();
+        .maybeSingle();
+
+      if (fetchError) throw fetchError;
 
       const payload = {
         name: 'Anthropic Claude API',
@@ -101,7 +103,7 @@ export default function ChatSettings() {
       console.error('Error saving chat settings:', error);
       toast({
         title: "Error",
-        description: "Failed to save chat settings.",
+        description: (error as any)?.message || "Failed to save chat settings.",
         variant: "destructive",
       });
     } finally {
