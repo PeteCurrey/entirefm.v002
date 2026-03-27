@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ppmAssets, assetCategories, getAssetsByCategory, getFrequencyLabel, frequencyMonths, type PPMAsset } from "@/lib/ppmAssets";
-import { CheckCircle2, ChevronDown, ChevronUp, Printer, ArrowRight, X } from "lucide-react";
+import { CheckCircle2, ChevronDown, ChevronUp, Printer, ArrowRight, X, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 type State = "select" | "preview" | "lead";
@@ -37,6 +37,7 @@ export default function PPMScheduleBuilderClient() {
   const [expandedAsset, setExpandedAsset] = useState<string | null>(null);
   const [contact, setContact] = useState({ name: "", email: "", company: "", phone: "" });
   const [leadSent, setLeadSent] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const selectedAssets = ppmAssets.filter((a) => selected.has(a.id));
   const totalAnnualVisits = selectedAssets.reduce((sum, a) => {
@@ -82,6 +83,71 @@ export default function PPMScheduleBuilderClient() {
     }
   }
 
+  const handleDownloadPDF = async () => {
+    setIsDownloading(true);
+    try {
+      // Format data for the PDF template
+      const formattedData = {
+        buildingName: contact.company || "Estimated Facility",
+        buildingType: "Commercial Site",
+        generatedFor: contact.name || "Website User",
+        totalAssets: selectedAssets.length,
+        statutoryCount: selectedAssets.filter(a => a.compliance).length,
+        recommendedCount: selectedAssets.filter(a => !a.compliance).length,
+        assets: selectedAssets.map(asset => {
+          // Combine all tasks for the asset
+          const tasks = Object.values(asset.frequencies)
+            .flatMap(freqArray => Array.isArray(freqArray) ? freqArray : []);
+            
+          return {
+            category: asset.category,
+            assetName: asset.name,
+            frequency: getFrequencyLabel(asset).join(', '),
+            tasks: tasks,
+            standard: asset.standard,
+            statutory: asset.compliance || false,
+            nextDueMonth: "Next Month"
+          };
+        })
+      };
+
+      const res = await fetch("/api/generate-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          templateType: "ppm-schedule",
+          data: formattedData,
+          metadata: { generatedFor: formattedData.generatedFor }
+        })
+      });
+      
+      if (!res.ok) throw new Error("PDF generation failed");
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      
+      const disposition = res.headers.get('Content-Disposition');
+      let filename = "EntireFM-PPM-Schedule.pdf";
+      if (disposition && disposition.indexOf('attachment') !== -1) {
+        const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(disposition);
+        if (matches && matches[1]) filename = matches[1].replace(/['"]/g, '');
+      }
+      
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Download error:", error);
+      alert("Failed to download PDF. Please try again.");
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   // ── LEAD MODAL overlay ──
   if (state === "lead") return (
     <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
@@ -114,8 +180,9 @@ export default function PPMScheduleBuilderClient() {
           <button onClick={() => setState("lead")} className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded text-sm font-bold hover:bg-primary/90 transition-colors">
             <ArrowRight className="w-4 h-4" /> Get Managed
           </button>
-          <button onClick={() => window.print()} className="inline-flex items-center gap-2 border border-border px-5 py-2.5 rounded text-sm font-medium hover:bg-muted transition-colors">
-            <Printer className="w-4 h-4" /> Download PDF
+          <button onClick={handleDownloadPDF} disabled={isDownloading} className="inline-flex items-center gap-2 border border-border px-5 py-2.5 rounded text-sm font-medium hover:bg-muted transition-colors disabled:opacity-50">
+            {isDownloading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Printer className="w-4 h-4" />}
+            {isDownloading ? "Generating PDF..." : "Download PDF"}
           </button>
         </div>
       </div>

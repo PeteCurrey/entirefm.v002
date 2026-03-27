@@ -476,6 +476,283 @@ We no longer view drones as a 'novelty'. They are a strategic tool in our PPM pr
         answer: "EntireFM provides a comprehensive report including 4K video footage, high-resolution photographs, and a written assessment from our building fabric experts identifying any required repairs."
       }
     ]
+  },
+  {
+    slug: "fire-risk-guide",
+    category: "Guides & Compliance",
+    title: "The Essential Guide to Fire Risk Assessments (FRA) in Commercial Buildings",
+    description: "Understand your legal responsibilities under the Regulatory Reform (Fire Safety) Order 2005. Learn how to conduct, record, and review your Fire Risk Assessment to ensure total compliance.",
+    readTime: "8 min read",
+    targetKeywords: ["fire risk assessment", "FRA compliance", "fire safety commercial building", "entirefm fire safety"],
+    date: "March 27, 2026",
+    author: "EntireFM Compliance Team",
+    content: `
+## Your Legal Obligations
+
+Under the Regulatory Reform (Fire Safety) Order 2005, if you are an employer, owner, landlord, or occupier of a business or other non-domestic premises, you are the **'Responsible Person'**. 
+
+It is your legal duty to ensure that a suitable and sufficient Fire Risk Assessment (FRA) is carried out and regularly reviewed. Failure to do so can result in severe fines, invalidated insurance, and in extreme cases, corporate manslaughter charges.
+
+### What is a Fire Risk Assessment?
+
+A Fire Risk Assessment is a methodical look at your premises, the activities carried out there, and the likelihood that a fire could start and cause harm to those in and around the premises. 
+
+A comprehensive FRA must cover:
+- Identification of fire hazards (sources of ignition, fuel, oxygen).
+- Identification of people at risk (especially vulnerable individuals).
+- Evaluation, removal, or reduction of risks.
+- Recording your findings, preparing an emergency plan, and providing training.
+- Regular review and updating of the FRA.
+
+### Common FRA Failures We See at EntireFM
+
+When EntireFM conduct takeover audits on new client sites, we frequently see the same compliance failures:
+1. **The 'Static' Document**: An FRA was completed 5 years ago and placed in a drawer. FRAs must be dynamic—reviewed annually or whenever there is a significant change to the layout or use of the building.
+2. **Ignored Action Plans**: The assessor highlighted 'High Risk' items (like wedged-open fire doors or blocked escape routes) that were never actually rectified.
+3. **Lack of Evidence**: The FRA assumes systems are working, but the client cannot produce the weekly fire alarm or monthly emergency lighting test logs.
+
+### How EntireFM Ensures Fire Safety Compliance
+
+Fire safety is not a DIY task for complex commercial buildings. EntireFM provides complete fire compliance management:
+- **Independent Assessors**: We deploy Level 3 & 4 certified fire safety assessors to conduct thorough FRAs.
+- **Action Plan Resolution**: Unlike standalone assessors who just leave you with a list of problems, our Hard FM engineering teams immediately act to fix identified faults (e.g., repairing fire door intumescent strips).
+- **Digital Logbooks**: All weekly alarm tests and statutory PPM certificates are stored in your secure EntireFM portal, providing instant proof of compliance during a Fire Authority inspection.
+
+**Don't leave fire safety to chance. Book a comprehensive Fire Risk Assessment with EntireFM today.**
+    `,
+    faq: [
+      {
+        question: "How often must a Fire Risk Assessment be reviewed?",
+        answer: "Best practice dictates an annual review. However, it MUST be reviewed if there are significant changes to the building layout, occupancy size, or if you have had a near-miss fire incident."
+      },
+      {
+        question: "Can I do the Fire Risk Assessment myself?",
+        answer: "If your business has fewer than 5 employees and the premises are simple, you can conduct it yourself. For larger or more complex sites, it is highly recommended to use a competent professional."
+      }
+    ]
+  },
+  {
+    slug: "eicr-manual",
+    category: "Guides & Compliance",
+    title: "EICR Manual: Fixed Wire Testing for Commercial Estates",
+    description: "An actionable manual explaining Electrical Installation Condition Reports (EICR). Discover why testing is legally mandated, what the codes mean, and how to maintain electrical compliance.",
+    readTime: "6 min read",
+    targetKeywords: ["EICR testing", "fixed wire testing", "electrical compliance commercial", "C1 C2 C3 electrical codes"],
+    date: "March 27, 2026",
+    author: "EntireFM Technical Division",
+    content: `
+## What is an EICR?
+
+An **Electrical Installation Condition Report (EICR)**, often referred to as fixed wire testing, is an in-depth inspection and testing of the permanent electrical systems within a building. 
+
+Just like an MOT for your car, an EICR ensures that the electrical wiring, sockets, light fittings, and consumer units are safe to use and do not pose a fire or shock hazard.
+
+### The Legal Framework
+
+The requirement for an EICR is driven by the **Electricity at Work Regulations 1989**, which state that all electrical systems must be maintained to prevent danger. 
+
+For commercial properties, the standard interval for an EICR is **every 5 years**, or upon change of occupancy. For higher-risk environments like industrial sites, testing may be required every 3 years.
+
+### Understanding the EICR Codes
+
+When an engineer completes testing, they will issue observations coded by severity:
+- **C1 (Danger Present)**: Risk of injury. Immediate remedial action required. The engineer may need to isolate the dangerous circuit immediately.
+- **C2 (Potentially Dangerous)**: Urgent remedial action required. The installation is unsatisfactory and will fail the EICR.
+- **C3 (Improvement Recommended)**: Does not comply with current BS 7671 regulations but is not deemed unsafe. The EICR will still 'pass'.
+- **FI (Further Investigation Required)**: An issue was identified but could not be fully diagnosed.
+
+**Important:** If your report contains any C1, C2, or FI codes, the overall assessment will be **Unsatisfactory**, meaning your building is not legally compliant until the remedial works are completed.
+
+### The Problem with "Cheap" EICRs
+
+A major issue in the FM industry is the "drive-by EICR." Budget contractors will offer testing at impossibly low rates per circuit. They achieve this by:
+1. Conducting minimal visual inspections instead of full physical testing.
+2. Issuing vast amounts of C2 failures to generate lucrative remedial repair work.
+
+### The EntireFM Approach to Electrical Compliance
+
+At EntireFM, we believe in transparent, robust electrical testing:
+- **Sample Testing vs. 100% Testing**: We work with you to plan testing schedules that minimize operational downtime, often splitting the 100% test over a rolling 5-year programme (20% per year).
+- **Honest Reporting**: Our NICEIC-approved engineers provide objective reports. We do not use EICRs as a mechanism to artificially inflate maintenance costs.
+- **Remedial Turnaround**: If C1 or C2 faults are found, our engineering teams provide rapid, transparent quotes to return your site to compliance immediately.
+
+**Is your EICR out of date? Contact our technical team today to schedule your fixed wire testing.**
+    `,
+    faq: [
+      {
+        question: "Do I have to shut down power to my business during an EICR?",
+        answer: "Yes, brief power outages are necessary to safely test circuits. EntireFM frequently schedules EICR testing out of office hours or over weekends to prevent business disruption."
+      },
+      {
+        question: "Is PAT testing included in an EICR?",
+        answer: "No. PAT (Portable Appliance Testing) covers items plugged into sockets (kettles, computers). EICR covers the fixed wiring of the building itself."
+      }
+    ]
+  },
+  {
+    slug: "legionella-guide",
+    category: "Guides & Compliance",
+    title: "Legionella Control in Commercial Properties: The L8 ACoP Guide",
+    description: "A comprehensive guide to managing water hygiene risks in commercial buildings under the L8 Approved Code of Practice. Learn about risk assessments, temperature monitoring, and system descaling.",
+    readTime: "7 min read",
+    targetKeywords: ["legionella risk assessment", "L8 ACoP", "water hygiene fm", "legionella compliance uk"],
+    date: "March 27, 2026",
+    author: "EntireFM Compliance Team",
+    content: `
+## The Invisible Threat in Your Plumbing
+
+Legionnaires' disease is a potentially fatal form of pneumonia caused by the inhalation of small droplets of contaminated water containing Legionella bacteria. 
+
+For facilities managers and landlords in the UK, controlling this risk is not optional. The HSE's **L8 Approved Code of Practice (ACoP)** dictates strict legal duties for managing water systems.
+
+### What Causes Legionella to Grow?
+
+Legionella bacteria exist naturally in water, but they become dangerous when they multiply in man-made water systems. 
+
+The conditions that encourage growth include:
+- **Temperature**: The bacteria thrive between 20°C and 45°C. 
+- **Stagnation**: Unused pipes ('dead legs') provide a breeding ground.
+- **Nutrients**: Sludge, rust, scale, and organic matter in tanks feed the bacteria.
+
+### Your 4 Core Legal Duties
+
+To comply with health and safety law, the 'Responsible Person' for the building must:
+1. **Identify and Assess Sources of Risk**: You must have a current Legionella Risk Assessment (LRA). This should be reviewed every 2 years or if the water system changes.
+2. **Prepare a Written Scheme of Control**: A documented plan detailing how you will manage the identified risks.
+3. **Implement and Manage Precautions**: This is your ongoing PPM schedule (temperature monitoring, flushing, descaling).
+4. **Keep and Maintain Accurate Records**: If you are inspected by the HSE and have no records, you are highly liable.
+
+### The Essential Legionella PPM Schedule
+
+A robust maintenance programme from EntireFM includes:
+- **Monthly Temperature Checks**: Ensuring cold water is kept cold (below 20°C) and hot water is kept hot (stored above 60°C and distributed above 50°C).
+- **Weekly Flushing**: Running rarely used outlets (like disabled toilets or guest showers) to prevent water stagnation.
+- **Quarterly Showerhead Cleaning**: Dismantling, descaling, and disinfecting showerheads and hoses.
+- **Annual Tank Inspections**: Visual inspection and microbiological sampling of cold water storage tanks.
+
+### How EntireFM Protects Your Estate
+
+Managing water hygiene across a large estate requires military precision. EntireFM removes the administrative burden through our fully managed water hygiene services. 
+
+Our engineers conduct all statutory temperature checks and descaling, instantly uploading digital service records to your compliance portal. If a risk is identified—such as an out-of-spec temperature—our automated system flags it for immediate remedial action.
+
+**Ensure your water systems are 100% compliant and safe. Speak to EntireFM about a Legionella Risk Assessment today.**
+    `,
+    faq: [
+      {
+        question: "Do all buildings need a Legionella Risk Assessment?",
+        answer: "Yes, if you are an employer or someone in control of premises, you have a duty to understand and manage legionella risks, regardless of the building size."
+      },
+      {
+        question: "What should I do if my building has been unoccupied?",
+        answer: "If a building has been empty (and water stagnant), the system must be thoroughly flushed and potentially chlorinated before occupants return to safely clear any bacterial buildup."
+      }
+    ]
+  },
+  {
+    slug: "audit-framework",
+    category: "Guides & Compliance",
+    title: "The EntireFM Statutory Audit Framework",
+    description: "Discover the exact framework EntireFM uses to assess, record, and verify statutory compliance across complex UK estates.",
+    readTime: "5 min read",
+    targetKeywords: ["FM audit framework", "statutory compliance audit", "facilities management audit", "building compliance check"],
+    date: "March 27, 2026",
+    author: "EntireFM Operations Division",
+    content: `
+## Re-gaining Control of Your Compliance
+
+When EntireFM onboard a new client, we often find a state of 'compliance chaos'. Certificates are scattered across emails, logbooks are missing, and no one is entirely sure if the lift was serviced in June or January.
+
+To resolve this, we implement the **EntireFM Statutory Audit Framework**—a rigorous, 4-stage process designed to eliminate legal risk and establish complete operational transparency.
+
+### Stage 1: The Discovery Sweep
+The first step is a physical and digital sweep of the estate. 
+- We compile a master asset register of all M&E equipment.
+- We hunt down all historical compliance certificates.
+- We identify immediate 'Red Status' legal risks (e.g., expired gas safety certificates or overdue fire risk assessments).
+
+### Stage 2: The Gap Analysis
+Once we have the data, we compare the current state against the **SFG20 standard** and current UK legislation. We map out EXACTLY what is missing. 
+
+The client receives a definitive visual RAG (Red/Amber/Green) report. For the first time, they have a clear picture of their statutory liability.
+
+### Stage 3: The Remedial Action Plan
+We do not just hand over a report; we execute the fixes. 
+- Our certified Hard FM teams are deployed to close the compliance gaps. 
+- Overdue inspections are booked.
+- Broken emergency lighting or out-of-date extinguishers are replaced.
+
+### Stage 4: Continuous Digital Governance
+Once the baseline of 100% compliance is reached, we ensure it never drops.
+- All assets are loaded into our automated PPM scheduling system.
+- As engineers complete future visits, the new digital certificates automatically overwrite the old ones in the client's secure portal.
+- Management receives automated monthly KPI reports showing 100% statutory adherence.
+
+### Book Your Audit
+Stop losing sleep over unknown compliance risks. The EntireFM Statutory Audit Framework is designed to give Directors and Estate Managers bulletproof peace of mind. 
+
+**Contact our mobilisation team today to arrange a baseline audit of your facility.**
+    `,
+    faq: [
+      {
+        question: "How long does a baseline compliance audit take?",
+        answer: "Depending on the size of the estate, the initial physical audit and documentation review usually takes between 1 to 3 days."
+      }
+    ]
+  },
+  {
+    slug: "emergency-lighting-checklist",
+    category: "Checklists",
+    title: "The Comprehensive Emergency Lighting Testing Checklist",
+    description: "Ensure your emergency lighting systems comply with BS 5266. Downloadable guide to monthly flick tests and annual duration testing.",
+    readTime: "4 min read",
+    targetKeywords: ["emergency lighting testing", "BS 5266", "emergency lighting checklist", "monthly flick test"],
+    date: "March 27, 2026",
+    author: "EntireFM Technical Division",
+    content: `
+## Illuminating the Path to Safety
+
+In the event of a total power failure or a fire, emergency lighting is what guides your building's occupants to safety. If it fails to operate, the consequences are disastrous.
+
+Under the **Fire Regulatory Reform Order 2005**, maintaining your emergency lighting to the **BS 5266** standard is a strict legal requirement.
+
+Use this checklist to ensure your maintenance protocols are fully compliant.
+
+### 1. The Monthly 'Flick' Test
+This is a short functional test to ensure the luminaires are working, clean, and receiving power.
+- [ ] Ensure you have the correct key to operate the emergency lighting test switch.
+- [ ] Isolate the mains power to the lighting circuit using the test switch.
+- [ ] Walk the floor and visually verify that **every** emergency luminaire and exit sign is illuminated.
+- [ ] Check that all luminaires are clean and free from damage.
+- [ ] Restore mains power and verify that the charge indicator LED on every unit has turned back on.
+- [ ] **Crucial Step**: Record the date, the person testing, and the result in the physical or digital Fire Safety Logbook.
+- [ ] Immediately report any failed units to your FM provider for replacement.
+
+### 2. The Annual Full Duration Test
+Once a year, the system must be tested to ensure the batteries can hold a charge for the required duration (usually 3 hours).
+- [ ] Isolate the mains power to the lighting circuits.
+- [ ] Leave the power off for the full rated duration (e.g., 3 hours).
+- [ ] Check that all emergency luminaires remain illuminated at a satisfactory level for the entire period.
+- [ ] If any light fails or dims significantly before the 3 hours are up, the battery pack or the entire unit must be replaced.
+- [ ] Restore the power and ensure all units return to their charging state.
+- [ ] Obtain a formal BS 5266 compliance certificate from the electrical engineer conducting the test.
+
+## Common Testing Pitfalls
+- **"We do the monthly test, but we don't write it down."** If it isn't recorded in a logbook, in the eyes of the Fire Authority, it didn't happen.
+- **Ignoring Failed Units**: A failed emergency light is an immediate safety breach. Remedial replacements must be actioned rapidly.
+- **Testing Without Planning**: A 3-hour duration test drains the batteries. If a real power cut happens immediately after the test, the building will have no emergency lighting. Annual tests should be sequenced so adjacent luminaires are not tested simultaneously, or performed out of operating hours.
+
+### How EntireFM Can Help
+EntireFM provides complete management of your emergency lighting systems. We handle both the monthly functional tests and the complex annual duration testing, ensuring instant remedial replacements for any failed units.
+
+**Secure your building's safety today with EntireFM's electrical compliance packages.**
+    `,
+    faq: [
+      {
+        question: "Can my in-house staff perform the monthly test?",
+        answer: "Yes, the monthly functional 'flick' test can be performed by designated in-house staff, provided they are trained on what to look for and how to record the results accurately. The annual test must be performed by a competent electrical contractor."
+      }
+    ]
   }
 ];
 

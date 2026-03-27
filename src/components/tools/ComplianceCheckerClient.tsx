@@ -61,6 +61,7 @@ export default function ComplianceCheckerClient({ questions }: Props) {
   const [validationError, setValidationError] = useState(false);
   const [slideDir, setSlideDir] = useState<"left" | "right">("right");
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const current = questions[step];
@@ -160,6 +161,48 @@ export default function ComplianceCheckerClient({ questions }: Props) {
     setReport(null);
     setError(null);
     setState("form");
+  };
+
+  const handleDownloadPDF = async () => {
+    if (!report) return;
+    setIsDownloading(true);
+    try {
+      const res = await fetch("/api/generate-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          templateType: "compliance-report",
+          data: report,
+          metadata: { generatedFor: "Website User" }
+        })
+      });
+      if (!res.ok) throw new Error("PDF generation failed");
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      
+      // Extract filename from Content-Disposition header if available
+      const disposition = res.headers.get('Content-Disposition');
+      let filename = "EntireFM-Compliance-Report.pdf";
+      if (disposition && disposition.indexOf('attachment') !== -1) {
+        const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+        const matches = filenameRegex.exec(disposition);
+        if (matches != null && matches[1]) { 
+          filename = matches[1].replace(/['"]/g, '');
+        }
+      }
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Download error:", error);
+      alert("Failed to download PDF. Please try again.");
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   // ── GENERATING ──
@@ -286,8 +329,9 @@ export default function ComplianceCheckerClient({ questions }: Props) {
           <button onClick={reset} className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-charcoal transition-colors font-medium">
             <RotateCcw className="w-4 h-4" /> Start Again
           </button>
-          <button onClick={() => window.print()} className="inline-flex items-center gap-2 text-sm border border-border px-5 py-2.5 rounded-lg hover:bg-muted transition-colors font-medium">
-            <Printer className="w-4 h-4" /> Print Report
+          <button onClick={handleDownloadPDF} disabled={isDownloading} className="inline-flex items-center gap-2 text-sm border border-border px-5 py-2.5 rounded-lg hover:bg-muted transition-colors font-medium disabled:opacity-50">
+            {isDownloading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Printer className="w-4 h-4" />} 
+            {isDownloading ? "Generating PDF..." : "Download PDF Report"}
           </button>
         </div>
       </div>

@@ -49,7 +49,7 @@ const Home = () => {
                 {greeting}
               </span>
             )}
-            <h1 className="text-white mb-6 leading-tight font-extralight md:text-6xl text-4xl tracking-tighter">
+            <h1 className="text-white mb-6 leading-tight font-extralight md:text-5xl text-4xl tracking-tighter">
               Facilities Management & <br />
               FM Support Services
             </h1>

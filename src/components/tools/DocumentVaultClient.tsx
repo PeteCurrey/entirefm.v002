@@ -46,12 +46,49 @@ export default function DocumentVaultClient() {
 
       if (res.ok) {
         setDownloadSuccess(selectedDoc.id);
-        // Simulate download
-        const a = document.createElement("a");
-        a.href = `/documents/${selectedDoc.slug}.${selectedDoc.fileType.toLowerCase()}`;
-        a.download = `${selectedDoc.slug}.${selectedDoc.fileType.toLowerCase()}`;
-        // Since files might not exist, we just show success UI
-        console.log(`[Document Vault] Started download: ${selectedDoc.title}`);
+
+        // Map document ID to our server-side PDF templates
+        const templateMap: Record<string, string> = {
+          "ppm-schedule-commercial": "VaultPPMScheduleCommercial",
+          "building-compliance-checklist": "VaultBuildingComplianceChecklist",
+          "fm-sla-template": "VaultFMSLATemplate",
+          "reactive-maintenance-log": "VaultReactiveMaintenanceLog",
+        };
+
+        const templateName = templateMap[selectedDoc.id];
+
+        if (templateName) {
+           try {
+             const pdfRes = await fetch('/api/generate-pdf', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify({
+                 template: templateName,
+                 data: { documentId: selectedDoc.id } 
+               }),
+             });
+             
+             if (!pdfRes.ok) throw new Error('PDF generation failed');
+             const blob = await pdfRes.blob();
+             const url = window.URL.createObjectURL(blob);
+             const a = document.createElement('a');
+             a.href = url;
+             a.download = `EntireFM-${selectedDoc.slug}.pdf`;
+             document.body.appendChild(a);
+             a.click();
+             window.URL.revokeObjectURL(url);
+             a.remove();
+           } catch (error) {
+             console.error("PDF generation failed:", error);
+           }
+        } else {
+          // Fallback simulation for non-implemented templates
+          const a = document.createElement("a");
+          a.href = `/documents/${selectedDoc.slug}.${selectedDoc.fileType.toLowerCase()}`;
+          a.download = `${selectedDoc.slug}.${selectedDoc.fileType.toLowerCase()}`;
+          console.log(`[Document Vault] Started fallback download: ${selectedDoc.title}`);
+        }
+
         setTimeout(() => setSelectedDoc(null), 3000);
       }
     } catch (err) {

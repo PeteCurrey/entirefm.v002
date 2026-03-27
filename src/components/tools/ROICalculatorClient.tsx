@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { calculateROI, fmt, type ROIResults, type FMInputs } from "@/lib/roiCalculator";
-import { ArrowRight, Info, TrendingUp, ShieldAlert, Clock, Download, Printer } from "lucide-react";
+import { ArrowRight, Info, TrendingUp, ShieldAlert, Clock, Download, Printer, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 type State = "form" | "lead" | "calculating" | "results";
@@ -30,6 +30,42 @@ export default function ROICalculatorClient() {
   const [results, setResults] = useState<ROIResults | null>(null);
   const [summary, setSummary] = useState("");
   const [ticker, setTicker] = useState(0);
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+
+  const handleDownloadPDF = async () => {
+    setIsGeneratingPDF(true);
+    try {
+      const response = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          template: 'ROIReport',
+          data: {
+            inputs,
+            results,
+            summary,
+          }
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to generate PDF');
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `EntireFM-Cost-Efficiency-Analysis-${new Date().toISOString().split('T')[0]}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+    } catch (error) {
+      console.error('PDF generation failed:', error);
+      alert("Failed to generate PDF. Please try again.");
+    } finally {
+      setIsGeneratingPDF(false);
+    }
+  };
 
   const handleCalculate = async () => {
     setState("calculating");
@@ -216,8 +252,14 @@ export default function ROICalculatorClient() {
             <Link href="/contact?source=roi-calculator" className="bg-charcoal text-white px-8 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-charcoal/90 transition-all shadow-xl">
               Get a Precise FM Proposal
             </Link>
-            <button onClick={() => window.print()} className="bg-white text-primary px-8 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-gray-50 transition-all">
-              Download Full Report (PDF)
+            <button onClick={handleDownloadPDF} disabled={isGeneratingPDF} className="bg-white text-primary px-8 py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-gray-50 transition-all flex items-center justify-center gap-2">
+              {isGeneratingPDF ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" /> Generating...
+                </>
+              ) : (
+                "Download Full Report (PDF)"
+              )}
             </button>
           </div>
         </div>

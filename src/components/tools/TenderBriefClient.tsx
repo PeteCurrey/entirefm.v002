@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import type { TenderBrief } from "@/lib/toolTypes";
-import { ArrowRight, Printer, Download } from "lucide-react";
+import { ArrowRight, Printer, Download, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 type State = "form" | "lead" | "generating" | "document";
@@ -73,6 +73,38 @@ export default function TenderBriefClient() {
   const [error, setError] = useState<string | null>(null);
   const [msgIdx, setMsgIdx] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+
+  const handleDownloadPDF = async () => {
+    setIsGeneratingPDF(true);
+    try {
+      const response = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          template: 'TenderBrief',
+          data: brief,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to generate PDF');
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `EntireFM-Facility-Management-Brief-${new Date().toISOString().split('T')[0]}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+    } catch (error) {
+      console.error('PDF generation failed:', error);
+      alert("Failed to generate PDF. Please try again.");
+    } finally {
+      setIsGeneratingPDF(false);
+    }
+  };
 
   useEffect(() => {
     if (state !== "generating") return;
@@ -155,8 +187,12 @@ export default function TenderBriefClient() {
         <div className="max-w-4xl mx-auto px-6 py-3 flex items-center justify-between">
           <span className="text-sm font-semibold text-charcoal truncate">{brief.documentTitle}</span>
           <div className="flex gap-2">
-            <button onClick={() => window.print()} className="inline-flex items-center gap-2 border border-border px-4 py-2 rounded text-sm font-medium hover:bg-muted transition-colors">
-              <Printer className="w-4 h-4" /> Download PDF
+            <button onClick={handleDownloadPDF} disabled={isGeneratingPDF} className="inline-flex items-center gap-2 border border-border px-4 py-2 rounded text-sm font-medium hover:bg-muted transition-colors">
+              {isGeneratingPDF ? (
+                <><Loader2 className="w-4 h-4 animate-spin" /> Generating...</>
+              ) : (
+                <><Printer className="w-4 h-4" /> Download PDF</>
+              )}
             </button>
             <Link href="/contact?source=tender-brief" className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded text-sm font-bold hover:bg-primary/90 transition-colors">
               <ArrowRight className="w-4 h-4" /> Get a Proposal
