@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { EnhancedGlobalSearch } from "@/components/shared/EnhancedGlobalSearch";
 import { motion, AnimatePresence } from "framer-motion";
+import { getFeaturedInsight } from "@/lib/featuredInsights";
 
 const ButterflyLogo = ({ className }: { className?: string }) => (
   <div className={cn("relative w-12 h-12 flex items-center justify-center", className)}>
@@ -20,6 +21,9 @@ const Header = ({ className }: { className?: string }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const sectorsScrollRef = React.useRef<HTMLDivElement>(null);
+
+  // Get the featured insight for the current date
+  const featuredInsight = getFeaturedInsight();
 
   const scrollSectors = (direction: 'left' | 'right') => {
     if (sectorsScrollRef.current) {
@@ -301,15 +305,15 @@ const Header = ({ className }: { className?: string }) => {
                     <div className="w-[280px] pl-8 flex flex-col justify-between">
                       <div>
                         <h4 className="text-[10px] font-medium text-white/60 uppercase tracking-[0.2em] mb-6">Featured Insight</h4>
-                        <Link href="/fm-insights/future-of-fm" className="block relative aspect-[4/3] overflow-hidden group/feat border border-white/10 mb-4 hover:border-primary/50 transition-colors">
+                        <Link href={featuredInsight.href} className="block relative aspect-[4/3] overflow-hidden group/feat border border-white/10 mb-4 hover:border-primary/50 transition-colors">
                           <div className="absolute inset-0 z-10 bg-slate-950/20 group-hover/feat:bg-transparent transition-colors duration-500" />
-                          <img src="/images/fm-insights-hero.jpg" alt="FM Insights" className="absolute inset-0 w-full h-full object-cover group-hover/feat:scale-110 transition-transform duration-700" />
+                          <img src={featuredInsight.image} alt={featuredInsight.title} className="absolute inset-0 w-full h-full object-cover group-hover/feat:scale-110 transition-transform duration-700" />
                         </Link>
-                        <h5 className="text-sm font-medium text-white mb-2 leading-tight hover:text-primary transition-colors cursor-pointer">The Future of Smart Facilities Management</h5>
-                        <p className="text-[11px] text-white/60 font-light mb-4 leading-relaxed">Discover how IoT and AI are transforming building compliance and maintenance strategies.</p>
+                        <h5 className="text-sm font-medium text-white mb-2 leading-tight hover:text-primary transition-colors cursor-pointer">{featuredInsight.title}</h5>
+                        <p className="text-[11px] text-white/60 font-light mb-4 leading-relaxed">{featuredInsight.description}</p>
                       </div>
                       
-                      <Link href="/resources" className="inline-flex text-[11px] font-medium text-primary hover:text-white transition-colors items-center gap-2 group/link uppercase tracking-wider w-fit">
+                      <Link href="/fm-insights" className="inline-flex text-[11px] font-medium text-primary hover:text-white transition-colors items-center gap-2 group/link uppercase tracking-wider w-fit">
                         Explore Hub <ArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
                       </Link>
                     </div>

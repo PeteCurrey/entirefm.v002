@@ -1,4 +1,3 @@
-// src/components/resources/ComplianceTable.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
 
@@ -9,41 +8,40 @@ interface ComplianceTableProps {
 
 export function ComplianceTable({ headers, rows }: ComplianceTableProps) {
   return (
-    <div className="w-full relative my-10 overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
-      <table className="w-full text-left text-sm whitespace-nowrap md:whitespace-normal">
-        <thead className="bg-[#1a2e4a] text-white uppercase font-bold text-xs tracking-wider">
-          <tr>
-            {headers.map((header, i) => (
-              <th 
-                key={i} 
-                className={cn(
-                  "px-6 py-4", 
-                  // If it's the last column and looks numeric, we could right align, but it's hard to tell without data schema. We'll stick to left align.
-                )}
-              >
-                {header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-100 bg-white">
-          {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className="hover:bg-gray-50/50 transition-colors even:bg-gray-50/30">
-              {row.map((cell, cellIndex) => (
-                <td 
-                  key={cellIndex} 
-                  className={cn(
-                    "px-6 py-4 text-gray-700 leading-relaxed font-light",
-                    cellIndex === 0 ? "font-semibold text-[#1a2e4a]" : ""
-                  )}
+    <div className="w-full relative my-12 overflow-hidden rounded-2xl border border-border shadow-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-[13px] border-collapse">
+          <thead className="bg-slate-50 border-b border-border">
+            <tr>
+              {headers.map((header, i) => (
+                <th 
+                  key={i} 
+                  className="px-8 py-5 text-[10px] font-bold text-charcoal uppercase tracking-[0.2em]"
                 >
-                  {cell}
-                </td>
+                  {header}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-border bg-white">
+            {rows.map((row, rowIndex) => (
+              <tr key={rowIndex} className="hover:bg-slate-50/50 transition-colors group">
+                {row.map((cell, cellIndex) => (
+                  <td 
+                    key={cellIndex} 
+                    className={cn(
+                      "px-8 py-6 text-muted-foreground font-light leading-relaxed",
+                      cellIndex === 0 ? "font-bold text-charcoal text-sm tracking-tight" : ""
+                    )}
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -108,38 +108,36 @@ export function ResourceArticleLayout({
       
       {/* NARROW HERO */}
       <section className="bg-charcoal pt-32 pb-16 px-6 relative border-b border-border overflow-hidden">
-         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-         <div className="container mx-auto max-w-[800px] relative z-10 text-center">
-            
-            <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Resources", href: "/resources" }, { label: title }]} className="mb-6 justify-center [&_a]:text-gray-400 [&_a:hover]:text-white [&_span]:text-gray-200" />
-            
-            <div className="flex items-center justify-center gap-3 mb-6 flex-wrap">
-               <span className="px-3 py-1 bg-charcoal border border-blue-900 text-white rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
-                 {category}
-               </span>
-               <span className="px-3 py-1 bg-white/10 text-white rounded-full text-xs font-bold uppercase tracking-widest">{readTime}</span>
-            </div>
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div className="container mx-auto max-w-4xl relative z-10 text-center">
+          
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Resources", href: "/resources" }, { label: title }]} className="mb-8 justify-center [&_a]:text-gray-400 [&_a:hover]:text-white [&_span]:text-gray-200" />
+          
+          <div className="flex items-center justify-center mb-8">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary border border-primary/30 px-5 py-2 rounded-full backdrop-blur-sm">
+              {category}
+            </span>
+          </div>
 
-            <h1 className="text-3xl md:text-5xl font-bold mb-4 text-white leading-tight font-['Inter']">
-               {title}
-            </h1>
-            
-            <p className="text-xl text-white/85 font-normal leading-relaxed mb-8 max-w-2xl mx-auto font-['Inter']">
-               {description}
-            </p>
+          <h1 className="text-5xl md:text-7xl font-light mb-6 text-white tracking-tighter leading-[0.9] font-sans">
+             {title.split(' ').map((word, i) => i === title.split(' ').length - 1 ? <span key={i} className="font-bold text-primary">{word}</span> : word + ' ')}
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-white/70 font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+             {description}
+          </p>
 
-            <div className="flex items-center justify-center gap-3 text-sm text-gray-300">
-               <div className="flex items-center gap-2">
-                 <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-[10px] text-white font-bold">
-                   EFM
-                 </div>
-                 <span className="font-semibold text-white">EntireFM Editorial Team</span>
-               </div>
-               <span className="opacity-60">•</span>
-               <span>{publishedDate}</span>
-            </div>
-
-         </div>
+          <div className="flex items-center justify-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+             <div className="flex items-center gap-2">
+               <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+               <span className="text-white">Editorial Team</span>
+             </div>
+             <span className="opacity-20">|</span>
+             <span>{readTime}</span>
+             <span className="opacity-20">|</span>
+             <span>Updated {publishedDate}</span>
+          </div>
+        </div>
       </section>
 
       {/* TWO-COLUMN BODY LAYOUT */}
@@ -245,9 +243,9 @@ export function ResourceArticleLayout({
                      
                      {/* Card 1: Table of Contents */}
                      {headings.length > 0 && (
-                        <div className="bg-white border text-sm border-border rounded-xl p-6 shadow-sm">
-                           <h4 className="font-bold text-charcoal mb-4">In This Guide</h4>
-                           <ul className="space-y-3">
+                        <div className="bg-white border text-sm border-border rounded-2xl p-8 shadow-sm">
+                           <h4 className="text-[10px] font-bold text-charcoal uppercase tracking-[0.2em] mb-6">In This Guide</h4>
+                           <ul className="space-y-4">
                               {headings.map((h) => (
                                  <li key={h.id}>
                                     <a 
@@ -257,8 +255,8 @@ export function ResourceArticleLayout({
                                         document.getElementById(h.id)?.scrollIntoView({ behavior: 'smooth' });
                                       }}
                                       className={cn(
-                                        "block pl-3 border-l-2 transition-colors duration-200", 
-                                        activeHeadingId === h.id ? "border-[#f5a623] text-charcoal font-semibold" : "border-border text-muted-foreground hover:text-charcoal hover:border-gray-300"
+                                        "block pl-4 border-l-2 transition-all duration-300 text-[13px]", 
+                                        activeHeadingId === h.id ? "border-primary text-charcoal font-bold translate-x-1" : "border-border text-muted-foreground hover:text-charcoal hover:border-gray-300"
                                       )}
                                     >
                                        {h.text}
@@ -270,13 +268,13 @@ export function ResourceArticleLayout({
                      )}
 
                      {/* Card 2: Quick Facts panel */}
-                     <div className="bg-charcoal border border-charcoal rounded-xl shadow-lg overflow-hidden">
-                        <div className="p-6">
-                           <h4 className="font-bold text-[#f5a623] uppercase tracking-widest text-xs mb-4">Key Facts</h4>
-                           <ul className="space-y-3">
+                     <div className="bg-amber-50 border border-amber-200 rounded-2xl shadow-sm overflow-hidden">
+                        <div className="p-8">
+                           <h4 className="text-[10px] font-bold text-amber-900 uppercase tracking-[0.2em] mb-6">Key Statistics</h4>
+                           <ul className="space-y-4">
                               {quickFacts.map((fact, i) => (
-                                 <li key={i} className="text-sm text-white/90 font-light flex items-start gap-2">
-                                    <span className="text-[#f5a623] font-bold mt-0.5">•</span>
+                                 <li key={i} className="text-[13px] text-amber-900/80 font-normal flex items-start gap-3">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0" />
                                     <span>{fact}</span>
                                  </li>
                               ))}
@@ -285,19 +283,19 @@ export function ResourceArticleLayout({
                      </div>
 
                      {/* Card 3: Related Tools */}
-                     <div className="bg-white border border-border rounded-xl p-6 shadow-sm text-sm">
-                        <h4 className="font-bold text-charcoal mb-4">Useful FM Tools</h4>
-                        <div className="space-y-4">
+                     <div className="bg-white border border-border rounded-2xl p-8 shadow-sm text-sm">
+                        <h4 className="text-[10px] font-bold text-charcoal uppercase tracking-[0.2em] mb-6">FM Tool suite</h4>
+                        <div className="space-y-5">
                            {relatedTools.map((tool, i) => (
-                              <Link key={i} href={tool.href} className="flex items-start gap-3 group">
-                                 <div className="w-8 h-8 rounded shrink-0 bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                              <Link key={i} href={tool.href} className="flex items-start gap-4 group">
+                                 <div className="w-10 h-10 rounded-xl shrink-0 bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all transform group-hover:scale-110">
                                     {tool.icon}
                                  </div>
                                  <div className="flex-1 min-w-0">
-                                    <div className="font-semibold text-charcoal flex items-center gap-1 group-hover:text-primary transition-colors">
-                                       <span className="truncate">{tool.title}</span> <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                    <div className="text-[13px] font-bold text-charcoal flex items-center gap-1 group-hover:text-primary transition-colors">
+                                       <span className="truncate">{tool.title}</span> <ArrowRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all font-bold" />
                                     </div>
-                                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{tool.description}</p>
+                                    <p className="text-[11px] text-muted-foreground mt-1 line-clamp-1 font-light tracking-wide">{tool.description}</p>
                                  </div>
                               </Link>
                            ))}
@@ -305,24 +303,25 @@ export function ResourceArticleLayout({
                      </div>
 
                      {/* Card 4: Download CTA */}
-                     <div className="bg-white border border-[#1a2e4a] rounded-xl p-6 text-center overflow-hidden relative">
-                        <div className="absolute top-0 right-0 w-16 h-16 bg-primary/10 rounded-bl-full -z-10" />
-                        <h4 className="font-bold text-charcoal mb-2">Download this guide as PDF</h4>
-                        <p className="text-xs text-muted-foreground mb-4 font-light">{downloadPdfSubtext}</p>
-                        <Button className="w-full bg-white text-charcoal border border-border hover:bg-muted font-bold text-xs uppercase tracking-widest gap-2" onClick={handleDownloadPdf}>
-                           <Download className="w-4 h-4" /> Download PDF <ArrowRight className="w-3 h-3" />
+                     <div className="bg-white border border-primary/20 rounded-2xl p-8 text-center overflow-hidden relative shadow-sm">
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10" />
+                        <h4 className="text-[13px] font-bold text-charcoal mb-2 uppercase tracking-tight">Technical PDF Guide</h4>
+                        <p className="text-[11px] text-muted-foreground mb-6 font-light">{downloadPdfSubtext}</p>
+                        <Button className="w-full bg-charcoal text-white hover:bg-black font-bold text-[10px] uppercase tracking-[0.2em] gap-2 h-12 shadow-md transition-all hover:-translate-y-1" onClick={handleDownloadPdf}>
+                           <Download className="w-4 h-4" /> Download Guide
                         </Button>
                      </div>
 
                      {/* Card 5: Speak to the Team */}
-                     <div className="bg-[#f5a623] rounded-xl p-6 text-center text-charcoal shadow-lg">
-                        <div className="w-10 h-10 bg-white/30 rounded-full flex items-center justify-center mx-auto mb-3">
-                           <Phone className="w-5 h-5 text-charcoal" />
+                     <div className="bg-primary rounded-2xl p-8 text-center text-white shadow-xl relative overflow-hidden group">
+                        <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/30 backdrop-blur-md">
+                           <Phone className="w-5 h-5 text-white" />
                         </div>
-                        <h4 className="font-bold mb-2">Need Help with Compliance?</h4>
-                        <p className="text-sm font-medium opacity-90 mb-6">{speakToTeamSubtext}</p>
-                        <Button className="w-full bg-charcoal text-white hover:bg-black font-bold uppercase tracking-widest text-xs" asChild>
-                           <Link href="/contact">Talk to EntireFM <ArrowRight className="w-3 h-3 ml-2" /></Link>
+                        <h4 className="text-lg font-bold mb-2 tracking-tight">Need Statutory Support?</h4>
+                        <p className="text-xs font-medium opacity-90 mb-8 leading-relaxed max-w-[180px] mx-auto">{speakToTeamSubtext}</p>
+                        <Button className="w-full bg-white text-primary hover:bg-gray-50 font-bold uppercase tracking-[0.2em] text-[10px] h-12 shadow-lg transition-all hover:scale-[1.02]" asChild>
+                           <Link href="/contact">Talk to Expert <ArrowRight className="w-3 h-3 ml-2" /></Link>
                         </Button>
                      </div>
 
