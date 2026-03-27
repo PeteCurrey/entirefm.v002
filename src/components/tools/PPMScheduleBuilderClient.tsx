@@ -218,11 +218,19 @@ export default function PPMScheduleBuilderClient() {
 
       {/* Schedule Table */}
       <div className="mb-8 overflow-hidden rounded-xl border border-border shadow-sm">
-        <div className="bg-charcoal text-white px-6 py-4 flex justify-between items-center cursor-pointer hover:bg-charcoal/90 transition-colors" onClick={() => setExpandedAsset(expandedAsset ? null : "expandAll")} >
-           <h3 className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
-              <ActivitySquare className="w-4 h-4 text-primary" /> Full Asset Schedule ({selectedAssets.length})
-           </h3>
-           <span className="text-xs text-muted-foreground">Click below rows to view specific SLA definitions</span>
+        <div className="bg-charcoal text-white px-6 py-5 flex justify-between items-center cursor-pointer hover:bg-charcoal/90 transition-colors" onClick={() => setExpandedAsset(expandedAsset ? null : "expandAll")} >
+           <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+              <h3 className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                 <ActivitySquare className="w-4 h-4 text-primary" /> Full Asset Schedule ({selectedAssets.length})
+              </h3>
+              <span className="hidden md:inline-block w-1 h-1 rounded-full bg-white/20" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary animate-pulse">
+                 Click rows to view SLA task definitions
+              </span>
+           </div>
+           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/40">
+              {expandedAsset === "expandAll" ? "Collapse All" : "Expand All"}
+           </div>
         </div>
         
         <div className="overflow-x-auto bg-white border-t border-border/20">
@@ -241,19 +249,27 @@ export default function PPMScheduleBuilderClient() {
                 const freqs = getFrequencyLabel(asset);
                 const isExpanded = expandedAsset === asset.id || expandedAsset === "expandAll";
                 return (
-                  <tr key={asset.id} className="hover:bg-primary/[0.02] cursor-pointer transition-colors" onClick={() => setExpandedAsset(isExpanded ? null : asset.id)}>
+                  <tr key={asset.id} className={`hover:bg-primary/[0.04] cursor-pointer transition-all duration-300 group ${isExpanded ? 'bg-primary/[0.02]' : ''}`} onClick={() => setExpandedAsset(isExpanded ? null : asset.id)}>
                     <td className="px-6 py-4 w-1/3">
                       <div className="flex items-start gap-3">
-                        <span className="text-xl bg-white shadow-sm border rounded p-1.5 shrink-0">{asset.icon}</span>
+                        <div className="relative shrink-0">
+                           <span className="text-xl bg-white shadow-sm border rounded p-1.5 block">{asset.icon}</span>
+                           <div className={`absolute -right-1 -bottom-1 w-5 h-5 rounded-full bg-white border border-border shadow-sm flex items-center justify-center transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+                              <ChevronDown className={`w-3 h-3 text-primary ${isExpanded ? 'text-charcoal' : ''}`} />
+                           </div>
+                        </div>
                         <div className="min-w-0">
-                          <div className="font-semibold text-charcoal truncate">{asset.name}</div>
+                          <div className={`font-semibold transition-colors ${isExpanded ? 'text-primary' : 'text-charcoal group-hover:text-primary'}`}>{asset.name}</div>
+                          <div className="text-[10px] text-muted-foreground mt-0.5 group-hover:text-primary/70 transition-colors uppercase tracking-widest font-bold">
+                             {isExpanded ? 'Hide Task List' : 'View SLA Tasks'}
+                          </div>
                           {isExpanded && (
-                            <div className="mt-3 space-y-2 text-xs border-l-2 border-primary/20 pl-3 ml-2">
+                            <div className="mt-4 space-y-3 text-xs border-l-2 border-primary/20 pl-3 ml-2">
                               {Object.entries(asset.frequencies).map(([freq, tasks]) => tasks && tasks.length > 0 && (
                                 <div key={freq} className="animate-in fade-in slide-in-from-left-2 duration-300">
-                                  <span className="font-bold uppercase tracking-widest text-[#15234b] block mb-1">{freq.replace(/([A-Z])/g, " $1").trim()}</span>
-                                  <ul className="space-y-1">
-                                    {(tasks as string[]).map((t, i) => <li key={i} className="text-muted-foreground leading-snug relative pr-2 before:content-[''] before:absolute before:left-[-11px] before:top-2 before:w-1 before:h-1 before:rounded-full before:bg-muted-foreground/30">{t}</li>)}
+                                  <span className="font-bold uppercase tracking-widest text-charcoal block mb-1.5 opacity-80">{freq.replace(/([A-Z])/g, " $1").trim()}</span>
+                                  <ul className="space-y-1.5">
+                                    {(tasks as string[]).map((t, i) => <li key={i} className="text-muted-foreground leading-snug relative pr-2 before:content-[''] before:absolute before:left-[-11px] before:top-2 before:w-1 before:h-1 before:rounded-full before:bg-primary/20">{t}</li>)}
                                   </ul>
                                 </div>
                               ))}
