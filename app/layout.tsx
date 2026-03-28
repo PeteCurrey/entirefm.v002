@@ -113,6 +113,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${openSans.variable}`}>
       <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=G-6Y6G6NBRZH`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-6Y6G6NBRZH');
+          `}
+        </Script>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
