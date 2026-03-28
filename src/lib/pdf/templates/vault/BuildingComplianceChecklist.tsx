@@ -60,17 +60,17 @@ export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generated
   ];
 
   return (
-    <Document title="Building Compliance Audit Checklist" author="EntireFM">
+    <Document title="Compliance Audit Checklist - EntireFM" author="EntireFM">
       <PDFBaseLayout 
-        documentTitle="Compliance Checklist" 
+        documentTitle="Compliance Audit" 
         referenceNumber={referenceNumber} 
         generatedDate={generatedDate}
         showDisclaimer={true}
       >
         <PDFCoverSection 
           title="Building Compliance Audit Checklist"
-          subtitle="Statutory Audit Framework"
-          generatedFor="[Enter Facility Name]"
+          subtitle="Statutory Minimum Standards"
+          generatedFor="[Property Manager / Duty Holder]"
           generatedDate={generatedDate}
           documentType="Compliance Audit Tool"
           referenceNumber={referenceNumber}
@@ -78,39 +78,39 @@ export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generated
 
         <View style={globalStyles.sectionBox}>
           <Text style={globalStyles.body}>
-            Use this checklist to perform a self-audit of your facility's core statutory compliance obligations. Ensure that for every ticked box, corresponding certification is physically available on-site for inspection.
+            Use this professional audit tool to perform a self-assessment of your facility's core statutory compliance obligations. Ensure that for every ticked box, corresponding certification is physically or digitally available on-site for regulatory inspection.
           </Text>
         </View>
 
         {checklists.map((list, i) => (
-          <View key={i} style={{ marginBottom: 20 }} wrap={false}>
-            <View style={{ backgroundColor: pdfColors.navy, padding: 6, flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text style={{ color: pdfColors.white, fontSize: 9, fontWeight: 'bold', textTransform: 'uppercase' }}>{list.title}</Text>
-              <Text style={{ color: pdfColors.white, fontSize: 8 }}>COMPLIANT?</Text>
+          <View key={i} style={{ marginBottom: 25 }} wrap={false}>
+            <View style={{ backgroundColor: pdfColors.navy, padding: 8, flexDirection: 'row', justifyContent: 'space-between', borderLeftWidth: 4, borderLeftColor: pdfColors.gold }}>
+              <Text style={{ color: pdfColors.white, fontSize: 10, fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: 1 }}>{list.title}</Text>
+              <Text style={{ color: pdfColors.gold, fontSize: 8, fontWeight: 'bold' }}>COMPLIANCE STATUS</Text>
             </View>
             
-            <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 1, borderBottomColor: pdfColors.navy }}>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '60%', backgroundColor: 'transparent', color: pdfColors.navy }}>Audit Item</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '25%', backgroundColor: 'transparent', color: pdfColors.navy }}>Last Serviced</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>[ ✓ / ✗ ]</Text>
+            <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 2, borderBottomColor: pdfColors.navy }}>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '60%', backgroundColor: 'transparent', color: pdfColors.navy }}>Statutory Audit Item</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '25%', backgroundColor: 'transparent', color: pdfColors.navy }}>Last Certification</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>[ ✓ ]</Text>
             </View>
 
             {list.items.map((item, j) => (
-              <View key={j} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour, minHeight: 32, alignItems: 'center' }}>
+              <View key={j} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 35, alignItems: 'center' }}>
                 <View style={{ width: '60%', ...globalStyles.tableBodyCell }}>
                   <Text>{item}</Text>
                 </View>
-                <View style={{ width: '25%', ...globalStyles.tableBodyCell, borderLeftWidth: 1, borderLeftColor: pdfColors.borderColour }}>
-                  <Text style={{ color: pdfColors.borderColour }}>DD/MM/YYYY</Text>
+                <View style={{ width: '25%', ...globalStyles.tableBodyCell, borderLeftWidth: 1, borderLeftColor: '#f1f5f9' }}>
+                  <Text style={{ color: '#cbd5e1' }}>DD / MM / YYYY</Text>
                 </View>
-                <View style={{ width: '15%', ...globalStyles.tableBodyCell, borderLeftWidth: 1, borderLeftColor: pdfColors.borderColour, height: '100%' }} />
+                <View style={{ width: '15%', ...globalStyles.tableBodyCell, borderLeftWidth: 1, borderLeftColor: '#f1f5f9', height: '100%' }} />
               </View>
             ))}
           </View>
         ))}
 
         <View style={{ marginTop: 20 }}>
-          <PDFContactCTA documentType="compliance audit" customText="Struggling to locate your statutory certificates? EntireFM provides comprehensive compliance gap-analysis audits and cloud-based document portals to ensure you remain 100% compliant." />
+          <PDFContactCTA documentType="statutory compliance" customText="Struggling to track your certificates? EntireFM provides cloud-based compliance portals that automate your documentation and alert you before expirations." />
         </View>
       </PDFBaseLayout>
     </Document>

@@ -91,6 +91,23 @@ const integrationConfigs = [
     ],
   },
   {
+    service_type: "dataforseo",
+    name: "DataforSEO",
+    icon: Search,
+    description: "Source keyword data, SERP results, and backlink metrics",
+    fields: [
+      { key: "api_login", label: "API Login", type: "text" },
+      { key: "api_password", label: "API Password", type: "password" },
+    ],
+  },
+  {
+    service_type: "ahrefs",
+    name: "Ahrefs",
+    icon: Link2,
+    description: "Professional backlink and competitor analysis",
+    fields: [{ key: "api_token", label: "API Token", type: "password" }],
+  },
+  {
     service_type: "webhook",
     name: "Custom Webhook",
     icon: Webhook,

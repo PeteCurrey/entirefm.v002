@@ -1,5 +1,5 @@
-import PageManager from "@/legacy-pages/admin/PageManager";
+import PageBuilder from "@/legacy-pages/admin/PageBuilder";
 
 export default function Page() {
-  return <PageManager />;
+  return <PageBuilder />;
 }

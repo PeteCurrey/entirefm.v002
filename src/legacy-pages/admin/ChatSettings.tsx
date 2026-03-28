@@ -63,14 +63,6 @@ export default function ChatSettings() {
     try {
       setSaving(true);
       
-      const { data: existing, error: fetchError } = await supabase
-        .from('api_integrations')
-        .select('id')
-        .eq('service_type', 'anthropic')
-        .maybeSingle();
-
-      if (fetchError) throw fetchError;
-
       const payload = {
         name: 'Anthropic Claude API',
         service_type: 'anthropic',
@@ -78,6 +70,18 @@ export default function ChatSettings() {
         is_active: true,
         updated_at: new Date().toISOString()
       };
+
+      // Perform a more robust "upsert" by checking for existing first
+      const { data: existing, error: fetchError } = await supabase
+        .from('api_integrations')
+        .select('id')
+        .eq('service_type', 'anthropic')
+        .maybeSingle();
+
+      if (fetchError) {
+        console.error('Supabase fetch error:', fetchError);
+        throw new Error(`Database connection failed: ${fetchError.message}`);
+      }
 
       let error;
       if (existing) {
@@ -93,17 +97,23 @@ export default function ChatSettings() {
         error = insertError;
       }
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase save error:', error);
+        throw new Error(`Save failed: ${error.message} (${error.code || 'unknown'})`);
+      }
 
       toast({
         title: "Success",
-        description: "Chat settings updated successfully.",
+        description: "Chat settings updated successfully. The new Claude API key is now active.",
       });
-    } catch (error) {
-      console.error('Error saving chat settings:', error);
+      
+      // Also refresh the local state
+      fetchChatSettings();
+    } catch (err: any) {
+      console.error('Error saving chat settings:', err);
       toast({
-        title: "Error",
-        description: (error as any)?.message || "Failed to save chat settings.",
+        title: "Configuration Error",
+        description: err.message || "Failed to save settings. Please check your admin permissions.",
         variant: "destructive",
       });
     } finally {

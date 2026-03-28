@@ -8,77 +8,110 @@ import React from 'react';
 
 export const VaultFMSLATemplatePDF = ({ referenceNumber, generatedDate }: { referenceNumber: string, generatedDate: string }) => {
   return (
-    <Document title="Facilities Management SLA Template" author="EntireFM">
+    <Document title="Facilities Management SLA Template - EntireFM" author="EntireFM">
       <PDFBaseLayout 
-        documentTitle="SLA Template" 
+        documentTitle="SLA Framework" 
         referenceNumber={referenceNumber} 
         generatedDate={generatedDate}
         showDisclaimer={true}
       >
         <PDFCoverSection 
           title="Service Level Agreement (SLA)"
-          subtitle="Hard & Soft Facilities Management Services"
-          generatedFor="[Enter Client Company Name]"
+          subtitle="Hard & Soft FM Performance Standards"
+          generatedFor="[Legal Entity / Client Name]"
           generatedDate={generatedDate}
           documentType="SLA Template"
           referenceNumber={referenceNumber}
         />
 
-        <Text style={globalStyles.body}>
-          This Service Level Agreement (SLA) template outlines the standard response times, Key Performance Indicators (KPIs), and operational expectations between a Facilities Management Provider and a Client. 
-        </Text>
+        <View style={{ marginBottom: 25 }}>
+          <Text style={globalStyles.body}>
+            This master Service Level Agreement (SLA) framework defines the technical performance requirements, response timeframes, and Key Performance Indicators (KPIs) expected from an EntireFM managed service contract.
+          </Text>
+        </View>
 
-        <Text style={globalStyles.h2}>1. Priority Definitions & Response Times</Text>
+        <Text style={globalStyles.h2}>1. Reactive Priority Matrix</Text>
         <PDFGoldDivider />
-        <View style={{ marginBottom: 20 }}>
+        <View style={{ marginBottom: 30 }}>
           <View style={{ flexDirection: 'row', backgroundColor: pdfColors.navy }}>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '15%' }}>Priority</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '45%' }}>Definition</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '20%' }}>Response</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '20%' }}>Resolution</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '20%' }}>Priority</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '40%' }}>Operational Definition</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '20%', textAlign: 'center' }}>Response</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '20%', textAlign: 'center' }}>Resolution</Text>
           </View>
           
-          <View style={{ flexDirection: 'row', backgroundColor: pdfColors.white, borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour, minHeight: 40, alignItems: 'center' }}>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '15%', fontWeight: 'bold', color: pdfColors.red }}>P1: Crisis</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '45%' }}>Risk to life, major business interruption, or severe building damage.</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '20%', fontWeight: 'bold' }}>2 Hours</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '20%', fontWeight: 'bold' }}>4 Hours</Text>
+          <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }}>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.red }}>P1: Crisis</Text>
+            </View>
+            <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+              <Text style={{ fontSize: 7, color: '#475569' }}>Risk to life, total power loss, or major server room cooling failure.</Text>
+            </View>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>2 Hours</Text>
+            </View>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>4 Hours</Text>
+            </View>
           </View>
 
-          <View style={{ flexDirection: 'row', backgroundColor: '#fafafa', borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour, minHeight: 40, alignItems: 'center' }}>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '15%', fontWeight: 'bold', color: pdfColors.amber }}>P2: Urgent</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '45%' }}>Significant operational impact but no immediate safety risk.</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '20%', fontWeight: 'bold' }}>4 Hours</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '20%', fontWeight: 'bold' }}>24 Hours</Text>
+          <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }}>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.amber }}>P2: Urgent</Text>
+            </View>
+            <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+              <Text style={{ fontSize: 7, color: '#475569' }}>Significant operational impact but no immediate life-safety risk.</Text>
+            </View>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>4 Hours</Text>
+            </View>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>24 Hours</Text>
+            </View>
           </View>
 
-          <View style={{ flexDirection: 'row', backgroundColor: pdfColors.white, borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour, minHeight: 40, alignItems: 'center' }}>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '15%', fontWeight: 'bold', color: '#1976d2' }}>P3: Routine</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '45%' }}>Minor disruption to normal operations (e.g. faulty light fitting).</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '20%', fontWeight: 'bold' }}>48 Hours</Text>
-            <Text style={{ ...globalStyles.tableBodyCell, width: '20%', fontWeight: 'bold' }}>5 Days</Text>
+          <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }}>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.slate600 }}>P3: Routine</Text>
+            </View>
+            <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+              <Text style={{ fontSize: 7, color: '#475569' }}>Minor building fabric defects or aesthetic issues (e.g. faulty lamp).</Text>
+            </View>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>48 Hours</Text>
+            </View>
+            <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
+              <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>5 Days</Text>
+            </View>
           </View>
         </View>
 
-        <Text style={globalStyles.h2}>2. Key Performance Indicators (KPIs)</Text>
-        <PDFGoldDivider />
-        <View style={{ marginBottom: 20 }}>
-          <Text style={{ ...globalStyles.body, marginBottom: 6 }}><Text style={{ fontWeight: 'bold' }}>KPI 1: Statutory Compliance</Text> - 100% adherence to all statutory certifications.</Text>
-          <Text style={{ ...globalStyles.body, marginBottom: 6 }}><Text style={{ fontWeight: 'bold' }}>KPI 2: PPM Completion</Text> - 95% completion rate of planned tasks in the scheduled month.</Text>
-          <Text style={{ ...globalStyles.body, marginBottom: 6 }}><Text style={{ fontWeight: 'bold' }}>KPI 3: Helpdesk Response</Text> - 98% of calls answered within 60 seconds.</Text>
+        <View wrap={false} style={{ marginBottom: 30 }}>
+          <Text style={globalStyles.h2}>2. Strategic Performance KPIs</Text>
+          <PDFGoldDivider />
+          <View style={{ gap: 10 }}>
+            <View style={{ padding: 12, backgroundColor: pdfColors.lightGrey, borderLeftWidth: 3, borderLeftColor: pdfColors.gold }}>
+              <Text style={{ fontSize: 9, fontWeight: 'bold', color: pdfColors.navy, marginBottom: 4 }}>KPI 1: Statutory Compliance (100% Target)</Text>
+              <Text style={globalStyles.small}>Full adherence to building regulations with all certifications digitalized within 48 hours of service.</Text>
+            </View>
+            <View style={{ padding: 12, backgroundColor: pdfColors.lightGrey, borderLeftWidth: 3, borderLeftColor: pdfColors.gold }}>
+              <Text style={{ fontSize: 9, fontWeight: 'bold', color: pdfColors.navy, marginBottom: 4 }}>KPI 2: PPM Effectiveness (95% Target)</Text>
+              <Text style={globalStyles.small}>Scheduled preventative maintenance tasks to be completed within the specific calendar month of issue.</Text>
+            </View>
+          </View>
         </View>
 
-        <View wrap={false} style={{ marginTop: 20 }}>
-          <Text style={globalStyles.h2}>3. Escalation Protocol</Text>
+        <View wrap={false} style={{ marginTop: 10 }}>
+          <Text style={globalStyles.h2}>3. Governance & Escalation</Text>
           <PDFGoldDivider />
           <View style={globalStyles.sectionBox}>
-            <Text style={{ ...globalStyles.small, marginBottom: 6 }}>• Level 1: 24/7 Helpdesk [Enter Number]</Text>
-            <Text style={{ ...globalStyles.small, marginBottom: 6 }}>• Level 2: Contract Manager [Enter Name]</Text>
-            <Text style={{ ...globalStyles.small }}>• Level 3: Regional Operations Director [Enter Name]</Text>
+            <Text style={{ ...globalStyles.small, marginBottom: 8 }}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 1:</Text> 24/7 National Helpdesk — [Insert Regional Node Number]</Text>
+            <Text style={{ ...globalStyles.small, marginBottom: 8 }}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 2:</Text> Dedicated Account Manager — [Insert Name & Direct Dial]</Text>
+            <Text style={{ ...globalStyles.small }}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 3:</Text> Operations Director — [Escalation path via HQ]</Text>
           </View>
 
-          <View style={{ marginTop: 10 }}>
-            <PDFContactCTA documentType="FM contracts" customText="Need a robust, financially-backed SLA for your vital building services? EntireFM delivers comprehensive Hard and Soft FM solutions." />
+          <View style={{ marginTop: 20 }}>
+            <PDFContactCTA documentType="SLA management" customText="Need a bespoke SLA backed by financial service credits? EntireFM delivers results-oriented FM partnerships that protect your building's value." />
           </View>
         </View>
       </PDFBaseLayout>

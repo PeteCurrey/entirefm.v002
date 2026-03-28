@@ -1,5 +1,5 @@
-import ContactSubmissions from "@/legacy-pages/admin/ContactSubmissions";
+import LeadsManagement from "@/legacy-pages/admin/LeadsManagement";
 
 export default function Page() {
-  return <ContactSubmissions />;
+  return <LeadsManagement />;
 }

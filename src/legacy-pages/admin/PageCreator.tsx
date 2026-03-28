@@ -137,7 +137,6 @@ export default function PageCreator() {
         slug,
         meta_title: metaTitle,
         meta_description: metaDescription,
-        location: location.name,
         status: 'draft',
         page_data: {
           type: pageType,

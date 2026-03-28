@@ -17,26 +17,32 @@ export const PDFCoverSection = ({
   generatedDate, 
   referenceNumber 
 }: PDFCoverSectionProps) => (
-  <View style={{ marginBottom: 30 }}>
+  <View style={{ marginBottom: 40 }}>
     <View style={{
       backgroundColor: pdfColors.navy,
       padding: 40,
       paddingTop: 60,
-      marginBottom: 0
+      paddingBottom: 40,
+      marginBottom: 0,
+      borderLeftWidth: 8,
+      borderLeftColor: pdfColors.gold
     }}>
       <Text style={{ 
         color: pdfColors.white, 
-        fontSize: 32, 
-        fontWeight: 700,
-        marginBottom: subtitle ? 8 : 0
+        fontSize: 28, 
+        fontWeight: 'bold',
+        marginBottom: subtitle ? 10 : 0,
+        letterSpacing: -0.5
       }}>
         {title}
       </Text>
       {subtitle && (
         <Text style={{ 
           color: pdfColors.gold, 
-          fontSize: 16, 
-          fontWeight: 500 
+          fontSize: 14, 
+          fontWeight: 'medium',
+          textTransform: 'uppercase',
+          letterSpacing: 2
         }}>
           {subtitle}
         </Text>
@@ -46,29 +52,25 @@ export const PDFCoverSection = ({
     <View style={{
       flexDirection: 'row',
       backgroundColor: pdfColors.lightGrey,
-      padding: 12,
+      padding: 15,
       paddingHorizontal: 40,
-      borderBottomWidth: 3,
-      borderBottomColor: pdfColors.gold
+      borderBottomWidth: 1,
+      borderBottomColor: '#cbd5e1'
     }}>
       {generatedFor && (
-        <>
-          <Text style={{ fontSize: 9, color: pdfColors.mutedText, marginRight: 15 }}>
-            <Text style={{ fontWeight: 700, color: pdfColors.navy }}>Prepared for: </Text>
-            {generatedFor}
-          </Text>
-          <Text style={{ fontSize: 9, color: pdfColors.borderColour, marginRight: 15 }}>|</Text>
-        </>
+        <View style={{ marginRight: 25 }}>
+          <Text style={{ fontSize: 7, color: pdfColors.muted, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 2 }}>Prepared for</Text>
+          <Text style={{ fontSize: 9, fontWeight: 'bold', color: pdfColors.navy }}>{generatedFor}</Text>
+        </View>
       )}
-      <Text style={{ fontSize: 9, color: pdfColors.mutedText, marginRight: 15 }}>
-        <Text style={{ fontWeight: 700, color: pdfColors.navy }}>Date: </Text>
-        {generatedDate}
-      </Text>
-      <Text style={{ fontSize: 9, color: pdfColors.borderColour, marginRight: 15 }}>|</Text>
-      <Text style={{ fontSize: 9, color: pdfColors.mutedText }}>
-        <Text style={{ fontWeight: 700, color: pdfColors.navy }}>Reference: </Text>
-        {referenceNumber}
-      </Text>
+      <View style={{ marginRight: 25 }}>
+        <Text style={{ fontSize: 7, color: pdfColors.muted, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 2 }}>Publication Date</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: pdfColors.navy }}>{generatedDate}</Text>
+      </View>
+      <View>
+        <Text style={{ fontSize: 7, color: pdfColors.muted, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 2 }}>Control Reference</Text>
+        <Text style={{ fontSize: 9, fontWeight: 'bold', color: pdfColors.navy, fontFamily: 'Courier' }}>{referenceNumber}</Text>
+      </View>
     </View>
   </View>
 );

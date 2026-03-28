@@ -17,7 +17,7 @@ const BrandedGenericPDF = ({
   generatedDate: string, 
   generatedFor: string 
 }) => (
-  <Document title={title} author="EntireFM">
+  <Document title={`${title} - EntireFM`} author="EntireFM">
     <PDFBaseLayout 
       documentTitle="Project Document" 
       referenceNumber={referenceNumber} 
@@ -36,12 +36,16 @@ const BrandedGenericPDF = ({
       <View style={{ marginTop: 20 }}>
         <Text style={globalStyles.h2}>Document Overview</Text>
         <Text style={globalStyles.body}>
-          Thank you for choosing EntireFM. This document contains information regarding your specific facility management inquiry. 
-          Our team is currently preparing the detailed technical specifications and service level agreements (SLAs) for your estate.
+          Thank you for choosing EntireFM. This technical document contains information specifically prepared for your facility management inquiry. 
+          Our mobilization and engineering teams are currently validating the technical requirements for your estate.
         </Text>
-        <Text style={{ ...globalStyles.body, marginTop: 20 }}>
-          This automated informational package serves as a placeholder while our engineering team validates the asset data and statutory compliance requirements provided.
-        </Text>
+        
+        <View style={globalStyles.sectionBox}>
+          <Text style={{ ...globalStyles.body, fontWeight: 'bold', marginBottom: 5 }}>Notice of Automation:</Text>
+          <Text style={globalStyles.small}>
+            This informational package is an automated issuance. A formal, peer-reviewed proposal will follow once our regional team has verified the provided asset data and statutory compliance status.
+          </Text>
+        </View>
       </View>
     </PDFBaseLayout>
   </Document>

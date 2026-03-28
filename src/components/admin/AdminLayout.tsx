@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
+import AdminNotifications from "./AdminNotifications";
 
 export default function AdminLayout({ children }: { children?: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
@@ -127,7 +128,7 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
   const navItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
     { icon: FileText, label: "Proposals", path: "/admin/proposals" },
-    { icon: Mail, label: "Contacts", path: "/admin/contacts" },
+    { icon: Mail, label: "Leads Center", path: "/admin/contacts" },
     { icon: Wrench, label: "Helpdesk Jobs", path: "/admin/helpdesk-jobs" },
     { icon: ShieldCheck, label: "CAFM Jobs", path: "/admin/jobs" },
     { icon: Building2, label: "Suppliers", path: "/admin/suppliers" },
@@ -144,10 +145,10 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
       label: "Marketing", 
       path: "/admin/marketing",
       children: [
-        { label: "Content", path: "/admin/marketing/content" },
+        { label: "Content Hub", path: "/admin/marketing/content" },
         { label: "Social Media", path: "/admin/marketing/social" },
-        { label: "AI Media", path: "/admin/marketing/media" },
-        { label: "SEO Tools", path: "/admin/marketing/seo-tools" },
+        { label: "AI Asset Gen", path: "/admin/marketing/media" },
+        { label: "Advanced SEO Tools", path: "/admin/marketing/seo-tools" },
       ]
     },
     { icon: Layout, label: "Pages", path: "/admin/pages" },
@@ -156,8 +157,10 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
     { 
       icon: BarChart3, 
       label: "Analytics", 
-      path: "/admin/search-analytics",
+      path: "/admin/analytics",
       children: [
+        { label: "Site Performance", path: "/admin/analytics" },
+        { label: "Search Console", path: "/admin/search-analytics" },
         { label: "Link Health", path: "/admin/link-health" },
       ]
     },
@@ -168,7 +171,8 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
       path: "/admin/settings",
       children: [
         { label: "General", path: "/admin/settings" },
-        { label: "Chat Advisor", path: "/admin/settings/chat" },
+        { label: "Integrations", path: "/admin/settings?tab=integrations" },
+        { label: "Chat Advisor", path: "/admin/settings?tab=chat" },
       ]
     },
   ];
@@ -277,7 +281,30 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
 
       {/* Main Content */}
       <main className={`flex-1 overflow-auto ${sidebarOpen ? 'ml-64' : 'ml-16'} transition-all duration-300`}>
-        {children}
+        {/* Admin Top Bar */}
+        <header className="h-16 border-b border-border bg-card/50 backdrop-blur-md flex items-center justify-between px-8 sticky top-0 z-30">
+          <div className="flex items-center gap-4">
+            <h1 className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+              {pathname.split('/').filter(Boolean).pop()?.replace(/-/g, ' ')}
+            </h1>
+          </div>
+          <div className="flex items-center gap-4">
+            <AdminNotifications />
+            <div className="h-8 w-[1px] bg-border mx-2" />
+            <div className="flex items-center gap-3">
+              <div className="text-right hidden sm:block">
+                <p className="text-xs font-semibold">{session?.user?.email?.split('@')[0] || 'Admin'}</p>
+                <p className="text-[10px] text-muted-foreground">Super Admin</p>
+              </div>
+              <div className="h-10 w-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold">
+                {session?.user?.email?.[0].toUpperCase() || 'A'}
+              </div>
+            </div>
+          </div>
+        </header>
+        <div className="p-8">
+          {children}
+        </div>
       </main>
     </div>
   );

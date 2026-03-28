@@ -32,81 +32,84 @@ export const ComplianceReportPDF = ({ data }: { data: ComplianceReportData }) =>
     pdfColors.green;
 
   return (
-    <Document title="FM Compliance Report" author="EntireFM">
+    <Document title="FM Compliance Report - EntireFM" author="EntireFM">
       <PDFBaseLayout 
-        documentTitle="Compliance Report" 
+        documentTitle="Compliance Audit" 
         referenceNumber={data.referenceNumber} 
         generatedDate={data.generatedDate}
         showDisclaimer={true}
       >
         <PDFCoverSection 
-          title="FM Compliance Report"
-          subtitle={`${data.buildingType} Sector`}
+          title="Facility Compliance Risk Audit"
+          subtitle={`${data.buildingType} | ${data.sector}`}
           generatedFor={data.generatedFor}
           generatedDate={data.generatedDate}
           documentType="Compliance Report"
           referenceNumber={data.referenceNumber}
         />
 
-        <View style={{ backgroundColor: riskColor, padding: 12, borderRadius: 8, marginBottom: 20, alignItems: 'center' }} wrap={false}>
-          <Text style={{ color: pdfColors.white, fontSize: 8, fontWeight: 'bold', letterSpacing: 1, marginBottom: 4, textTransform: 'uppercase' }}>Overall Compliance Risk</Text>
-          <Text style={{ color: pdfColors.white, fontSize: 24, fontWeight: 'bold' }}>{data.overallRisk.toUpperCase()}</Text>
+        <View style={{ flexDirection: 'row', gap: 20, marginBottom: 30 }} wrap={false}>
+          <View style={{ flex: 1, backgroundColor: riskColor, padding: 20, borderBottomWidth: 4, borderBottomColor: pdfColors.navy }}>
+            <Text style={{ color: pdfColors.white, fontSize: 7, fontWeight: 'bold', letterSpacing: 1.5, marginBottom: 6, textTransform: 'uppercase' }}>Overall Portfolio Risk</Text>
+            <Text style={{ color: pdfColors.white, fontSize: 28, fontWeight: 'bold' }}>{data.overallRisk.toUpperCase()}</Text>
+          </View>
+          <View style={{ flex: 2, padding: 15, backgroundColor: pdfColors.lightGrey, borderLeftWidth: 3, borderLeftColor: pdfColors.navy }}>
+            <Text style={{ ...globalStyles.h3, marginTop: 0, color: pdfColors.navy, textTransform: 'uppercase', fontSize: 8 }}>Executive Summary</Text>
+            <Text style={{ ...globalStyles.body, marginBottom: 0 }}>{data.summary}</Text>
+          </View>
         </View>
 
-        <View style={globalStyles.sectionBox} wrap={false}>
-          <Text style={globalStyles.h3}>Executive Summary</Text>
-          <Text style={globalStyles.body}>{data.summary}</Text>
-        </View>
-
-        <Text style={globalStyles.h2}>Key Compliance Obligations</Text>
+        <Text style={globalStyles.h2}>Statutory Compliance Matrix</Text>
         <PDFGoldDivider />
 
-        <View style={{ marginBottom: 20 }}>
+        <View style={{ marginBottom: 30 }}>
           <View style={{ flexDirection: 'row', backgroundColor: pdfColors.navy }}>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '25%' }}>Area</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '45%' }}>Detail</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '25%' }}>Service Area</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '45%' }}>Regulatory Detail</Text>
             <Text style={{ ...globalStyles.tableHeaderCell, width: '15%' }}>Frequency</Text>
             <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', textAlign: 'center' }}>Urgency</Text>
           </View>
           
           {data.obligations.map((obs, i) => (
-            <View key={i} style={{ flexDirection: 'row', backgroundColor: i % 2 === 0 ? pdfColors.white : '#fafafa' }} wrap={false}>
+            <View key={i} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }} wrap={false}>
               <View style={{ width: '25%', ...globalStyles.tableBodyCell }}>
-                <Text style={{ fontWeight: 'bold' }}>{obs.area}</Text>
+                <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{obs.area}</Text>
               </View>
               <View style={{ width: '45%', ...globalStyles.tableBodyCell }}>
-                <Text>{obs.detail}</Text>
+                <Text style={{ color: '#475569', fontSize: 8 }}>{obs.detail}</Text>
               </View>
               <View style={{ width: '15%', ...globalStyles.tableBodyCell }}>
-                <Text>{obs.frequency}</Text>
+                <Text style={{ fontWeight: 'bold' }}>{obs.frequency}</Text>
               </View>
-              <View style={{ width: '15%', ...globalStyles.tableBodyCell, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ 
+              <View style={{ width: '15%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
+                <View style={{ 
                   ...globalStyles.badge, 
-                  backgroundColor: obs.urgency === 'High' ? pdfColors.red : (obs.urgency === 'Medium' ? pdfColors.amber : pdfColors.green),
-                  color: pdfColors.white 
+                  backgroundColor: obs.urgency === 'High' ? pdfColors.red : (obs.urgency === 'Medium' ? pdfColors.amber : pdfColors.slate800),
+                  color: pdfColors.white,
+                  paddingVertical: 3,
+                  paddingHorizontal: 10
                 }}>
-                  {obs.urgency.toUpperCase()}
-                </Text>
+                  <Text>{obs.urgency.toUpperCase()}</Text>
+                </View>
               </View>
             </View>
           ))}
         </View>
 
-        <View wrap={false} style={{ marginBottom: 20 }}>
-          <Text style={globalStyles.h2}>Top Identified Risks</Text>
+        <View wrap={false} style={{ marginBottom: 30 }}>
+          <Text style={globalStyles.h2}>Critical Compliance Gaps</Text>
           <PDFGoldDivider />
           <View style={{ flexDirection: 'row', gap: 10 }}>
             {data.topRisks.map((risk, i) => (
-              <View key={i} style={{ flex: 1, backgroundColor: '#fff8e1', padding: 12, borderRadius: 8, borderTopWidth: 2, borderTopColor: pdfColors.amber, borderWidth: 1, borderColor: pdfColors.borderColour }}>
-                <Text style={{ fontSize: 8, color: pdfColors.bodyText, lineHeight: 1.4 }}>{risk}</Text>
+              <View key={i} style={{ flex: 1, backgroundColor: '#fff8e1', padding: 15, borderTopWidth: 3, borderTopColor: pdfColors.amber, borderWidth: 1, borderColor: '#fef3c7' }}>
+                <Text style={{ fontSize: 8, color: '#92400e', lineHeight: 1.5, fontWeight: 'medium' }}>• {risk}</Text>
               </View>
             ))}
           </View>
         </View>
 
-        <View wrap={false} style={{ marginBottom: 20, padding: 16, borderLeftWidth: 3, borderLeftColor: pdfColors.gold, backgroundColor: pdfColors.lightGrey, borderRadius: 4 }}>
-          <Text style={{ ...globalStyles.h3, marginTop: 0, color: pdfColors.navy }}>EntireFM Recommendation</Text>
+        <View wrap={false} style={globalStyles.sectionBox}>
+          <Text style={{ ...globalStyles.h3, marginTop: 0, color: pdfColors.navy, fontSize: 9 }}>EntireFM Engineering Strategy</Text>
           <Text style={globalStyles.body}>{data.recommendation}</Text>
         </View>
 

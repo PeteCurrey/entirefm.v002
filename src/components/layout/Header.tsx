@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowRight, Zap, Siren, Cable, Thermometer, Droplets, Flame, Wrench, HardHat, Droplet, Hammer, Phone, Building, Factory, ShoppingBag, Info, Mail, MapPin, Monitor, BookOpen, Building2, Calculator, PoundSterling, Target, ShieldAlert, FileText, Calendar, ClipboardCheck, Lightbulb, ChevronLeft, ChevronRight, Landmark, Briefcase, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -20,7 +21,10 @@ const Header = ({ className }: { className?: string }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
   const sectorsScrollRef = React.useRef<HTMLDivElement>(null);
+
+  if (pathname?.startsWith('/admin')) return null;
 
   // Get the featured insight for the current date
   const featuredInsight = getFeaturedInsight();
@@ -375,7 +379,7 @@ const Header = ({ className }: { className?: string }) => {
 
                 <div className="p-6">
                   <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-none" asChild>
-                    <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Request Proposal</Link>
+                    <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
                   </Button>
                 </div>
               </nav>

@@ -16,6 +16,7 @@ import NotificationSettings from "@/components/admin/settings/NotificationSettin
 import EmailSettings from "@/components/admin/settings/EmailSettings";
 import IntegrationsSettings from "@/components/admin/settings/IntegrationsSettings";
 import UserManagement from "@/components/admin/settings/UserManagement";
+import ChatSettings from "@/legacy-pages/admin/ChatSettings";
 
 export default function Settings() {
   const searchParams = useSearchParams();
@@ -71,6 +72,13 @@ export default function Settings() {
               <Users className="h-4 w-4" />
               User Access
             </TabsTrigger>
+            <TabsTrigger 
+              value="chat" 
+              className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none py-2 px-1 gap-2"
+            >
+              <ShieldCheck className="h-4 w-4" />
+              AI Advisor
+            </TabsTrigger>
           </TabsList>
         </div>
 
@@ -92,6 +100,10 @@ export default function Settings() {
 
         <TabsContent value="users" className="mt-0">
           <UserManagement />
+        </TabsContent>
+
+        <TabsContent value="chat" className="mt-0">
+          <ChatSettings />
         </TabsContent>
       </Tabs>
     </div>

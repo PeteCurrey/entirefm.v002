@@ -67,7 +67,7 @@ const Home = () => {
             className="flex flex-col sm:flex-row gap-4"
           >
             <Button size="lg" asChild className="bg-primary hover:bg-primary/90 text-white rounded-none px-8 font-light tracking-wide shadow-xl shadow-primary/20">
-              <Link href="/contact">Request a Proposal</Link>
+              <Link href="/contact">Contact Us</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-white/5 backdrop-blur-md text-white border-white/20 hover:bg-white hover:text-slate-950 rounded-none px-8 font-light tracking-wide transition-all" asChild>
               <Link href="/case-studies">View Case Studies</Link>
@@ -302,7 +302,7 @@ const Home = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-secondary hover:bg-gray-100 hover:text-secondary/90 shadow-xl border-none" asChild>
-              <Link href="/contact">Request a Proposal</Link>
+              <Link href="/contact">Contact Us</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-secondary" asChild>
               <a href="tel:08001234567">Call 24/7 Helpdesk</a>

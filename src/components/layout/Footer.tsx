@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield, Clock, MapPin, Mail, Phone, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { cn } from "@/lib/utils";
@@ -12,6 +13,9 @@ const ButterflyLogo = ({ className }: { className?: string }) => (
 );
 
 export const Footer = () => {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/admin')) return null;
+
   return (
     <footer className="bg-[#0a0a0b] text-white border-t border-white/5 font-inter">
       {/* Premium CTA Strip */}
@@ -34,7 +38,7 @@ export const Footer = () => {
             </div>
             <div className="flex flex-wrap justify-center gap-6">
               <Button asChild size="lg" className="bg-charcoal hover:bg-black text-white px-10 h-16 rounded-none border-none uppercase tracking-widest font-black text-xs shadow-2xl transition-colors">
-                <Link href="/contact">Request Proposal</Link>
+                <Link href="/contact">Contact Us</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-2 border-charcoal bg-transparent text-charcoal hover:bg-charcoal hover:text-white px-10 h-16 rounded-none uppercase tracking-widest font-black text-xs transition-colors">
                 <Link href="/contact">Talk to the Team</Link>

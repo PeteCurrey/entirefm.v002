@@ -19,7 +19,7 @@ interface ToolLink {
 interface ResourceArticleLayoutProps {
   title: string;
   description: string;
-  category: "Guides & Compliance" | "Checklists";
+  category: string;
   readTime: string;
   publishedDate: string;
   quickFacts: string[];
