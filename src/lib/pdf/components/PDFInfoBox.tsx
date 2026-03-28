@@ -41,7 +41,7 @@ export const PDFInfoBox = ({ title, body, type = 'info' }: PDFInfoBoxProps) => {
       </Text>
       <Text style={{ 
         fontSize: 9, 
-        color: pdfColors.bodyText,
+        color: pdfColors.navy,
         lineHeight: 1.5
       }}>
         {body}
