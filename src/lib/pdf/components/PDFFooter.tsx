@@ -7,13 +7,13 @@ interface PDFFooterProps {
 
 export const PDFFooter = ({ generatedDate }: PDFFooterProps) => (
   <View style={globalStyles.footer} fixed>
-    <Text style={{ fontSize: 8, color: pdfColors.mutedText }}>
+    <Text style={{ fontSize: 8, color: pdfColors.muted }}>
       EntireFM — entirefm.com — Confidential FM Document
     </Text>
-    <Text style={{ fontSize: 8, color: pdfColors.mutedText }} render={({ pageNumber, totalPages }) => (
+    <Text style={{ fontSize: 8, color: pdfColors.muted }} render={({ pageNumber, totalPages }) => (
       `Page ${pageNumber} of ${totalPages}`
     )} />
-    <Text style={{ fontSize: 8, color: pdfColors.mutedText }}>
+    <Text style={{ fontSize: 8, color: pdfColors.muted }}>
       Generated: {generatedDate}
     </Text>
   </View>

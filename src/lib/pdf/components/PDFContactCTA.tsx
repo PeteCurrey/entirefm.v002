@@ -29,7 +29,7 @@ export const PDFContactCTA = ({ documentType = 'document', customText }: PDFCont
       
       <Text style={{ 
         fontSize: 9, 
-        color: pdfColors.mutedText,
+        color: pdfColors.muted,
         lineHeight: 1.5,
         marginBottom: 12,
         maxWidth: '80%'

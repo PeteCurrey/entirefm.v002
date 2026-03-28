@@ -6,11 +6,11 @@ export const PDFDisclaimer = () => (
     marginTop: 'auto', // Pushes to bottom of available space before footer
     paddingTop: 20,
     borderTopWidth: 1,
-    borderTopColor: pdfColors.borderColour,
+    borderTopColor: pdfColors.border,
   }}>
     <Text style={{ 
       fontSize: 7, 
-      color: pdfColors.mutedText,
+      color: pdfColors.muted,
       lineHeight: 1.4,
       textAlign: 'justify'
     }}>
