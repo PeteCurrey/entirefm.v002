@@ -55,6 +55,12 @@ export const resources: ResourceArticle[] = [
 
 Total Facilities Management (TFM) represents the apex of strategic outsourcing in the built environment. It is a consolidated service delivery model where every single facilities management requirement—from high-voltage electrical maintenance to daily office cleaning—is outsourced to a single specialized provider like EntireFM.
 
+> [!LEGISLATION] Regulatory Reform (Fire Safety) Order 2005 | TFM providers take on the role of 'competent person' to ensure the Responsible Person meets all statutory obligations across the entire asset portfolio.
+
+> [!STAT] 22% | Average cost reduction
+> 100% | Single-point accountability
+> 24/7 | Helpdesk response time
+
 Unlike the traditional 'multi-vendor' or 'siloed' approach where separate companies handle different aspects of a building's operation, TFM places 100% of the operational responsibility under one governance structure. It is not merely a bundling of services for a discount; it is a fundamental shift toward single-point accountability.
 
 ## What TFM Covers: The Full Spectrum
@@ -138,9 +144,7 @@ In an IFM model, EntireFM might combine HVAC, Fire Safety, and Electrical testin
 
 The terminology is often used interchangeably, but there is a distinct operational difference. 
 
-> [!NOTE]
-> **IFM vs TFM in Plain English**
-> IFM bundles the services you choose under one provider. TFM bundles everything. IFM is the more flexible model — TFM is the most comprehensive.
+> [!INFO] IFM vs TFM in Plain English | IFM bundles the services you choose under one provider. TFM bundles everything. IFM is the more flexible model — TFM is the most comprehensive.
 
 IFM is the ideal starting point for businesses that have some in-house capabilities or historical specialist contracts they wish to maintain, but want to reduce the noise of managing dozens of individual smaller vendors.
 
@@ -316,6 +320,11 @@ Assign qualified engineers, book specialist contractors, and set automated remin
 
 ### Step 5: Record and Report
 Document every completed visit with certificates, photos, and engineer sign-off to prove compliance during audits.
+
+> [!PROCESS] Step 1: Build the Asset Register | Catalogue every building system — HVAC, fire safety, electrical, water, lifts.
+> Step 2: Assign SFG20 Frequencies | Map each asset type to the correct maintenance frequency.
+> Step 3: Build the Schedule | Populate a 12-month calendar with every scheduled visit.
+> Step 4: Resource and Deploy | Assign qualified engineers and set automated reminders.
 
 ## SFG20 — The Standard Behind Every Good PPM Plan
 

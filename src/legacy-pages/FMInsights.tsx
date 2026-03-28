@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Breadcrumb } from "@/components/shared/Breadcrumb";
-import { BookOpen, Calendar, TrendingUp, Shield, FileText, Lightbulb, Building2, Layers } from "lucide-react";
+import { resources } from "@/lib/resources";
+import * as LucideIcons from "lucide-react";
+import { BookOpen } from "lucide-react";
 import Link from "next/link";
 
 const FMInsights = () => {
@@ -15,118 +17,14 @@ const FMInsights = () => {
     { label: "FM Insights" },
   ];
 
-  const categories = ["All", "Compliance", "Best Practice", "Industry News", "Guidance"];
+  const categories = ["All", "Compliance", "Best Practice", "PPM & Maintenance", "Guidance"];
 
-  const insights = [
-    {
-      title: "What Is Total Facilities Management (TFM)?",
-      category: "Best Practice",
-      type: "Guide",
-      description: "Complete FM outsourcing under single-point accountability—integrating all services under unified governance.",
-      icon: Building2,
-      link: "/fm-insights/what-is-tfm",
-      date: "2025-01-28"
-    },
-    {
-      title: "What Is Integrated Facilities Management (IFM)?",
-      category: "Best Practice",
-      type: "Guide",
-      description: "Bundled service delivery combining selected FM services under unified management for coordinated operations.",
-      icon: Layers,
-      link: "/fm-insights/what-is-ifm",
-      date: "2025-01-28"
-    },
-    {
-      title: "Hard FM vs Soft FM vs Specialist Engineering",
-      category: "Best Practice",
-      type: "Guide",
-      description: "Understanding the differences between FM service categories and why estates need a combined model.",
-      icon: Building2,
-      link: "/fm-insights/hard-fm-vs-soft-fm",
-      date: "2025-01-26"
-    },
-    {
-      title: "What Is a PPM Planner?",
-      category: "Best Practice",
-      type: "Guide",
-      description: "How PPM planners underpin maintenance strategy, compliance tracking, and lifecycle cost control.",
-      icon: Calendar,
-      link: "/fm-insights/what-is-a-ppm-planner",
-      date: "2025-01-20"
-    },
-    {
-      title: "What Is a Compliance Calendar?",
-      category: "Compliance",
-      type: "Guide",
-      description: "Track statutory maintenance deadlines and ensure nothing falls through the cracks.",
-      icon: Calendar,
-      link: "/fm-insights/what-is-a-compliance-calendar",
-      date: "2025-01-22"
-    },
-    {
-      title: "What Is an Asset Register?",
-      category: "Best Practice",
-      type: "Guide",
-      description: "The foundation of effective facilities management—cataloguing every maintainable item.",
-      icon: FileText,
-      link: "/fm-insights/what-is-an-asset-register",
-      date: "2025-01-24"
-    },
-    {
-      title: "Fire Risk Assessment Guide",
-      category: "Compliance",
-      type: "Guide",
-      description: "Comprehensive guide to conducting fire risk assessments for UK commercial properties.",
-      icon: Shield,
-      link: "/fm-insights/what-is-a-fire-risk-assessment",
-      date: "2025-01-15"
-    },
-    {
-      title: "Electrical EICR Survival Manual",
-      category: "Compliance",
-      type: "Manual",
-      description: "Everything property managers need to know about EICR and BS 7671 compliance.",
-      icon: FileText,
-      link: "/fm-insights/what-is-an-eicr",
-      date: "2025-01-10"
-    },
-    {
-      title: "Emergency Lighting Testing",
-      category: "Compliance",
-      type: "Checklist",
-      description: "Complete checklist for conducting 3-hour emergency lighting tests to BS 5266.",
-      icon: Lightbulb,
-      link: "/fm-insights/how-often-should-emergency-lighting-be-tested",
-      date: "2025-01-05"
-    },
-    {
-      title: "PPM vs Reactive Maintenance",
-      category: "Best Practice",
-      type: "Article",
-      description: "Data-driven analysis of preventative vs reactive maintenance costs across 100+ UK sites.",
-      icon: TrendingUp,
-      link: "/fm-insights/what-is-ppm",
-      date: "2024-12-20"
-    },
-    {
-      title: "Legionella Governance Guide",
-      category: "Compliance",
-      type: "Guide",
-      description: "Complete guide to legionella control and ACOP L8 compliance requirements.",
-      icon: Shield,
-      link: "/fm-insights/what-is-acop-l8",
-      date: "2024-12-15"
-    },
-    {
-      title: "Compliance Calendar 2025",
-      category: "Guidance",
-      type: "Reference",
-      description: "Complete calendar of mandatory inspections and certification requirements.",
-      icon: Calendar,
-      link: "/fm-insights/what-is-a-compliance-calendar",
-      date: "2024-12-01"
-    },
-  ];
+  // Mapping helper for Lucide icons stored as strings
+  const getIcon = (iconName: string) => {
+    const Icon = (LucideIcons as any)[iconName.toLowerCase()] || LucideIcons.FileText;
+    if (typeof iconName === 'function') return iconName; // Support legacy passed components
+    return Icon;
+  };
 
   return (
     <>
@@ -177,7 +75,9 @@ const FMInsights = () => {
 
           {/* Insights Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {insights.map((insight, index) => (
+            {resources.map((insight, index) => {
+              const Icon = getIcon(insight.icon);
+              return (
               <Card key={index} className="relative p-6 flex flex-col h-full transition-all duration-500 group overflow-hidden cursor-pointer hover:border-primary/50 border-border bg-card">
                 {/* Background image & gradient overlay on hover */}
                 <div 
@@ -194,9 +94,9 @@ const FMInsights = () => {
 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="flex items-start justify-between mb-4">
-                    <insight.icon className="w-10 h-10 text-primary" />
+                    <Icon className="w-10 h-10 text-primary" />
                     <Badge variant="secondary" className="font-light text-xs group-hover:bg-primary/20 group-hover:text-primary group-hover:border-primary/30 transition-colors">
-                      {insight.type}
+                      {insight.badge}
                     </Badge>
                   </div>
                   
@@ -217,7 +117,7 @@ const FMInsights = () => {
                   </div>
 
                   <div className="pt-4 border-t border-border group-hover:border-white/20 transition-colors duration-300 mt-auto">
-                    <Link href={insight.link} className="inline-flex items-center text-sm font-medium text-primary group-hover:text-white transition-colors duration-300 group/link">
+                    <Link href={`/resources/${insight.slug}`} className="inline-flex items-center text-sm font-medium text-primary group-hover:text-white transition-colors duration-300 group/link">
                       <span className="relative">
                         Read Insight
                         <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover/link:w-full transition-all duration-300" />
@@ -227,7 +127,7 @@ const FMInsights = () => {
                   </div>
                 </div>
               </Card>
-            ))}
+            )})}
           </div>
 
           {/* CTA Section */}

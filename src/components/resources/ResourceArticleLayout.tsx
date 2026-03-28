@@ -46,9 +46,11 @@ export function ResourceArticleLayout({
   const pathname = usePathname();
   const [activeHeadingId, setActiveHeadingId] = useState<string>("");
   const [headings, setHeadings] = useState<{ id: string; text: string }[]>([]);
+  const [shareUrl, setShareUrl] = useState<string>("");
   const slug = pathname.split("/").pop() || "";
 
   useEffect(() => {
+    setShareUrl(window.location.href);
     // Collect H2s and assign IDs if missing
     const elements = Array.from(document.querySelectorAll("h2"));
     const headingsData = elements.map((el) => {
@@ -101,7 +103,6 @@ export function ResourceArticleLayout({
     }
   };
 
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
 
   return (
     <div className={cn("min-h-screen bg-background font-sans", className)}>
