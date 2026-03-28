@@ -124,7 +124,10 @@ export default function PPMScheduleBuilderClient() {
         })
       });
       
-      if (!res.ok) throw new Error("PDF generation failed");
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.details || errorData.error || "Server-side generation error");
+      }
       
       const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
@@ -143,9 +146,10 @@ export default function PPMScheduleBuilderClient() {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Download error:", error);
-      alert("Failed to download PDF. Please try again.");
+      const errorMsg = error.message || "Unknown error";
+      alert(`Failed to download PDF. ${errorMsg}. Please try again or contact support if the issue persists.`);
     } finally {
       setIsDownloading(false);
     }

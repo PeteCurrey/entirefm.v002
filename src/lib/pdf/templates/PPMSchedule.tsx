@@ -1,13 +1,11 @@
-import { Document, Page, Text, View } from '@react-pdf/renderer';
+import { Document, Text, View, Page } from '@react-pdf/renderer';
 import { globalStyles, pdfColors } from '../styles';
-import { PDFHeader } from '../components/PDFHeader';
-import { PDFFooter } from '../components/PDFFooter';
-import { PDFWatermark } from '../components/PDFWatermark';
+import { PDFBaseLayout } from '../components/PDFBaseLayout';
 import { PDFCoverSection } from '../components/PDFCoverSection';
-import { PDFInfoBox } from '../components/PDFInfoBox';
 import { PDFGoldDivider } from '../components/PDFGoldDivider';
+import { PDFInfoBox } from '../components/PDFInfoBox';
 import { PDFContactCTA } from '../components/PDFContactCTA';
-import { PDFDisclaimer } from '../components/PDFDisclaimer';
+import React from 'react';
 
 export interface PPMScheduleData {
   buildingName: string;
@@ -30,22 +28,21 @@ export interface PPMScheduleData {
 }
 
 export const PPMSchedulePDF = ({ data }: { data: PPMScheduleData }) => {
-  // Group assets by category
   const groupedAssets = data.assets.reduce((acc, asset) => {
-    if (!acc[asset.category]) {
-      acc[asset.category] = [];
-    }
+    if (!acc[asset.category]) acc[asset.category] = [];
     acc[asset.category].push(asset);
     return acc;
   }, {} as Record<string, typeof data.assets>);
 
   return (
     <Document title="Planned Preventative Maintenance Schedule" author="EntireFM">
-      {/* PAGE 1: COVER & LEGEND */}
-      <Page size="A4" style={globalStyles.page} wrap={false}>
-        <PDFWatermark />
-        <PDFHeader documentTitle="PPM Schedule" documentRef={data.referenceNumber} />
-        
+      {/* PAGE 1: COVER */}
+      <PDFBaseLayout 
+        documentTitle="PPM Schedule" 
+        referenceNumber={data.referenceNumber} 
+        generatedDate={data.generatedDate}
+        wrap={false}
+      >
         <PDFCoverSection 
           title="Planned Preventative Maintenance Schedule"
           subtitle={data.buildingName}
@@ -58,154 +55,109 @@ export const PPMSchedulePDF = ({ data }: { data: PPMScheduleData }) => {
         <PDFGoldDivider />
 
         <Text style={globalStyles.body}>
-          This PPM schedule has been prepared for {data.buildingName} in line with SFG20 maintenance standards and UK statutory requirements. It sets out the recommended maintenance frequencies for all identified building assets, distinguishing between statutory requirements (legally required) and recommended best practice activities. All frequencies should be reviewed annually or following significant changes to the building or its systems.
+          This PPM schedule has been prepared for {data.buildingName} in line with SFG20 maintenance standards and UK statutory requirements. It sets out the recommended maintenance frequencies for all identified building assets, distinguishing between statutory requirements (legally required) and recommended best practice activities.
         </Text>
 
+        {/* Stats Grid */}
         <View style={{ flexDirection: 'row', gap: 10, marginTop: 20, marginBottom: 30 }}>
-          <View style={{ flex: 1, backgroundColor: pdfColors.lightGrey, padding: 16, borderRadius: 4, borderTopWidth: 3, borderTopColor: pdfColors.navy }}>
-            <Text style={{ fontSize: 9, color: pdfColors.mutedText, marginBottom: 4 }}>Total Assets</Text>
-            <Text style={{ fontSize: 24, fontWeight: 700, color: pdfColors.navy }}>{data.totalAssets}</Text>
+          <View style={{ flex: 1, backgroundColor: pdfColors.lightGrey, padding: 12, borderRadius: 4, borderTopWidth: 2, borderTopColor: pdfColors.navy }}>
+            <Text style={{ fontSize: 7, color: pdfColors.mutedText, marginBottom: 4 }}>Total Assets</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', color: pdfColors.navy }}>{data.totalAssets}</Text>
           </View>
-          <View style={{ flex: 1, backgroundColor: '#fff8e1', padding: 16, borderRadius: 4, borderTopWidth: 3, borderTopColor: pdfColors.amber }}>
-            <Text style={{ fontSize: 9, color: pdfColors.mutedText, marginBottom: 4 }}>Statutory Requirements</Text>
-            <Text style={{ fontSize: 24, fontWeight: 700, color: pdfColors.amber }}>{data.statutoryCount}</Text>
+          <View style={{ flex: 1, backgroundColor: '#fff8e1', padding: 12, borderRadius: 4, borderTopWidth: 2, borderTopColor: pdfColors.amber }}>
+            <Text style={{ fontSize: 7, color: pdfColors.mutedText, marginBottom: 4 }}>Statutory</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', color: pdfColors.amber }}>{data.statutoryCount}</Text>
           </View>
-          <View style={{ flex: 1, backgroundColor: '#e3f2fd', padding: 16, borderRadius: 4, borderTopWidth: 3, borderTopColor: '#1976d2' }}>
-            <Text style={{ fontSize: 9, color: pdfColors.mutedText, marginBottom: 4 }}>Recommended Activities</Text>
-            <Text style={{ fontSize: 24, fontWeight: 700, color: '#1976d2' }}>{data.recommendedCount}</Text>
+          <View style={{ flex: 1, backgroundColor: '#e3f2fd', padding: 12, borderRadius: 4, borderTopWidth: 2, borderTopColor: '#1976d2' }}>
+            <Text style={{ fontSize: 7, color: pdfColors.mutedText, marginBottom: 4 }}>Best Practice</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#1976d2' }}>{data.recommendedCount}</Text>
           </View>
         </View>
 
         <View style={globalStyles.sectionBox}>
-          <Text style={{ fontSize: 10, fontWeight: 700, color: pdfColors.navy, marginBottom: 10 }}>SCHEDULE LEGEND</Text>
-          
-          <View style={{ flexDirection: 'row', marginBottom: 12 }}>
-            <View style={{ width: 80 }}>
-              <Text style={{ ...globalStyles.badge, backgroundColor: pdfColors.amber, color: pdfColors.white, alignSelf: 'flex-start' }}>STATUTORY</Text>
-            </View>
-            <Text style={{ flex: 1, ...globalStyles.small, color: pdfColors.bodyText }}>
-              Legally required maintenance governed by UK law (e.g. Fire Safety, Gas, Lifting Operations). Non-compliance can result in severe regulatory action, fines, or invalidation of insurance.
-            </Text>
-          </View>
-          
-          <View style={{ flexDirection: 'row', marginBottom: 16 }}>
-             <View style={{ width: 80 }}>
-              <Text style={{ ...globalStyles.badge, backgroundColor: pdfColors.mutedText, color: pdfColors.white, alignSelf: 'flex-start' }}>RECOMMENDED</Text>
-            </View>
-            <Text style={{ flex: 1, ...globalStyles.small, color: pdfColors.bodyText }}>
-              Best practice maintenance aligned with SFG20 standards designed to optimize asset lifespan, prevent breakdowns, and maintain operational efficiency.
-            </Text>
-          </View>
-
-          <View style={{ flexDirection: 'row', borderTopWidth: 1, borderTopColor: pdfColors.borderColour, paddingTop: 12 }}>
-            <Text style={{ ...globalStyles.small, width: '20%' }}><Text style={{ fontWeight: 700 }}>M</Text> = Monthly</Text>
-            <Text style={{ ...globalStyles.small, width: '20%' }}><Text style={{ fontWeight: 700 }}>Q</Text> = Quarterly</Text>
-            <Text style={{ ...globalStyles.small, width: '20%' }}><Text style={{ fontWeight: 700 }}>6M</Text> = Six-Monthly</Text>
-            <Text style={{ ...globalStyles.small, width: '20%' }}><Text style={{ fontWeight: 700 }}>A</Text> = Annual</Text>
-            <Text style={{ ...globalStyles.small, width: '20%' }}><Text style={{ fontWeight: 700 }}>2Y</Text> = Two-Yearly</Text>
+          <Text style={{ fontSize: 8, fontWeight: 'bold', color: pdfColors.navy, marginBottom: 8, textTransform: 'uppercase' }}>Schedule Legend</Text>
+          <View style={{ flexDirection: 'row', gap: 10, flexWrap: 'wrap' }}>
+            <Text style={globalStyles.small}>• M: Monthly</Text>
+            <Text style={globalStyles.small}>• Q: Quarterly</Text>
+            <Text style={globalStyles.small}>• 6M: 6-Monthly</Text>
+            <Text style={globalStyles.small}>• A: Annual</Text>
+            <Text style={globalStyles.small}>• 2Y: 2-Yearly</Text>
           </View>
         </View>
-
-        <PDFFooter generatedDate={data.generatedDate} />
-      </Page>
+      </PDFBaseLayout>
 
       {/* SCHEDULE PAGES */}
-      {Object.entries(groupedAssets).map(([category, assets]) => {
-        const hasStatutory = assets.some(a => a.statutory);
-        
-        return (
-          <Page key={category} size="A4" style={globalStyles.page} wrap>
-            <PDFWatermark />
-            <PDFHeader documentTitle="PPM Schedule" documentRef={data.referenceNumber} />
-            
-            <View style={{ backgroundColor: pdfColors.navy, padding: 8, paddingHorizontal: 12, marginBottom: 8 }} wrap={false}>
-              <Text style={{ color: pdfColors.white, fontSize: 12, fontWeight: 700 }}>{category.toUpperCase()}</Text>
-            </View>
+      {Object.entries(groupedAssets).map(([category, assets]) => (
+        <PDFBaseLayout 
+          key={category}
+          documentTitle="PPM Schedule" 
+          referenceNumber={data.referenceNumber} 
+          generatedDate={data.generatedDate}
+        >
+          <View style={{ backgroundColor: pdfColors.navy, padding: 6, marginBottom: 10 }}>
+            <Text style={{ color: pdfColors.white, fontSize: 10, fontWeight: 'bold', textTransform: 'uppercase' }}>{category}</Text>
+          </View>
 
-            <View style={{ marginBottom: 20 }}>
-              {/* Table Header */}
-              <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 2, borderBottomColor: pdfColors.navy }} fixed>
-                <Text style={{ ...globalStyles.tableHeaderCell, width: '25%', backgroundColor: 'transparent', color: pdfColors.navy }}>Asset</Text>
-                <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', backgroundColor: 'transparent', color: pdfColors.navy }}>Frequency</Text>
-                <Text style={{ ...globalStyles.tableHeaderCell, width: '35%', backgroundColor: 'transparent', color: pdfColors.navy }}>Key Tasks</Text>
-                <Text style={{ ...globalStyles.tableHeaderCell, width: '25%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'right' }}>Standard / Status</Text>
+          <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 1, borderBottomColor: pdfColors.navy }}>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '30%' }}>Asset</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '15%' }}>Freq</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '40%' }}>SLA Task Definition</Text>
+            <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', textAlign: 'right' }}>Status</Text>
+          </View>
+
+          {assets.map((asset, idx) => (
+            <View key={idx} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour, minHeight: 40 }} wrap={false}>
+              <View style={{ width: '30%', ...globalStyles.tableBodyCell }}>
+                <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{asset.assetName}</Text>
+                <Text style={{ fontSize: 6, color: pdfColors.mutedText, marginTop: 2 }}>{asset.standard}</Text>
               </View>
-              
-              {/* Table Rows */}
-              {assets.map((asset, index) => (
-                <View key={index} style={{ flexDirection: 'row', backgroundColor: index % 2 === 0 ? pdfColors.white : '#fafafa' }} wrap={false}>
-                  <View style={{ width: '25%', ...globalStyles.tableBodyCell }}>
-                    <Text style={{ fontWeight: asset.statutory ? 700 : 400, color: pdfColors.navy }}>{asset.assetName}</Text>
-                  </View>
-                  <View style={{ width: '15%', ...globalStyles.tableBodyCell }}>
-                    <Text style={{ fontWeight: 700 }}>{asset.frequency}</Text>
-                  </View>
-                  <View style={{ width: '35%', ...globalStyles.tableBodyCell }}>
-                    {asset.tasks.slice(0, 3).map((task, i) => (
-                      <Text key={i} style={{ marginBottom: 2 }}>• {task}</Text>
-                    ))}
-                    {asset.tasks.length > 3 && <Text style={{ color: pdfColors.mutedText, fontStyle: 'italic' }}>+ {asset.tasks.length - 3} more</Text>}
-                  </View>
-                  <View style={{ width: '25%', ...globalStyles.tableBodyCell, alignItems: 'flex-end', justifyContent: 'flex-start' }}>
-                    <Text style={{ fontSize: 7, color: pdfColors.mutedText, marginBottom: 4 }}>{asset.standard}</Text>
-                    <Text style={{ 
-                      ...globalStyles.badge, 
-                      backgroundColor: asset.statutory ? pdfColors.amber : pdfColors.mutedText, 
-                      color: pdfColors.white 
-                    }}>
-                      {asset.statutory ? 'STATUTORY' : 'RECOMMENDED'}
-                    </Text>
-                  </View>
-                </View>
-              ))}
+              <View style={{ width: '15%', ...globalStyles.tableBodyCell }}>
+                <Text style={{ fontWeight: 'bold' }}>{asset.frequency}</Text>
+              </View>
+              <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+                {asset.tasks.slice(0, 4).map((t, i) => (
+                  <Text key={i} style={{ fontSize: 7, marginBottom: 1 }}>• {t}</Text>
+                ))}
+                {asset.tasks.length > 4 && <Text style={{ fontSize: 6, color: pdfColors.mutedText, fontStyle: 'italic' }}>+ {asset.tasks.length - 4} more tasks</Text>}
+              </View>
+              <View style={{ width: '15%', ...globalStyles.tableBodyCell, alignItems: 'flex-end', justifyContent: 'center' }}>
+                <Text style={{ 
+                  ...globalStyles.badge, 
+                  backgroundColor: asset.statutory ? pdfColors.amber : pdfColors.mutedText,
+                  color: pdfColors.white
+                }}>
+                  {asset.statutory ? 'STATUTORY' : 'RECOM'}
+                </Text>
+              </View>
             </View>
+          ))}
+          
+          {assets.some(a => a.statutory) && (
+            <View style={{ marginTop: 20 }}>
+              <PDFInfoBox type="warning" title="Compliance Notice" body="Statutory tasks marked in amber are legally required. Failure to perform these may result in fines or insurance invalidation." />
+            </View>
+          )}
+        </PDFBaseLayout>
+      ))}
 
-            {hasStatutory && (
-              <PDFInfoBox 
-                type="warning" 
-                title="Statutory Compliance Note" 
-                body="Statutory requirements in this category carry legal obligations. Failure to perform these tasks at the required frequencies and maintain accurate records may result in regulatory action or invalidation of building insurance." 
-              />
-            )}
-
-            <PDFFooter generatedDate={data.generatedDate} />
-          </Page>
-        );
-      })}
-
-      {/* FINAL NOTES PAGE */}
-      <Page size="A4" style={globalStyles.page} wrap={false}>
-        <PDFWatermark />
-        <PDFHeader documentTitle="PPM Schedule" documentRef={data.referenceNumber} />
-        
+      {/* FINAL PAGE */}
+      <PDFBaseLayout 
+        documentTitle="PPM Schedule" 
+        referenceNumber={data.referenceNumber} 
+        generatedDate={data.generatedDate}
+        showDisclaimer={true}
+      >
         <Text style={globalStyles.h2}>Important Notes & Methodology</Text>
         <PDFGoldDivider />
-        
-        <View style={{ marginBottom: 20 }}>
-          <Text style={{ ...globalStyles.body, marginBottom: 12 }}>
-            <Text style={{ fontWeight: 700, color: pdfColors.navy }}>1. Based on Provided Information: </Text>
-            This schedule has been dynamically generated based solely on the asset and building information provided during the estimation process. It is a guide and should not substitute a physical site survey.
-          </Text>
-          <Text style={{ ...globalStyles.body, marginBottom: 12 }}>
-            <Text style={{ fontWeight: 700, color: pdfColors.navy }}>2. Minimum Recommendations: </Text>
-            SFG20 schedules constitute minimum recommended maintenance frequencies. Local site conditions, heavy usage, environmental factors, or manufacturer warranties may dictate more frequent servicing intervals.
-          </Text>
-          <Text style={{ ...globalStyles.body, marginBottom: 12 }}>
-            <Text style={{ fontWeight: 700, color: pdfColors.navy }}>3. Qualified Personnel: </Text>
-            All maintenance, particularly statutory compliance tasks (Gas safely, Electrical, Fire, Lifting), MUST be carried out by suitably qualified, certified, and competent engineers.
-          </Text>
-          <Text style={{ ...globalStyles.body, marginBottom: 12 }}>
-            <Text style={{ fontWeight: 700, color: pdfColors.navy }}>4. Record Keeping: </Text>
-            Comprehensive records, service sheets, and certification of all PPM visits must be securely retained (typically for a minimum of 3 to 5 years) to evidence statutory compliance.
-          </Text>
+        <View style={{ gap: 10 }}>
+          <Text style={globalStyles.body}>1. Values are based on SFG20 industry standards and statutory requirements as of March 2024.</Text>
+          <Text style={globalStyles.body}>2. This schedule is dynamic and depends on the asset information provided. A physical site survey is recommended to validate these frequencies.</Text>
+          <Text style={globalStyles.body}>3. All statutory maintenance must be completed by suitably qualified and competent engineers with up-to-date certification.</Text>
         </View>
-
-        <PDFContactCTA documentType="PPM schedule requirements" />
-        <PDFDisclaimer />
-        
-        <PDFFooter generatedDate={data.generatedDate} />
-      </Page>
-
+        <View style={{ marginTop: 40 }}>
+          <PDFContactCTA documentType="maintenance schedule" />
+        </View>
+      </PDFBaseLayout>
     </Document>
   );
 };

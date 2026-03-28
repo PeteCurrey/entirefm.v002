@@ -1,27 +1,53 @@
 import { NextResponse } from 'next/server';
-import { renderToBuffer, Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import { renderToBuffer, Document, Text, View } from '@react-pdf/renderer';
+import { globalStyles, pdfColors } from '@/lib/pdf/styles';
+import { PDFBaseLayout } from '@/lib/pdf/components/PDFBaseLayout';
+import { PDFGoldDivider } from '@/lib/pdf/components/PDFGoldDivider';
+import { PDFCoverSection } from '@/lib/pdf/components/PDFCoverSection';
 
-const styles = StyleSheet.create({
-  page: { padding: 40, fontFamily: 'Helvetica' },
-  header: { fontSize: 24, marginBottom: 20, color: '#1a2e4a' },
-  text: { fontSize: 12, lineHeight: 1.5, color: '#333' }
-});
-
-const GenericPDF = ({ title, referenceNumber, generatedDate }: { title: string, referenceNumber: string, generatedDate: string }) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <Text style={styles.header}>{title}</Text>
-      <Text style={styles.text}>Reference: {referenceNumber}</Text>
-      <Text style={styles.text}>Date Generated: {generatedDate}</Text>
-      <View style={{ marginTop: 40 }}>
-        <Text style={styles.text}>Thank you for your interest in EntireFM.</Text>
-        <Text style={styles.text}>This document template is currently being updated. Please contact our team for more information.</Text>
+// Branded Generic PDF Replacement
+const BrandedGenericPDF = ({ 
+  title, 
+  referenceNumber, 
+  generatedDate, 
+  generatedFor 
+}: { 
+  title: string, 
+  referenceNumber: string, 
+  generatedDate: string, 
+  generatedFor: string 
+}) => (
+  <Document title={title} author="EntireFM">
+    <PDFBaseLayout 
+      documentTitle="Project Document" 
+      referenceNumber={referenceNumber} 
+      generatedDate={generatedDate}
+      showDisclaimer={true}
+    >
+      <PDFCoverSection 
+        title={title}
+        subtitle="Facility Management Documentation"
+        generatedFor={generatedFor}
+        generatedDate={generatedDate}
+        documentType="Information Package"
+        referenceNumber={referenceNumber}
+      />
+      <PDFGoldDivider />
+      <View style={{ marginTop: 20 }}>
+        <Text style={globalStyles.h2}>Document Overview</Text>
+        <Text style={globalStyles.body}>
+          Thank you for choosing EntireFM. This document contains information regarding your specific facility management inquiry. 
+          Our team is currently preparing the detailed technical specifications and service level agreements (SLAs) for your estate.
+        </Text>
+        <Text style={{ ...globalStyles.body, marginTop: 20 }}>
+          This automated informational package serves as a placeholder while our engineering team validates the asset data and statutory compliance requirements provided.
+        </Text>
       </View>
-    </Page>
+    </PDFBaseLayout>
   </Document>
 );
 
-// Import Templates
+// Import Specific Templates
 import { PPMSchedulePDF } from '@/lib/pdf/templates/PPMSchedule';
 import { ComplianceReportPDF } from '@/lib/pdf/templates/ComplianceReport';
 import { PPMEstimatePDF } from '@/lib/pdf/templates/PPMEstimate';
@@ -42,31 +68,30 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing templateType' }, { status: 400 });
     }
 
-    // Generate reference number: EFM-YYYY-RANDOM
+    // Generate reference number
     const date = new Date();
     const year = date.getFullYear();
     const randomId = Math.floor(10000 + Math.random() * 90000);
     const referenceNumber = `EFM-${year}-${randomId}`;
-    
-    // Default formatted date
     const generatedDate = metadata?.generatedDate || date.toLocaleDateString('en-GB', {
       day: 'numeric', month: 'long', year: 'numeric'
     });
+    const generatedFor = metadata?.generatedFor || 'Website User';
 
     let pdfElement;
 
     switch (templateType) {
       case 'ppm-schedule':
-        pdfElement = <PPMSchedulePDF data={{ ...data, referenceNumber, generatedDate, generatedFor: metadata?.generatedFor || 'Website User' }} />;
+        pdfElement = <PPMSchedulePDF data={{ ...data, referenceNumber, generatedDate, generatedFor }} />;
         break;
       case 'compliance-report':
-        pdfElement = <ComplianceReportPDF data={{ ...data, referenceNumber, generatedDate, generatedFor: metadata?.generatedFor || 'Website User' }} />;
+        pdfElement = <ComplianceReportPDF data={{ ...data, referenceNumber, generatedDate, generatedFor }} />;
         break;
       case 'ppm-estimate':
-        pdfElement = <PPMEstimatePDF data={{ ...data, referenceNumber, generatedDate, generatedFor: metadata?.generatedFor || 'Website User' }} />;
+        pdfElement = <PPMEstimatePDF data={{ ...data, referenceNumber, generatedDate, generatedFor }} />;
         break;
       case 'roi-report':
-        pdfElement = <ROIReportPDF data={{ ...data, referenceNumber, generatedDate, generatedFor: metadata?.generatedFor || 'Website User' }} />;
+        pdfElement = <ROIReportPDF data={{ ...data, referenceNumber, generatedDate, generatedFor }} />;
         break;
       case 'vault-ppm-commercial':
         pdfElement = <VaultPPMScheduleCommercialPDF referenceNumber={referenceNumber} generatedDate={generatedDate} />;
@@ -81,14 +106,13 @@ export async function POST(req: Request) {
         pdfElement = <VaultReactiveMaintenanceLogPDF referenceNumber={referenceNumber} generatedDate={generatedDate} />;
         break;
       case 'tender-brief':
-        pdfElement = <GenericPDF title="Tender Brief Specification" referenceNumber={referenceNumber} generatedDate={generatedDate} />;
+        pdfElement = <BrandedGenericPDF title="Tender Brief Specification" referenceNumber={referenceNumber} generatedDate={generatedDate} generatedFor={generatedFor} />;
         break;
       case 'guide':
-        pdfElement = <GenericPDF title={`Resource Guide: ${data?.title || 'Document'}`} referenceNumber={referenceNumber} generatedDate={generatedDate} />;
+        pdfElement = <BrandedGenericPDF title={`Resource Guide: ${data?.title || 'Document'}`} referenceNumber={referenceNumber} generatedDate={generatedDate} generatedFor={generatedFor} />;
         break;
       default:
-        console.warn(`[Generate PDF] Unmapped templateType: ${templateType}. Returning generic PDF.`);
-        pdfElement = <GenericPDF title="EntireFM Document" referenceNumber={referenceNumber} generatedDate={generatedDate} />;
+        pdfElement = <BrandedGenericPDF title="EntireFM Documentation" referenceNumber={referenceNumber} generatedDate={generatedDate} generatedFor={generatedFor} />;
         break;
     }
 
@@ -100,12 +124,16 @@ export async function POST(req: Request) {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
+        'Cache-Control': 'no-cache',
         'Content-Disposition': `attachment; filename="EntireFM-${templateType}-${referenceNumber}.pdf"`,
       },
     });
 
   } catch (error) {
-    console.error('PDF Generation Error:', error);
-    return NextResponse.json({ error: 'Failed to generate PDF' }, { status: 500 });
+    console.error('[API/PDF Export Error]:', error);
+    return NextResponse.json({ 
+      error: 'Failed to generate PDF. Check server logs.',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    }, { status: 500 });
   }
 }

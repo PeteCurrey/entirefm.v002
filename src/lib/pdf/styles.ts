@@ -1,113 +1,116 @@
 import { StyleSheet, Font } from '@react-pdf/renderer';
 
-// Register standard fonts
-Font.register({
-  family: 'Inter',
-  fonts: [
-    { src: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2', fontWeight: 400 },
-    { src: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiA.woff2', fontWeight: 500 },
-    { src: 'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiA.woff2', fontWeight: 700 }
-  ]
-});
+// Note: Using standard fonts (Helvetica, Times, Courier) for server-side stability 
+// as custom web fonts can cause timeout/rendering issues in serverless environments.
 
 // Brand Colours
 export const pdfColors = {
-  navy: '#1a2e4a',
+  navy: '#0f172a',
+  charcoal: '#1a2e4a',
   gold: '#f5a623',
+  primary: '#f5a623',
   white: '#ffffff',
   lightGrey: '#f8f9fa',
-  bodyText: '#333333',
-  mutedText: '#666666',
-  borderColour: '#e0e0e0',
-  red: '#d32f2f',
-  amber: '#ffa000',
-  green: '#388e3c'
+  bodyText: '#334155',
+  mutedText: '#64748b',
+  borderColour: '#e2e8f0',
+  red: '#dc2626',
+  amber: '#d97706',
+  green: '#16a34a'
 };
 
 // Global StyleSheet
 export const globalStyles = StyleSheet.create({
   page: {
     size: 'A4',
-    paddingTop: 80,
-    paddingBottom: 100,
-    paddingLeft: 50,
-    paddingRight: 50,
-    fontFamily: 'Inter',
-    backgroundColor: pdfColors.white
+    paddingTop: 70,
+    paddingBottom: 70,
+    paddingLeft: 40,
+    paddingRight: 40,
+    fontFamily: 'Helvetica',
+    backgroundColor: pdfColors.white,
+    position: 'relative'
   },
   header: {
     position: 'absolute',
     top: 0, 
     left: 0, 
     right: 0,
-    height: 60,
+    height: 50,
     backgroundColor: pdfColors.navy,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 50
+    paddingHorizontal: 40,
+    zIndex: 100
   },
   footer: {
     position: 'absolute',
     bottom: 0, 
     left: 0, 
     right: 0,
-    height: 50,
+    height: 40,
     borderTopWidth: 1,
     borderTopColor: pdfColors.borderColour,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 50
+    paddingHorizontal: 40,
+    backgroundColor: pdfColors.white,
+    zIndex: 100
   },
   h1: {
-    fontSize: 24,
-    fontWeight: 700,
+    fontSize: 28,
+    fontWeight: 'bold',
     color: pdfColors.navy,
-    marginBottom: 12
+    marginBottom: 10,
+    letterSpacing: -1
   },
   h2: {
-    fontSize: 16,
-    fontWeight: 700,
-    color: pdfColors.navy,
-    marginBottom: 8,
-    marginTop: 20
-  },
-  h3: {
-    fontSize: 13,
-    fontWeight: 600,
+    fontSize: 18,
+    fontWeight: 'bold',
     color: pdfColors.navy,
     marginBottom: 6,
-    marginTop: 14
+    marginTop: 16
+  },
+  h3: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: pdfColors.navy,
+    marginBottom: 4,
+    marginTop: 12
   },
   body: {
     fontSize: 10,
-    lineHeight: 1.6,
+    lineHeight: 1.5,
     color: pdfColors.bodyText,
-    marginBottom: 8
+    marginBottom: 6
   },
   small: {
     fontSize: 8,
     color: pdfColors.mutedText,
-    lineHeight: 1.5
+    lineHeight: 1.4
   },
   goldBar: {
-    height: 3,
+    height: 2,
     backgroundColor: pdfColors.gold,
-    marginBottom: 20
+    marginBottom: 16
   },
   sectionBox: {
     backgroundColor: pdfColors.lightGrey,
-    borderRadius: 4,
+    borderRadius: 8,
     padding: 16,
-    marginBottom: 16
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: pdfColors.borderColour
   },
   tableHeaderCell: {
     backgroundColor: pdfColors.navy,
     color: pdfColors.white,
-    fontSize: 9,
-    fontWeight: 700,
-    padding: 8
+    fontSize: 8,
+    fontWeight: 'bold',
+    padding: 8,
+    textTransform: 'uppercase'
   },
   tableBodyCell: {
     fontSize: 9,
@@ -117,10 +120,11 @@ export const globalStyles = StyleSheet.create({
     color: pdfColors.bodyText
   },
   badge: {
-    borderRadius: 3,
-    paddingVertical: 3,
-    paddingHorizontal: 8,
-    fontSize: 8,
-    fontWeight: 600
+    borderRadius: 4,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
+    fontSize: 7,
+    fontWeight: 'bold',
+    textTransform: 'uppercase'
   }
 });

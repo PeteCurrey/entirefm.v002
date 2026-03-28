@@ -1,16 +1,14 @@
-import { Document, Page, Text, View } from '@react-pdf/renderer';
+import { Document, Text, View } from '@react-pdf/renderer';
 import { globalStyles, pdfColors } from '../../styles';
-import { PDFHeader } from '../../components/PDFHeader';
-import { PDFFooter } from '../../components/PDFFooter';
-import { PDFWatermark } from '../../components/PDFWatermark';
+import { PDFBaseLayout } from '../../components/PDFBaseLayout';
 import { PDFCoverSection } from '../../components/PDFCoverSection';
 import { PDFContactCTA } from '../../components/PDFContactCTA';
-import { PDFDisclaimer } from '../../components/PDFDisclaimer';
+import React from 'react';
 
 export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generatedDate }: { referenceNumber: string, generatedDate: string }) => {
   const checklists = [
     {
-      title: 'FIRE SAFETY & EVACUATION',
+      title: 'Fire Safety & Evacuation',
       items: [
         'Fire Risk Assessment (FRA) completed and reviewed annually',
         'Fire Alarm system serviced quarterly (BS 5839)',
@@ -21,7 +19,7 @@ export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generated
       ]
     },
     {
-      title: 'WATER HYGIENE (LEGIONELLA)',
+      title: 'Water Hygiene (Legionella)',
       items: [
         'Legionella Risk Assessment current (reviewed every 2 years)',
         'Monthly remote temperature monitoring recorded',
@@ -31,7 +29,7 @@ export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generated
       ]
     },
     {
-      title: 'ELECTRICAL & GAS COMPLIANCE',
+      title: 'Electrical & Gas Compliance',
       items: [
         'Fixed Wire Testing (EICR) valid (commercial: every 5 years)',
         'Portable Appliance Testing (PAT) completed for relevant items',
@@ -41,7 +39,7 @@ export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generated
       ]
     },
     {
-      title: 'LIFTING & MECHANICAL',
+      title: 'Lifting & Mechanical',
       items: [
         'Passenger Lifts: LOLER thorough examination (every 6 months)',
         'Passenger Lifts: Routine maintenance completed (monthly/quarterly)',
@@ -50,7 +48,7 @@ export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generated
       ]
     },
     {
-      title: 'HEALTH & SAFETY MANAGEMENT',
+      title: 'Health & Safety Management',
       items: [
         'General Health & Safety Policy displayed and signed',
         'Asbestos Register present on site (or written proof of no asbestos)',
@@ -63,58 +61,58 @@ export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generated
 
   return (
     <Document title="Building Compliance Audit Checklist" author="EntireFM">
-      <Page size="A4" style={globalStyles.page} wrap>
-        <PDFWatermark />
-        <PDFHeader documentTitle="Compliance Checklist" documentRef={referenceNumber} />
-        
+      <PDFBaseLayout 
+        documentTitle="Compliance Checklist" 
+        referenceNumber={referenceNumber} 
+        generatedDate={generatedDate}
+        showDisclaimer={true}
+      >
         <PDFCoverSection 
           title="Building Compliance Audit Checklist"
           subtitle="Statutory Audit Framework"
-          generatedFor="[ENTER FACILITY NAME HERE]"
+          generatedFor="[Enter Facility Name]"
           generatedDate={generatedDate}
-          documentType="Checklist"
+          documentType="Compliance Audit Tool"
           referenceNumber={referenceNumber}
         />
 
-        <Text style={{ ...globalStyles.body, marginBottom: 20 }}>
-          Use this checklist to perform a self-audit of your facility's core statutory compliance obligations. Ensure that for every ticked box, corresponding certification or logs are physically or digitally available on-site for inspection by the HSE, Environmental Health, or Fire Authority.
-        </Text>
+        <View style={globalStyles.sectionBox}>
+          <Text style={globalStyles.body}>
+            Use this checklist to perform a self-audit of your facility's core statutory compliance obligations. Ensure that for every ticked box, corresponding certification is physically available on-site for inspection.
+          </Text>
+        </View>
 
         {checklists.map((list, i) => (
           <View key={i} style={{ marginBottom: 20 }} wrap={false}>
-            <View style={{ backgroundColor: pdfColors.navy, padding: 8, flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text style={{ color: pdfColors.white, fontSize: 10, fontWeight: 700 }}>{list.title}</Text>
-              <Text style={{ color: pdfColors.white, fontSize: 10 }}>COMPLIANT?</Text>
+            <View style={{ backgroundColor: pdfColors.navy, padding: 6, flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text style={{ color: pdfColors.white, fontSize: 9, fontWeight: 'bold', textTransform: 'uppercase' }}>{list.title}</Text>
+              <Text style={{ color: pdfColors.white, fontSize: 8 }}>COMPLIANT?</Text>
             </View>
             
             <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 1, borderBottomColor: pdfColors.navy }}>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '60%', color: pdfColors.navy, backgroundColor: 'transparent' }}>Audit Item</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '25%', color: pdfColors.navy, backgroundColor: 'transparent' }}>Last Serviced Date</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', color: pdfColors.navy, backgroundColor: 'transparent', textAlign: 'center' }}>[ ✓ / ✗ ]</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '60%', backgroundColor: 'transparent', color: pdfColors.navy }}>Audit Item</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '25%', backgroundColor: 'transparent', color: pdfColors.navy }}>Last Serviced</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>[ ✓ / ✗ ]</Text>
             </View>
 
             {list.items.map((item, j) => (
-              <View key={j} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour, minHeight: 30, alignItems: 'center' }}>
+              <View key={j} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour, minHeight: 32, alignItems: 'center' }}>
                 <View style={{ width: '60%', ...globalStyles.tableBodyCell }}>
                   <Text>{item}</Text>
                 </View>
                 <View style={{ width: '25%', ...globalStyles.tableBodyCell, borderLeftWidth: 1, borderLeftColor: pdfColors.borderColour }}>
                   <Text style={{ color: pdfColors.borderColour }}>DD/MM/YYYY</Text>
                 </View>
-                <View style={{ width: '15%', ...globalStyles.tableBodyCell, borderLeftWidth: 1, borderLeftColor: pdfColors.borderColour, height: '100%' }}>
-                  {/* Empty box for manual ticking */}
-                </View>
+                <View style={{ width: '15%', ...globalStyles.tableBodyCell, borderLeftWidth: 1, borderLeftColor: pdfColors.borderColour, height: '100%' }} />
               </View>
             ))}
           </View>
         ))}
 
-        <View wrap={false}>
+        <View style={{ marginTop: 20 }}>
           <PDFContactCTA documentType="compliance audit" customText="Struggling to locate your statutory certificates? EntireFM provides comprehensive compliance gap-analysis audits and cloud-based document portals to ensure you remain 100% compliant." />
-          <PDFDisclaimer />
         </View>
-        <PDFFooter generatedDate={generatedDate} />
-      </Page>
+      </PDFBaseLayout>
     </Document>
   );
 };

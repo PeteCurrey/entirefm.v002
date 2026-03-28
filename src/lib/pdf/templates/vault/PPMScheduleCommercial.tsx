@@ -1,12 +1,9 @@
-import { Document, Page, Text, View } from '@react-pdf/renderer';
+import { Document, Text, View } from '@react-pdf/renderer';
 import { globalStyles, pdfColors } from '../../styles';
-import { PDFHeader } from '../../components/PDFHeader';
-import { PDFFooter } from '../../components/PDFFooter';
-import { PDFWatermark } from '../../components/PDFWatermark';
+import { PDFBaseLayout } from '../../components/PDFBaseLayout';
 import { PDFCoverSection } from '../../components/PDFCoverSection';
 import { PDFContactCTA } from '../../components/PDFContactCTA';
-import { PDFDisclaimer } from '../../components/PDFDisclaimer';
-import { PDFGoldDivider } from '../../components/PDFGoldDivider';
+import React from 'react';
 
 export const VaultPPMScheduleCommercialPDF = ({ referenceNumber, generatedDate }: { referenceNumber: string, generatedDate: string }) => {
   const categories = [
@@ -50,51 +47,43 @@ export const VaultPPMScheduleCommercialPDF = ({ referenceNumber, generatedDate }
 
   return (
     <Document title="PPM Schedule - Commercial Estate" author="EntireFM">
-      <Page size="A4" style={globalStyles.page} wrap>
-        <PDFWatermark />
-        <PDFHeader documentTitle="Commercial PPM Template" documentRef={referenceNumber} />
-        
+      <PDFBaseLayout 
+        documentTitle="PPM Template" 
+        referenceNumber={referenceNumber} 
+        generatedDate={generatedDate}
+        showDisclaimer={true}
+      >
         <PDFCoverSection 
           title="SFG20 Aligned PPM Schedule"
           subtitle="Typical Commercial Office Building"
-          generatedFor="[ENTER COMPANY NAME HERE]"
+          generatedFor="[Enter Company Name]"
           generatedDate={generatedDate}
           documentType="PPM Template"
           referenceNumber={referenceNumber}
         />
 
-        <Text style={globalStyles.body}>
-          This document provides a foundational Planned Preventative Maintenance (PPM) schedule for a standard commercial office environment. It outlines the core statutory obligations and recommended best practices required to maintain a safe, compliant, and operational facility.
-        </Text>
-
-        <View style={{ marginBottom: 20, padding: 12, backgroundColor: '#fff8e1', borderLeftWidth: 4, borderLeftColor: pdfColors.amber }}>
-          <Text style={{ fontSize: 9, fontWeight: 700, color: pdfColors.navy, marginBottom: 4 }}>HOW TO USE THIS TEMPLATE</Text>
-          <Text style={{ fontSize: 9, color: pdfColors.bodyText }}>
-            1. Replace "[ENTER COMPANY NAME HERE]" with your organization.
-            2. Review the asset list against your actual building plant.
-            3. Ensure all tasks marked as STATUTORY are assigned to a qualified contractor.
-            4. Retain completed service sheets for a minimum of 5 years.
-          </Text>
+        <View style={globalStyles.sectionBox}>
+          <Text style={globalStyles.body}>This document provides a foundational Planned Preventative Maintenance (PPM) schedule for a standard commercial office environment. It outlines technical core statutory obligations and recommended best practices.</Text>
         </View>
 
         {categories.map((cat, i) => (
           <View key={i} style={{ marginBottom: 20 }} wrap={false}>
-            <View style={{ backgroundColor: pdfColors.navy, padding: 8 }}>
-              <Text style={{ color: pdfColors.white, fontSize: 10, fontWeight: 700 }}>{cat.name}</Text>
+            <View style={{ backgroundColor: pdfColors.navy, padding: 6 }}>
+              <Text style={{ color: pdfColors.white, fontSize: 9, fontWeight: 'bold' }}>{cat.name}</Text>
             </View>
             <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 1, borderBottomColor: pdfColors.navy }}>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '30%', color: pdfColors.navy, backgroundColor: 'transparent' }}>Asset</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '10%', color: pdfColors.navy, backgroundColor: 'transparent', textAlign: 'center' }}>Freq</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '45%', color: pdfColors.navy, backgroundColor: 'transparent' }}>Core SFG20 Tasks</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', color: pdfColors.navy, backgroundColor: 'transparent', textAlign: 'center' }}>Status</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '30%', backgroundColor: 'transparent', color: pdfColors.navy }}>Asset</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '10%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>Freq</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '45%', backgroundColor: 'transparent', color: pdfColors.navy }}>Core SFG20 Tasks</Text>
+              <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>Status</Text>
             </View>
             {cat.items.map((item, j) => (
-              <View key={j} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour }}>
+              <View key={j} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: pdfColors.borderColour, minHeight: 32, alignItems: 'center' }}>
                 <View style={{ width: '30%', ...globalStyles.tableBodyCell }}>
-                  <Text style={{ fontWeight: item.stat ? 700 : 400 }}>{item.asset}</Text>
+                  <Text style={{ fontWeight: item.stat ? 'bold' : 'normal' }}>{item.asset}</Text>
                 </View>
                 <View style={{ width: '10%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
-                  <Text style={{ fontWeight: 700 }}>{item.frequency}</Text>
+                  <Text style={{ fontWeight: 'bold' }}>{item.frequency}</Text>
                 </View>
                 <View style={{ width: '45%', ...globalStyles.tableBodyCell }}>
                   <Text>{item.tasks}</Text>
@@ -114,10 +103,10 @@ export const VaultPPMScheduleCommercialPDF = ({ referenceNumber, generatedDate }
           </View>
         ))}
 
-        <PDFContactCTA documentType="commercial maintenance" />
-        <PDFDisclaimer />
-        <PDFFooter generatedDate={generatedDate} />
-      </Page>
+        <View style={{ marginTop: 20 }}>
+          <PDFContactCTA documentType="commercial maintenance" />
+        </View>
+      </PDFBaseLayout>
     </Document>
   );
 };
