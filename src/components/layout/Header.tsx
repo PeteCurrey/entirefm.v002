@@ -68,7 +68,7 @@ const Header = ({ className }: { className?: string }) => {
     { label: "Commercial Offices", to: "/sectors/offices", icon: Building, image: "/images/sector-offices.jpg" },
     { label: "Logistics Hubs", to: "/sectors/industrial-logistics", icon: Factory, image: "/images/sector-industrial.png" },
     { label: "Retail Parks", to: "/sectors/retail-hospitality", icon: ShoppingBag, image: "/images/sector-retail.jpg" },
-    { label: "Aviation Sites", to: "/sectors/aviation", icon: Factory, image: "/images/sector-aviation.jpg" },
+    { label: "Aviation Sites", to: "/sectors/aviation-travel-hub", icon: Factory, image: "/images/sector-aviation.jpg" },
     { label: "Education", to: "/sectors/education", icon: BookOpen, image: "/images/sector-education.jpg" },
     { label: "Healthcare", to: "/sectors/healthcare", icon: ShieldAlert, image: "/images/sector-healthcare.jpg" },
     { label: "Hospitality & Leisure", to: "/sectors/hospitality", icon: Building2, image: "/images/sector-hospitality.jpg" },

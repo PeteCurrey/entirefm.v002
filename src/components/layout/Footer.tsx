@@ -74,8 +74,8 @@ export const Footer = () => {
               <h4 className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-10">FM Solutions</h4>
               <ul className="space-y-4">
                 {[
-                  { label: "Hard FM Services", to: "/services/hard-fm-services" },
-                  { label: "Soft FM Services", to: "/services/soft-fm-services" },
+                  { label: "Hard FM Services", to: "/services/hard-services" },
+                  { label: "Soft FM Services", to: "/services/soft-fm" },
                   { label: "PPM Maintenance", to: "/services/ppm-compliance" },
                   { label: "Compliance Audits", to: "/tools/compliance-checker" },
                   { label: "Sector FM", to: "/sectors" },
@@ -154,8 +154,8 @@ export const Footer = () => {
           <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500">
             <p>&copy; {new Date().getFullYear()} EntireFM. All rights reserved.</p>
             <div className="flex gap-8">
-              <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link href="/terms-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
               <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
             </div>
             <div className="flex items-center gap-6">
