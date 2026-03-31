@@ -76,7 +76,7 @@ export const Footer = () => {
                 {[
                   { label: "Hard FM Services", to: "/services/hard-services" },
                   { label: "Soft FM Services", to: "/services/soft-fm" },
-                  { label: "PPM Maintenance", to: "/services/ppm-compliance" },
+                  { label: "PPM Maintenance", to: "/services/ppm" },
                   { label: "Compliance Audits", to: "/tools/compliance-checker" },
                   { label: "Sector FM", to: "/sectors" },
                   { label: "Contractor Marketplace", to: "/marketplace" }

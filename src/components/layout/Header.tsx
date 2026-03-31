@@ -53,7 +53,7 @@ const Header = ({ className }: { className?: string }) => {
     { label: "Water Hygiene", to: "/services/water-hygiene", description: "Legionella & ACOP L8", icon: Droplets, image: "/images/service-water.jpg" },
     { label: "Gas Safety", to: "/services/gas-safety", description: "Gas Safe registered works", icon: Flame, image: "/images/service-gas.jpg" },
     { label: "HVAC", to: "/services/hvac-compliance", description: "Maintain air quality & temp", icon: Thermometer, image: "/images/service-hvac.jpg" },
-    { label: "PPM Hub", to: "/services/ppm-compliance", description: "Life-cycle asset care", icon: Wrench, image: "/images/service-ppm.jpg" }
+    { label: "PPM Hub", to: "/services/ppm", description: "Life-cycle asset care", icon: Wrench, image: "/images/service-ppm.jpg" }
   ];
 
   const reactiveItems = [
@@ -70,9 +70,9 @@ const Header = ({ className }: { className?: string }) => {
     { label: "Retail Parks", to: "/sectors/retail-hospitality", icon: ShoppingBag, image: "/images/sector-retail.jpg" },
     { label: "Aviation Sites", to: "/sectors/aviation-travel-hub", icon: Factory, image: "/images/sector-aviation.jpg" },
     { label: "Education", to: "/sectors/education", icon: BookOpen, image: "/images/sector-education.jpg" },
-    { label: "Healthcare", to: "/sectors/healthcare", icon: ShieldAlert, image: "/images/sector-healthcare.jpg" },
-    { label: "Hospitality & Leisure", to: "/sectors/hospitality", icon: Building2, image: "/images/sector-hospitality.jpg" },
-    { label: "Residential & PBSA", to: "/sectors/residential", icon: Building, image: "/images/sector-residential.jpg" }
+    { label: "Healthcare", to: "/sectors/healthcare-public", icon: ShieldAlert, image: "/images/sector-healthcare.jpg" },
+    { label: "Hospitality & Leisure", to: "/sectors/hospitality-leisure", icon: Building2, image: "/images/sector-hospitality.jpg" },
+    { label: "Residential & PBSA", to: "/sectors/residential-pbsa", icon: Building, image: "/images/sector-residential.jpg" }
   ];
 
   const toolsItems = [
