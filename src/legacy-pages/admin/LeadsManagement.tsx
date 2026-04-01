@@ -89,21 +89,30 @@ export default function LeadsManagement() {
 
   const fetchLeads = async () => {
     try {
-      const [contactsRes, proposalsRes] = await Promise.all([
-        supabase.from('contact_submissions').select('*').order('created_at', { ascending: false }),
-        supabase.from('proposal_requests').select('*').order('created_at', { ascending: false })
-      ]);
+      const res = await fetch('/api/admin/leads');
+      const json = await res.json();
 
-      if (contactsRes.error) throw contactsRes.error;
-      if (proposalsRes.error) throw proposalsRes.error;
+      if (!res.ok) {
+        console.error('Admin leads API error:', json.error);
+        // If the service role key is not configured, show a helpful message
+        if (json.error?.includes('SUPABASE_SERVICE_ROLE_KEY')) {
+          toast.error('Service role key not configured. Please check the walkthrough.');
+        } else {
+          toast.error('Failed to load leads data');
+        }
+        setLoading(false);
+        return;
+      }
+
+      const { contacts = [], proposals = [] } = json;
 
       const unified: UnifiedLead[] = [
-        ...(contactsRes.data || []).map(c => ({
+        ...contacts.map((c: any) => ({
           ...c,
           type: 'contact' as const,
           subject: c.subject || 'General Inquiry'
         })),
-        ...(proposalsRes.data || []).map(p => ({
+        ...proposals.map((p: any) => ({
           ...p,
           id: p.id,
           type: 'proposal' as const,
@@ -126,6 +135,7 @@ export default function LeadsManagement() {
       setLoading(false);
     }
   };
+
 
   const selectedLead = leads.find(l => l.id === selectedLeadId);
 
@@ -191,9 +201,12 @@ export default function LeadsManagement() {
 
   const updateStatus = async (type: 'contact' | 'proposal', id: string, status: string) => {
     try {
-      const table = type === 'contact' ? 'contact_submissions' : 'proposal_requests';
-      const { error } = await supabase.from(table).update({ status }).eq('id', id);
-      if (error) throw error;
+      const res = await fetch('/api/admin/leads', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type, id, status })
+      });
+      if (!res.ok) throw new Error((await res.json()).error);
       toast.success(`Lead status updated to ${status}`);
       fetchLeads();
     } catch (error) {
