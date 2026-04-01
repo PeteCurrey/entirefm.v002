@@ -13,7 +13,6 @@ import { Breadcrumb } from "@/components/shared/Breadcrumb";
 import { BreadcrumbSchema } from "@/components/shared/BreadcrumbSchema";
 import { ContactPointSchema, OrganizationSchema } from "@/components/shared/SchemaMarkup";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 const contactSchema = z.object({
@@ -56,17 +55,26 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Validate form data
+      // Validate form data client-side first
       const validatedData = contactSchema.parse(formData);
       setSubmitting(true);
-      const {
-        error
-      } = await supabase.from('contact_submissions').insert({
-        ...validatedData,
-        source_page: window.location.pathname,
-        status: 'new'
+
+      // Submit via server-side API route (bypasses RLS, uses service role key)
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...validatedData,
+          source_page: window.location.pathname,
+        }),
       });
-      if (error) throw error;
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        throw new Error(json.error || 'Submission failed');
+      }
+
       toast.success("Thanks – your enquiry has been received. Our FM team will be in touch shortly.");
 
       // Reset form
