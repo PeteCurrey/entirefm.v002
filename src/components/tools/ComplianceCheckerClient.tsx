@@ -56,12 +56,13 @@ interface Props {
   questions: Question[];
 }
 
-type State = "form" | "generating" | "results";
+type State = "form" | "lead" | "generating" | "results";
 
 export default function ComplianceCheckerClient({ questions }: Props) {
   const [state, setState] = useState<State>("form");
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
+  const [contact, setContact] = useState({ name: "", email: "", company: "", phone: "" });
   const [report, setReport] = useState<ComplianceReport | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loadingMsgIdx, setLoadingMsgIdx] = useState(0);
@@ -148,8 +149,12 @@ export default function ComplianceCheckerClient({ questions }: Props) {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!isAnswered) { setValidationError(true); return; }
+    setState("lead");
+  };
+
+  const handleGenerate = async () => {
     setState("generating");
 
     // Flatten multi-select answers to strings
@@ -162,7 +167,7 @@ export default function ComplianceCheckerClient({ questions }: Props) {
       const res = await fetch("/api/compliance-checker", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers: flatAnswers }),
+        body: JSON.stringify({ answers: flatAnswers, contact }),
       });
       if (!res.ok) throw new Error("API error");
       const data: ComplianceReport = await res.json();
@@ -249,6 +254,67 @@ export default function ComplianceCheckerClient({ questions }: Props) {
   };
 
   const shareText = `Just checked our building's FM compliance using the EntireFM Compliance Checker — here's our result. How does yours compare? ${getShareUrl()} #FacilitiesManagement #Compliance`;
+
+  // ── LEAD CAPTURE ──
+  if (state === "lead") {
+    return (
+      <div className="max-w-xl mx-auto px-6 py-16">
+        <div className="text-center mb-10">
+          <div className="text-4xl mb-4">🎯</div>
+          <h2 className="text-2xl font-semibold text-charcoal mb-2">Analysis Complete</h2>
+          <p className="text-muted-foreground font-light">
+            Enter your details to generate your compliance audit results and action plan.
+          </p>
+        </div>
+        <form onSubmit={(e) => { e.preventDefault(); handleGenerate(); }} className="space-y-4">
+          <input
+            required
+            type="text"
+            placeholder="Full name *"
+            value={contact.name}
+            onChange={(e) => setContact((c) => ({ ...c, name: e.target.value }))}
+            className="w-full border border-border rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20"
+          />
+          <input
+            required
+            type="email"
+            placeholder="Email address *"
+            value={contact.email}
+            onChange={(e) => setContact((c) => ({ ...c, email: e.target.value }))}
+            className="w-full border border-border rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20"
+          />
+          <input
+            required
+            type="text"
+            placeholder="Company name *"
+            value={contact.company}
+            onChange={(e) => setContact((c) => ({ ...c, company: e.target.value }))}
+            className="w-full border border-border rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20"
+          />
+          <input
+            type="tel"
+            placeholder="Phone number (optional)"
+            value={contact.phone}
+            onChange={(e) => setContact((c) => ({ ...c, phone: e.target.value }))}
+            className="w-full border border-border rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/20"
+          />
+          <button
+            type="submit"
+            className="w-full bg-primary text-white py-4 rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-primary/90 transition-all shadow-lg"
+          >
+            Generate My Report →
+          </button>
+          <button
+            type="button"
+            onClick={() => setState("form")}
+            className="w-full text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-charcoal transition-colors py-2"
+          >
+            ← Back to questions
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   // ── GENERATING ──
   if (state === "generating") {

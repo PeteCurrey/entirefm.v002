@@ -61,11 +61,10 @@ const Contact = () => {
       setSubmitting(true);
       const {
         error
-      } = await supabase.functions.invoke('submit-contact', {
-        body: {
-          ...validatedData,
-          source_page: window.location.pathname
-        }
+      } = await supabase.from('contact_submissions').insert({
+        ...validatedData,
+        source_page: window.location.pathname,
+        status: 'new'
       });
       if (error) throw error;
       toast.success("Thanks – your enquiry has been received. Our FM team will be in touch shortly.");
@@ -96,7 +95,7 @@ const Contact = () => {
     subtitle: "24/7 Maintenance Support & Site Monitoring",
     description: "Report maintenance issues and get real-time updates on your requests.",
     action: "Report an Issue",
-    href: "/fm-operations/helpdesk"
+    href: "/contact#contact-form"
   }, {
     icon: Mail,
     title: "Send us an Email",
@@ -183,7 +182,7 @@ const Contact = () => {
               ease: "easeOut"
             }} className="flex flex-wrap gap-4 justify-center mt-8">
                 <Button size="lg" className="gap-2 hover-scale" asChild>
-                  <a href="/fm-operations/helpdesk">
+                  <a href="/contact#contact-form">
                     <Headphones className="w-5 h-5" />
                     Speak to Helpdesk — Live
                   </a>
@@ -415,7 +414,7 @@ const Contact = () => {
               <p className="text-muted-foreground mb-4">Need to report an issue? We're here 24/7</p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button size="lg" variant="outline" className="gap-2" asChild>
-                  <Link href="/fm-operations/helpdesk">
+                  <Link href="/contact#contact-form">
                     <Headphones className="w-5 h-5" />
                     Report an Issue
                   </Link>

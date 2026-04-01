@@ -33,7 +33,7 @@ export default function DocumentVaultClient() {
       name: formData.get("name"),
       email: formData.get("email"),
       company: formData.get("company"),
-      docId: selectedDoc.id,
+      documentId: selectedDoc.id,
       docTitle: selectedDoc.title,
     };
 
