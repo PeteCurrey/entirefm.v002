@@ -9,7 +9,7 @@ import Link from "next/link";
 // This hook sets up realtime Supabase subscriptions and fires browser
 // notifications + in-app toasts whenever new leads arrive.
 export function useLeadNotifications() {
-  const supabaseRef = useRef<ReturnType<typeof createClient> | null>(null);
+  const supabaseRef = useRef<any>(null);
   const permissionRef = useRef<NotificationPermission>("default");
 
   const requestPermission = useCallback(async () => {
