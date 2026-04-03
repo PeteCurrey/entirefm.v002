@@ -58,15 +58,17 @@ const ServiceHeroSection = ({
       className="relative min-h-[50vh] md:min-h-[60vh] py-20 md:py-32 px-4 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal overflow-hidden flex items-center"
     >
       <motion.div 
-        className="absolute inset-0 bg-cover bg-center opacity-20" 
+        className="absolute inset-0 bg-cover bg-center brightness-90 saturate-[0.8] contrast-110" 
         style={{ 
           backgroundImage: imageUrl ? `url(${imageUrl})` : undefined,
           y,
-          opacity
+          opacity: 0.6 // Increased opacity for richer visuals as requested
         }}
       />
       
-      <div className="absolute inset-0 bg-gradient-to-r from-charcoal/90 via-charcoal/70 to-charcoal/50" />
+      {/* Premium Glassmorphism Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-charcoal/95 via-charcoal/70 to-primary/30 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-charcoal/60" />
       
       <div className="max-w-6xl mx-auto relative z-10 w-full">
         <motion.div 

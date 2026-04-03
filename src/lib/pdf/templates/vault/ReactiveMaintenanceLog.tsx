@@ -27,7 +27,7 @@ export const VaultReactiveMaintenanceLogPDF = ({ referenceNumber, generatedDate 
         />
 
         <View style={globalStyles.sectionBox}>
-          <Text style={{ ...globalStyles.h3, marginTop: 0, color: pdfColors.navy, fontSize: 9 }}>Operational Protocols:</Text>
+          <Text style={[globalStyles.h3, { marginTop: 0, color: pdfColors.navy, fontSize: 9 }]}>Operational Protocols:</Text>
           <Text style={globalStyles.small}>1. Log every defect immediately upon discovery with a unique Job Reference.</Text>
           <Text style={globalStyles.small}>2. Record the exact location and a concise technical description of the fault.</Text>
           <Text style={globalStyles.small}>3. Ensure attending contractors sign the log upon completion of the works.</Text>
@@ -45,18 +45,18 @@ export const VaultReactiveMaintenanceLogPDF = ({ referenceNumber, generatedDate 
         generatedDate={generatedDate}
         orientation="landscape"
       >
-        <Text style={{ ...globalStyles.h2, marginTop: 0 }}>Incident Registration Grid</Text>
+        <Text style={[globalStyles.h2, { marginTop: 0 }]}>Incident Registration Grid</Text>
         <PDFGoldDivider />
 
         {/* Table Header */}
         <View style={{ flexDirection: 'row', backgroundColor: pdfColors.navy, borderBottomWidth: 2, borderBottomColor: pdfColors.gold }}>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '8%', fontSize: 7 }}>Job Ref</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '10%', fontSize: 7 }}>Date</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', fontSize: 7 }}>Location</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '25%', fontSize: 7 }}>Defect Description</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '12%', fontSize: 7 }}>Contractor</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '18%', fontSize: 7 }}>Action / Resolution</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '12%', fontSize: 7 }}>Sign-Off</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '8%', fontSize: 7 }]}>Job Ref</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '10%', fontSize: 7 }]}>Date</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '15%', fontSize: 7 }]}>Location</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '25%', fontSize: 7 }]}>Defect Description</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '12%', fontSize: 7 }]}>Contractor</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '18%', fontSize: 7 }]}>Action / Resolution</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '12%', fontSize: 7 }]}>Sign-Off</Text>
         </View>
 
         {/* Empty Rows */}

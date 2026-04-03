@@ -41,7 +41,7 @@ const BrandedGenericPDF = ({
         </Text>
         
         <View style={globalStyles.sectionBox}>
-          <Text style={{ ...globalStyles.body, fontWeight: 'bold', marginBottom: 5 }}>Notice of Automation:</Text>
+          <Text style={[globalStyles.body, { fontWeight: 'bold', marginBottom: 5 }]}>Notice of Automation:</Text>
           <Text style={globalStyles.small}>
             This informational package is an automated issuance. A formal, peer-reviewed proposal will follow once our regional team has verified the provided asset data and statutory compliance status.
           </Text>

@@ -36,7 +36,7 @@ export async function GET() {
   });
 }
 
-// PATCH: Update status of a lead
+// PATCH: Update specific fields of a lead
 export async function PATCH(req: Request) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -49,12 +49,60 @@ export async function PATCH(req: Request) {
     auth: { persistSession: false }
   });
 
-  const { type, id, status } = await req.json();
+  const { type, id, status, assigned_to, priority, admin_notes } = await req.json();
   const table = type === "proposal" ? "proposal_requests" : "contact_submissions";
 
-  const { error } = await adminClient.from(table).update({ status }).eq("id", id);
+  // Build the update object dynamically based on provided fields
+  const updateData: any = {};
+  if (status !== undefined) updateData.status = status;
+  if (assigned_to !== undefined) updateData.assigned_to = assigned_to;
+  if (admin_notes !== undefined) updateData.admin_notes = admin_notes;
+  
+  if (priority !== undefined) {
+    if (type === "proposal") {
+      updateData.urgency_level = priority;
+    } else {
+      updateData.priority = priority; // Future proofing, though types currently don't show this column for contact_submissions
+    }
+  }
+
+  const { error } = await adminClient.from(table).update(updateData).eq("id", id);
 
   if (error) {
+    console.error(`Admin leads update error (${table}):`, error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json({ success: true });
+}
+
+// DELETE: Permanently remove a lead
+export async function DELETE(req: Request) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !serviceKey) {
+    return NextResponse.json({ error: "SUPABASE_SERVICE_ROLE_KEY is not configured." }, { status: 500 });
+  }
+
+  const adminClient = createClient(url, serviceKey, {
+    auth: { persistSession: false }
+  });
+
+  const { searchParams } = new URL(req.url);
+  const id = searchParams.get("id");
+  const type = searchParams.get("type");
+
+  if (!id || !type) {
+    return NextResponse.json({ error: "Missing ID or type parameter" }, { status: 400 });
+  }
+
+  const table = type === "proposal" ? "proposal_requests" : "contact_submissions";
+
+  const { error } = await adminClient.from(table).delete().eq("id", id);
+
+  if (error) {
+    console.error(`Admin leads delete error (${table}):`, error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 

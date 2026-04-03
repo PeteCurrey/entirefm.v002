@@ -110,8 +110,8 @@ export default function TotalFacilitiesManagementPage() {
       {/* Hero Section */}
       <section className="relative h-[65vh] min-h-[500px] flex items-end overflow-hidden pb-16">
         <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url(/images/hero-building-engineering.jpg)' }}
+          className="absolute inset-0 bg-cover bg-center brightness-90 contrast-110"
+          style={{ backgroundImage: 'url(/images/hero-tfm.png)' }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/40" />
         

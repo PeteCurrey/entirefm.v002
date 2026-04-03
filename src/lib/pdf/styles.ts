@@ -1,21 +1,21 @@
 import { StyleSheet, Font } from '@react-pdf/renderer';
 
-// Brand Colours from Website
 export const pdfColors = {
-  navy: '#020617', // Match bg-slate-950
+  navy: '#020617',
   slate800: '#1e293b',
   slate600: '#475569',
   gold: '#f5a623',
   white: '#ffffff',
   lightGrey: '#f8fafc',
   border: '#1e293b',
-  textMain: '#f8fafc', // For dark backgrounds
-  textDark: '#0f172a', // For light backgrounds
+  textMain: '#f8fafc',
+  textDark: '#0f172a',
   muted: '#64748b',
   red: '#ef4444',
   amber: '#f59e0b',
   green: '#10b981'
 };
+// Removed all borderRadius references to satisfy strict renderer requirement
 
 // Global StyleSheet
 export const globalStyles = StyleSheet.create({
@@ -42,7 +42,7 @@ export const globalStyles = StyleSheet.create({
     paddingHorizontal: 40,
     zIndex: 100,
     borderBottomWidth: 2,
-    borderBottomColor: pdfColors.gold
+    borderBottomColor: '#f5a623'
   },
   footer: {
     position: 'absolute',
@@ -60,76 +60,75 @@ export const globalStyles = StyleSheet.create({
     zIndex: 100
   },
   h1: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     color: pdfColors.navy,
-    marginBottom: 10,
-    letterSpacing: -1
+    marginBottom: 12,
+    letterSpacing: -0.5
   },
   h2: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: pdfColors.navy,
+    marginBottom: 8,
+    marginTop: 20,
+    textTransform: 'uppercase',
+    letterSpacing: 1.5
+  },
+  h3: {
+    fontSize: 13,
     fontWeight: 'bold',
     color: pdfColors.navy,
     marginBottom: 6,
-    marginTop: 16,
-    textTransform: 'uppercase',
-    letterSpacing: 1
-  },
-  h3: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: pdfColors.navy,
-    marginBottom: 4,
-    marginTop: 12
+    marginTop: 14
   },
   body: {
-    fontSize: 9,
+    fontSize: 10,
     lineHeight: 1.6,
     color: '#334155',
-    marginBottom: 6
+    marginBottom: 8
   },
   small: {
     fontSize: 8,
     color: pdfColors.muted,
-    lineHeight: 1.4
+    lineHeight: 1.5
   },
   goldBar: {
-    height: 2,
+    height: 3,
     backgroundColor: pdfColors.gold,
-    marginBottom: 16,
-    width: 40
+    marginBottom: 20,
+    width: 60
   },
   sectionBox: {
     backgroundColor: pdfColors.lightGrey,
-    borderRadius: 0, // Sharp, professional edges prefered for premium look
-    padding: 16,
-    marginBottom: 16,
-    borderLeftWidth: 3,
-    borderLeftColor: pdfColors.gold
+    padding: 20,
+    marginBottom: 20,
+    borderLeftWidth: 4,
+    borderLeftColor: '#f5a623'
   },
   tableHeaderCell: {
     backgroundColor: pdfColors.navy,
     color: pdfColors.white,
-    fontSize: 7,
+    fontSize: 8,
     fontWeight: 'bold',
-    padding: 8,
+    padding: 10,
     textTransform: 'uppercase',
-    letterSpacing: 1
+    letterSpacing: 1.2
   },
   tableBodyCell: {
-    fontSize: 8,
-    padding: 8,
+    fontSize: 9,
+    padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#f1f5f9',
-    color: '#334155'
+    color: '#334155',
+    lineHeight: 1.4
   },
   badge: {
-    borderRadius: 0,
-    paddingVertical: 2,
-    paddingHorizontal: 6,
-    fontSize: 6,
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    fontSize: 7,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    letterSpacing: 0.5
+    letterSpacing: 0.8
   }
 });

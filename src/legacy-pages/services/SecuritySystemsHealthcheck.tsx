@@ -54,7 +54,11 @@ const SecuritySystemsHealthcheck = () => {
 
       <div className="min-h-screen bg-background pt-20">
         <div className="relative h-[40vh] bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1563906267088-b029e7101114?q=80')] bg-cover bg-center opacity-20" />
+          <div 
+            className="absolute inset-0 bg-cover bg-center brightness-75 contrast-110"
+            style={{ backgroundImage: 'url(/images/hero-security.png)' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
           <div className="container mx-auto px-4 relative z-10 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Estate Security System Health Check</h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

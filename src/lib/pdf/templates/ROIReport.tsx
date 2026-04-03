@@ -115,23 +115,23 @@ export const ROIReportPDF = ({ data }: { data: ROIReportData }) => (
         <Text style={globalStyles.h2}>5-Year Savings Projection</Text>
         <PDFGoldDivider />
         <View style={{ flexDirection: 'row', backgroundColor: pdfColors.navy }}>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '15%' }}>Year</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '25%' }}>Pre-EntireFM</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '30%' }}>Managed TCO</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '30%' }}>Cumul. Profit</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '15%' }]}>Year</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '25%' }]}>Pre-EntireFM</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '30%' }]}>Managed TCO</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '30%' }]}>Cumul. Profit</Text>
         </View>
         {data.projection.map((row, i) => (
           <View key={i} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 35, alignItems: 'center' }}>
-            <View style={{ width: '15%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '15%' }, globalStyles.tableBodyCell]}>
               <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{row.year}</Text>
             </View>
-            <View style={{ width: '25%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '25%' }, globalStyles.tableBodyCell]}>
               <Text style={{ color: '#64748b' }}>{row.currentMode}</Text>
             </View>
-            <View style={{ width: '30%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '30%' }, globalStyles.tableBodyCell]}>
               <Text style={{ color: pdfColors.navy, fontWeight: 'bold' }}>{row.entireFMMode}</Text>
             </View>
-            <View style={{ width: '30%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '30%' }, globalStyles.tableBodyCell]}>
               <Text style={{ color: pdfColors.green, fontWeight: 'bold' }}>{row.cumulativeSavings}</Text>
             </View>
           </View>

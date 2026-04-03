@@ -50,24 +50,24 @@ export const PPMEstimatePDF = ({ data }: { data: PPMEstimateData }) => (
 
       <View style={{ flexDirection: 'row', gap: 20, marginBottom: 40 }} wrap={false}>
         <View style={{ flex: 1.2 }}>
-          <Text style={{ ...globalStyles.h3, marginTop: 0, textTransform: 'uppercase', fontSize: 9, letterSpacing: 1 }}>Integrated Service Scope</Text>
+          <Text style={[globalStyles.h3, { marginTop: 0, textTransform: 'uppercase', fontSize: 9, letterSpacing: 1 }]}>Integrated Service Scope</Text>
           <PDFGoldDivider />
           <View style={{ gap: 8 }}>
             {data.includedServices.map((service, i) => (
               <View key={i} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
                 <View style={{ width: 8, height: 8, backgroundColor: pdfColors.gold, marginTop: 3 }} />
-                <Text style={{ ...globalStyles.body, marginBottom: 0 }}>{service}</Text>
+                <Text style={[globalStyles.body, { marginBottom: 0 }]}>{service}</Text>
               </View>
             ))}
           </View>
         </View>
         <View style={{ flex: 0.8, backgroundColor: pdfColors.lightGrey, padding: 20, borderLeftWidth: 3, borderLeftColor: pdfColors.navy }}>
-          <Text style={{ ...globalStyles.h3, marginTop: 0, fontSize: 8, textTransform: 'uppercase' }}>Technical Assumptions</Text>
+          <Text style={[globalStyles.h3, { marginTop: 0, fontSize: 8, textTransform: 'uppercase' }]}>Technical Assumptions</Text>
           <View style={{ gap: 6, marginTop: 10 }}>
             {data.assumptions.map((assumption, i) => (
               <View key={i} style={{ flexDirection: 'row', gap: 6 }}>
                 <Text style={{ color: pdfColors.gold, fontSize: 8 }}>•</Text>
-                <Text style={{ ...globalStyles.small, flex: 1, color: '#475569' }}>{assumption}</Text>
+                <Text style={[globalStyles.small, { flex: 1, color: '#475569' }]}>{assumption}</Text>
               </View>
             ))}
           </View>
@@ -78,19 +78,19 @@ export const PPMEstimatePDF = ({ data }: { data: PPMEstimateData }) => (
         <Text style={globalStyles.h2}>5-Year Lifecycle Costing</Text>
         <PDFGoldDivider />
         <View style={{ flexDirection: 'row', backgroundColor: pdfColors.navy }}>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '20%' }}>Year</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '40%' }}>Planned Managed Budget</Text>
-          <Text style={{ ...globalStyles.tableHeaderCell, width: '40%' }}>Unmanaged (Run-to-Fail)</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '20%' }]}>Year</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '40%' }]}>Planned Managed Budget</Text>
+          <Text style={[globalStyles.tableHeaderCell, { width: '40%' }]}>Unmanaged (Run-to-Fail)</Text>
         </View>
         {data.projection.map((row, i) => (
           <View key={i} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 35, alignItems: 'center' }}>
-            <View style={{ width: '20%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '20%' }, globalStyles.tableBodyCell]}>
               <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{row.year}</Text>
             </View>
-            <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '40%' }, globalStyles.tableBodyCell]}>
               <Text style={{ color: pdfColors.green, fontWeight: 'bold' }}>{row.planned}</Text>
             </View>
-            <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '40%' }, globalStyles.tableBodyCell]}>
               <Text style={{ color: pdfColors.red, fontWeight: 'medium' }}>{row.reactive}</Text>
             </View>
           </View>

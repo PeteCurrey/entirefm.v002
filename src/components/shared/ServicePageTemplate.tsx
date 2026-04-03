@@ -102,7 +102,7 @@ const ServicePageTemplate = ({
   breadcrumbItems,
   heroTitle,
   heroSubtitle,
-  heroImage = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80",
+  heroImage = "/images/hero-tfm.png",
   heroIcon: HeroIcon = Shield,
   stats,
   overview,

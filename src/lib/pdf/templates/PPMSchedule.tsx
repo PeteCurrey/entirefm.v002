@@ -133,16 +133,16 @@ export const PPMSchedulePDF = ({ data }: { data: PPMScheduleData }) => {
       >
         <Text style={globalStyles.h2}>12-Month Maintenance Forecast</Text>
         <PDFGoldDivider />
-        <Text style={{ ...globalStyles.body, marginBottom: 20 }}>Visual projection of scheduled maintenance attendance by asset category. Key visits are indicated with the EFM marker.</Text>
+        <Text style={[globalStyles.body, { marginBottom: 20 }]}>Visual projection of scheduled maintenance attendance by asset category. Key visits are indicated with the EFM marker.</Text>
 
         <View style={{ marginTop: 10 }}>
           {/* Header */}
           <View style={{ flexDirection: 'row', backgroundColor: pdfColors.navy }}>
-            <View style={{ width: '22%', ...globalStyles.tableHeaderCell }}>
+            <View style={[{ width: '22%' }, globalStyles.tableHeaderCell]}>
               <Text>Service Category</Text>
             </View>
             {MONTHS.map(m => (
-              <View key={m} style={{ width: '6.5%', ...globalStyles.tableHeaderCell, textAlign: 'center' }}>
+              <View key={m} style={[{ width: '6.5%', textAlign: 'center' }, globalStyles.tableHeaderCell]}>
                 <Text>{m}</Text>
               </View>
             ))}
@@ -151,13 +151,13 @@ export const PPMSchedulePDF = ({ data }: { data: PPMScheduleData }) => {
           {/* Body */}
           {calendarRows.map((row, i) => (
             <View key={i} style={{ flexDirection: 'row', backgroundColor: i % 2 === 0 ? '#fff' : pdfColors.lightGrey }}>
-              <View style={{ width: '22%', ...globalStyles.tableBodyCell, borderRightWidth: 1, borderRightColor: '#eee' }}>
+              <View style={[{ width: '22%', borderRightWidth: 1, borderRightColor: '#eee' }, globalStyles.tableBodyCell]}>
                 <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{row.category}</Text>
               </View>
               {row.visits.map((v, j) => (
-                <View key={j} style={{ width: '6.5%', ...globalStyles.tableBodyCell, alignItems: 'center', justifyContent: 'center', borderRightWidth: 1, borderRightColor: '#eee' }}>
+                <View key={j} style={[{ width: '6.5%', alignItems: 'center', justifyContent: 'center', borderRightWidth: 1, borderRightColor: '#eee' }, globalStyles.tableBodyCell]}>
                   {v && (
-                    <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: pdfColors.gold, borderWidth: 1, borderColor: pdfColors.navy }} />
+                    <View style={{ width: 8, height: 8,  backgroundColor: pdfColors.gold, borderWidth: 1, borderColor: pdfColors.navy }} />
                   )}
                 </View>
               ))}
@@ -185,35 +185,37 @@ export const PPMSchedulePDF = ({ data }: { data: PPMScheduleData }) => {
           </View>
 
           <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 2, borderBottomColor: pdfColors.navy }}>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '30%', backgroundColor: 'transparent', color: pdfColors.navy }}>Asset Detail</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '12%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>Freq</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '43%', backgroundColor: 'transparent', color: pdfColors.navy }}>Core Maintenance Tasks</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'right' }}>Status</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '30%', backgroundColor: 'transparent', color: pdfColors.navy }]}>Asset Detail</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '12%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }]}>Freq</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '43%', backgroundColor: 'transparent', color: pdfColors.navy }]}>Core Maintenance Tasks</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'right' }]}>Status</Text>
           </View>
 
           {assets.map((asset, idx) => (
             <View key={idx} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }} wrap={false}>
-              <View style={{ width: '30%', ...globalStyles.tableBodyCell }}>
+              <View style={[globalStyles.tableBodyCell, { width: '30%' }]}>
                 <Text style={{ fontWeight: 'bold', color: pdfColors.navy, fontSize: 9 }}>{asset.assetName}</Text>
                 <Text style={{ fontSize: 6, color: pdfColors.muted, marginTop: 3 }}>Standard: {asset.standard}</Text>
               </View>
-              <View style={{ width: '12%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
+              <View style={[globalStyles.tableBodyCell, { width: '12%', alignItems: 'center' }]}>
                 <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{asset.frequency}</Text>
               </View>
-              <View style={{ width: '43%', ...globalStyles.tableBodyCell }}>
+              <View style={[globalStyles.tableBodyCell, { width: '43%' }]}>
                 {asset.tasks.slice(0, 4).map((t, i) => (
                   <Text key={i} style={{ fontSize: 7, marginBottom: 2, color: '#475569' }}>• {t}</Text>
                 ))}
                 {asset.tasks.length > 4 && <Text style={{ fontSize: 6, color: pdfColors.muted, fontStyle: 'italic' }}>+ {asset.tasks.length - 4} supplementary tasks</Text>}
               </View>
-              <View style={{ width: '15%', ...globalStyles.tableBodyCell, alignItems: 'flex-end' }}>
-                <Text style={{ 
-                  ...globalStyles.badge, 
-                  backgroundColor: asset.statutory ? pdfColors.amber : pdfColors.slate800,
-                  color: pdfColors.white,
-                  paddingVertical: 3,
-                  paddingHorizontal: 8
-                }}>
+              <View style={[globalStyles.tableBodyCell, { width: '15%', alignItems: 'flex-end' }]}>
+                <Text style={[
+                  globalStyles.badge, 
+                  { 
+                    backgroundColor: asset.statutory ? pdfColors.amber : pdfColors.slate800,
+                    color: pdfColors.white,
+                    paddingVertical: 3,
+                    paddingHorizontal: 8
+                  }
+                ]}>
                   {asset.statutory ? 'Statutory' : 'Best Practice'}
                 </Text>
               </View>
@@ -242,7 +244,7 @@ export const PPMSchedulePDF = ({ data }: { data: PPMScheduleData }) => {
             This Planned Preventative Maintenance (PPM) schedule utilizes a technical risk-based approach to building services care. Our protocols are derived from industry-leading SFG20 specifications, adapted for the specific asset profiles identified at <Text style={{ fontWeight: 'bold' }}>{data.buildingName}</Text>.
           </Text>
           <View style={globalStyles.sectionBox}>
-             <Text style={{ ...globalStyles.body, fontWeight: 'bold', marginBottom: 5 }}>Next Steps & Implementation:</Text>
+             <Text style={[globalStyles.body, { fontWeight: 'bold', marginBottom: 5 }]}>Next Steps & Implementation:</Text>
              <Text style={globalStyles.small}>• Site Validation: A physical audit is recommended prior to contract commencement.</Text>
              <Text style={globalStyles.small}>• Digital Onboarding: Asset tags will be applied to all equipment for QR-based tracking.</Text>
              <Text style={globalStyles.small}>• Compliance Audit: All historical certification should be uploaded for gap-analysis.</Text>

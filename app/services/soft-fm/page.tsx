@@ -87,6 +87,11 @@ export default function SoftFMPage() {
 
       {/* Hero Header */}
       <section className="bg-[#0a0a0b] pt-48 pb-32 text-white relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center brightness-50 contrast-125 saturate-[0.8]"
+          style={{ backgroundImage: 'url(/images/hero-soft-fm.png)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
             <span className="text-primary text-xs font-black uppercase tracking-[0.4em] mb-8 block">PEOPLE-CENTRIC FM</span>

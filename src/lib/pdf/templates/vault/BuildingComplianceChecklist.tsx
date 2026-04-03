@@ -90,14 +90,14 @@ export const VaultBuildingComplianceChecklistPDF = ({ referenceNumber, generated
             </View>
             
             <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 2, borderBottomColor: pdfColors.navy }}>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '60%', backgroundColor: 'transparent', color: pdfColors.navy }}>Statutory Audit Item</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '25%', backgroundColor: 'transparent', color: pdfColors.navy }}>Last Certification</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>[ ✓ ]</Text>
+              <Text style={[globalStyles.tableHeaderCell, { width: '60%', backgroundColor: 'transparent', color: pdfColors.navy }]}>Statutory Audit Item</Text>
+              <Text style={[globalStyles.tableHeaderCell, { width: '25%', backgroundColor: 'transparent', color: pdfColors.navy }]}>Last Certification</Text>
+              <Text style={[globalStyles.tableHeaderCell, { width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }]}>[ ✓ ]</Text>
             </View>
 
             {list.items.map((item, j) => (
               <View key={j} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 35, alignItems: 'center' }}>
-                <View style={{ width: '60%', ...globalStyles.tableBodyCell }}>
+                <View style={[{ width: '60%' }, globalStyles.tableBodyCell]}>
                   <Text>{item}</Text>
                 </View>
                 <View style={{ width: '25%', ...globalStyles.tableBodyCell, borderLeftWidth: 1, borderLeftColor: '#f1f5f9' }}>

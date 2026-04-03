@@ -88,7 +88,7 @@ const Services = () => {
         <motion.div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: 'url(/images/services-hero.jpg)',
+            backgroundImage: 'url(/images/hero-tfm.png)',
             y,
             opacity,
             filter: blur.get() !== undefined ? `blur(${blur.get()}px)` : 'none'

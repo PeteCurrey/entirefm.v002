@@ -28,9 +28,7 @@ export const PDFInfoBox = ({ title, body, type = 'info' }: PDFInfoBoxProps) => {
       borderLeftWidth: 4,
       borderLeftColor: borderColor,
       padding: 12,
-      marginBottom: 16,
-      borderRadius: 2
-    }}>
+      marginBottom: 16 }}>
       <Text style={{ 
         fontSize: 10, 
         fontWeight: 700, 

@@ -95,7 +95,7 @@ const HVAC = () => {
             href: "/contact",
             icon: FileText
           }}
-          backgroundImage="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&q=80"
+          backgroundImage="/images/hero-hvac.png"
         />
 
         {/* Key Features */}

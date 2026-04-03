@@ -54,8 +54,8 @@ export const ComplianceReportPDF = ({ data }: { data: ComplianceReportData }) =>
             <Text style={{ color: pdfColors.white, fontSize: 28, fontWeight: 'bold' }}>{data.overallRisk.toUpperCase()}</Text>
           </View>
           <View style={{ flex: 2, padding: 15, backgroundColor: pdfColors.lightGrey, borderLeftWidth: 3, borderLeftColor: pdfColors.navy }}>
-            <Text style={{ ...globalStyles.h3, marginTop: 0, color: pdfColors.navy, textTransform: 'uppercase', fontSize: 8 }}>Executive Summary</Text>
-            <Text style={{ ...globalStyles.body, marginBottom: 0 }}>{data.summary}</Text>
+            <Text style={[globalStyles.h3, { marginTop: 0, color: pdfColors.navy, textTransform: 'uppercase', fontSize: 8 }]}>Executive Summary</Text>
+            <Text style={[globalStyles.body, { marginBottom: 0 }]}>{data.summary}</Text>
           </View>
         </View>
 
@@ -64,21 +64,21 @@ export const ComplianceReportPDF = ({ data }: { data: ComplianceReportData }) =>
 
         <View style={{ marginBottom: 30 }}>
           <View style={{ flexDirection: 'row', backgroundColor: pdfColors.navy }}>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '25%' }}>Service Area</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '45%' }}>Regulatory Detail</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '15%' }}>Frequency</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', textAlign: 'center' }}>Urgency</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '25%' }]}>Service Area</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '45%' }]}>Regulatory Detail</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '15%' }]}>Frequency</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '15%', textAlign: 'center' }]}>Urgency</Text>
           </View>
           
           {data.obligations.map((obs, i) => (
             <View key={i} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }} wrap={false}>
-              <View style={{ width: '25%', ...globalStyles.tableBodyCell }}>
+              <View style={[{ width: '25%' }, globalStyles.tableBodyCell]}>
                 <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{obs.area}</Text>
               </View>
-              <View style={{ width: '45%', ...globalStyles.tableBodyCell }}>
+              <View style={[{ width: '45%' }, globalStyles.tableBodyCell]}>
                 <Text style={{ color: '#475569', fontSize: 8 }}>{obs.detail}</Text>
               </View>
-              <View style={{ width: '15%', ...globalStyles.tableBodyCell }}>
+              <View style={[{ width: '15%' }, globalStyles.tableBodyCell]}>
                 <Text style={{ fontWeight: 'bold' }}>{obs.frequency}</Text>
               </View>
               <View style={{ width: '15%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
@@ -109,7 +109,7 @@ export const ComplianceReportPDF = ({ data }: { data: ComplianceReportData }) =>
         </View>
 
         <View wrap={false} style={globalStyles.sectionBox}>
-          <Text style={{ ...globalStyles.h3, marginTop: 0, color: pdfColors.navy, fontSize: 9 }}>EntireFM Engineering Strategy</Text>
+          <Text style={[globalStyles.h3, { marginTop: 0, color: pdfColors.navy, fontSize: 9 }]}>EntireFM Engineering Strategy</Text>
           <Text style={globalStyles.body}>{data.recommendation}</Text>
         </View>
 

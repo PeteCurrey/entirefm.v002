@@ -24,7 +24,11 @@ import {
   Sparkles,
   Zap,
   BrainCircuit,
-  MessageSquareQuote
+  MessageSquareQuote,
+  Trash2,
+  Save,
+  Tag,
+  UserPlus
 } from "lucide-react";
 import { format } from "date-fns";
 import { toast } from "sonner";
@@ -55,6 +59,9 @@ interface UnifiedLead {
   status: string | null;
   created_at: string;
   metadata?: any;
+  assigned_to?: string | null;
+  priority?: string | null;
+  admin_notes?: string | null;
 }
 
 export default function LeadsManagement() {
@@ -66,6 +73,11 @@ export default function LeadsManagement() {
   const [analysisResult, setAnalysisResult] = useState<{ summary: string; suggestion: string } | null>(null);
   const [isAnalysisOpen, setIsAnalysisOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [assigningTo, setAssigningTo] = useState<string | null>(null);
+  const [currentPriority, setCurrentPriority] = useState<string | null>(null);
+  const [localNotes, setLocalNotes] = useState("");
+  const [isSavingNotes, setIsSavingNotes] = useState(false);
 
   useEffect(() => {
     fetchLeads();
@@ -199,20 +211,67 @@ export default function LeadsManagement() {
     }
   };
 
-  const updateStatus = async (type: 'contact' | 'proposal', id: string, status: string) => {
+  const updateLead = async (type: 'contact' | 'proposal', id: string, updates: Partial<UnifiedLead>) => {
     try {
       const res = await fetch('/api/admin/leads', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, id, status })
+        body: JSON.stringify({ type, id, ...updates })
       });
       if (!res.ok) throw new Error((await res.json()).error);
-      toast.success(`Lead status updated to ${status}`);
-      fetchLeads();
+      
+      // Update local state for immediate feedback
+      setLeads(prev => prev.map(l => l.id === id ? { ...l, ...updates } : l));
+      
+      if (updates.status) toast.success(`Status updated to ${updates.status}`);
+      else if (updates.priority) toast.success(`Priority set to ${updates.priority}`);
+      else if (updates.assigned_to) toast.success(`Assigned to ${updates.assigned_to}`);
+      else if (updates.admin_notes !== undefined) toast.success(`Notes updated`);
+      
     } catch (error) {
-      console.error('Error updating status:', error);
-      toast.error('Failed to update status');
+      console.error('Error updating lead:', error);
+      toast.error('Failed to update lead');
     }
+  };
+
+  const deleteLead = async (type: 'contact' | 'proposal', id: string) => {
+    if (!confirm('Are you sure you want to permanently delete this lead? This action cannot be undone.')) return;
+    
+    try {
+      setIsDeleting(true);
+      const res = await fetch(`/api/admin/leads?id=${id}&type=${type}`, {
+        method: 'DELETE'
+      });
+      if (!res.ok) throw new Error((await res.json()).error);
+      
+      toast.success('Lead permanently deleted');
+      setLeads(prev => prev.filter(l => l.id !== id));
+      if (selectedLeadId === id) {
+        setSelectedLeadId(null);
+      }
+    } catch (error) {
+      console.error('Error deleting lead:', error);
+      toast.error('Failed to delete lead');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  const syncLocalNotes = (lead: UnifiedLead) => {
+    setLocalNotes(lead.admin_notes || "");
+  };
+
+  useEffect(() => {
+    if (selectedLead) {
+      syncLocalNotes(selectedLead);
+    }
+  }, [selectedLeadId]);
+
+  const saveNotes = async () => {
+    if (!selectedLead) return;
+    setIsSavingNotes(true);
+    await updateLead(selectedLead.type, selectedLead.id, { admin_notes: localNotes });
+    setIsSavingNotes(false);
   };
 
   const getStatusIcon = (status: string | null) => {
@@ -335,6 +394,21 @@ export default function LeadsManagement() {
                   }`}>
                     {lead.type}
                   </div>
+                  {lead.priority && (
+                    <div className={`px-1.5 py-0.5 rounded text-[8px] font-black uppercase tracking-widest ${
+                      lead.priority === 'urgent' ? 'bg-red-500/10 text-red-600 border border-red-500/20' :
+                      lead.priority === 'high' ? 'bg-orange-500/10 text-orange-600 border border-orange-500/20' :
+                      'bg-slate-500/10 text-slate-600 border border-slate-500/20'
+                    }`}>
+                      {lead.priority}
+                    </div>
+                  )}
+                  {lead.assigned_to && (
+                    <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 text-[8px] font-black uppercase tracking-widest">
+                      <Users className="w-2 h-2" />
+                      {lead.assigned_to.split(' ')[0]}
+                    </div>
+                  )}
                   {lead.company && (
                     <span className="text-[9px] text-muted-foreground/60 truncate italic font-medium">
                       @{lead.company}
@@ -364,13 +438,69 @@ export default function LeadsManagement() {
                   {analyzingLeadId === selectedLead.id ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
                   Neural Analyze
                 </Button>
+
+                {/* Priority Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="text-[10px] font-bold uppercase tracking-widest h-8 px-3 rounded-lg">
+                      <Tag className="w-3 h-3 mr-2" />
+                      {selectedLead.priority || 'Priority'}
+                      <ChevronDown className="ml-2 h-3 w-3 opacity-50" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="bg-white dark:bg-slate-900 border-border">
+                    {['urgent', 'high', 'medium', 'low', 'none'].map((p) => (
+                      <DropdownMenuItem 
+                        key={p} 
+                        className="text-[10px] font-bold uppercase tracking-widest cursor-pointer"
+                        onClick={() => updateLead(selectedLead.type, selectedLead.id, { priority: p === 'none' ? null : p })}
+                      >
+                        {p}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {/* Assignment Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="text-[10px] font-bold uppercase tracking-widest h-8 px-3 rounded-lg">
+                      <UserPlus className="w-3 h-3 mr-2" />
+                      {selectedLead.assigned_to || 'Assign'}
+                      <ChevronDown className="ml-2 h-3 w-3 opacity-50" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="bg-white dark:bg-slate-900 border-border">
+                    {['Operations Admin', 'Technical Lead', 'Sales Manager', 'Unassigned'].map((staff) => (
+                      <DropdownMenuItem 
+                        key={staff} 
+                        className="text-[10px] font-bold uppercase tracking-widest cursor-pointer"
+                        onClick={() => updateLead(selectedLead.type, selectedLead.id, { assigned_to: staff === 'Unassigned' ? null : staff })}
+                      >
+                        {staff}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
                 <Button 
                   variant="ghost" 
                   size="sm" 
                   className="text-[10px] font-bold uppercase tracking-widest h-8"
-                  onClick={() => updateStatus(selectedLead.type, selectedLead.id, selectedLead.status === 'archived' ? 'new' : 'archived')}
+                  onClick={() => updateLead(selectedLead.type, selectedLead.id, { status: selectedLead.status === 'archived' ? 'new' : 'archived' })}
                 >
                   {selectedLead.status === 'archived' ? 'Restore' : 'Archive'}
+                </Button>
+
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-[10px] font-bold uppercase tracking-widest h-8 text-red-500 hover:text-red-600 hover:bg-red-500/10"
+                  onClick={() => deleteLead(selectedLead.type, selectedLead.id)}
+                  disabled={isDeleting}
+                >
+                  <Trash2 className="w-3 h-3 mr-2" />
+                  Delete
                 </Button>
               </div>
               <div className="flex items-center gap-2">
@@ -439,6 +569,32 @@ export default function LeadsManagement() {
                   <div className="p-8 bg-slate-50/50 dark:bg-slate-800/30 rounded-3xl border border-border/50 leading-relaxed text-slate-700 dark:text-slate-300 whitespace-pre-wrap selection:bg-primary/20 selection:text-primary">
                     {selectedLead.message}
                   </div>
+                </div>
+
+                {/* Internal Notes Section */}
+                <div className="space-y-4 pt-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <MessageSquareQuote className="w-4 h-4 text-primary" />
+                      <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-slate-400">Internal Notes</h3>
+                    </div>
+                    <Button 
+                      size="sm" 
+                      variant="ghost" 
+                      className="h-7 text-[9px] font-black uppercase tracking-widest gap-2"
+                      onClick={saveNotes}
+                      disabled={isSavingNotes}
+                    >
+                      {isSavingNotes ? <Loader2 className="w-3 h-3 animate-spin" /> : <Save className="w-3 h-3" />}
+                      {isSavingNotes ? 'Saving...' : 'Save Notes'}
+                    </Button>
+                  </div>
+                  <textarea
+                    value={localNotes}
+                    onChange={(e) => setLocalNotes(e.target.value)}
+                    placeholder="Add internal context, follow-up actions, or stakeholder notes..."
+                    className="w-full h-32 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-border focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all text-sm resize-none"
+                  />
                 </div>
 
                 {/* Proposal Metadata if applicable */}

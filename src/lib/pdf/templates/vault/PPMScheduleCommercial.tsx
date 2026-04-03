@@ -72,20 +72,20 @@ export const VaultPPMScheduleCommercialPDF = ({ referenceNumber, generatedDate }
               <Text style={{ color: pdfColors.white, fontSize: 10, fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: 1 }}>{cat.name}</Text>
             </View>
             <View style={{ flexDirection: 'row', backgroundColor: pdfColors.lightGrey, borderBottomWidth: 2, borderBottomColor: pdfColors.navy }}>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '30%', backgroundColor: 'transparent', color: pdfColors.navy }}>Asset Profile</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '10%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>Freq</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '45%', backgroundColor: 'transparent', color: pdfColors.navy }}>Primary Maintenance Tasks</Text>
-              <Text style={{ ...globalStyles.tableHeaderCell, width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }}>Status</Text>
+              <Text style={[globalStyles.tableHeaderCell, { width: '30%', backgroundColor: 'transparent', color: pdfColors.navy }]}>Asset Profile</Text>
+              <Text style={[globalStyles.tableHeaderCell, { width: '10%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }]}>Freq</Text>
+              <Text style={[globalStyles.tableHeaderCell, { width: '45%', backgroundColor: 'transparent', color: pdfColors.navy }]}>Primary Maintenance Tasks</Text>
+              <Text style={[globalStyles.tableHeaderCell, { width: '15%', backgroundColor: 'transparent', color: pdfColors.navy, textAlign: 'center' }]}>Status</Text>
             </View>
             {cat.items.map((item, j) => (
               <View key={j} style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 40, alignItems: 'center' }}>
-                <View style={{ width: '30%', ...globalStyles.tableBodyCell }}>
+                <View style={[{ width: '30%' }, globalStyles.tableBodyCell]}>
                   <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{item.asset}</Text>
                 </View>
                 <View style={{ width: '10%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
                   <Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>{item.frequency}</Text>
                 </View>
-                <View style={{ width: '45%', ...globalStyles.tableBodyCell }}>
+                <View style={[{ width: '45%' }, globalStyles.tableBodyCell]}>
                   <Text style={{ fontSize: 7, color: '#475569' }}>{item.tasks}</Text>
                 </View>
                 <View style={{ width: '15%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>

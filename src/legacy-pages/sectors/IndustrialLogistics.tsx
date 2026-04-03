@@ -11,7 +11,7 @@ const IndustrialLogistics = () => {
       canonicalUrl="https://entirefm.com/sectors/logistics-industrial"
       heroTitle="Industrial & Logistics FM"
       heroSubtitle="Operational continuity, delivered. FM for logistics environments where downtime costs thousands per minute — and excuses aren't tolerated."
-      heroImage="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80"
+      heroImage="/images/hero-industrial.png"
       heroIcon={Warehouse}
       stats={[
         { value: "32%", label: "Reactive Reduction" },

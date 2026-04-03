@@ -35,7 +35,7 @@ const Home = () => {
       {/* Hero Section */}
       <VideoHero
         videoSrc="/videos/hero-video.mp4"
-        posterImage="/images/hero-background.jpg"
+        posterImage="/images/hero-tfm.png"
       >
         <motion.div
           className="max-w-4xl relative z-10"
@@ -168,9 +168,9 @@ const Home = () => {
 
       {/* Service Matrix */}
       <section className="py-24 relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center fixed-bg"
-          style={{ backgroundImage: 'url(/images/what-we-deliver-bg.jpg)' }}
+        <div 
+          className="absolute inset-0 bg-cover bg-center brightness-75 contrast-110"
+          style={{ backgroundImage: 'url(/images/hero-hvac.png)' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal/95 via-charcoal/85 to-charcoal/90 backdrop-blur-[2px]" />
 

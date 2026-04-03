@@ -102,7 +102,7 @@ const SectorPageTemplate = ({
   canonicalUrl,
   heroTitle,
   heroSubtitle,
-  heroImage = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auhref=format&fit=crop&q=80",
+  heroImage = "/images/hero-tfm.png",
   stats,
   heroIcon: HeroIcon = Building2,
   sectorSummary,

@@ -34,17 +34,17 @@ export const VaultFMSLATemplatePDF = ({ referenceNumber, generatedDate }: { refe
         <PDFGoldDivider />
         <View style={{ marginBottom: 30 }}>
           <View style={{ flexDirection: 'row', backgroundColor: pdfColors.navy }}>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '20%' }}>Priority</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '40%' }}>Operational Definition</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '20%', textAlign: 'center' }}>Response</Text>
-            <Text style={{ ...globalStyles.tableHeaderCell, width: '20%', textAlign: 'center' }}>Resolution</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '20%' }]}>Priority</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '40%' }]}>Operational Definition</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '20%', textAlign: 'center' }]}>Response</Text>
+            <Text style={[globalStyles.tableHeaderCell, { width: '20%', textAlign: 'center' }]}>Resolution</Text>
           </View>
           
           <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }}>
-            <View style={{ width: '20%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '20%' }, globalStyles.tableBodyCell]}>
               <Text style={{ fontWeight: 'bold', color: pdfColors.red }}>P1: Crisis</Text>
             </View>
-            <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '40%' }, globalStyles.tableBodyCell]}>
               <Text style={{ fontSize: 7, color: '#475569' }}>Risk to life, total power loss, or major server room cooling failure.</Text>
             </View>
             <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
@@ -56,10 +56,10 @@ export const VaultFMSLATemplatePDF = ({ referenceNumber, generatedDate }: { refe
           </View>
 
           <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }}>
-            <View style={{ width: '20%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '20%' }, globalStyles.tableBodyCell]}>
               <Text style={{ fontWeight: 'bold', color: pdfColors.amber }}>P2: Urgent</Text>
             </View>
-            <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '40%' }, globalStyles.tableBodyCell]}>
               <Text style={{ fontSize: 7, color: '#475569' }}>Significant operational impact but no immediate life-safety risk.</Text>
             </View>
             <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
@@ -71,10 +71,10 @@ export const VaultFMSLATemplatePDF = ({ referenceNumber, generatedDate }: { refe
           </View>
 
           <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderBottomColor: '#f1f5f9', minHeight: 45, alignItems: 'center' }}>
-            <View style={{ width: '20%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '20%' }, globalStyles.tableBodyCell]}>
               <Text style={{ fontWeight: 'bold', color: pdfColors.slate600 }}>P3: Routine</Text>
             </View>
-            <View style={{ width: '40%', ...globalStyles.tableBodyCell }}>
+            <View style={[{ width: '40%' }, globalStyles.tableBodyCell]}>
               <Text style={{ fontSize: 7, color: '#475569' }}>Minor building fabric defects or aesthetic issues (e.g. faulty lamp).</Text>
             </View>
             <View style={{ width: '20%', ...globalStyles.tableBodyCell, alignItems: 'center' }}>
@@ -105,9 +105,9 @@ export const VaultFMSLATemplatePDF = ({ referenceNumber, generatedDate }: { refe
           <Text style={globalStyles.h2}>3. Governance & Escalation</Text>
           <PDFGoldDivider />
           <View style={globalStyles.sectionBox}>
-            <Text style={{ ...globalStyles.small, marginBottom: 8 }}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 1:</Text> 24/7 National Helpdesk — [Insert Regional Node Number]</Text>
-            <Text style={{ ...globalStyles.small, marginBottom: 8 }}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 2:</Text> Dedicated Account Manager — [Insert Name & Direct Dial]</Text>
-            <Text style={{ ...globalStyles.small }}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 3:</Text> Operations Director — [Escalation path via HQ]</Text>
+            <Text style={[globalStyles.small, { marginBottom: 8 }]}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 1:</Text> 24/7 National Helpdesk — [Insert Regional Node Number]</Text>
+            <Text style={[globalStyles.small, { marginBottom: 8 }]}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 2:</Text> Dedicated Account Manager — [Insert Name & Direct Dial]</Text>
+            <Text style={globalStyles.small}><Text style={{ fontWeight: 'bold', color: pdfColors.navy }}>Level 3:</Text> Operations Director — [Escalation path via HQ]</Text>
           </View>
 
           <View style={{ marginTop: 20 }}>
