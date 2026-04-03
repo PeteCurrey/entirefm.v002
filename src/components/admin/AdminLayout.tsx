@@ -29,7 +29,7 @@ import {
 import { Session } from "@supabase/supabase-js";
 import { useToast } from "@/hooks/use-toast";
 import AdminNotifications from "./AdminNotifications";
-import { useLeadNotifications } from "@/hooks/useLeadNotifications";
+import { NotificationProvider } from "@/context/NotificationContext";
 
 export default function AdminLayout({ children }: { children?: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
@@ -41,9 +41,6 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
   const router = useRouter();
   const pathname = usePathname();
   
-  // Initialize real-time lead notifications (browser + in-app)
-  useLeadNotifications();
-
   useEffect(() => {
     // Check for dev bypass session
     const devSession = localStorage.getItem('dev_admin_session');
@@ -201,128 +198,130 @@ export default function AdminLayout({ children }: { children?: React.ReactNode }
   };
 
   return (
-    <div className="flex min-h-screen w-full bg-muted/30 pt-20">
-      {/* Sidebar */}
-      <aside 
-        className={`${
-          sidebarOpen ? 'w-64' : 'w-16'
-        } bg-card border-r border-border transition-all duration-300 flex flex-col fixed left-0 top-20 bottom-0 z-40`}
-      >
-        {/* Sidebar Header */}
-        <div className="p-4 border-b border-border flex items-center justify-between">
-          {sidebarOpen && (
-            <h2 className="font-semibold text-lg">Admin Panel</h2>
-          )}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="ml-auto"
-          >
-            {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
-        </div>
-
-        {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          {navItems.map((item) => {
-            const isActive = pathname === item.path || 
-              (item.children && item.children.some(c => pathname === c.path));
-            const isExpanded = expandedSections.includes(item.label);
-            
-            if (item.children) {
-              return (
-                <div key={item.path}>
-                  <button
-                    onClick={() => sidebarOpen && toggleSection(item.label)}
-                    className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors w-full ${
-                      isActive ? 'bg-primary/10 text-primary' : 'hover:bg-muted text-foreground'
-                    }`}
-                  >
-                    <item.icon className="h-5 w-5" />
-                    {sidebarOpen && (
-                      <>
-                        <span className="flex-1 text-left">{item.label}</span>
-                        {isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-                      </>
-                    )}
-                  </button>
-                  {sidebarOpen && isExpanded && (
-                    <div className="ml-8 mt-1 space-y-1">
-                      {item.children.map(child => (
-                        <NavLink
-                          key={child.path}
-                          to={child.path}
-                          className={`block px-3 py-1.5 rounded-lg text-sm transition-colors ${
-                            pathname === child.path
-                              ? 'bg-primary text-primary-foreground'
-                              : 'hover:bg-muted text-muted-foreground'
-                          }`}
-                        >
-                          {child.label}
-                        </NavLink>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            }
-            
-            return (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-                  isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-muted text-foreground'
-                }`}
-              >
-                <item.icon className="h-5 w-5" />
-                {sidebarOpen && <span>{item.label}</span>}
-              </NavLink>
-            );
-          })}
-        </nav>
-
-        {/* User Info & Sign Out */}
-        <div className="p-4 border-t border-border">
-          <Button
-            variant="ghost"
-            onClick={handleSignOut}
-            className={`w-full ${sidebarOpen ? 'justify-start' : 'justify-center'} gap-2`}
-          >
-            <LogOut className="h-5 w-5" />
-            {sidebarOpen && <span>Sign Out</span>}
-          </Button>
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main className={`flex-1 overflow-auto ${sidebarOpen ? 'ml-64' : 'ml-16'} transition-all duration-300`}>
-        {/* Admin Top Bar */}
-        <header className="h-16 border-b border-border bg-card/50 backdrop-blur-md flex items-center justify-between px-8 sticky top-0 z-30">
-          <div className="flex items-center gap-4">
-            <h1 className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
-              {pathname.split('/').filter(Boolean).pop()?.replace(/-/g, ' ')}
-            </h1>
+    <NotificationProvider>
+      <div className="flex min-h-screen w-full bg-muted/30 pt-20">
+        {/* Sidebar */}
+        <aside 
+          className={`${
+            sidebarOpen ? 'w-64' : 'w-16'
+          } bg-card border-r border-border transition-all duration-300 flex flex-col fixed left-0 top-20 bottom-0 z-40`}
+        >
+          {/* Sidebar Header */}
+          <div className="p-4 border-b border-border flex items-center justify-between">
+            {sidebarOpen && (
+              <h2 className="font-semibold text-lg">Admin Panel</h2>
+            )}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="ml-auto"
+            >
+              {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </Button>
           </div>
-          <div className="flex items-center gap-4">
-            <AdminNotifications />
-            <div className="h-8 w-[1px] bg-border mx-2" />
-            <div className="flex items-center gap-3">
-              <div className="text-right hidden sm:block">
-                <p className="text-xs font-semibold">{session?.user?.email?.split('@')[0] || 'Admin'}</p>
-                <p className="text-[10px] text-muted-foreground">Super Admin</p>
-              </div>
-              <div className="h-10 w-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold">
-                {session?.user?.email?.[0].toUpperCase() || 'A'}
+
+          {/* Navigation */}
+          <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+            {navItems.map((item) => {
+              const isActive = pathname === item.path || 
+                (item.children && item.children.some(c => pathname === c.path));
+              const isExpanded = expandedSections.includes(item.label);
+              
+              if (item.children) {
+                return (
+                  <div key={item.path}>
+                    <button
+                      onClick={() => sidebarOpen && toggleSection(item.label)}
+                      className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors w-full ${
+                        isActive ? 'bg-primary/10 text-primary' : 'hover:bg-muted text-foreground'
+                      }`}
+                    >
+                      <item.icon className="h-5 w-5" />
+                      {sidebarOpen && (
+                        <>
+                          <span className="flex-1 text-left">{item.label}</span>
+                          {isExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+                        </>
+                      )}
+                    </button>
+                    {sidebarOpen && isExpanded && (
+                      <div className="ml-8 mt-1 space-y-1">
+                        {item.children.map(child => (
+                          <NavLink
+                            key={child.path}
+                            to={child.path}
+                            className={`block px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                              pathname === child.path
+                                ? 'bg-primary text-primary-foreground'
+                                : 'hover:bg-muted text-muted-foreground'
+                            }`}
+                          >
+                            {child.label}
+                          </NavLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+              
+              return (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+                    isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-muted text-foreground'
+                  }`}
+                >
+                  <item.icon className="h-5 w-5" />
+                  {sidebarOpen && <span>{item.label}</span>}
+                </NavLink>
+              );
+            })}
+          </nav>
+
+          {/* User Info & Sign Out */}
+          <div className="p-4 border-t border-border">
+            <Button
+              variant="ghost"
+              onClick={handleSignOut}
+              className={`w-full ${sidebarOpen ? 'justify-start' : 'justify-center'} gap-2`}
+            >
+              <LogOut className="h-5 w-5" />
+              {sidebarOpen && <span>Sign Out</span>}
+            </Button>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className={`flex-1 overflow-auto ${sidebarOpen ? 'ml-64' : 'ml-16'} transition-all duration-300`}>
+          {/* Admin Top Bar */}
+          <header className="h-16 border-b border-border bg-card/50 backdrop-blur-md flex items-center justify-between px-8 sticky top-0 z-30">
+            <div className="flex items-center gap-4">
+              <h1 className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+                {pathname.split('/').filter(Boolean).pop()?.replace(/-/g, ' ')}
+              </h1>
+            </div>
+            <div className="flex items-center gap-4">
+              <AdminNotifications />
+              <div className="h-8 w-[1px] bg-border mx-2" />
+              <div className="flex items-center gap-3">
+                <div className="text-right hidden sm:block">
+                  <p className="text-xs font-semibold">{session?.user?.email?.split('@')[0] || 'Admin'}</p>
+                  <p className="text-[10px] text-muted-foreground">Super Admin</p>
+                </div>
+                <div className="h-10 w-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-bold">
+                  {session?.user?.email?.[0].toUpperCase() || 'A'}
+                </div>
               </div>
             </div>
+          </header>
+          <div className="p-8">
+            {children}
           </div>
-        </header>
-        <div className="p-8">
-          {children}
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </NotificationProvider>
   );
 }
