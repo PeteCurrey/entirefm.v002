@@ -16,7 +16,7 @@ export const PDFHeader = ({ documentTitle, documentRef }: PDFHeaderProps) => (
       {/* Official Butterfly Logo */}
       <Image 
         src={logoPath} 
-        style={{ width: 32, height: 32 }} 
+        style={{ width: 36, height: 36, objectFit: 'contain' }} 
       />
       <View>
         <Text style={{ color: pdfColors.white, fontSize: 13, fontWeight: 'bold', letterSpacing: 1.5 }}>

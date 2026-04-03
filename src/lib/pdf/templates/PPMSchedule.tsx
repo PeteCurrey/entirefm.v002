@@ -6,6 +6,9 @@ import { PDFGoldDivider } from '../components/PDFGoldDivider';
 import { PDFInfoBox } from '../components/PDFInfoBox';
 import { PDFContactCTA } from '../components/PDFContactCTA';
 import React from 'react';
+import path from 'path';
+
+const heroPath = path.join(process.cwd(), 'public/images/hero-tfm.png');
 
 export interface PPMScheduleData {
   buildingName: string;
@@ -78,6 +81,7 @@ export const PPMSchedulePDF = ({ data }: { data: PPMScheduleData }) => {
           generatedDate={data.generatedDate}
           documentType="Technical Asset Schedule"
           referenceNumber={data.referenceNumber}
+          heroImage={heroPath}
         />
         
         <PDFGoldDivider />
@@ -157,7 +161,7 @@ export const PPMSchedulePDF = ({ data }: { data: PPMScheduleData }) => {
               {row.visits.map((v, j) => (
                 <View key={j} style={[{ width: '6.5%', alignItems: 'center', justifyContent: 'center', borderRightWidth: 1, borderRightColor: '#eee' }, globalStyles.tableBodyCell]}>
                   {v && (
-                    <View style={{ width: 8, height: 8,  backgroundColor: pdfColors.gold, borderWidth: 1, borderColor: pdfColors.navy }} />
+                    <View style={{ width: 10, height: 10, backgroundColor: pdfColors.navy, borderWidth: 1, borderColor: pdfColors.gold }} />
                   )}
                 </View>
               ))}
