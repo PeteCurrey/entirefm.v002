@@ -91,7 +91,10 @@ export default function ChatWidget() {
         }),
       });
 
-      if (!response.ok) throw new Error("Failed to get response");
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.details || errData.error || "Failed to get response from AI servers");
+      }
 
       const data = await response.json();
       
@@ -104,9 +107,13 @@ export default function ChatWidget() {
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
       console.error("Chat error:", error);
+      const fallbackText = error instanceof Error 
+        ? `Error: ${error.message}` 
+        : "Sorry, I couldn't get a response right now. Please try again or contact the team directly.";
+        
       const errorMessage: Message = {
         role: "assistant",
-        content: "Sorry, I couldn't get a response right now. Please try again or contact the team directly.",
+        content: fallbackText,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages(prev => [...prev, errorMessage]);
