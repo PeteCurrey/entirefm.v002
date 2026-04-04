@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/coverage',
     '/education-facilities-management',
+    '/entirecafm',
     '/esg',
     '/facilities-management-birmingham',
     '/facilities-management-chesterfield',

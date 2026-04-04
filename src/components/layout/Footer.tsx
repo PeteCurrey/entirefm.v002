@@ -95,6 +95,7 @@ export const Footer = () => {
                 {[
                   { label: "FM Intelligence Hub", to: "/fm-intelligence" },
                   { label: "EntireFM Academy", to: "/academy" },
+                  { label: "EntireCAFM Platform", to: "/entirecafm" },
                   { label: "Document Vault", to: "/resources/document-vault" },
                   { label: "Building Walk Series", to: "/building-walk" },
                   { label: "Market Report 2025", to: "/fm-market-report" },

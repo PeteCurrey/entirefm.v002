@@ -324,6 +324,14 @@ const Header = ({ className }: { className?: string }) => {
                   </motion.div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link href="/entirecafm" legacyBehavior passHref>
+                  <NavigationMenuLink className="bg-transparent text-lg font-semibold text-[#dbaa4c] hover:text-[#e4be74] hover:bg-white/5 h-12 flex items-center px-4 rounded-md transition-colors">
+                    EntireCAFM
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
 
