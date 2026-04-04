@@ -110,9 +110,9 @@ export default function EntireCAFMPage() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 pt-2">
-                  <button onClick={() => document.getElementById('platform-demo')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-3.5 bg-[#dbaa4c] hover:bg-[#c99a3c] text-[#0f172a] font-bold rounded shadow-lg transition-all duration-200 uppercase tracking-wide text-sm">
+                  <a href="#platform-demo" className="px-8 py-3.5 bg-[#dbaa4c] hover:bg-[#c99a3c] text-[#0f172a] font-bold rounded shadow-lg transition-all duration-200 uppercase tracking-wide text-sm inline-block">
                     See EntireCAFM in Action
-                  </button>
+                  </a>
                   <a href="https://tafm.co.uk" target="_blank" rel="noopener noreferrer" className="px-8 py-3.5 border-2 border-[#dbaa4c] text-[#dbaa4c] hover:bg-[#dbaa4c]/10 font-bold rounded transition-all duration-200 uppercase tracking-wide text-sm">
                     Visit EntireCAFM.com &rarr;
                   </a>
