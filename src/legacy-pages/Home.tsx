@@ -35,7 +35,7 @@ const Home = () => {
       {/* Hero Section */}
       <VideoHero
         videoSrc="/videos/hero-video.mp4"
-        posterImage="/images/hero-tfm.png"
+        posterImage="/images/hero-video-poster.png"
       >
         <motion.div
           className="max-w-4xl relative z-10"

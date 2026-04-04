@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Card } from "@/components/ui/card";
 
 interface SectorCardProps {
@@ -20,10 +21,11 @@ const SectorCard = ({
     <Link href={link}>
       <Card className="overflow-hidden hover-lift group cursor-pointer h-full">
         <div className="relative h-48 overflow-hidden">
-          <img 
+          <Image 
             src={imageUrl} 
             alt={title} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-110" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">

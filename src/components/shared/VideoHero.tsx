@@ -48,6 +48,7 @@ export const VideoHero = ({ videoSrc, posterImage, children }: VideoHeroProps) =
           muted
           loop
           playsInline
+          preload="auto"
           poster={posterImage}
           className="absolute inset-0 w-full h-full object-cover"
           style={{ 
