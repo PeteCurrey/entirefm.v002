@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/integrations/supabase/client";
 import type { ComplianceReport, ComplianceObligation } from "@/lib/toolTypes";
+import { sendContactNotification } from "@/lib/mail";
 
 const systemPrompt = `You are an expert UK facilities management compliance advisor with deep knowledge of statutory building maintenance requirements, SFG20, fire safety regulations, electrical compliance, water safety (Legionella L8 ACoP), and health and safety law.
 
@@ -54,18 +55,32 @@ export async function POST(req: Request) {
     // Save lead
     if (contact?.email) {
       try {
-        await supabase.from("contact_submissions").insert({
+        const message = `Compliance Checker submission:\nBuilding: ${answers.buildingType}\nSector: ${answers.sector}\n${JSON.stringify(answers, null, 2)}`;
+        const { data: leadData, error: leadError } = await supabase.from("contact_submissions").insert({
           name: contact.name || "Compliance Audit Lead",
           email: contact.email,
           company: contact.company || null,
           phone: contact.phone || null,
           subject: "FM Compliance Audit Lead",
-          message: `Compliance Checker submission:\nBuilding: ${answers.buildingType}\nSector: ${answers.sector}\n${JSON.stringify(answers, null, 2)}`,
+          message: message,
           source_page: "/tools/compliance-checker",
           status: "new",
-        });
+        }).select().single();
+
+        if (!leadError && leadData) {
+          await sendContactNotification({
+            name: contact.name || "Compliance Audit Lead",
+            email: contact.email,
+            company: contact.company || null,
+            phone: contact.phone || null,
+            subject: "FM Compliance Audit Lead",
+            message: message,
+            source_page: "/tools/compliance-checker",
+            id: leadData.id
+          });
+        }
       } catch (e) {
-        console.warn("Could not save compliance lead:", e);
+        console.warn("Could not save or notify compliance lead:", e);
       }
     }
 

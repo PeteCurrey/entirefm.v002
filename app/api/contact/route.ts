@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
+import { sendContactNotification } from "@/lib/mail";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -46,6 +47,21 @@ export async function POST(req: Request) {
     if (error) {
       console.error("Supabase insert error:", error);
       return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Send email notification using shared utility
+    try {
+      await sendContactNotification({
+        name: validated.name,
+        email: validated.email,
+        phone: validated.phone,
+        company: validated.company,
+        message: validated.message,
+        source_page: validated.source_page,
+        id: data.id,
+      });
+    } catch (emailError) {
+      // Error is already logged in the utility
     }
 
     return NextResponse.json({ success: true, id: data.id });

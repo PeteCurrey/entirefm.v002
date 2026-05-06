@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { calculateROI, type FMInputs } from "@/lib/roiCalculator";
 import { supabase } from "@/integrations/supabase/client";
+import { sendContactNotification } from "@/lib/mail";
 
 export async function POST(req: Request) {
   try {
@@ -11,18 +12,32 @@ export async function POST(req: Request) {
     // Save lead
     if (contact?.email) {
       try {
-        await supabase.from("contact_submissions").insert({
+        const message = `Annual saving: £${results.annualSaving.toLocaleString()}. 5yr saving: £${results.fiveYearSaving.toLocaleString()}. ROI: ${results.roiPercentage}%. Sector: ${inputs.sector}. Sites: ${inputs.numberOfSites}. Wants proposal: ${contact.wantsProposal}`;
+        const { data: leadData, error: leadError } = await supabase.from("contact_submissions").insert({
           name: contact.name,
           email: contact.email,
           company: contact.company || null,
           phone: contact.phone || null,
           subject: "FM ROI Calculator Lead",
-          message: `Annual saving: £${results.annualSaving.toLocaleString()}. 5yr saving: £${results.fiveYearSaving.toLocaleString()}. ROI: ${results.roiPercentage}%. Sector: ${inputs.sector}. Sites: ${inputs.numberOfSites}. Wants proposal: ${contact.wantsProposal}`,
+          message: message,
           source_page: "/tools/fm-roi-calculator",
           status: "new",
-        });
+        }).select().single();
+
+        if (!leadError && leadData) {
+          await sendContactNotification({
+            name: contact.name,
+            email: contact.email,
+            company: contact.company || null,
+            phone: contact.phone || null,
+            subject: "FM ROI Calculator Lead",
+            message: message,
+            source_page: "/tools/fm-roi-calculator",
+            id: leadData.id
+          });
+        }
       } catch (e) {
-        console.warn("Could not save ROI lead:", e);
+        console.warn("Could not save or notify ROI lead:", e);
       }
     }
 

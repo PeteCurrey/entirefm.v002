@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { vaultDocuments, getDocumentById } from "@/lib/documentVault";
 import { supabase } from "@/integrations/supabase/client";
+import { sendContactNotification } from "@/lib/mail";
 
 export async function POST(req: Request) {
   try {
@@ -29,18 +30,32 @@ export async function POST(req: Request) {
 
     // Save lead to Supabase
     try {
-      await supabase.from("contact_submissions").insert({
+      const message = `Downloaded: ${doc.title} (${doc.slug}.${doc.fileType.toLowerCase()})\nFollowUp requested: ${wantsFollowUp ? "Yes" : "No"}`;
+      const { data: leadData, error: leadError } = await supabase.from("contact_submissions").insert({
         name,
         email,
         company,
         phone: phone || null,
         subject: `Document Vault Download: ${doc.title}`,
-        message: `Downloaded: ${doc.title} (${doc.slug}.${doc.fileType.toLowerCase()})\nFollowUp requested: ${wantsFollowUp ? "Yes" : "No"}`,
+        message,
         source_page: "/resources/document-vault",
         status: "new",
-      });
+      }).select().single();
+
+      if (!leadError && leadData) {
+        await sendContactNotification({
+          name,
+          email,
+          company,
+          phone,
+          subject: `Document Vault Download: ${doc.title}`,
+          message,
+          source_page: "/resources/document-vault",
+          id: leadData.id
+        });
+      }
     } catch (e) {
-      console.warn("Could not save vault lead:", e);
+      console.warn("Could not save or notify vault lead:", e);
     }
 
     return NextResponse.json({

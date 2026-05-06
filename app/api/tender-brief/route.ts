@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/integrations/supabase/client";
 import type { TenderBrief, TenderBriefSection } from "@/lib/toolTypes";
+import { sendContactNotification } from "@/lib/mail";
 
 const systemPrompt = `You are a senior UK facilities management consultant with extensive experience writing FM service specifications and tender documents. Your task is to produce a professional, structured FM brief that a client could use to go to tender or share with FM providers.
 
@@ -65,18 +66,32 @@ export async function POST(req: Request) {
     // Save lead
     if (contact?.email) {
       try {
-        await supabase.from("contact_submissions").insert({
+        const message = `Tender Brief submission:\nOrg: ${requirements.orgName}\n${JSON.stringify(requirements, null, 2)}`;
+        const { data: leadData, error: leadError } = await supabase.from("contact_submissions").insert({
           name: contact.name || "Tender Brief Lead",
           email: contact.email,
           company: contact.company || null,
           phone: contact.phone || null,
           subject: "FM Tender Brief Generator Lead",
-          message: `Tender Brief submission:\nOrg: ${requirements.orgName}\n${JSON.stringify(requirements, null, 2)}`,
+          message: message,
           source_page: "/tools/tender-brief",
           status: "new",
-        });
+        }).select().single();
+
+        if (!leadError && leadData) {
+          await sendContactNotification({
+            name: contact.name || "Tender Brief Lead",
+            email: contact.email,
+            company: contact.company || null,
+            phone: contact.phone || null,
+            subject: "FM Tender Brief Generator Lead",
+            message: message,
+            source_page: "/tools/tender-brief",
+            id: leadData.id
+          });
+        }
       } catch (e) {
-        console.warn("Could not save lead:", e);
+        console.warn("Could not save or notify lead:", e);
       }
     }
 

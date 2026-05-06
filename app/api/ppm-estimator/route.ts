@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/integrations/supabase/client";
 import type { PPMEstimate } from "@/lib/toolTypes";
+import { sendContactNotification } from "@/lib/mail";
 
 const systemPrompt = `You are an expert UK FM pricing consultant for EntireFM. Your job is to produce a realistic ballpark PPM cost estimate based on a site profile.
 
@@ -53,19 +54,33 @@ export async function POST(req: Request) {
     // Store lead in Supabase contact_submissions
     if (contact?.email) {
       try {
-        await supabase.from("contact_submissions").insert({
+        const message = `PPM Estimator submission:\n${JSON.stringify(profile, null, 2)}`;
+        const { data: leadData, error: leadError } = await supabase.from("contact_submissions").insert({
           name: contact.name || "PPM Estimator Lead",
           email: contact.email,
           company: contact.company || null,
           phone: contact.phone || null,
           subject: "PPM Cost Estimator Lead",
-          message: `PPM Estimator submission:\n${JSON.stringify(profile, null, 2)}`,
+          message: message,
           source_page: "/tools/ppm-estimator",
           status: "new",
-        });
+        }).select().single();
+
+        if (!leadError && leadData) {
+          await sendContactNotification({
+            name: contact.name || "PPM Estimator Lead",
+            email: contact.email,
+            company: contact.company || null,
+            phone: contact.phone || null,
+            subject: "PPM Cost Estimator Lead",
+            message: message,
+            source_page: "/tools/ppm-estimator",
+            id: leadData.id
+          });
+        }
       } catch (e) {
         // Non-fatal — continue generating estimate
-        console.warn("Could not save lead:", e);
+        console.warn("Could not save or notify lead:", e);
       }
     }
 

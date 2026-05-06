@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/integrations/supabase/client";
+import { sendContactNotification } from "@/lib/mail";
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,19 +13,33 @@ export async function POST(req: NextRequest) {
 
     // Log lead as a contact submission
     if (supabase) {
-      const { error: dbError } = await supabase.from("contact_submissions").insert([{
+      const message = `Job Title: ${jobTitle} | Downloaded 2025 UK FM Market Report`;
+      const { data: leadData, error: dbError } = await supabase.from("contact_submissions").insert([{
         name,
         email,
         company,
         phone,
         sector,
         subject: "Market Report 2025 Download",
-        message: `Job Title: ${jobTitle} | Downloaded 2025 UK FM Market Report`,
+        message,
         source_page: "/fm-market-report",
-        status: "New"
-      }]);
+        status: "new"
+      }]).select().single();
 
       if (dbError) throw dbError;
+
+      if (leadData) {
+        await sendContactNotification({
+          name,
+          email,
+          company,
+          phone,
+          subject: "Market Report 2025 Download",
+          message,
+          source_page: "/fm-market-report",
+          id: leadData.id
+        });
+      }
     }
 
     // In a real app, we'd trigger an email with the download link.
