@@ -82,10 +82,10 @@ const Home = () => {
           transition={{ delay: 0.8, duration: 1 }}
           className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl"
         >
-          <MetricCard value="41" label="Avg response time (mins)" className="border-white/5" />
-          <MetricCard value="87" label="First-time fix rate" suffix="%" className="border-white/5" />
-          <MetricCard value="120" label="Sites under management" suffix="+" className="border-white/5" />
-          <MetricCard value="98" label="SLA compliance" suffix="%" className="border-white/5" />
+          <MetricCard value="24/7" label="Helpdesk Support" className="border-white/5" />
+          <MetricCard value="UK-Wide" label="Contractor Network" className="border-white/5" />
+          <MetricCard value="Planned" label="& Reactive Maintenance" className="border-white/5" />
+          <MetricCard value="Compliance" label="Led FM Delivery" className="border-white/5" />
         </motion.div>
       </VideoHero>
 

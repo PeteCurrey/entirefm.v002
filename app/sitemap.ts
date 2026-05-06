@@ -4,6 +4,9 @@ import { resources } from '@/lib/resources';
 import { episodes } from '@/lib/buildingWalk';
 import { academyCourses } from '@/lib/academy';
 import { partnerTypes } from '@/lib/partners';
+import { locations } from '@/lib/locations';
+import { sectors } from '@/lib/sectors';
+import { services } from '@/lib/services';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.entirefm.com';
@@ -34,23 +37,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/education-facilities-management',
     '/entirecafm',
     '/esg',
-    '/facilities-management-birmingham',
-    '/facilities-management-chesterfield',
-    '/facilities-management-in-the-midlands',
-    '/fm-derby',
     '/fm-insights',
-    '/fm-insights/future-of-fm',
-    '/fm-intelligence',
-    '/fm-leeds',
-    '/fm-london',
-    '/fm-manchester',
-    '/fm-market-report',
-    '/fm-nottingham',
-    '/fm-operations',
-    '/fm-sheffield',
     '/health-safety',
-    '/healthcare-facilities-management',
-    '/hotel-facilities-management',
     '/industrial-facilities-management',
     '/innovation',
     '/integrations',
@@ -356,6 +344,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' || route === '/' ? 1 : 0.8,
   }));
 
+  // Dynamic Locations
+  const locationRoutes = locations.map((loc) => ({
+    url: `${baseUrl}/${loc.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
+  // Dynamic Sectors
+  const sectorRoutes = sectors.map((sec) => ({
+    url: `${baseUrl}/${sec.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
+  // Dynamic Services
+  const serviceRoutes = services.map((srv) => ({
+    url: `${baseUrl}/${srv.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
   // Dynamic Case Studies
   const caseStudyRoutes = caseStudies.map((cs) => ({
     url: `${baseUrl}/case-studies/${cs.slug}`,
@@ -398,6 +410,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes, 
+    ...locationRoutes,
+    ...sectorRoutes,
+    ...serviceRoutes,
     ...caseStudyRoutes, 
     ...resourceRoutes, 
     ...academyRoutes, 

@@ -68,27 +68,27 @@ const nextConfig = {
       { source: '/case-studies/service-stations',       destination: '/case-studies', permanent: true },
 
       // ── Location pages → nearest geo-landing page ────────────────────
-      { source: '/locations/birmingham',    destination: '/facilities-management-birmingham', permanent: true },
-      { source: '/locations/chesterfield',  destination: '/facilities-management-chesterfield', permanent: true },
+      { source: '/locations/birmingham',    destination: '/fm-birmingham', permanent: true },
+      { source: '/locations/chesterfield',  destination: '/fm-chesterfield', permanent: true },
       { source: '/locations/leeds',         destination: '/fm-leeds',       permanent: true },
-      { source: '/locations/manchester',    destination: '/fm-manchester',  permanent: true },
+      { source: '/locations/manchester',    destination: '/facilities-management-manchester', permanent: true },
       { source: '/locations/sheffield',     destination: '/fm-sheffield',   permanent: true },
       { source: '/locations/liverpool',     destination: '/contact',        permanent: true },
       { source: '/locations/nottingham',    destination: '/fm-nottingham',  permanent: true },
       { source: '/locations/derby',         destination: '/fm-derby',       permanent: true },
 
       // ── Legacy geo-landing URL variants ──────────────────────────────
-      { source: '/facilities-management-manchester', destination: '/fm-manchester',  permanent: true },
+      { source: '/fm-manchester',                    destination: '/facilities-management-manchester',  permanent: true },
       { source: '/facilities-management-derby',      destination: '/fm-derby',       permanent: true },
       { source: '/facilities-management-midlands',   destination: '/facilities-management-in-the-midlands', permanent: true },
       { source: '/facilities-management-oxford',     destination: '/contact',        permanent: true },
-      { source: '/facilities-management-lincoln',    destination: '/contact',        permanent: true },
-      { source: '/facilities-management-liverpool',  destination: '/contact',        permanent: true },
+      { source: '/facilities-management-lincoln',    destination: '/fm-lincoln', permanent: true },
+      { source: '/facilities-management-liverpool',  destination: '/fm-liverpool', permanent: true },
       { source: '/facilities-management-leeds',      destination: '/fm-leeds',       permanent: true },
       { source: '/facilities-management-doncaster',  destination: '/contact',        permanent: true },
-      { source: '/fm-telford',     destination: '/contact',                          permanent: true },
-      { source: '/fm-lincoln',     destination: '/contact',                          permanent: true },
-      { source: '/fm-chesterfield', destination: '/facilities-management-chesterfield', permanent: true },
+      { source: '/fm-telford',     destination: '/facilities-management-in-telford', permanent: true },
+      { source: '/facilities-management-birmingham', destination: '/fm-birmingham', permanent: true },
+      { source: '/facilities-management-chesterfield', destination: '/fm-chesterfield', permanent: true },
       { source: '/fm-doncaster',   destination: '/contact',                          permanent: true },
 
       // ── Soft-services sub-pages ───────────────────────────────────────
