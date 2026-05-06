@@ -228,6 +228,30 @@ export const services: Service[] = [
         answer: "Our engineers provide instant notification of 'major non-compliance' and our helpdesk prepares an immediate remedial quote to restore safety and compliance as a priority."
       }
     ]
+  },
+  {
+    slug: "commercial-facilities-management",
+    name: "Commercial Facilities Management",
+    strapline: "Professional Property Support for Offices, Retail and Multi-Site Portfolios",
+    description: "Commercial property management requires a balanced approach to planned maintenance, reactive repairs, and statutory compliance. EntireFM builds maintenance programmes around your building's occupancy, asset condition, and operating hours, ensuring a safe and professional environment for tenants and staff alike.",
+    benefits: [
+      "Dedicated support for landlords and managing agents",
+      "Seamless coordination of hard and soft FM services",
+      "Comprehensive compliance auditing and documentation",
+      "24/7 reactive helpdesk for tenant issues"
+    ],
+    features: [
+      { title: "Office Maintenance", desc: "Lighting, HVAC, plumbing, and building fabric support." },
+      { title: "Statutory Compliance", desc: "Fire safety, water hygiene, and electrical testing management." },
+      { title: "Tenant Support", desc: "Rapid response to reactive issues and helpdesk coordination." },
+      { title: "Asset Management", desc: "Long-term planning and lifecycle auditing for building systems." }
+    ],
+    faqs: [
+      {
+        question: "How do you coordinate with tenants in commercial buildings?",
+        answer: "We work closely with building managers and tenants to schedule maintenance during low-impact hours, ensuring minimal disruption to business operations while maintaining 100% compliance."
+      }
+    ]
   }
 ];
 

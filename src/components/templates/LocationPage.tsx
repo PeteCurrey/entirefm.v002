@@ -58,48 +58,14 @@ export default function LocationPage({ slug }: LocationPageProps) {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `Does EntireFM cover ${location.region} and surrounding areas?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Yes, from our regional hubs we provide complete facilities management services not just within ${location.city} city centre, but across the entirety of ${location.region} and beyond.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `What's your emergency response time in ${location.city}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `For Priority 1 (P1) catastrophic emergencies, our locally deployed ${location.city} engineering teams operate on rapid response SLAs, coordinated by our 24/7 national helpdesk to ensure critical business continuity.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Do you offer PPM contracts for ${location.city} commercial estates?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Absolutely. We design and deliver meticulous, SFG20-aligned Planned Preventative Maintenance (PPM) schedules tailored to the specific asset registers of commercial properties across ${location.city}.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Can EntireFM manage a multi-site FM contract across ${location.region}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Yes. Multi-site consolidation is our specialty. We provide a single point of accountability, uniform service standards, and centralized compliance reporting for complex portfolios distributed throughout ${location.region}.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Do you provide commercial cleaning alongside FM in ${location.city}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Yes. Under our Total Facilities Management (TFM) model, we supply elite commercial cleaning and soft FM services seamlessly integrated with our hard FM engineering support across all ${location.city} sites.`
-        }
+    "mainEntity": location.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
       }
-    ]
+    }))
   };
 
   return (
@@ -172,7 +138,7 @@ export default function LocationPage({ slug }: LocationPageProps) {
               { icon: Hammer, title: "Industrial Cleaning", desc: "Heavy-duty degreasing and factory sanitation." },
               { icon: ShieldCheck, title: "Security", desc: "SIA-licensed manned guarding and patrols." },
               { icon: Target, title: "Grounds Maintenance", desc: "Year-round external landscaping and gritting." },
-              { icon: MapPin, title: "Drone Inspection", desc: "Aerial thermal surveying of massive estates." },
+              { icon: MapPin, title: "Drone Inspection", desc: "Aerial thermal surveying of large estates." },
               { icon: PhoneCall, title: "24/7 Helpdesk", desc: "Immediate reactive breakdown response." }
             ].map((srv, i) => (
               <div key={i} className="bg-white p-6 rounded-xl border border-border hover:border-primary/50 transition-colors">
@@ -197,23 +163,23 @@ export default function LocationPage({ slug }: LocationPageProps) {
           <div className="grid md:grid-cols-3 gap-12">
             <div>
               <div className="w-12 h-12 rounded-full border border-primary text-primary flex items-center justify-center mb-6 text-xl font-bold">1</div>
-              <h3 className="text-xl font-semibold mb-4">Local Presence, National Backing</h3>
+              <h3 className="text-xl font-semibold mb-4">Local Knowledge, National Backing</h3>
               <p className="text-gray-400 font-light leading-relaxed">
-                Operating directly in {location.city} means our engineers understand the local topography, but they are supported by the vast purchasing power and cutting-edge CAFM systems of a national operator.
+                Our presence in {location.city} ensures our engineers have immediate regional knowledge, supported by the vast resources and advanced CAFM systems of a national operator.
               </p>
             </div>
             <div>
               <div className="w-12 h-12 rounded-full border border-primary text-primary flex items-center justify-center mb-6 text-xl font-bold">2</div>
-              <h3 className="text-xl font-semibold mb-4">Faster Response Times</h3>
+              <h3 className="text-xl font-semibold mb-4">Professional Response</h3>
               <p className="text-gray-400 font-light leading-relaxed">
-                When a catastrophic failure occurs, our local rapid-reaction teams bypass the typical multi-region travel delays, ensuring your {location.city} business is back operational in hours, not days.
+                When critical systems fail, our locally deployed teams are positioned to react quickly, ensuring your {location.city} operations are protected through prioritized reactive support.
               </p>
             </div>
             <div>
               <div className="w-12 h-12 rounded-full border border-primary text-primary flex items-center justify-center mb-6 text-xl font-bold">3</div>
               <h3 className="text-xl font-semibold mb-4">Single-Point Accountability</h3>
               <p className="text-gray-400 font-light leading-relaxed">
-                We eliminate the contractor blame game. By delivering Total Facilities Management across {location.region}, we take absolute ownership of your entire building's health.
+                We take full ownership of service delivery. By providing Total Facilities Management across {location.region}, we ensure clear accountability for your property's health.
               </p>
             </div>
           </div>
@@ -244,7 +210,7 @@ export default function LocationPage({ slug }: LocationPageProps) {
       <section className="py-16 bg-primary text-white text-center">
         <div className="container mx-auto px-6 max-w-4xl text-charcoal">
           <blockquote className="text-2xl md:text-3xl font-light italic leading-relaxed mb-6">
-            "EntireFM completely transformed our {location.city} property portfolio. Their local engineers are on-site instantly, and for the first time in years, our compliance is utterly flawless."
+            "EntireFM has significantly improved our {location.city} property operations. Their regional engineers are responsive, and our statutory compliance is now fully managed and audit-ready."
           </blockquote>
           <div className="font-bold text-lg">— Regional Operations Director, {location.city}</div>
         </div>
@@ -259,13 +225,13 @@ export default function LocationPage({ slug }: LocationPageProps) {
           </h2>
           
           <Accordion type="single" collapsible className="w-full space-y-4">
-            {faqSchema.mainEntity.map((faq, index) => (
+            {location.faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`} className="bg-muted/20 border border-border rounded-lg px-6">
                 <AccordionTrigger className="text-left font-semibold text-lg hover:text-primary py-6 underline-offset-4">
-                  {faq.name}
+                  {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground font-light text-base pb-6 leading-relaxed">
-                  {faq.acceptedAnswer.text}
+                  {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}

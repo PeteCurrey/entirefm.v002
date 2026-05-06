@@ -13,10 +13,11 @@ export interface MetricCardProps {
 
 const MetricCard: React.FC<MetricCardProps> = ({ value, label, prefix = "", suffix = "", className }) => {
   const [count, setCount] = useState(0);
-  const numericValue = parseInt(value.replace(/\D/g, ""));
+  const isNumeric = /^\d+$/.test(value);
+  const numericValue = isNumeric ? parseInt(value) : NaN;
 
   useEffect(() => {
-    if (isNaN(numericValue)) return;
+    if (!isNumeric || isNaN(numericValue)) return;
     
     const duration = 2000;
     const steps = 60;
@@ -34,7 +35,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ value, label, prefix = "", suff
     }, duration / steps);
 
     return () => clearInterval(timer);
-  }, [numericValue]);
+  }, [isNumeric, numericValue]);
 
   return (
     <div className={cn("bg-white/5 backdrop-blur-md border border-white/10 rounded-none p-6 shadow-2xl", className)}>
