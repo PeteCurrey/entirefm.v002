@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import { sendContactNotification } from "@/lib/mail";
+import { saveLead } from "@/lib/leads";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -17,37 +17,16 @@ export async function POST(req: Request) {
     const body = await req.json();
     const validated = contactSchema.parse(body);
 
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    if (!url || !serviceKey) {
-      console.error("Missing Supabase credentials");
-      return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
-    }
-
-    const adminClient = createClient(url, serviceKey, {
-      auth: { persistSession: false },
+    const lead = await saveLead({
+      name: validated.name,
+      email: validated.email,
+      phone: validated.phone || null,
+      company: validated.company || null,
+      message: validated.message,
+      source_page: validated.source_page || "/contact",
+      status: "new",
+      subject: "General Inquiry",
     });
-
-    const { data, error } = await adminClient
-      .from("contact_submissions")
-      .insert({
-        name: validated.name,
-        email: validated.email,
-        phone: validated.phone || null,
-        company: validated.company || null,
-        message: validated.message,
-        source_page: validated.source_page || "/contact",
-        status: "new",
-        subject: "General Inquiry",
-      })
-      .select()
-      .single();
-
-    if (error) {
-      console.error("Supabase insert error:", error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
 
     // Send email notification using shared utility
     try {
@@ -58,13 +37,13 @@ export async function POST(req: Request) {
         company: validated.company,
         message: validated.message,
         source_page: validated.source_page,
-        id: data.id,
+        id: lead.id,
       });
     } catch (emailError) {
       // Error is already logged in the utility
     }
 
-    return NextResponse.json({ success: true, id: data.id });
+    return NextResponse.json({ success: true, id: lead.id });
   } catch (err) {
     if (err instanceof z.ZodError) {
       return NextResponse.json({ error: err.errors[0].message }, { status: 400 });

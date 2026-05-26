@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/integrations/supabase/client";
+import { saveLead } from "@/lib/leads";
 import type { PPMEstimate } from "@/lib/toolTypes";
 import { sendContactNotification } from "@/lib/mail";
 
@@ -51,11 +52,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid profile" }, { status: 400 });
     }
 
-    // Store lead in Supabase contact_submissions
+    // Store lead in local storage and try Supabase
     if (contact?.email) {
       try {
         const message = `PPM Estimator submission:\n${JSON.stringify(profile, null, 2)}`;
-        const { data: leadData, error: leadError } = await supabase.from("contact_submissions").insert({
+        const lead = await saveLead({
           name: contact.name || "PPM Estimator Lead",
           email: contact.email,
           company: contact.company || null,
@@ -64,20 +65,18 @@ export async function POST(req: Request) {
           message: message,
           source_page: "/tools/ppm-estimator",
           status: "new",
-        }).select().single();
+        });
 
-        if (!leadError && leadData) {
-          await sendContactNotification({
-            name: contact.name || "PPM Estimator Lead",
-            email: contact.email,
-            company: contact.company || null,
-            phone: contact.phone || null,
-            subject: "PPM Cost Estimator Lead",
-            message: message,
-            source_page: "/tools/ppm-estimator",
-            id: leadData.id
-          });
-        }
+        await sendContactNotification({
+          name: contact.name || "PPM Estimator Lead",
+          email: contact.email,
+          company: contact.company || null,
+          phone: contact.phone || null,
+          subject: "PPM Cost Estimator Lead",
+          message: message,
+          source_page: "/tools/ppm-estimator",
+          id: lead.id
+        });
       } catch (e) {
         // Non-fatal — continue generating estimate
         console.warn("Could not save or notify lead:", e);

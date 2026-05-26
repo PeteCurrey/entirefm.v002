@@ -33,3 +33,6 @@ tsconfig.tsbuildinfo
 
 # Misc Python Scripts
 *.py
+
+# Local databases / temp data
+data/

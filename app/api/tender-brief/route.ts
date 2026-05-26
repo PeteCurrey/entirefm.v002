@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/integrations/supabase/client";
+import { saveLead } from "@/lib/leads";
 import type { TenderBrief, TenderBriefSection } from "@/lib/toolTypes";
 import { sendContactNotification } from "@/lib/mail";
 
@@ -67,7 +68,7 @@ export async function POST(req: Request) {
     if (contact?.email) {
       try {
         const message = `Tender Brief submission:\nOrg: ${requirements.orgName}\n${JSON.stringify(requirements, null, 2)}`;
-        const { data: leadData, error: leadError } = await supabase.from("contact_submissions").insert({
+        const lead = await saveLead({
           name: contact.name || "Tender Brief Lead",
           email: contact.email,
           company: contact.company || null,
@@ -76,20 +77,18 @@ export async function POST(req: Request) {
           message: message,
           source_page: "/tools/tender-brief",
           status: "new",
-        }).select().single();
+        });
 
-        if (!leadError && leadData) {
-          await sendContactNotification({
-            name: contact.name || "Tender Brief Lead",
-            email: contact.email,
-            company: contact.company || null,
-            phone: contact.phone || null,
-            subject: "FM Tender Brief Generator Lead",
-            message: message,
-            source_page: "/tools/tender-brief",
-            id: leadData.id
-          });
-        }
+        await sendContactNotification({
+          name: contact.name || "Tender Brief Lead",
+          email: contact.email,
+          company: contact.company || null,
+          phone: contact.phone || null,
+          subject: "FM Tender Brief Generator Lead",
+          message: message,
+          source_page: "/tools/tender-brief",
+          id: lead.id
+        });
       } catch (e) {
         console.warn("Could not save or notify lead:", e);
       }
