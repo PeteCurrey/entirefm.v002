@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 
 // Helper to read from local JSON
-async function readLocalData(table) {
+async function readLocalData(table: string): Promise<any[]> {
   const dataPath = path.join(process.cwd(), "data", `${table}.json`);
   try {
     const fileContent = await fs.readFile(dataPath, "utf-8");
@@ -14,7 +14,7 @@ async function readLocalData(table) {
 }
 
 // Helper to write to local JSON
-async function writeLocalData(table, data) {
+async function writeLocalData(table: string, data: any[]): Promise<void> {
   const dataPath = path.join(process.cwd(), "data", `${table}.json`);
   await fs.writeFile(dataPath, JSON.stringify(data, null, 2));
 }
