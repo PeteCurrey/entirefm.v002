@@ -1,6 +1,19 @@
 import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+
+const supabaseAdmin = supabaseUrl && supabaseServiceKey
+  ? createClient(supabaseUrl, supabaseServiceKey, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    })
+  : null;
 
 // Helper to read from local JSON
 async function readLocalData(table: string): Promise<any[]> {
@@ -23,8 +36,33 @@ async function writeLocalData(table: string, data: any[]): Promise<void> {
 // The service role key is NEVER exposed to the client.
 export async function GET() {
   try {
-    const contacts = await readLocalData("contact_submissions");
-    const proposals = await readLocalData("proposal_requests");
+    let contacts: any[] = [];
+    let proposals: any[] = [];
+    let supabaseSuccess = false;
+
+    if (supabaseAdmin) {
+      try {
+        const [contactsRes, proposalsRes] = await Promise.all([
+          supabaseAdmin.from("contact_submissions").select("*"),
+          supabaseAdmin.from("proposal_requests").select("*")
+        ]);
+
+        if (!contactsRes.error && !proposalsRes.error) {
+          contacts = contactsRes.data || [];
+          proposals = proposalsRes.data || [];
+          supabaseSuccess = true;
+        } else {
+          console.warn("Supabase fetch returned error, falling back to local JSON:", contactsRes.error, proposalsRes.error);
+        }
+      } catch (dbError) {
+        console.warn("Supabase fetch exception, falling back to local JSON:", dbError);
+      }
+    }
+
+    if (!supabaseSuccess) {
+      contacts = await readLocalData("contact_submissions");
+      proposals = await readLocalData("proposal_requests");
+    }
 
     // Sort by created_at descending
     contacts.sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
@@ -46,27 +84,60 @@ export async function PATCH(req: Request) {
     const { type, id, status, assigned_to, priority, admin_notes } = await req.json();
     const table = type === "proposal" ? "proposal_requests" : "contact_submissions";
 
-    const data = await readLocalData(table);
-    const itemIndex = data.findIndex(item => item.id === id);
+    // Try Supabase first
+    let supabaseSuccess = false;
+    if (supabaseAdmin) {
+      try {
+        const updates: any = {};
+        if (status !== undefined) updates.status = status;
+        if (assigned_to !== undefined) updates.assigned_to = assigned_to;
+        if (admin_notes !== undefined) updates.admin_notes = admin_notes;
+        
+        if (priority !== undefined) {
+          if (type === "proposal") {
+            updates.urgency_level = priority;
+          } else {
+            updates.priority = priority;
+          }
+        }
 
-    if (itemIndex === -1) {
-      return NextResponse.json({ error: "Item not found" }, { status: 404 });
-    }
+        const { error } = await supabaseAdmin
+          .from(table)
+          .update(updates)
+          .eq("id", id);
 
-    // Build the update object dynamically based on provided fields
-    if (status !== undefined) data[itemIndex].status = status;
-    if (assigned_to !== undefined) data[itemIndex].assigned_to = assigned_to;
-    if (admin_notes !== undefined) data[itemIndex].admin_notes = admin_notes;
-    
-    if (priority !== undefined) {
-      if (type === "proposal") {
-        data[itemIndex].urgency_level = priority;
-      } else {
-        data[itemIndex].priority = priority;
+        if (!error) {
+          supabaseSuccess = true;
+        } else {
+          console.warn("Supabase update returned error:", error.message);
+        }
+      } catch (dbError) {
+        console.warn("Supabase update exception:", dbError);
       }
     }
 
-    await writeLocalData(table, data);
+    // Always mirror/fallback to local JSON
+    const data = await readLocalData(table);
+    const itemIndex = data.findIndex(item => item.id === id);
+
+    if (itemIndex !== -1) {
+      if (status !== undefined) data[itemIndex].status = status;
+      if (assigned_to !== undefined) data[itemIndex].assigned_to = assigned_to;
+      if (admin_notes !== undefined) data[itemIndex].admin_notes = admin_notes;
+      
+      if (priority !== undefined) {
+        if (type === "proposal") {
+          data[itemIndex].urgency_level = priority;
+        } else {
+          data[itemIndex].priority = priority;
+        }
+      }
+
+      await writeLocalData(table, data);
+    } else if (!supabaseSuccess) {
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error(`Admin leads update error:`, err);
@@ -87,13 +158,40 @@ export async function DELETE(req: Request) {
 
     const table = type === "proposal" ? "proposal_requests" : "contact_submissions";
 
+    // Try Supabase first
+    let supabaseSuccess = false;
+    if (supabaseAdmin) {
+      try {
+        const { error } = await supabaseAdmin
+          .from(table)
+          .delete()
+          .eq("id", id);
+
+        if (!error) {
+          supabaseSuccess = true;
+        } else {
+          console.warn("Supabase delete returned error:", error.message);
+        }
+      } catch (dbError) {
+        console.warn("Supabase delete exception:", dbError);
+      }
+    }
+
+    // Always mirror/fallback to local JSON
     let data = await readLocalData(table);
+    const initialLength = data.length;
     data = data.filter(item => item.id !== id);
 
-    await writeLocalData(table, data);
+    if (data.length < initialLength) {
+      await writeLocalData(table, data);
+    } else if (!supabaseSuccess) {
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error(`Admin leads delete error:`, err);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
+
